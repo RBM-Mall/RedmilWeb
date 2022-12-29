@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ForSuccesPop</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="ModalForErrorsss" style="display:none" data-target="#ModalForErrorrr" data-toggle="modal" />
+            <div id="ModalForErrorrr" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                    <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        <div class="modal-body forhide">
+                            <div style="margin-top:-45px;">
+                                <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
+                                @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
+                            </div>
+                            <h4 id="" class="modal-title w-100"> @ViewBag.Sudsdsd </h4>
+                            <div class="modal-footer">
+                                <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top:-180px;">
+                                    <b>Ok</b>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

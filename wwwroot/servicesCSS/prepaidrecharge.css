@@ -1,0 +1,1370 @@
+﻿.table-plan {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    height: 400px;
+}
+
+.div-second-plan-head {
+    width: 12%;
+    padding: 7px 14px;
+}
+
+.amount-gap {
+    font-size: 12px;
+    padding-top: 1px;
+    color: #6fcf97;
+}
+
+.plan-description-amount {
+    font-size: 11px;
+    padding-top: 1px;
+    color: #6fcf97;
+}
+
+
+/* HIDE RADIO */
+[type=radio] {
+    /* position: absolute;*/
+    /*opacity: 0;
+    width: 0;*/
+    /*height: 0;*/
+}
+
+    /* IMAGE STYLES */
+    [type=radio] + img {
+        cursor: pointer;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked + img {
+        outline: 2px solid #002970;
+    }
+
+
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.modal-confirm {
+    color: #636363;
+    width: 325px;
+    font-size: 14px;
+}
+
+    .modal-confirm .modal-content {
+        padding: 20px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .modal-confirm .modal-header {
+        border-bottom: none;
+        position: relative;
+    }
+
+    .modal-confirm h4 {
+        text-align: center;
+        font-size: 26px;
+        margin: 30px 0 -15px;
+        color: black;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+
+    .modal-confirm .form-control,
+    .modal-confirm .btn {
+        min-height: 40px;
+        border-radius: 3px;
+    }
+
+    .modal-confirm .close {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+
+    .modal-confirm .modal-footer {
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        /* padding-top: 250px;*/
+    }
+
+    .modal-confirm .icon-box {
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: -39px;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        z-index: 9;
+        /*background: #82ce34;*/
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+        .modal-confirm .icon-box i {
+            font-size: 58px;
+            position: relative;
+            top: 3px;
+        }
+
+    .modal-confirm.modal-dialog {
+        margin-top: 80px;
+    }
+
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+        background: #82ce34;
+        text-decoration: none;
+        transition: all 0.4s;
+        line-height: normal;
+        border: none;
+    }
+
+        .modal-confirm .btn:hover,
+        .modal-confirm .btn:focus {
+            background: #6fb32b;
+            outline: none;
+        }
+
+.trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+}
+
+/*<!--New Css Added-->*/
+:root {
+    --navbar-bg-color: hsl(0, 0%, 15%);
+    --navbar-text-color: hsl(0, 0%, 85%);
+    --navbar-text-color-focus: white;
+    --navbar-bg-contrast: hsl(0, 0%, 25%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*body {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    margin-left: auto;
+    margin-right: auto;
+}*/
+
+/*Main Head Starts Here*/
+
+.main-head-recharge {
+    height: 200px;
+    width: auto;
+    margin: 0 auto;
+    background: #002970;
+}
+
+.row-recharge {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.block-recharge {
+    /*float: left;*/
+    width: 16%;
+    text-align: -webkit-center;
+    display: inline-block;
+}
+
+.p-recharge {
+    color: white;
+    white-space: nowrap;
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+.row-recharge-body {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1600px;
+    margin-top: -60px;
+}
+
+.recharge-left-pannel {
+    background: #fff;
+}
+
+.radiobtn-recharge-body {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding-left: 45px;
+}
+
+._12Jd label.radio_lable {
+    color: #222222;
+}
+
+._12Jd label {
+    padding-left: 30px;
+    text-align: left;
+    color: #999999;
+    top: 0 !important;
+    font-size: 15px;
+}
+
+.radiobtn-recharge-body .i-recharge {
+    position: absolute;
+    top: -1px;
+    left: -3px;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #999999;
+}
+
+.btn-process-recharge1 {
+    font-size: 16px;
+    padding: 15px 20px;
+}
+
+.btn-process-recharge2 {
+    background: #3EB2FD;
+    color: #fff;
+}
+
+.btn-process-recharge3 {
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border-width: 0;
+    font-weight: 600;
+    height: 50px;
+}
+
+    .btn-process-recharge3:hover {
+        background-color: #008CBA;
+        color: white;
+    }
+
+._1Ll3, .btn-process-recharge3 {
+    cursor: pointer;
+}
+
+._IEC, .btn-process-recharge3 {
+    display: inline-block;
+}
+
+._2pHh, .btn-process-recharge3 {
+    width: 85%;
+}
+
+.input[type=password], ._3_cL input[type=tel], ._3_cL input[type=text], ._3_cL select {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 10px 10px 10px 5px;
+    border-bottom: 1px solid #ebebeb !important;
+    border: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 22px;
+}
+
+.div-recharge-opimage .div-oprator-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.div-recharge-opimage ul {
+    text-align: center;
+}
+
+    .div-recharge-opimage ul li {
+        width: 14%;
+        text-align: left;
+        color: blue;
+        float: left;
+    }
+
+        /*.div-recharge-opimage ul li {
+        
+        color: blue;
+    }*/
+
+        .div-recharge-opimage ul li img {
+            width: 100px;
+        }
+
+.input-css {
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid blue;
+    width: 100%;
+    font-size: 14px;
+    height: 34px;
+    padding: 6px 12px;
+    font-family: Inter,sans-serif;
+}
+
+p {
+    margin-bottom: 8px;
+    font: normal 300 16px 'Signika';
+}
+
+span {
+    font-weight: 100;
+}
+
+nav.navbar.fixed-top {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.div-second-plan-head {
+    width: 12%;
+    padding: 7px 14px;
+}
+
+
+.btn-amount-bind1 {
+    font-size: 14px;
+    padding: 6px 10px;
+}
+
+    .btn-amount-bind1:hover {
+        background-color: #008CBA;
+        color: white;
+    }
+
+
+.btn-amount-bind2 {
+    background: #fff;
+    color: #00baf2;
+    border: 1px solid #00baf2;
+}
+
+    .btn-amount-bind2:hover {
+        background-color: #008CBA;
+        color: white;
+    }
+
+
+
+.btn-process-recharge3 {
+    cursor: pointer;
+}
+
+
+.div-main-oplist {
+    padding: 40px 40px 40px 40px;
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -webkit-box-shadow: 0 0 8px rgb(0 0 0 / 5%);
+    box-shadow: 0 0 8px rgb(0 0 0 / 5%);
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 90%;
+}
+
+._316u, .div-main-oplist {
+    background: #fff;
+}
+
+.WV6b, ._3GKn, .div-main-oplist, ._166v ul li a, .div-recharge-opimage ul li a {
+    overflow: hidden;
+}
+
+
+.div-recharge-opimage .div-operator-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.div-recharge-opimage ul ._1Xma {
+    text-align: left;
+}
+
+.div-recharge-opimage ul li {
+    width: 14%;
+    text-align: left;
+    color: blue;
+}
+
+.txt-input {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 10px 10px 10px 5px;
+    border-bottom: 1px solid #ebebeb !important;
+    border: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 22px;
+    margin-left: 30px;
+}
+
+.form-group-recharge {
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+.final-pay-button {
+    margin-left: 160px;
+}
+
+.modal-header-recharge {
+    margin-top: 49px;
+}
+
+@media screen and (min-width: 900px) {
+    #navbar-toggle, #navbar-toggle[aria-expanded="true"] {
+        display: none;
+    }
+
+        #navbar-menu,
+        #navbar-toggle[aria-expanded="true"] #navbar-menu {
+            visibility: visible;
+            opacity: 1;
+            position: static;
+            display: block;
+            height: 100%;
+        }
+
+            .navbar-links,
+            #navbar-toggle[aria-expanded="true"] #navbar-menu .navbar-links {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                position: static;
+                flex-direction: row;
+                width: 100%;
+                height: 100%;
+            }
+}
+
+/*Media Query Starts for Small Smartphone*/
+@media screen and (min-width:279px) and (max-width:339px) {
+    .main-head-recharge {
+        height: 410px;
+        width: auto;
+        background: #002970;
+        margin-top: 119px;
+    }
+
+    .plan-description-amount {
+        margin-left: 20px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 10px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        /* margin-left: 60px;*/
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    .txt-input-text {
+        font-size: 11px;
+        width: 210px;
+    }
+
+    #operatorspan {
+        font-size: 10px;
+    }
+
+    .btn-process-recharge1 {
+        font-size: 14px;
+    }
+
+    btn-process-recharge3 {
+        height: 40px;
+    }
+
+    .form-group-recharge {
+        margin-left: 13px;
+    }
+
+    .form-group-recharge-button {
+        margin-left: 40px;
+    }
+
+    .form-group-recharge .errorMsg {
+        font-size: 12px;
+        padding-top: 1px;
+        padding-left: 102px;
+        margin-left: 0px;
+    }
+
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
+        }
+
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
+        }
+
+
+
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+    }
+
+    .img-wallet-select {
+        height: 120px;
+        width: 150px;
+    }
+
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    .pay-img2 {
+        margin-left: 68px;
+    }
+
+    .wallet-select {
+        /*display: inline-flex;*/
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 80px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: 0px;
+    }
+
+    .final-cancel-button {
+        margin-top: 9px;
+        margin-left: -105px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        /*     margin-left: 98px;
+       */
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    .final-modal-popup {
+        width: 283px;
+        margin-left: 14px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 104px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        font-weight: 500;
+        padding: 10px 10px 10px 5px;
+        border-bottom: 1px solid #ebebeb !important;
+        border: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-top: 22px;
+        margin-left: 30px;
+        height: 54px;
+        width: 225px;
+    }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:399px) and (min-width:340px) {
+    .main-head-recharge {
+        height: 411px;
+        width: auto;
+        background: #002970;
+        margin-top: 122px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 12px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-left: 60px;
+        padding-left: 0px;
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    /* .form-group-recharge {
+        margin-left: 91px;
+    }*/
+
+    .form-group-recharge .errorMsg {
+        font-size: 12px;
+        padding-top: 1px;
+        padding-left: 100px;
+        margin-left: 0px;
+    }
+
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
+        }
+
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
+        }
+
+
+
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+        
+    }
+
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    .pay-img2 {
+        margin-left: 230px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 140px;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 90px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: 5px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    .final-cancel-button {
+        /* margin-top: 9px;*/
+        margin-left: -42px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        margin-left: 65px;
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    .final-modal-popup {
+        width: 309px;
+        margin-left: 20px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 104px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+    }
+    .dmt-user-img {
+        margin-left: 110px;
+    }
+}
+
+@media screen and (max-width:419px) and (min-width:400px) {
+    .modal-header-recharge {
+        margin-top: 104px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (max-width:549px) and (min-width:423px) {
+    .modal-header-recharge {
+        margin-top: 67px;
+    }
+}
+
+/*For recharge Header*/
+@media screen and (max-width:550px) and (min-width:400px) {
+    .main-head-recharge {
+        height: 405px;
+        width: auto;
+        background: #002970;
+        margin-top: 84px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 12px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-left: 40px;
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    .form-group-recharge {
+        margin-left: 91px;
+    }
+
+        .form-group-recharge .errorMsg {
+            font-size: 12px;
+            padding-top: 1px;
+            padding-left: 146px;
+            margin-left: 0px;
+        }
+
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
+        }
+
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
+        }
+
+
+
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+    }
+
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    .pay-img2 {
+        margin-left: 230px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+        margin-left: 91px;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 150px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: 14px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        margin-left: 65px;
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    #operator-change {
+        font-size: 10px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+    }
+}
+
+/*Media Query End For Small Smartphones*/
+
+/*Media Query Starts For Large SmartPhones Here*/
+
+@media screen and (min-width:551px) and (max-width:768px) {
+    .main-head-recharge {
+        height: 410px;
+        width: auto;
+        background: #002970;
+        margin-top: 84px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 12px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-left: 60px;
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    .form-group-recharge {
+        margin-left: 91px;
+    }
+
+        .form-group-recharge .errorMsg {
+            font-size: 12px;
+            padding-top: 1px;
+            padding-left: 102px;
+            margin-left: 0px;
+        }
+
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
+        }
+
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
+        }
+
+
+
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+    }
+
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    .pay-img2 {
+        margin-left: 379px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+    }
+
+    .final-pay-button {
+        width: 138px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        margin-left: 65px;
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+}
+
+/*Media Query Ends For Large SmartPhones Here*/
+
+@media screen and (max-width:450px) and (min-width:400px) {
+    .final-modal-popup {
+        width: 362px;
+        margin-left: 14px;
+    }
+}
+
+@media screen and (max-width:500px) and (min-width:451px) {
+    .final-modal-popup {
+        width: 405px;
+        margin-left: 14px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .img-management {
+        height: 100px;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width:899px) {
+    .col-sm-3 {
+        width: 50%;
+    }
+
+    .main-head-recharge {
+        height: 223px;
+        width: auto;
+        background: #002970;
+        margin-top: 150px;
+    }
+
+    .div-input {
+        background: white;
+        border-radius: 25px;
+        width: 600px;
+        margin-left: 36px;
+        margin-top: 35px;
+    }
+
+    .txt-input {
+        margin-left: 84px;
+        width: 326px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 122px;
+    }
+
+    .errorMsg {
+        font-size: 14px;
+        color: red;
+        padding-top: 1px;
+        padding-left: 155px;
+    }
+
+    .form-group-recharge-button {
+        margin-left: 122px;
+        margin-right: 51px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+        width: 608px;
+        margin-left: 32px;
+        margin-top: 30px;
+    }
+
+    .plan-description-amount {
+        padding-left: 85px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 130px;
+        border-radius: 30px;
+        padding-top: 24px;
+    }
+
+    .dropdownDTH {
+        margin-left: 86px;
+        width: 311px;
+    }
+}
+
+
+@media (min-width: 900px) and (max-width:999px) {
+    .col-sm-3 {
+        width: 50%;
+    }
+
+    .main-head-recharge {
+        height: 223px;
+        width: auto;
+        background: #002970;
+        margin-top: 85px;
+    }
+
+    .div-input {
+        background: white;
+        border-radius: 25px;
+        width: 800px;
+        margin-left: 36px;
+        margin-top: 35px;
+    }
+
+    .txt-input {
+        margin-left: 84px;
+        width: 326px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 122px;
+    }
+
+    .errorMsg {
+        font-size: 14px;
+        color: red;
+        padding-top: 1px;
+        padding-left: 155px;
+    }
+
+    .form-group-recharge-button {
+        margin-left: 122px;
+        margin-right: 51px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+        width: 800px;
+        margin-left: 32px;
+        margin-top: 30px;
+    }
+
+    .plan-description-amount {
+        padding-left: 85px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 130px;
+        border-radius: 30px;
+        padding-top: 24px;
+    }
+
+    .dropdownDTH {
+        margin-left: 86px;
+        width: 311px;
+    }
+}
+
+@media (min-width: 959px) and (max-width: 999px) {
+    .modal-header-recharge {
+        margin-top: 84px;
+        border-radius: 30px;
+        padding-top: 24px;
+    }
+}
+
+@media (min-width: 899px) and (max-width: 959px) {
+    .modal-header-recharge {
+        margin-top: 132px;
+        border-radius: 30px;
+        padding-top: 24px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1100px) {
+    .main-head-recharge {
+        height: 223px;
+        width: auto;
+        background: #002970;
+        margin-top: 40px;
+    }
+
+    .form-group-recharge {
+        margin-bottom: 15px;
+        margin-left: 0px;
+    }
+
+    .form-group-recharge-button {
+        margin-left: 29px;
+        width: 318px;
+    }
+
+    .col-sm-3 {
+        width: 50%;
+    }
+
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 30px;
+    }
+
+    .operatorspan {
+        font-size: 11px;
+        margin-top: -37px;
+        margin-right: 43px;
+    }
+
+    .plan-description-amount {
+        margin-left: 40px;
+    }
+
+    #btnProcessRecharge {
+        width: 203px;
+        margin-left: 15px;
+    
+    }
+
+    .modal-header-recharge {
+        margin-top: 84px;
+    }
+
+    .div-input {
+        background: white;
+        border-radius: 25px;
+        width:230px;
+        margin-left: 36px;
+        margin-top: 35px;
+    }
+
+    .row-recharge-body {
+        float: left;
+        margin-left: 30px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+        margin-top: 36px;
+    }
+
+    .txt-input {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .formedia {
+        margin-left: 120px;
+    }
+}
+@media (max-width: 1280px) {
+    .dmt {
+        margin-top: 88px;
+        text-align: center;
+        margin-left: 65px;
+    
+    }
+}
+@media (max-width: 400px) {
+    .dmt {
+        margin-top: 88px;
+        text-align: center;
+        margin-left: -155px;
+    }
+}
+@media (min-width: 400px) and (max-width:550px){
+    .dmt {
+        margin-top: 88px;
+        text-align: center;
+        margin-left: -150px;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 140px;
+    }
+
+}
+@media (min-width: 551px) and (max-width:700px) {
+    .dmt {
+        margin-top: 100px;
+        text-align: center;
+        margin-left: -100px;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 180px;
+    }
+}
+@media (min-width: 701px) and (max-width:850px) {
+    .dmt {
+        margin-top: 162px;
+        text-align: center;
+        margin-left: 7px;
+    
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 250px;
+    }
+}
+@media (min-width: 851px) and (max-width:950px) {
+    .dmt {
+        margin-top: 57px;
+        text-align: center;
+        margin-left: 2px;
+    }
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 400px;
+    }
+}
+@media (min-width: 951px){
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 550px;
+    }
+}

@@ -1,0 +1,313 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.FinoDMTResponseModel.FinoDMTModel>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@using Project_Redmil_MVC
+@using Project_Redmil_MVC.Models
+@{
+    ViewData["Title"] = "Business Report - Online My Business Report";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+@*<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all">*@
+@*<link rel="stylesheet" href="https://common.olemiss.edu/_js/datatables/media/css/jquery.dataTables.css" asp-append-version="true">*@
+<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" asp-append-version="true">
+
+@*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">*@
+@*<script src="/lib/jquery/dist/jquery.js"></script>*@
+
+<style>
+    /*div.dataTables_wrapper {
+                width: 500px;
+                height: 500px;
+                overflow: auto;
+                /*width: 800px;
+                margin: 0 auto;
+
+            }*/
+
+    .dataTables_length {
+        margin-left: 30px;
+    }
+
+    .example_filter {
+        margin-left: 16px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #2d385e;
+        border-radius: 10px solid;
+    }
+
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<!-- Table for Recepient List-->
+@*<div class="tabcontent" style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;margin-top:15px;">*@
+<h2 style="text-align:center;font-weight:800; text-decoration: underline; margin-bottom: 100px; color: #2d385e;">DMT 2.0</h2>
+<div style="overflow-x:auto;">
+    <div class="col-md-12">
+        @*<div class="container">
+        <div class="row">*@
+
+        <div style="overflow-x: auto; overflow-y: auto; white-space: nowrap;">
+            @*<table id="example" class="table table-striped table-bordered table-responsive">*@
+            <table id="example" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer" style="margin-left:27px !important;">
+                <thead style="color: #fff; background-color: #2d385e;">
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Sender Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Mobile Number</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Bank RRN Number</th>
+                        <th>Redmil Tansaction ID</th>
+                        <th>Transaction ID</th>
+                        <th>Client Unique ID</th>
+                        <th>Wallet Type</th>
+                        <th>Commision</th>
+                        <th>Receiver Name</th>
+                        <th>Bank Charges</th>
+                        <th>Receiver Bank Name</th>
+                        <th>Receiver Account Number</th>
+                        <th>Receiver IFSC Code</th>
+                        <th>Receiver Mobile Number</th>
+                        <th>Transaction Type</th>
+                        <th>Failure Reason</th>
+                        <th>DE Name</th>
+                        <th>DE Mobile</th>
+                        <th>Request Id</th>
+                        <th>Surcharge</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int rowNo = 0;
+                    }
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @(rowNo += 1)
+                                </td>
+                                <td style="font-weight:700">
+                                    @item.SenderName
+                                </td>
+                                <td>
+                                    <label id="lblName">@item.RequestDate</label>
+                                </td>
+                                <td>
+                                    @item.RequestTime
+                                </td>
+                                <td style="font-weight:700">
+                                    @item.SenderMobileNumber
+                                </td>
+                                @if (@item.Status == "Success")
+                                {
+                                    <td style="font-weight:700;color: green" width="15%">₹@item.TransactionAmount</td>
+                                }
+                                else
+                                {
+                                    <td style="font-weight:700;color: #d9534f" width="15%">₹@item.TransactionAmount</td>
+                                }
+                                @if (item.Status == "Success")
+                                {
+                                    @*<td style="font-weight:700;color: white;background:green" width="15%">@item.Status</td>*@
+                                    <td> <button type="button" class="btn-process-recharge1 btn-process-recharge2" style="background-color:green;color:white;font-weight:700;border-color: aliceblue;padding: 3px 16px;">@item.Status</button></td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2" style="background-color:#d9534f;color:white;font-weight:700;border-color: aliceblue;padding: 3px 16px;">@item.Status</button>
+                                    </td>
+                                    @*<td style="font-weight:700;color:white;background:#EE4B2B" width="15%">@item.Status</td>*@
+                                }
+
+                                <td>
+                                    @item.BankRRNNumber
+                                </td>
+                                <td>
+                                    @item.RedmilReferenceId
+                                </td>
+                                <td>
+                                    @item.TransactionID
+                                </td>
+                                <td>
+                                    @item.ClientUniqueId
+
+                                </td>
+                                <td>
+                                    @item.WalletType
+                                </td>
+                                <td>
+                                    @item.CommissionAmount
+                                </td>
+                                <td>
+                                    @item.ReceiverName
+                                </td>
+                                <td>
+                                    @item.BankCharges
+                                </td>
+                                <td>
+                                    @item.BankName
+                                </td>
+                                <td>
+                                    @item.ReceiverAccountNo
+                                </td>
+                                <td>
+                                    @item.IFSCCode
+                                </td>
+                                <td>
+                                    @item.ReceiverMobileNumber
+                                </td>
+                                <td>
+                                    @item.TransactionType
+                                </td>
+                                <td>
+                                    @item.Reason
+                                </td>
+                                <td>
+                                    @item.DEName
+                                </td>
+                                <td>
+                                    @item.DEMobile
+                                </td>
+                                <td>
+                                    @item.RequestId
+                                </td>
+                                <td>
+                                    @item.Surcharge
+                                </td>
+                                <td>
+                                    @*<input type="hidden" id="hdnBfId" value="@item.BenificiaryId">*@
+                                    <button type="button" id="btnPay" class="btnViewReceipt btn-process-recharge1 btn-process-recharge2" style="background-color:green;color:white;font-weight:700;border-color: aliceblue;padding: 3px 16px;">View Receipt</button>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        @*</div>
+        </div>*@
+    </div>
+</div>
+
+
+
+@*<script src="https://code.jquery.com/jquery-3.5.1.js" asp-append-version="true"></script>*@
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+@*<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>*@
+
+@*<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+
+<!-- DataTables CSS -->
+<!-- DataTables JS -->
+@*<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>*@
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $('#example').DataTable({
+            //scrollX: true,
+            //"scrollY": 200,
+            //"scrollX": true,
+            //"animate": true,
+            "scrollX": true,
+            "scrollY": false,
+            "animate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "paging": true,
+            "searching": true
+        });
+
+        //$('#example1').DataTable();
+
+        //$('#example > tbody  > tr').each(function () {
+        //    $('html, body').animate({
+        //        scrollTop: $(this).offset().top
+        //    }, 200).delay(2800);
+        //});
+
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#example").on('click', ".btnViewReceipt", function () {
+            var currentRow = $(this).closest('tr');
+            var finoDMTModel = {
+                BankCharges: currentRow.find('td:eq(14)').text().trim(),
+                BankName: currentRow.find('td:eq(15)').text().trim(),
+                BankRRNNumber: currentRow.find('td:eq(7)').text().trim(),
+                ClientUniqueId: currentRow.find('td:eq(10)').text().trim(),
+                CommissionAmount: currentRow.find('td:eq(12)').text().trim(),
+                IfscCode: currentRow.find('td:eq(17)').text().trim(),
+                Reason: currentRow.find('td:eq(20)').text().trim(),
+                ReceiverAccountNo: currentRow.find('td:eq(16)').text().trim(),
+                ReceiverMobileNumber: currentRow.find('td:eq(18)').text().trim(),
+                ReceiverName: currentRow.find('td:eq(13)').text().trim(),
+                RedmilReferenceId: currentRow.find('td:eq(8)').text().trim(),
+                RequestDate: currentRow.find('td:eq(2)').text().trim(),
+                RequestTime: currentRow.find('td:eq(3)').text().trim(),
+                SenderMobileNumber: currentRow.find('td:eq(4)').text().trim(),
+                SenderName: currentRow.find('td:eq(1)').text().trim(),
+                SrNo: currentRow.find('td:eq(0)').text().trim(),
+                Status: currentRow.find('td:eq(6)').text().trim(),
+                TransactionAmount: currentRow.find('td:eq(5)').text().trim(),
+                TransactionType: currentRow.find('td:eq(19)').text().trim(),
+                WalletType: currentRow.find('td:eq(11)').text().trim(),
+                DEName: currentRow.find('td:eq(21)').text().trim(),
+                DEMobile: currentRow.find('td:eq(22)').text().trim(),
+                RequestId: currentRow.find('td:eq(23)').text().trim(),
+                Surcharge: currentRow.find('td:eq(24)').text().trim(),
+                
+            }
+            debugger;
+            var subCat = "31";
+            var result = {
+                "FinoDMTModel": finoDMTModel,
+            }
+            $.ajax({
+
+                type: "POST",
+                url: "/MyBusinessReports/ViewReceipt",
+                data: { result, subCat },
+                dataType: 'json',
+                success: function (msgdeserialize) {
+                    debugger;
+                    var viewReceipt = msgdeserialize;
+                    var viewReceiptWindow = window.open();
+                    viewReceiptWindow.document.write(viewReceipt);
+                    viewReceiptWindow.print();
+                },
+                failure: function (msgdeserialize) {
+                    alert(msgdeserialize.responseText);
+                },
+                error: function (msgdeserialize) {
+                    alert(msgdeserialize.responseText);
+                }
+            });
+
+        });
+    });
+</script>

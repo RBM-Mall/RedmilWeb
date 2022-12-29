@@ -1,0 +1,839 @@
+﻿@model Project_Redmil_MVC.Models.ResponseModel.SupportResponseModel.DepartmentOnCalllistResponseModel
+@{
+    ViewData["Title"] = "Support";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link rel="stylesheet" href="~/css/businessReport.css" />
+<style>
+</style>
+<style>
+
+    .ts {
+        margin-left: 226px;
+        font-size: 26px;
+    }
+
+    .btn-final {
+        display: block;
+        margin-left: 208px;
+        border-bottom: 42px;
+        width: 179px;
+        border-radius: 41px;
+        height: 41px;
+        font-size: 20px;
+        color: white;
+        border-color: white;
+        border-right: white;
+        border-left: white;
+        border-top: white;
+    }
+
+
+    .btnlft {
+        margin-left: 283px;
+        margin-top: -30px;
+        color: cornflowerblue;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+
+    .tp {
+        margin-left: 40px;
+    }
+
+    .modalss {
+        margin-left: 104px;
+        margin-right: 111px;
+        padding: 7px;
+        margin-top: 114px;
+    }
+
+    .mt {
+        margin-top: 68px;
+        margin-left: -69px;
+    }
+
+    .rs {
+        margin-left: 28px;
+    }
+
+    .modal-backdrop.innn {
+        opacity: 0 !important;
+    }
+
+    .img-wallet-select {
+        height: 150px;
+        width: 200px;
+    }
+
+    .first-wallet {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .final-modal-popup {
+        width: 650px;
+    }
+
+    .err {
+        margin-top: -181px;
+        margin-left: 88px;
+    }
+
+    .sucss {
+        margin-top: -181px;
+        margin-left: 88px;
+    }
+
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+    }
+
+    .modal-confirm .icon-box {
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: -40px;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        z-index: 9;
+        /* background: #82ce34; */
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
+    }
+       .breadcumb-area {
+    position: relative;
+    padding: 221px 0;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    background-position: 75% 10%;
+}
+.Feedack
+{
+
+margin-top: -18px;
+}
+</style>
+
+
+<div class="section breadcumb-area" style="background-image: url('../css/Img/forsupport.png')">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <ul>
+                    <li><strong style="color:black">Help and Support</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h3><strong class="ts">Call us Technical Support</strong></h3>
+
+
+<div class="container-fluid">
+    <div class="row" style="margin-left:100px;">
+        @*<div class="col-sm-4"></div>*@
+        <div class="col-sm-6" @*style=" margin-left: 523px;"*@>
+
+            <div class="row" style="margin-right: 275px; padding: 57px; background-color: lightgray;">
+                <h4 class=""><strong>Confirm your detail so we can call you</strong> </h4><br />
+                <h5> <strong>Preferred Language</strong></h5>
+                <div class="col-sm-6">
+
+                    <div class="form-check">
+                        <input class="form-check-inputs" type="radio" name="exampleRadios" value="Hindi" checked style="height:20px">
+                        <label class="form-check-label" for="exampleRadios1">
+                            Hindi
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="form-check">
+                        <input class="form-check-inputs" type="radio" name="exampleRadios" value="English" style="height:20px">
+                        <label class="form-check-label" for="exampleRadios2">
+                            English
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <h5><span id="errRadio" style="color:red;"></span></h5>
+                </div>
+                <div class="row">
+
+                    <label class="control-label">
+
+                    </label>
+
+                    @if (ViewBag.Department != null)
+                    {
+
+                        @Html.DropDownListFor(x => x.Department_Position, ViewBag.Department as SelectList, "-- Select Department --", new { @class = "form-control" })
+
+                    }
+
+                    <br />
+                    <h5><span id="errDepartent" style="color:red;"></span></h5>
+
+                    <label class="control-label">
+
+                    </label>
+                    <select class="form-control" id="SId" asp-items="" style="display:none">
+                        <option> -- Choose Sub Department -- </option>
+                    </select><br />
+                    <br />
+                    <h5><span id="errSubDepartent" style="color:red;"></span></h5>
+
+                    <input class="form-control" type="text" placeholder="Mobile Number" name="usrnm" id="mobileno" value="@ViewBag.Mobile">
+
+
+                    <div class="col-sm-6">
+                        <h1><span id="Errors" class="text-danger font-weight-bold"></span></h1>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="button-21 IVRDurationCheck">CALL ME BACK</button>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            @*<h1 class="reportHeadName">My Business Report</h1>
+            <h4 class="tag">Get Complete Transparency & Keep Good Track Of Your Business Transactions With Business Reports</h4>*@
+
+            <div class="container-fluid" style="margin-top: -120px; margin-bottom: -300px">
+                <div class="row">
+
+
+
+
+                    <div class="accordion" id="divRMCall">
+                        <div class="item" style="display:block;">
+                            <p class="number"></p>
+                            <h4 class="btnLF"><img src="~/css/img/usergroup.png" style="height:20px" />CALL YOUR  LOCAL FRANCHISE</h4>
+
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+
+                        <div class="item">
+                            <p class="number"></p>
+                            <h4 class="btnRAC"><img src="~/css/img/complain.png" style="height:37px" />RAISE A COMPLAINT </h4>
+
+                        </div>
+
+                    </div>
+                    <div class="accordion">
+
+                        <div class="item">
+                            <p class="number"></p>
+                            <h4 class="btnSAF"><img src="~/css/img/feedbacks.png" style="height:20px" />SUGGESTION AND FEEDBACK</h4>
+
+                        </div>
+
+                    </div>
+                    @if (ViewBag.RollType == "Digital Entrepreneur")
+                    {
+                        <div class="accordion">
+                            <div class="item" style="display:none;">
+                                <p class="number"></p>
+                                <h4 class="btnRM"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
+
+                            </div>
+                        </div>
+                    }
+
+                    else
+                    {
+                        <div class="accordion">
+                            <div class="item" style="display:block;">
+                                <p class="number"></p>
+                                <h4 class="btnRM"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!--Modal for error-->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="btnmyModalfinal" style="display:none" data-target="#myModalfinal" data-toggle="modal" />
+                <div id="myModalfinal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                        <div class="modal-content" style="height:307px;width:464px;color: black;padding:31px;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                            </button>
+                            <div class="">
+                                <div class="icon-box" id="icon" style="margin-top:40px;">
+                                    <label id="img" />
+                                </div>
+                                <h4 id="heading" class="modal-title w-100" style="padding-top:36px"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="p-new text-center"><label id="lblMsg"></label></h3>
+                                <p class="p-new"><label id="lblPrice"></label></p>
+                                <p class="p-new"><label id="lblTxnId"></label></p>
+                                <p class="p-new"><label id="lblMobile"></label></p>
+                                <p class="p-new"><label id="lblDate"></label></p>
+                                <p class="p-new"><label id="lblTime"></label></p>
+                                <p class="p-new"><label id="lblOperatorName"></label></p>
+                                <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                <p><strong></strong></p><p style="margin-left:40px"> </p>
+                                <p style="margin-left:40px"></p>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-final err" id="finaldismissbutton" data-dismiss="modal"><b>Ok</b></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Modal for feedback-->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div id="feedback" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 481px;margin-top: 15px;">
+                        <div class="modal-content" style="height: 720px;color:black;">
+                            <div class="modal-header modal-header-recharge">
+                                <a href="/Support/Support" style="padding-top:12px;" class="close">&times;</a>
+                                <h2 class="modal-title" style="text-align:center;"><b>Feedback</b></h2>
+                            </div>
+                            <div class="modal-body" style="padding-top:32px;">
+                                <h5><strong>Are you satisfies with support? /  क्या आप समाधान से संतुष्ट है ?</strong> </h5>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="Yes" type="radio" name="exampleRadios" id="exampleRadios1" checked style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="No" type="radio" name="exampleRadios" id="exampleRadios2" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <textarea id="Remark" name="w3review" placeholder="Reamarks(Optional)" rows="4" cols="50"></textarea>
+
+                                <div class="col-sm-12" style="display:none" id="reason">
+                                    <p><strong>Reason/कारण</strong></p><p style="margin-left:40px"> </p>
+                                    <p style="margin-left:40px"></p>
+                                    <div class="form-check">
+                                        <input class="form-check-input2" type="radio" name="exampleRadios2" id="exampleRadios2" value="option1" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Phone not picked/फोन नहीं उठाया
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input2" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Call not recieved/फोन आया नहीं
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input2" type="radio" name="exampleRadios" id="exampleRadios2" value="option3" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Rude Behaviour/खराब व्यवहार
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input2" type="radio" name="exampleRadios" id="exampleRadios2" value="option4" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Haven't received solution yet./अभी तक समाधान नहीं मिला
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input2" type="radio" name="exampleRadios" id="exampleRadios2" value="option5" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Representative dosen't have knowledge/प्रतिनिधि को जानकारी नहीं है
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input2" type="radio" name="exampleRadios" id="exampleRadios2" value="option6" style="height:20px">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Representative disconnected the call./प्रतिनिधि ने फोन काट दिया
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-feedback button-21" id="finaldismissbutton" data-dismiss="modal"><b>ShareFeedback</b></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Modal for feedback Success-->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="btnscucceessModalfinal" style="display:none" data-target="#successmodal" data-toggle="modal" />
+                <div id="successmodal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 650px;">
+                        <div class="modal-content" style="height: 550px;color:black;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                            </button>
+                            <div class="">
+                                <div class="icon-box" id="icon1" style="margin-top:30px;">
+                                    <label id="img2" />
+                                </div>
+                                <h4 id="heading2" class="modal-title w-100" style="padding-top:36px"></h4>
+                            </div>
+                            <div class="modal-body" style="padding-top:32px">
+                                <h3 class="p-new text-center"><label id="lblMsg2"></label></h3>
+                                <p class="p-new"><label id="lblPrice"></label></p>
+                                <p class="p-new"><label id="lblTxnId"></label></p>
+                                <p class="p-new"><label id="lblMobile"></label></p>
+                                <p class="p-new"><label id="lblDate"></label></p>
+                                <p class="p-new"><label id="lblTime"></label></p>
+                                <p class="p-new"><label id="lblOperatorName"></label></p>
+                                <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                <p><strong></strong></p><p style="margin-left:40px"> </p>
+                                <p style="margin-left:40px"></p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-final" @*data-target="#feedback" id="finaldismissbutton2"*@ data-dismiss="modal" data-toggle="modal"><b>Ok</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--For call modal-->
+        <div class="row">
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="forcall" style="display:none" data-target="#callmodal" data-toggle="modal" />
+                <div id="callmodal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 650px;margin-top: 130px;margin-left: 658px;">
+                        <div class="modal-content" style="height: 417px;width: 459px;color:black;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                            </button>
+                            <div class="">
+                                <img src="~/css/img/clock.gif" style="height: 156px;margin-left: 111px;text-align:center;margin-top: -18px;" />
+                                @*<div class="icon-box" id="icon" style="margin-top:30px;">
+                                </div>*@
+                                <span class="modal-title w-100">We Will call back within 5 minute</span>
+                            </div>
+                            <div class="modal-body" style="padding-top:32px">
+                                <h3 class="p-new text-center"><label id="lblMsgcall"></label></h3>
+                                <p class="p-new"><label id="lblPrice"></label></p>
+                                <p class="p-new"><label id="lblTxnId"></label></p>
+                                <p class="p-new"><label id="lblMobile"></label></p>
+                                <p class="p-new"><label id="lblDate"></label></p>
+                                <p class="p-new"><label id="lblTime"></label></p>
+                                <p class="p-new"><label id="lblOperatorName"></label></p>
+                                <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                <p><strong></strong></p><p style="margin-left:40px"> </p>
+                                <p style="margin-left:40px"></p>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-final sucss" data-target="#feedback" id="finaldismissbuttoncall" data-dismiss="modal" data-toggle="modal"><b>Ok</b></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Feedbacksucces call modal-->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="feedsuccesmodal" style="display:none" data-target="#feedbacksuccess" data-toggle="modal" />
+                <div id="feedbacksuccess" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 650px;">
+                        <div class="modal-content" style="height: 550px;color:black;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                            </button>
+                            <div class="">
+                                <div class="icon-box" id="iconfeedback" style="margin-top:30px;">
+                                    <label id="imgfeedback" />
+                                </div>
+                                <h4 id="headingfeedback" class="modal-title w-100" style="padding-top:36px"></h4>
+                            </div>
+                            <div class="modal-body" style="padding-top:32px">
+                                <h3 class="p-new text-center"><label id="lblMsgfeedback"></label></h3>
+                                <p class="p-new"><label id="lblPrice"></label></p>
+                                <p class="p-new"><label id="lblTxnId"></label></p>
+                                <p class="p-new"><label id="lblMobile"></label></p>
+                                <p class="p-new"><label id="lblDate"></label></p>
+                                <p class="p-new"><label id="lblTime"></label></p>
+                                <p class="p-new"><label id="lblOperatorName"></label></p>
+                                <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                <p><strong></strong></p><p style="margin-left:40px"> </p>
+                                <p style="margin-left:40px"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-final" id="feedbacksuccessbtnfeedback" data-dismiss="modal"><b>Ok</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for Local frenchise -->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="LocalFranchise" style="display:none" data-target="#frenchise" data-toggle="modal" />
+                <div id="frenchise" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 521px;margin-top: 158px">
+                        <div class="modal-content" style="height: 397px;color:black;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="padding-right: 14px; padding-right: 11px; font-size: 25px; font-weight: bolder;">×</span>
+                            </button>
+                            <div class="">
+                                <div class="" style="margin-top: -130px;margin-left: 36px;">
+                                    <img src="~/css/img/caller-male.png" style="height:437px" />
+                                </div>
+                                <h4 id="headingLF" class="modal-title w-100" style=""></h4>
+                            </div>
+                            <div class="modal-body" style="margin-top:-164px;margin-left: 158px;">
+                                <h3 class="p-new text-center"><label id="lblMsgLF"></label></h3>
+                                <p class="p-new"><label id="lblNameLF"></label></p>
+                                <p class="p-new"><label id="lblMobileLF"></label></p>
+                                <div class="modal-footer" style="margin-top: -10px;margin-left: -238px;">
+                                    <button type="button" class="btn-final" id="LocalLf" data-dismiss="modal" onclick="LF()"><b>Call Franchise</b></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for RM frenchise -->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="RM" style="display:none" data-target="#RMs" data-toggle="modal" />
+                <div id="RMs" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 521px;margin-top: 158px">
+                        <div class="modal-content" style="height:426px;color:black;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="padding-right: 14px; padding-right: 11px; font-size: 25px; font-weight: bolder;">×</span>
+                            </button>
+                            <div class="">
+                                <div class="" style="margin-top: -104px;margin-left: 36px;">
+                                    <img src="~/css/img/Caller-female.png" style="height:437px" />
+                                </div>
+                                <h4 id="headingLF" class="modal-title w-100" style=""></h4>
+                            </div>
+                            <div class="modal-body" style="margin-top:-164px;margin-left: 158px;">
+                                <h3 class="p-new text-center"><label id="lblMsgLF"></label></h3>
+                                <p class="p-new"><label id="lblNameRM"></label></p>
+                                <p class="p-new"><label id="lblMobileRM"></label></p>
+                                <div class="modal-footer" style="margin-top: -10px;margin-left: -238px;">
+                                    <button type="button" class="btn-final" id="LocalRM" data-dismiss="modal" onclick="RM()"><b>Call Franchise</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for Locallllllllll frenchise -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <input type="button" id="LocalFranchise" style="display:none" data-target="#frenchise" data-toggle="modal" />
+                    <div id="frenchisess" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog modal-confirm" style="width: 650px;">
+                            <div class="modal-content" style="height: 550px;color:black;">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                                </button>
+                                <div class="">
+                                    <div class="icon-box" id="icon1" style="margin-top:30px;">
+                                        <label id="img1" />
+                                    </div>
+                                    <h4 id="heading1" class="modal-title w-100" style="padding-top:36px"></h4>
+                                </div>
+                                <div class="modal-body" style="padding-top:32px">
+                                    <h3 class="p-new text-center"><label id="lblMsg1"></label></h3>
+                                    <p class="p-new"><label id="lblPrice"></label></p>
+                                    <p class="p-new"><label id="lblNameLF"></label></p>
+                                    <p class="p-new"><label id="lblMobileLF"></label></p>
+                                    <p class="p-new"><label id="lblDate"></label></p>
+                                    <p class="p-new"><label id="lblTime"></label></p>
+                                    <p class="p-new"><label id="lblOperatorName"></label></p>
+                                    <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                    <p><strong></strong></p><p style="margin-left:40px"> </p>
+                                    <p style="margin-left:40px"></p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-final" id="LocalLff" data-dismiss="modal"><b>Call RM</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+
+        $("#Department_Position").change(function () {
+            /*var ForHeading = $(this).text();*/
+            var ForHeading = $("#Department_Position option:selected").text();
+
+            $.ajax({
+                url: "/Support/ForHeading",
+                data: { 'ForHeading': ForHeading },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    $('#SId').html('');
+                    var options = '<option value="' + 0 + '">' + "--Choose Sub Department--" + '</option>';
+                    if (response.length > 0) {
+                        for (var i = 0; i < response.length; i++) {
+
+                            options += '<option value="' + response[i].department_key + '">' + response[i].department_name + '</option>';
+
+                        }
+                        $('#SId').show();
+                        $('#SId').append(options);
+                    }
+                    else {
+                        document.getElementById("SId").style.display = "none";
+                    }
+
+
+                }
+            });
+
+        });
+    });
+    var mobileno;
+    $('.IVRDurationCheck').on('click', function () {
+        debugger;
+        var MaindepartmentName = $("#Department_Position option:selected").text();
+        var lang = $("#Department_Position").val();
+        var rdbvalue = $('.form-check-inputs:checked').val();
+        //$('.radio1:checked').val();
+        //document.getElementById("ddlViewBy");
+        var departmentName = $("#SId option:selected").text();
+        var apiKey = $("#Department_Position").val();
+        //var value=apiKey.value;
+        //var apiKey = $("#Department_Position").val();
+        mobileno = $("#mobileno").val();
+        debugger;
+        if (rdbvalue == null || rdbvalue == "" || rdbvalue == undefined) {
+            document.getElementById("errRadio").innerHTML = "Please Select Atleast One Language";
+        }
+        else if (apiKey == null || apiKey == "") {
+            document.getElementById("errDepartent").innerHTML = "Please Select Atleast One Department";
+        }
+        else {
+            debugger;
+            document.getElementById("errRadio").innerHTML = "";
+            document.getElementById("errDepartent").innerHTML = "";
+            $.ajax({
+                url: "/Support/IVRDurationCheck",
+                data: { 'MaindepartmentName': MaindepartmentName, 'ApiKey': apiKey, 'mobileno': mobileno },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+
+                    if (response.statuscode == "ERR" || response.statuscode == null) {
+                        $("#btnmyModalfinal").trigger("click");
+                        //$("#forcall").trigger("click");
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "failed";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#880808';
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
+
+                    }
+                    else if (response.statuscode == "TXN") {
+                        debugger;
+                        $("#forcall").trigger("click");
+                        document.getElementById("lblMsgcall").innerHTML = response.message;
+                        //document.getElementById("headingcall").innerHTML = "We will call you back within 5 minute";
+                        document.getElementById("finaldismissbuttoncall").style.backgroundColor = '#82ce34';
+
+                        $.ajax({
+                            url: "/Support/Calluser",
+                            data: { 'DepartmenmtName': departmentName, 'ApiKey': apiKey, 'mobileno': mobileno },
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function (response) {
+                                document.getElementById("lblMsg1").innerHTML = response.message;
+                                document.getElementById("heading1").innerHTML = "Success";
+                                document.getElementById("img1").innerHTML = '<i class="fa fa-check"></i>'
+                                document.getElementById("icon1").style.backgroundColor = '#82ce34';
+                                document.getElementById("LocalLff").style.backgroundColor = '#82ce34';
+                                $("#frenchisess").trigger("click");
+
+
+                            }
+                        });
+                    }
+
+
+                }
+            })
+        }
+
+
+
+    });
+
+    var Lfnum;
+    $('.form-check-input').on('click', function () {
+        var radioVal = $('.form-check-input:checked').val();
+        if (radioVal == "No") {
+
+            document.getElementById('reason').style.display = "block";
+        }
+        else {
+
+            document.getElementById('reason').style.display = "none";
+        }
+
+    });
+    $('.btn-feedback').on('click', function () {
+        debugger;
+
+        var SatisfiedY_N = $('.form-check-input:checked').val();
+        var Remarks = $('#Remark').val();
+        var Reason = $('.form-check-input:checked').val();
+        $.ajax({
+            url: "/Support/Feedback",
+            data: { 'SatisfiedY_N': SatisfiedY_N, 'Remarks': Remarks, 'mobileno': mobileno, 'Reason': Reason },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                document.getElementById("lblMsgfeedback").innerHTML = response;
+                document.getElementById("headingfeedback").innerHTML = "Success";
+                document.getElementById("imgfeedback").innerHTML = '<i class="fa fa-check"></i>'
+                document.getElementById("iconfeedback").style.backgroundColor = '#82ce34';
+                document.getElementById("feedbacksuccessbtnfeedback").style.backgroundColor = '#82ce34';
+                $("#feedsuccesmodal").trigger("click");
+            }
+        });
+
+    })
+    $('.btnLF').on('click', function () {
+        debugger;
+        $.ajax({
+            url: "/Support/RmDetailUserWise",
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                document.getElementById("lblNameLF").innerHTML = 'Name : ' + response.data[0].bhName;
+                document.getElementById("lblMobileLF").innerHTML = 'Mobile : ' + response.data[0].bhMobile;
+                Lfnum = document.getElementById("lblMobileLF").innerHTML;
+                document.getElementById("LocalLf").style.backgroundColor = '#82ce34';
+                $("#LocalFranchise").trigger("click");
+            }
+        })
+
+    })
+
+    var Rnum;
+    $('.btnRM').on('click', function () {
+        debugger;
+        $.ajax({
+            url: "/Support/RmDetailUserWise",
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                document.getElementById("lblNameRM").innerHTML = 'Name :' + response.data[0].name;
+                document.getElementById("lblMobileRM").innerHTML = 'Mobile :' + response.data[0].mobileno;
+                Rnum = document.getElementById("lblNameRM").innerHTML;
+                document.getElementById("LocalRM").style.backgroundColor = '#82ce34';
+                $("#RM").trigger("click");
+
+
+            }
+        })
+
+    })
+
+
+    $('.btnRAC').on('click', function () {
+        debugger;
+        var custName = "@ViewBag.name";
+        var custContactNo = "@ViewBag.Mobile";
+        var custEmailId = "@ViewBag.Email";
+        var appId = "48000000623"
+        var loadUrl = "https://redmilbusinessmall.com/help_support.aspx?appid=" + appId + "&name=" +
+            custName + "&contact=" + custContactNo + "&email=" + custEmailId;
+        /* window.location.href = 'tel://' + loadUrl;*/
+        window.open(loadUrl);
+
+
+    })
+
+    $('.btnSAF').on('click', function () {
+        debugger;
+        var custName = "@ViewBag.name";
+        var custContactNo = "@ViewBag.Mobile";
+        var custEmailId = "@ViewBag.Email";
+        var appId = "48000000624"
+        var loadUrl = "https://redmilbusinessmall.com/help_support.aspx?appid=" + appId + "&name=" +
+            custName + "&contact=" + custContactNo + "&email=" + custEmailId;
+        window.open(loadUrl);
+
+    })
+
+    //< button onclick = "myFunction()" >
+    //    Call
+    //    < /button>
+
+    function RM() {
+        var a = Rnum;
+        window.location.href = 'tel:' + a;
+    }
+    function LF() {
+        var aLf = Lfnum;
+        window.location.href = 'tel:' + aLf;
+    }
+
+</script>

@@ -1,0 +1,185 @@
+﻿@model Project_Redmil_MVC.Models.RequestModel.Applyforfrenchise.ApplyForFrenchiseRequest
+@{
+    ViewData["Title"] = "ApplyForFrenchise";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link rel="stylesheet" href="~/servicesCSS/postpaidrecharge.css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/navbarheader.css">
+<style>
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 107px;
+        height: 636px;
+    }
+    .hr {
+        background-color: black;
+        margin: 20px
+    }
+    .forbenefit {
+        margin-left: 20px
+    }
+</style>
+<!--Body Start Here-->
+<div class="container-fluid" style="background: #ebebeb; margin-top: -116px;">
+  
+    <!--Header Div Ends Here-->
+    <div class="row">
+        <div class="row-fernchise-body">
+            <div class="col-3 col-md-3 cr1 div-input" style="background: white; border-radius: 20px; ">
+                <!--Card for recharge starts here-->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Apply For Frenchise</strong></h4>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="modal-body p-5 img align-items-center color-2">
+                                    <div class="text w-100 py-0 py-md-5">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12">
+
+                                                <div class="form-group-recharge">
+
+                                                    <input id="TxtCity"
+                                                           autocomplete="off" required="required" class="txt-input  txt-input-text" placeholder="Enter City" />
+                                                    <span id="" style="color: red"></span>
+
+                                                </div>
+                                                <div class="form-group-recharge">
+
+                                                    <input id="TxtArea" autocomplete="off" class="txt-input  txt-input-text" required="required" placeholder="Enter Area">
+                                                    <span id="" style="color: red"></span>
+
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <h4 style="margin-left: 88px;">Select your preference</h4><br />
+                                                    <div class="col-sm-6">
+                                                        <div class="form-check form-check-inline" style="padding-left: 72px" ;>
+                                                            <input class="form-check-input" id="TxtPreference1" type="radio" name="inlineRadioOptions" style=" display: inline-block; width: 50px; height: 11px;" value="Frenchise">
+                                                            <label class="form-check-label" for="inlineRadio1" style="
+    margin-left: -16px">Frenchise</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-check form-check-inline" style="padding-left: -2px" ;>
+                                                            <input class="form-check-input" id="TxtPreference2" type="radio" name="inlineRadioOptions" value="MasterFrenchise" style=" display: inline-block; width: 50px; height: 11px;">
+                                                            <label class="form-check-label" for="inlineRadio2" style="
+    margin-left: -16px">Master Frenchise</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br /><br />
+                                                <div class="form-group-recharge form-group-recharge-button">
+                                                    <button type="submit" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" onclick="forfrenchise()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Submit</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Card for recharge ends here-->
+                </div>
+            </div>
+          
+            <div class="col-9 col-md-9">
+                <div class="row mt-50">
+                    <div class="forbenefit">
+                        <h1 class="text-center">Benefits</h1><hr class="hr"/>
+                        <h2>35+ Services in one platform</h2>
+                        <span>Earn monthly Rs.50000 - 200000 by providing A to Z banking services and earn respect.</span>
+                    </div>
+                    <div class="forbenefit">
+                        <h2>Become a banking point </h2>
+                        <span>Partnered with 50+ Bankns and 100+ international companies to become a complete banking point of your area and neighbourhood .</span>
+                    </div>
+                   
+                    
+                </div>
+
+            </div>
+ 
+        </div>
+        </div>
+    </div>
+   
+
+<!--Body Ends Here-->
+<script>
+
+    function forfrenchise() {
+        debugger;
+        var city = $('#TxtCity').val();
+        var area = $('#TxtArea').val();
+        var frenchise = $('[name="inlineRadioOptions"]:radio:checked').val();
+        if (city.trim() == "") {
+            $.notify("Please Enter City ? ", "warn");
+            $('#TxtCity').focus();
+        }
+        else if (area.trim() == "") {
+
+            $.notify("Please Enter Area ? ", "warn");
+            $('[#TxtArea]').focus();
+
+        }
+        else if ($('[name="inlineRadioOptions"]:radio:checked').length == 0) {
+            $.notify("Please Select Gender any one? ", "warn");
+            return false;
+        }
+        else {
+
+            $.ajax({
+                url: "/ApplyForFrenchise/ApplyForFrenchise",
+                data: { 'city': city, 'area': area, 'frenchise': frenchise },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.statuscode == "TXN") {
+                        frenchiseclear();
+                        $.notify(response.message, { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 });
+                    }
+
+                    else {
+                        $.notify(
+                            response.message,
+                            { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                        );
+                    }
+                }
+            })
+        }
+
+
+    }
+
+    function frenchiseclear() {
+
+        var city = $('#TxtCity').val("");
+        var area = $('#TxtArea').val("");
+        var frenchise = $('[name="inlineRadioOptions"]:radio:checked').val("");
+    }
+
+</script>
+
+

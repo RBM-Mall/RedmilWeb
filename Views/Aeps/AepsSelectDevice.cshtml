@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.AepsKycDetailsNewResponseModel>
+
+
+@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "Aadhaar ATM";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="modal fade" id="aepsSelectDeviceModelPopUp">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-recharge">
+                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
+            </div>
+            <div class="modal-body" style="background-color:white;">
+                <div class="row div-recharge-img">
+                    <div class="col-sm-4 custom_img_size pay-img">
+                        <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4 custom_img_size pay-img2">
+                        <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <h2 style="text-align:center;">Rs.<b id="showplan"></b><br /></h2>
+                    </div><br />
+                    <div class="col-sm-12">
+                        <h3 style="text-align:center;">Rs.<b id="showprice"></b></h3>
+                    </div>
+                    <div class="col-sm-12" style="text-align:center">
+                        <label style="text-align:center;">
+                            Select option to pay
+                        </label>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="text" id="Coupon" placeholder="Enter Coupon Code" class="form-control for-left" /><p class="btnlft">Apply</p>
+                            </div>
+                        </div>
+                        <label id="lblamount" />
+                    </div>
+                </div>
+                <div class="row">
+                    <table border="1" class="table table-bordered table-condensed" id="tbl_data">
+
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                    <div id="output"></div>
+
+                </div>
+
+                <div class="row wallet-select">
+                    <div class="col-sm-6 custom_img_size">
+                        <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">Pay Online</button>
+                    </div>
+                    <div class="col-sm-6 custom_img_size">
+                        <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">Pay with Wallet</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                    <div class="col-sm-4 final-pay-button">
+                        <button id="btnTest" value="Rs.btnTest" type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3 btn-price" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">
+                            Rs
+
+
+                        </button>
+
+                    </div>
+                    @*<div class="col-sm-12">
+                    <h3 style="text-align:center;"><b id="forprice"></b></h3>
+                    </div>*@
+
+                    <div class="col-sm-4 final-cancel-button">
+                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    function aepsSelectDeviceModelPopUp(price) {
+        
+        let store = price;
+        let result = store.indexOf(",");
+        let legth = store.length;
+        let showprice = store.slice(result + 1, legth);
+        let showplan = store.slice(0, result);
+        document.getElementById("showplan").innerHTML = showplan;
+        //let showprice = store.slice(23);
+        document.getElementById("showprice").innerHTML = showprice;
+        document.getElementById("btnTest").innerHTML = showprice;
+        $.ajax({
+            url: "/upgradesubscriptions/getSubscription",
+            data: { 'showplan': showplan.trim(), 'showprice': showprice.trim() },
+            type: 'POST',
+            dataType: 'json',
+            success: function(data) {
+                var datas = data.addOn;
+                var st = "";
+                $.each(datas, function(index) {
+                    st += "<tr ><td><img src='" + datas[index].icon + "' class='mg - width' style='height: 103px;width: 487px;'></td>";
+                    st += "<td style='font-size: 14px;padding: 8px;'>" + datas[index].desc + "</td>";
+                    st += "<td>" + "<div class='numbers'><input type='text' id='changetxt' value='Add'/><span class='plus' onclick='foradd(" + datas[index].price + ")' >+</span><span class='minus' style='display:none;margin-top:-33px;' onclick='forminus()'> - </span></div>" + "</td>";
+                    st += "<td><span>" + 'Rs.' + datas[index].price + "</span></td>";
+                    st += "<td>" + datas[index].itemName + "</td></tr > ";
+                });
+                $("#tbl_data").html(st);
+            }
+        });
+    }
+
+</script>

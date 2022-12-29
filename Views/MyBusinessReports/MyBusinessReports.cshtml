@@ -1,0 +1,1296 @@
+﻿@model BusinessReportModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Project_Redmil_MVC
+@using Project_Redmil_MVC.Models
+@{
+    ViewData["Title"] = "Business Report - Online My Business Report";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<script src="/lib/jquery/dist/jquery.js"></script>
+<style>
+    .button-23:hover {
+        color: white;
+    }
+
+    .wallet-box .bg-wt-round {
+        background: #fff;
+        border-radius: 30px;
+        padding: 10px 0px;
+    }
+
+    .wallet_breadcumb-area {
+        position: relative;
+        padding: 140px 0;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        background-position: 75% 10%;
+    }
+
+        .wallet_breadcumb-area:before {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            top: 0;
+            z-index: 0;
+        }
+
+        .wallet_breadcumb-area ul {
+            text-align: center;
+        }
+
+            .wallet_breadcumb-area ul li {
+                display: block;
+                font-weight: 500;
+                font-size: 16px;
+                color: #fff;
+            }
+
+                .wallet_breadcumb-area ul li:first-child {
+                    font-size: 50px;
+                    font-weight: 700;
+                    line-height: 5rem;
+                    color: #fff;
+                }
+
+                .wallet_breadcumb-area ul li a {
+                    color: #ffffff;
+                }
+
+    .box-button {
+        background: dodgerblue;
+        padding: 16px 24px;
+        border-radius: 25px;
+        /* width: 298px;*/
+        position: relative;
+        display: flex;
+        font-size: 17px;
+        color: #fff;
+        font-weight: 500;
+        line-height: 18px;
+        text-align: center;
+        margin-left: 80px;
+        overflow-x: scroll;
+        height: 150px;
+        margin-right: 11px;
+        text-align: center;
+    }
+
+    .font {
+        text-align: center;
+        margin-left: 20px;
+        padding-left: 70px;
+        padding-top: 20px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+
+    /* Style the tab content */
+    .tabcontent {
+        /*display: none;*/
+        padding: 20px 12px;
+        border: 1px solid #ccc;
+        /*width: 1200px;
+                                                                                                                  border-top: none;*/
+    }
+
+        .tabcontent .title {
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+            .tabcontent .title h1 {
+                font-weight: 800;
+            }
+
+            .tabcontent .title .aval_bal, .cashBal {
+                margin-top: 20px;
+            }
+
+            .tabcontent .title .aval_bal, .AdvBal {
+                margin-top: -30px;
+            }
+
+            .tabcontent .title .advAval_bal, .AdvBal {
+                margin-top: -33px;
+            }
+
+        .tabcontent .item_info {
+            display: block;
+            margin-top: 50px;
+        }
+
+            .tabcontent .item_info button {
+                align-items: center;
+                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+                background-size: calc(100% + 20px) calc(100% + 20px);
+                border-radius: 100px;
+                border-width: 0;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: CircularStd,sans-serif;
+                font-size: 1.5rem;
+                height: auto;
+                justify-content: center;
+                line-height: 1.5;
+                padding: 6px 25px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color .2s,background-position .2s;
+                user-select: none;
+                margin-right: 24px;
+                float: none;
+                z-index: 1;
+            }
+
+        .tabcontent .title .item_info .rewbtn {
+            margin-left: 300px;
+        }
+
+        .tabcontent hr {
+            margin: 93px 0 0 20px;
+            padding: 10px;
+        }
+
+    hr {
+        border: none;
+        border-top: 1px dotted black;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+        width: 100%;
+    }
+
+    .div-browse-plan {
+        margin-top: 15px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+    }
+
+    .main-table-recharge {
+        height: 100%;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .div-second-plan-head1 {
+        width: 12%;
+        padding: 7px 104px;
+    }
+
+    .no-record {
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        border-width: 0;
+        font-weight: 600;
+        height: 50px;
+        background: indianred;
+        color: #fff;
+        font-size: 16px;
+        padding: 15px 20px;
+    }
+</style>
+
+<style>
+    .dataTables_length {
+        margin-left: 30px;
+    }
+
+    .example_filter {
+        margin-left: 16px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #2d385e;
+        border-radius: 10px solid;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px dotted black;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+        width: 100%;
+    }
+
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="container-fluid" style="background:#ebebeb">
+    <div class="first-header">
+        <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;height:150px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="call-to-action">
+                            <div class="row">
+                                <div class="col-sm-7 col-xs-12 dmt">
+                                    <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:300px;text-align:center; font-weight: 700; cursor: pointer;"><u>Business Reports</u></h3>
+                                    <br />
+
+                                </div>
+                                <div class="col-sm-5 col-xs-12 text-right">
+                                    <div class="read-more padding-top-bottom-40">
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <img src="/css/Img_BusinessReport/report.jpg" style="width: 60%;height:400px;margin-left: 330px;padding-bottom:20px;" alt="Norway" />
+        </div>
+    </div>
+    <hr>
+    <div style="background: white;padding-top: 5px;padding-bottom: 40px;">
+        <h3 class="tag">Get Complete Transparency & Keep Good Track Of Your Business Transactions With Business Reports</h3>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="accordion">
+            <div class="container-fluid" style="width: 100%;">
+                <div class="row">
+                    <div class="col-md-6">
+                        @if (ViewBag.Caterory != null)
+                        {
+                            @Html.DropDownListFor(m =>m.Id , ViewBag.Caterory as SelectList , "-- Select Categories --" ,  new {@class="form-control", @style="margin-left: -50px"})
+                        }
+                        <br />
+                        <h5><span id="errCategory" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control" id="SId" name="Id" asp-for="Id"
+                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))"></select>
+                        <br />
+                        <h5><span id="errSubCategory" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="walletTblborder11" style="display:none;" id="walletTblborder11">
+
+            <div id="transRepoTbl11" style="margin-top:20px;height: 100%; overflow: auto;width: 100%;display:block; padding-left: 50px;padding-right: 50px; border-radius: 2px">
+                <h2 id="headingReport" class="transRepoHead text-center" style="margin-bottom: 80px;text-decoration: underline;color: #2d385e;">
+                </h2>
+                <div class="row" id="divHeading" style="display:block">
+                    <table id="tempTbl" border="0" cellspacing="5" cellpadding="5" class="table table-striped align-middle table-bordered table-responsive caption-top" style="margin-top: 200px; ">
+                        <caption style="margin-top: -142px;"><u> List Of Transaction Details</u></caption>
+
+                        <tbody class="filterDate pull-right">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="dateLbl"><b>From Date:</b></label> &nbsp;&nbsp;
+                                    <input class="inputDate" type="date" name="" max="" id="fromDate" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <br />
+                                    <h5>
+                                        <span id="errfromDate" style="color:red" class="errorMsg"></span>
+                                    </h5>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="dateLbl"><b>To Date:</b></label> &nbsp;&nbsp;
+                                    <input class="inputDate" type="date" name="" min="" id="toDate" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <br />
+                                    <h5>
+                                        <span id="errtoDate" style="color:red" class="errorMsg"></span>
+                                    </h5>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="buttonDownload" style="display:none;margin-left:60px;background: cadetblue;font-weight: 800;" id="btnFilterByDate">Filter By Date</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="dateLbl"><b>Sort:</b></label> &nbsp;&nbsp;
+                                    @*<select class="busiRepo_status" id="ddlStatusName" onclick="ddlStatusName()">*@
+                                    @*<select class="busiRepo_status" id="ddlStatusName">
+                                    Sort By Status
+                                    <i class="fa fa-angle-down">@*--Select--*@</i>
+                                    @*<option value="0">--Sort By Status--</option>*@
+                                    @*<option value="0">--Sort By Status--</option>*@
+                                    @*<option value="2">Failure</option>
+                                    <option value="3">NA</option>
+                                    <option value="4">Pending</option>
+                                    <option value="5">Success</option>
+                                    </select>*@
+
+                                    <div class="form-group-recharge">
+                                        <div class="inc">
+                                            <div class="controls">
+                                                <select class="form-control-dropdown" id="ddlStatus" name="Id" asp-for="Id"
+                                                                                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                    <option value="0">--Select Status--</option>
+                                                    <option value="1">--HEllo Wordl--</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="buttonDownload pull-right" onclick="documentDownload()" id="transactionReportDownload">Download</button>
+                                </div>
+                            </div>
+                            <hr />
+                        </tbody>
+                    </table>
+                </div>
+                <table id="tempTbl1" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer" border="1" cellspacing="5" cellpadding="5" style="margin-top:-85px;">
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- Modal For No Data Found-->
+
+    <input type="button" id="btnNoDataFoundModel" style="display:none" data-target="#modalNoDataFoundModel" data-toggle="modal" />
+    <div class="modal fade" id="modalNoDataFoundModel" role="dialog" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        @*<div class="modal fade" id="modalServiceComing" role="dialog">*@
+        <div class="modal-dialog" style="margin-top:100px;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge" style="background:indianred;">
+                    <a href="/MyBusinessReports/MyBusinessReports" style="padding-top:12px;" class="close">&times;</a>
+                    <h2 style="text-align:center;color:white;"><b>ERROR</b></h2>
+                </div>
+                <div class="modal-body" style="background-color:white;">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <h4><label id="lblDataMessage"></label></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="/MyBusinessReports/MyBusinessReports" type="button" id="btnPayNow" class="no-record">
+                                Ok
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const ourItemDiv = document.getElementsByClassName("item");
+    const openIcon = document.getElementsByClassName("iconOpen");
+    const closeIcon = document.getElementsByClassName("iconClose");
+    for (let i = 0; i < ourItemDiv.length; i++) {
+        closeIcon[i].style.display = "none";
+
+        ourItemDiv[i].addEventListener("click", () => {
+            const result = ourItemDiv[i].classList.toggle("active");
+
+            if (result) {
+                closeIcon[i].style.display = "block";
+                openIcon[i].style.display = "none";
+            }
+            else {
+                closeIcon[i].style.display = "none";
+                openIcon[i].style.display = "block";
+            }
+        });
+    }
+
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $("#Id").change(function () {
+            var CatId = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "/MyBusinessReports/SubCategoryReports?Id=" + CatId,
+
+                contentType: "html",
+                success: function (response) {
+
+                    $('#SId').html('');
+
+                    var options = '';
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        options += '<option value="' + response[i].value + '">' + response[i].text + '</option>';
+
+                    }
+                    $('#SId').append(options);
+
+                }
+            });
+
+        });
+    });
+
+
+    //Method for first subcategory select without any filter
+
+    $("#SId").change(function () {
+        document.getElementById("errfromDate").innerHTML = "";
+        document.getElementById("errtoDate").innerHTML = "";
+        document.getElementById("fromDate").value = '';
+        document.getElementById("toDate").value = '';
+        //$('#fromDate').val()="";
+        //$('#toDate').val()="";
+
+        var e = $('#SId').val();
+        var f = $('#Id').val();
+
+        var service = $('#SId').text;
+        $("#ddlStatus").val(0);
+
+        $.ajax({
+            type: "POST",
+            url: "/MyBusinessReports/GetTransactionReports?subCat=" + e,
+            contentType: "json",
+            success: function (response) {
+                debugger;
+                if (response == null) {
+                    document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else if (response.result == "Redirect" || response == "") {
+                    window.location.href = "/MyBusinessReports/PanCardRegistration";
+
+                }
+                else if (response.result == "RedirectToBooking") {
+                    window.location.href = "/MyBusinessReports/TravelServices";
+                }
+                else {
+                    $("#tempTbl1").find("tr").remove();
+                    var tr = '<tr>';
+                    var columnName = Object.keys(response[0]);
+                    debugger;
+                    for (var i = 0; i <= columnName.length; i++) {
+
+                        if (i == columnName.length && f != 7 && f != 3) {
+                            tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
+                        }
+                        else if (i == columnName.length && (f == "7" || f == "3")) { }
+                        else {
+                            tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
+                        }
+                    }
+                    tr += '</tr>';
+
+
+                    for (var i = 0; i < response.length; i++) {
+                        tr += '<tr>'
+                        var columnValue = Object.values(response[i]);
+                        for (var j = 0; j <= columnValue.length; j++) {
+                            if (j == 0) {
+                                tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
+                            }
+
+                            else if (j == columnValue.length && f != 7 && f != 3) {
+                                if (f == 2) {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">Button1</button><button style="background:#4CC713;color:white" id=2' + i + ' class="btnViewReceipt">Button2</button><button style="background:#4CC713;color:white" id=3' + i + ' class="btnViewReceipt">Button3</button></td>'
+                                }
+                                else {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">View Receipt</button></td>'
+                                }
+                            }
+                            else if (j == columnValue.length && (f == "7" || f == "3")) { }
+                            else {
+                                tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
+                            }
+                        }
+                        tr += '</tr>';
+                    }
+                    debugger;
+                    $("#tempTbl1").append(tr);
+                    document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
+                    document.getElementById('walletTblborder11').style.display = "block";
+                }
+            }
+
+        });
+
+    });
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        var items = "<option value='0'>-- Select SubCategories --</option>";
+        $('#SId').html(items);
+    });
+
+    //jquery for table filter by date
+
+    var fromDate;
+    $('#fromDate').on('change', function () {
+        fromDate = $(this).val();
+        $('#toDate').prop('min', function () {
+            return fromDate;
+        })
+    });
+
+    var toDate;
+    $('#toDate').on('change', function () {
+        toDate = $(this).val();
+        $('#fromDate').prop('max', function () {
+            return toDate;
+        })
+    });
+
+</script>
+
+<script>
+
+    /* Custom filtering function which will search data in column four between two values */
+    //$.fn.dataTable.ext.search.push(
+    // function(settings, data, dataIndex) {
+    var min = parseInt($('#fromDate').val(), 10);
+    var max = parseInt($('#toDate').val(), 10);
+    var age = parseFloat(data[3]) || 0; // use data for the age column
+
+    if ((isNaN(min) && isNaN(max)) || (isNaN(min) && age <= max) || (min <= age && isNaN(max)) || (min <= age && age <= max)) {
+        return true;
+    }
+    return false;
+    // }
+    //);
+
+    $(document).ready(function () {
+        var table = $('#tempTbl').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#toDate, #fromDate').keyup(function () {
+            table.draw();
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#ddlStatusNameeee").change(function () {
+            document.getElementById("errfromDate").innerHTML = "";
+            document.getElementById("errtoDate").innerHTML = "";
+            var from = $('#fromDate').val();
+            var to = $('#toDate').val();
+            var e = $('#ddlStatusName').val();
+            var subCat = $('#SId').val();
+            var f = $('#Id').val();
+            var d = $('#transactionReportDownload').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/MyBusinessReports/DDLStatus",
+                data: { 'sort': e, 'fromdate': from, 'todate': to, 'subCat': subCat },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response == null || response == "") {
+                        document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        $("#tempTbl1").find("tr").remove();
+                        var tr = '<tr>';
+                        var columnName = Object.keys(response[0]);
+                        debugger;
+                        for (var i = 0; i <= columnName.length; i++) {
+
+                            if (i == columnName.length && (f != 7 && f != 3)) {
+                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
+                            }
+                            else if (i == columnName.length && (f == 7 || f == 3)) { }
+                            else {
+                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
+                            }
+                        }
+                        tr += '</tr>';
+                        for (var i = 0; i < response.length; i++) {
+                            tr += '<tr>'
+                            var columnValue = Object.values(response[i]);
+                            for (var j = 0; j <= columnValue.length; j++) {
+                                if (j == 0) {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
+                                }
+
+                                else if (j == columnValue.length && (f != 7 && f != 3)) {
+                                    if (f == 2) {
+                                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">Button1</button><button style="background:#4CC713;color:white" id=2' + i + ' class="btnViewReceipt">Button2</button><button style="background:#4CC713;color:white" id=3' + i + ' class="btnViewReceipt">Button3</button></td>'
+                                    }
+                                    else {
+                                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">View Receipt</button></td>'
+                                    }
+                                }
+                                else if (j == columnValue.length && (f == 7 || f == 3)) { }
+                                else {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
+                                }
+                            }
+                            tr += '</tr>';
+                        }
+                        debugger;
+                        $("#tempTbl1").append(tr);
+                        document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
+                        document.getElementById('walletTblborder11').style.display = "block";
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+@*<script>
+    $(document).ready(function () {
+        $("#ddlStatus").change(function () {
+            document.getElementById("errfromDate").innerHTML = "";
+            document.getElementById("errtoDate").innerHTML = "";
+            var from = $('#fromDate').val();
+            var to = $('#toDate').val();
+            var e = $('#ddlStatus').val();
+            var subCat = $('#SId').val();
+            var f = $('#Id').val();
+            var d = $('#transactionReportDownload').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/MyBusinessReports/GetTransactionReports",
+                data: { 'sort': e, 'fromdate': from, 'todate': to, 'subCat': subCat },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response == null || response == "") {
+                        document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        $("#tempTbl1").find("tr").remove();
+                        var tr = '<tr>';
+                        var columnName = Object.keys(response[0]);
+                        debugger;
+                        for (var i = 0; i <= columnName.length; i++) {
+
+                            if (i == columnName.length && (f != 7 && f != 3)) {
+                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
+                            }
+                            else if (i == columnName.length && (f == 7 || f == 3)) { }
+                            else {
+                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
+                            }
+                        }
+                        tr += '</tr>';
+                        for (var i = 0; i < response.length; i++) {
+                            tr += '<tr>'
+                            var columnValue = Object.values(response[i]);
+                            for (var j = 0; j <= columnValue.length; j++) {
+                                if (j == 0) {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
+                                }
+
+                                else if (j == columnValue.length && (f != 7 && f != 3)) {
+                                    if (f == 2) {
+                                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">Button1</button><button style="background:#4CC713;color:white" id=2' + i + ' class="btnViewReceipt">Button2</button><button style="background:#4CC713;color:white" id=3' + i + ' class="btnViewReceipt">Button3</button></td>'
+                                    }
+                                    else {
+                                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">View Receipt</button></td>'
+                                    }
+                                }
+                                else if (j == columnValue.length && (f == 7 || f == 3)) { }
+                                else {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
+                                }
+                            }
+                            tr += '</tr>';
+                        }
+                        debugger;
+                        $("#tempTbl1").append(tr);
+                        document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
+                        document.getElementById('walletTblborder11').style.display = "block";
+                    }
+                }
+            });
+        });
+    });
+</script>*@
+
+
+<!--Sorting Method-->
+<script>
+    $(document).ready(function () {
+        $('#toDate').on('change', function () {
+            //toDate = $(this).val();
+            var from = $('#fromDate').val();
+            var to = $('#toDate').val();
+            var e = $('#ddlStatus').val();
+            var subCat = $('#SId').val();
+            document.getElementById("btnFilterByDate").style.display = "block";
+            var d = $('#transactionReportDownload').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/MyBusinessReports/GetTransactionReports",
+                data: { 'sort': e, 'fromdate': from, 'todate': to, 'subCat': subCat },
+                type: 'POST',
+                dataType: 'json',
+
+                success: function (response) {
+                    debugger;
+                    if (response == null || response == "") {
+                        document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        $("#tempTbl1").find("tr").remove();
+                        var tr = '<tr>';
+                        var columnName = Object.keys(response[0]);
+                        for (var i = 0; i <= columnName.length; i++) {
+                            if (i == columnName.length) {
+                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
+                            }
+                            else {
+                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
+                            }
+                        }
+                        tr += '</tr>';
+
+                        for (var i = 0; i < response.length; i++) {
+                            tr += '<tr>'
+                            var columnValue = Object.values(response[i]);
+                            for (var j = 0; j <= columnValue.length; j++) {
+                                if (j == 0) {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
+                                }
+
+                                else if (j == columnValue.length) {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white;" id=' + i + ' class="btnViewReceipt">View Receipt</button></td>'
+                                }
+                                else {
+                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
+                                }
+                            }
+                            tr += '</tr>';
+                        }
+                        document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
+                        $("#tempTbl1").append(tr);
+                    }
+                },
+            });
+        });
+    });
+</script>
+
+<script>
+    function documentDownload() {
+        var from = $('#fromDate').val();
+        var to = $('#toDate').val();
+        var d = "x";
+        var subCat = $('#SId').val();
+        debugger;
+        if (from == '' && to == '') {
+            document.getElementById('errfromDate').innerHTML = "Please Select From Date";
+            document.getElementById('errtoDate').innerHTML = "Please Select To Date";
+        }
+        else if (to == '') {
+            document.getElementById('errtoDate').innerHTML = "Please Select To Date";
+            document.getElementById('errfromDate').innerHTML = "";
+        }
+        else if (from == '') {
+            document.getElementById('errfromDate').innerHTML = "Please Select From Date";
+            document.getElementById('errtoDate').innerHTML = "";
+        }
+        else {
+            document.getElementById('errfromDate').innerHTML = "";
+            document.getElementById('errtoDate').innerHTML = "";
+            $.ajax({
+                type: "POST",
+                url: "/MyBusinessReports/GetTransactionReports",
+                data: { 'download': d, 'fromdate': from, 'todate': to, 'subCat': subCat },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    window.open(response);
+                },
+            });
+        }
+    };
+
+    //function ddlStatusName(){
+    //    var from = $('#fromDate').val();
+    //    var to = $('#toDate').val();
+    //    var subCat = $('#SId').val();
+    //    debugger;
+    //    $.ajax({            
+    //        type: "POST",
+    //        url: "/MyBusinessReports/DDLStatus",
+    //        data: { 'fromDate': from, 'toDate': to, 'subCat': subCat },
+    //        dataType: 'json',
+    //        success: function(response){
+    //            $("#ddlStatusName").append("<option>");
+    //        }
+    //    });
+    //}
+
+    $(document).ready(function () {
+
+        $("#ddlStatus").change(function () {
+            var StateID = $(this).val();
+            var from = $('#fromDate').val();
+            var to = $('#toDate').val();
+            var subCat = $('#SId').val();
+            $.ajax({
+                url: "/MyBusinessReports/DDLStatus",
+                data: { 'fromDate': from, 'toDate': to, 'subCat': subCat },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    debugger;
+                    $('#ddlStatus').html('');
+
+                    var options = '<option value="' + 0 + '">' + "--Choose Operator--" + '</option>';
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        options += '<option value="' + response[i].status + '">' + response[i].status + '</option>';
+
+                    }
+                    $('#ddlStatus').append(options);
+
+                }
+            });
+
+        });
+    });
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#tempTbl1").on('click', ".btnViewReceipt", function () {
+            var currentRow = $(this).closest('tr');
+            var subCat = $('#SId').val();
+            debugger;
+            // 15
+            var requestDate = $('#requestDate').val();
+            var requestTime = $('#requestTime').val();
+            var status = $('#status').val();
+
+            var customerName = $('#customerName').val();
+            var customerMobileNumber = $('#customerMobileNumber').val();
+            var customerAadhaarNo = $('#customerAadhaarNo').val();
+            var transactionAmount = $('#transactionAmount').val();
+            var commissionAmount = $('#commissionAmount').val();
+            var balanceAmount = $('#balanceAmount').val();
+            var bankName = $('#bankName').val();
+            var iin = $('#iin').val();
+            var bankRRNNumber = $('#bankRRNNumber').val();
+            var npciTransactionId = $('#npciTransactionId').val();
+            var redmilTransactionId = $('#redmilTransactionId').val();
+            var reason = $('#failureReason').val();
+
+            // 30/29/18/19/9
+            var cardHolderName = $('#cardHolderName').val();
+            var cardHolderMobileNumber = $('#cardHolderMobileNumber').val();
+            var cardType = $('#cardType').val();
+            var cardNumber = $('#cardNumber').val();
+
+            // 5
+            var caNumber = $('#caNumber').val();
+            var billPayAmount = $('#billPayAmount').val();
+            var billReferenceId = $('#billReferenceId').val();
+            var walletType = $('#walletType').val();
+
+            // get the current row
+
+
+            if (subCat == "15" || subCat == "16" || subCat == "17") {
+
+                var aePSCashWithdrawalModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CustomerName: currentRow.find('td:eq(3)').text(),
+                    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
+                    CustomerAadhaarNo: currentRow.find('td:eq(5)').text(),
+                    Status: currentRow.find('td:eq(6)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    BalanceAmount: currentRow.find('td:eq(8)').text(),
+                    CommissionAmount: currentRow.find('td:eq(9)').text(),
+                    BankName: currentRow.find('td:eq(12)').text(),
+                    IIN: currentRow.find('td:eq(13)').text(),
+                    BankRRNNumber: currentRow.find('td:eq(14)').text(),
+                    NPCITransactionId: currentRow.find('td:eq(15)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(16)').text(),
+                    FailureReason: currentRow.find('td:eq(17)').text(),
+                    DEName: currentRow.find('td:eq(18)').text(),
+                    DEMobile: currentRow.find('td:eq(19)').text(),
+                }
+            }
+
+
+
+            else if (subCat == "30" || subCat == "29" || subCat == "18" || subCat == "9") {
+                debugger;
+                var microATMCashWithdrawalModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CardHolderName: currentRow.find('td:eq(3)').text(),
+                    CardHolderMobileNumber: currentRow.find('td:eq(4)').text(),
+                    CardType: currentRow.find('td:eq(5)').text(),
+                    CardNumber: currentRow.find('td:eq(6)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    BalanceAmount: currentRow.find('td:eq(8)').text(),
+                    BankRRNNumber: currentRow.find('td:eq(11)').text(),
+                    NPCITransactionId: currentRow.find('td:eq(12)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(13)').text(),
+                    FailureReason: currentRow.find('td:eq(14)').text(),
+                    DEName: currentRow.find('td:eq(15)').text(),
+                    DEMobile: currentRow.find('td:eq(16)').text(),
+                    Status: currentRow.find('td:eq(10)').text(),
+
+                    /*Status: $('#@Html.(m=> m.microATMCashWithdrawalModel.Status)').val()*/
+                }
+            }
+
+            else if (subCat == "19") {
+
+                var microATMBalanceEnquiryModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CardHolderName: currentRow.find('td:eq(3)').text(),
+                    CardHolderMobileNumber: currentRow.find('td:eq(4)').text(),
+                    CardType: currentRow.find('td:eq(5)').text(),
+                    CardNumber: currentRow.find('td:eq(6)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    BalanceAmount: currentRow.find('td:eq(8)').text(),
+                    BankRRNNumber: currentRow.find('td:eq(10)').text(),
+                    NPCITransactionId: currentRow.find('td:eq(11)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(12)').text(),
+                    FailureReason: currentRow.find('td:eq(15)').text(),
+                    DEName: currentRow.find('td:eq(13)').text(),
+                    DEMobile: currentRow.find('td:eq(14)').text(),
+                    Status: currentRow.find('td:eq(9)').text(),
+
+
+                }
+
+                //var result = requestDate + '\n' + requestTime + '\n' + cardHolderName + '\n' + cardHolderMobileNumber + '\n' + cardType + '\n' + cardNumber + '\n' + balanceAmount + '\n' + bankRRNNumber + '\n' + npciTransactionId + '\n' + redmilTransactionId + '\n' + failureReason + '\n' + status;
+                //alert(result);
+            }
+
+            else if (subCat == "21") {
+
+                var yBLDomesticMoneyTransferModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    SenderName: currentRow.find('td:eq(3)').text(),
+                    SenderMobileNumber: currentRow.find('td:eq(4)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    Surcharge: currentRow.find('td:eq(8)').text(),
+                    BankRRNNumber: currentRow.find('td:eq(16)').text(),
+                    RedmilReferenceId: currentRow.find('td:eq(15)').text(),
+                    ReceiverName: currentRow.find('td:eq(5)').text(),
+                    ReceiverMobileNumber: currentRow.find('td:eq(6)').text(),
+                    BankName: currentRow.find('td:eq(12)').text(),
+                    ReceiverAccountNo: currentRow.find('td:eq(11)').text(),
+                    IFSCCode: currentRow.find('td:eq(13)').text(),
+                    TransactionType: currentRow.find('td:eq(14)').text(),
+                    Reason: currentRow.find('td:eq(18)').text(),
+                    DEName: currentRow.find('td:eq(19)').text(),
+                    DEMobile: currentRow.find('td:eq(20)').text(),
+                    Status: currentRow.find('td:eq(9)').text(),
+
+
+                }
+
+                //var result = requestDate + '\n' + requestTime + '\n' + cardHolderName + '\n' + cardHolderMobileNumber + '\n' + cardType + '\n' + cardNumber + '\n' + balanceAmount + '\n' + bankRRNNumber + '\n' + npciTransactionId + '\n' + redmilTransactionId + '\n' + failureReason + '\n' + status;
+                //alert(result);
+            }
+
+
+            else if (subCat == "23") {
+
+                var creditScoreModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CustomerName: currentRow.find('td:eq(3)').text(),
+                    CustomerMobileNo: currentRow.find('td:eq(4)').text(),
+                    Status: currentRow.find('td:eq(5)').text(),
+                    AmountPaid: currentRow.find('td:eq(6)').text(),
+                    CommissionAmount: currentRow.find('td:eq(7)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(8)').text(),
+                    WalletType: currentRow.find('td:eq(9)').text(),
+                    DEName: currentRow.find('td:eq(10)').text(),
+                    DEMobile: currentRow.find('td:eq(11)').text(),
+                    CIBILScorePDFLink: currentRow.find('td:eq(12)').text(),
+
+                }
+
+                //var result = requestDate + '\n' + requestTime + '\n' + cardHolderName + '\n' + cardHolderMobileNumber + '\n' + cardType + '\n' + cardNumber + '\n' + balanceAmount + '\n' + bankRRNNumber + '\n' + npciTransactionId + '\n' + redmilTransactionId + '\n' + failureReason + '\n' + status;
+                //alert(result);
+            }
+            else if (subCat == "26") {
+
+                var goldInvestmentBuyModel1 = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CustomerName: currentRow.find('td:eq(3)').text(),
+                    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
+                    GoldRatePerGram: currentRow.find('td:eq(6)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    NetAmount: currentRow.find('td:eq(7)').text(),
+                    CustomerID: currentRow.find('td:eq(16)').text(),
+                    OldGoldBalance: currentRow.find('td:eq(8)').text(),
+                    NewGoldBalance: currentRow.find('td:eq(9)').text(),
+                    cusInvoice: currentRow.find('td:eq(16)').text(),
+                    Quantity: currentRow.find('td:eq(5)').text(),
+                    InvoiceId: currentRow.find('td:eq(18)').text(),
+                    RedmilTransactionID: currentRow.find('td:eq(17)').text(),
+                    pan: currentRow.find('td:eq(12)').text(),
+                    BankName: currentRow.find('td:eq(15)').text(),
+                    BankAccountNumber: currentRow.find('td:eq(13)').text(),
+                    IFSC: currentRow.find('td:eq(14)').text(),
+                    DEName: currentRow.find('td:eq(20)').text(),
+                    DEMobile: currentRow.find('td:eq(21)').text(),
+                }
+
+
+            }
+
+            else if (subCat == "27") {
+
+                var goldInvestmentSellModel1 = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CustomerName: currentRow.find('td:eq(3)').text(),
+                    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    RedmilTransactionID: currentRow.find('td:eq(17)').text(),
+                    InvoiceId: currentRow.find('td:eq(18)').text(),
+                    GoldRatePerGram: currentRow.find('td:eq(5)').text(),
+                    Quantity: currentRow.find('td:eq(6)').text(),
+                    InvoiceId: currentRow.find('td:eq(18)').text(),
+                    CustomerID: currentRow.find('td:eq(19)').text(),
+                    OldGoldBalance: currentRow.find('td:eq(8)').text(),
+                    NewGoldBalance: currentRow.find('td:eq(9)').text(),
+                    cusInvoice: currentRow.find('td:eq(19)').text(),
+                    pan: currentRow.find('td:eq(13)').text(),
+                    BankName: currentRow.find('td:eq(16)').text(),
+                    BankAccountNumber: currentRow.find('td:eq(14)').text(),
+                    IFSC: currentRow.find('td:eq(15)').text(),
+                    BankCharge: currentRow.find('td:eq(10)').text(),
+                    NetAmount: currentRow.find('td:eq(11)').text(),
+                    DEName: currentRow.find('td:eq(20)').text(),
+                    DEMobile: currentRow.find('td:eq(21)').text(),
+                }
+
+            }
+
+
+            else if (subCat == "31") {
+                var finoDMTModel = {
+                    BankCharges: currentRow.find('td:eq(14)').text(),
+                    BankName: currentRow.find('td:eq(11)').text(),
+                    BankRRNNumber: currentRow.find('td:eq(24)').text(),
+                    ClientUniqueId: currentRow.find('td:eq(8)').text(),
+                    CommissionAmount: currentRow.find('td:eq(15)').text(),
+                    DeMobile: currentRow.find('td:eq(21)').text(),
+                    DeName: currentRow.find('td:eq(20)').text(),
+                    IfscCode: currentRow.find('td:eq(12)').text(),
+                    Reason: currentRow.find('td:eq(19)').text(),
+                    ReceiverAccountNo: currentRow.find('td:eq(10)').text(),
+                    ReceiverMobileNumber: currentRow.find('td:eq(22)').text(),
+                    ReceiverName: currentRow.find('td:eq(9)').text(),
+                    RedmilReferenceId: currentRow.find('td:eq(16)').text(),
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestId: currentRow.find('td:eq(7)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    SenderMobileNumber: currentRow.find('td:eq(4)').text(),
+                    SenderName: currentRow.find('td:eq(3)').text(),
+                    SrNo: currentRow.find('td:eq(0)').text(),
+                    Status: currentRow.find('td:eq(6)').text(),
+                    Surcharge: currentRow.find('td:eq(23)').text(),
+                    TransactionAmount: currentRow.find('td:eq(5)').text(),
+                    TransactionID: currentRow.find('td:eq(18)').text(),
+                    TransactionType: currentRow.find('td:eq(13)').text(),
+                    WalletType: currentRow.find('td:eq(17)').text(),
+                }
+
+                // var result = requestDate + '\n' + requestTime + '\n' + caNumber + '\n' + billPayAmount + '\n' + billReferenceId + '\n' + redmilTransactionId + '\n' + walletType + '\n' + commissionAmount + '\n' + status;
+            }
+
+            else if (subCat == "32") {
+                debugger;
+                var amazonPayGiftCardModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    ReceiverName: currentRow.find('td:eq(3)').text(),
+                    ReceiverMobileNumber: currentRow.find('td:eq(4)').text(),
+                    ReceiverEmailID: currentRow.find('td:eq(5)').text(),
+                    SenderName: currentRow.find('td:eq(8)').text(),
+                    SenderMobile: currentRow.find('td:eq(9)').text(),
+                    Status: currentRow.find('td:eq(6)').text(),
+                    GST: currentRow.find('td:eq(21)').text(),
+                    TDS: currentRow.find('td:eq(20)').text(),
+                    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                    CommissionAmount: currentRow.find('td:eq(22)').text(),
+                    Quantity: currentRow.find('td:eq(10)').text(),
+                    TotalAmount: currentRow.find('td:eq(11)').text(),
+                    CardNumber: currentRow.find('td:eq(12)').text(),
+                    CardPin: currentRow.find('td:eq(13)').text(),
+                    AmazonReferenceNumber: currentRow.find('td:eq(14)').text(),
+                    GiftMessage: currentRow.find('td:eq(15)').text(),
+                    ResponseCode: currentRow.find('td:eq(16)').text(),
+                    CardDesigncategoryName: currentRow.find('td:eq(17)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(23)').text(),
+                    CardDesignname: currentRow.find('td:eq(18)').text(),
+                    OrderId: currentRow.find('td:eq(19)').text(),
+                    DEName: currentRow.find('td:eq(24)').text(),
+                    DEMobile: currentRow.find('td:eq(25)').text(),
+                }
+
+                // var result = requestDate + '\n' + requestTime + '\n' + caNumber + '\n' + billPayAmount + '\n' + billReferenceId + '\n' + redmilTransactionId + '\n' + walletType + '\n' + commissionAmount + '\n' + status;
+            }
+            else if (subCat == "1") {
+                var billPaymentsModel = {
+                    RequestDate: currentRow.find('td:eq(10)').text(),
+                    RequestTime: currentRow.find('td:eq(11)').text(),
+                    CustomerMobileNumber: currentRow.find('td:eq(6)').text(),
+                    BillerCategory: currentRow.find('td:eq(1)').text(),
+                    BillerName: currentRow.find('td:eq(2)').text(),
+                    BillAmount: currentRow.find('td:eq(7)').text(),
+                    Status: currentRow.find('td:eq(12)').text(),
+                    BillerReferenceId: currentRow.find('td:eq(9)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(14)').text(),
+                    CCF: currentRow.find('td:eq(3)').text(),
+                    CustomerInputField: currentRow.find('td:eq(4)').text(),
+                    CustomerInputFieldValue: currentRow.find('td:eq(5)').text(),
+                    DEName: currentRow.find('td:eq(15)').text(),
+                    DEMobile: currentRow.find('td:eq(16)').text(),
+                }
+
+                // var result = requestDate + '\n' + requestTime + '\n' + caNumber + '\n' + billPayAmount + '\n' + billReferenceId + '\n' + redmilTransactionId + '\n' + walletType + '\n' + commissionAmount + '\n' + status;
+            }
+            else if (subCat == "3" || subCat == "4" || subCat == "2") {
+                var mobilePrepaidPostpaid = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    CustomerMobile: currentRow.find('td:eq(3)').text(),
+                    OperatorName: currentRow.find('td:eq(4)').text(),
+                    CustomerID: currentRow.find('td:eq(11)').text(),
+                    Status: currentRow.find('td:eq(6)').text(),
+                    Amount: currentRow.find('td:eq(5)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(9)').text(),
+                    OperatorTransactionId: currentRow.find('td:eq(10)').text(),
+                    DEMobile: currentRow.find('td:eq(12)').text(),
+                    DEName: currentRow.find('td:eq(13)').text(),
+
+                }
+            }
+            else if (subCat == "5") {
+                var licPremiumPaymentsModel = {
+                    RequestDate: currentRow.find('td:eq(1)').text(),
+                    RequestTime: currentRow.find('td:eq(2)').text(),
+                    caNumber: currentRow.find('td:eq(3)').text(),
+                    Status: currentRow.find('td:eq(4)').text(),
+                    BillPayAmount: currentRow.find('td:eq(6)').text(),
+                    BillReferenceId: currentRow.find('td:eq(8)').text(),
+                    RedmilTransactionId: currentRow.find('td:eq(9)').text(),
+                    DEMobile: currentRow.find('td:eq(11)').text(),
+                    DEName: currentRow.find('td:eq(12)').text(),
+                }
+            }
+
+            var result = {
+
+                "AePSCashWithdrawalModel": aePSCashWithdrawalModel,   //loginModel same name as in Modal
+                "MicroATMCashWithdrawalModel": microATMCashWithdrawalModel,   //registerModel same name as in Modal
+                "FinoDMTModel": finoDMTModel,
+                "CreditScoreModel": creditScoreModel,
+                "LICPremiumPaymentsModel": licPremiumPaymentsModel,
+                "MicroATMBalanceEnquiryModel": microATMBalanceEnquiryModel,
+                "YBLDomesticMoneyTransferModel": yBLDomesticMoneyTransferModel,
+                "GoldInvestmentBuyModel1": goldInvestmentBuyModel1,
+                "GoldInvestmentSellModel1": goldInvestmentSellModel1,
+                "AmazonPayGiftCardModel": amazonPayGiftCardModel,
+                "MobilePrepaidPostpaid": mobilePrepaidPostpaid,
+                "BillPaymentsModel": billPaymentsModel,
+                //"MobilePrepaidRequestModel": mobilePrepaidRequestModel,
+                //"DTHRechargeModel": dthRechargeModel,
+
+            }
+            $.ajax({
+
+                type: "POST",
+                url: "/MyBusinessReports/ViewReceipt",
+                data: { result, subCat },
+                dataType: 'json',
+                success: function (msgdeserialize) {
+                    debugger;
+                    var viewReceipt = msgdeserialize;
+                    var viewReceiptWindow = window.open();
+                    viewReceiptWindow.document.write(viewReceipt);
+                    viewReceiptWindow.print();
+                },
+                failure: function (msgdeserialize) {
+                    alert(msgdeserialize.responseText);
+                },
+                error: function (msgdeserialize) {
+                    alert(msgdeserialize.responseText);
+                }
+            });
+
+        });
+    });
+</script>

@@ -1,0 +1,129 @@
+﻿@model Project_Redmil_MVC.Models.RequestModel.Applyforfrenchise.ApplyForFrenchiseRequest
+@{
+    ViewData["Title"] = "ApplyForFrenchise";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4 authfy-panel-right">
+            <!-- authfy-login start -->
+
+            <div class="authfy-login">
+
+                <!-- panel-login start -->
+                <div class="authfy-panel panel-login text-center active">
+                    <div class="authfy-heading">
+                        <h3 class="auth-title">Apply For Franchise</h3>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group">
+
+                            <input id="TxtCity"
+                                   required="required" class="form-control" placeholder="Enter City" />
+                            <span id="" style="color: red"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="pwdMask">
+                                <input id="TxtArea" class="form-control" required="required" placeholder="Enter Area">
+                                <span id="" style="color: red"></span>
+                            </div>
+                        </div>
+                        <h4 style="margin-left: -193px;">Select your preference</h4>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="TxtPreference1" type="radio" name="inlineRadioOptions" style=" display: inline-block; width: 50px; height: 11px;" value="Frenchise">
+                                <label class="form-check-label" for="inlineRadio1">Franchise</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="TxtPreference2" type="radio" name="inlineRadioOptions" value="MasterFrenchise" style=" display: inline-block; width: 50px; height: 11px;">
+                                <label class="form-check-label" for="inlineRadio2">Master Franchise</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="button-21" style="width:100%; border-radius:0px" onclick="forfrenchise()">Submit </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ./panel-login -->
+        </div>
+    </div>
+    <!-- ./row -->
+
+
+    <div class="col-sm-4 col-md-4 col-lg-4"></div>
+
+</div>
+<script>
+    function forfrenchise()
+    {
+            var City = $('#TxtCity').val();
+            var Area = $('#TxtArea').val();
+            var Frenchise = $("input[type='radio'][name='inlineRadioOptions']:checked");
+        if (City.trim() == "") {
+                $.notify("Please Enter City ? ", "warn");
+            $('#TxtCity').focus();
+        }
+        else if (Area.trim() == "") {
+
+                $.notify("Please Enter Area ? ", "warn");
+            $('[#TxtArea]').focus();
+
+        }
+        else if ($('input[type=radio][name=inlineRadioOptions]:checked').length == 0)
+        {
+            $.notify("Please Select Gender any one? ", "warn");
+            return false;
+        }
+        else {
+                $.ajax({
+                    url: "/Frenchise/Frenchise",
+                    data: { 'City': City, 'Area': Area, 'Frenchise':Frenchise },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.statuscode == "OSS") {
+
+                            debbugger;
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+                            @*window.location.href = '@Url.Content("~/Recharge/PrepaidRecharge")'*@
+
+
+                        }
+                        else {
+
+                            /* $.notify(response.message, "error");*/
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000  }
+
+
+                            );
+
+                        }
+
+                    }
+                });
+
+            }
+        }
+
+</script>
+
+

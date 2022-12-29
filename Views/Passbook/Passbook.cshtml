@@ -1,0 +1,1168 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.CashWalletRecentResponseDetailsPassbookModel>
+
+
+@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "Passbook";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+@*<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">*@
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link rel="stylesheet" href="~/css/businessReport.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<style>
+
+    .ts {
+        margin-left: 226px;
+        font-size: 26px;
+    }
+
+    .btn-final {
+        display: block;
+        margin-left: 208px;
+        border-bottom: 42px;
+        width: 179px;
+        border-radius: 41px;
+        height: 41px;
+        font-size: 20px;
+        color: white;
+        border-color: white;
+        border-right: white;
+        border-left: white;
+        border-top: white;
+    }
+
+
+    .btnlft {
+        margin-left: 283px;
+        margin-top: -30px;
+        color: cornflowerblue;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+
+    .tp {
+        margin-left: 40px;
+    }
+
+    .modalss {
+        margin-left: 104px;
+        margin-right: 111px;
+        padding: 7px;
+        margin-top: 114px;
+    }
+
+    .mt {
+        margin-top: 68px;
+        margin-left: -69px;
+    }
+
+    .rs {
+        margin-left: 28px;
+    }
+
+    .modal-backdrop.innn {
+        opacity: 0 !important;
+    }
+
+    .img-wallet-select {
+        height: 150px;
+        width: 200px;
+    }
+
+    .first-wallet {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .final-modal-popup {
+        width: 650px;
+    }
+
+    .err {
+        margin-top: -181px;
+        margin-left: 88px;
+    }
+
+    .sucss {
+        margin-top: -181px;
+        margin-left: 88px;
+    }
+
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+    }
+
+    .modal-confirm .icon-box {
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: -40px;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        z-index: 9;
+        /* background: #82ce34; */
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
+    }
+
+    .breadcumb-area {
+        position: relative;
+        padding: 221px 0;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        background-position: 75% 10%;
+    }
+
+    .Feedack {
+        margin-top: -18px;
+    }
+</style>
+
+<style>
+
+    .img1 {
+        display: flex;
+    }
+
+        .img1 img {
+            height: 60px;
+            width: 60px;
+        }
+
+
+    .passbooktabs {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        color: #f1f1f1;
+        background: #2d385e;
+        display: flex;
+        margin-top: 100px;
+    }
+
+        /* Style the buttons inside the tab */
+        .passbooktabs button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .passbooktabs button:hover {
+                background-color: #ddd;
+                color: #313142;
+            }
+
+            /* Create an active/current tablink class */
+            .passbooktabs button.active {
+                /*background-color: #5437b7;*/
+            }
+
+        .passbooktabs .tablinks {
+            letter-spacing: 2px;
+            margin-right: 25px;
+            /*background-color: #5437b7;*/
+        }
+
+    .tablinksactive {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        background-color: #5437b7;
+        transition: all 0.4s ease;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 20px 12px;
+        border: 1px solid #ccc;
+        /*width: 1200px;
+                                border-top: none;*/
+    }
+
+        .tabcontent .title {
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+            .tabcontent .title h1 {
+                font-weight: 800;
+            }
+
+            .tabcontent .title .aval_bal, .cashBal {
+                margin-top: 20px;
+            }
+
+            .tabcontent .title .aval_bal, .AdvBal {
+                margin-top: -30px;
+            }
+
+            .tabcontent .title .advAval_bal, .AdvBal {
+                margin-top: -33px;
+            }
+
+        .tabcontent .item_info {
+            display: block;
+            margin-top: 50px;
+        }
+
+            .tabcontent .item_info button {
+                align-items: center;
+                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+                background-size: calc(100% + 20px) calc(100% + 20px);
+                border-radius: 100px;
+                border-width: 0;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: CircularStd,sans-serif;
+                font-size: 1.5rem;
+                height: auto;
+                justify-content: center;
+                line-height: 1.5;
+                padding: 6px 25px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color .2s,background-position .2s;
+                user-select: none;
+                margin-right: 24px;
+                float: none;
+                /*margin-top: 40px;*/
+                /*margin-left: 60px;*/
+                z-index: 1;
+            }
+
+        .tabcontent .title .item_info .rewbtn {
+            margin-left: 300px;
+        }
+
+        /*.tabcontent.item_info.btn2{
+                                                margin-left:200px;
+                                            }*/
+
+        .tabcontent hr {
+            margin: 93px 0 0 20px;
+            padding: 10px;
+        }
+
+        .tabcontent h3 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+    #example_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #example1_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #example_paginate {
+        float: right;
+        margin-right: -90px;
+    }
+
+    #example1_paginate {
+        float: right;
+        margin-right: -40px;
+    }
+
+    div.wrapper {
+        width: 500px;
+        height: 500px;
+        overflow: auto;
+    }
+
+    .ButtonDetail {
+        font-weight: 800;
+        /* background: #3EB2FD; */
+        /* border: 1px solid #3EB2FD; */
+        /* border: 1px solid #fff; */
+        padding: 5px 10px;
+        color: blue;
+        font-size: 13px;
+        text-align: center;
+        /* width: 300px;*/
+        border-radius: 5px;
+        /*margin-top: 20px;*/
+        font-family: 'Poppins', sans-serif;
+    }
+
+
+    .label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 7px;
+        font-weight: 700;
+        padding: -15px;
+        font-size: 21px;
+        margin-left: 82px;
+    }
+
+    .tabcontents {
+        display: none;
+        /* padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;*/
+        font-size:15px;
+    }
+
+    .active::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        /* border-top: 3px solid #1864ab; */
+        animation: borderline 1s linear forwards;
+    }
+
+
+    .tabs {
+        overflow: hidden;
+      /*  border: 1px solid #ccc;
+        background-color: #f1f1f1;*/
+    }
+
+        /* Style the buttons inside the tab */
+        .tabs button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tabs button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tabs button.active {
+                background-color: #ccc;
+            }
+            .cross{
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -24px;
+        right: -33px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+        
+
+
+</style>
+
+<br />
+<br />
+
+<div class="container-fluid">
+
+    <div class="passbooktabs">
+        <button class="tablinks" onclick="openPassbook(event,'CashWallet')" id="defaultOpen">Cash Wallet Passbook</button>
+        <button class="tablinks" onclick="openPassbook(event,'AdvancePayout')">Advance Limit Passbook</button>
+        <button class="tablinks" onclick="openPassbook(event,'RewardWallet')">Reward Points Passbook</button>
+    </div>
+
+    <div id="CashWallet" class="tabcontent">
+        <div class="title">
+            <h1>Cash Wallet Passbook</h1>
+            <div class="item_info pull-left">
+                <button class="button-21">Download Wallet Statement</button>
+                <button class="button-21" onclick="document.location.href='/Passbook/TranferToBank';">Transfer Cash To Bank</button>
+                <button class="button-21" onclick="document.location.href='/Passbook/RechargeyourCash';" /> Recharge Your Cash</button>
+
+            </div>
+            <div class="cashBal">
+                <p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u>₹@Model.FirstOrDefault().New_bal</u></b></p>
+            </div>
+        </div>
+        <hr />
+
+        <h3>Recent Transaction Details</h3>
+        <div style="overflow-x:auto;">
+            @*<table id="example" class="table table-striped table-bordered table-responsive">*@
+            <table id="example" class="table table-striped table-bordered table-responsive dataTable no-footer">
+                <thead>
+                    <tr>
+                        @*<th>Id</th>*@
+                        <th></th>
+                        <th>Title</th>
+                        <th>Client</th>
+                        <th>Credit/Debit</th>
+                        <th>Commission</th>
+                        <th>TdsAmount</th>
+                        <th>Amount</th>
+                        <th>GstAmount</th>
+                        <th>Balance(₹)</th>
+                        <th style="color:navy">Detail</th>
+                    </tr>
+                </thead>
+                <tbody id="output">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                           @* <td class="ItemId">@item.Id</td>*@
+                            <td class="img1">
+                                <img src="@item.Img">
+                            </td>
+                            <td>@item.Title</td>
+                            <td>@item.Client</td>
+                            <td>@item.CreditDebit</td>
+                            @if (@item.CreditDebit == "Debit")
+                            {
+                                <td> </td>
+                            }
+                            else
+                            {
+                                <td>@item.Amount</td>
+                            }
+
+                            <td>@item.TdsAmount</td>
+
+
+                            @if (@item.CreditDebit == "Credit")
+                            {
+                                <td style="color: green" width="15%">+₹@item.Amount1</td>
+                            }
+                            else
+                            {
+                                <td style="color: red" width="15%">-₹@item.Amount1</td>
+                            }
+
+                            <td>@item.GstAmount</td>
+                            <td><b>@item.New_bal</b></td>
+                            <td><button class="button-21" onclick="ButtonDetail(@item.Id)" type="button" value="@item.Detail">Detail</button></td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+    <div id="AdvancePayout" class="tabcontent">
+        <div class="title">
+            <h1>Advance Payouts Passbook</h1>
+            <div class="item_info pull-left">
+                <button class="button-21">Download Wallet Statement</button>
+
+            </div>
+            <div class="AdvBal">
+                <p class="advAval_bal pull-right" style="margin-left: 88rem;font-size:20px; "><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u>₹@Model.FirstOrDefault().AdvanceWalletResponsePassbookDetailsModel.FirstOrDefault().New_bal</u></b></p>
+            </div>
+        </div>
+
+        <hr />
+        <h3>Recent Transaction Details</h3>
+        <div style="overflow-x:auto;">
+            <table id="example1" class="table table-striped table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Client</th>
+                        <th>Amount(₹)</th>
+                        <th>Balance(₹)</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody id="output">
+                    @foreach (var i in Model.FirstOrDefault().AdvanceWalletResponsePassbookDetailsModel)
+                    {
+                        <tr>
+
+                            @if (!string.IsNullOrEmpty(@i.Title))
+                            {
+                                <td class="img1">
+                                    <img src="@i.Img">
+                                </td>
+                                <td>@i.Title</td>
+                                <td>@i.Client</td>
+                                <td>@i.Amount1</td>
+                                <td><b>@i.New_bal</b></td>
+                                <td><button class="button-21" onclick="ButtonADDetail(@i.Id)" type="button" value="@i.Detail">Detail</button></td>
+                            }
+                            else
+                            {
+                                <td hidden>NA</td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <div id="RewardWallet" class="tabcontent">
+        <div class="title">
+            <h1>Reward Wallet Passbook</h1>
+            <div class="item_info">
+               <div class="row">
+                    <div class="col-sm-6">
+                        
+                        <button class="button-21" onclick="Rewardspont()">Download Business Passbook Statement</button><br />
+                        <button  class="button-21 tablinkss" onclick="openCity(event, 'London')">Business Reward Passbook</button>
+                        
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="tabs">
+                            <button class="button-21" onclick="RERewardspont()">Download R&E Passbook Statement </button><br />
+                            <button class="button-21 tablinkss" onclick="openCity(event, 'Paris')">R&E Reward Passbook</button>
+                         
+                        </div>
+                    </div>
+               </div>
+                
+               
+                <div id="London" class="tabcontents">
+                    <div style="overflow-x:auto;padding:20px;margin-top:40px;">
+                        <table id="BRewards" class="table table-striped table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Title</th>
+                                    <th>Client</th>
+                                    <th>Credit & Debited</th>
+                                    <th>Points</th>
+                                    <th>Balance(₹)</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody id="output">
+                                @foreach (var i in Model.FirstOrDefault().BRewardDetailResponseModel)
+                                {
+                                    <tr>
+
+                                        @if (!string.IsNullOrEmpty(@i.Title))
+                                        {
+                                            <td class="img1">
+                                                <img src="@i.Img">
+                                            </td>
+                                            <td>@i.Title</td>
+                                            <td>@i.Client</td>
+                                            <td>@i.CreditDebit</td>
+                                            @if (@i.CreditDebit == "Credit")
+                                            {
+                                                <td style="color: green" width="15%">+₹@i.Point</td>
+                                            }
+                                            else
+                                            {
+                                                <td style="color: red" width="15%">-₹@i.Point</td>
+                                            }
+                                            @*<td>@i.Point</td>*@
+                                            <td><b>@i.New_bal</b></td>
+                                            <td><button class="button-21" onclick="BRewards(@i.Id)" type="button" value="@i.Detail">Detail</button></td>
+                                        }
+                                        else
+                                        {
+                                            <td hidden>NA</td>
+                                        }
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div id="Paris" class="tabcontents">
+                    <div style="overflow-x:auto; margin-top:40px;padding:20px;">
+                        <table id="RERewards" class="table table-striped table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Title</th>
+                                    <th>Client</th>
+                                    <th>Credit & Debited</th>
+                                    <th>Points</th>
+                                    <th>Balance(₹)</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody id="output">
+                                @foreach (var i in Model.FirstOrDefault().RERewardResponseModel)
+                                {
+                                    <tr>
+
+                                        @if (!string.IsNullOrEmpty(@i.Title))
+                                        {
+                                            <td class="img1">
+                                                <img src="@i.Img">
+                                            </td>
+                                            <td>@i.Title</td>
+                                            <td>@i.Client</td>
+                                            <td>@i.CreditDebit</td>
+                                            @if (@i.CreditDebit == "Credit")
+                                            {
+                                                <td style="color: green" width="15%">+₹@i.Point</td>
+                                            }
+                                            else
+                                            {
+                                                <td style="color: red" width="15%">-₹@i.Point</td>
+                                            }
+                                            @*<td>@i.Point</td>*@
+                                            <td><b>@i.New_bal</b></td>
+                                            <td><button class="button-21" onclick="RERewards(@i.Id)" type="button" value="@i.Detail">Detail</button></td>
+                                        }
+                                        else
+                                        {
+                                            <td hidden>NA</td>
+                                        }
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+    
+    <!--Modal for Cash Detail-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="Detail" style="display:none" data-target="#Details" data-toggle="modal" />
+            <div id="Details" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:40%;">
+
+                    <div class="modal-content" style="height: 1022px;color:black;">
+                        <a href="~/Passbook/Passbook" style="padding-top:20px;padding-right: 20px;" class="close">&times;</a>
+                        @*<span aria-hidden="true" id="refresh" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>*@
+                        <div class="modal-body">
+                            <div class="">
+                                <div class="">
+                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                                </div>
+                                <h4 id="DetailTitle" class ="modal-title w-100" style="margin-top:-3px"></h4>
+                            </div>
+                            <div class="inc" style="margin-left:13px;font-size:18px;margin-top: 25px;">
+                                <div class="controls">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="modal-footer">
+                                    <a href="~/Passbook/Passbook" type="button" class="btn-final" id="DetailButton" style="color:green"><b>Done</b></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal For RewardPoint Passbook-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="RewardPoint" style="display:none" data-target="#RewardPoints" data-toggle="modal" />
+            <div id="RewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+
+                    <div class="modal-content" style="height:303px;color:black;">
+                        @*<span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
+                        <div class="cross" aria-label="Close" data-dismiss="modal">
+                        <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                            
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <div class="">
+                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                                </div>
+                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report Reward for Wallet</h4>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>From Date:</b></label>
+                                    <p><input type="text" id="datepicker" placeholder="From Date" class="form-control" style="width:82%"></p>
+                                     <label class="dateLbl1">Transaction to be download from date</label>
+                                     <label id="fordate"></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>To Date:</b></label>
+                                    <p> <input type="text" id="datepicker1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download till date</label>
+                                    <label id="todate"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="modal-footer">
+                                    <button type="button" class="button-21" id="DetailButton"  onclick="Downloadreport()"><b>Download Report</b></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal For R&EReward Passbook-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="RERewardPoint" style="display:none" data-target="#RERewardPoints" data-toggle="modal" />
+            <div id="RERewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+
+                    <div class="modal-content" style="height:303px;color:black;">
+                       @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
+                        <div class="cross" aria-label="Close" data-dismiss="modal">
+                        <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                            
+                        </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="">
+                                <div class="">
+                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                                </div>
+                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for Refer & Earn Wallet</h4>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>From Date:</b></label>
+                                    <p><input type="text" id="datepickerRe" placeholder="From Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download from date</label>
+                                    <label id="Refordate"></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>To Date:</b></label>
+                                    <p> <input type="text" id="datepickerRe1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download till date</label>
+                                    <label id="Retodate"></label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="modal-footer">
+                                    <button type="button" class="button-21" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal for error-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="BtnNoDatafound" style="display:none" data-target="#ModalNoData" data-toggle="modal" />
+            <div id="ModalNoData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                    <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        
+                        <div class="modal-body">
+                                <div class="" id="" style="margin-top:-45px;">
+                                <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
+                                  @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
+                                </div>
+                                <h4 id="lblMsgNoData" class="modal-title w-100"></h4>
+                           
+                            <div class="modal-footer">
+                                <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;">
+                                    <b>Ok</b>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<link rel="stylesheet" href="/code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>*@
+
+    @*<p>Date: <input type="text" id="datepicker"></p>*@
+
+    <script>
+    function openCity(evt, cityName) {
+        debugger;
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    function openCity(evt, cityName) {
+        debugger;
+        var i, tabcontents, tablinkss;
+        tabcontents = document.getElementsByClassName("tabcontents");
+        for (i = 0; i < tabcontents.length; i++) {
+            tabcontents[i].style.display = "none";
+        }
+        tablinkss = document.getElementsByClassName("tablinkss");
+        for (i = 0; i < tablinkss.length; i++) {
+            tablinkss[i].className = tablinkss[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+        </script>
+
+
+
+<script>
+
+    function openPassbook(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
+
+
+    document.getElementById("defaultOpen").click();
+    //Data Table
+    $(document).ready(function () {
+
+        $('#example').DataTable();
+        $('#example1').DataTable();
+        $('#BRewards').DataTable();
+        $('#RERewards').DataTable();
+
+    });
+
+
+   //For Cash Detail
+    function ButtonDetail(e) {
+        var BalanceId = e;
+        var baseurl = "https://api.redmilbusinessmall.com";
+        debugger;
+        $.ajax({
+            url: "/Passbook/GetBalancedetail",
+            data: { 'BalanceId': BalanceId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var response = JSON.parse(data);
+                var length = Object.keys(response.Data).length;
+                var data1 = response.Data;
+                $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                $("#DetailTitle").text(response.Data.Title);
+                var result = Object.entries(data1);
+                for (var i = 0; i < length; i++) {
+                    if (result[i][0] == "Logo" || result[i][0] == "Title") {
+
+
+                    }
+                    else {
+                        $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                    }
+
+                }
+                $("#Detail").trigger("click");
+
+
+            }
+
+        });
+    }
+    jQuery('.remove').parent().remove();
+    //For Advanced Detail
+    function ButtonADDetail(e) {
+
+        debugger;
+        var BalanceId = e;
+        var baseurl = "https://api.redmilbusinessmall.com";
+  
+        $.ajax({
+            url: "/Passbook/GetAdvanceBalancedetail",
+            data: { 'BalanceId': BalanceId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+            
+                var response = JSON.parse(data);
+                var length = Object.keys(response.Data).length;
+                var data1 = response.Data;
+                $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                $("#DetailTitle").text(response.Data.Title);
+                var result = Object.entries(data1);
+                for (var i = 0; i < length; i++) {
+                    if (result[i][0] == "Logo" || result[i][0] == "Title") {
+
+
+                    }
+                    else {
+                        $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                    }
+
+                }
+                $("#Detail").trigger("click");
+
+
+            }
+
+        });
+    }
+    jQuery('.remove').parent().remove();
+
+    //For  R&E Rewards Points Passbok Detail.
+    function RERewards(e) {
+        var BalanceId = e;
+        var baseurl = "https://api.redmilbusinessmall.com";
+        debugger;
+        $.ajax({
+            url: "/Passbook/RERewardDetail",
+            data: { 'BalanceId': BalanceId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var response = JSON.parse(data);
+                var length = Object.keys(response.Data).length;
+                var data1 = response.Data;
+                $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                $("#DetailTitle").text(response.Data.Title);
+                var result = Object.entries(data1);
+                for (var i = 0; i < length; i++) {
+                    if (result[i][0] == "Logo" || result[i][0] == "Title") {
+
+
+                    }
+                    else {
+                        $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                    }
+
+                }
+                $("#Detail").trigger("click");
+
+
+            }
+
+        });
+    }
+    jQuery('.remove').parent().remove();
+    //For Business RewardPassbook Detail
+    function BRewards(e){
+        BalanceId = e;
+        var baseurl = "https://api.redmilbusinessmall.com";
+        debugger;
+        $.ajax({
+            url: "/Passbook/BRReward",
+            data: { 'BalanceId': BalanceId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var response = JSON.parse(data);
+                if(response.Statuscode=="ERR")
+                {
+                    $("#BtnNoDatafound").trigger("click");
+                    $("#lblMsgNoData").text(response.Message);
+
+
+                }
+                else{
+                
+                var length = Object.keys(response.Data).length;
+
+                var data1 = response.Data;
+                $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                $("#DetailTitle").text(response.Data.Title);
+                var result = Object.entries(data1);
+                for (var i = 0; i < length; i++) {
+                    if (result[i][0] == "Logo" || result[i][0] == "Title") {
+
+
+                    }
+                    else {
+                        $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                    }
+
+                }
+                $("#Detail").trigger("click");
+
+                }
+            }
+
+        });
+    }
+    jQuery('.remove').parent().remove();
+
+
+    //For Rewards Points Passbok.
+    function Rewardspont()
+    {
+
+        $("#RewardPoint").trigger("click");
+
+    }
+    function Downloadreport()
+    { debugger;
+        var fromDate = $('#datepicker').val();
+        $('#fordate').text("");
+        var currentDate = $('#datepicker1').val();
+        $('#todate').text("");
+        if (fromDate.trim()=="")
+        {
+        $('#fordate').text("Please select from Date");
+           
+            $('#fordate').css("color","red");
+        $('#fordate').focus();
+        }
+        else if (currentDate.trim() == "") {
+            $('#todate').text("Please Select For To Date");
+            
+            $('#todate').css("color", "red");
+            $('#todate').focus();
+        }
+       else{
+        debugger;
+        $.ajax({
+            url: "/Passbook/DownloadReportForWallet",
+                data: { 'fromDate': fromDate, 'currentDate': currentDate},
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) 
+            {
+                    $('#datepicker').val("");
+                    $('#datepicker1').val("");
+                    debugger;
+                    var dataReceipt = data;
+                    var dataReceiptWindow = window.open();
+                    dataReceiptWindow.document.write(dataReceipt);
+                    dataReceiptWindow.print();
+            }
+        });
+        }
+    }
+
+  //For RERewards Points Passbook.
+    //For RERewards Points Passbok.
+    function RERewardspont() {
+
+        $("#RERewardPoint").trigger("click");
+
+    }
+    function REDownloadreport() {
+        debugger;
+        var fromDate = $('#datepickerRe').val();
+        $('#Refordate').text("");
+        var currentDate = $('#datepickerRe1').val();
+        $('#Retodate').text("");
+        if (fromDate.trim() == "") {
+            $('#Refordate').text("Please select from Date");
+            
+            $('#Refordate').css("color", "red");
+            $('#Refordate').focus();
+        }
+        else if (currentDate.trim() == "") {
+            $('#Retodate').text("Please Select For To Date");
+            $('#Retodate').css("color", "red");
+            $('#Retodate').focus();
+        }
+        else {
+            debugger;
+            $.ajax({
+                url: "/Passbook/RERewardsPassbook",
+                data: { 'fromDate': fromDate, 'currentDate': currentDate },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    debugger;
+                    $('#datepickerRe').val("");
+                    $('#datepickerRe1').val("");
+                    var dataReceipt = data;
+                    var dataReceiptWindow = window.open();
+                    dataReceiptWindow.document.write(dataReceipt);
+                    dataReceiptWindow.print();
+                }
+            });
+        }
+    }
+
+
+</script>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+        $("#datepicker1").datepicker();
+    });
+     $(function () {
+            $("#datepickerRe").datepicker();
+        $("#datepickerRe1").datepicker();
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" asp-append-version="true"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>

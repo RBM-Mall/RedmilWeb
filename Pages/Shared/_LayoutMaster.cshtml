@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+@using Project_Redmil_MVC.Models.ResponseModel.LoginResponseModels
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Understanding Browser and Device Fragmentation" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/css/Img/redmil-new-logo.png" type="image/x-icon">
+    <!-- Latest compiled and minified CSS -->
+    <!--Carousel CDNN-->
+    <!--Carousel CDN End-->
+    <link href="~/css/verified_otp.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/owl.carousel.css" rel="stylesheet" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/77d5cde460.js"></script>
+    <link rel="shortcut icon" href="~/css/Img/redmil-new-logo.png" type="image/x-icon">
+    <link href="~/css/slider.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/Slick/slick.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Slick/slick-theme.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/swiper.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/creative-main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login3-style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/Slick/slick.woff" asp-append-version="true">
+     <link href="~/css/comingsoon/comingsoon.css" rel="stylesheet" />
+    <script src="~/js/inspect.js" asp-append-version="true"></script>
+   
+    @*<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />*@
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/wow.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/constants.css" asp-append-version="true">
+    @if (IsSectionDefined("AddToHead"))
+    {
+        @RenderSection("AddToHead", required: false)
+    }
+
+    @RenderSection("AddToHeadAnotherWay", required: false)
+    <style>
+        .is-blurred {
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+        }
+
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 100%;
+            margin: auto;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            margin-top: 0;
+        }
+
+        li {
+            margin-left: 10px;
+            font-size: 10px;
+        }
+    </style>
+
+
+    <style>
+
+        .ts {
+            margin-left: 226px;
+            font-size: 26px;
+        }
+
+        .btn-final {
+            display: block;
+            margin-left: 208px;
+            border-bottom: 42px;
+            width: 179px;
+            border-radius: 41px;
+            height: 41px;
+            font-size: 20px;
+            color: white;
+            border-color: white;
+            border-right: white;
+            border-left: white;
+            border-top: white;
+        }
+
+
+        .btnlft {
+            margin-left: 283px;
+            margin-top: -30px;
+            color: cornflowerblue;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+
+        .tp {
+            margin-left: 40px;
+        }
+
+        .modalss {
+            margin-left: 104px;
+            margin-right: 111px;
+            padding: 7px;
+            margin-top: 114px;
+        }
+
+        .mt {
+            margin-top: 68px;
+            margin-left: -69px;
+        }
+
+        .rs {
+            margin-left: 28px;
+        }
+
+        .modal-backdrop.innn {
+            opacity: 0 !important;
+        }
+
+        .img-wallet-select {
+            height: 150px;
+            width: 200px;
+        }
+
+        .first-wallet {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .final-modal-popup {
+            width: 650px;
+        }
+
+        .err {
+            margin-top: -181px;
+            margin-left: 88px;
+        }
+
+        .sucss {
+            margin-top: -181px;
+            margin-left: 88px;
+        }
+
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -51px;
+            position: relative;
+            z-index: 2;
+            margin-right: 7px;
+        }
+
+        .dropdown ul li {
+            width: 200px;
+            padding: 5px;
+            border-bottom: 1px solid #000;
+            background: transparent;
+            border-radius: 0px;
+            text-align: left;
+            text-decoration: none;
+        }
+
+            .dropdown ul li:last-child {
+                border-bottom: none;
+            }
+
+        .dropdown ul li {
+            /* margin-left: 10px;*/
+            font-size: 13px;
+            text-decoration: none;
+            color: black;
+        }
+
+            .dropdown ul li a {
+                text-decoration: none;
+                color: black;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li {
+                width: 200px;
+                padding: 10px;
+                border-bottom: 1px solid #000;
+                /* border-left: 1px solid #000;*/
+                background: transparent;
+                border-radius: 0px;
+                /* text-align: left;*/
+                text-decoration: none;
+            }
+
+                .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                    color: darkblue;
+                }
+
+                .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                    border-bottom: none;
+                }
+
+
+ .cross{
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+       top: -71px;
+    right: -16px;
+    z-index: 9;
+    cursor: pointer;
+    position: fixed;
+    }
+        
+
+
+
+    </style>
+</head>
+
+<body>
+
+   @* <div class="image-loader">
+		<div class="rect">
+			<div class="dot d_i"></div>
+			<div class="dot d_ii"></div>
+		</div>
+	</div>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+				<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -5" result="goo" />
+				<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+	</svg>*@
+
+
+
+
+
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <header>
+        <div class="header-area sticky">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed btn-res-head" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand brand-res-img" href="~/Home/Index">
+                            <img src="~/css/Img/23px-logo.png" width="100" alt="Logo">
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse color-custom" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right" style="margin-top:7px;margin-right:-80px">
+                            <li><a href="~/AboutUs/AboutUs"><b>About Us</b> </a></li>
+                            <li class="dropdown">
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><b>Services</b> </a>
+                                <ul class="dropdown-menu">
+                                    <li class="hover-me">
+                                        <a href="#"><b>Banking Services</b><i class="fa fa-angle-right"></i> </a>
+                                        <div class="Sub-menu-1">
+                                            <ul class="services-angle">
+                                                <li class="hover-mee"><a href="~/DMT2/StartUp"><b>DMT 2.0</b></a>
+                                                <li><a href="~/Aeps/AEPS"><b>Aadhaar ATM</b></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="hover-me">
+                                        <a href="#"><b>Recharges</b><i class="fa fa-angle-right"></i> </a>
+                                        <div class="Sub-menu-1">
+                                            <ul class="services-angle">
+                                                <li class="hover-mee"><a href="~/DTHRecharge/DTHRecharge"><b>DTH Recharge</b></a></li>
+                                                <li class="hover-mee"><a href="~/Recharge/PrepaidRecharge"><b>Prepaid Recharge</b></a></li>
+                                                <li class="hover-mee"><a href="~/PostpaidRecharge/PostpaidRecharge"><b>Postpaid Recharge</b></a></li>
+                                                <li class="hover-mee"><a href="~/FastagBill/FastagBill"><b>Fastag Bill</b></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="hover-me">
+                                        <a href="#"><b>Bill Payment </b><i class="fa fa-angle-right"></i> </a>
+                                        <div class="Sub-menu-1">
+                                            <ul class="services-angle">
+                                                <li><a href="~/LoanRepaymentBill/LoanRepaymentBill"><b>Loan Repayment Bill</b></a></li>
+                                                <li><a href="~/ElectricityBill/ElectricityBill"><b>Electricity Bill Payment</b></a></li>
+                                                <li><a href="~/LPGGasBill/LPGGasBill"><b>LPG Gas Book</b></a></li>
+                                                <li><a href="~/WaterBill/WaterBill"><b>Water Bill Payment</b></a></li>
+                                                <li><a href="~/GasBill/GasBill"><b>Gas Bill Payment</b></a></li>
+                                                <li><a href="~/CableTVBill/CableTVBill"><b>Cable TV Bill Payment</b></a></li>
+                                                <li><a href="~/LandlineBill/LandlineBill"><b>Land line Bill Payment</b></a></li>
+                                                <li><a href="~/LICIndiaBill/LICIndiaBill"><b>LIC India Bill</b></a></li>
+                                                <li><a href="~/CableTVBill/CableTVBill"><b>Cable TV Bill</b></a></li>
+                                                <li><a href="~/LandlineBill/LandlineBill"><b>Landline Bill</b></a></li>
+                                                <li><a href="~/HospitalBill/HospitalBill"><b>Hospital Bill</b></a></li>
+                                                <li><a href="~/HealthBill/HealthBill"><b>Health Care Bill</b></a></li>
+                                                <li><a href="~/CreditCardBill/CreditCardBill"><b>Credit Card Bill</b></a></li>
+                                                <li><a href="~/LifeInsuranceBill/LifeInsuranceBill"><b>Life Insurance Bill</b></a></li>
+                                                <li><a href="~/BroadbandBill/BroadbandBill"><b>Broadband Bill</b></a></li>
+                                                <li><a href="~/InsuranceBill/InsuranceBill"><b>Insurance Bill</b></a></li>
+                                                <li><a href="~/HousingSocietyBill/HousingSocietyBill"><b>Housing Society Bill</b></a></li>
+                                                <li><a href="~/MunicipialServicesBill/MunicipialServicesBill"><b>Municipial Services Bill</b></a></li>
+                                                <li><a href="~/MunicipialTaxesBill/MunicipialTaxesBill"><b>Municipial Taxes Bill</b></a></li>
+                                                <li><a href="~/ClubAndAssociationBill/ClubAndAssociationBill"><b>Club And Association Bill</b></a></li>
+                                                <li><a href="~/SubscriptionsBill/SubscriptionsBill"><b>Subscriptions Bill</b></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="~/Passbook/Passbook"><b>Passbook</b></a></li>
+                                    <li>
+                                        <a href="~/Support/Support"><b>Support</b></a>
+                                    </li>
+                                    <li><a href="~/MyBusinessReports/MyBusinessReports"><b>My Business Report</b></a></li>
+                                    <li><a href="~/Wallet/Wallet"><b>Wallet</b></a></li>
+                                    <li><a href="~/OrderBrandingDevice/OrderBrandingDevice"><b>Order Branding Device</b></a></li>
+                                    <li><a href="~/upgradesubscriptions/getSubscription"><b>Upgrade Subscription</b></a></li>
+                                    <li><a href="~/Payoutcommision/Payoutcommision"><b>Payout Commision</b></a></li>
+                                    <li><a href="~/RatesandRow/RatesandRow"><b>Rates and ROI </b></a></li>
+                                    <li><a href="~/ApplyForFrenchise/ApplyForFrenchise"><b>Apply For Franchise</b></a></li>
+                                </ul>
+
+                            </li>
+                            <li><a href="#"><b>Media Center</b></a></li>
+                            <li><a href="~/ContactUs/ContactUs"><b>Contact Us</b></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Miscellaneous</b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><b>Audited financials</b> </a></li>
+                                </ul>
+                            </li>
+                            @{
+                                if (@Accessor.HttpContext.Session.GetString("Id") == null)
+                                {
+                                    <li style="margin-top: -20px;">
+                                        <button id="btnlogin1" type="button" class="button-26" data-toggle="modal" data-target="#modalLoginForm" data-backdrop="static" data-keyboard="false">
+                                            <i class="fas fa-user-circle  mt-4 mr-md-2 text-white align-middle " style=" font-size: 20px"></i> &nbsp;<b class="floatright">Login</b>
+                                        </button>
+                                    </li>
+                                }
+
+                                else
+                                {
+                                    <li class="dropdown profile">
+                                        <button type="button" class="usrlgt mt-4" id="btnlogin2">
+                                            <i class="fas fa-user-circle  mt-4 mr-md-2 text-white align-middle " style="font-size: 33px; margin-left: 7px; "></i> &nbsp;<b class="floatright"></b>
+                                        </button>
+                                        <ul class="dropdown-menu left-auto profile-drop">
+                                            <li class="nav__create-new-profile-link">
+                                                <a href="#">
+                                                    <span>@Accessor.HttpContext.Session.GetString("Name")</span><br />
+                                                </a>
+                                            </li>
+
+                                            <li class="nav__dropdown-menu-items">
+                                                <a href="#" onclick="clearSession()"><i class="icon icon-logout"></i><span>Logout</span></a>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+                                }
+                            }   
+                        </ul>
+                        <div class="div-nav">
+
+
+                            <div class="row">
+                                <input type="button" id="ReopenLogin" style="display:none" data-target="#modalLoginForm" data-toggle="modal" />
+                                <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                     aria-hidden="true">
+
+
+                                    <div class="modal-dialog  " role="document">
+                                        <div class="modal-body">
+                                            <div class="container loginview">
+                                                <div class="row forleft" style="margin-top:-47px;">
+                                                    <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+
+                                                        <div class="col-sm-5 col-md-5 col-lg-5 col authfy-panel-left hidediv" style="height:480px;background-size:100% 100%;width:30%;">
+
+                                                            <!-- slider start -->
+                                                            <div class="fnc-slider example-slider">
+                                                                <div class="fnc-slider__slides">
+
+                                                                    <!-- slide start -->
+                                                                    <div class="fnc-slide m--blend-green m--active-slide">
+                                                                        <div class="fnc-slide__inner">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- slide start -->
+                                                                    <div class="fnc-slide m--blend-dark">
+                                                                        <div class="fnc-slide__inner">
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- slide end -->
+                                                                    <!-- slide start -->
+                                                                    <div class="fnc-slide m--blend-red">
+                                                                        <div class="fnc-slide__inner">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <nav class="fnc-nav" style="margin-left: 100px">
+                                                                    <div class="fnc-nav__bgs">
+                                                                        <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                                                                        <div class="fnc-nav__bg m--navbg-dark"></div>
+                                                                        <div class="fnc-nav__bg m--navbg-red"></div>
+                                                                        <!-- <div class="fnc-nav__bg m--navbg-blue"></div> -->
+                                                                    </div>
+                                                                    <div class="fnc-nav__controls">
+                                                                        <button class="fnc-nav__control">
+
+                                                                            <span class="fnc-nav__control-progress"></span>
+                                                                        </button>
+                                                                        <button class="fnc-nav__control">
+
+                                                                            <span class="fnc-nav__control-progress"></span>
+                                                                        </button>
+                                                                        <button class="fnc-nav__control">
+
+                                                                            <span class="fnc-nav__control-progress"></span>
+                                                                        </button>
+
+                                                                    </div>
+                                                                </nav>
+                                                            </div>
+                                                            <!-- slider end -->
+                                                        </div>
+
+                                                        <div class="col-sm-7 col-md-7 col-lg-7 authfy-panel-right ">
+                                                            <!-- authfy-login start -->
+
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true" style="padding-right: 14px;">&times;</span>
+                                                            </button>
+                                                            <div class="authfy-login">
+
+                                                                <!-- panel-login start -->
+                                                                <div class="authfy-panel panel-login text-center active">
+                                                                    <div class="authfy-heading">
+                                                                        <h3 class="auth-title">Login to your account</h3>
+                                                                        <p>Don’t have an account? <a href="https://play.google.com/store/search?q=redmill+business+mall+app&amp;c=apps" target="_blank">Sign Up Free!</a></p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12">
+
+                                                                            <form class="loginForm" name="myForm" id="myform">
+
+                                                                                <div class="form-group" id="KR">
+
+                                                                                    <input type="text" name="Number" minlength="10" maxlength="10"
+                                                                                           id="txtNumber" required="required" class="form-control js-input-mobile" placeholder="Enter Mobile Number" />
+                                                                                    <span id="mobile" style="color: red"></span>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <div class="pwdMask">
+                                                                                        <input type="password" minlength="6" maxlength="6" class="form-control password js-input-mobile" id="txtMpin" required="required" name="Mpin" placeholder="Mpin">
+                                                                                        <span id="mpin" style="color: red"></span>
+                                                                                        <span class="fa fa-eye-slash pwd-toggle"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- start remember-row -->
+                                                                                <div class="row remember-row">
+                                                                                    <div class="col-xs-6 col-sm-6">
+                                                                                        <label class="checkbox text-left">
+                                                                                            <input type="checkbox" id="chkRemember" value="remember-me" onclick="CookiesHandle()">
+                                                                                            <span class="label-text">Remember me</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="col-xs-6 col-sm-6">
+                                                                                        <p class="forgotPwd" id="forgotPwdBtn">
+                                                                                            <a data-toggle="modal" data-target="#modalRecoverMpin" data-dismiss="modal">Forgot Mpin?</a>
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div> <!--/remember-row -->
+                                                                                <div class="form-group">
+                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px" onclick="verifiedLogin()" id="btnlogin"><b>Login</b></button>
+
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- ./panel-login -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- ./row -->
+                                                    </div> <!-- ./container -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--ENd Modal-->
+                            </div>
+                        </div>
+                        <!--ENd Modal-->
+                    </div>
+                </div>
+                <!--All Submit Open Moodal-->
+                <!-- Open Modal For Mpin -->
+                <div class="modal fade " id="modalRecoverMpin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="container recoverloginview">
+                        <div class="row" style="margin-top:-17px;">
+                            <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                                <div class="col-sm-512">
+                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;">
+                                        <!-- slider start -->
+                                        <div class="fnc-slider example-slider">
+                                            <div class="fnc-slider__slides">
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-green m--active-slide">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-dark">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide end -->
+                                            </div>
+                                            <nav class="fnc-nav" style="margin-left: 118px">
+                                                <div class="fnc-nav__bgs">
+                                                    <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                                                    <div class="fnc-nav__bg m--navbg-dark"></div>
+                                                    <div class="fnc-nav__bg m--navbg-red"></div>
+                                                </div>
+                                                <div class="fnc-nav__controls">
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                        <!-- slider end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 authfy-panel-right ">
+                                    <!-- authfy-login start -->
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="padding-right: 14px;">&times;</span>
+                                    </button>
+                                    <div class="authfy-login">
+
+                                        <!-- panel-login start -->
+                                        <div class="authfy-panel panel-login text-center active">
+                                            <div class="authfy-heading">
+                                                <h3 class="auth-title">Recover your Mpin</h3>
+                                                <p>Please enter your Mobile number to change your Mpin</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <form class="loginForm" name="myForm" id="myform">
+                                                        <div class="form-group">
+                                                            <input type="text" name="Number" minlength="10" maxlength="10"
+                                                                   id="txtNumber1" class="form-control js-input-mobile" placeholder="Enter Mobile Number">
+                                                            <span id="mobile1" style="color: red"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button class="button-21" id="recoverYourPin" type="button" style="width:100%;border-radius:0px" onclick="forgototp()">Recover your Mpin</button>
+                                                        </div>
+                                                        <div class="form-group" id="AlreadyLogin">
+                                                            <a data-toggle="modal" data-target="#modalLoginForm" data-dismiss="modal">Already have an account?</a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ./panel-login -->
+                                    </div>
+
+                                </div>
+
+                            </div> <!-- ./row -->
+                        </div> <!-- ./container -->
+                    </div>
+                    <!--ENd Modal-->
+                </div>
+
+                <!--End Modal For Mpin-->
+                <!-- Open  Pop For Not Login Modal-->
+                <input type="button" id="Notregister" style="display:none" data-target="#exampleModalCenter2" data-toggle="modal" />
+                <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                    <div class="container notloginmobileview">
+                        <div class="row" style="margin-top:-3px;">
+                            <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                                <div class="col-sm-512">
+                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;margin-left: 53px;">
+
+
+                                        <!-- slider start -->
+                                        <div class="fnc-slider example-slider">
+                                            <div class="fnc-slider__slides">
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-green m--active-slide">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-dark">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide end -->
+                                                <!-- slide start -->
+                                            </div>
+                                            <nav class="fnc-nav" style="margin-left: 118px">
+                                                <div class="fnc-nav__bgs">
+                                                    <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                                                    <div class="fnc-nav__bg m--navbg-dark"></div>
+                                                    <div class="fnc-nav__bg m--navbg-red"></div>
+                                                    <!-- <div class="fnc-nav__bg m--navbg-blue"></div> -->
+                                                </div>
+                                                <div class="fnc-nav__controls">
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+
+                                                </div>
+                                            </nav>
+                                        </div>
+                                        <!-- slider end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 authfy-panel-right ">
+                                    <!-- authfy-login start -->
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="padding-right: 14px;">&times;</span>
+                                    </button>
+                                    <div class="authfy-login">
+
+                                        <!-- panel-login start -->
+                                        <div class="authfy-panel panel-login text-center active">
+                                            <div class="authfy-heading">
+                                                <h3 class="auth-title">Yor are not Register Redmil App </h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <form class="loginForm" name="myForm" id="myform">
+                                                        <div class="form-group">
+
+                                                            <a href="https://play.google.com/store/search?q=redmill+business+mall+app&amp;c=apps" target="_blank"><button style="margin-left: 57px;margin-top: -10px;" type='button' class='button-21'>Join Redmil Family</button></a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ./panel-login -->
+                                    </div>
+                                </div>
+                            </div> <!-- ./row -->
+                        </div> <!-- ./container -->
+                    </div>
+                </div>
+                <!-- End Open  Pop For Not Login Modal-->
+                <!--Open Pop For New User Send Otp-->
+                <input type="button" id="Sendotp" style="display:none" data-target="#sendotp" data-toggle="modal" />
+                <div class="modal fade" id="sendotp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                    <div class="container otherdeviceloginview">
+                        <div class="row" style="margin-top: -1px; margin-right: -79px;">
+                            <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                                <div class="col-sm-512">
+                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;">
+                                        <!-- slider start -->
+                                        <div class="fnc-slider example-slider">
+                                            <div class="fnc-slider__slides">
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-green m--active-slide">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-dark">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide end -->
+                                                <!-- slide start -->
+                                            </div>
+                                            <nav class="fnc-nav" style="margin-left: 118px">
+                                                <div class="fnc-nav__bgs">
+                                                    <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                                                    <div class="fnc-nav__bg m--navbg-dark"></div>
+                                                    <div class="fnc-nav__bg m--navbg-red"></div>
+                                                    <!-- <div class="fnc-nav__bg m--navbg-blue"></div> -->
+                                                </div>
+                                                <div class="fnc-nav__controls">
+                                                    <button class="fnc-nav__control">
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                        <!-- slider end -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 authfy-panel-right ">
+                                    <!-- authfy-login start -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="padding-right: 14px;">&times;</span>
+                                    </button>
+                                    <div class="authfy-login">
+                                        <!-- panel-login start -->
+                                        <div class="authfy-panel panel-login text-center active">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12">
+
+                                                    <div style="padding-top:-28px;">
+                                                        <h3 class="mb-2">OTP VERIFICATION</h3>
+                                                        <div>
+                                                            <h4>Code has been send to <label id="lblMobile"></label></h4>  @*<a href="" class="" style="text-decoration:none;color:#007BFF">Change</a>*@
+
+                                                        </div>
+                                                        <div class="title">
+                                                            Verify OTP
+                                                        </div>
+                                                        <form action="" class="mt-5">
+                                                            <label id="lblBindMobile"></label>
+                                                            @* <input class="otp" id="ot1" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 />*@
+                                                            <input class="otp" id="ot1" type="text" maxlength=1 />
+                                                            @* <input id="ot2" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 />*@
+                                                            <input id="ot2" class="otp" type="text" maxlength=1 />
+                                                            @*<input id="ot3" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 />*@
+                                                            <input id="ot3" class="otp" type="text" maxlength=1 />
+                                                            @*<input id="ot4" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 />*@
+                                                            <input id="ot4" class="otp" type="text" maxlength=1 />
+                                                            <hr class="mt-4">
+                                                            <span id="Err" style="color:red"></span>
+                                                            <h3 id="some_divs"></h3>
+
+                                                            <div id="resend" style="display:none">
+                                                                didn't get the otp
+                                                                <h4 style="text-decoration:none;color:#007BFF;cursor:pointer" onclick="ResendOtp()">Resend</h4>
+
+                                                            </div>
+
+                                                            <button type="button" class="button-21" id="btnVerifyOtp" onclick="verifyOTP()" style="width:100%; border-radius:0px"><b>Verify</b></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- ./panel-login -->
+                                        </div>
+                                    </div>
+                                </div> <!-- ./row -->
+                            </div> <!-- ./container -->
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Open Pop For New User Send Otp-->
+                <!-- Change Mpin Modal-->
+                <input type="button" id="Changepin" style="display:none" data-target="#ChangeMpin" data-toggle="modal" />
+                <div class="modal fade" id="ChangeMpin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                    <div class="container mpinrecovermobileview">
+                        <div class="row" style="margin-top: -18px;">
+                            <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                                <div class="col-sm-512">
+                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;">
+                                        <!-- slider start -->
+                                        <div class="fnc-slider example-slider">
+                                            <div class="fnc-slider__slides">
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-green m--active-slide">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide start -->
+                                                <div class="fnc-slide m--blend-dark">
+                                                    <div class="fnc-slide__inner">
+                                                    </div>
+                                                </div>
+                                                <!-- slide end -->
+                                                <!-- slide start -->
+                                            </div>
+                                            <nav class="fnc-nav" style="margin-left: 118px">
+                                                <div class="fnc-nav__bgs">
+                                                    <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                                                    <div class="fnc-nav__bg m--navbg-dark"></div>
+                                                    <div class="fnc-nav__bg m--navbg-red"></div>
+                                                </div>
+                                                <div class="fnc-nav__controls">
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+                                                    <button class="fnc-nav__control">
+
+                                                        <span class="fnc-nav__control-progress"></span>
+                                                    </button>
+
+                                                </div>
+                                            </nav>
+                                        </div>
+                                        <!-- slider end -->
+
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 authfy-panel-right ">
+                                    <!-- authfy-login start -->
+                                    @*<span aria-hidden="true" style="padding-right: 14px;" class="refresh">&times;</span>*@
+                                    <a href="/Home/Index" style="padding-right: 14px;" class="close">&times;</a>
+
+                                    <div class="authfy-login">
+
+                                        <!-- panel-login start -->
+                                        <div class="authfy-panel panel-login text-center active">
+                                            <div class="authfy-heading">
+                                                <h3 class="auth-title">Recover your Mpin</h3>
+                                                <p>Please enter your Mobile number to change your Mpin</p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12">
+
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <div class="">
+
+                                                                <input type="text" name="Number" minlength="4" maxlength="4"
+                                                                       id="txtOtp" required="required" class="form-control password js-input-mobile" placeholder="Enter Otp" />
+                                                                <span id="TxtOtp" class="text-danger font-weight-bold"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="pwdMask1">
+                                                                @*<input type="password" minlength="6" maxlength="6" class="form-control password js-input-mobile" id="txtNewMpin" required="required" name="NewPassword" placeholder="New Mpin">
+                                                                <span class="fa fa-eye-slash pwd-toggle1"></span>*@
+                                                                <input id="txtNewMpin" minlength="6" maxlength="6" class="form-control password js-input-mobile" type="password" value="" required="required" name="NewPassword" placeholder="New Mpin">
+                                                                <span toggle="#txtNewMpin" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                                <span id="spanOpin" class="text-danger font-weight-bold"></span>
+                                                                <span id="NewMpin" class="text-danger font-weight-bold"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="pwdMask2">
+                                                                @*<input type="password" minlength="6" maxlength="6" class="form-control password js-input-mobile" id="txtConfirmNewMpin" required="required" name="ConfirmNewPassword" placeholder="Confirm NewMpin" />
+                                                                <span class="fa fa-eye-slash pwd-toggle2"></span>*@
+                                                                <input id="txtConfirmNewMpin" minlength="6" maxlength="6" class="form-control password js-input-mobile" type="password" value="" required="required" name="ConfirmNewPassword" placeholder="Confirm NewMpin">
+                                                                <span toggle="#txtConfirmNewMpin" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                                                <span id="spanNpin" class="text-danger font-weight-bold"></span>
+                                                                <span id="ConfirmNewMpin" class="text-danger font-weight-bold"></span>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <button class="button-21" style="width:100%" type="button" onclick="ChangeMpin()">Open Your Mall</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ./panel-login -->
+                                    </div>
+
+                                </div>
+
+                            </div> <!-- ./row -->
+                        </div> <!-- ./container -->
+                    </div>
+                </div>
+                <!-- End Change Mpin Modal-->
+                <!--For Err Modal -->
+                <!--Modal for error-->
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <input type="button" id="btnError" style="display:none" data-target="#Errors" data-toggle="modal" />
+                        <div id="Errors" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                                <div class="modal-content" style="height:307px;width:464px;color: black;padding:31px;">
+
+                                    <div class="">
+                                        <div class="icon-box" id="iconErr" style="margin-top:40px;">
+                                            <label id="imgErr" />
+                                        </div>
+                                        <h4 id="headingErr" class="modal-title w-100" style="padding-top:36px"></h4>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                                    </button>
+                                    <div class="modal-body">
+                                        <h3 class="p-new text-center"><label id="lblMsgErr"></label></h3>
+                                        <p class="p-new"><label id="lblPriceErr"></label></p>
+                                        <p class="p-new"><label id="lblTxnIdErr"></label></p>
+                                        <p class="p-new"><label id="lblMobileErr"></label></p>
+                                        <p class="p-new"><label id="lblDateErr"></label></p>
+                                        <p class="p-new"><label id="lblTimeErr"></label></p>
+                                        <p class="p-new"><label id="lblOperatorNameErr"></label></p>
+                                        <p class="p-new"><label id="lblOperatorRefNumErr"></label></p>
+                                        <p><strong></strong></p><p style="margin-left:40px"> </p>
+                                        <p style="margin-left:40px"></p>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn-final err" id="buttonsErr" data-dismiss="modal"><b>Ok</b></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Modal For Coming Soon-->
+                <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="ComingSoons" style="display:none" data-target="#ComingSoon" data-toggle="modal" />
+        <div id="ComingSoon" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>*@
+                    <div class="modal-body">
+                        <div class="cross" aria-label="Close" data-dismiss="modal">
+                        <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                            
+                        </button>
+                        </div>
+                        <div class="wrapper cns" style="margin-top:183px;width:834px;height:564px" >
+                     <h1 class="cn" >coming soon<span class="dot">.</span></h1>
+                  <p>We are preparing something exciting & amazing for you.</p>
+                  <div class="icons">
+                                                <a href=""><i class="fa fa-instagram"></i></a>
+                                                <a href=""><i class="fa fa-linkedin"></i></a>
+                                                <a href=""><i class="fa fa-facebook"></i></a>
+  </div>
+ </div>
+                        
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+                <!--End Err Modal-->
+                <!--End All Submit Open Modal-->
+
+
+            </nav>
+        </div>
+    </header>
+    <br />
+    @RenderBody()
+
+    <br />
+    <footer>
+        <div class="section footer-top-area-2 padding-top-50 ">
+            <div class="container">
+                <div class="row padding-bottom-30">
+                    <div class="col-sm-3">
+                        <div class="widget about-us">
+                            <a href="#"><img src="~/css/ImageLogo/redmil-new-logowhite.png" class="download-the-app" alt=""></a>
+
+                            <a href="https://play.google.com/store/apps" target="_blank"><img src="#" class="download-the-app" alt=""></a>
+
+                            <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="widget contact-us">
+
+                            <ul>
+                                <li><a href="">Terms &amp; Conditions</a></li>
+                                <li><p style="margin-left: -100px;cursor: pointer;"  onclick="comingsoon()">Schedule of Charges</p></li>
+                                <li><a href="">Privacy Policy</a></li>
+                                <li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="widget contact-us">
+
+                            <ul>
+                                <li><a href="#">Customer Grievance</a></li>
+                                <li><a href="#">FAQs</a> </li>
+                                <li><a href="#">Forfeiture Policy</a></li>
+                                <li><a href="#" target="_blank">Ombudsman Scheme</a></li>
+                                <li><a href="#">E-Waste Management</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="widget contact-us">
+                            <h3 class="widget-title">Corporate Office:</h3>
+                            <ul>
+                                <li><i class="fa fa-home" aria-hidden="true"></i> Redmil Business Mall Headquarters,<br>2414, 4th floor, Tower A, The Corenthum towers, Sector 62, Noida, Uttar Pradesh-201301<br><br><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(+91) 81-91-92-93-94<br><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;info@redmil.in<br>
+                            </ul>
+
+                            <div class="footer-social-media">
+                                <ul>
+                                    <li><a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://twitter.com" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.linkedin.com" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.youtube.com" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="">
+                    <div class="col-sm-6 text-center">
+                        <div class="copyright pull-left">
+                            <p>
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear())</script> Redmil Business Mall. All Rights Reserved
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script>
+
+        function comingsoon()
+        {
+            $("#ComingSoons").trigger("click");
+        
+        }
+
+
+
+        $("#txtNumber").keyup(function (e) {
+            var phoneno = /^(0|91)?[6-9][0-9]{9}$/;
+            var MobileNum = $("#txtNumber").val();
+            if (!phoneno.test(MobileNum)) {
+                document.getElementById("mobile").style.color = "red";
+                $("#mobile").html("Please insert Valid Mobile Number");
+                document.getElementById("forgotPwdBtn").style.display = "none";
+            }
+            else {
+                $("#mobile").html("");
+                document.getElementById("forgotPwdBtn").style.display = "block";
+            }
+        });
+        $("#txtNumber1").keyup(function (e) {
+            var phoneno = /^(0|91)?[6-9][0-9]{9}$/;
+            var MobileNum = $("#txtNumber1").val();
+            if (!phoneno.test(MobileNum)) {
+                document.getElementById("mobile1").style.color = "red";
+                $("#mobile1").html("Please insert Valid Mobile Number");
+            }
+            else {
+                $("#mobile1").html("");
+                document.getElementById("forgotPwdBtn").style.display = "block";
+            }
+        });
+
+
+        var Name;
+        var MobileNo;
+
+        function verifiedLogin() {
+
+
+            var MobileNum = $('[Id*=txtNumber]').val();
+            $('#lblMobile').text(MobileNum);
+            document.getElementById('lblMobile').innerHTML = MobileNum;
+            var pinNum = $('[Id*=txtMpin]').val();
+            if (MobileNum.trim() == "") {
+
+                document.getElementById("mobile").innerHTML = "Please Enter Mobile Number";
+                $('[Id*=txtNumber]').focus();
+            } else if (pinNum.trim() == "") {
+                document.getElementById("mpin").innerHTML = "Please Enter Mpin ";
+                $.notify("Please Enter Mpin ? ", "warn");
+                $('[Id*=txtMpin]').focus();
+            }
+            else {
+                $.ajax({
+                    url: "/Login/Index",
+                    data: { Mobile: MobileNum, Mpin: pinNum },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+                        debugger;
+                        if (response.statuscode == "OSS") {
+                            var a = response.data;
+                            var Mobile = $("#txtNumber").val();
+
+                            LoginClear();
+                            $("#Notregister").trigger("click");
+                        }
+                        else if (response.statuscode == "TXN") {
+                            debugger;
+                            var Name = response.data[0].name;
+                            var Mobileno = response.data[0].mobileno;
+                            $('#UserName').text(Name);
+                            $('#MobileNo').text(Mobileno);
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+                            );
+
+                            /*document.getElementById("UserName").innerHTML = Name;*/
+                            //$('#UserName').text(Name);
+                            //$('#MobileNo').text(Mobileno);
+
+                            window.location.href = '@Url.Content("~/Home/Index")';
+
+
+
+
+                        }
+                        else if (response.statuscode == "ODLOSS") {
+                            var timeLeft = 30;
+                            var elem = document.getElementById('some_divs');
+                            var timerId = setInterval(countdown, 1000);
+                            function countdown() {
+                                if (timeLeft == -1) {
+                                    clearTimeout(timerId);
+                                    document.getElementById("resend").style.display = "block";
+                                    document.getElementById("some_divs").innerHTML = "OTP Expired. Please click on Resend Button";
+                                    document.getElementById("some_divs").style.color = "red";
+
+                                } else {
+                                    elem.innerHTML = timeLeft + ' seconds remaining';
+                                    timeLeft--;
+                                }
+                            }
+
+                            $("#Sendotp").trigger("click");
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+
+                        }
+                        else if (response.statuscode == "ODLERR") {
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+                        }
+
+
+                        else if (response.statuscode == "UAB") {
+
+                            LoginClear();
+
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+                        }
+                        else if (response.statuscode == "ERR") {
+
+
+
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
+
+                            );
+
+                        }
+                    }
+                });
+
+            }
+        }
+
+    </script>
+
+    <script>
+        function verifyOTP() {
+            var MobileNum = $('[Id*=txtNumber]').val();
+            var pinNum = $('[Id*=txtMpin]').val();
+            document.getElementById("lblMobile").innerHTML = MobileNum;
+            var Otp = $("#ot1").val();
+            var Otp1 = $("#ot2").val();
+            var Otp2 = $("#ot3").val();
+            var Otp3 = $("#ot4").val();
+            var finalotp = Otp + "" + Otp1 + "" + Otp2 + "" + Otp3;
+            if (finalotp.trim() == "") {
+                $.notify("Do not Empty this field ", "info");
+            }
+            else {
+
+
+                $.ajax({
+                    url: "/Login/OtpVerfication",
+                    data: { 'Mobile': MobileNum, 'Otp': finalotp },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+                        debugger;
+                        if (response.statuscode == "TXN") {
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+                            );
+
+                            $.ajax({
+                                url: "/Login/Index",
+                                data: { 'Mobile': MobileNum, 'Mpin': pinNum },
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function (response) {
+                                    debugger;
+                                    if (response.statuscode == "OSS") {
+                                        var a = response.data;
+                                        var Mobile = $("#txtNumber").val();
+
+                                        LoginClear();
+                                        $("#Notregister").trigger("click");
+                                    }
+                                    else if (response.statuscode == "TXN") {
+                                        debugger;
+                                        var Name = response.data[0].name;
+                                        var Mobileno = response.data[0].mobileno;
+                                        $('#UserName').text(Name);
+                                        $('#MobileNo').text(Mobileno);
+                                        $.notify(
+                                            response.message,
+                                            { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+                                        );
+                                        window.location.href = '@Url.Content("~/Home/Index")';
+
+
+
+                                    }
+                                }
+                            })
+                        }
+                        else {
+
+                            document.getElementById("Err").innerHTML = response.message;
+                            document.getElementById("Err").style.Color = '#880808';
+                            $("#ot1").val("");
+                            $("#ot2").val("");
+                            $("#ot3").val("");
+                            $("#ot4").val("");
+
+                        }
+
+                    }
+                });
+            }
+        }
+    </script>
+
+    <script>
+        function ResendOtp() {
+            var MobileNum = $('[Id*=txtNumber]').val();
+            var pinNum = $('[Id*=txtMpin]').val();
+            if (MobileNum.trim() == "") {
+                $.notify("Please Enter Mobile Number ? ", "warn");
+                $('[Id*=txtNumber]').focus();
+            } else if (pinNum.trim() == "") {
+
+                $.notify("Please Enter Mpin ? ", "warn");
+                $('[Id*=txtMpin]').focus();
+
+            }
+
+            else {
+                $.ajax({
+                    url: "/Login/SentOtpForResetMpin",
+                    data: { 'Mobile': MobileNum },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.statuscode == "OSS") {
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+                            $("#ReopenLogin").trigger("click");
+                            window.location.href = '@Url.Content("~/Home/Index")'
+
+
+                        }
+                        else {
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+                        }
+
+                    }
+                });
+
+            }
+        }
+
+    </script>
+
+    <script>
+
+        function forgototp() {
+            debugger;
+            var MobileNum = $('[Id*=txtNumber1]').val();
+
+            if (MobileNum == "") {
+
+                document.getElementById("mobile1").innerHTML = "Please Enter Mobile Number";
+                $('[Id*=txtNumber1]').focus();
+
+            }
+            else {
+                $.ajax({
+                    url: "/Login/SentOtpForResetMpin",
+                    data: { 'Mobile': MobileNum },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+
+
+                        if (response.statuscode == "OSS") {
+                            $("#Changepin").trigger("click");
+                            $("#modalRecoverMpin").hide();
+
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+                        }
+                        else if (response.statuscode == "ERR") {
+                            debugger;
+                            //$("#modalRecoverMpin").hide();
+                            //$("#Changepin").trigger("click");
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+
+                        }
+
+                    }
+                });
+
+            }
+        }
+
+    </script>
+
+    <script>
+
+        function ChangeMpin() {
+            var MobileNum = $('[Id*=txtNumber1]').val();
+
+            var Otp = $('[Id*=txtOtp]').val();
+            var Mpin = $('[Id*=txtNewMpin]').val();
+            var ConfirmNewMpin = $('[Id*=txtConfirmNewMpin]').val();
+            if (Otp.trim() == "") {
+                document.getElementById("TxtOtp").innerHTML = "Please enter Otp";
+
+                $('[Id*=txtOtp]').focus();
+            }
+            else if (Mpin.trim() == "") {
+
+                document.getElementById("NewMpin").innerHTML = "Please enter NewMpin ";
+                $('[Id*=txtNewMpin]').focus();
+            }
+            else if (ConfirmNewMpin.trim() == "") {
+
+                document.getElementById("ConfirmNewMpin").innerHTML = "Please enter confirm new mpin";
+                $('[Id*=txtConfirmNewMpin]').focus();
+            }
+            else {
+
+                $.ajax({
+                    url: "/Login/ChangeMpins",
+                    data: { Mobile: MobileNum, Mpin: Mpin, Otp: Otp },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+
+                        if (response.statuscode == "TXN") {
+                            LoginClear();
+                            $("#ChangeMpin").hide();
+                            $("#ReopenLogin").trigger("click");
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+
+                        }
+
+                        else {
+                            $.notify(
+                                response.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+                            LoginClear();
+                            //$("#ChangeMpin").hide();
+                            //$("#ReopenLogin").trigger("click");
+
+                        }
+                    }
+
+
+                });
+
+            }
+        }
+
+    </script>
+
+    <script>
+        $(function () {
+            $("#txtNewMpin").keypress(function (e) {
+                var MPIN;
+                var a = $('#txtNewMpin').attr('id');
+                var b = $("#txtConfirmNewMpin").val();
+                var MPIN = $("#txtNewMpin").val();
+                if (MPIN.length < 6) {
+                    $("#spanOpin").html("Please insert maximum 6 digits");
+                }
+                else {
+                    $("#spanOpin").html("");
+                    $("#txtConfirmNewMpin").keypress(function (f) {
+                        var b = $("#txtConfirmNewMpin").val();
+                        var c = $("#txtNewMpin").val();
+                        if (b != c) {
+                            $("#spanNpin").html("Value does not match");
+                        }
+                        else {
+                            $("#spanNpin").html("");
+                            document.getElementById("btnOpen").disabled = false;
+                        }
+
+                    });
+                }
+
+
+            });
+
+        });
+
+    </script>
+
+    <script>
+        $(function () {
+            $("#txtNumber").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+                $("#mobile").html("");
+                //Regex for Valid Characters i.e. Numbers.
+                var regex = /^[0-9]+$/;
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#mobile").html("Only number allowed");
+                }
+                return isValid;
+            });
+        });
+        $(function () {
+            $("#txtMpin").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+                $("#mpin").html("");
+                //Regex for Valid Characters i.e. Numbers.
+                var regex = /^[0-9]+$/;
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#mpin").html("Only number allowed");
+                }
+                return isValid;
+            });
+        });
+        $(function () {
+            $("#txtNumber1").keypress(function (e) {
+                var keyCode = e.keyCode || e.which;
+                $("#mobile1").html("");
+                //Regex for Valid Characters i.e. Numbers.
+                var regex = /^[0-9]+$/;
+                //Validate TextBox value against the Regex.
+                var isValid = regex.test(String.fromCharCode(keyCode));
+                if (!isValid) {
+                    $("#mobile1").html("Only number allowed");
+                }
+                return isValid;
+            });
+        });
+
+    </script>
+
+    @* <script>
+    let digitValidate = function (ele) {
+    console.log(ele.value);
+    ele.value = ele.value.replace(/[^0-9]/g, '');
+    }
+
+    let tabChange = function (val) {
+    let ele = document.getElementsByClassName('otp');
+    if (ele[val - 1].value != '') {
+    ele[val].focus()
+    } else if (ele[val - 1].value == '') {
+    ele[val - 2].focus()
+    }
+    //}
+    </script>*@
+
+    <script>
+        function LoginClear() {
+            $('[Id*=txtNumber]').val("");
+            $('[Id*=txtMpin]').val("");
+            $('[Id*=txtNewMpin]').val("");
+            $('[Id*=txtConfirmNewMpin]').val("")
+            $('[Id*=txtOtp]').val("");
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        //$(document).ready(function() {
+        //    $(".dropdown").hover(function() {
+
+
+        //    }
+
+        $(document).ready(function () {
+            $(".dropdown").hover(function () {
+                var dropdownMenu = $(this).children(".dropdown-menu");
+                if (dropdownMenu.is(":visible")) {
+                    dropdownMenu.parent().toggleClass("open");
+                }
+            });
+        });
+        // For Login Jquery
+        $('body').on('keyup', '.js-input-mobile', function () {
+            var $input = $(this),
+                value = $input.val(),
+                length = value.length,
+                inputCharacter = parseInt(value.slice(-1));
+
+            if (!((length > 0 && inputCharacter >= 0 && inputCharacter <= 10) || (length === 1 && inputCharacter >= 7 && inputCharacter <= 10))) {
+                $input.val(value.substring(0, length - 1));
+            }
+        });
+
+
+    </script>
+
+    <script>
+        function clearSession() {
+            $.ajax({
+                url: "/Login/ClearSession",
+                data: {},
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    LoginClear();
+                    $.notify(response.message, "success");
+                    window.location.href = '@Url.Content("~/Home/Index")'
+                }
+            });
+        }
+    </script>
+
+    <script>
+        //function sessionHandle() {
+        //    getcookiedata();
+        //    $.ajax({
+        //        url: "/Login/SessionHandle",
+        //        data: {},
+        //        type: 'POST',
+        //        dataType: 'json',
+        //        success: function (response) {
+        //            if (response.statuscode == "HasValue") {
+        //                document.getElementById("btnlogin2").style.display = "block";
+        //                document.getElementById("btnlogin1").style.display = "none";
+
+        //            }
+        //            else {
+        //                document.getElementById("btnlogin2").style.display = "none";
+        //                document.getElementById("btnlogin1").style.display = "block";
+        //            }
+        //        }
+        //    });
+        //}
+    </script>
+
+    <script>
+
+        function CookiesHandle() {
+            debugger;
+            var MobileNum = $('[Id*=txtNumber]').val();
+            var pinNum = $('[Id*=txtMpin]').val();
+            if (MobileNum == "" && pinNum == "") {
+
+                $.notify("Please Enter All Field ? ", "warn");
+                chkRemember.checked = false;
+            }
+            document.cookie = "mymobile=" + MobileNum + ";path=http://https://localhost:7102/";
+            document.cookie = "myMpin=" + pinNum + ";path=http://https://localhost:7102/";
+        }
+        function getcookiedata() {
+            console.log(document.cookie);
+            var cookisMobile = getCookie('mymobile');
+            var cookisMpin = getCookie('myMpin');
+            $('[Id*=txtNumber]').val(cookisMobile);
+            $('[Id*=txtMpin]').val(cookisMpin);
+
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+
+    </script>
+
+    <script>
+        $(".toggle-password").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
+
+        $(".toggle-password1").click(function () {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
+    </script>
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+    <script src="~/js/progressslider.js"></script>
+    <script src="~/js/notify.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+﻿<!--<?xml version="1.0" encoding="utf-8" ?>-->
+
+<!--<xml version="1.0" encoding="utf-8" ></xml>-->
+<xml version="1.0">
+	<PidOptions ver="1.0">
+		<Opts fCount="1" fType="0" iCount="0" pCount="0" pgCount="2" format="0"   pidVer="2.0" timeout="10000" pTimeout="20000" posh="UNKNOWN" env="P" />
+		<CustOpts>
+			<Param name="mantrakey" value="" />
+		</CustOpts>
+	</PidOptions>
+
+	<RDService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" status="READY" info="RD service for Mantra MFS100 provided by Access Computech">
+		<Interface id="CAPTURE" path="/rd/capture" />
+		<Interface id="DEVICEINFO" path="/rd/info" />
+	</RDService>
+
+	<PidData>
+		<Resp errCode="0" errInfo="Success." fCount="1" fType="0" nmPoints="23" qScore="72" />
+		<DeviceInfo dpId="MANTRA.MSIPL" rdsId="MANTRA.WIN.001" rdsVer="1.0.6" mi="MFS100" mc="MIIEGDCCAwCgAwIBAgIEAjSTQDANBgkqhkiG9w0BAQsFADCB6jEqMCgGA1UEAxMhRFMgTWFudHJhIFNvZnRlY2ggSW5kaWEgUHZ0IEx0ZCA3MUMwQQYDVQQzEzpCIDIwMyBTaGFwYXRoIEhleGEgb3Bwb3NpdGUgR3VqYXJhdCBIaWdoIENvdXJ0IFMgRyBIaWdod2F5MRIwEAYDVQQJEwlBaG1lZGFiYWQxEDAOBgNVBAgTB0d1amFyYXQxHTAbBgNVBAsTFFRlY2huaWNhbCBEZXBhcnRtZW50MSUwIwYDVQQKExxNYW50cmEgU29mdGVjaCBJbmRpYSBQdnQgTHRkMQswCQYDVQQGEwJJTjAeFw0yMjExMTYwNjU1MzdaFw0yMjEyMTYwNzEwMzdaMIGwMSUwIwYDVQQDExxNYW50cmEgU29mdGVjaCBJbmRpYSBQdnQgTHRkMR4wHAYDVQQLExVCaW9tZXRyaWMgTWFudWZhY3R1cmUxDjAMBgNVBAoTBU1TSVBMMRIwEAYDVQQHEwlBSE1FREFCQUQxEDAOBgNVBAgTB0dVSkFSQVQxCzAJBgNVBAYTAklOMSQwIgYJKoZIhvcNAQkBFhVzdXBwb3J0QG1hbnRyYXRlYy5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDcCCmNyICVYGa0TwgnSR3RupiseJxJN5aFh/nfNTayxk00vYKEGzydz0uKPwmgppDfT+omK3UZjBx9iHz4Yi0lFl1Fktdhp/MAjIF7rmCYJSllPn6x9WtPRoV/Zdef5Ixl75MaimuFL8m4iiDphskci+m/ShEWyEnbduj+pLgXqhqQqxmkyxSA4A6amjLriqqL+I2Ao8HS1ejT/GIXNVZQvv1QoEHY+4LMLrFACSbYq0iileI2CKN8BgChWCHCmuo2tooFsd2P7D+yF7FnR6dHqRUkNfA3VLux6FkWVpjBdimdZaGFaHw94YDCTsRucHqzL4R/mBgRnlNh7aHNPCgrAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAK9Gp8bk5RbCHycN3YoRBF+SpxZ2hSgHRdQFpwIuad/dFpKCQwA8JW1muRQvtCL4FU+tHfqcwFYOSHwBg8vS1mPJS8XLvP+vA04+jehONxzXvClWYawtOzUc0fEYUO8YMsTf/3y93pmkIxnM/CqrIHY9SJfx9sDz0EjRR99EeR0i35oQS2x0wmFjJIDb9qhKUWmacH9leQgHjGo/7WWsBo3h3XGDJOaUFteBm4Aoifaigzq5FqO8fT0irfL2dgnCkxfrc0+0KTCx5yuL7JQDiA3XzxsfUe/DGRzAPWNHue5OW7zYTMT8UGvBUiYZcwdEZBaWS8NNp4fV6tDrHSW622I=" dc="580b3aa1-90cf-444b-839f-b195baedc384">
+			<additional_info>
+				<Param name="srno" value="5147760" />
+				<Param name="sysid" value="6E9FEBFC4005885FBFF0" />
+				<Param name="ts" value="2022-11-16T12:40:50+05:30" />
+			</additional_info>
+		</DeviceInfo>
+		<Skey ci="20250923">NUgUI1MV8kAAZ6q/oXOwuuHCoiSMg/hf+v3BOpYwy/DBjPrf2pbeJz5oDIAHAeUTni4b+mCE6HbSWwbJE6QxHS0KkCWWzCi+bz3/mnenXj7c64h37Z6uiz7zSSI9jBfOJN3pfOP7iTxc/49kSSSprQc5+v2gaugcmxqcdMOw7PxhvvNgtON4LA7gjJh6GQ93rt+7+272qdWKkO4ua2dmcBTFY2zqVFJ7mLeUfonEXSCP6E0WhFGR46LmtTMHu8mUJ71FIz5RsffyIF1DVLjME/Tu5NKwM9XPbx/2ETw5lUEFS9GIb4Drue7wGHp4TD5WpmunZBfdzfykkfc1YtiAvQ==</Skey>
+		<Hmac>CapI25UBML3SeT17FF6L42kREljVTEnwEb6wMEhGfs+flh4/dbXKJtzPuOtIrjaN</Hmac>
+		<Data type="X">MjAyMi0xMS0xNlQxMjo0MDo1MPHhQBRrQbRGPMDKkDckd47gcNT45fX8eZek6/MVTRJuYs0iF1Zhc425Em0DSYojzYxy8OcF1K/cnpNfRzg/I/bLPX2KYuDhFCTeOZM2VlbQyBMuIDs9G7+mklA9MMlTda0YBat5iLEtdM2ZOlqK/lY+iBpwBP7GwmaETRfcFb+uMqpdan5ikSydlkT11nonNE9bFVWfOu2+kkFtQhuXFB6CcoqyLMx0MF16LO/sBzw0AC0P58Q7agtjdJ7hzTC0SldKtUvmLMk7JL6WMo3SoDfnklkjUBNPSCsDmQqQf4pIo4byTSTD1jjnW7u00oAfS6QTgCmPWgXaDnl4//8qw9LFvCn5eBRfBAyy0aGnq59oECT0W30TKq3eJTfYeAxCRoz8QTD5SBjuCFjK0mi37p/cBD7KJODMDRdlbslCesH/XuTeFuLF8UMvU8wkegBdwwqcfHWF/SOnS8rxBwlcvIdghUvwv/xdU2vMkwxdVzGz9jC9JZyjYzdqcv1Z7BftnBY4PxU+V2jO28VrdIaVYjeZREclK4aDI8n9uCqgz/hCS9pIYdQxm2Z6NcogwlTOq7sx/GfyXrLkL96ZISrcwgOZbN34rwxPYP5mLaa63luAE1gtsDWyeqqV8PuRCZXj/ZOHB0PAcljiZLQ2+P0DoPGAOqFGScaUyk9XUmK0fa2Aa+MKOlvqKdUJdp6McW6FLO+BRZeXKb3WMwJYbtzGOAdB7uCLd2mJMY0qs/4D2I7zJZUlNO1M86NLYFHnUjuIzpr+2nF+OSd7vJt/vOPhqT/wncjRidBJnuURuwCns+zAEbuyaPVJGu9kfM4ZuO+XLtF/J9CXss1KT3QTJojMjdUkItK3af7tp+EHms5FfL5hqvGHN1eMm+gTom3k24RznZmnyxXGzk6HuUqM785tlEHYB2lgXQ10PYx+Owajr89tsGiEZXInB/FAU3vTXQutpT5hZdIRs0xg73E3FNTqI0vn1NXXw+MHag92xkFEqUNOkgYGIX/MBuYU3ig9InHlofTqRmw=</Data>
+	</PidData>
+
+	<!--<DeviceInfo dpId="MANTRA.MSIPL" rdsId="MANTRA.WIN.001" rdsVer="1.0.6" mi="MFS100" mc="MIIEGDCCAwCgAwIBAgIEAjSTQDANBgkqhkiG9w0BAQsFADCB6jEqMCgGA1UEAxMhRFMgTWFudHJhIFNvZnRlY2ggSW5kaWEgUHZ0IEx0ZCA3MUMwQQYDVQQzEzpCIDIwMyBTaGFwYXRoIEhleGEgb3Bwb3NpdGUgR3VqYXJhdCBIaWdoIENvdXJ0IFMgRyBIaWdod2F5MRIwEAYDVQQJEwlBaG1lZGFiYWQxEDAOBgNVBAgTB0d1amFyYXQxHTAbBgNVBAsTFFRlY2huaWNhbCBEZXBhcnRtZW50MSUwIwYDVQQKExxNYW50cmEgU29mdGVjaCBJbmRpYSBQdnQgTHRkMQswCQYDVQQGEwJJTjAeFw0yMjExMTYwNjU1MzdaFw0yMjEyMTYwNzEwMzdaMIGwMSUwIwYDVQQDExxNYW50cmEgU29mdGVjaCBJbmRpYSBQdnQgTHRkMR4wHAYDVQQLExVCaW9tZXRyaWMgTWFudWZhY3R1cmUxDjAMBgNVBAoTBU1TSVBMMRIwEAYDVQQHEwlBSE1FREFCQUQxEDAOBgNVBAgTB0dVSkFSQVQxCzAJBgNVBAYTAklOMSQwIgYJKoZIhvcNAQkBFhVzdXBwb3J0QG1hbnRyYXRlYy5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDcCCmNyICVYGa0TwgnSR3RupiseJxJN5aFh/nfNTayxk00vYKEGzydz0uKPwmgppDfT+omK3UZjBx9iHz4Yi0lFl1Fktdhp/MAjIF7rmCYJSllPn6x9WtPRoV/Zdef5Ixl75MaimuFL8m4iiDphskci+m/ShEWyEnbduj+pLgXqhqQqxmkyxSA4A6amjLriqqL+I2Ao8HS1ejT/GIXNVZQvv1QoEHY+4LMLrFACSbYq0iileI2CKN8BgChWCHCmuo2tooFsd2P7D+yF7FnR6dHqRUkNfA3VLux6FkWVpjBdimdZaGFaHw94YDCTsRucHqzL4R/mBgRnlNh7aHNPCgrAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAK9Gp8bk5RbCHycN3YoRBF+SpxZ2hSgHRdQFpwIuad/dFpKCQwA8JW1muRQvtCL4FU+tHfqcwFYOSHwBg8vS1mPJS8XLvP+vA04+jehONxzXvClWYawtOzUc0fEYUO8YMsTf/3y93pmkIxnM/CqrIHY9SJfx9sDz0EjRR99EeR0i35oQS2x0wmFjJIDb9qhKUWmacH9leQgHjGo/7WWsBo3h3XGDJOaUFteBm4Aoifaigzq5FqO8fT0irfL2dgnCkxfrc0+0KTCx5yuL7JQDiA3XzxsfUe/DGRzAPWNHue5OW7zYTMT8UGvBUiYZcwdEZBaWS8NNp4fV6tDrHSW622I=" dc="580b3aa1-90cf-444b-839f-b195baedc384">
+		<additional_info>
+			<Param name="srno" value="5147760" />
+			<Param name="sysid" value="6E9FEBFC4005885FBFF0" />
+			<Param name="ts" value="2022-11-16T12:40:44+05:30" />
+		</additional_info>
+	</DeviceInfo>-->
+
+	
+</xml>
+
+
+

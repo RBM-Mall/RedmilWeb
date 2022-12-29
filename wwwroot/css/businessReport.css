@@ -1,0 +1,263 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Lato&family=Libre+Baskerville&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+
+
+/*------------ Download Report Ends ---------------------*/
+
+.buttonDownload {
+    display: inline-block;
+    position: relative;
+    padding: 10px 25px;
+    background-color: #4CC713;
+    color: white;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-align: center;
+    text-indent: 15px;
+}
+
+    .buttonDownload:hover {
+        background-color: #333;
+        color: white;
+    }
+
+    .buttonDownload:before, .buttonDownload:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 15px;
+        top: 52%;
+    }
+
+    /* Download box shape  */
+    .buttonDownload:before {
+        width: 10px;
+        height: 2px;
+        border-style: solid;
+        border-width: 0 2px 2px;
+    }
+
+    /* Download arrow shape */
+    .buttonDownload:after {
+        width: 0;
+        height: 0;
+        margin-left: 3px;
+        margin-top: -7px;
+        border-style: solid;
+        border-width: 4px 4px 0 4px;
+        border-color: transparent;
+        border-top-color: inherit;
+        animation: downloadArrow 2s linear infinite;
+        animation-play-state: paused;
+    }
+
+    .buttonDownload:hover:before {
+        border-color: #4CC713;
+    }
+
+    .buttonDownload:hover:after {
+        border-top-color: #4CC713;
+        animation-play-state: running;
+    }
+
+/* keyframes for the download icon anim */
+@keyframes downloadArrow {
+    /* 0% and 0.001% keyframes used as a hackish way of having the button frozen on a nice looking frame by default */
+    0% {
+        margin-top: -7px;
+        opacity: 1;
+    }
+
+    0.001% {
+        margin-top: -15px;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 0;
+        opacity: 0;
+    }
+}
+
+/*------------ Download Report Ends ---------------------*/
+
+.accordion {
+    width: 50%;
+    margin: 25px auto;
+    /*margin: 200px auto;*/
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.item {
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    align-items: center;
+    padding: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -74px;
+}
+
+.accordion .item .busiRepo_h2 {
+    /*font-size: 24px;
+    text-transform: capitalize;*/
+    line-height: 1.6;
+    margin-bottom: 21px;
+    font-size: 30px;
+    font-weight: 800;
+    color: #2d385e;
+    letter-spacing: 0.5px;
+    word-spacing: 3px;
+}
+
+.reportHeadName{
+    text-align: center;
+    font-weight: 800;
+}
+
+.tag{
+    text-align: center;
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+.number {
+    font-size: 32px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    color: #1864ab;
+}
+
+.hidden-box {
+    grid-column: 2/3;
+    display: none;
+}
+
+    .hidden-box p {
+        line-height: 1.6;
+        margin-bottom: 24px;
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        word-spacing: 3px;
+    }
+
+    .hidden-box ul {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+        .hidden-box ul li {
+            margin-left: 16px;
+            line-height: 1.5;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            word-spacing: 3px;
+        }
+
+            .hidden-box ul li a {
+                color: #2d385e;
+                text-decoration: none;
+                
+                font-weight: bold;
+                
+                box-shadow: 0 0 30px 0 rgb(0 0 0 / 15%);
+                padding: 10px;
+                margin-left: -50px;
+            }
+
+.active {
+    position: relative;
+}
+
+    .active::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+       /* border-top: 3px solid #1864ab;*/
+        animation: borderline 1s linear forwards;
+    }
+
+@keyframes borderline {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+.search {
+    top: 6px;
+    left: 10px;
+}
+
+.form-control {
+    /*border: none;*/
+    padding-left: 32px;
+}
+
+    .form-control:focus {
+        
+        box-shadow: none;
+    }
+
+.walletTblborder {
+    border: 2px solid !important;
+    margin-top: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.active .hidden-box {
+    display: block;
+}
+
+.transRepoHead {
+    font-weight: 700;
+}
+
+.filterDate {
+    margin: 0 auto;
+}
+
+.dateLbl {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.busiRepo_filter {
+    margin-bottom: 30px;
+    margin-right: -412px;       
+}
+
+.busiRepo_status {
+    padding: 8px 32px;
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: 600;
+}
+
+.inputDate {
+    margin-bottom: 30px;
+    padding: 3px 7px;
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: 600;
+}

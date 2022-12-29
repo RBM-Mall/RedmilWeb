@@ -1,0 +1,145 @@
+﻿@model Project_Redmil_MVC.Models.ResponseModel.PayoutCommisonResponseModel.PayOutCommisionResponseModel
+
+@{
+    ViewData["Title"] = "PayoutCommision";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<h1>PayoutCommision</h1>
+<link rel="stylesheet" href="~/css/businessReport.css" />
+<style>
+    .form-control
+    {
+    
+    padding-left: 32px;
+    height: 65px;
+    }
+</style>
+
+<div class="container-fluid">
+    @*<div class="row">
+            <div class="col-12">
+                <img src="~/css/CommisionImages/payoutandcommision.png" class="img-fluid" alt="Responsive image" />
+            </div>
+        </div>*@
+    <div class="section breadcumb-area background-image" style="background-image: url('/css/CommisionImages/payoutandcommision.png') ">
+        <div class="container-fluid ">
+            <div class="row">
+                
+                <div class="col-sm-12 text-center">
+                    <ul>
+                        <li><strong>Payout Commision</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <blockquote class="blockquote text-center">
+                <strong class="mb-0">You get "Best Assured Payouts" in industry with your "Mall".</strong>
+                @*<footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>*@
+            </blockquote>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">
+              Category Name:
+            </label>
+            @if (ViewBag.Payout != null)
+            {
+                @Html.DropDownListFor(m => m.Id, ViewBag.Payout as SelectList, "-- Select Services --", new { @class = "form-control" })
+
+            }
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-5">
+            <label class="control-label">
+                Subcategory Name:
+                </label>
+            <select class="form-control" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
+                <option> -- Please Select -- </option>
+            </select>
+        </div>
+    </div>
+</div>
+<script>
+    const ourItemDiv = document.getElementsByClassName("item");
+    const openIcon = document.getElementsByClassName("iconOpen");
+    const closeIcon = document.getElementsByClassName("iconClose");
+    for (let i = 0; i < ourItemDiv.length; i++) {
+        closeIcon[i].style.display = "none";
+
+        ourItemDiv[i].addEventListener("click", () => {
+            const result = ourItemDiv[i].classList.toggle("active");
+
+            if (result) {
+                closeIcon[i].style.display = "block";
+                openIcon[i].style.display = "none";
+            } else {
+                closeIcon[i].style.display = "none";
+                openIcon[i].style.display = "block";
+            }
+        });
+    }
+</script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    $(document).ready(function () {
+        
+        $("#Id").change(function () {
+            debugger;
+            var Category = $(this).val();
+            $.ajax({
+                url: "/PayoutCommision/SubCategoryPayOutCommision",
+                data: { 'Category': Category },
+                type:'POST',
+                dataType:'json',
+                success: function (response) {
+                    
+                    $('#SId').html('');
+                    var options = '';
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        options += '<option value="' + response[i].id + '">' + response[i].title + '</option>';
+
+                    }
+                    $('#SId').append(options);
+
+                }
+            });
+
+        });
+    });
+</script>
+
+<script>
+    $("#SId").change(function () {
+        
+        var e = $('#SId').val();
+        var f = $('#Id').val();
+        $.ajax({
+            url: "/PayoutCommision/SubCategoryPayOutCommision",
+            data: {'Category': f, 'SubCategory': e },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response){
+        
+                var ar = response[0].imgLing;
+                window.open(ar);
+                /* $('a[href$="ar"]').attr('target', '_blank');*/
+
+            }
+
+        });
+
+    });
+
+</script>

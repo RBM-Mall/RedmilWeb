@@ -1,0 +1,1159 @@
+﻿@model Project_Redmil_MVC.Models.ResponseModel.LandlinePostpaidResponseModel.Operatornames
+@{
+    ViewData["Title"] = "Landline Bill Payment - Pay Landline Bill Online";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/navbarheader.css">
+<style>
+    .navbar1 {
+        position: fixed;
+        width: 100%;
+        z-index: 1000000;
+        top: 0;
+    }
+
+    .p-new {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .btn-final {
+        display: block;
+        margin-left: 208px;
+        border-bottom: 42px;
+        width: 179px;
+        border-radius: 41px;
+        height: 41px;
+        font-size: 20px;
+        color: white;
+        border-color: white;
+        border-right: white;
+        border-left: white;
+        border-top: white;
+    }
+</style>
+<style>
+
+
+    .button_header {
+        border-radius: 6px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        border-width: 0;
+        font-weight: 600;
+        height: 50px;
+        background: #fff;
+        color: #00baf2;
+        border: 1px solid white;
+        font-size: 14px;
+        padding: 6px 10px;
+        border-color: white;
+        border-right: white;
+        border-left: white;
+        border-top: white;
+        border-bottom: white;
+    }
+
+
+    .operatori {
+        display: block;
+    }
+</style>
+<style>
+
+    .operatorspan {
+        font-size: 12px;
+        color: #00baf2;
+        text-align: right;
+        /* margin: -28px 1% 0px 0;*/
+        min-width: 35%;
+        right: 0;
+        font-weight: 800;
+        cursor: pointer;
+        margin-top: -48px;
+        /*margin-right: 84px;*/
+        float: left;
+        margin-left: 110px;
+    }
+
+
+        .operatorspan span {
+            display: block;
+            margin-top: -4px;
+        }
+</style>
+
+<style>
+    .errorMsg {
+        font-size: 12px;
+        color: #f4605f;
+        padding-top: 1px;
+        padding-left: 60px;
+    }
+
+</style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+
+    .hero {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(#f44336, #730228);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .selector {
+        width: 350px;
+    }
+
+    #selectField {
+        width: 100%;
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+        background: rgb(255, 255, 255, 0.7);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+        #selectField img {
+            width: 12px;
+            transition: transform 0.5s;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+    #list {
+        width: 100%;
+        background: rgb(255, 255, 255, 0.7);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .options {
+        width: 100%;
+        padding: 15px 0 15px 70px;
+        list-style: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .my-img {
+        width: 25px;
+        position: absolute;
+        top: 12px;
+        left: 25px;
+    }
+
+    .options:hover {
+        background: rgb(255, 255, 255, 0.7);
+    }
+
+    .hide {
+        visibility: hidden;
+    }
+
+    .rotate {
+        transform: rotate(180deg);
+    }
+</style>
+<style>
+    .img-li {
+        height: 40px;
+        margin-top: 15px;
+    }
+
+    .li-title {
+        font-size: 15px;
+    }
+</style>
+<style>
+    .div-browse-plan {
+        margin-top: 15px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 705px;
+        overflow: auto;
+    }
+
+    .main-table-recharge {
+        height: 100%;
+        overflow: auto;
+        width: 100%;
+    }
+</style>
+<style>
+    .img-wallet-select {
+        height: 150px;
+        width: 200px;
+    }
+
+    .first-wallet {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .final-modal-popup {
+        width: 650px;
+    }
+</style>
+<style>
+    .img-operator-logo {
+        height: 100px;
+        width: 150px;
+    }
+</style>
+<style>
+    .form-control-dropdown {
+        display: block;
+        width: 70%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 17px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        margin-left: 26px;
+    }
+</style>
+<style>
+    .p-new-1 {
+        text-align: center;
+        font-size: 17px;
+    }
+</style>
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        margin-top: 19px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<style>
+    .switchCCF {
+        display: flex;
+        /*padding-left: 400px;*/
+    }
+
+</style>
+<div class="container-fluid" style="background:#ebebeb">
+
+    <div class="main-head-recharge">
+        <div class="row-recharge ">
+
+            <div class="col-md-3 col-sm-3 col-lg-3">
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/Recharge/PrepaidRecharge">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAA4CAYAAABez76GAAAAAXNSR0IArs4c6QAAAzlJREFUaAXtm0trFEEQx2cSjTE+Ynwhvg65KREk+MCDkIOiFxXBm4ge9CQoCN6ieBHxpn4DwU/gTSPkJL6QgKIielEjehAUo4muuu2vZCb0LpupHe3ZHaEK/unqru6qmv/WTm+gO44KEOfcIG7PgM1gFXB1oNvUmKwTyVr/Dvt9cCGO45cyudQCOYdBBbRaJgi4OzQ5cUiHJLgWf0/A/JB+c/gaZ+46KulLjjWZUzsyrfmNR1mSkjOG3k+y8iFInE4wC8xO0EU7B3SDuQl6aOcB8bEALEzQS7sI9IHFCZbQLgVbwWsgshrs/6OV8Q8VdN37Xh1pVY7EPO/FvRgyrnyiIWWl5+yxp2eqPNwBJmysm/SB/mUKMH1R15lrus+8nmwKwSQ0QX+b2GkWbqlb/Jn+VfCxbrxRtxkSG61Tx8pC0DYylXeRLxWq56c/0A69FARBRJWHn2wHAVrM0LuYFu+/sxtBykdmBBlBCgOK2SrICFIYUMxWQUaQwoBitgoyghQGFLNVkBGkMKCYrYKMIIUBxWwVZAQpDChmqyAjSGFAMVsFGUEKA4rZKsgIUhhQzFZBRpDCgGK2CjKCFAYUs1WQEaQwoJitgowghQHFbBVkBCkMKOYiD1D1cfZwWUZ87QhyHrucgC1EiiRopJCMW+zU3kEK4UVW0Cdi/1Dia6dTm7XLQXQ5bB5ciiRoB4czHwbPuIFD3nUHGb7WwPTPQ0USlD+5kakhLvZsYOGDaGfP3fwOwq8ozzvo5uSlqFodjaruCrgT3ZgaDv+4+T2Wg6Bb3/oj507Wpu/ORaOusO27NtbMvXIQ5Jx/xyPJ1nE7qLJi5tRbYykHQdXuMR73fe0jc3twqOtF7Vjre6EJGvceYb2nZ6u74q9RHO1hErte/D2K49tRR+de2l/ZC6etfiy5ohlMQu9ij8hsX5LdCbZf2eYl4fT3jLQpZFqqS/sUbPfGsDq5dJfOQZ3WZQz+YkK4AdRD0k9Ecggm2v87uQKR7BoWyN0tuTXYDnlLULmSOREqeNCvGIm9IbHjoBIqwRx+5LbQsZDkSOygFZQ+DJU0iH4KbALLgcRJY6V6qP4rfN8DZyHnOW1Q+Q2TZjaJCCu8RQAAAABJRU5ErkJggg==" style="width:28px;padding-top:20px;" alt="image" href="~/PrepaidRecharge/Recharge" />
+                        <p class="p-recharge"><strong>Prepaid/Postpaid</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/ElectricityBill/ElectricityBill">
+                        <img src="data:image/png;base64,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" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Electricity</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:30%;">
+                    <a href="~/HousingSocietyBill/HousingSocietyBill">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/view_item/855770/1626325829130.png" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Rent Payment</strong></p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-lg-3">
+
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/DTHRecharge/DTHRecharge">
+                        <img src="data:image/png;base64,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" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>DTH</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/WaterBill/WaterBill">
+                        <img src="~/css/Icon_Logo_BBPS/iconWater.jpeg" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Water</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:30%;">
+                    <a href="~/BroadbandBill/BroadbandBill">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAA4CAYAAABez76GAAAAAXNSR0IArs4c6QAABQ9JREFUaAXtm1+IV0UUx2dWZffHaop/KNGypEAhIYt6asX+/YoeKkJDhKhICLWwh+qhoF4LekmqhyDpoZeMQlqCttWHIgzMlsjspVpriTRytdxwN/fP7XN+3Pkxvx9dZ+bu/S137B74/ubMzDlnzjm/mft3rlIVVRkoVQaSJOkCD4ND4AzIojE6joLnQG+pguiUMwS6HHwOQulnFDZ0yq9S2CXABeBwaGYs+VPwq0oRTCecILinrGCn4F8CK7PGom8xeBScBYbezZKPvp0Ij5koKZ/xDQjZTZbeBfgFvrpzIafzDkIgK9B9EHwBvgczQOgfsERrPdGoefxg6whiN6eil1NeB3aCnrQtb/Enij+AfvwRHztPBLMIvAHOA6HfgSwXQyOhXqD4vlGmXA1OWPWi2AMYWh3qW1eIAgMsRf4Q2AVqqe4iSntZJGl7SGHryKz+KUTZU/Z+5L4ihus95Rti80OEke0HZimI6mfgaTAqlQLpPmzdBma7xK7BRh8Qe0JXgH6StJElJ8uvOMLoFmBoEma7sQ6vTQflL6bdt0Rnv6V/pa+erxy27wHnrDFe9tX1lsP4EWuAF21F2kudIPEVH3dY/p+Gn2fHMCtejIGJdAC5xpHjTpOolz5B4ix+jqYxSLGxGcBFGN+D9FpsdKd2hlm/YxexWeauIcs5rzOab4Iuswyfs/jY2LOWw14nAN8EWXb/X2yVIMf/XSWoSpAjA47uagY5EhR6q+Ew16HuAR7J6omtSrdefzlHm1EnVb32odLaPGlwqrQLxJEgNf4WV3nblX1L2x5JVv3g+LN0vZrV7WqPZIkl9nWYK6a2/mRxW0NQNY4ZpNUTRPWkUrrlFscdqT6pZnpec8tlS8SRoHrvb4TwfHYYneuJI0ED57dxgH5dJYEzSHOQVskWVe89mjeFcSRIs7wStYxgw+JM1BrOYI+glDtBcRyktd5HoN4vAZpZ1Dzp1Pq9Zj0HE8cMuqu2j9P8O+rHlmff7nCvVRdIUOC0azUbR4J4368GJ/pUV+AxaHiaY5D6ujXksFocCRoc38sM2q2mw4JrSA+M71B3197OodlQieMYpNS6vAFy9lufWxfFOGbQ/Hl71NT0C8yiwAtFTvM9tVcu/QTd3n2cIJuvmWYTcKhuLEssNK7C5KsEOVJZJahKkCMDju5qBlUJcmTA0V3NoCpBjgw4un1nkL1ZIfRq1uHCnHYvsUbzenzim6BhDE+mxteydWShNVBM7I2Ws79afCbrlSC2u0xh4VhqRe7f9mRaLGkHf+rjuMZTyQaN8vttyhdTMMA2YEi24D1kLMOXegMV/tXBX8CQ9w2sNkG6SizLbPsS3GLJDsI/BuStg3l7OcKMW2PJOFls70doayp4FeVpsBl47eFBLouupmMTeMASkD2UNxS+iVMGIJBl4Btgk3yxY88ge5OS5Vc2i/4nlsGV8J9a9SJZ+R5kQ7YnBfQwwFKwF5g9iwfELPU/gKHNvkOhsAL8bRQpF4ITVr0o9iMMBe+g9V5i7QEzmOzxkz3Tg0xXCfBN+J2p3AjlvbTLc5xMQmc5nR8AWQZCQ+jcRPut8LtBtzTOgmQvtPkU4bs8dnInqH0wglpFmzhhrjXkCfJhIA/O/+vNgrwz7wPmYzqRqZOgg5SXJpGkO8AYCKUZFKK7dMj1LxLoOvAxmAY+NITQnbkGmwOlwpZYu68ELTvZ5SOXrItRWVKTLCm5CK0o1gz8C5JF3jOsG1ZHAAAAAElFTkSuQmCC" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Broadband/Landline</strong></p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-3">
+
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/FastagBill/FastagBill">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/view_item/659690/1602740990416.png" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Buy FASTTag</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/CreditCardBill/CreditCardBill">
+                        <img src="~/css/Icon_Logo_BBPS/iconCreditCard.jpeg" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Credit Card</strong></p>
+                    </a>
+                </div>
+
+
+                <div class="block-recharge" style="width:30%;">
+                    <a href="~/LoanRepaymentBill/LoanRepaymentBill">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/view_item/659691/1602741233182.png" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Pay Loan</strong> </p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-3">
+
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/LICIndiaBill/LICIndiaBill">
+                        <img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>LIC India</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:33%;">
+                    <a href="~/LPGGasBill/LPGGasBill">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/view_item/732357/1626446407655.png" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Book a Cylinder</strong></p>
+                    </a>
+                </div>
+                <div class="block-recharge" style="width:30%;">
+                    <a>
+                        <p class="p-recharge"><strong>More...</strong></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Header Div Ends Here-->
+    <!--Recharge Body Starts Here-->
+    <div class="row">
+        <div class="row-recharge-body">
+            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px">
+                <!--Card for recharge starts here-->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Pay Landline Bill</strong><img src="~/css/Icon_Logo_BBPS/iconLandline.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h4>
+                        <hr />
+                        <hr />
+                        <div class="row">
+                            <div class="radioRecharge">
+                                <div class="col-sm-6 col-sm-6 col-lg-6">
+                                    <div class="radiobtn-recharge-body">
+                                        <label class="radio_lable">
+                                            <input id="rdbprepaid" name="serviceType" type="radio" value="broadband" onclick="check(this.value)">
+                                            <i class="i-recharge"></i>Broadband
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-sm-6 col-lg-6">
+                                    <div class="radiobtn-recharge-body">
+                                        <label class="">
+                                            <input id="rdbpostpaid" name="serviceType" type="radio" checked="" value="landline" onclick="check(this.value)">
+                                            <i class="i-recharge"></i>Landline
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="modal-body p-5 img align-items-center color-2">
+                                        <div class="text w-100 py-0 py-md-5">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <div class="form-group-recharge">
+                                                        <div class="inc">
+                                                            <div class="controls">
+                                                                <!-- <input type="text" class="form-control" name="textbox" placeholder="textbox"/>  -->
+                                                                @if (ViewBag.OpName != null)
+                                                                {
+                                                                    @Html.DropDownListFor(m =>m.Id , ViewBag.OpName as SelectList , "-- Select Operator --" ,  new {@class="form-control-dropdown"})
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    @*Customer Mobile Number for All*@
+                                                    <div class="form-group-recharge" id="divCustomerMobile">
+                                                        <input id="txtCustomerMobile" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Customer Mobile Number" />
+                                                        <span id="errCustomerMobile" class="errorMsg"></span>
+                                                    </div>
+                                                    <div class="form-group-recharge">
+                                                        <p>*Enter the mobile number on which recharge/bill status information needs to be sent</p>
+                                                    </div>
+                                                    <br />
+                                                    <br />
+                                                    <div class="operatorspan">
+                                                        <button type="button" class="operator-change" id="btnDownloadSample" onclick="downloadSample()">Download Sample Bill</button>
+                                                    </div>
+                                                    <div class="form-group-recharge form-group-recharge-button" id="divFetch" style="display:block">
+                                                        <button type="submit" id="btnFetchBill" onclick="fetchBill1()" disabled style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Fetch Bill</button>
+                                                    </div>
+                                                    <div class="form-group-recharge form-group-recharge-button" id="divPay" style="display:none">
+                                                        <button type="submit" id="btnPayBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" data-target="#myModal" data-toggle="modal" onclick="bindAmountInput()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Pay Bill</button>
+                                                    </div>
+                                                    <div class="form-group-recharge form-group-recharge-button" id="divCancel" style="display:none">
+                                                        <button type="submit" id="btnCancelBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Go Back</button>
+                                                    </div>
+                                                    <br />
+
+                                                    <!-- Modal Confirm Payment -->
+                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                        <div class="modal-dialog">
+
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header modal-header-recharge">
+                                                                    <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
+                                                                </div>
+                                                                <div class="modal-body" style="background-color:white;">
+                                                                    <div class="row div-recharge-img">
+                                                                        <div class="col-sm-4 custom_img_size pay-img">
+                                                                            <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                        </div>
+                                                                        <div class="col-sm-4 custom_img_size pay-img2">
+                                                                            <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
+                                                                        </div>
+                                                                        <div class="col-sm-12" style="text-align:center">
+                                                                            <label style="text-align:center;">
+                                                                                Select option to pay
+                                                                            </label>
+                                                                            <label id="lblamount" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row wallet-select">
+                                                                        <div class="col-sm-6 custom_img_size">
+                                                                            <label style="text-align:center;">
+                                                                                <span class="first-wallet" @*style="font-weight: 700;font-size: 20px;"*@>Cash Wallet</span>
+                                                                                <input type="radio" asp-for="Payment" class="radio1" name="test" value="True"><!--0 For True and 1 for False-->
+                                                                                <img src="~/css/PaymentImages/cash wallet.png" alt="Option 1" class="img-wallet-select">
+                                                                                <label>Available Balance is: ₹</label>
+                                                                                <label id="lblMainbal" />
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-sm-6 custom_img_size">
+                                                                            <label style="text-align:center;">
+                                                                                <span class="first-wallet" @*style="font-weight: 700;font-size: 20px;"*@>Advance Wallet</span>
+                                                                                <input type="radio" asp-for="Payment" class="radio1" name="test" value="False">
+                                                                                <img src="~/css/PaymentImages/Advance Wallet.png" alt="Option 2" class="img-wallet-select">
+                                                                                <label>Available Balance is: ₹</label>
+                                                                                <label id="lblAdbal" />
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12" style="text-align:center;">
+                                                                            <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer div-pay-row">
+                                                                    <div class="row div-pay-row">
+                                                                        <div class="col-sm-4 final-pay-button">
+                                                                            <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">Pay</button>
+                                                                        </div>
+                                                                        <div class="col-sm-4 final-cancel-button">
+                                                                            <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Modal Success Message-->
+                                                    <!-- Modal -->
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                                            <div id="myModalfinal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                                                                <div class="modal-dialog modal-confirm" style="width: 650px;">
+                                                                    <div class="modal-content" style="height: 550px;color:black;">
+                                                                        <div class="">
+                                                                            <div class="icon-box" id="icon">
+                                                                                <label id="img" />
+                                                                            </div>
+                                                                            <h4 id="heading" class="modal-title w-100" style="padding-top:10px"></h4>
+                                                                        </div>
+                                                                        <div class="modal-body" style="padding-top:32px">
+                                                                            <p class="p-new"><label id="lblMsg"></label></p>
+                                                                            <p class="p-new"><label id="lblPrice"></label></p>
+                                                                            <p class="p-new"><label id="lblTxnId"></label></p>
+                                                                            <p class="p-new"><label id="lblMobile"></label></p>
+                                                                            <p class="p-new"><label id="lblDate"></label></p>
+                                                                            <p class="p-new"><label id="lblTime"></label></p>
+                                                                            <p class="p-new"><label id="lblOperatorName"></label></p>
+                                                                            <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                                                            <p><strong>Note:</strong></p><p style="margin-left:40px"> In case of successful recharge not recieved,ask customer to call</p>
+                                                                            <p style="margin-left:40px">operator's customer care and confirm with Operator reference number</p>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn-final" id="finaldismissbutton" data-dismiss="modal"><b>Ok</b></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Card for recharge ends here-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-1 col-md-1" style="width:4%">
+                <!--Blank Space Between Recharge and Plans Pannel-->
+            </div>
+            <!--Card for Plans Pannel Starts Here-->
+            <div class="col-8 col-md-8 div-plans-table" style="display:none" id="divBill">
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title div-browse-plans" id="heading" style="text-align:center;margin-left:75px;"><strong>Bill Details</strong><img src="~/css/ImgElectricity/BharatBill.jpeg" style="float:right;height:45px;width:100px" /></h3>
+                        <div class="main-table-recharge">
+                            <br />
+                            <hr />
+                            <h4><label id="lblBillData" style="display:none;text-align:center;"></label></h4>
+                            <table class="table table-bordered" id="tblData">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Bill Number:</th>
+                                        <td><label id="lblBillNum"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer Name:</th>
+                                        <td><label id="lblCustomerName"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Due Date:</th>
+                                        <td><label id="lblDueDate"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bill Period:</th>
+                                        <td><label id="lblBillPeriod"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bill Amount:</th>
+                                        <td>
+                                            <label id="lblBillAmount"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-pencil" id="btnEditAmount" onclick="editAmount()" style="font-size:36px;color:dodgerblue;"></i>
+                                            <div class="bc" style="float: right;margin-top: -70px;margin-right: 96px;">
+                                                <input id="txtBill" style="display:none;margin-left: 70px;margin-top:67px;" autocomplete="off" placeholder="Enter Amount" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" />
+                                                <button type="button" style="display:none;margin-left: 242px;margin-top: -34px;" id="btnEdit" onclick="bindEditAmount()" class="btn btn-danger butn-cancel">Ok</button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CCF:</th>
+                                        <td><label id="lblCCF"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Commision:</th>
+                                        <td><label id="lblCommision"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Amount:</th>
+                                        <td><label id="lblTotalAmount"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            CCF:
+                                        </th>
+                                        <td>
+                                            <div class="switchCCF" id="divSwitch" style="display:block;">
+                                                <label class="switch">
+                                                    <input type="checkbox" name="ccfCheckbox" checked id="chkCCF">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div id="divSecHeading" style="display:block;">
+                                                <h3 class="card-title div-browse-plans" id="headingAdditonal" style="text-align:center;"><strong>Additional Info</strong></h3>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Early Payment Date:</th>
+                                        <td>
+                                            <p class="p-new-1"><label id="lblAdditional"></label></p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--Card for Plans Pannel Ends Here-->
+
+        </div>
+    </div>
+    <div class="col col-md-12 col-sm-12 col-lg-12">
+        <div class="div-main-oplist">
+            <div class="div-recharge-opimage">
+                <div class="div-oprator-heading" style="text-align:center;"><h2><b>Our Landline Partner</b></h2></div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-1 col-sm-12 col-xs-12 "></div>
+                    <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                        <img src="~/css/ImgLandline/airtelLadline.jpeg" alt="airtelLadline" class="img-width img-operator-logo">
+                        <div class="overlay"> <a href="#" target="_blank" class="icon" title="airtelLadline"></a></div>
+                        <div class="leadership_name">
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                        <img src="~/css/ImgLandline/bsnlLadline.jpeg" alt="bsnlLadline" class="img-width img-operator-logo">
+                        <div class="overlay"> <a href="#" target="_blank" class="icon" title="bsnlLadline"></a></div>
+                        <div class="leadership_name">
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                        <img src="~/css/ImgLandline/mtnl-logo-bigLadline.jpeg" alt="mtnl" class="img-width img-operator-logo">
+                        <div class="overlay"> <a href="#" target="_blank" class="icon" title="mtnl"></a></div>
+                        <div class="leadership_name">
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                        <img src="~/css/ImgLandline/tatadocomoLadline.jpeg" alt="tatadocomoLadline" class="img-width img-operator-logo">
+                        <div class="overlay"> <a href="#" target="_blank" class="icon" title="tatadocomoLadline"></a></div>
+                        <div class="leadership_name">
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var checkbox = document.querySelector("input[name=ccfCheckbox]");
+    var chkCCF = "1";
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            ccfChange("1");
+            chkCCF = "1";
+        } else {
+            ccfChange("0");
+            chkCCF = "0";
+        }
+    });
+
+    $(function() {
+        $("#txtCustomerMobile").keyup(function(e) {
+            var MobileNum;
+            var a = $('#txtCustomerMobile').attr('id');
+            var MobileNum = $("#txtCustomerMobile").val();
+            if (MobileNum.length < 10) {
+                $("#errCustomerMobile").html("Please insert 10 digits mobile number");
+            }
+            else if (MobileNum.length == 10) {
+                $("#errCustomerMobile").html("");
+                document.getElementById("btnFetchBill").disabled = false;
+            }
+        })
+
+    });
+
+    function downloadSample() {
+        var operator = $("#Id").val();
+        var State = $("#StateName").val();
+        if (State == '' || operator == 0) {
+            alert("Please Select State and Operator")
+        }
+        else {
+            $.ajax({
+                url: "/LandlineBill/GetOperatorList",
+                data: { 'StateId': State, 'OpId': operator },
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    var ar = response;
+                    window.open(ar);
+                }
+
+            });
+        }
+
+    }
+
+    function fetchBill1() {
+        var MobileNum = $("#txtCustomerMobile").val();
+        var input1 = $("#txtInput0").val();
+        var input2 = $("#txtInput1").val();
+        var Operator = $("#Id").val();
+        if (MobileNum.length < 10) {
+            $("#errCustomerMobile").html("Please insert 10 digits mobile number");
+        }
+        else if (MobileNum.length == 10) {
+            $("#errCustomerMobile").html("");
+
+            $.ajax({
+                url: "/LandlineBill/FetchBill",
+                data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'Operator': Operator, 'ccf': chkCCF },
+                type: 'POST',
+                dataType: 'json',
+                success: function(responsedata) {
+                    if (responsedata.statuscode == "ERR") {
+                        document.getElementById("divBill").style.display = "block";
+                        document.getElementById("divCancel").style.display = "block";
+                        //var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
+                        document.getElementById("divFetch").style.display = "none";
+                        document.getElementById("divPay").style.display = "none";
+                        document.getElementById("lblBillData").innerHTML = responsedata.message;
+                        document.getElementById("lblBillData").style.display = "block";
+                        document.getElementById("tblData").style.display = "none";
+                        document.getElementById("lblCustomerName").style.display = "none";
+                        document.getElementById("lblDueDate").style.display = "none";
+                        document.getElementById("lblBillPeriod").style.display = "none";
+                        document.getElementById("lblBillAmount").style.display = "none";
+                        document.getElementById("txtBill").style.display = "none";
+                        document.getElementById("btnEditAmount").style.display = "none";
+                        document.getElementById("divSwitch").style.display = "none";
+                        document.getElementById("divSecHeading").style.display = "none";
+                        //$('#txtBill').val(responsedata.data.billamount);
+                        document.getElementById("lblCCF").style.display = "none";
+                        document.getElementById("lblCommision").style.display = "none";
+                        document.getElementById("lblTotalAmount").style.display = "none";
+                        document.getElementById("lblAdditional").style.display = "none";
+
+                    }
+                    else {
+                        var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
+                        document.getElementById("divFetch").style.display = "none";
+                        document.getElementById("divPay").style.display = "block";
+                        document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
+                        document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
+                        document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
+                        document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
+                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
+                        $('#txtBill').val(responsedata.data.billamount);
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
+                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoName + " : " + responsedata.additionalInfo.info[0].infoValue;
+                        document.getElementById("divBill").style.display = "block";
+                        ccfChange("1");
+                    }
+
+                }
+            })
+        }
+    }
+
+    function editAmount() {
+        document.getElementById("txtBill").style.display = "block";
+        document.getElementById("btnEdit").style.display = "block";
+    }
+
+
+    function bindEditAmount() {
+        var amount = $('#txtBill').val();
+        if (chkCCF.checked == true) {
+            var ccf = 1;
+            $.ajax({
+                url: "/LandlineBill/GetCCF",
+                data: { 'ccf': ccf, 'amount': amount },
+                type: 'POST',
+                dataType: 'json',
+                success: function(responsedata) {
+                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                    document.getElementById("lblBillAmount").innerHTML = "";
+                    document.getElementById("lblCCF").innerHTML = "";
+                    document.getElementById("lblCommision").innerHTML = "";
+                    document.getElementById("lblTotalAmount").innerHTML = "";
+                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                    document.getElementById("txtBill").style.display = "none";
+                    document.getElementById("btnEdit").style.display = "none";
+                }
+            })
+        }
+        else {
+            var ccf = 0;
+            $.ajax({
+                url: "/LandlineBill/GetCCF",
+                data: { 'ccf': ccf, 'amount': amount },
+                type: 'POST',
+                dataType: 'json',
+                success: function(responsedata) {
+                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                    document.getElementById("lblBillAmount").innerHTML = "";
+                    document.getElementById("lblCCF").innerHTML = "";
+                    document.getElementById("lblCommision").innerHTML = "";
+                    document.getElementById("lblTotalAmount").innerHTML = "";
+                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                    document.getElementById("txtBill").style.display = "none";
+                    document.getElementById("btnEdit").style.display = "none";
+                }
+            })
+        }
+
+    }
+
+
+    function ccfChange(CCF) {
+        var amount = $('#txtBill').val();
+        $.ajax({
+            url: "/LandlineBill/GetCCF",
+            data: { 'ccf': CCF, 'amount': amount },
+            type: 'POST',
+            dataType: 'json',
+            success: function(responsedata) {
+
+                var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                document.getElementById("lblBillAmount").innerHTML = "";
+                document.getElementById("lblCCF").innerHTML = "";
+                document.getElementById("lblCommision").innerHTML = "";
+                document.getElementById("lblTotalAmount").innerHTML = "";
+                document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
+                document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
+                document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                document.getElementById("txtBill").style.display = "none";
+                document.getElementById("btnEdit").style.display = "none";
+            }
+        })
+    }
+
+    function bindAmountInput() {
+        $(document).ready(function() {
+            $.ajax({
+                type: "POST",
+                url: "/LandlineBill/GetBalance",
+                data: {},
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+
+                },
+                failure: function(response) {
+                    alert(response.responseText);
+                },
+                error: function(response) {
+                    alert(response.responseText);
+                }
+            });
+
+
+        });
+
+    }
+    $("#myModalfinal").on('show.bs.modal', function(e) {
+        $("#myModal").modal("hide");
+    });
+
+    $('#btnCloseModal').click(function() {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+    $('#btnCloseTwo').click(function() {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+    $('#btnCloseFirst').click(function() {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+    $('#finaldismissbutton').click(function() {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+
+
+
+
+
+    $("#btnPayNow").click(function() {
+        var MobileNum = $("#txtCustomerMobile").val();
+        var input1 = $("#txtInput0").val();
+        var input2 = $("#txtInput1").val();
+        var Operator = $("#Id").val();
+        var Amount = $('#txtBill').val();
+        var Payment = $('.radio1:checked').val();
+        if (Payment != undefined && Payment != '') {
+            $.ajax({
+                type: "POST",
+                url: "/LandlineBill/FetchBill",
+                 data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'ccf': chkCCF, 'Operator': Operator, 'Amount': Amount, 'Payment': Payment },
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.statuscode == "TXN") {
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "Success";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#82ce34';
+                        document.getElementById("lblPrice").innerHTML = 'Amount: ₹' + " " + response.data.amount;
+                        document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
+                        document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
+                        var datetime = response.data.reqdate;
+                        date = datetime.split('T')[0];
+                        time = datetime.split('T')[1];
+                        const timeString = time;
+
+                        const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                            .toLocaleTimeString('en-US',
+                                { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                            );
+                        document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
+                        document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
+                        document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#Id").val();
+                        document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + response.data.tRefId;;
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34'
+
+
+                    }
+                    else if (response.statuscode == "ERR") {
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "Failed";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#880808';
+                        document.getElementById("lblPrice").style.color = '#880808'
+                        document.getElementById("lblPrice").innerHTML = 'Amount: ' + " " + $("#txtAmount").val();
+
+                        if (response.data.id === undefined || response.data.id === null || response.data.id === 0) {
+                            document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
+                        }
+                        if (response.data.mobileno === undefined || response.data.mobileno === null || response.data.mobileno === 0) {
+                            document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
+                        }
+                        if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
+                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + response.data.reqdate;
+                        }
+                        if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
+                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + response.data.reqdate;
+                        }
+                        document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#Id").val();
+                        document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
+
+
+                    }
+
+                },
+                failure: function(response) {
+                    alert(response.responseText);
+                },
+                error: function(response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+        else {
+            document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
+            return false;
+        }
+    });
+
+</script>
+
+<script>
+    function downloadSample() {
+        var operator = $("#Id").val();
+        var State = $("#StateName").val();
+        if (State == '' || operator == 0) {
+            alert("Please Select State and Operator")
+        }
+        else {
+            $.ajax({
+                url: "/LandlineBill/GetOperatorList",
+                data: { 'StateId': State, 'OpId': operator },
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    var ar = response;
+                    window.open(ar);
+                }
+
+            });
+        }
+
+    }
+    function check(browser) {
+        if (browser == "broadband") {
+            window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
+        }
+        if (browser == "landline") {
+            window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+        }
+
+    }
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $("#Id").change(function(e) {
+            $("#txtCustomerMobile").val("");
+            document.getElementById("divBill").style.display = "none";
+            document.getElementById("divFetch").style.display = "block";
+            document.getElementById("divPay").style.display = "none";
+            jQuery('.remove').parent().remove();
+            var OpId = $("#Id").val();
+            $.ajax({
+                url: "/LandlineBill/GetOperatorById",
+                data: { 'OpId': OpId },
+                type: 'POST',
+                dataType: 'json',
+                success: function(responsedata) {
+                    for (var i = 0; i < responsedata[0].inputParam.length; i++) {
+                        var id = "txtInput" + i;
+                        $(".inc").append('<div class="controls">\
+                                                            <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                        </div>');
+                    }
+                }
+
+            });
+            return false;
+        });
+
+        jQuery(document).on('click', '.remove_this', function() {
+            jQuery(this).parent().remove();
+            return false;
+        });
+
+    });
+</script>

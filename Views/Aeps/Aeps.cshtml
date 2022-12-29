@@ -1,0 +1,1670 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.AepsKycDetailsNewResponseModel>
+@*@model List<Project_Redmil_MVC.Models.ResponseModel.AepsKycDetailsNewResponseModel>*@
+
+@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "Aadhaar ATM";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<style>
+
+    .button-23:hover {
+        color: white;
+    }
+
+    .wallet-box .bg-wt-round {
+        background: #fff;
+        border-radius: 30px;
+        padding: 10px 0px;
+    }
+
+    .wallet_breadcumb-area {
+        position: relative;
+        padding: 140px 0;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        background-position: 75% 10%;
+    }
+
+        .wallet_breadcumb-area:before {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            /*background: rgba(0, 0, 0, 0.5);*/
+            top: 0;
+            z-index: 0;
+        }
+
+        .wallet_breadcumb-area ul {
+            text-align: center;
+        }
+
+            .wallet_breadcumb-area ul li {
+                display: block;
+                font-weight: 500;
+                font-size: 16px;
+                color: #fff;
+            }
+
+                .wallet_breadcumb-area ul li:first-child {
+                    font-size: 50px;
+                    font-weight: 700;
+                    line-height: 5rem;
+                    color: #fff;
+                }
+
+                .wallet_breadcumb-area ul li a {
+                    color: #ffffff;
+                }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+</style>
+<style>
+
+    .img1 {
+        display: flex;
+    }
+
+        .img1 img {
+            height: 60px;
+            width: 60px;
+        }
+
+
+    .passbooktabs {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        color: #f1f1f1;
+        background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);
+        display: flex;
+        margin-top: 10px;
+    }
+
+        /* Style the buttons inside the tab */
+        .passbooktabs button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .passbooktabs button:hover {
+                background-color: #ddd;
+                color: #313142;
+            }
+
+            /* Create an active/current tablink class */
+            .passbooktabs button.active {
+                /*background-color: #5437b7;*/
+            }
+
+        .passbooktabs .tablinks {
+            letter-spacing: 2px;
+            margin-right: 25px;
+            /*background-color: #5437b7;*/
+        }
+
+    .tablinksactive {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        background-color: #5437b7;
+        transition: all 0.4s ease;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 20px 12px;
+        border: 1px solid #ccc;
+        /*width: 1200px;
+                                                                                                            border-top: none;*/
+    }
+
+        .tabcontent .title {
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+            .tabcontent .title h1 {
+                font-weight: 800;
+            }
+
+            .tabcontent .title .aval_bal, .cashBal {
+                margin-top: 20px;
+            }
+
+            .tabcontent .title .aval_bal, .AdvBal {
+                margin-top: -30px;
+            }
+
+            .tabcontent .title .advAval_bal, .AdvBal {
+                margin-top: -33px;
+            }
+
+        .tabcontent .item_info {
+            display: block;
+            margin-top: 50px;
+        }
+
+            .tabcontent .item_info button {
+                align-items: center;
+                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+                background-size: calc(100% + 20px) calc(100% + 20px);
+                border-radius: 100px;
+                border-width: 0;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: CircularStd,sans-serif;
+                font-size: 1.5rem;
+                height: auto;
+                justify-content: center;
+                line-height: 1.5;
+                padding: 6px 25px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color .2s,background-position .2s;
+                user-select: none;
+                margin-right: 24px;
+                float: none;
+                /*margin-top: 40px;*/
+                /*margin-left: 60px;*/
+                z-index: 1;
+            }
+
+        .tabcontent .title .item_info .rewbtn {
+            margin-left: 300px;
+        }
+
+        /*.tabcontent.item_info.btn2{
+                                                                                                                            margin-left:200px;
+                                                                                                                        }*/
+
+        .tabcontent hr {
+            margin: 93px 0 0 20px;
+            padding: 10px;
+        }
+
+        .tabcontent h3 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+    #example_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #example1_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #example_paginate {
+        float: right;
+        margin-right: -90px;
+    }
+
+    #example1_paginate {
+        float: right;
+        margin-right: -40px;
+    }
+
+    div.wrapper {
+        width: 500px;
+        height: 500px;
+        overflow: auto;
+    }
+
+    .ButtonDetail {
+        font-weight: 800;
+        /* background: #3EB2FD; */
+        /* border: 1px solid #3EB2FD; */
+        /* border: 1px solid #fff; */
+        padding: 5px 10px;
+        color: blue;
+        font-size: 13px;
+        text-align: center;
+        /* width: 300px;*/
+        border-radius: 5px;
+        /*margin-top: 20px;*/
+        font-family: 'Poppins', sans-serif;
+    }
+
+
+    .label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 7px;
+        font-weight: 700;
+        padding: -15px;
+        font-size: 21px;
+        margin-left: 82px;
+    }
+
+    .tabcontents {
+        display: none;
+        /* padding: 6px 12px;
+                                                                                    border: 1px solid #ccc;
+                                                                                    border-top: none;*/
+        font-size: 15px;
+    }
+
+    .active::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        /* border-top: 3px solid #1864ab; */
+        animation: borderline 1s linear forwards;
+    }
+
+
+    .tabs {
+        overflow: hidden;
+        /*  border: 1px solid #ccc;
+                                                                                    background-color: #f1f1f1;*/
+    }
+
+        /* Style the buttons inside the tab */
+        .tabs button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tabs button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tabs button.active {
+                background-color: #ccc;
+            }
+
+    hr {
+        border: none;
+        border-top: 1px dotted black;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+        width: 100%;
+    }
+
+    .close_cross {
+        float: right;
+        font-size: 41px;
+        font-weight: 700;
+        line-height: 1;
+        text-shadow: 0 1px 0 #fff;
+        filter: alpha(opacity=20);
+        opacity: .2;
+        color: white solid imp;
+        color: lightyellow;
+    }
+
+</style>
+@*<br />
+<br />
+<br />
+<br />
+<br />
+<br />*@
+<br />
+<br />
+<br />
+<div class="container-fluid" style="background:#ebebeb">
+    <div class="first-header">
+        <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="call-to-action">
+                            <div class="row">
+                                <div class="col-sm-7 col-xs-12 dmt">
+                                    <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:300px;text-align:center; font-weight: 700; cursor: pointer;"><u>AADHAAR  ATM</u></h3>
+                                </div>
+                                <div class="col-sm-5 col-xs-12 text-right">
+                                    <div class="read-more padding-top-bottom-40">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container" style="background-color:white;">
+        <div class="row formedia">
+            <div class="col-md-3 col-lg-3 col-sm-3">
+                <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" style="height:100px;width:120px;">
+            </div>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px; margin-top:28px;"><b>Cash Wallet</b></p>
+            </div>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance: <label id="lblBalance">₹ @ViewBag.Balance</label></b></p>
+            </div>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="passbooktabs">
+            <div class="col-md-4">
+                <button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>
+            </div>
+            <div class="col-md-4">
+                <button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'Commission')">COMMISSION</button>
+            </div>
+            <div class="col-md-4">
+                <button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Heading-->
+@*<div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="call-to-action">
+                    <div class="row">
+                        <div class="col-sm-7 col-xs-12">
+                            <h3 class="padding-left-right-50" style="margin-top: 20px; margin-left: -250px; font-weight: 700; cursor: pointer;"><u>HOW TO WORK</u></h3>
+                        </div>
+                        <div class="col-sm-5 col-xs-12 text-right">
+                            <div class="read-more padding-top-bottom-40">
+                                <a href="#" target="_blank" class="button-23" style="cursor: auto; text-decoration: unset;">₹ 54321.00 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="section single-services-area">
+        <div class="row" style="margin-right: 0;">
+            <div class="col col-md-12 col-sm-12 col-lg-12">
+                <img src="/img/img_devices/harbhajan-Banner.png" style="width:100%;height:400px" alt="Norway" />
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<!--Heading New-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center padding-bottom-30">
+            <div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);  max-width: 20%;">
+                <h1 style="padding: 10px; font-weight: 800; color: #2d385e;"><span>AEPS</span></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+<!--Choose Transaction Type Popup-->
+
+<div class="section services-area padding-top-bottom-60">
+    <div class="container">
+        <h1 class="transaction center" style="font-weight: 800; color: #2d385e; text-align: center; margin-bottom: 50px;">Choose Transaction</h1>
+        <div class="row" id="aepsChooseTrasaction" style="margin-left:96px">
+
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
+                <div class="wallet-box bg-wt-round radio1" type="radio" id="cashWithdrawal" style="border: 5px solid #2d385e;">
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="/img/img_devices/CASH.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                        </div>
+                        <input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b><!--0 For True and 1 for False-->
+                        @*<p class="text-center"><b>₹ 45922.178</b></p>*@
+                        @* <input type="radio" class="radio1" asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;">Cash Withdrawal</b>*@
+                        @*<input asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b>*@
+                        @*<input type="button" id="btntesttst" onclick="CaptureFinger(60, 10)" value="Button Test" />*@
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
+                <div class="wallet-box bg-wt-round " style="border: 5px solid #2d385e;">
+
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="/img/img_devices/BALANCE.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                        </div>
+                        <input type="radio" class="radio1" name="test" id="rdbbalanceEnquiry" value="Balance Enquiry"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Balance Enquiry</b><!--0 For True and 1 for False-->
+                        @*<p class="text-center"><b>₹ 3486.67</b></p>*@
+                        @*<input class="radio1" asp-for="Balance Enquiry" value="Balance Enquiry" type="radio" id="balanceEnquiry" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Balance Enquiry</b>*@
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6 radio1" type="radio" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="radio1" type="radio" id="balanceEnquiry">
+                        <div class="inner">
+                            <div class="advantage-images">
+                                <img src="/img/img_devices/MINI-STATEMENT.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                            </div>
+                            @*<p class="text-center"><b>₹ 1467.122</b></p>*@
+                            <input type="radio" class="radio1" name="test" id="rdbminiStatement" value="Mini Statement"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Mini Statement</b><!--0 For True and 1 for False-->
+                            @*<input class="radio1" type="radio" id="miniStatement" asp-for="Mini Statement" value="Mini Statement" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Mini Statement</b>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="text-align:center;">
+
+                <h3><span id="walletMode" class="text-danger font-weight-bold"></span></h3>
+            </div>
+        </div>
+        <button class="button-21 text-center" id="btnTransaction" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>
+        @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>VerifyFaceBiometricModal*@
+
+    </div>
+</div>
+
+<!--Choose Bank Popup-->
+@*--------------------------------------------------------- Choose Bank modal pop-up -------------------------------------------------------------------*@
+
+<input type="button" id="btnChooseBankModal" data-target="#chooseBankModal" data-toggle="modal" style="display:none;" />
+<div class="modal fade" id="chooseBankModal" role="dialog" style="margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2d385e;">
+                <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                <h4 class="modal-title" style="font-weight: 900; text-align: center;">Choose Bank</h4>
+
+            </div>
+            <div class="modal-body">
+                <p style="font-weight: 900; text-align: center; color:#2d385e;">CHOOSE BANK</p>
+                <hr />
+                <div class="chooseBank">
+                    <div class="selectBank" style="border-radius: 1px">
+                        @*@Model.FirstOrDefault().BankLogo*@ @*@Model.FirstOrDefault().BankName*@
+                        <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                            <img src="https://api.redmilbusinessmall.com/Docs/yesbank_aeps.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                            @*<img src="@Model.FirstOrDefault().BankLogo1" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);"/>*@
+                            <label class="ybl" id="lblybl" style="font-size: 20px; font-weight: 800; color: #2d385e; cursor: pointer;"> </label>
+                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;"></b>
+                        </div>
+                        <div class="col-md-5" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 21px;">
+                            <img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                            <label class="ppb" id="lblppb" style="font-size: 20px; font-weight: 800; cursor: pointer; color: #2d385e;">  </label>
+                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbPAYTMBank" value="Paytm" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;"></b>
+                        </div>
+                        <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px;">
+                            <img src="https://api.redmilbusinessmall.com/OPImg/IciciNew.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                            <label class="icici" id="lblicici" style="font-size: 20px; font-weight: 800; cursor: pointer; color: #2d385e;"> </label>
+                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbICICIBank" value="ICICI" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;"></b>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <h3><span id="errbank" class="text-danger font-weight-bold"></span></h3>
+                    </div>
+                </div>
+                <div class="col col-md-12 col-sm-12 col-lg-12">
+                    <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
+                        <div class="div-recharge-opimage">
+                            <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
+                            <hr />
+                            <div class="row" style="text-align:center;">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                                    <img src="~/img/img_devices/Aeps.png" alt="Aeps" class="img-width img-operator-logo">
+                                    <div class="overlay"> <a href="#" target="_blank" class="icon" title="Aeps"></a></div>
+                                    <div class="leadership_name">
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="button-21 pull-center" id="btnbankModal" onclick="chooseBank()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>
+                @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
+                @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
+            </div>
+            <div class="modal-footer">
+                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">
+                    Close
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Choose Device Model Popup-->
+@*-------------------------------------------------------- Choose Device modal pop-up ------------------------------------------------------------------*@
+
+<input type="button" id="btndeviceModal" data-target="#deviceModal" data-toggle="modal" style="display:none" />
+<div class="modal fade" id="deviceModal" role="dialog" style="margin-top: 100px;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2d385e;">
+                <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                <h4 class="modal-title" style="font-weight: 900; text-align: center;">SELECT DEVICE</h4>
+                <div class="col-sm-5 col-xs-12 pull-right">
+                    <div class="read-more padding-top-bottom-40">
+                        <h3 style="color: #fff; display: inline-flex;">Cash Wallet -- </h3>
+                        <a href="#" target="_blank" class="button-23" style="cursor: auto; text-decoration: unset;">₹ @ViewBag.Balance </a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" id="1selectDevice">
+                <p style="font-weight: 900; text-align: center; color:#2d385e;">How to Work</p>
+                <hr />
+                <div class="col-md-12">
+                    <div class="section single-services-area">
+                        <div class="row" style="margin-right: 0;">
+                            <div class="col col-md-12 col-sm-12 col-lg-12">
+                                <img src="~/img/img_devices/How-to-Work.png" style="width:100%;height:400px" alt="Norway" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-weight: 900; text-align: center; color:#2d385e;">CHOOSE DEVICE</p>
+                <hr />
+                <div class="col-md-12">
+                    <div class="col-md-3 morpho radio2" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" asp-for="Morpho" value="MORPHO">
+                        <img src="~/img/img_devices/Morpho.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <label style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> MORPHO </label>
+                    </div>
+                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" value="STARTEK">
+                        <img src="~/img/img_devices/Startek.png" style="border: 1px solid #ddd; border-radius: 49px; width: 21px; background: linear-gradient(#f69d3c, #3f87a6);" />
+
+                        <label class="ybl" id="startek" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> STARTEK </label>
+                    </div>
+                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" value="MANTRA">
+                        <img src="~/img/img_devices/Mantra.png" style="border: 1px solid #ddd; border-radius: 49px; width: 42px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <label class="ybl" id="mantra" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> MANTRA </label>
+                    </div>
+                </div>
+                <div class="col-md-12" style="display: block; margin-top: 20px;">
+                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" value="NEXT">
+                        <img src="~/img/img_devices/Next.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <label class="ybl" id="nextNb" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> NEXT NB-3023 </label>
+                    </div>
+                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" value="SECUGEN">
+                        <img src="~/img/img_devices/Secugen.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <label class="ybl" id="secugen" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> SECUGEN PRO 20 </label>
+                    </div>
+                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" value="TATVIK">
+                        <img src="~/img/img_devices/Tatvik-TMF20.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <label class="ybl" id="tatvik" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> TATVIK TMF20 </label>
+                    </div>
+                </div>
+                <div class="col-md-12" style="display: block; margin-top: 20px;">
+                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                        <input type="radio" class="morpho" name="radioDevice" value="PRECISION">
+                        <img src="~/img/img_devices/Precision.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <label class="ybl" id="precision" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> PRECISION PB510 </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <h3><span id="errDevice" class="text-danger font-weight-bold"></span></h3>
+                    </div>
+                </div>
+                @*<button class="button-21 pull-center" id="selectDeviceProceed" onclick="faceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
+                <button class="button-21 pull-center" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: -5px;">Proceed</button>
+            </div>
+            <div class="modal-footer">
+                <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
+                    Close
+                </a>
+                <div class="col col-md-12 col-sm-12 col-lg-12">
+                    <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
+                        <div class="div-recharge-opimage">
+                            <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
+                            <hr />
+                            <div class="row" style="text-align:center;">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                                    <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width img-operator-logo">
+                                    <div class="overlay"> <a href="#" target="_blank" class="icon" title="NPCI"></a></div>
+                                    <div class="leadership_name">
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Choose Verify Face Or Biometric Popup-->
+@*----------------------------------------------- Choose Verify Face or Biometric modal pop-up ---------------------------------------------------------*@
+
+<input type="button" id="btnVerifyPopup" data-target="#VerifyFaceBiometricModal" data-toggle="modal" style="display:none" />
+<div class="modal fade" id="VerifyFaceBiometricModal" role="dialog" style="margin-top: 100px;">
+    @*chooseToVerifyFaceBiometric*@
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2d385e;">
+                <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+            </div>
+            <div class="modal-body">
+                <p style="font-weight: 900; text-align: center; color:#2d385e;">Verify your face OR fingerprint biometric</p>
+                <hr />
+                <div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<div class="col-md-6">*@
+                                <img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />
+                                @*</div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Your Security matters the most to us!</p>
+                    <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>
+                    <input type="hidden" name="long" id="hdnLong" />
+                    <input type="hidden" name="lat" id="hdnLat" />
+                    <div class="col-md-12">
+
+                        <div class="col-md-4" style="margin-top: 60px;">
+                            <button class="button-21" id="deviceModal" data-toggle="modal" data-target="#deviceModal" style="margin-left:100px; font-weight: 900; margin-top: 50px;">
+                                Verify Face
+                            </button>
+                        </div>
+
+                        <div class="col-sm-2 vl" style="border-left: 6px solid #2d385e; height: 150px; margin-top: 50px; margin-left: 140px;"></div>
+
+                        <div class="col-md-4" style="margin-top: 60px;">
+                            @*<button class="button-21" id="deviceModal" onclick="CaptureFinger(65, 10)" style="font-weight: 900; margin-top: 50px;">*@
+                            <button class="button-21" id="deviceModal" onclick="getLocation()" style="font-weight: 900; margin-top: 50px;">
+                                Verify Using Biometric
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-top: 50px;">Later</button>*@
+                <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
+                    Later
+                </a>
+
+                @*<button class="button-21 pull-center" id="deviceModal" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
+                @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
+                @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*-------------------------------------------- Customer Pop Up----------------------------------------*@
+
+<input type="button" id="btnCustomerDetails" data-target="#customerDetailsPopUp" data-toggle="modal" style="display:none" />
+
+@*<div class="col-sm-4 final-pay-button button_addbeneficiary" style="margin-left:630px;">
+    <button type="button" id="btnAddBeneficiary" data-target="#modalAddBeneficiary" data-toggle="modal" style="background-color: var(--button_bg_color);background-image: var(--bg-image);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Add Beneficiary</button>
+    </div>*@
+<!-- Modal for add beneficery-->
+<div class="modal fade" id="customerDetailsPopUp" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-recharge">
+                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close close_cross">&times;</a>
+                <h4 class="modal-title" style="text-align:center;"><b>Beneficiery Details</b></h4>
+            </div>
+            <div class="modal-body" style="background-color:white;">
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center">
+                        <div class="form-group-recharge" style="margin-left: -65px">
+                            <input id="txtAccountHoldName" autocomplete="off" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Holder Name" />
+                            <br />
+                            <h5><span id="errtxtAccountHoldName" style="color:red" class="errorMsg"></span></h5>
+                        </div>
+                        <div class="form-group-recharge" style="margin-left: -65px">
+                            <input id="txtAccountNum" autocomplete="off" maxlength="20" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
+                            <br />
+                            <h5><span id="errtxtAccountNum" style="color:red" class="errorMsg"></span></h5>
+                        </div>
+                        <div class="form-group-recharge" style="margin-left: -65px">
+                            <select id="ddlBank"><option value="0">--Select Bank--</option></select>
+                            <br />
+                            <h5><span id="errBankName" style="color:red" class="errorMsg"></span></h5>
+                        </div>
+                        <div class="form-group-recharge" style="margin-left: -65px">
+                            <input id="txtIFSCCode" autocomplete="off" maxlength="15" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter IFSC Code" />
+                            <br />
+                            <h5><span id="errtxtIFSCCode" style="color:red" class="errorMsg"></span></h5>
+
+                        </div>
+                        <div class="form-group-recharge" style="margin-left: -65px">
+                            <input id="txtBankName" autocomplete="off" maxlength="20" type="text" required="required" class="txt-input txt-input-text" placeholder="Enter Bank Name" />
+                            <br />
+                            <h5><span id="errtxtBankName" style="color:red" class="errorMsg"></span></h5>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                    <div class="col-sm-4 final-pay-button">
+                        <button type="button" id="btnAddBeneficiery" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Add Beneficiery</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*----------------------------acco2-----------------------*@
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+            <h1 class="text-center" style="font-weight: 900; color: #2d385e;">Self Help</h1>
+            @*<p>In this example we have added a "plus" sign to each button. When the user clicks on the button, the "plus" sign is replaced with a "minus" sign.</p>
+            <button class="accordion">@Model.FirstOrDefault().selfHelpResponseModel.FirstOrDefault().Question</button>
+            <div class="panel">
+                <p>@Model.FirstOrDefault().selfHelpResponseModel.FirstOrDefault().Answer</p>
+            </div>
+
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+            <button class="accordion">Section 3</button>
+            <div class="panel">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+    </div>
+</div>
+*@
+@*----------------------------acco2-----------------------*@
+
+
+
+<!--Device not connected error Modal Popup-->
+@*-----------------------------------------------Device not connected error Modal Popup---------------------------------------------------------*@
+
+<input type="button" id="btndeviceNotConnected" data-target="#deviceNotConnected" data-toggle="modal" style="display:none" />
+<div class="modal fade" id="deviceNotConnected" role="dialog" style="margin-top: 100px;">
+    @*chooseToVerifyFaceBiometric*@
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #2d385e;">
+                <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+            </div>
+            <div class="modal-body">
+                <p style="font-weight: 900; text-align: center; color:#2d385e;">Device not connected</p>
+                <hr />
+                <div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<div class="col-md-6">*@
+                                <img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />
+                                @*</div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Device not connected!</p>
+                    <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Pls connect your Mantra</p>
+                    <div class="col-md-12">
+
+                        <div class="col-md-4" style="margin-top: 60px;">
+                            <button class="button-21" id="btn" data-toggle="modal" data-dismiss="modal" style="margin-left:100px; font-weight: 900; margin-top: 50px;">
+                                Done
+                            </button>
+                        </div>
+                        <div class="col-md-4" style="margin-top: 60px;">
+                            @*<button class="button-21" id="deviceModal" onclick="CaptureFinger(65, 10)" style="font-weight: 900; margin-top: 50px;">*@
+                            <button class="button-21" id="deviceModal" onclick="fingurprintBiometric()" style="font-weight: 900; margin-top: 50px;">
+                                SKIP
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-top: 50px;">Later</button>*@
+                <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
+                    Later
+                </a>
+
+                @*<button class="button-21 pull-center" id="deviceModal" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
+                @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
+                @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*--------------------------------------------Powered By--------------------------------------------------*@
+<div class="container-fluid">
+    <div class="last-second-heading">
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <div class="div-main-oplist">
+                <div class="div-recharge-opimage">
+                    <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
+                    <hr />
+                    <div class="row" style="text-align:center;">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="NPCI"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="last-heading">
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <div class="div-main-oplist">
+                <div class="div-recharge-opimage">
+                    <div class="div-oprator-heading" style="text-align:center;"><h2><b>Accepted Devices</b></h2></div>
+                    <hr />
+                    <div class="row" style="text-align:center;">
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Morpho.png" alt="Morpho" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Morpho"></a></div>
+                            <div class="leade rship_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Startek.png" alt="Startek" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Startek"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Mantra.png" alt="Mantra" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Mantra"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Precision.png" alt="Precision" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Precision"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Secugen.png" alt="Secugen" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Secugen"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Tatvik-TMF20.png" alt="Tatvik" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Tatvik"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/img/img_devices/Next.png" alt="Next" class="img-width img-operator-logo">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="Next"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*@section Script{
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    }*@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+@*<script type="text/javascript">
+    function geolocate() {
+    debugger;
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+    var geolocation = new google.maps.LatLng(
+    position.coords.latitude, position.coords.longitude);
+    var location = "<b>Latitude</b>: " + position.coords.latitude + "<br/>";
+    location += "<b>Longitude</b>: " + position.coords.longitude;
+    document.getElementById('lblResult').innerHTML = location
+    });
+    }
+    }
+    </script>*@
+
+<!--Longitiude and Latitude in JS-->
+<script type="text/javascript">
+    function geolocate() {
+        debugger;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var geolocation = new google.maps.LatLng(
+                    position.coords.latitude, position.coords.longitude);
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                $.ajax({
+                    type: "POST",
+                    url: "/Aeps/fingurprintBiometric",
+                    data: { 'latitude': latitude, 'longitude': longitude },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        }
+    }
+</script>
+
+
+
+
+<script>
+    var select = document.getElementById('aepsChooseTrasaction');
+
+    document.getElementById("btnTransaction").onclick = function () {
+        debugger;
+        var value = select.id
+        var radioVal = $('.radio1:checked').val();
+        if (radioVal == undefined || radioVal == '' || radioVal == null) {
+            document.getElementById('walletMode').innerHTML = "Please Select Atleast One Transaction Mode";
+            return false;
+        }
+        //if (typeof $(".radio1:checked").val() === "undefined") {
+        //    alert(' Please Select Transaction Type!!');
+        //    break;
+        //}
+
+        //var e = $('.radio:notChecked').val();
+        //var err = $('#slectDeviceError').val();
+        else {
+            document.getElementById('walletMode').innerHTML = "";
+            $.ajax({
+                url: "/Aeps/GetAepsKycDetailsNew",
+                data: { 'radioVal': radioVal, 'value': value },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    //for (Data1.result == 'Redirect') {
+                    //let output = response.map(i => "<div id='choosBank'>" + i.choosBank + "</div>");
+
+                    document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
+                    document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
+                    document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
+                    $("#btnChooseBankModal").trigger("click");
+                    //$("#deviceModal").hide();
+                    //window.location = response.url;
+                    // }
+                    //else if(response == data1[i]){
+                    //    let output = response.map(i => "<div id='choosBank'>" + i.choosBank + "</div>");
+                    //}
+                    //alert(response);
+                }
+            });
+
+            //if (value == "cashWithdrawal") {
+            //    //window.location.href = "https://www.google.com/";
+
+            //    $.ajax({
+            //        type: "Post",
+            //        url: "/AepsController/GetAepsKycDetailsNew?proBtn=" + value,
+            //        contentType: "html",
+            //        success: function(aepsResponses) {
+
+            //        }
+            //    });
+            //}
+            //else if (value == "balanceEnquiry") {
+            //    window.location.href = "https://www.yahoo.com/";
+            //}
+            //else if (value == "minStatement") {
+            //    window.location.href = "https://www.msn.com/"; selectDevice
+            //}
+        }
+
+    };
+
+    //var select = document.getElementById('aepsChooseTrasaction');
+    function VerifyFaceBiometricModal() {
+        var radioValDevice = $('.morpho:checked').val();
+        if (radioValDevice == undefined || radioValDevice == '' || radioValDevice == null) {
+            document.getElementById("errDevice").innerHTML = "Please Select Atleast One Device to Proceed";
+            return false;
+        }
+        else {
+            document.getElementById("errDevice").innerHTML = "";
+            $.ajax({
+                url: "/Aeps/AaadharPicVerification",
+                data: { 'radioValDevice': radioValDevice },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == 'Connected') {
+                        $.ajax({
+                            url: "/Aeps/GetBankList",
+                            data: {},
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function (response) {
+                                debugger;
+                                if (response) {
+                                    $("#ddlBank").append($("<option></option>").val(response.CountryId).html(response.CountryName));
+                                    $("#btnVerifyPopup").trigger("click");
+                                    //$("#btnCustomerDetails").trigger("click");
+                                    $("#deviceModal").hide();
+                                }
+                            }
+                        });
+                        $("#btnVerifyPopup").trigger("click");
+                        //$("#btnCustomerDetails").trigger("click");
+                        $("#deviceModal").hide();
+                    }
+
+                    //document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
+                    //document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
+                    //document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
+
+
+                }
+            });
+        }
+
+    };
+
+
+    function chooseBank() {
+        debugger;
+        var data;
+        var value = document.getElementById("lblybl").innerHTML;
+        var value1 = document.getElementById("lblppb").innerHTML;
+        var value2 = document.getElementById("lblicici").innerHTML;
+        var ele = document.getElementsByClassName("rdbBank");
+
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+
+                data = ele[i].value;
+        }
+        if (data == undefined || data == '' || data == null) {
+            document.getElementById("errbank").innerHTML = "Please Select At Least One Bank";
+            return false;
+        }
+        else {
+            document.getElementById("errbank").innerHTML = "";
+            if (data == 'YES') {
+                data = value;
+            }
+            else if (data == 'Paytm') {
+                data = value1;
+            }
+            else if (data == 'ICICI') {
+                data = value2;
+            }
+            var radioVal = $('.radio1:checked').val();
+            $.ajax({
+                url: "/Aeps/GetAepsKycDetailsNew",
+                data: { 'radioVal': radioVal, 'bankName': data },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    $("#chooseBankModal").hide();
+                    $("#btndeviceModal").trigger("click");
+
+
+                }
+            });
+        }
+
+    };
+
+</script>
+
+@*<script>
+    //var radioValDevice = $('.morpho:checked').val();
+    //GetMFS100Info
+
+    var res = GetMFS100Info();
+    if (res.httpStaus) {
+        document.getElementById('txtStatus').value = "ErrorCode: " + res.data.ErrorCode + "
+        ErrorDescription: " + res.data.ErrorDescription;
+        if (res.data.ErrorCode == "0") {
+            document.getElementById('tdSerial').innerHTML = res.data.DeviceInfo.SerialNo;
+            document.getElementById('tdCertification').innerHTML = res.data.DeviceInfo.Certificate;
+            document.getElementById('tdMake').innerHTML = res.data.DeviceInfo.Make;
+            document.getElementById('tdModel').innerHTML = res.data.DeviceInfo.Model;
+            document.getElementById('tdWidth').innerHTML = res.data.DeviceInfo.Width;
+            document.getElementById('tdHeight').innerHTML = res.data.DeviceInfo.Height;
+            document.getElementById('tdLocalMac').innerHTML = res.data.DeviceInfo.LocalMac;
+            document.getElementById('tdLocalIP').innerHTML = res.data.DeviceInfo.LocalIP;
+            document.getElementById('tdSystemID').innerHTML = res.data.DeviceInfo.SystemID;
+            document.getElementById('tdPublicIP').innerHTML = res.data.DeviceInfo.PublicIP;
+        }
+    }
+    else {
+        alert(res.err);
+    }
+
+    // GetMFS100KeyInfo
+
+    var res = GetMFS100Info(String Key); // Base64Encoded Key is for locked sensor
+    if (res.httpStaus) {
+        document.getElementById('txtStatus').value = "ErrorCode: " + res.data.ErrorCode + "
+        ErrorDescription: " + res.data.ErrorDescription;
+        if (res.data.ErrorCode == "0") {
+            document.getElementById('tdSerial').innerHTML = res.data.DeviceInfo.SerialNo;
+            document.getElementById('tdCertification').innerHTML = res.data.DeviceInfo.Certificate;
+            document.getElementById('tdMake').innerHTML = res.data.DeviceInfo.Make;
+            document.getElementById('tdModel').innerHTML = res.data.DeviceInfo.Model;
+            document.getElementById('tdWidth').innerHTML = res.data.DeviceInfo.Width;
+            document.getElementById('tdHeight').innerHTML = res.data.DeviceInfo.Height;
+            document.getElementById('tdLocalMac').innerHTML = res.data.DeviceInfo.LocalMac;
+            document.getElementById('tdLocalIP').innerHTML = res.data.DeviceInfo.LocalIP;
+            document.getElementById('tdSystemID').innerHTML = res.data.DeviceInfo.SystemID;
+            document.getElementById('tdPublicIP').innerHTML = res.data.DeviceInfo.PublicIP;
+        }
+    }
+    else {
+        alert(res.err);
+    }
+
+    // CaptureFinger(int quality, int timeout)
+
+    var quality = 60; //(1 to 100) (recommended minimum 55)
+    var timeout = 10; // seconds (minimum=10(recommended), maximum=60, unlimited=0)
+    var res = CaptureFinger(quality, timeout);
+    if (res.httpStaus) {
+        document.getElementById('txtStatus').value = "ErrorCode: " + res.data.ErrorCode + "
+        ErrorDescription: " + res.data.ErrorDescription;
+        if (res.data.ErrorCode == "0") {
+            document.getElementById('imgFinger').src = "data:image/bmp;base64," + res.data.BitmapData;
+            var imageinfo = "Quality: " + res.data.Quality + " Nfiq: " + res.data.Nfiq + " W(in):
+            " + res.data.InWidth + " H(in): " + res.data.InHeight + " area(in): " +
+            res.data.InArea + " Resolution: " + res.data.Resolution + " GrayScale: " + res.data.GrayScale + " Bpp: " + res.data.Bpp + " WSQCompressRatio: " + res.data.WSQCompressRatio;
+            document.getElementById('txtImageInfo').value = imageinfo;
+            document.getElementById('txtIsoTemplate').value = res.data.IsoTemplate;
+            document.getElementById('txtAnsiTemplate').value = res.data.AnsiTemplate;
+            document.getElementById('txtIsoImage').value = res.data.IsoImage;
+            document.getElementById('txtRawData').value = res.data.RawData;
+            document.getElementById('txtWsqData').value = res.data.WsqImage;
+        }
+    }
+    else {
+        alert(res.err);
+    }
+
+    // CaptureMultiFinger(int quality, int timeout, int nooffinger)
+
+    var quality = 60; //(1 to 100) (recommended minimum 55)
+    var timeout = 10; // seconds (minimum=10(recommended), maximum=60, unlimited=0)
+    var nooffinger = 2; // //(1 to 10) (recommended minimum 2)
+    var res = CaptureMultiFinger(quality, timeout, nooffinger);
+
+    if (res.httpStaus) {
+        document.getElementById('txtStatus').value = "ErrorCode: " +
+            res.data.ErrorCode + " ErrorDescription: " + res.data.ErrorDescription;
+        if (res.data.ErrorCode == "0") {
+
+            document.getElementById('txtIsoTemplate').value =
+                res.data.IsoTemplate;
+
+        }
+    }
+    else {
+        alert(res.err);
+    }
+
+    //  VerifyFinger(string isotemplate1, string isotemplate2)
+
+    varprobTemplate = document.getElementById('txtIsoTemplate1').value;
+    vargalleryTemplate = document.getElementById('txtIsoTemplate2').value;
+    var res = VerifyFinger(probTemplate, galleryTemplate);
+    // you can pass multiple Template upto maximum 10 by comma separated in galleryTemplate parameter
+    if (res.httpStaus) {
+        if (res.data.Status) {
+            alert("Finger matched");
+        }
+        else {
+            if (res.data.ErrorCode != "0") {
+                alert(res.data.ErrorDescription);
+            }
+            else {
+                alert("Finger not matched");
+            }
+        }
+    }
+    else {
+        alert(res.err);
+    }
+
+    // MatchFinger(int quality,int timeout, string isotemplate)
+
+    var quality = 60; //(1 to 100) (recommended minimum 55)
+    var timeout = 10; // seconds (minimum=10(recommended), maximum=60, unlimited=0)
+    var galleryTemplate = document.getElementById('txtIsoTemplate').value;
+    var res = MatchFinger(quality, timeout, galleryTemplate);
+    // you can pass multiple Template upto maximum 10 by comma separated in galleryTemplate parameter
+
+    if (res.httpStaus) {
+        if (res.data.Status) {
+            alert("Finger matched");
+        }
+        else {
+            if (res.data.ErrorCode != "0") {
+                alert(res.data.ErrorDescription);
+            }
+            else {
+                alert("Finger not matched");
+            }
+        }
+    }
+    else {
+        alert(res.err);
+    }
+
+    // Biometric Class
+
+    Biometric(BioType, BiometricData, Pos, Nfiq, Na) {
+        this.BioType = BioType;//Valid values “FMR”, “FIR” and “IIR”
+        this.BiometricData = BiometricData;//Base64Encoded string of biometric data
+        this.Pos = Pos;//Valid values as per UIDAI Specification
+        this.Nfiq = Nfiq; // Valid values as per UIDAI Specification. It must be 1 or 2
+        this.Na = Na; //Valid values as per UIDAI Specification. It must be 1, 2, 3
+    }
+
+</script>*@
+
+<script type="text/javascript">
+    var uri = "https://localhost:8003/mfs100/"; //Secure
+    //var uri = "http://localhost:8004/mfs100/"; //Non-Secure
+
+
+
+    function GetMFS100Info() {
+        debugger;
+        return GetMFS100Client("info");
+    }
+
+    function GetMFS100KeyInfo(key) {
+        debugger;
+        var MFS100Request = {
+            "Key": key,
+        };
+        var jsondata = JSON.stringify(MFS100Request);
+        return PostMFS100Client("keyinfo", jsondata);
+    }
+
+    //Quality between 0 to 100
+    //Timeout between 0 to 60 count in seconds
+
+    function CaptureFinger(quality, timeout) {
+        debugger;
+        var MFS100Request = {
+            "Quality": quality,
+            "TimeOut": timeout
+        };
+        //geolocate();
+        var jsondata = JSON.stringify(MFS100Request);
+        return PostMFS100Client("capture", jsondata);
+    }
+
+    // Devyang Muti Finger Capture
+    function CaptureMultiFinger(quality, timeout, nooffinger) {
+        debugger;
+        var MFS100Request = {
+            "Quality": quality,
+            "TimeOut": timeout,
+            "NoOfFinger": nooffinger
+        };
+        var jsondata = JSON.stringify(MFS100Request);
+        return PostMFS100Client("capturewithdeduplicate", jsondata);
+    }
+    //
+
+    function VerifyFinger(ProbFMR, GalleryFMR) {
+        debugger;
+        var MFS100Request = {
+            "ProbTemplate": ProbFMR,
+            "GalleryTemplate": GalleryFMR,
+            "BioType": "FMR" // you can paas here BioType as "ANSI" if you are using ANSI Template
+        };
+        var jsondata = JSON.stringify(MFS100Request);
+        return PostMFS100Client("verify", jsondata);
+    }
+
+    function MatchFinger(quality, timeout, GalleryFMR) {
+        debugger;
+        var MFS100Request = {
+            "Quality": quality,
+            "TimeOut": timeout,
+            "GalleryTemplate": GalleryFMR,
+            "BioType": "FMR" // you can paas here BioType as "ANSI" if you are using ANSI Template
+        };
+        var jsondata = JSON.stringify(MFS100Request);
+        return PostMFS100Client("match", jsondata);
+    }
+    function GetPidData(BiometricArray) {
+        debugger;
+        var req = new MFS100Request(BiometricArray);
+        var jsondata = JSON.stringify(req);
+        return PostMFS100Client("getpiddata", jsondata);
+    }
+
+    function GetRbdData(BiometricArray) {
+        debugger;
+        var req = new MFS100Request(BiometricArray);
+        var jsondata = JSON.stringify(req);
+        return PostMFS100Client("getrbddata", jsondata);
+    }
+
+    function PostMFS100Client(method, jsonData) {
+        debugger;
+        var res;
+        $.support.cors = true;
+        var httpStaus = false;
+
+        $.ajax({
+            type: "POST",
+            async: false,
+            crossDomain: true,
+            url: uri + method,
+            contentType: "application/json; charset=utf-8",
+            data: jsonData,
+            dataType: "json",
+            processData: false,
+            success: function (data) {
+                debugger;
+                httpStaus = true;
+                res = { 'httpStaus': httpStaus, 'data': data };
+                var Result = {
+                    AnsiTemplate: data.AnsiTemplate,
+                    BitmapData: data.BitmapData,
+                    Bpp: data.Bpp,
+                    ErrorCode: data.ErrorCode,
+                    ErrorDescription: data.ErrorCode,
+                    GrayScale: data.GrayScale,
+                    InArea: data.InArea,
+                    InHeight: data.InHeight,
+                    InWidth: data.InWidth,
+                    IsoImage: data.IsoImage,
+                    IsoTemplate: data.IsoTemplate,
+                    Nfiq: data.Nfiq,
+                    Quality: data.Quality,
+                    RawData: data.RawData,
+                    Resolution: data.Resolution,
+                    WSQCompressRatio: data.WSQCompressRatio,
+                    WSQInfo: data.WSQInfo,
+                    WsqImage: data.WsqImage
+                }
+
+                //GetPidData("MjAyMi0xMi0yM1QxMjoyMjo0NgqSnaKWAqMT/zZX4z5IyXpROmX20TXfEteXppabb0PipOZabnhSet6AWQlvT58x3uD1sqtjQXV1CNJPKSWuizEml/UT2i9NwLxOFX0fwbEYWCER+IKhcUYPD0wFVV9OcSj6l/R1jE9lc5A2s2OBkwLnZ9ZQrw2E8YM5bO3+La9kGUzKjtwasjK3Y9r8lTcy8oV5i2siZpObXIBGOrRDbOIyYk1VXAzBkJlU36CTX0wfEWfm5oToaKgYKS00KMFDQnpmCJ5lL+25v/Q88kL/0UqGPdRHnjwFwSwzCnfP0YhSfFU1SEkQQIvlZFcJ5EDjJ/V+NfJhS9IjvhshRU4Mt9StyiFBiHFgsesdgM4Ps7S2S3yW67F2Z0Yf8z6XtdPfhGcw/8HZjyoRyLj1MU6E5RFjTYt0ItHj1eT3ISQm4A7uU8w9IGlYdfgDWdnGdoKITGiMNBTbphfOu/nKpGCc7bn+l7aWVxxF7oEQo/HLqA20QljKzRkr8bZZuCI5CBBn3L277+kjASk9IXB3Kfs06zze+WGgkS46AyqlU8/FsN8iO991E2QVv0Ep0se2CqjhxBjQTYfIvDnS6V154zOL3hSlHUsv2Y14rbCv3Oiow5fhlSKsIsMgN/DwT/I6AIP3QtyzsCXZP0yHuVMpgJHrVuGf7rDWzCHup3Upmgo65wV7KLd5wjtv0WrVJ5pgfHBlQM1M6q/hZ+ZYoTQOWxELaCnKc3fiX5kaXXSX6exmLvqo8mMuvlV6bqn6mCem18xZ9FB6xcE9mrWQo42vfQqBy5cOTTfrYuFtriFHKmcgn+jYKKJDQL4WunLZXHBD3bwE/i8QWN/Rl+P6AJt+hk/A6mlHwzIsaODy+/Ezo5zGSxoq5jvjAukDacSjoGrNVtU+pB/yfAnpZkCG0Tk6bY1pd3joZfeZAc42ciN3jRqMcYWg6vE0kwpHMRURX4qczL9851hWpYSAZxCFDIQY81j+cHbqIeboWEgZ9lW3I3eE1ERtjGCCLHh0pm5cnu8I4TpWp5IglcocLMYmEFFk3ZZ65siAeZ0/YsRhokwHnsSSYyrXexevF2RjPi13c348CtM4PszlxbxjWBDWA/ZN4NDt72OMkqpxfY4jO2ygVFDh7SPCPdhRK1/GUILUqo9GVAtupIaVwiGBdQqSvSw14DWF1ww+ewLsRw2bURqYXU6mMq7McRVezF5R09xz4MQxovut/VuADfJFSc7lEHR3oQ==");                //GetPidData("MjAyMi0xMi0yM1QxMjoyMjo0NgqSnaKWAqMT/zZX4z5IyXpROmX20TXfEteXppabb0PipOZabnhSet6AWQlvT58x3uD1sqtjQXV1CNJPKSWuizEml/UT2i9NwLxOFX0fwbEYWCER+IKhcUYPD0wFVV9OcSj6l/R1jE9lc5A2s2OBkwLnZ9ZQrw2E8YM5bO3+La9kGUzKjtwasjK3Y9r8lTcy8oV5i2siZpObXIBGOrRDbOIyYk1VXAzBkJlU36CTX0wfEWfm5oToaKgYKS00KMFDQnpmCJ5lL+25v/Q88kL/0UqGPdRHnjwFwSwzCnfP0YhSfFU1SEkQQIvlZFcJ5EDjJ/V+NfJhS9IjvhshRU4Mt9StyiFBiHFgsesdgM4Ps7S2S3yW67F2Z0Yf8z6XtdPfhGcw/8HZjyoRyLj1MU6E5RFjTYt0ItHj1eT3ISQm4A7uU8w9IGlYdfgDWdnGdoKITGiMNBTbphfOu/nKpGCc7bn+l7aWVxxF7oEQo/HLqA20QljKzRkr8bZZuCI5CBBn3L277+kjASk9IXB3Kfs06zze+WGgkS46AyqlU8/FsN8iO991E2QVv0Ep0se2CqjhxBjQTYfIvDnS6V154zOL3hSlHUsv2Y14rbCv3Oiow5fhlSKsIsMgN/DwT/I6AIP3QtyzsCXZP0yHuVMpgJHrVuGf7rDWzCHup3Upmgo65wV7KLd5wjtv0WrVJ5pgfHBlQM1M6q/hZ+ZYoTQOWxELaCnKc3fiX5kaXXSX6exmLvqo8mMuvlV6bqn6mCem18xZ9FB6xcE9mrWQo42vfQqBy5cOTTfrYuFtriFHKmcgn+jYKKJDQL4WunLZXHBD3bwE/i8QWN/Rl+P6AJt+hk/A6mlHwzIsaODy+/Ezo5zGSxoq5jvjAukDacSjoGrNVtU+pB/yfAnpZkCG0Tk6bY1pd3joZfeZAc42ciN3jRqMcYWg6vE0kwpHMRURX4qczL9851hWpYSAZxCFDIQY81j+cHbqIeboWEgZ9lW3I3eE1ERtjGCCLHh0pm5cnu8I4TpWp5IglcocLMYmEFFk3ZZ65siAeZ0/YsRhokwHnsSSYyrXexevF2RjPi13c348CtM4PszlxbxjWBDWA/ZN4NDt72OMkqpxfY4jO2ygVFDh7SPCPdhRK1/GUILUqo9GVAtupIaVwiGBdQqSvSw14DWF1ww+ewLsRw2bURqYXU6mMq7McRVezF5R09xz4MQxovut/VuADfJFSc7lEHR3oQ==");
+                GetPidData(Result);
+                var radioValDevice = $('.morpho:checked').val();
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    url: "/Aeps/fingurprintBiometric",
+                    data: { Result, radioValDevice, demo },
+                    dataType: 'json',
+                    success: function (msgdeserialize) {
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+
+
+            },
+            error: function (jqXHR, ajaxOptions, thrownError) {
+                res = { httpStaus: httpStaus, err: getHttpError(jqXHR) };
+            },
+        });
+        //alert(res);
+        return res;
+    }
+    function GetMFS100Client(method) {
+        debugger;
+        var res;
+        $.support.cors = true;
+        var httpStaus = false;
+        $.ajax({
+            type: "GET",
+            async: false,
+            crossDomain: true,
+            url: uri + method,
+            contentType: "application/json; charset=utf-8",
+            processData: false,
+            success: function (data) {
+                httpStaus = true;
+                res = { httpStaus: httpStaus, data: data };
+            },
+            error: function (jqXHR, ajaxOptions, thrownError) {
+                res = { httpStaus: httpStaus, err: getHttpError(jqXHR) };
+            },
+        });
+        return res;
+    }
+    function getHttpError(jqXHR) {
+        debugger;
+        var err = "Unhandled Exception";
+        if (jqXHR.status === 0) {
+            err = 'Service Unavailable';
+        } else if (jqXHR.status == 404) {
+            err = 'Requested page not found';
+        } else if (jqXHR.status == 500) {
+            err = 'Internal Server Error';
+        } else if (thrownError === 'parsererror') {
+            err = 'Requested JSON parse failed';
+        } else if (thrownError === 'timeout') {
+            err = 'Time out error';
+        } else if (thrownError === 'abort') {
+            err = 'Ajax request aborted';
+        } else {
+            err = 'Unhandled Error';
+        }
+        return err;
+    }
+
+
+    /////////// Classes
+
+    function Biometric(BioType, BiometricData, Pos, Nfiq, Na) {
+        debugger;
+        this.BioType = BioType;
+        this.BiometricData = BiometricData;
+        this.Pos = Pos;
+        this.Nfiq = Nfiq;
+        this.Na = Na;
+    }
+
+    function MFS100Request(BiometricArray) {
+        debugger;
+        this.Biometrics = BiometricArray;
+    }
+</script>
+<script>
+    function fingurprintBiometric() {
+        var radioValDevice = $('.morpho:checked').val();
+        var lat = $("#hdnLat").val();
+        var longt = $("#hdnLong").val();
+        debugger;
+        $.ajax({
+            url: "/Aeps/fingurprintBiometric",
+            data: { 'radioValDevice': radioValDevice, 'lat': lat, 'longt': longt },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+            }
+        });
+    }
+    //function getLocation() {
+    //    debugger;
+    //    if (navigator.geolocation) {
+    //        navigator.geolocation.getCurrentPosition(showPosition);
+    //    } else {
+    //        alert("Geolocation is not supported by this browser.");
+    //    }
+    //}
+
+    //function showPosition(position) {
+    //    debugger;
+    //    $("#hdnLat").val(position.coords.latitude);
+    //    $("#hdnLong").val(position.coords.longitude);
+    //}
+</script>
+<script>
+    //var x = document.getElementById("demo");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        //x.innerHTML = "Latitude: " + position.coords.latitude +
+        //    "<br>Longitude: " + position.coords.longitude;
+        $("#hdnLong").val(position.coords.longitude);
+        $("#hdnLat").val(position.coords.latitude);
+        fingurprintBiometric();
+    }
+</script>

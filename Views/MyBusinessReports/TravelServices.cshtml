@@ -1,0 +1,690 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.BusBookingModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Project_Redmil_MVC
+@using Project_Redmil_MVC.Models
+@{
+    ViewData["Title"] = "Travel Services - Online Book Bus Tickets";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/navbarheader.css">
+<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" asp-append-version="true">
+<!-- Include from the CDN -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
+</script>
+
+<style>
+    .dataTables_length {
+        margin-left: 30px;
+    }
+
+    .example_filter {
+        margin-left: 16px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #2d385e;
+        border-radius: 10px solid;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px dotted black;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+        width: 100%;
+    }
+
+    .close_cross {
+        float: right;
+        font-size: 41px;
+        font-weight: 700;
+        line-height: 1;
+        text-shadow: 0 1px 0 #fff;
+        filter: alpha(opacity=20);
+        opacity: .2;
+        color: white solid imp;
+        color: lightyellow;
+    }
+
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<!-- Table for Recepient List-->
+<div class="container-fluid">
+    <h2 style="text-align:center;font-weight:800; text-decoration: underline; margin-bottom: 100px; color: #2d385e;">Travel Booking List</h2>
+    <div class="row">
+        <div class="col-md-4" style="text-align: center;">
+            <label class="dateLbl"><b>From Date:</b></label> &nbsp;&nbsp;
+            <input class="inputDate" type="date" name="" max="" id="fromDate"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br>
+            <h5>
+                <span id="errfromDate" style="color:red" class="errorMsg"></span>
+            </h5>
+        </div>
+        <div class="col-md-4" style="text-align: center;">
+            <label class="dateLbl"><b>To Date:</b></label> &nbsp;&nbsp;
+            <input class="inputDate" type="date" name="" min="" id="toDate"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br>
+            <h5>
+                <span id="errtoDate" style="color:red" class="errorMsg"></span>
+            </h5>
+        </div>
+        <div class="col-md-4" style="text-align: center;">
+            <button type="button" class="buttonDownload" onclick="documentDownload()" id="transactionReportDownload">Download</button>
+        </div>
+    </div>
+    <div style="overflow-x:auto;">
+        <div class="col-md-12">
+            <div style="overflow-x: auto; overflow-y: auto; white-space: nowrap;">
+                <table id="example" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer" style="margin-left:27px !important;">
+                    <thead style="color: #fff; background-color: #2d385e;">
+                        <tr>
+                            <th>Sr No.</th>
+                            <th>Bus Logo</th>
+                            <th>Journey Date</th>
+                            <th>Source/Pickup City</th>
+                            <th>Destination City</th>
+                            <th>Customer Name</th>
+                            <th>Customer Mobile Number</th>
+                            <th>Amount</th>
+                            <th>Commision</th>
+                            <th>Convenience Charges</th>
+                            <th>Status</th>
+                            <th>Booking ID</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int rowNo = 0;
+                        }
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @(rowNo += 1)
+                                    </td>
+                                    <td>
+                                        <img src="~/img/Bus_image.jpg" />
+                                    </td>
+                                    <td>
+                                        <label id="lblName">@item.DateOfJourney</label>
+                                    </td>
+                                    <td style="font-weight:700">
+                                        @item.SourcePickupCity
+                                    </td>
+                                    
+                                    <td>
+                                        <label id="lblName">@item.DestinationCity</label>
+                                    </td>
+                                    <td>
+                                        <label id="lblName">@item.PassengerName</label>
+                                    </td>
+                                    <td>
+                                        @item.PassengerContact
+                                    </td>
+                                    <td style="font-weight:700">
+                                        ₹ @item.FinalAmount
+                                    </td>
+                                    <td>
+                                        ₹ @item.CommissionAmount
+                                    </td>
+                                    <td>
+                                        ₹ @item.ConvenienceFees
+                                    </td>
+                                    <td>
+                                        @item.BookingStatus
+                                    </td>
+                                    <td>
+                                        <input type="hidden" id="hdnBookingID" value="@item.BookingId" />
+                                    </td>
+                                    <td>
+                                        <button type="button" onclick="getBookingDetails('@item.BookingId','BookingDetails')" id="btnBookingDetails" class="btnViewReceipt btn-process-recharge1 btn-process-recharge2" style="background-color:green;color:white;font-weight:700;border-color: aliceblue;padding: 3px 16px;">Booking Details</button>
+                                        <button type="button" onclick="getBookingDetails('@item.BookingId','BoardingDetails')" id="btnBoardingPass" class="btnViewReceipt btn-process-recharge1 btn-process-recharge2" style="background-color: #3EB2FD;background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);color:white;font-weight:700;border-color: aliceblue;padding: 3px 16px;">Boarding Pass</button>
+                                        <button type="button" onclick="getBookingDetails('@item.BookingId','CancelTickets')" id="btnCancelTicket" class="btnViewReceipt btn-process-recharge1 btn-process-recharge2" style="background-color:#d9534f;color:white;font-weight:700;border-color: aliceblue;padding: 3px 16px;">Cancel Tickets</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- Modal For Booking Details-->
+    <div>
+        <input type="button" id="btnmodalforBookingDetails" style="display:none" data-target="#modalforBookingDetails" data-toggle="modal" />
+        <div class="modal fade" id="modalforBookingDetails" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge" style="background:#2d385e">
+                        <a href="/MyBusinessReports/TravelServices" class="close close_cross">&times;</a>
+                        <h4 class="modal-title" style="text-align:center;"><b style="font-size: 30px;">Booking Details</b></h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row">
+                            <div class="col-sm-12" style="background-color: #3EB2FD;background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);color: white;padding-top: 10px;padding-bottom:10px;">
+                                <h3 style="text-align:center;">
+                                    <b>
+                                        <label id="lblHeadingPickup"></label>
+                                        <label id="lblHeadingDestination"></label>
+                                        <label id="lblHeadingStartDate"></label>
+                                        <label id="lblHeadingEndDate"></label>
+                                    </b>
+                                </h3>
+                            </div>
+                            <hr />
+                            <br />
+                            <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                <h4 style="text-align:center"><label id="lblHeadingTravleName"></label></h4>
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <h4><label id="lblPickUpPoint"></label></h4>
+                                <h4><label id="lblDestinationPoint"></label></h4>
+                                <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                    <h4><label id="lblPrimaryHeading">Price</label></h4>
+                                </div>
+                                <h4><label id="lblSeatNo"></label></h4>
+                                <h4><label id="lblBaseFare"></label></h4>
+                                <h4><label id="lblBusOperator"></label></h4>
+                                <h4><label id="lblGST"></label></h4>
+                                <h4><label id="lblConvenienceFee"></label></h4>
+                                <h4><label id="lblTotalPrice"></label></h4>
+                                <hr />
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                    <h4><label id="lblPrimaryHeading">Primary Passenger Details</label></h4>
+                                </div>
+                                <h4><label id="lblPassengerName"></label></h4>
+                                <h4><label id="lblPassengerGender"></label></h4>
+                                <h4><label id="lblPassengerAge"></label></h4>
+                                <h4><label id="lblPassengerMobile"></label></h4>
+                                <h4><label id="lblPassengerEmail"></label></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal For Boarding Pass-->
+    <div>
+        <input type="button" id="btnmodalforBoardingPass" style="display:none" data-target="#modalforBoardingPass" data-toggle="modal" />
+        <div class="modal fade" id="modalforBoardingPass" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge" style="background:#2d385e">
+                        <a href="/MyBusinessReports/TravelServices" class="close close_cross">&times;</a>
+                        <h4 class="modal-title" style="text-align:center;"><b style="font-size: 30px;">Booking Details</b></h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row div-recharge-img">
+                            <div class="col-sm-4 custom_img_size pay-img">
+                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-width" style="height:100px;width:120px;">
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-4 custom_img_size pay-img2">
+                                <img src="~/img/Bus_image.jpg" class="img-width" style="height:100px;width:100px;">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                    <h4 style="text-align: center;">
+                                        <label id="lblBoardingHeading">Boarding Pass</label>
+                                    </h4>
+                                </div>
+                            </div>
+                            <br />
+                            <hr />
+                            <div class="col-sm-12" style="text-align:center">
+                                <h3><label id="lblTravelAgenecy"></label></h3>
+                                <label id="lblHeadingPickup1"></label><br />
+                                <label id="lblHeadingDestination1"></label><br />
+                                <label id="lblHeadingStartDate11"></label><br />
+                                <label id="lblHeadingEndDate11"></label><br />
+                                <h4><label id="lblSeatNo11"></label></h4>
+
+                                <hr />
+                                <label id="lblHeadingPickup11"></label><br />
+                                <label id="lblHeadingDestination11"></label><br />
+                                <label id="lblOperatorContactNumber"></label><br />
+                                <hr />
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                    <h4><label id="lblPrimaryHeading">Passenger Details</label></h4>
+                                </div>
+                                <h4><label id="lblPassengerName1"></label></h4>
+                                <h4><label id="lblPassengerGender1"></label></h4>
+                                <h4><label id="lblPassengerAge1"></label></h4>
+                                <h4><label id="lblPassengerMobile1"></label></h4>
+                                <h4><label id="lblPassengerSeatNumber"></label></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer div-pay-row">
+                        <div class="row div-pay-row">
+                            <div class="col-sm-4 final-pay-button">
+                                <button type="button" onclick="takeshot()" id="btnShareWithCustomer" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Share With Customer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="output"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal For Cancel Tickets-->
+    <div>
+        <input type="button" id="btnmodalforCancelTickets" style="display:none" data-target="#modalforCancelTickets" data-toggle="modal" />
+        <div class="modal fade" id="modalforCancelTickets" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge" style="background:#2d385e">
+                        <a href="/MyBusinessReports/TravelServices" class="close close_cross">&times;</a>
+                        <h4 class="modal-title" style="text-align:center;"><b style="font-size:30px;">Cancel Tickets</b></h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row">
+                            <label style="display:none" id="lblTin"></label><br />
+                            <label style="display:none" id="lblSeat"></label><br />
+                            @*<div class="col-sm-12">
+                            <div style="background-color: #3EB2FD;background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);color: white;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;">
+                            <h4 style="text-align: center;">
+                            <label id="lblBoardingHeading">Boarding Pass</label>
+                            </h4>
+                            </div>
+                            <hr />
+                            </div>*@
+                            <div class="col-sm-12" style="text-align:center">
+                                <img src="~/img/Bus_image.jpg" style="height: 100px;width: 200px;" /><br />
+                                <b>
+                                    <label id="lblHeadingPickupCancel"></label>
+                                </b><br />
+                                <b>
+                                    <label id="lblHeadingDestinationCancel"></label><br />
+                                </b>
+                                <label id="lblHeadingStartDateCancel"></label><br />
+                                <b><label id="lblHeadingTravelAgaencyCancel"></label></b><br />
+                                <hr />
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                    <h4><label id="lblPrimaryHeading">Cancellation Policy</label></h4>
+                                </div>
+                                <br />
+                                <label>*No Cacellation Policy</label>
+                                <hr />
+                            </div>
+
+                            <div class="col-sm-12" style="text-align:center">
+                                <h4><label>* Tickets can not be cancelled after scheduled bus departure time from the first boarding point.</label></h4>
+                                <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                    <h4><label id="lblPrimaryHeading">Cancel Tickets</label></h4>
+                                </div>
+                                <h4><label id="lblSeatCancel"></label></h4>
+                                <h4><label id="lblPassengerNameCancel"></label></h4>
+                                <h4><label id="lblPassengerStatusCancel"></label></h4>
+                                <h4><label id="lblBookingAmountCancel"></label></h4>
+                                <h4><label id="lblCancellationCharge"></label></h4>
+                                <h4><label id="lblRefundableAmount"></label></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer div-pay-row">
+                        <div class="row div-pay-row">
+                            <div class="col-sm-4 final-pay-button">
+                                <button type="button" data-dismiss="modalforCancelTickets" data-target="#modalCancelBookingConfirm" data-toggle="modal" id="btnCancelTicket" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Cancel Ticket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal For Cancel Tickets for WaterMarks-->
+    <div>
+        <input type="button" id="btnmodalforCancelTicketsWaterMark" style="display:none" data-target="#modalforCancelTicketsWaterMark" data-toggle="modal" />
+        <div class="modal fade" id="modalforCancelTicketsWaterMark" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge" style="background:#2d385e">
+                        <a href="/MyBusinessReports/TravelServices" class="close close_cross">&times;</a>
+                        <h4 class="modal-title" style="text-align:center;"><b style="font-size:30px;">Cancel Tickets</b></h4>
+                    </div>
+                    <div class="modal-body" style="">
+                        <div class="row">
+                            <label style="display:none" id="lblTinW"></label><br />
+                            <label style="display:none" id="lblSeatW"></label><br />
+                            <div class="col-sm-12" style="text-align:center">
+                                <img src="~/img/Bus_image.jpg" style="height: 100px;width: 200px;" /><br />
+                                <b>
+                                    <label id="lblHeadingPickupCancelW"></label>
+                                </b><br />
+                                <b>
+                                    <label id="lblHeadingDestinationCancelW"></label><br />
+                                </b>
+                                <label id="lblHeadingStartDateCancelW"></label><br />
+                                <b><label id="lblHeadingTravelAgaencyCancelW"></label></b><br />
+                                <hr />
+                            </div>
+                            <div class="col-md-12" style="background-image: url(../img/Cancelled.png);background-size: 100%;background-repeat: no-repeat;opacity: 0.7; background-position: center;">
+                                <div class="col-sm-12" style="text-align:center">
+                                    <div style="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid !important;">
+                                        <h3><label id="lblPrimaryHeadingW2">Cancellation Policy</label></h3>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <label><b>* No Cacellation Policy</b></label>
+                                    <hr />
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <h4><label>* Tickets can not be cancelled after scheduled bus departure time from the first boarding point.</label></h4>
+                                <div sty le="color: black;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;border:3px solid     !important;">
+                                    <h4><label id="lblPrimaryHeadingW1">Cancel Tickets</label></h4>
+                                </div>
+                                <h4><label id="lblSeatCancelW"></label></h4>
+                                <h4><label id="lblPassengerNameCancelW"></label></h4>
+                                <h4><label id="lblPassengerStatusCancelW"></label></h4>
+                                <h4><label id="lblBookingAmountCancelW"></label></h4>
+                                <h4><label id="lblCancellationChargeW"></label></h4>
+                                <h4><label id="lblRefundableAmountW"></label></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Cancel Bookings Confirmation -->
+    <div>
+        @*<input type="button" id="btnmodalCancelBookingConfirm" style="display:none" data-target="#modalCancelBookingConfirm" data-toggle="modal" />*@
+        <div class="modal fade" id="modalCancelBookingConfirm" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge">
+                        <a href="/MyBusinessReports/TravelServices" class="close close_cross">&times;</a>
+                        <h4 class="modal-title" style="text-align:center;"><b>Cancel Booking</b></h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align:center">
+                                <h3>
+                                    <label id="lblAddBeneficiery" style="text-align:center;">
+                                        Are you sure, you want to Cancel this Booking?
+                                    </label>
+                                </h3>
+                                <input type="hidden" id="hdfId" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer div-pay-row">
+                        <div class="row div-pay-row">
+                            <div class="col-sm-4 final-pay-button">
+                                <button type="button" onclick="cancelTicket()" id="btnFinalCancelButton" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Yes</button>
+                            </div>
+                            <div class="col-sm-4 final-cancel-button">
+                                <a href="/MyBusinessReports/TravelServices" type="button" style="margin-left:110px" id="btnCloseFirst" class="btn btn-danger butn-cancel">No</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for Cancel Bookings Error Message -->
+    <div>
+        <input type="button" id="btnmodalCancelBookingError" style="display:none" data-target="#modalCancelBookingError" data-toggle="modal" />
+        <div class="modal fade" id="modalCancelBookingError" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge">
+                        <a href="/MyBusinessReports/TravelServices" class="close close_cross">&times;</a>
+                        <h4 class="modal-title" style="text-align:center;"><b>ERROR</b></h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align:center">
+                                <h3>
+                                    <label id="lblERR" style="text-align:center;">
+
+                                    </label>
+                                </h3>
+                                <input type="hidden" id="hdfId" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer div-pay-row">
+                        <div class="row div-pay-row">
+                            <div class="col-sm-4 final-pay-button">
+                                <a style="padding-top: 13px;" href="/MyBusinessReports/TravelServices" type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Ok</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "scrollX": true,
+            "scrollY": false,
+            "animate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "paging": true,
+            "searching": true
+        });
+    });
+</script>
+<script>
+    function getBookingDetails(id, value) {
+        var bookingID = id;
+        var bookingValue = value;
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "/MyBusinessReports/TravelServices",
+            data: { 'bookingID': bookingID },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+
+                document.getElementById("lblHeadingPickup").innerHTML = response[0].sourcePickupCity + " - ";
+                document.getElementById("lblHeadingPickup1").innerHTML = response[0].sourcePickupCity + " To ";
+                document.getElementById("lblHeadingPickupCancel").innerHTML = response[0].sourcePickupCity + " To ";
+                document.getElementById("lblHeadingPickupCancelW").innerHTML = response[0].sourcePickupCity + " To ";
+                document.getElementById("lblHeadingPickup11").innerHTML = 'Pickup Point: ' + response[0].sourcePickupCity;
+                document.getElementById("lblHeadingDestination").innerHTML = response[0].destinationCity;
+                document.getElementById("lblHeadingDestinationCancel").innerHTML = response[0].destinationCity;
+                document.getElementById("lblHeadingDestinationCancelW").innerHTML = response[0].destinationCity;
+                document.getElementById("lblHeadingDestination1").innerHTML = response[0].destinationCity;
+                document.getElementById("lblHeadingDestination11").innerHTML = 'Destination Point: ' + response[0].destinationCity;
+                document.getElementById("lblHeadingStartDate").innerHTML = response[0].pickUpTime + " - ";
+                document.getElementById("lblHeadingStartDate11").innerHTML = response[0].pickUpTime;
+                document.getElementById("lblHeadingStartDateCancel").innerHTML = response[0].pickUpTime;
+                document.getElementById("lblHeadingStartDateCancelW").innerHTML = response[0].pickUpTime;
+                document.getElementById("lblHeadingEndDate").innerHTML = response[0].dropTime;
+
+                //hidden value for cancel ticket
+                document.getElementById("lblTin").innerHTML = response[0].bookingId;
+                document.getElementById("lblTinW").innerHTML = response[0].bookingId;
+                document.getElementById("lblSeat").innerHTML = response[0].seatNumber;
+                document.getElementById("lblSeatW").innerHTML = response[0].seatNumber;
+
+                document.getElementById("lblHeadingEndDate11").innerHTML = response[0].dropTime;
+                document.getElementById("lblHeadingTravleName").innerHTML = response[0].travelAgencyName + "" + response[0].busName;
+                document.getElementById("lblHeadingTravelAgaencyCancel").innerHTML = response[0].travelAgencyName;
+                document.getElementById("lblHeadingTravelAgaencyCancelW").innerHTML = response[0].travelAgencyName;
+                document.getElementById("lblOperatorContactNumber").innerHTML = 'Operator Contact Number: ' + response[0].pickupContactNumber;
+                document.getElementById("lblTravelAgenecy").innerHTML = response[0].busName;
+
+                document.getElementById("lblPickUpPoint").innerHTML = 'Pickup Point: ' + response[0].sourcePickupCity;
+                document.getElementById("lblDestinationPoint").innerHTML = 'Destination Point: ' + response[0].destinationCity;
+                document.getElementById("lblSeatNo").innerHTML = 'Seat No: ' + response[0].seatNumber;
+                document.getElementById("lblSeatCancel").innerHTML = 'Seats : ' + response[0].seatNumber;
+                document.getElementById("lblSeatCancelW").innerHTML = 'Seats : ' + response[0].seatNumber;
+                document.getElementById("lblSeatNo11").innerHTML = 'Seat No: ' + response[0].seatNumber;
+                document.getElementById("lblPassengerSeatNumber").innerHTML = 'Seat No: ' + response[0].seatNumber;
+                document.getElementById("lblBaseFare").innerHTML = 'Base Fare: ' + " ₹ " + response[0].baseFare;
+                document.getElementById("lblPassengerStatusCancel").innerHTML = 'Cancel Status: ' + response[0].bookingStatus;
+                document.getElementById("lblPassengerStatusCancelW").innerHTML = 'Cancel Status: ' + response[0].bookingStatus;
+                document.getElementById("lblCancellationChargeW").innerHTML = 'Cancellation Charge: ' + " ₹ " + response[0].cancellationCharges;
+                document.getElementById("lblCancellationCharge").innerHTML = 'Cancellation Charge: ' + " ₹ " + response[0].cancellationCharges;
+                document.getElementById("lblRefundableAmount").innerHTML = 'Refundable Amount: ' + " ₹ " + response[0].refundAmount;
+                document.getElementById("lblRefundableAmountW").innerHTML = 'Refundable Amount: ' + " ₹ " + response[0].refundAmount;
+                document.getElementById("lblBusOperator").innerHTML = 'Bus Operator GST: ' + " ₹ " + response[0].busOperatorGST
+                document.getElementById("lblGST").innerHTML = 'GST: ' + " ₹ " + response[0].gst;
+                document.getElementById("lblConvenienceFee").innerHTML = 'Convenience Fee: ' + " ₹ " + response[0].convenienceFees;
+                document.getElementById("lblTotalPrice").innerHTML = 'Total Price : ' + " ₹ " + parseInt(response[0].convenienceFees) + parseInt(response[0].gst) + parseInt(response[0].bookingAmount);
+                document.getElementById("lblPassengerName").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                document.getElementById("lblBookingAmountCancel").innerHTML = 'Booking Amount: ' + " ₹ " + response[0].finalAmount
+                document.getElementById("lblBookingAmountCancelW").innerHTML = 'Booking Amount: ' + " ₹ " + response[0].finalAmount
+                document.getElementById("lblPassengerNameCancel").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                document.getElementById("lblPassengerNameCancelW").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                document.getElementById("lblPassengerName1").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                document.getElementById("lblPassengerGender").innerHTML = 'Passenger Gender:  ' + "M";//Static
+                document.getElementById("lblPassengerGender1").innerHTML = 'Passenger Gender:  ' + "M";//Static
+                document.getElementById("lblPassengerAge").innerHTML = 'Passenger Age:  ' + "26";//Static
+                document.getElementById("lblPassengerAge1").innerHTML = 'Passenger Age:  ' + "26";//Static
+                document.getElementById("lblPassengerMobile").innerHTML = 'Passenger Mobile:  ' + response[0].passengerContact;
+                document.getElementById("lblPassengerMobile1").innerHTML = 'Passenger Mobile:  ' + response[0].passengerContact;
+                document.getElementById("lblPassengerEmail").innerHTML = 'Passenger Email: ' + "Test@gmail.com";//Static
+                if (value == "CancelTickets" && response[0].bookingStatus == "Cancelled Booking") {
+                    $("#btnmodalforCancelTicketsWaterMark").trigger("click");
+                }
+                if (value == "BookingDetails") {
+                    $("#btnmodalforBookingDetails").trigger("click");
+                }
+                if (value == "BoardingDetails") {
+                    $("#btnmodalforBoardingPass").trigger("click");
+                }
+                if (value == "CancelTickets" && response[0].bookingStatus != "Cancelled Booking") {
+                    $("#btnmodalforCancelTickets").trigger("click");
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+
+    //Final Cancel Button
+    function cancelTicket() {
+        var seat = document.getElementById("lblSeat").innerHTML;
+        var tin = document.getElementById("lblTin").innerHTML;
+        $.ajax({
+            type: "POST",
+            url: "/MyBusinessReports/CancelBusTickets",
+            data: { 'tin': tin, 'seat': seat },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                if (response.statuscode == "ERR") {
+                    document.getElementById("lblERR").innerHTML = response.message;
+                    $("#btnmodalCancelBookingError").trigger("click");
+                    $("#modalCancelBookingConfirm").hide();
+                    $("#modalforCancelTickets").hide();
+                }
+                else {
+
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+
+    function documentDownload() {
+        var from = $('#fromDate').val();
+        var to = $('#toDate').val();
+        var d = "x";
+        var subCat = "7";
+        debugger;
+        if (from == '' && to == '') {
+            document.getElementById('errfromDate').innerHTML = "Please Select From Date";
+            document.getElementById('errtoDate').innerHTML = "Please Select To Date";
+        }
+        else if (to == '') {
+            document.getElementById('errtoDate').innerHTML = "Please Select To Date";
+            document.getElementById('errfromDate').innerHTML = "";
+        }
+        else if (from == '') {
+            document.getElementById('errfromDate').innerHTML = "Please Select From Date";
+            document.getElementById('errtoDate').innerHTML = "";
+        }
+        else {
+            document.getElementById('errfromDate').innerHTML = "";
+            document.getElementById('errtoDate').innerHTML = "";
+            $.ajax({
+                type: "POST",
+                url: "/MyBusinessReports/GetTransactionReports",
+                data: { 'download': d, 'fromdate': from, 'todate': to, 'subCat': subCat },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    window.open(response);
+                },
+            });
+        }
+    };
+</script>
+
+

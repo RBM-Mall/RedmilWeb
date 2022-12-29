@@ -1,0 +1,323 @@
+﻿@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "Banking Services";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<style>
+    .button-23:hover {
+        color: white;
+    }
+
+    .wallet-box .bg-wt-round {
+        background: #fff;
+        border-radius: 30px;
+        padding: 10px 0px;
+    }
+
+    .wallet_breadcumb-area {
+        position: relative;
+        padding: 140px 0;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        background-position: 75% 10%;
+    }
+
+        .wallet_breadcumb-area:before {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            top: 0;
+            z-index: 0;
+        }
+
+        .wallet_breadcumb-area ul {
+            text-align: center;
+        }
+
+            .wallet_breadcumb-area ul li {
+                display: block;
+                font-weight: 500;
+                font-size: 16px;
+                color: #fff;
+            }
+
+                .wallet_breadcumb-area ul li:first-child {
+                    font-size: 50px;
+                    font-weight: 700;
+                    line-height: 5rem;
+                    color: #fff;
+                }
+
+                .wallet_breadcumb-area ul li a {
+                    color: #ffffff;
+                }
+</style>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center padding-bottom-30">
+            <div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;">
+                <h1 style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+
+<div class="section services-area padding-top-bottom-60">
+    <div class="container">
+        <section class="customer-logos slider" data-arrows="true">
+            <div class="row " id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px;">
+                <div class="col-md-12">
+
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px; margin-top: 20px;">
+                        <a href="~/Aeps/AEPS" class="radio1" style="text-align: center;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner slide">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/AEPS.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Aadhar ATM</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner slide">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/DMT-Yes-Bank.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">DMT Yes Bank</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a href="~/DMT2/StartUp" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner slide">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/DMT-2.0.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">DMT 2.0</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Micro-ATM.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Micro ATM</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/UPI-CashWithdrawal.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">UPI Cash Withdrawal</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Savings-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Saving Account</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 70px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Salaried-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Salary Account</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 5px;display: inherit;margin-top:20px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Individual-Current-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Individual Current Account</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 70px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Current-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Current Account</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Credit-Card-2.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Credit Card</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 5px;display:inherit;margin-top:20px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Buy-Now-Pay-Later.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Buy Now Pay Later</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/EMI-Cards.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">EMI Cards</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 70px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Cash-Collection.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Cash Collection</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 15px;margin-top:20px;">
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Credit-Crad-Bill-Payment.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Credit Card Bill Payment</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                        <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
+                            @*<a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">*@
+                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Rent-Payment.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                    </div>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Rent Payment</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Modal For ServicesComing-->
+<div class="modal fade" id="modalServiceComing" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-recharge">
+                <a data-dismiss="modal" style="padding-top:12px;" class="close">&times;</a>
+            </div>
+            <div class="modal-body" style="background-color:white;">
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center">
+                        <h3 style="text-align:center;font-weight:700;">This service is coming soon!</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                    <div class="col-sm-4 final-pay-button">
+                        <button type="button" id="btnPayNow" data-dismiss="modal" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Ok</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

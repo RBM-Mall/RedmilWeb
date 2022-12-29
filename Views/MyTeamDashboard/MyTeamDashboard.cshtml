@@ -1,0 +1,254 @@
+﻿@model Project_Redmil_MVC.Models.ResponseModel.GetMyTeamMemberCountNewResponseModel
+@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "My Team Dashboard";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/css/myteamcss.css" rel="stylesheet" />
+<style>
+    .div1 {
+        background-color: dodgerblue;
+        color: white;
+        width: 1310px;
+        height: 100px;
+        border-radius: 60% / 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-left: 210px;
+    }
+</style>
+<style>
+    .w4nNO ._2LiAa .HHwRe ._3yB75 p {
+        background: dodgerblue;
+        border-radius: 10px;
+        margin-top: 30px;
+        width: 167px;
+        height: 44px;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ._2V_I0 {
+        background: dodgerblue;
+        padding: 16px 24px;
+        border-radius: 25px;
+        /* width: 298px;*/
+        position: relative;
+        display: flex;
+        font-size: 17px;
+        color: #fff;
+        font-weight: 500;
+        line-height: 18px;
+        text-align: center;
+        margin-left: 80px;
+        overflow-x: scroll;
+        height: 150px;
+    }
+
+    ._2kpi7 {
+        margin-right: 11px;
+        text-align: center;
+    }
+
+    .font {
+        text-align: center;
+        margin-left: 20px;
+        padding-left: 150px;
+        padding-top: 20px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .label {
+        text-align: center;
+        margin-left: 200px;
+        font-size: 25px;
+        font-weight: 700;
+        color: black;
+    }
+
+    .note {
+        text-align: left;
+        font-size: 25px;
+        font-weight: 700;
+        padding-left: 25px;
+        margin-top: 20px;
+    }
+
+    .line-4 hr {
+        height: 1px;
+        border: 0;
+        background: black;
+    }
+    #imgMyTeam1{
+        height:400px;
+        width:1500px;
+        opacity:0.5;
+    }
+
+</style>
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <img src="~/css/Image_TeamDashboard/Top-Three-June-Ka-Junoon-for-web.png" style="width:auto;" alt="Norway">
+            @*<img src="~/css/Image_TeamDashboard/Top-Three-June-Ka-Junoon-for-web.png" style="width:460;height:345;" alt="Norway">*@
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col col-sm-12">
+                        <div class="div1 text-center" id="cr">
+                            <h1 id="headingMembers" style="color:white;padding-top:20px;font-weight: 700;">Total Team Members:@Model.TotalMember</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img id="imgMyTeam1"  src="~/css/Image_TeamDashboard/My-team (4).png" />
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="_2V_I0 _2kpi7 font">
+                                <center>
+                                    <p class="">
+                                        Direct Members:
+                                    </p>
+                                    <label style="margin-top:20px">@Model.DirectMember</label>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="_2V_I0 _2kpi7 font">
+                                <center>
+                                    <p>
+                                        Indirect Members:
+                                    </p>
+                                    <label style="margin-top:20px">@Model.IndirectMember</label>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="_2V_I0 _2kpi7 font">
+                                <center>
+                                    <p>
+                                        Super Indirect Members:
+                                    </p>
+                                    <label style="margin-top:20px">@Model.SuperIndirectMember</label>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="note">Note - The above member counts are as per yesterday.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="line-3">
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:green;padding-left: 71px;">
+                    <button type="submit" id="btnCommisionSheet" style="background: green;border-color: transparent;border: none; outline: none;">
+                        <i class="fa fa-file-excel-o" style="font-size:48px;color:white;"></i>
+                        <p style="padding-left: 20px;">
+                            Commision Sheet
+                        </p>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:seagreen;padding-left: 71px;">
+                    <button type="submit" id="btnMyTatgets" style="background: seagreen;border-color: transparent;border: none;outline: none;">
+                        <i class="fa fa-bullseye" style="font-size:48px;color:white"></i>
+                        <p style="padding-left: 20px;">
+                            My Targets
+                        </p>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:orangered;padding-left: 71px;">
+                    <button type="submit" id="btnDownloadReports" style="background: orangered;border-color: transparent;border: none;outline: none;">
+                        <i class="fa fa-download" style="font-size:48px;color:white"></i>
+                        <p style="padding-left: 20px;">
+                            Download Reports
+                        </p>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:deepskyblue">
+                    <button type="submit" id="btnMyEarnings" style="background: deepskyblue;border-color: transparent;border: none; outline: none;">
+                        <i class="fa fa-line-chart" style="font-size:48px;color:white;"></i>
+                        <p style="padding-left: 20px;">
+                            My Earnings
+                        </p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12" style="padding-top:20px;">
+
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:orangered;padding-left: 71px;">
+                    <button type="submit" id="btnMyTeam" style="background: orangered;border-color: transparent;border: none; outline: none;">
+                        <i class="fa fa-group" style="font-size:48px;color:white;"></i>
+                        <p style="padding-left: 20px;">
+                            My Team
+                        </p>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:#C71585;padding-left: 71px;">
+                    <button type="submit" id="btnSMSInvite" style="background:#C71585;border-color: transparent;border: none;outline: none;">
+                        <i class="fas fa-sms" style="font-size:48px;color:white"></i>
+                        <p style="padding-left: 20px;">
+                            SMS Invite
+                        </p>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:#4682B4;padding-left: 71px;">
+                    <button type="submit" id="btnUpgradePackage" style="background:#4682B4;border-color: transparent;border: none; outline: none;">
+                        <i class="fa-solid fa-box-open" style="font-size:48px;color:white"></i>
+                        <p style="padding-left: 20px;">
+                            Upgrade Package
+                        </p>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="_2V_I0 _2kpi7 font" style="background-color:#800000;padding-left: 71px;">
+                    <button type="submit" id="btnMyEarnings" style="background: #800000;border-color: transparent;border: none; outline: none;">
+                        <i class="fa fa-file-excel-o" style="font-size:48px;color:white;"></i>
+                        <p style="padding-left: 20px;">
+                            Business Report
+                        </p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

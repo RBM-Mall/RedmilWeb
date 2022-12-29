@@ -1,0 +1,634 @@
+@import 'bootstrap.min.css';/**/
+
+    .btn-primary:hover, .btn-primary:active:hover, .btn-primary:focus, .btn-primary:active:focus, .btn-primary:active, .btn-primary.active {
+        background-color: #486ff2;
+        border-color: #486ff2
+    }
+
+.authfy-login .btn.btn-lg {
+    border-radius: 3px;
+    box-shadow: 0 2px 3px #9c9c9c
+}
+
+.a {
+    padding-top: 25px;
+}
+
+.brand-logo {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.authfy-container {
+    margin-top: 97px;
+    margin-bottom: 97px;
+}
+
+.authfy-panel-left {
+    background-color: rgb(240,240,240);
+    color: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-box-shadow: 0 3px 6px #1d2030;
+    box-shadow: 0 3px 6px #1d2030
+}
+
+.authfy-panel-right {
+    background-color: #fff;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -webkit-box-shadow: 0 2px 6px 0 #1d2030;
+    box-shadow: 0 2px 6px 0 #1d2030;
+    padding-top: 20px;
+}
+
+.authfy-login, .authfy-panel-left .brand-col {
+    height: 462.5px
+}
+
+.authfy-panel-left .brand-col {
+    display: table;
+    width: 100%;
+    padding: 25px
+}
+
+    .authfy-panel-left .brand-col .headline {
+        display: table-cell;
+        vertical-align: middle
+    }
+
+        .authfy-panel-left .brand-col .headline h1, .authfy-panel-left .brand-col .headline h2, .authfy-panel-left .brand-col .headline h3 {
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700
+        }
+
+.authfy-login {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden
+}
+
+.authfy-panel {
+    padding: 20px 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .5s ease;
+    opacity: 0;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%)
+}
+
+    .authfy-panel .authfy-heading {
+        margin-bottom: 30px
+    }
+
+.authfy-login .auth-title {
+    font-weight: 700
+}
+
+.authfy-login .authfy-panel.active {
+    opacity: 1;
+    transform: translateX(0);
+    -webkit-transform: translateX(0)
+}
+
+.brand-col .social-buttons a {
+    color: #fff;
+    margin-top: 15px
+}
+
+    .brand-col .social-buttons a:hover {
+        color: #fff;
+        opacity: .9
+    }
+
+.brand-col .social-buttons .btn-facebook {
+    background: #3b5998
+}
+
+.brand-col .social-buttons .btn-twitter {
+    background: #00aced
+}
+
+.brand-col .social-buttons .btn-google {
+    background: #c32f10
+}
+
+.brand-col .social-buttons a > span {
+    padding-left: 5px
+}
+
+.panel-login {
+    margin-top: -47px
+}
+
+    .panel-login .remember-row {
+        margin-bottom: 10px
+    }
+
+        .panel-login .remember-row label {
+            font-weight: 400;
+            position: relative;
+            cursor: pointer;
+            color: #666;
+            padding-left: 24px
+        }
+
+.authfy-login .forgotPwd {
+    text-align: right;
+    margin-top: 10px
+}
+
+.panel-login .form-control, .panel-signup .form-control, .panel-forgot .form-control {
+    background-color: #fff;
+    color: #333;
+    font-size: 18px;
+    height: 50px;
+    margin-bottom: 20px;
+    padding: 12px 22px;
+    border-radius: 3px;
+    border: solid 1px #bcc2ce;
+    outline: none;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,.1),0 0 2px 0 rgba(0,0,0,.1);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,.1),0 0 2px 0 rgba(0,0,0,.1)
+}
+
+.authfy-panel.panel-forgot {
+    padding-top: 2px
+}
+
+.panel-login .form-control:focus, .panel-signup .form-control:focus, .panel-forgot .form-control:focus {
+    border-color: #4f77ff;
+    z-index: 2;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+}
+
+.pwdMask {
+    position: relative
+}
+
+    .pwdMask .pwd-toggle {
+        color: #ccc;
+        position: absolute;
+        z-index: 2 ;
+        top: 21px;
+        left: 288px;
+    }
+    .pwdMask1 .pwd-toggle1 {
+        color: #ccc;
+        position: absolute;
+        z-index: 2;
+        top: 86px;
+        left: 372px;
+    }
+.pwdMask2 .pwd-toggle2 {
+    color: #ccc;
+    position: absolute;
+    z-index: 2;
+    top: 156px;
+    left: 372px;
+}
+
+.panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+    top: 15px;
+    right: 15px
+}
+
+.pwdMask .pwd-toggle:hover, .pwdMask .pwd-toggle:focus {
+    cursor: pointer
+}
+
+.pwdMask .pwd-toggle:hover, .pwdMask .pwd-toggle:focus, .pwdMask .pwd-toggle.fa-eye {
+    color: #4f77ff
+}
+
+.panel-signup .term-policy a {
+    text-decoration: underline
+}
+
+.checkbox input[type=checkbox] {
+    position: absolute;
+    right: 9000px
+}
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        font-size: 11px;
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        padding: 2px;
+        margin-left: 0;
+        position: absolute;
+        top: 2px;
+        left: 0
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before {
+        content: "";
+        background-color: #fff;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
+        cursor: pointer;
+        -webkit-transition: border .15s ease-in-out,color .15s ease-in-out;
+        transition: border .15s ease-in-out,color .15s ease-in-out
+    }
+
+    .checkbox input[type=checkbox] + .label-text:after {
+        background-color: #4f77ff;
+        color: #fff;
+        border-radius: 2px;
+        border-color: #4f77ff;
+        line-height: 1.4
+    }
+
+.checkbox input[type=checkbox] {
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer
+}
+
+    .checkbox input[type=checkbox]:focus + .label-text:before {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px
+    }
+
+    .checkbox input[type=checkbox]:checked + .label-text:after {
+        font-family: fontawesome;
+        content: "\f00c"
+    }
+header .myaccount a.login i {
+    font-size: 20px;
+}
+
+.header .menu li a i.fa-user {
+    width: 30px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 50%;
+    padding: 9px 9px;
+    font-size: 12px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.fa, .fas {
+    font-weight: 900;
+}
+
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+
+.usrlgt {
+    background-image: var(--bg-image);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    /* color: #FFFFFF; */
+    color: var(--button-color);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 1px 9px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    margin-right: 77px;
+    /* float: right; */
+    margin-top: 10px;
+    z-index: 1;
+}
+
+@media(min-width:768px) {
+    .authfy-panel {
+        padding: 60px
+    }
+}
+
+@media(max-width:767px) {
+    .authfy-panel-left, .authfy-panel-right {
+        /*box-shadow: none*/
+    }
+
+    .authfy-panel-left {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        padding-top: 20px;
+    }
+
+    .authfy-panel-right {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        padding-top: 20px;
+    }
+
+    .term-policy {
+        font-size: 75%
+    }
+}
+
+@media(min-width:320px) and (max-width:375px) {
+    .authfy-login .authfy-panel {
+        padding: 20px
+    }
+
+    .panel-login .remember-row {
+        margin-bottom: 10px;
+        font-size: 14px
+    }
+}
+
+@media(max-width:320px) {
+    .authfy-login {
+        height: 480px
+    }
+
+    .authfy-heading p {
+        font-size: 14px
+    }
+
+    .remember-row .col-sm-6 {
+        width: 100%
+    }
+
+    .authfy-login .forgotPwd {
+        text-align: left;
+        margin-top: 0
+    }
+}
+.loginview {
+    margin-left: -247px;    
+}
+/*.modal-backdrop {
+    position: unset !important;
+}*/
+
+@media only screen and (min-width: 200px) and (max-width: 358px) {
+    .forleft {
+        margin-left: 209px;
+        width: 86%;
+    }
+    .authfy-login .authfy-panel {
+        padding: 37px;
+    }
+   /* .recoverloginview {
+        margin-left: 0px;
+        width: 366px;
+    }*/
+
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .authfy-login .forgotPwd {
+        margin-top: -30px;
+        margin-left: 154px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }
+
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: -188px;
+    }
+
+    .notloginmobileview {
+        width: 360px;
+    }
+}
+   
+
+@media only screen and  (max-width: 600px) {
+    .forleft {
+        margin-left: 211px;
+        width: 92%;
+    }
+
+
+    .authfy-login .authfy-panel {
+        padding: 33px;  
+    }
+
+    .panel-login {
+        margin-top: -22px;
+    }
+    .recoverloginview {
+        margin-left: 24px;
+        width: 76%;
+        padding: 5px;
+    
+    }
+    .mpinrecovermobileview {
+        width: 133%;
+        margin-left: 5px
+    }
+
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+    .checkbox, .radio {
+    margin-left:17px;
+    
+    }
+    .authfy-login .forgotPwd {
+   
+        margin-left:46px;}
+        /*  .authfy-login .forgotPwd {
+        margin-top: -30px;
+        margin-left: 154px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }*/
+        .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: -43px;
+    }
+
+    .notloginmobileview {
+        width: 360px;
+    }
+
+    
+}
+@media only screen and (max-width: 600px) {
+
+    .forleft {
+        margin-left: 213px;
+        width: 93%;
+        padding: 0px;
+    }
+
+    .authfy-login .authfy-panel {
+        padding: 33px;
+    }
+
+    .panel-login {
+        margin-top: -22px;
+    }
+    .mpinrecovermobileview {
+        margin-left: 24px;
+        width: 122%;
+    }
+    /* .recoverloginview {
+        margin-left: 25px;
+        width: 100%;
+    }*/
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .checkbox, .radio {
+        margin-left: 17px;
+    }
+
+    /*.authfy-login .forgotPwd {
+        margin-left: 166px;
+    }*/
+    /*  .authfy-login .forgotPwd {
+        margin-top: -30px;
+        margin-left: 154px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }*/
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: -43px;
+    }
+
+    .notloginmobileview {
+        width: 360px;
+    }
+
+}
+
+    
+
+    @media only screen and (min-width: 0px) and (max-width: 541px) {
+        .authfy-panel-left {
+            display: none;
+        }
+    }
+@media only screen and (min-width: 541px) and (max-width: 990px) 
+{
+    .forleft {
+        margin-left: 211px;
+        width: 102%;
+    }
+
+    .authfy-login .authfy-panel {
+        padding: 33px;
+    }
+
+    .panel-login {
+        margin-top: -22px;
+    }
+
+    .mpinrecovermobileview {
+        margin-left: 24px;
+        width: 122%;
+    }
+    /* .recoverloginview {
+        margin-left: 25px;
+        width: 100%;
+    }*/
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .checkbox, .radio {
+        margin-left: 17px;
+    }
+
+    .authfy-login .forgotPwd {
+        margin-left: 46px;
+    }
+    /*  .authfy-login .forgotPwd {
+        margin-top: -30px;
+        margin-left: 154px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }*/
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: -43px;
+    }
+
+    .notloginmobileview {
+        width: 360px;
+    }
+
+}
+/*Index media queri*/
+@media only screen and (max-width: 667px) {
+    .cont {
+        width: 100%;
+        height: 407px;
+    }
+    .about-content p {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        background-size: cover;
+        font-size: 14px;
+        line-height: 19px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        margin-bottom: 10px;
+        text-align: justify;
+        padding:5px;
+    }
+}

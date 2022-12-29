@@ -1,0 +1,418 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.OrderBrandingResponseModel.OrderBrandingResponseModel>
+
+@using Project_Redmil_MVC
+
+@{
+    ViewData["Title"] = "OrderBrandingDevice";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/OrderBrandingDevice/assets/css/style-liberty.css">
+</head>
+
+<body>
+    <!-- For Product-->
+    <script src="../../../../../../OrderBrandingDevice/monetization.js" type="text/javascript"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src='../../../../../../gtag/js?id=G-98H8KRKT85'></script>
+    <meta name="robots" content="noindex">
+    <section class="w3mid-gap"></section>
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="w3l-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Order Office/Shop Material
+                        </h2>
+                    </div>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href="index.html">OrderBrandingDevice</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Product</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+    <!--/w3l-ecommerce-main-->
+    <div style="margin: 8px auto; display: block; text-align:center;">
+        <!---728x90--->
+    </div>
+    <div style="margin: 8px auto; display: block; text-align:center;">
+
+        <!---728x90--->
+
+
+    </div>
+    <section class="w3l-ecommerce-main bodys">
+        <!-- /products-->
+        <div class="ecom-contenthny py-5">
+            <div class="container py-lg-5">
+                <h3 class="title-w3l">Order Office/Shop Material</h3>
+                <p class="">Order and pay with your cash wallet and recieve Branding material within 3-4 working days. </p>
+                <!-- /row-->
+                <!--Horizontal Layout -->
+                <section class="w3l-ecommerce-main">
+                    <!-- /products-->
+                    <div class="ecom-contenthny py-5">
+                        <div class="container py-lg-5">
+                            <!-- about -->
+                            <div class="ecom-contenthny-w3lcheckout privacy">
+                                <!-- payment -->
+                                @*<h3>Payment</h3>*@
+                                <div class="checkout-right mt-4">
+                                    <!--Horizontal Tab-->
+                                    <div id="parentHorizontalTab">
+                                        <ul class="resp-tabs-list hor_1">
+                                            <li> Order Office/Shop Material </li>
+                                            <li>Commision</li>
+                                            <li>How To Work</li>
+                                            @*<li>Paypal Account</li>*@
+                                        </ul>
+                                        <div class="resp-tabs-container hor_1">
+                                            <div>
+                                                <div class="vertical_post check_box_agile pb-lg-5 pb-4">
+                                                    <div class="ecom-products-grids row mt-lg-4 mt-3">
+                                                        @foreach (var i in Model)
+                                                        {
+                                                            <div class="col-lg-3 col-6 product-incfhny mt-4">
+
+                                                                <div class="product-grid2 shopv">
+                                                                    <div class="product-image2">
+                                                                        <a href="product-single.html">
+                                                                            <img class="pic-1 img-fluid radius-image" src="@i.ImgThumbnail">
+                                                                            <img class="pic-2 img-fluid radius-image" src="@i.ImgSample">
+                                                                        </a>
+                                                                        <ul class="social">
+                                                                            <li><a href="#" data-tip="Quick View"><span class="fa fa-eye"></span></a></li>
+
+                                                                            <li>
+                                                                                <a href="ecommerce.html" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <div class="shopv single-item">
+                                                                            <form action="#" method="post" id="form">
+                                                                                <input type="hidden" name="cmd" value="_cart">
+                                                                                <input type="hidden" name="add" value="1">
+                                                                                <input type="hidden" name="shopv_item" value="@i.MaterialName">
+                                                                                <input type="hidden" name="amount" value="@i.Amount">
+                                                                                <button type="submit" class="shopv-cart pshopv-cart add-to-cart">
+                                                                                    Proceed To Order
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="product-content">
+                                                                        <h3 class="title"><a href="product-single.html">@i.MaterialName </a></h3>
+                                                                        <span class="price">@*<del>$975.00</del>*@ Rs.@i.Amount</span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        }
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <form action="#" method="post" class="creditly-card-form agileinfo_form information-wrapper">
+                                                    <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                                                        <h2>2</h2>
+
+                                                    </section>
+                                                </form>
+
+                                            </div>
+                                            <div>
+                                                <div class="vertical_post">
+                                                    <form action="#" method="post">
+                                                        <h5>Select From Popular Banks</h5>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div id="tab4" class="tab-grid" style="display: block;">
+                                                    <div class="row">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Plug-in Initialisation-->
+                                    <!-- // Pay -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //payment -->
+                    </div>
+                </section>
+
+                <div style="margin: 8px auto; display: block; text-align:center;">
+
+                    <!---728x90--->
+
+                </div>
+
+                <!-- End Horizontal -->
+
+            </div>
+        </div>
+    </section>
+    <!-- //products-->
+    <div style="margin: 8px auto; display: block; text-align:center;">
+
+        <!---728x90--->
+
+    </div>
+
+
+    <!-- cart-js -->
+    <script src="~/OrderBrandingDevice/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="~/OrderBrandingDevice/assets/js/theme-change.js"></script>
+    <script src="~/OrderBrandingDevice/assets/js/minicart.js"></script>
+    <script>
+        shopv.render();
+
+        shopv.cart.on('shopv_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) { }
+            }
+        });
+
+    </script>
+    <!-- //cart-js -->
+    <!-- owlcarousel -->
+    <script src="~/OrderBrandingDevice/assets/js/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+        $(document).ready(function () {
+            $('.owl-one').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: false,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplaySpeed: 1000,
+                autoplayHoverPause: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    480: {
+                        items: 1
+                    },
+                    667: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 1
+                    }
+                }
+            })
+        })
+
+    </script>
+    <!-- //script -->
+    <!-- script for tesimonials carousel slider -->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+                loop: true,
+                nav: false,
+                margin: 50,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    },
+                    991: {
+                        items: 2,
+                        margin: 30,
+                        nav: false
+                    },
+                    1080: {
+                        items: 2,
+                        nav: false
+                    }
+                }
+            })
+        })
+
+    </script>
+    <!-- //script for tesimonials carousel slider -->
+    <!-- video popup -->
+
+    <script src="~/OrderBrandingDevice/assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+
+    </script>
+    <!-- //video popup -->
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+
+    </script>
+    <!-- //MENU-JS -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!-- //bootstrap -->
+    <script src="~/OrderBrandingDevice/assets/js/bootstrap.min.js"></script>
+
+    <!-- Template JavaScript -->
+    <!-- js -->
+    <script src="~/OrderBrandingDevice/assets/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <!-- easy-responsive-tabs -->
+    <script src="~/OrderBrandingDevice/assets/js/easyResponsiveTabs.js"></script>
+    <!-- //easy-responsive-tabs -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Horizontal Tab
+            $('#parentHorizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true, // 100% fit in a container
+                tabidentify: 'hor_1', // The tab groups identifier
+                activate: function (event) { // Callback function if tab is switched
+                    var $tab = $(this);
+                    var $info = $('#nested-tabInfo');
+                    var $name = $('span', $info);
+                    $name.text($tab.text());
+                    $info.show();
+                }
+            });
+        });
+
+    </script>
+
+
+    <!--End Product-->
+
+
+    <script type="text/javascript">
+        function checkout() {
+            
+            var materialname = $('.sbmincart-name').text();
+            var Quantity = $('.sbmincart-quantity').val();
+            var detail = $('.sbmincart-details-price').text();
+            $.ajax({
+                url: "/OrderBrandingDevice/Checkout",
+                data: { 'materialname': materialname, 'Quantity': Quantity, 'detail': detail },
+                type: 'POST',
+                success: function (response) {
+                    if (response == "")
+                    {
+
+                        //let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.locationName + "</td><td>" + i.planName + "</td><td>" + i.validity + "</td><td>" + i.description + "</td><td id='id1'onclick='bindAmount()' button class='btn-process-recharge3  btn-amount-bind2 btn-amount-bind1'>" + "₹" + i.amount + "</button></td></tr>");
+
+
+                        $("#output").html(output);
+
+
+                           window.location.href = '@Url.Content("/OrderBrandingDevice/Checkout")'
+
+
+
+                    }
+                   
+
+                }
+            });
+
+        }
+    </script>
+
+
+</body>
+
+</html>

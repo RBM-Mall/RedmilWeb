@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.RatesandRoi.RatesandRoiResponseModel>
+
+@using Project_Redmil_MVC
+@*@using Project_Redmil_MVC.Models*@
+
+@{ ViewData["Title"] = "RatesandRow";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link rel="stylesheet" href="~/css/businessReport.css" />
+<style>
+
+
+    .item {
+        box-shadow: 0 0 30px 0 rgb(0 0 0 / 10%);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 30px;
+        align-items: center;
+        padding: 62px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: -74px
+    }
+</style>
+<div class="section breadcumb-area background-image" style="background-image: url('/css/Ratesandroi/ratesandrow.jpg')">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <ul>
+                    <li><strong>Rates and ROI</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="reportHeadName">Rates and ROI</h1>
+<h4 class="tag">Having satisfied Customers is the "Best Business Strategy" of all Time Give your Clients best deal.</h4>
+
+<!--<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">
+                Category Name:
+            </label>
+            if (ViewBag.RatesandRow != null)
+            {
+                Html.DropDownListFor(x => x.Id, ViewBag.RatesandRow as SelectList, "-- Select Services --", new { class = "form-control" })
+
+
+            }
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-5">
+            <label class="control-label">
+                Subcategory Name:
+            </label>-->
+@*<select class="form-control" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
+        <option> -- Please Select -- </option>
+    </select>*@
+<!--</div>
+    </div>
+</div>-->
+<div class="container-fluid" style="margin-top: -120px; margin-bottom: -300px">
+    <div class="row">
+        <div class="accordion">
+            @foreach (var i in Model)
+            {
+                <div class="item">
+                    <p class="number"></p>
+                    <h2 id="pdfopen" onclick="download()">@i.Title</h2>
+                    <div class="fa fa-eye" onclick="download()">
+                        @*<ion-icon class="fa fa-eye" name="add-outline"></ion-icon>*@
+                    </div>
+                    @*<div class="fa fa-share">
+
+                    </div>*@
+                   
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function download() {
+        var a = document.getElementById("pdfopen").innerText;
+        debugger;
+        $.ajax({
+            url: "/RatesandRow/RatesandRow",
+            data: { 'Cat': a },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                var ar = response;
+                window.open(ar);
+            }
+        });
+    }
+</script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

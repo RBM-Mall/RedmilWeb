@@ -1,0 +1,55 @@
+﻿@media only screen and (max-width : 339px) and (min-width : 279px) {
+    #cr {
+        margin-left: 2px;
+        /* font-size: 920px; */
+        height: 80px;
+        width: 100%;
+    }
+
+    #headingMembers {
+        font-size: 20px;
+    }
+
+    #imgMyTeam1  {
+        height: 175px;
+    }
+}
+
+
+@media only screen and (max-width : 399px) and (min-width : 340px) {
+    #cr {
+        margin-left: 2px;
+        /* font-size: 920px; */
+        height: 80px;
+        width: 100%;
+    }
+
+    #headingMembers {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width : 550px) and (min-width : 400px) {
+    #cr {
+        margin-left: 2px;
+        /* font-size: 920px; */
+        height: 80px;
+        width: 100%;
+    }
+
+    #headingMembers {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 762px) and (min-width: 551px) {
+    #cr {
+        margin-left: 2px;
+        /* font-size: 920px; */
+        height: 80px;
+        width: 100%;
+    }
+
+    #headingMembers {
+        font-size: 20px;
+    }
+}

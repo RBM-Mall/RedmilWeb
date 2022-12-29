@@ -1,0 +1,652 @@
+﻿@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "Aadhar ATM";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans" asp-append-version="true">
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link rel="stylesheet" href="~/css/businessReport.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<style>
+
+    .ts {
+        margin-left: 226px;
+        font-size: 26px;
+    }
+
+    .btn-final {
+        display: block;
+        margin-left: 208px;
+        border-bottom: 42px;
+        width: 179px;
+        border-radius: 41px;
+        height: 41px;
+        font-size: 20px;
+        color: white;
+        border-color: white;
+        border-right: white;
+        border-left: white;
+        border-top: white;
+    }
+
+
+    .btnlft {
+        margin-left: 283px;
+        margin-top: -30px;
+        color: cornflowerblue;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+
+    .tp {
+        margin-left: 40px;
+    }
+
+    .modalss {
+        margin-left: 104px;
+        margin-right: 111px;
+        padding: 7px;
+        margin-top: 114px;
+    }
+
+    .mt {
+        margin-top: 68px;
+        margin-left: -69px;
+    }
+
+    .rs {
+        margin-left: 28px;
+    }
+
+    .modal-backdrop.innn {
+        opacity: 0 !important;
+    }
+
+    .img-wallet-select {
+        height: 150px;
+        width: 200px;
+    }
+
+    .first-wallet {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .final-modal-popup {
+        width: 650px;
+    }
+
+    .err {
+        margin-top: -181px;
+        margin-left: 88px;
+    }
+
+    .sucss {
+        margin-top: -181px;
+        margin-left: 88px;
+    }
+
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+    }
+
+    .modal-confirm .icon-box {
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: -40px;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        z-index: 9;
+        /* background: #82ce34; */
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
+    }
+
+    .breadcumb-area {
+        position: relative;
+        padding: 221px 0;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        background-position: 75% 10%;
+    }
+
+    .Feedack {
+        margin-top: -18px;
+    }
+</style>
+
+<style>
+
+    .img1 {
+        display: flex;
+    }
+
+        .img1 img {
+            height: 60px;
+            width: 60px;
+        }
+
+
+    .passbooktabs {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        color: #f1f1f1;
+        background: #2d385e;
+        display: flex;
+        margin-top: 10px;
+        margin-left: 253px;
+        width: 70%;
+    }
+
+        /* Style the buttons inside the tab */
+        .passbooktabs button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .passbooktabs button:hover {
+                background-color: #ddd;
+                color: #313142;
+            }
+
+            /* Create an active/current tablink class */
+            .passbooktabs button.active {
+                /*background-color: #5437b7;*/
+            }
+
+        .passbooktabs .tablinks {
+            letter-spacing: 2px;
+            margin-right: 25px;
+            /*background-color: #5437b7;*/
+        }
+
+    .tablinksactive {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        background-color: #5437b7;
+        transition: all 0.4s ease;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 20px 12px;
+        border: 1px solid #ccc;
+        /*width: 1200px;
+                                                                        border-top: none;*/
+    }
+
+        .tabcontent .title {
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+            .tabcontent .title h1 {
+                font-weight: 800;
+            }
+
+            .tabcontent .title .aval_bal, .cashBal {
+                margin-top: 20px;
+            }
+
+            .tabcontent .title .aval_bal, .AdvBal {
+                margin-top: -30px;
+            }
+
+            .tabcontent .title .advAval_bal, .AdvBal {
+                margin-top: -33px;
+            }
+
+        .tabcontent .item_info {
+            display: block;
+            margin-top: 50px;
+        }
+
+            .tabcontent .item_info button {
+                align-items: center;
+                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+                background-size: calc(100% + 20px) calc(100% + 20px);
+                border-radius: 100px;
+                border-width: 0;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: CircularStd,sans-serif;
+                font-size: 1.5rem;
+                height: auto;
+                justify-content: center;
+                line-height: 1.5;
+                padding: 6px 25px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                transition: background-color .2s,background-position .2s;
+                user-select: none;
+                margin-right: 24px;
+                float: none;
+                /*margin-top: 40px;*/
+                /*margin-left: 60px;*/
+                z-index: 1;
+            }
+
+        .tabcontent .title .item_info .rewbtn {
+            margin-left: 300px;
+        }
+
+        /*.tabcontent.item_info.btn2{
+                                                                                        margin-left:200px;
+                                                                                    }*/
+
+        .tabcontent hr {
+            margin: 93px 0 0 20px;
+            padding: 10px;
+        }
+
+        .tabcontent h3 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+    #example_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #example1_wrapper {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #example_paginate {
+        float: right;
+        margin-right: -90px;
+    }
+
+    #example1_paginate {
+        float: right;
+        margin-right: -40px;
+    }
+
+    div.wrapper {
+        width: 500px;
+        height: 500px;
+        overflow: auto;
+    }
+
+    .ButtonDetail {
+        font-weight: 800;
+        /* background: #3EB2FD; */
+        /* border: 1px solid #3EB2FD; */
+        /* border: 1px solid #fff; */
+        padding: 5px 10px;
+        color: blue;
+        font-size: 13px;
+        text-align: center;
+        /* width: 300px;*/
+        border-radius: 5px;
+        /*margin-top: 20px;*/
+        font-family: 'Poppins', sans-serif;
+    }
+
+
+    .label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 7px;
+        font-weight: 700;
+        padding: -15px;
+        font-size: 21px;
+        margin-left: 82px;
+    }
+
+    .tabcontents {
+        display: none;
+        /* padding: 6px 12px;
+                                                border: 1px solid #ccc;
+                                                border-top: none;*/
+        font-size: 15px;
+    }
+
+    .active::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        /* border-top: 3px solid #1864ab; */
+        animation: borderline 1s linear forwards;
+    }
+
+
+    .tabs {
+        overflow: hidden;
+        /*  border: 1px solid #ccc;
+                                                background-color: #f1f1f1;*/
+    }
+
+        /* Style the buttons inside the tab */
+        .tabs button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tabs button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tabs button.active {
+                background-color: #ccc;
+            }
+
+    .tab button.active {
+        background-color: white;
+        color: darkblue;
+    }
+
+</style>
+<style>
+
+    body {
+        background: #fff;
+        font-family: 'PT Sans', sans-serif;
+    }
+
+    h2 {
+        padding-top: 1.5rem;
+    }
+
+    a {
+        color: #333;
+    }
+
+        a:hover {
+            color: #da5767;
+            text-decoration: none;
+        }
+
+    .card {
+        border: 0.40rem solid #f8f9fa;
+        top: 10%;
+    }
+
+    .form-control {
+        background-color: #f8f9fa;
+        padding: 20px;
+        padding: 25px 15px;
+        margin-bottom: 1.3rem;
+    }
+
+        .form-control:focus {
+            color: #000000;
+            background-color: #ffffff;
+            border: 3px solid #da5767;
+            outline: 0;
+            box-shadow: none;
+        }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        background: #da5767;
+        border: 2px solid #da5767;
+    }
+
+    .btn-primary:hover {
+        background-color: #df8c96;
+        border-color: #df8c96;
+        transition: .3s;
+    }
+</style>
+<br />
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <div class="modal-body" style="background-color:white;">
+                <div class="row div-recharge-img">
+                    <div class="col-sm-4 custom_img_size pay-img" style="text-align: center;">
+                        <img src="/css/ImageLogo/redmil-new-logo2.png" class="img-width" style="height:100px;width:120px;">
+                    </div>
+                    <div class="col-sm-4 custom_img_size pay-img2" style="text-align: center;">
+                        <img src="~/css/Img_Fastag/paytmLogo.jpeg" class="img-width" style=" height: 150px;width: 176px;margin-top: 100px;">
+                    </div>
+                    <div class="col-sm-4 custom_img_size pay-img2" style="text-align: center;">
+                        <img src="~/img/img_devices/NPCI.png" class="img-width" style="height:100px;width:100px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="passbooktabs tab">
+    <div class="col-md-4" style="margin-left:150px">
+        <button class="tablinks" style="font-weight:800" onclick="openCity(event,'CashWithdrawal')" id="defaultOpen">CASH WITHDRAWAL</button>
+    </div>
+    <div class="col-md-4" style="margin-left:150px">
+        <button class="tablinks" style="font-weight:800" onclick="openCity(event,'BalanceEnquiry')">BALANCE ENQUIRY</button>
+    </div>
+    <div class="col-md-4" style="margin-left:150px">
+        <button class="tablinks" style="font-weight:800" onclick="openCity(event,'MiniStatement')">MINI STATEMENT</button>
+    </div>
+</div>
+<div class="container">
+    <div id="CashWithdrawal" class="tabcontent">
+        <div class="title">
+            @*-------------------------------------------<!--Cash Withdrawal-->------------------------------------------------------*@
+            <div class="row justify-content-center" style="display: flex;justify-content: center;">
+                <div class="col-md-5">
+                    <div class="card">
+                        <h2 class="card-title text-center">Customer Details</h2>
+                        <div class="card-body py-md-4">
+                            <form _lpchecked="1">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtCustomerNameCashWithdrawal" placeholder="Customer Name">
+                                    <br />
+                                    <h5><span id="errtxtCustomerNameCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtMobileNumCashWithdrawal" placeholder="Mobile Number">
+                                    <br />
+                                    <h5><span id="errtxtMobileNumCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    @*@if (ViewBag.Caterory != null)
+                                    {
+                                    @Html.DropDownListFor(ViewBag.Caterory as SelectList , "-- Choose Bank --" ,  new {@class="form-control", @style="margin-left: -50px"})
+                                    }
+                                    <br />
+                                    <h5><span id="errCategory    " style="color:red" class="errorMsg"></span></h5>*@
+                                    <select class="form-control" id="SId" name="Id" asp-for="Id"
+                                            asp-items="@(new SelectList(string.Empty,"Id","Title"))"></select>
+                                    <br />
+                                    <h5><span id="errSIdCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtAadharNumberCashWithdrawal" placeholder="Aadhar Number">
+                                    <br />
+                                    <h5><span id="errtxtAadharNumberCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtAmountCashWithdrawal" placeholder="Enter Amount">
+                                    <br />
+                                    <h5><span id="errtxtAmountCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <div class="tacbox">
+                                        <input id="checkboxCashWithdrawal" type="checkbox" />
+                                        <label for="checkbox">
+                                            Terms & Conditions<br />
+                                            Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                    <button class="button-21" style="width: 200px;">Next</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="BalanceEnquiry" class="tabcontent">
+        <div class="title">
+            @*-------------------------------------------<!--Balance Enquiry-->------------------------------------------------------*@
+            <div class="row justify-content-center" style="display: flex;justify-content: center;">
+                <div class="col-md-5">
+                    <div class="card">
+                        <h2 class="card-title text-center">Customer Details</h2>
+                        <div class="card-body py-md-4">
+                            <form _lpchecked="1">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtCustomerNameBalanceEnquiry" placeholder="Customer Name">
+                                    <br />
+                                    <h5><span id="errtxtCustomerNameBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtMobileNumBalanceEnquiry" placeholder="Mobile Number">
+                                    <br />
+                                    <h5><span id="errtxtMobileNumBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    @*@if (ViewBag.Caterory != null)
+                                    {
+                                    @Html.DropDownListFor(ViewBag.Caterory as SelectList , "-- Choose Bank --" ,  new {@class="form-control", @style="margin-left: -50px"})
+                                    }
+                                    <br />
+                                    <h5><span id="errCategory    " style="color:red" class="errorMsg"></span></h5>*@
+                                    <select class="form-control" id="SId" name="Id" asp-for="Id"
+                                            asp-items="@(new SelectList(string.Empty,"Id","Title"))"></select>
+                                    <br />
+                                    <h5><span id="errSIdBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtAadharNumberBalanceEnquiry" placeholder="Aadhar Number">
+                                    <br />
+                                    <h5><span id="errtxtAadharNumberBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <div class="tacbox">
+                                        <input id="checkboxBalanceEnquiry" type="checkbox" />
+                                        <label for="checkbox">
+                                            Terms & Conditions<br />
+                                            Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                    <button class="button-21" style="width: 200px;">Next</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="MiniStatement" class="tabcontent">
+        <div class="title">
+            @*-------------------------------------------<!--Mini Statement-->------------------------------------------------------*@
+            <div class="row justify-content-center" style="display: flex;justify-content: center;">
+                <div class="col-md-5">
+                    <div class="card">
+                        <h2 class="card-title text-center">Customer Details</h2>
+                        <div class="card-body py-md-4">
+                            <form _lpchecked="1">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtCustomerNameMiniStatement" placeholder="Customer Name">
+                                    <br />
+                                    <h5><span id="errtxtCustomerNameMiniStatement" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtMobileNum" placeholder="Mobile Number">
+                                    <br />
+                                    <h5><span id="errtxtMobileNum" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    @*@if (ViewBag.Caterory != null)
+                                    {
+                                    @Html.DropDownListFor(ViewBag.Caterory as SelectList , "-- Choose Bank --" ,  new {@class="form-control", @style="margin-left: -50px"})
+                                    }
+                                    <br />
+                                    <h5><span id="errCategory    " style="color:red" class="errorMsg"></span></h5>*@
+                                    <select class="form-control" id="SId" name="Id" asp-for="Id"
+                                            asp-items="@(new SelectList(string.Empty,"Id","Title"))"></select>
+                                    <br />
+                                    <h5><span id="errSIdMiniStatement" style="color:red" class="errorMsg"></span></h5>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="txtAadharNumberMiniStatement" placeholder="Aadhar Number">
+                                    <br />
+                                    <h5><span id="errtxtAadharNumberMiniStatement" style="color:red" class="errorMsg"></span></h5>
+                                </div>
+                                <div class="form-group">
+                                    <div class="tacbox">
+                                        <input id="checkboxMiniStatement" type="checkbox" />
+                                        <label for="checkbox">
+                                            Terms & Conditions<br />
+                                            Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                    <button class="button-21" style="width: 200px;">Next</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
+</script>

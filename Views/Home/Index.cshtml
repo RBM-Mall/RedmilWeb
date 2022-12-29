@@ -1,0 +1,533 @@
+@using Project_Redmil_MVC
+@{
+    ViewData["Title"] = "REDMIL – A portal for important services required by Indians";
+    Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
+}
+
+<link href="~/css/loader.css" rel="stylesheet" />
+
+<style>
+    .nWhEP .GkeQS ._3OoXW {
+        width: 507px;
+    }
+
+</style>
+
+<div id="Moduleloader-page" class="jssorl-009-spin">
+    <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+</div>
+<!-- RedMIl Intro Start -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 style="float: right;color: red;font-weight: 600;" class="text-end">
+                @TempData["Message"]
+            </h3>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="col-md-6 col-sm-6 col-lg-6">
+                <div class="nWhEP">
+                    <div class="GkeQS">
+                        <div class="_3OoXW">
+                            <div class="_1kjEe">
+                                <img src="~/css/ImageLogo/redmil-new-logo2.png" alt="RedMil">
+                            </div>
+                            <h1 id="siteContentH">India's Most-loved Payments App</h1>
+                            <!-- Define the content of the page that would be changed -->
+                            <p class="_3De77" id="siteContent">
+                                Recharge &amp; pay bills, book flights &amp; movie tickets, open a savings account, invest in stocks &amp; mutual funds, and do a lot more.
+                            </p>
+                        </div>
+                        <a id="siteContentDwnldBtn" class="downloadBtn" style="vertical-align:middle;padding-top:10px;text-decoration: unset;" href="https://play.google.com/store/apps/details?id=com.wts.redmilapp" target="_blank" rel="noopener noreferrer">
+                            Download RedMil Business Mall App
+                            <img src="~/css/ImageLogo/google-play.png" width="23" height="25" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6">
+                <div class="nWhEP">
+                    <div class="GkeQS">
+                        <div class="dashImg">
+                            <img src="~/css/ImageLogo/Web-Intro.png" alt="BannerImage" class="DashImg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RedMil Intro Ends -->
+<!--Sidebar start section-->
+
+<div class="section team-area padding-top-bottom-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="section-title padding-bottom-30">
+                    <h2><span>Our Services</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <section class="customer-logos slider" data-arrows="true">
+
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/BankingServices/BankingServices"><img src="~/css/Images/Banking-services.png" alt="Banking and Financial Services"></a>
+                    </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/BillPaymentsServicesNavigation/BillPaymentsServicesNavigation"><img src="~/css/Images/Bill-Payment-services.png" alt="Payment Services"></a>
+                    </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/BusinessSolutionServicesNavigation/BusinessSolutionServicesNavigation"><img src="~/css/Images/Business-solution-services.png" alt="Tours and Travel Services"></a>
+                    </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/DigitalDistributionNavigation/DigitalDistributionNavigation"><img src="~/css/Images/Digital-Distribution-servuces.png" alt="Bada Bazaar Services"></a>
+                    </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/PaymentServicesNavigation/PaymentServicesNavigation"><img src="~/css/Images/Payment-services.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/LoanServicesNavigation/LoanServicesNavigation"><img src="~/css/Images/Loan-services.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                    <div class="slide">
+                        <a href="~/InvestmentServicesNavigation/InvestmentServicesNavigation"><img src="~/css/Images/Investment-Services.png" alt="Devices and Other Services"></a>
+                    </div>
+                </div>
+
+                @* <div class="col-custom text-center col-centered">
+                <div class="slide">
+                <img src="~/css/Images/Travel-services.png">
+                </div>
+                </div>
+                <div class="col-custom text-center col-centered">
+                <div class="slide">
+                <img src="~/css/Images/Recharge-services.png">
+                </div>
+                </div>*@
+            </section>
+        </div>
+    </div>
+</div>
+
+<!--Sidebar Ends Section-->
+<!-- About Us Start -->
+
+<div class="about-area padding-top-bottom-60">
+    <div class="container">
+        <div class="row">
+            <div class="section-title text-center padding-bottom-30">
+                <h2><span>About Us</span></h2>
+            </div>
+            <div class="col-sm-6">
+                <div class="video-view" id="video-view">
+                    <div class="cont">
+                        <!-- </video> -->
+                        <iframe style="width:99%;height:400px" src="https://www.youtube.com/embed/1hNIGE3Pq3M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        @* <iframe style="width:100%; height:400px" src="https://www.youtube.com/embed/v=S78dUi6wdlk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>*@
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="about-content">
+                    <p>RedMil Business Mall is India’s leading Rural Fintech company empowering merchants / nanopreneurs, called RedMil Business Mall Adhikaris through technology to cater to the digital and financial needs of rural citizens in India. RedMil Business Mall through its cutting edge technology and wide network of RedMil Business Mall Adhikaris, is bridging the gaps in access to various financial services for the masses across the length and breadth of India.</p>
+                    <p>A 100% subsidiary of DiGiSPICE Technologies (NSE: DIGISPICE), RedMil Business Mall offers essential digital financial and e-retail services such as cash deposit and Aadhaar led withdrawals, mini ATM services, bill payments and recharge, money transfers, loans, tours and travel and more to the rural citizens through RedMil Business Mall Adhikari App (available on Google play store with an industry best rating of 4.4) and Web portal.</p>
+                    <p>The RedMil Business Mall network, comprising more than 10 lakh Adhikaris, covers more than 18,000 pin codes, 700 districts and 5,000 blocks, serving over 10 crore households. In fact, the network now covers 95% rural pin codes in India.</p>
+
+                </div>
+                <div>
+                    <a class="button-21" href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About Us Ends -->
+<!-- Advantage of RedMil Business Mall {Start} -->
+
+<div class="section services-area padding-top-bottom-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center padding-bottom-30">
+                <div class="section-title">
+                    <h2><span>Advantages of RedMil Business Mall</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-50">
+            <div class="col-md-1 col-sm-1 col-12 col-xs-12"></div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6">
+                <div class="service-box-3 bg-wt-round">
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="~/css/Img/Minimum-Investment.png" class="img-responsive" alt="Business opportunity with minimal investments" title="Business opportunity with minimal investments">
+                        </div>
+                        <h4>Business opportunity with zero investment</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6">
+                <div class="service-box-3 bg-wt-round">
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="~/css/Img/easy-onboarding-on.png" class="img-responsive" alt="Easy onboarding on our platform" title="Easy onboarding on our platform">
+                        </div>
+                        <h4>Easy onboarding on <br>our platform</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6">
+                <div class="service-box-3  bg-wt-round">
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="~/css/Img/Banking-digital-services.png" class="img-responsive" alt="One stop shop for all banking digital services" title="One stop shop for all banking &amp; digital services">
+                        </div>
+                        <h4>One stop shop for all <br> Digital &amp; Financial services</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6">
+                <div class="service-box-3 bg-wt-round">
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="~/css/Img/high-earning.png" class="img-responsive" alt="High earning potential" title="High earning potential">
+                        </div>
+                        <h4>High earning<br> potential</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6">
+                <div class="service-box-3 bg-wt-round">
+                    <div class="inner">
+                        <div class="advantage-images">
+                            <img src="~/css/Img/superior-secure.png" class="img-responsive" alt="Superior &amp; secure technology platform" title="Superior &amp; secure technology platform">
+                        </div>
+                        <h4>Secure &amp; Reliable <br> technology platform</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br />
+<!--Slider Starts Here-->
+
+<div class="section single-services-area">
+    <div class="row" style="margin-right: 0;">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+                <div class="item" id="mySlides">
+                    <img src="~/css/ImageSlide/REDMIL-BUSINESS-MALL-01.png" alt="Chania" width="460" height="345">
+                </div>
+
+                <div class="item" id="mySlides">
+                    <img src="~/css/ImageSlide/REDMIL-BUSINESS-MALL-02.png" alt="Chania" width="460" height="345">
+
+                </div>
+
+                <div class="item" id="mySlides">
+                    <img src="~/css/ImageSlide/your-community-banner.png" alt="Flower" width="460" height="345">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Slider Ends Here-->
+
+<br />
+<br />
+
+<!--TagLine starts Here-->
+
+<div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="call-to-action">
+                    <div class="row">
+                        <div class="col-sm-7 col-xs-12">
+                            <h3 class="padding-left-right-50">Zero lagat aur Zero monthly rental se shuru karein apni Digital Dukaan</h3>
+                        </div>
+                        <div class="col-sm-5 col-xs-12 text-right">
+                            <div class="read-more padding-top-bottom-40">
+                                <a href="https://play.google.com/store/search?q=redmill+business+mall+app&amp;c=apps" target="_blank" class="button-23">Join Now </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--TagLine ends Here-->
+<!-- Advantages of RedMil Business Mall {End} -->
+<!-- Partner Logo Start-->
+
+<div class="section partner-logo-area padding-top-60 padding-bottom-70">
+    <div class="container">
+        <div class="row align-items-center" id="ourPartner-slide" style="display: none;">
+            <div class="col-sm-12">
+                <div class="section-title text-center padding-bottom-30">
+                    <h2><span>Our  Partners</span></h2>
+                </div>
+                <div class="partner-logo owl-carousel owl-theme" style="opacity: 1; display: block;">
+                    <section class="customer-logos slider" data-arrows="true">
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/adani.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/airtel.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/amazon.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/au.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Axis-Bank.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Bajaj-a.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/bajaj-f.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Birla.png"></div>
+
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/bob.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/BSNL.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/citi-bank.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Club-mahindra.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/dhani.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/dish-tv.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/equitas.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/FI.png"></div>
+
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/freecharge.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Fullerton.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/HDFC-bank.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/HDFC-Life.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/icici-bank.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/icici-Securities.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/itc.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/jio.png"></div>
+
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/kotak-811.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Loan-pe-gyan.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/marriott.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/money-tap.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Money-View.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/mp-electricity.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/nippon.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/NPCI.png"></div>
+
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/paytm.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/PNB.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Pocket.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Reliance.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Safe-Gold.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/SBI.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Sbi-card.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/SBI-Mutual.png"></div>
+
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Shriram.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Sun.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/tata.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Tata-Aig.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/the-new-india.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/United-India.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Upward.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/UTI.png"></div>
+
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/vi.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/Videocon.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/yes-bank.png"></div>
+                        <div class="slide" style="width: 228px;"><img src="~/css/partner/yes-securities.png"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Partner Logo End -->
+<!-- Testimonial Start-->
+<!--Testimonial End-->
+<!-- Badlav ka Prateek Stories Starts -->
+
+
+<div class="container-fluid" id="tesim">
+    <div class="row align-items-center">
+        <div class="col-sm-12">
+            <div class="section-title text-center padding-bottom-30">
+                <h2><span>Testimonial</span></h2>
+            </div>
+        </div>
+    </div>
+
+    <section class="sliderTesti">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/01.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/02.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/03.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/04.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/05.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/06.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/07.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/08.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/09.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/10.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/11.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/12.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/13.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/14.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/15.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/16.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/17.png" />
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonialBox">
+                        <img class="imgBx" src="~/css/Testim/18.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<script>
+
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        autoplay: {
+            delay: 4500,
+        },
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: true
+        },
+        loop: true
+    });
+
+    // ---------------------------------
+
+
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("item");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2500); // Change image every 3 seconds
+    }
+
+
+
+
+
+    $(window).on("load", function () {
+
+        $("#Moduleloader-page").fadeOut(3000);
+
+    });
+</script>
