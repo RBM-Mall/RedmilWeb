@@ -1316,7 +1316,7 @@
         else {
             $.ajax({
                 url: "/Passbook/NefttransferAmount",
-                data: { 'Amount': Amount, 'ServiceId': ServiceId, 'OpId': OpId },
+                data: { 'Amount': Amount, 'ServiceId': ServiceId, 'OpId': OpId},
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
@@ -1548,7 +1548,7 @@
 
 
     function Veryfyimage() {
-        debugger;
+        
         var data_uri = document.getElementById('snapShot').innerHTML;
         var result = data_uri.indexOf(",");
         var legth = data_uri.length;
@@ -1559,7 +1559,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+            
                 if (data.statuscode == "ERR") {
            
                       //$('.close').click();
@@ -2028,7 +2028,6 @@
             for (var i = 0; i < files.length; i++) {
                 fileData.append("file", files[i]);
             }
-
             var Account = $('#text_Account').val();
             var ConfirmAccount = $('#text_ConfirmAccount').val();
             var IFSc = $('#text_Ifsc').val();
@@ -2041,7 +2040,6 @@
             fileData.append("BeneficaryName", BeneficaryName);
             fileData.append("BankList", BankList);
             fileData.append("Relation", Relation);
-
             if (Account.trim() == "") {
                 $('#Account').text('Please Enter Acount Number');
                 $('#Account').css('color', 'red');

@@ -32,11 +32,11 @@ namespace Project_Redmil_MVC.CommonHelper
 
         // AEPS
 
-        public static string GetAepsKycDetailsNew = "GetAepsKycDetailsNew";        
+        public static string GetAepsKycDetailsNew = "GetAepsKycDetailsNew";
         public static string GetAepsRoutingDetails = "GetAepsRoutingDetails";
         public static string GetAgentKycId = "GetAgentKycId";
 
-       
+
 
         //MyTeamDashboard
         public static string GetMyTeamMemberCountNew = "GetMyTeamMemberCountNew";
@@ -79,6 +79,12 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string InsertMultiAccountDetailsForUsers = "InsertMultiAccountDetailsForUsers";
         public static string SendOTPForMultiAccount = "SendOTPForMultiAccount";
         public static string ValidateOTPForMultiAccount = "ValidateOTPForMultiAccount";
+        public static string transactionsreport = "transactions/report";
+        public static string GetCashdepositeMode = "GetCashdepositeMode";
+        public static string MakeCashDeposite = "MakeCashDeposite";
+        public static string File = "FileUploading/UploadFile";
+        //public static string transactions/report = "transactions/report";
+
 
         //LIC India Bil
         public static string GetLICBill = "fetchlicbill";
@@ -99,5 +105,5 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string ProcessIMPSRequest = "processimpsrequest";
 
     }
-    
+
 }
