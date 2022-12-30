@@ -12,5 +12,9 @@ namespace Project_Redmil_MVC.Controllers.ErrorController
         {
             return View();
         }
+        public IActionResult ErrorForExceptionLog()
+        {
+            return View();  
+        }
     }
 }

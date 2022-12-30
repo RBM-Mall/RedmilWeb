@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project_Redmil_MVC.CommonHelper;
+using Project_Redmil_MVC.Models;
 using Project_Redmil_MVC.Models.RequestModel;
 using Project_Redmil_MVC.Models.RequestModel.DTHRequestModel;
 using Project_Redmil_MVC.Models.ResponseModel;
@@ -35,47 +36,62 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public JsonResult DTHRecharge(string opName, string cutomerid, string amount, string payment)
         {
             DTHRechargeRequestModel dTHRechargeRequestModel = new DTHRechargeRequestModel();
-            dTHRechargeRequestModel.Userid = "2084";
-            dTHRechargeRequestModel.Mobileno = cutomerid;
-            dTHRechargeRequestModel.Amount = ToDigitsOnly(amount);
-            dTHRechargeRequestModel.Wallet = payment;
-            var responseOperators = DTHOperatorList();
-            dTHRechargeRequestModel.OpId = responseOperators.Where(x => x.Operatorname == opName).FirstOrDefault().Id.ToString();
-            dTHRechargeRequestModel.ServiceId = responseOperators.Where(x => x.Operatorname == opName).FirstOrDefault().ServiceId.ToString();
-            dTHRechargeRequestModel.Mode = "App";
-            #region Checksum (Recharge|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Recharge", Checksum.checksumKey, dTHRechargeRequestModel.Userid,
-                dTHRechargeRequestModel.ServiceId.Trim(), dTHRechargeRequestModel.OpId.Trim(), dTHRechargeRequestModel.Mobileno.Trim(),
-                dTHRechargeRequestModel.Mode, dTHRechargeRequestModel.Amount.Trim(), dTHRechargeRequestModel.Wallet);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            dTHRechargeRequestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/Recharge"); 
-            var client = new RestClient($"{Baseurl}{ApiName.Recharge}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(dTHRechargeRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            if (deserialize.Statuscode == "TXN")
+            try
             {
-                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
+                dTHRechargeRequestModel.Userid = "2084";
+                dTHRechargeRequestModel.Mobileno = cutomerid;
+                dTHRechargeRequestModel.Amount = ToDigitsOnly(amount);
+                dTHRechargeRequestModel.Wallet = payment;
+                var responseOperators = DTHOperatorList();
+                dTHRechargeRequestModel.OpId = responseOperators.Where(x => x.Operatorname == opName).FirstOrDefault().Id.ToString();
+                dTHRechargeRequestModel.ServiceId = responseOperators.Where(x => x.Operatorname == opName).FirstOrDefault().ServiceId.ToString();
+                dTHRechargeRequestModel.Mode = "App";
+                #region Checksum (Recharge|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Recharge", Checksum.checksumKey, dTHRechargeRequestModel.Userid,
+                    dTHRechargeRequestModel.ServiceId.Trim(), dTHRechargeRequestModel.OpId.Trim(), dTHRechargeRequestModel.Mobileno.Trim(),
+                    dTHRechargeRequestModel.Mode, dTHRechargeRequestModel.Amount.Trim(), dTHRechargeRequestModel.Wallet);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                dTHRechargeRequestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Recharge"); 
+                var client = new RestClient($"{Baseurl}{ApiName.Recharge}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(dTHRechargeRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                if (deserialize.Statuscode == "TXN")
+                {
+                    var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
 
-                return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
+
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                }
+
+                return Json("");
             }
-            else if (deserialize.Statuscode == "ERR")
+            catch (Exception ex)
             {
-                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
-
-                return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = dTHRechargeRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
             }
-
             return Json("");
-
-
         }
 
         #endregion
@@ -85,44 +101,63 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public List<GetDTHOperatorListResponseModel> DTHOperatorList()
         {
             GetDTHOperatorListRequestModel requestModel = new GetDTHOperatorListRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.ServiceId = "23";
             List<GetDTHOperatorListResponseModel> lstresponse = new List<GetDTHOperatorListResponseModel>();
-
-            #region Checksum (GetOperaterList|Unique Key|UserId|ServiceId)
-
-            string input = Checksum.MakeChecksumString("GetOperaterList", Checksum.checksumKey, requestModel.Userid, requestModel.ServiceId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetOperaterList");
-            var client = new RestClient($"{Baseurl}{ApiName.GetOperaterList}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            var dataList = JsonConvert.DeserializeObject<List<GetDTHOperatorListResponseModel>>(JsonConvert.SerializeObject(data));
-             if (dataList != null)
+            try
             {
-                foreach (var item in dataList)
+                requestModel.Userid = "2084";
+                requestModel.ServiceId = "23";
+                
+
+                #region Checksum (GetOperaterList|Unique Key|UserId|ServiceId)
+
+                string input = Checksum.MakeChecksumString("GetOperaterList", Checksum.checksumKey, requestModel.Userid, requestModel.ServiceId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetOperaterList");
+                var client = new RestClient($"{Baseurl}{ApiName.GetOperaterList}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                var dataList = JsonConvert.DeserializeObject<List<GetDTHOperatorListResponseModel>>(JsonConvert.SerializeObject(data));
+                if (dataList != null)
                 {
-                    lstresponse.Add(new GetDTHOperatorListResponseModel
+                    foreach (var item in dataList)
                     {
-                        Id = item.Id,
-                        Operatorname = item.Operatorname,
-                        Opcode = item.Opcode,
-                        Img = Baseurl + item.Img,
-                        ServiceId = item.ServiceId,
-                    });
+                        lstresponse.Add(new GetDTHOperatorListResponseModel
+                        {
+                            Id = item.Id,
+                            Operatorname = item.Operatorname,
+                            Opcode = item.Opcode,
+                            Img = Baseurl + item.Img,
+                            ServiceId = item.ServiceId,
+                        });
+                    }
                 }
+                return lstresponse;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
             }
             return lstresponse;
+
         }
         #endregion
 
@@ -133,29 +168,48 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public List<GetDTHAllPlansResponseModel> GetAllDTHPlans(string opName)
         {
             GetDTHAllPlansRequestModel requestModel = new GetDTHAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = "";
-            requestModel.OpName = opName;
-            #region Checksum (DthPlan|Unique Key|UserId|ServiceId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = "";
+                requestModel.OpName = opName;
+                #region Checksum (DthPlan|Unique Key|UserId|ServiceId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
 
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            getDTHAllPlans = datalist.ToList();
-            //GetAirtelHDPack("Airtel HD Pack");
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                getDTHAllPlans = datalist.ToList();
+                //GetAirtelHDPack("Airtel HD Pack");
+                return getDTHAllPlans;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
             return getDTHAllPlans;
+
+
         }
         #endregion
 
@@ -166,78 +220,97 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public JsonResult GetFirstDTHPlan(string opName, string planName)
         {
             GetDTHAllPlansRequestModel requestModel = new GetDTHAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = "";
-            requestModel.OpName = opName;
-            #region Checksum (DthPlan|Unique Key|UserId|ServiceId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = "";
+                requestModel.OpName = opName;
+                #region Checksum (DthPlan|Unique Key|UserId|ServiceId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
 
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            getDTHAllPlans = datalist.ToList();
-            if (opName == "Airtel DTH")
-            {
-                var a = getDTHAllPlans.Where(x => x.PlanName == "Airtel SD Pack");
-                if (!string.IsNullOrEmpty(planName))
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                getDTHAllPlans = datalist.ToList();
+                if (opName == "Airtel DTH")
                 {
-                    var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                    return Json(b);
+                    var a = getDTHAllPlans.Where(x => x.PlanName == "Airtel SD Pack");
+                    if (!string.IsNullOrEmpty(planName))
+                    {
+                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                        return Json(b);
+                    }
+                    return Json(a);
                 }
-                return Json(a);
+                else if (opName == "DishTV")
+                {
+                    var a = getDTHAllPlans.Where(x => x.PlanName == "Kannada South Combo Pack");
+                    if (!string.IsNullOrEmpty(planName))
+                    {
+                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                        return Json(b);
+                    }
+                    return Json(a);
+                }
+                else if (opName == "Videocon D2H")
+                {
+                    var a = getDTHAllPlans.Where(x => x.PlanName == "Ala Carte Top Up");
+                    if (!string.IsNullOrEmpty(planName))
+                    {
+                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                        return Json(b);
+                    }
+                    return Json(a);
+                }
+                else if (opName == "Tata Sky DTH")
+                {
+                    var a = getDTHAllPlans.Where(x => x.PlanName == "OTT Combo Packs");
+                    if (!string.IsNullOrEmpty(planName))
+                    {
+                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                        return Json(b);
+                    }
+                    return Json(a);
+                }
+                else if (opName == "Sun Direct DTH")
+                {
+                    var a = getDTHAllPlans.Where(x => x.PlanName == "Malayalam Curated Pack");
+                    if (!string.IsNullOrEmpty(planName))
+                    {
+                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                        return Json(b);
+                    }
+                    return Json(a);
+                }
+                return Json("");
             }
-            else if (opName == "DishTV")
+            catch (Exception ex)
             {
-                var a = getDTHAllPlans.Where(x => x.PlanName == "Kannada South Combo Pack");
-                if (!string.IsNullOrEmpty(planName))
-                {
-                    var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                    return Json(b);
-                }
-                return Json(a);
-            }
-            else if (opName == "Videocon D2H")
-            {
-                var a = getDTHAllPlans.Where(x => x.PlanName == "Ala Carte Top Up");
-                if (!string.IsNullOrEmpty(planName))
-                {
-                    var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                    return Json(b);
-                }
-                return Json(a);
-            }
-            else if (opName == "Tata Sky DTH")
-            {
-                var a = getDTHAllPlans.Where(x => x.PlanName == "OTT Combo Packs");
-                if (!string.IsNullOrEmpty(planName))
-                {
-                    var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                    return Json(b);
-                }
-                return Json(a);
-            }
-            else if (opName == "Sun Direct DTH")
-            {
-                var a = getDTHAllPlans.Where(x => x.PlanName == "Malayalam Curated Pack");
-                if (!string.IsNullOrEmpty(planName))
-                {
-                    var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                    return Json(b);
-                }
-                return Json(a);
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
             }
             return Json("");
+
+
         }
         #endregion
 
@@ -257,27 +330,45 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public JsonResult GetBalance()
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
-            getBalanceRequestModel.Userid = "2084";
-            #region Checksum (GetBalance|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            getBalanceRequestModel.checksum = CheckSum;
-            //API URL Has been changed by Siddhartha Sir
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
-            var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(getBalanceRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-            List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-            lstdata = datalist.ToList();
-            return Json(lstdata);
+            try
+            {
+                getBalanceRequestModel.Userid = "2084";
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
+                var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                lstdata = datalist.ToList();
+                return Json(lstdata);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
         }
         #endregion
 

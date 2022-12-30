@@ -24,26 +24,45 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 return RedirectToAction("ErrorForLogin", "Error");
             }
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
-            getBalanceRequestModel.Userid = "2084";
-            #region Checksum (GetBalance|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            getBalanceRequestModel.checksum = CheckSum;
-            //API URL Has been changed by Siddhartha Sir
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
-            var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(getBalanceRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-            lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+            try
+            {
+                getBalanceRequestModel.Userid = "2084";
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
+                var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+
+                lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                return View(lstdata);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
             return View(lstdata);
+
         }
 
         #region GetBalance
@@ -51,26 +70,44 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         public List<GetBalanceResponseModel> GetBalance()
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
-            getBalanceRequestModel.Userid = "2084";
-            #region Checksum (GetBalance|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            getBalanceRequestModel.checksum = CheckSum;
-            //API URL Has been changed by Siddhartha Sir
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
-            var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(getBalanceRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-            lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+            try
+            {
+                getBalanceRequestModel.Userid = "2084";
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
+                var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                return lstdata;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
             return lstdata;
+
         }
 
         #endregion
@@ -81,39 +118,57 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         {
 
             GetSenderStatusRequestModel requestModel = new GetSenderStatusRequestModel();
-            requestModel.UserId = "2084";
-            requestModel.SenderMobile = mobileNum;
-            #region Checksum (senderstatus|Unique Key|UserId|ServiceId)
-
-            string input = Checksum.MakeChecksumString("senderstatus", Checksum.checksumKey, requestModel.UserId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-            requestModel.Checksum = CheckSum;
-            var client = new RestClient($"{Baseurl}{ApiName.SenderStatus}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
-            var data = deserializ.Data;
-            if (data != null)
+            try
             {
-                //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
-                //ViewBag.MyMessage = JsonConvert.SerializeObject(deserializ);
-                HttpContext.Session.SetString("SenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
-                HttpContext.Session.SetString("SenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
-                HttpContext.Session.SetString("SenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
-                return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
+                requestModel.UserId = "2084";
+                requestModel.SenderMobile = mobileNum;
+                #region Checksum (senderstatus|Unique Key|UserId|ServiceId)
+
+                string input = Checksum.MakeChecksumString("senderstatus", Checksum.checksumKey, requestModel.UserId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+                requestModel.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.SenderStatus}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
+                var data = deserializ.Data;
+                if (data != null)
+                {
+                    //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
+                    //ViewBag.MyMessage = JsonConvert.SerializeObject(deserializ);
+                    HttpContext.Session.SetString("SenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
+                    HttpContext.Session.SetString("SenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
+                    HttpContext.Session.SetString("SenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
+                    return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
+                }
+
+                else
+                {
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                }
+                //return Json("");
             }
-
-            else
+            catch (Exception ex)
             {
-                return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
             }
             return Json("");
+
         }
         #endregion
 
@@ -122,28 +177,47 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         public JsonResult RecentSenders()
         {
             GetRecentSenderListRequestModel requestModel = new GetRecentSenderListRequestModel();
-            requestModel.UserId = "2084";
-            requestModel.PageNumber = "1";
-            #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
-
-            string input = Checksum.MakeChecksumString("senderdetailsbyuserid", Checksum.checksumKey, requestModel.UserId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-            requestModel.Checksum = CheckSum;
-            var client = new RestClient($"{Baseurl}{ApiName.SenderDetailsByuserid}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserializ = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserializ.Data;
             List<GetRecentSenderListResponseModel> lstData = new List<GetRecentSenderListResponseModel>();
-            lstData= JsonConvert.DeserializeObject<List<GetRecentSenderListResponseModel>>(data.ToString());
-            //return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
-            return Json(lstData);
+            try
+            {
+                requestModel.UserId = "2084";
+                requestModel.PageNumber = "1";
+                #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
+
+                string input = Checksum.MakeChecksumString("senderdetailsbyuserid", Checksum.checksumKey, requestModel.UserId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+                requestModel.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.SenderDetailsByuserid}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserializ = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserializ.Data;
+
+                lstData = JsonConvert.DeserializeObject<List<GetRecentSenderListResponseModel>>(data.ToString());
+                //return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                return Json(lstData);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
         }
         #endregion
 
@@ -151,40 +225,56 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         public IActionResult SendOTP(string mobNum, string name)
         {
             GetOTPRequestModel requestModel = new GetOTPRequestModel();
-            requestModel.UserId = "2084";
-            requestModel.SenderName = name;
-            requestModel.SenderMobile = mobNum;
-            #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
-
-            string input = Checksum.MakeChecksumString("getfinootp", Checksum.checksumKey, requestModel.UserId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-            requestModel.Checksum = CheckSum;
-            var client = new RestClient($"{Baseurl}{ApiName.GetFinoOtp}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetOTPResponseModel>>>(response.Content);
-            var data = deserializ.Data;
-            if (data != null)
+            try
             {
-                if (deserializ.Statuscode == "TXN")
-                {
-                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
-                    //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
-                    //return RedirectToAction("DMTDashboard", "DMT2Dashboard");
-                }
-                else
-                {
-                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
-                }
+                requestModel.UserId = "2084";
+                requestModel.SenderName = name;
+                requestModel.SenderMobile = mobNum;
+                #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
 
+                string input = Checksum.MakeChecksumString("getfinootp", Checksum.checksumKey, requestModel.UserId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+                requestModel.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.GetFinoOtp}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetOTPResponseModel>>>(response.Content);
+                var data = deserializ.Data;
+                if (data != null)
+                {
+                    if (deserializ.Statuscode == "TXN")
+                    {
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                        //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
+                        //return RedirectToAction("DMTDashboard", "DMT2Dashboard");
+                    }
+                    else
+                    {
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    }
+
+                }
+                return Json("");
             }
-
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
             return Json("");
         }
         #endregion
@@ -194,60 +284,78 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         public JsonResult ConfirmOTP(string mobNum, string otp, string name)
         {
             GetOtpConfirmationRequestModel requestModel = new GetOtpConfirmationRequestModel();
-            requestModel.UserId = "2084";
-            requestModel.OTP = otp;
-            requestModel.SenderMobile = mobNum;
-            #region Checksum (otpconfirmation|Unique Key|UserId)
-
-            string input = Checksum.MakeChecksumString("otpconfirmation", Checksum.checksumKey, requestModel.UserId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-            requestModel.Checksum = CheckSum;
-            var client = new RestClient($"{Baseurl}{ApiName.OtpConfirmation}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetOtpConfirmationResponseModel>>>(response.Content);
-            if (deserializ.Statuscode == "TXN")
+            try
             {
-                GetAddSenderRequestModel requestmodel = new GetAddSenderRequestModel();
-                requestmodel.UserId = "2084";
-                requestmodel.SenderName = name;
-                requestmodel.SenderMobile = deserializ.Data.FirstOrDefault().SenderMobile;
-                #region Checksum (addsender|Unique Key|UserId)
+                requestModel.UserId = "2084";
+                requestModel.OTP = otp;
+                requestModel.SenderMobile = mobNum;
+                #region Checksum (otpconfirmation|Unique Key|UserId)
 
-                string input1 = Checksum.MakeChecksumString("addsender", Checksum.checksumKey, requestModel.UserId);
-                string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
+                string input = Checksum.MakeChecksumString("otpconfirmation", Checksum.checksumKey, requestModel.UserId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
 
                 #endregion
-                requestmodel.Checksum = CheckSum1;
-                var client1 = new RestClient($"{Baseurl}{ApiName.AddSender}");
-                var request1 = new RestRequest(Method.POST);
-                request1.AddHeader("Content-Type", "application/json");
-                var json1 = JsonConvert.SerializeObject(requestmodel);
-                request1.AddJsonBody(json1);
-                IRestResponse response1 = client1.Execute(request1);
-                var result1 = response1.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetAddSenderResponseModel>>>(response1.Content);
-                var data1 = deserialize.Data;
-                if (data1 != null)
+                requestModel.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.OtpConfirmation}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetOtpConfirmationResponseModel>>>(response.Content);
+                if (deserializ.Statuscode == "TXN")
                 {
+                    GetAddSenderRequestModel requestmodel = new GetAddSenderRequestModel();
+                    requestmodel.UserId = "2084";
+                    requestmodel.SenderName = name;
+                    requestmodel.SenderMobile = deserializ.Data.FirstOrDefault().SenderMobile;
+                    #region Checksum (addsender|Unique Key|UserId)
+
+                    string input1 = Checksum.MakeChecksumString("addsender", Checksum.checksumKey, requestModel.UserId);
+                    string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
+
+                    #endregion
+                    requestmodel.Checksum = CheckSum1;
+                    var client1 = new RestClient($"{Baseurl}{ApiName.AddSender}");
+                    var request1 = new RestRequest(Method.POST);
+                    request1.AddHeader("Content-Type", "application/json");
+                    var json1 = JsonConvert.SerializeObject(requestmodel);
+                    request1.AddJsonBody(json1);
+                    IRestResponse response1 = client1.Execute(request1);
+                    var result1 = response1.Content;
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetAddSenderResponseModel>>>(response1.Content);
+                    var data1 = deserialize.Data;
                     if (data1 != null)
                     {
-                        HttpContext.Session.SetString("SenderMobileNewUser", deserialize.Data.FirstOrDefault().SenderMobile.ToString());
-                        HttpContext.Session.SetString("SenderIdNewUser", deserialize.Data.FirstOrDefault().SenderId.ToString());
-                        HttpContext.Session.SetString("SenderNameNewUser", name.ToString());
-                        return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserialize });
+                        if (data1 != null)
+                        {
+                            HttpContext.Session.SetString("SenderMobileNewUser", deserialize.Data.FirstOrDefault().SenderMobile.ToString());
+                            HttpContext.Session.SetString("SenderIdNewUser", deserialize.Data.FirstOrDefault().SenderId.ToString());
+                            HttpContext.Session.SetString("SenderNameNewUser", name.ToString());
+                            return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserialize });
+                        }
                     }
                 }
+                else if (deserializ.Statuscode == "ERR")
+                {
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                }
+                return Json("");
             }
-            else if (deserializ.Statuscode == "ERR")
+
+            catch (Exception ex)
             {
-                return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
             }
             return Json("");
         }
@@ -260,35 +368,52 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         {
 
             GetSenderStatusRequestModel requestModel = new GetSenderStatusRequestModel();
-            requestModel.UserId = "2084";
-            requestModel.SenderMobile = mobileNum;
-            #region Checksum (senderstatus|Unique Key|UserId|ServiceId)
-
-            string input = Checksum.MakeChecksumString("senderstatus", Checksum.checksumKey, requestModel.UserId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-            requestModel.Checksum = CheckSum;
-            var client = new RestClient($"{Baseurl}{ApiName.SenderStatus}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
-            var data = deserializ.Data;
-            if (data != null)
+            try
             {
-                HttpContext.Session.SetString("RecentSenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
-                HttpContext.Session.SetString("RecentSenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
-                HttpContext.Session.SetString("RecentSenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
-                return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
+                requestModel.UserId = "2084";
+                requestModel.SenderMobile = mobileNum;
+                #region Checksum (senderstatus|Unique Key|UserId|ServiceId)
+
+                string input = Checksum.MakeChecksumString("senderstatus", Checksum.checksumKey, requestModel.UserId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+                requestModel.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.SenderStatus}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
+                var data = deserializ.Data;
+                if (data != null)
+                {
+                    HttpContext.Session.SetString("RecentSenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
+                    HttpContext.Session.SetString("RecentSenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
+                    HttpContext.Session.SetString("RecentSenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
+                    return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
+                }
+
+                else
+                {
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                }
+                //return Json("");
             }
-
-            else
+            catch (Exception ex)
             {
-                return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
             }
             return Json("");
 

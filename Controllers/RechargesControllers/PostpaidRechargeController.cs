@@ -12,9 +12,6 @@ namespace Project_Redmil_MVC.Controllers
 {
     public class PostpaidRechargeController : Controller
     {
-
-        //private readonly ILogger<PostpaidRechargeController> _logger;
-        //private readonly string Baseurl;
         private readonly string Baseurl;
         private readonly IConfiguration _config;
         public PostpaidRechargeController(IConfiguration config)
@@ -32,9 +29,6 @@ namespace Project_Redmil_MVC.Controllers
             }
             return View();
         }
-
-
-
         #region Postpaid Recharge
 
         [HttpPost]
@@ -44,48 +38,62 @@ namespace Project_Redmil_MVC.Controllers
             if ((!string.IsNullOrEmpty(Number)) && (!string.IsNullOrEmpty(Operator)) && (!string.IsNullOrEmpty(Circle)) && (!string.IsNullOrEmpty(Amount)) && (!string.IsNullOrEmpty(Payment)))
             {
                 PrepaidRechargeRequestModel prepaidRechargeRequestModel = new PrepaidRechargeRequestModel();
-                prepaidRechargeRequestModel.Userid = "2084";
-                prepaidRechargeRequestModel.Token = "";
-                var op = ReplaceOperatorName(Operator);
-                var operaterData = GetOperatorList();
-                var responseOperators = operaterData.Value as List<ResponseOperator>;
-                prepaidRechargeRequestModel.OpId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().Id.ToString();
-                prepaidRechargeRequestModel.ServiceId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().ServiceId.ToString();
-                prepaidRechargeRequestModel.Mobileno = Number;
-                prepaidRechargeRequestModel.Mode = "App";
-                prepaidRechargeRequestModel.Amount = ToDigitsOnly(Amount);
-                prepaidRechargeRequestModel.Wallet = Payment;
-                #region Checksum (Recharge|Unique Key|UserId)
-                string input = Checksum.MakeChecksumString("Recharge", Checksum.checksumKey, prepaidRechargeRequestModel.Userid,
-                    prepaidRechargeRequestModel.ServiceId.Trim(), prepaidRechargeRequestModel.OpId.Trim(), prepaidRechargeRequestModel.Mobileno.Trim(),
-                    prepaidRechargeRequestModel.Mode, prepaidRechargeRequestModel.Amount.Trim(), prepaidRechargeRequestModel.Wallet);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                #endregion 
-                prepaidRechargeRequestModel.checksum = CheckSum;
-                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Recharge");
-                var client = new RestClient($"{Baseurl}{ApiName.Recharge}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(prepaidRechargeRequestModel);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                if (deserialize.Statuscode == "TXN")
+                try
                 {
-                    var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
+                    prepaidRechargeRequestModel.Userid = "2084";
+                    prepaidRechargeRequestModel.Token = "";
+                    var op = ReplaceOperatorName(Operator);
+                    var operaterData = GetOperatorList();
+                    var responseOperators = operaterData.Value as List<ResponseOperator>;
+                    prepaidRechargeRequestModel.OpId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().Id.ToString();
+                    prepaidRechargeRequestModel.ServiceId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().ServiceId.ToString();
+                    prepaidRechargeRequestModel.Mobileno = Number;
+                    prepaidRechargeRequestModel.Mode = "App";
+                    prepaidRechargeRequestModel.Amount = ToDigitsOnly(Amount);
+                    prepaidRechargeRequestModel.Wallet = Payment;
+                    #region Checksum (Recharge|Unique Key|UserId)
+                    string input = Checksum.MakeChecksumString("Recharge", Checksum.checksumKey, prepaidRechargeRequestModel.Userid,
+                        prepaidRechargeRequestModel.ServiceId.Trim(), prepaidRechargeRequestModel.OpId.Trim(), prepaidRechargeRequestModel.Mobileno.Trim(),
+                        prepaidRechargeRequestModel.Mode, prepaidRechargeRequestModel.Amount.Trim(), prepaidRechargeRequestModel.Wallet);
+                    string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                    #endregion
+                    prepaidRechargeRequestModel.checksum = CheckSum;
+                    //var client = new RestClient("https://api.redmilbusinessmall.com/api/Recharge");
+                    var client = new RestClient($"{Baseurl}{ApiName.Recharge}");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Content-Type", "application/json");
+                    var json = JsonConvert.SerializeObject(prepaidRechargeRequestModel);
+                    request.AddJsonBody(json);
+                    IRestResponse response = client.Execute(request);
+                    var result = response.Content;
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    var data = deserialize.Data;
+                    if (deserialize.Statuscode == "TXN")
+                    {
+                        var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
 
-                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
+
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    }
                 }
-                else if (deserialize.Statuscode == "ERR")
+                catch (Exception ex)
                 {
-                    var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
-
-                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    ExceptionLogRequestModel requestModel = new ExceptionLogRequestModel();
+                    requestModel.ExceptionMessage = ex;
+                    requestModel.Data = prepaidRechargeRequestModel;
+                    var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Content-Type", "application/json");
+                    var json = JsonConvert.SerializeObject(requestModel);
+                    request.AddJsonBody(json);
+                    IRestResponse response = client.Execute(request);
+                    var result = response.Content;
                 }
-
-
             }
             else
             {
@@ -101,26 +109,43 @@ namespace Project_Redmil_MVC.Controllers
         public JsonResult GetMobileMNPDetails(string MobileNumber)
         {
             RequestModel1 requestModel = new RequestModel1();
-            requestModel.Userid = "2084";
-            requestModel.MobileNo = MobileNumber;
-            #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("GetMobileMNPDetails", Checksum.checksumKey, requestModel.Userid, requestModel.MobileNo.Trim());
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            // var client = new RestClient("https://api.redmilbusinessmall.com/api/GetMobileMNPDetails");
-            var client = new RestClient($"{Baseurl}{ApiName.GetMobileMNPDetails}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var datadeserialize = deserialize.Data;
-            var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
-            List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
-            return Json(data);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.MobileNo = MobileNumber;
+                #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("GetMobileMNPDetails", Checksum.checksumKey, requestModel.Userid, requestModel.MobileNo.Trim());
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                // var client = new RestClient("https://api.redmilbusinessmall.com/api/GetMobileMNPDetails");
+                var client = new RestClient($"{Baseurl}{ApiName.GetMobileMNPDetails}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var datadeserialize = deserialize.Data;
+                var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
+                List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
+                return Json(data);
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -129,27 +154,44 @@ namespace Project_Redmil_MVC.Controllers
         public JsonResult GetBalance()
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
-            getBalanceRequestModel.Userid = "2084";
-            #region Checksum (GetBalance|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            getBalanceRequestModel.checksum = CheckSum;
-            //API URL Has been changed by Siddhartha Sir
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
-            var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(getBalanceRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-            List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-            lstdata = datalist.ToList();
-            return Json(lstdata);
+            try
+            {
+                getBalanceRequestModel.Userid = "2084";
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
+                var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deserialize.Data;
+                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                lstdata = datalist.ToList();
+                return Json(lstdata);
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
 
         #endregion
@@ -245,44 +287,61 @@ namespace Project_Redmil_MVC.Controllers
             var baseImg = "https://api.redmilbusinessmall.com";
             List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
             RequestModel1 requestModel = new RequestModel1();
-            requestModel.Userid = "2084";
-            requestModel.ServiceId = "22";
-
-            #region Checksum (addsender|Unique Key|UserId)
-
-            string input = Checksum.MakeChecksumString("GetOperaterList", Checksum.checksumKey, requestModel.Userid, requestModel.ServiceId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetOperaterList");
-            var client = new RestClient($"{Baseurl}{ApiName.GetOperaterList}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
-            if (datalist != null)
+            try
             {
+                requestModel.Userid = "2084";
+                requestModel.ServiceId = "22";
 
-                foreach (var item in datalist)
+                #region Checksum (addsender|Unique Key|UserId)
+
+                string input = Checksum.MakeChecksumString("GetOperaterList", Checksum.checksumKey, requestModel.Userid, requestModel.ServiceId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetOperaterList");
+                var client = new RestClient($"{Baseurl}{ApiName.GetOperaterList}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                var data = deseserialize.Data;
+                var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
+                if (datalist != null)
                 {
-                    lstresponseOperator.Add(new ResponseOperator
+
+                    foreach (var item in datalist)
                     {
-                        Id = item.Id,
-                        Operatorname = item.Operatorname,
-                        Opcode = item.Opcode,
-                        Img = baseImg + item.Img,
-                        ServiceId = item.ServiceId
-                    });
+                        lstresponseOperator.Add(new ResponseOperator
+                        {
+                            Id = item.Id,
+                            Operatorname = item.Operatorname,
+                            Opcode = item.Opcode,
+                            Img = baseImg + item.Img,
+                            ServiceId = item.ServiceId
+                        });
+                    }
                 }
+                return Json(lstresponseOperator);
             }
-            return Json(lstresponseOperator);
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
