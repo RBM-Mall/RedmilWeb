@@ -53,13 +53,17 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                 var datadeserialize = deserialize.Data;
                 var data = JsonConvert.DeserializeObject<GetMyTeamMemberCountNewResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                if (data != null)
+                if (data.Statuscode != null&& data.Statuscode=="TXN")
                 {
                     return View(data);
                 }
-                else
+                else if (data.Statuscode == "ERR")
                 {
                     return View();
+                }
+                else
+                {
+
                 }
             }
             catch (Exception ex)
@@ -103,7 +107,18 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                 var datadeserialize = deserialize.Data;
                 var data = JsonConvert.DeserializeObject<GetMyTeamMemberCountNewResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                return Json(data);
+                if (data.Statuscode == "TXN")
+                {
+                    return Json(data);
+                }
+                else if (data.Statuscode == "ERR")
+                {
+                    return Json(data);
+                }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {

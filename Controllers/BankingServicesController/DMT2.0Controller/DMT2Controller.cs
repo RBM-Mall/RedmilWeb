@@ -16,7 +16,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         {
             _config = config;
             Baseurl = HelperMethod.GetBaseURl(_config);
-        }  
+        }
         public IActionResult StartUp()
         {
             if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
@@ -43,10 +43,25 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                {
+                    var data = deserialize.Data;
 
-                lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                return View(lstdata);
+                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                    return View(lstdata);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    var data = deserialize.Data;
+
+                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                    return View(lstdata);
+                }
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -89,9 +104,22 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                return lstdata;
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                {
+                    var data = deserialize.Data;
+                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                    return lstdata;
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    var data = deserialize.Data;
+                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                    return lstdata;
+                }
+                else
+                {
+                }
+
             }
             catch (Exception ex)
             {
@@ -137,22 +165,34 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
-                var data = deserializ.Data;
-                if (data != null)
+                if (deserializ.Statuscode == "TXN" && deserializ != null)
                 {
-                    //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
-                    //ViewBag.MyMessage = JsonConvert.SerializeObject(deserializ);
-                    HttpContext.Session.SetString("SenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
-                    HttpContext.Session.SetString("SenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
-                    HttpContext.Session.SetString("SenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
-                    return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
-                }
+                    var data = deserializ.Data;
+                    if (data != null)
+                    {
+                        //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
+                        //ViewBag.MyMessage = JsonConvert.SerializeObject(deserializ);
+                        HttpContext.Session.SetString("SenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
+                        HttpContext.Session.SetString("SenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
+                        HttpContext.Session.SetString("SenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
+                        return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
+                    }
 
-                else
+                    else
+                    {
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                    }
+                    //return Json("");
+                }
+                else if (deserializ.Statuscode == "ERR")
                 {
                     return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
                 }
-                //return Json("");
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -197,11 +237,23 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserializ = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserializ.Data;
+                if (deserializ.Statuscode == "TXN" && deserializ != null)
+                {
+                    var data = deserializ.Data;
 
-                lstData = JsonConvert.DeserializeObject<List<GetRecentSenderListResponseModel>>(data.ToString());
-                //return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
-                return Json(lstData);
+                    lstData = JsonConvert.DeserializeObject<List<GetRecentSenderListResponseModel>>(data.ToString());
+                    //return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    return Json(lstData);
+                }
+                else if (deserializ.Statuscode == "ERR")
+                {
+                    return Json(deserializ);
+                }
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -245,22 +297,33 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetOTPResponseModel>>>(response.Content);
-                var data = deserializ.Data;
-                if (data != null)
+                if (deserializ.Statuscode == "TXN" && deserializ != null)
                 {
-                    if (deserializ.Statuscode == "TXN")
+                    var data = deserializ.Data;
+                    if (data != null)
                     {
-                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
-                        //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
-                        //return RedirectToAction("DMTDashboard", "DMT2Dashboard");
-                    }
-                    else
-                    {
-                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
-                    }
+                        if (deserializ.Statuscode == "TXN")
+                        {
+                            return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                            //TempData["IdNames"] = JsonConvert.SerializeObject(deserializ);
+                            //return RedirectToAction("DMTDashboard", "DMT2Dashboard");
+                        }
+                        else
+                        {
+                            return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                        }
 
+                    }
                 }
-                return Json("");
+                else if (deserializ.Statuscode == "ERR")
+                {
+                    return Json(deserializ);
+                }
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -341,7 +404,11 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 {
                     return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
                 }
-                return Json("");
+                else
+                {
+                    return Json("");
+                }
+
             }
 
             catch (Exception ex)
@@ -387,20 +454,30 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
-                var data = deserializ.Data;
-                if (data != null)
+                if (deserializ.Statuscode == "TXN" && deserializ != null)
                 {
-                    HttpContext.Session.SetString("RecentSenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
-                    HttpContext.Session.SetString("RecentSenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
-                    HttpContext.Session.SetString("RecentSenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
-                    return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
-                }
+                    var data = deserializ.Data;
+                    if (data != null)
+                    {
+                        HttpContext.Session.SetString("RecentSenderMobile", deserializ.Data.FirstOrDefault().SenderMobile.ToString());
+                        HttpContext.Session.SetString("RecentSenderId", deserializ.Data.FirstOrDefault().SenderId.ToString());
+                        HttpContext.Session.SetString("RecentSenderName", deserializ.Data.FirstOrDefault().SenderName.ToString());
+                        return Json(new { Result = "Redirect", url = Url.Action("DMTDashboard", "DMT2Dashboard"), data = deserializ });
+                    }
 
+                    else
+                    {
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                    }
+                }
+                else if (deserializ.Statuscode == "ERR")
+                {
+                    return Json(deserializ);
+                }
                 else
                 {
-                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                    return Json("");
                 }
-                //return Json("");
             }
             catch (Exception ex)
             {

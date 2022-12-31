@@ -80,6 +80,10 @@ namespace Project_Redmil_MVC.Controllers
 
                         return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
                     }
+                    else
+                    {
+                        return Json("");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -127,10 +131,22 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
-                List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
-                return Json(data);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
+                    List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
+                    return Json(data);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -172,11 +188,23 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                lstdata = datalist.ToList();
-                return Json(lstdata);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                    lstdata = datalist.ToList();
+                    return Json(lstdata);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -309,24 +337,36 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
-                if (datalist != null)
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
                 {
-
-                    foreach (var item in datalist)
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
+                    if (datalist != null)
                     {
-                        lstresponseOperator.Add(new ResponseOperator
+
+                        foreach (var item in datalist)
                         {
-                            Id = item.Id,
-                            Operatorname = item.Operatorname,
-                            Opcode = item.Opcode,
-                            Img = baseImg + item.Img,
-                            ServiceId = item.ServiceId
-                        });
+                            lstresponseOperator.Add(new ResponseOperator
+                            {
+                                Id = item.Id,
+                                Operatorname = item.Operatorname,
+                                Opcode = item.Opcode,
+                                Img = baseImg + item.Img,
+                                ServiceId = item.ServiceId
+                            });
+                        }
                     }
+                    return Json(lstresponseOperator);
                 }
-                return Json(lstresponseOperator);
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize); 
+                }
+                else
+                {
+                    return Json(""); 
+                }
+                
             }
             catch(Exception ex)
             {

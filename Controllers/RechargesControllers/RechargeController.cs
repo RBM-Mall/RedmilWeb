@@ -139,24 +139,36 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
-                if (datalist != null)
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
                 {
-
-                    foreach (var item in datalist)
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
+                    if (datalist != null)
                     {
-                        lstresponseOperator.Add(new ResponseOperator
+
+                        foreach (var item in datalist)
                         {
-                            Id = item.Id,
-                            Operatorname = item.Operatorname,
-                            Opcode = item.Opcode,
-                            Img1 = baseImg + item.Img,
-                            ServiceId = item.ServiceId
-                        });
+                            lstresponseOperator.Add(new ResponseOperator
+                            {
+                                Id = item.Id,
+                                Operatorname = item.Operatorname,
+                                Opcode = item.Opcode,
+                                Img1 = baseImg + item.Img,
+                                ServiceId = item.ServiceId
+                            });
+                        }
                     }
+                    return Json(lstresponseOperator);
                 }
-                return Json(lstresponseOperator);
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -202,10 +214,22 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                return Json(lstGetAllPlans);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    return Json(lstGetAllPlans);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -250,10 +274,21 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
-                List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
-                return Json(data);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
+                    List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
+                    return Json(data);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
             }
             catch(Exception ex)
             {
@@ -297,11 +332,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Combo Pack");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Combo Pack");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -345,11 +392,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Internet Pack");
-                return Json(a);
+                if (deseserialize.Statuscode == "TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Internet Pack");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -398,11 +457,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Topup Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Topup Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -449,11 +520,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Unlimited Pack" || x.PlanName == "Unlimited Packs");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Unlimited Pack" || x.PlanName == "Unlimited Packs");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -501,12 +584,24 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "VAS" || x.PlanName == "Full Talktime" || x.PlanName == "Validity Extension");
-                // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "VAS" || x.PlanName == "Full Talktime" || x.PlanName == "Validity Extension");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -553,11 +648,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Full Talktime");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Full Talktime");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -605,11 +712,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "International Roaming");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "International Roaming");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -657,11 +776,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "ISD Plan" || x.PlanName == "Prime ISD Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "ISD Plan" || x.PlanName == "Prime ISD Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -710,12 +841,24 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Special Recharge");
-                // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-                return Json(a);
+                if (deseserialize.Statuscode == "TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Special Recharge");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -763,11 +906,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Validity Extention");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Validity Extention");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -815,12 +970,25 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "4G Data Voucher");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "4G Data Voucher");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -867,11 +1035,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone All in One Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone All in One Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -917,11 +1097,22 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone Data Add On");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone Data Add On");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
             }
             catch (Exception ex)
             {
@@ -968,12 +1159,24 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1 GB Plan");
-                // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1 GB Plan");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1019,12 +1222,24 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1.5 GB Plan");
-                // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1.5 GB Plan");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -1071,11 +1286,24 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2 GB Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2 GB Plan");
+                    return Json(a);
+
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1123,11 +1351,22 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2.5 GB Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2.5 GB Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
             }
             catch (Exception ex)
             {
@@ -1174,11 +1413,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 3 GB Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 3 GB Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1225,11 +1476,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deseserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                lstGetAllPlans = datalist.ToList();
-                var a = lstGetAllPlans.Where(x => x.PlanName == "Prime No Daily limit Plan");
-                return Json(a);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime No Daily limit Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
 
             catch (Exception ex)
@@ -1273,11 +1536,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                lstdata = datalist.ToList();
-                return Json(lstdata);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                    lstdata = datalist.ToList();
+                    return Json(lstdata);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {

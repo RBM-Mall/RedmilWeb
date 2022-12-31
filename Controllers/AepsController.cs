@@ -71,7 +71,14 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return View();
                 }
-                return View();
+                else if (aepsStatusCode == "ERR")
+                {
+                    return View();
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch (Exception ex)
             {
@@ -363,6 +370,10 @@ namespace Project_Redmil_MVC.Controllers
             {
                 throw new Exception(aepsStatusCode);
             }
+            else
+            {
+
+            }
             return View(); //aepsResponses
         }
 
@@ -423,6 +434,10 @@ namespace Project_Redmil_MVC.Controllers
                 else if (adharPicFaceBioStatusCode == "ERR")
                 {
                     return Json(new { Result = "Connected" });
+                }
+                else
+                {
+
                 }
                 return Json("");
             }
@@ -599,6 +614,14 @@ namespace Project_Redmil_MVC.Controllers
 
                         }
                         // return View("aepsKycStatus");
+                    }
+                    else if (adharPicFaceBioStatusCode == "ERR")
+                    {
+
+                    }
+                    else
+                    {
+
                     }
                 }
                 catch (Exception ex)

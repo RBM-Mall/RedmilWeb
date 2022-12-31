@@ -58,41 +58,53 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var statusCode = deserialize.Statuscode;
-
-                if (statusCode == "TXN")
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
                 {
-                    var data = deserialize.Data;
-                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                    try
+                    var statusCode = deserialize.Statuscode;
+
+                    if (statusCode == "TXN")
                     {
-                        foreach (var i in lstdata)
+                        var data = deserialize.Data;
+                        List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                        lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                        try
                         {
-                            gBRM.Add(new GetBalanceResponseModel
+                            foreach (var i in lstdata)
                             {
-                                MainBal = i.MainBal,
-                                AdBal = i.AdBal,
-                                TotalIncentives = i.TotalIncentives,
-                                BReward = i.BReward,
-                                Reward = i.Reward,
-                                WalletAmount = i.AdBal + i.MainBal,
-                                REReward = i.REReward
-                                //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
+                                gBRM.Add(new GetBalanceResponseModel
+                                {
+                                    MainBal = i.MainBal,
+                                    AdBal = i.AdBal,
+                                    TotalIncentives = i.TotalIncentives,
+                                    BReward = i.BReward,
+                                    Reward = i.Reward,
+                                    WalletAmount = i.AdBal + i.MainBal,
+                                    REReward = i.REReward
+                                    //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
 
-                            });
+                                });
 
+                            }
+                            return gBRM;
                         }
-                        return gBRM;
+                        catch (Exception ex)
+                        {
+                            string message = ex.Message;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        string message = ex.Message;
-                    }
+
+
+                    return gBRM;
                 }
-
-
-                return gBRM;
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return gBRM;
+                }
+                else
+                {
+                    return gBRM;
+                }
+               
             }
             catch (Exception ex)
             {

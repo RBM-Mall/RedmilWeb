@@ -75,8 +75,11 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
 
                     return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
                 }
-
-                return Json("");
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -125,23 +128,36 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var dataList = JsonConvert.DeserializeObject<List<GetDTHOperatorListResponseModel>>(JsonConvert.SerializeObject(data));
-                if (dataList != null)
+               
+                if (deserialize.Statuscode == "TXN")
                 {
-                    foreach (var item in dataList)
+                    var data = deserialize.Data;
+                    var dataList = JsonConvert.DeserializeObject<List<GetDTHOperatorListResponseModel>>(JsonConvert.SerializeObject(data));
+                    if (dataList != null)
                     {
-                        lstresponse.Add(new GetDTHOperatorListResponseModel
+                        foreach (var item in dataList)
                         {
-                            Id = item.Id,
-                            Operatorname = item.Operatorname,
-                            Opcode = item.Opcode,
-                            Img = Baseurl + item.Img,
-                            ServiceId = item.ServiceId,
-                        });
+                            lstresponse.Add(new GetDTHOperatorListResponseModel
+                            {
+                                Id = item.Id,
+                                Operatorname = item.Operatorname,
+                                Opcode = item.Opcode,
+                                Img = Baseurl + item.Img,
+                                ServiceId = item.ServiceId,
+                            });
+                        }
                     }
+                    return lstresponse;
                 }
-                return lstresponse;
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return lstresponse;
+                }
+                else
+                {
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -188,11 +204,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                getDTHAllPlans = datalist.ToList();
-                //GetAirtelHDPack("Airtel HD Pack");
-                return getDTHAllPlans;
+                if(deserialize!=null && deserialize.Statuscode == "TXN")
+                {
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    getDTHAllPlans = datalist.ToList();
+                    //GetAirtelHDPack("Airtel HD Pack");
+                    return getDTHAllPlans;
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return getDTHAllPlans;
+                }
+                else
+                {
+
+                }
+                
             }
             catch (Exception ex)
             {
@@ -240,60 +268,71 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                getDTHAllPlans = datalist.ToList();
-                if (opName == "Airtel DTH")
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
                 {
-                    var a = getDTHAllPlans.Where(x => x.PlanName == "Airtel SD Pack");
-                    if (!string.IsNullOrEmpty(planName))
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    getDTHAllPlans = datalist.ToList();
+                    if (opName == "Airtel DTH")
                     {
-                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                        return Json(b);
+                        var a = getDTHAllPlans.Where(x => x.PlanName == "Airtel SD Pack");
+                        if (!string.IsNullOrEmpty(planName))
+                        {
+                            var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                            return Json(b);
+                        }
+                        return Json(a);
                     }
-                    return Json(a);
+                    else if (opName == "DishTV")
+                    {
+                        var a = getDTHAllPlans.Where(x => x.PlanName == "Kannada South Combo Pack");
+                        if (!string.IsNullOrEmpty(planName))
+                        {
+                            var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                            return Json(b);
+                        }
+                        return Json(a);
+                    }
+                    else if (opName == "Videocon D2H")
+                    {
+                        var a = getDTHAllPlans.Where(x => x.PlanName == "Ala Carte Top Up");
+                        if (!string.IsNullOrEmpty(planName))
+                        {
+                            var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                            return Json(b);
+                        }
+                        return Json(a);
+                    }
+                    else if (opName == "Tata Sky DTH")
+                    {
+                        var a = getDTHAllPlans.Where(x => x.PlanName == "OTT Combo Packs");
+                        if (!string.IsNullOrEmpty(planName))
+                        {
+                            var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                            return Json(b);
+                        }
+                        return Json(a);
+                    }
+                    else if (opName == "Sun Direct DTH")
+                    {
+                        var a = getDTHAllPlans.Where(x => x.PlanName == "Malayalam Curated Pack");
+                        if (!string.IsNullOrEmpty(planName))
+                        {
+                            var b = getDTHAllPlans.Where(x => x.PlanName == planName);
+                            return Json(b);
+                        }
+                        return Json(a);
+                    }
                 }
-                else if (opName == "DishTV")
+                else if (deserialize.Statuscode == "ERR")
                 {
-                    var a = getDTHAllPlans.Where(x => x.PlanName == "Kannada South Combo Pack");
-                    if (!string.IsNullOrEmpty(planName))
-                    {
-                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                        return Json(b);
-                    }
-                    return Json(a);
+                    return Json(deserialize);
                 }
-                else if (opName == "Videocon D2H")
+                else
                 {
-                    var a = getDTHAllPlans.Where(x => x.PlanName == "Ala Carte Top Up");
-                    if (!string.IsNullOrEmpty(planName))
-                    {
-                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                        return Json(b);
-                    }
-                    return Json(a);
+                    return Json("");
                 }
-                else if (opName == "Tata Sky DTH")
-                {
-                    var a = getDTHAllPlans.Where(x => x.PlanName == "OTT Combo Packs");
-                    if (!string.IsNullOrEmpty(planName))
-                    {
-                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                        return Json(b);
-                    }
-                    return Json(a);
-                }
-                else if (opName == "Sun Direct DTH")
-                {
-                    var a = getDTHAllPlans.Where(x => x.PlanName == "Malayalam Curated Pack");
-                    if (!string.IsNullOrEmpty(planName))
-                    {
-                        var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                        return Json(b);
-                    }
-                    return Json(a);
-                }
-                return Json("");
+                
             }
             catch (Exception ex)
             {
@@ -348,11 +387,22 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                lstdata = datalist.ToList();
-                return Json(lstdata);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                    lstdata = datalist.ToList();
+                    return Json(lstdata);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
             }
             catch (Exception ex)
             {

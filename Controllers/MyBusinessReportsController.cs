@@ -62,22 +62,34 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<List<BusinessReportModel>>(JsonConvert.SerializeObject(datadeserialize));
-                if (data != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
-                    foreach (var item in data)
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<List<BusinessReportModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    if (data != null)
                     {
-                        Data1.Add(new BusinessReportModel
+                        foreach (var item in data)
                         {
-                            Id = item.Id,
-                            Name = item.Name,
-                        });
+                            Data1.Add(new BusinessReportModel
+                            {
+                                Id = item.Id,
+                                Name = item.Name,
+                            });
+                        }
+
                     }
+
+                    return Data1;
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Data1;
+                }
+                else
+                {
 
                 }
 
-                return Data1;
             }
             catch (Exception ex)
             {
@@ -122,27 +134,39 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<List<SubCategoryReportsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                if (data != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                {
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<List<SubCategoryReportsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    if (data != null)
+                    {
+
+                        var SubCategoryData = data.Where(x => x.CategoryId == Id);
+                        foreach (var item in SubCategoryData)
+                        {
+                            subCatData1.Add(new SubCategoryReportsModel
+                            {
+                                Title = item.Title,
+                                CategoryId = item.CategoryId,
+                                Id = item.Id,
+
+                            });
+                        }
+                    }
+
+                    subCatData1.Insert(0, new SubCategoryReportsModel { Id = 0, Title = "-- Select SubCategories --" });
+                    //DataTable dt = ToDataTable(Data1);
+                    return Json(new SelectList(subCatData1, "Id", "Title"));
+                }
+                else if (deserialize.Statuscode == "ERR")
                 {
 
-                    var SubCategoryData = data.Where(x => x.CategoryId == Id);
-                    foreach (var item in SubCategoryData)
-                    {
-                        subCatData1.Add(new SubCategoryReportsModel
-                        {
-                            Title = item.Title,
-                            CategoryId = item.CategoryId,
-                            Id = item.Id,
+                }
+                else
+                {
 
-                        });
-                    }
                 }
 
-                subCatData1.Insert(0, new SubCategoryReportsModel { Id = 0, Title = "-- Select SubCategories --" });
-                //DataTable dt = ToDataTable(Data1);
-                return Json(new SelectList(subCatData1, "Id", "Title"));
             }
             catch (Exception ex)
             {
@@ -205,9 +229,13 @@ namespace Project_Redmil_MVC.Controllers
                     var Data5 = JsonConvert.DeserializeObject<List<StatusResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
                     return Json(Data5);
                 }
-                else
+                else if (datadeserialize1 == "ERR")
                 {
                     return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
                 }
             }
             catch (Exception ex)
@@ -331,1100 +359,1112 @@ namespace Project_Redmil_MVC.Controllers
 
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var datadeserialize1 = deserialize.Statuscode;
-                if (datadeserialize1 == null && subCat != "14")
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
-                    return Json(datadeserialize1);
-                }
-                var msgdeserialize = deserialize.Message;
-                //if(subCatResponseData. == )
-                //if (!string.IsNullOrEmpty(download))
-                //{
-                //requestModel.Report = "true";
-                if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
-                {
-                    var docUrl = reportDwldURL + msgdeserialize;
-                    return Json(docUrl);
-                }
-                //}
-
-                if (subCat == "5")
-                {
-                    var Data5 = JsonConvert.DeserializeObject<List<LICPremiumPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    var Datanew = Data20.Where(x => x.Status == a);
-                    //    return Json(Datanew);
-                    //}
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    var datadeserialize = deserialize.Data;
+                    var datadeserialize1 = deserialize.Statuscode;
+                    if (datadeserialize1 == null && subCat != "14")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        return Json(datadeserialize1);
+                    }
+                    var msgdeserialize = deserialize.Message;
+                    //if(subCatResponseData. == )
+                    //if (!string.IsNullOrEmpty(download))
+                    //{
+                    //requestModel.Report = "true";
+                    if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                    {
+                        var docUrl = reportDwldURL + msgdeserialize;
+                        return Json(docUrl);
+                    }
+                    //}
+
+                    if (subCat == "5")
+                    {
+                        var Data5 = JsonConvert.DeserializeObject<List<LICPremiumPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    var Datanew = Data20.Where(x => x.Status == a);
+                        //    return Json(Datanew);
+                        //}
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data5.Where(x => x.Status == a);
-                            return Json(Datanew);
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data5.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data5);
+                            }
                         }
-                        else
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
                         {
+                            foreach (var item in Data5)
+                            {
+                                LICPremiumPaymentsResponseData.Add(new LICPremiumPaymentsModel
+                                {
+                                    Status = item.Status,
+                                    BillReferenceId = item.BillReferenceId,
+                                    BillPayAmount = item.BillPayAmount,
+                                    CaNumber = item.CaNumber,
+                                    WalletType = item.WalletType,
+
+                                    RequestDate = item.RequestDate,
+                                    CommissionAmount = item.CommissionAmount,
+                                    RedmilTransactionId = item.RedmilTransactionId
+                                });
+                            }
                             return Json(Data5);
                         }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data5)
-                        {
-                            LICPremiumPaymentsResponseData.Add(new LICPremiumPaymentsModel
-                            {
-                                Status = item.Status,
-                                BillReferenceId = item.BillReferenceId,
-                                BillPayAmount = item.BillPayAmount,
-                                CaNumber = item.CaNumber,
-                                WalletType = item.WalletType,
-
-                                RequestDate = item.RequestDate,
-                                CommissionAmount = item.CommissionAmount,
-                                RedmilTransactionId = item.RedmilTransactionId
-                            });
-                        }
                         return Json(Data5);
+
                     }
-                    return Json(Data5);
 
-                }
-
-                else if (subCat == "20")
-                {
-                    var Data20 = JsonConvert.DeserializeObject<List<VirtualPaymentReportsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    var Datanew = Data20.Where(x => x.Status == a);
-                    //    return Json(Datanew);
-                    //}
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "20")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data20 = JsonConvert.DeserializeObject<List<VirtualPaymentReportsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    var Datanew = Data20.Where(x => x.Status == a);
+                        //    return Json(Datanew);
+                        //}
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data20.Where(x => x.Status == a);
-                            return Json(Datanew);
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data20.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data20);
+                            }
                         }
-                        else
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
                         {
+                            foreach (var item in Data20)
+                            {
+                                VirtualPaymentResponseData.Add(new VirtualPaymentReportsModel
+                                {
+                                    Charges = item.Charges,
+                                    RedmilReferenceId = item.RedmilReferenceId,
+                                    VirtualAccountNumber = item.VirtualAccountNumber,
+                                    RemitterAccountNumber = item.RemitterAccountNumber,
+                                    NetAmount = item.NetAmount,
+
+                                    RequestDate = item.RequestDate,
+                                    IFSCCode = item.IFSCCode,
+                                    Status = item.Status
+                                });
+                            }
                             return Json(Data20);
                         }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data20)
-                        {
-                            VirtualPaymentResponseData.Add(new VirtualPaymentReportsModel
-                            {
-                                Charges = item.Charges,
-                                RedmilReferenceId = item.RedmilReferenceId,
-                                VirtualAccountNumber = item.VirtualAccountNumber,
-                                RemitterAccountNumber = item.RemitterAccountNumber,
-                                NetAmount = item.NetAmount,
-
-                                RequestDate = item.RequestDate,
-                                IFSCCode = item.IFSCCode,
-                                Status = item.Status
-                            });
-                        }
                         return Json(Data20);
+
                     }
-                    return Json(Data20);
 
-                }
-
-                else if (subCat == "22")
-                {
-
-                    var Data22 = JsonConvert.DeserializeObject<List<CashOutModel>>(JsonConvert.SerializeObject(datadeserialize));
-
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "22")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+
+                        var Data22 = JsonConvert.DeserializeObject<List<CashOutModel>>(JsonConvert.SerializeObject(datadeserialize));
+
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data22.Where(x => x.Status == a);
-                            return Json(Datanew);
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data22.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data22);
+                            }
                         }
-                        else
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
                         {
+                            foreach (var item in Data22)
+                            {
+                                CashOutResponseData.Add(new CashOutModel
+                                {
+                                    BeneficiaryName = item.BeneficiaryName,
+                                    AccountNo = item.AccountNo,
+                                    BankName = item.BankName,
+                                    IFSCCode = item.IFSCCode,
+                                    TransactionAmount = item.TransactionAmount,
+                                    RedmilReferenceNumber = item.RedmilReferenceNumber,
+                                    TransferType = item.TransferType,
+                                    ActualBankCredit = item.ActualBankCredit,
+                                    CurrentStatus = item.CurrentStatus,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    Status = item.Status
+
+                                });
+                            }
                             return Json(Data22);
                         }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data22)
-                        {
-                            CashOutResponseData.Add(new CashOutModel
-                            {
-                                BeneficiaryName = item.BeneficiaryName,
-                                AccountNo = item.AccountNo,
-                                BankName = item.BankName,
-                                IFSCCode = item.IFSCCode,
-                                TransactionAmount = item.TransactionAmount,
-                                RedmilReferenceNumber = item.RedmilReferenceNumber,
-                                TransferType = item.TransferType,
-                                ActualBankCredit = item.ActualBankCredit,
-                                CurrentStatus = item.CurrentStatus,
-                                BankRRNNumber = item.BankRRNNumber,
-                                Status = item.Status
-
-                            });
-                        }
+                        DataTable dt = ToDataTable(Data22);
                         return Json(Data22);
+
                     }
-                    DataTable dt = ToDataTable(Data22);
-                    return Json(Data22);
 
-                }
-
-                else if (subCat == "24")
-                {
-                    var Data24 = JsonConvert.DeserializeObject<List<UPIWalletRechargeModel>>(JsonConvert.SerializeObject(datadeserialize));
-
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "24")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data24 = JsonConvert.DeserializeObject<List<UPIWalletRechargeModel>>(JsonConvert.SerializeObject(datadeserialize));
+
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data24.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data24);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data24)
-                        {
-                            UPIWalletRechargeResponseData.Add(new UPIWalletRechargeModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                ActualWalletCredit = item.ActualWalletCredit,
-                                BankRRNNumber = item.BankRRNNumber,
-                                RedmilReferenceNumber = item.RedmilReferenceNumber,
-                                Charges = item.Charges,
-                                DEName = item.DEName,
-                                RequestDate = item.RequestDate,
-                                Status = item.Status
-                            });
+                                var Datanew = Data24.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data24);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data24)
+                            {
+                                UPIWalletRechargeResponseData.Add(new UPIWalletRechargeModel
+                                {
+                                    ActualWalletCredit = item.ActualWalletCredit,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    RedmilReferenceNumber = item.RedmilReferenceNumber,
+                                    Charges = item.Charges,
+                                    DEName = item.DEName,
+                                    RequestDate = item.RequestDate,
+                                    Status = item.Status
+                                });
+                            }
+                            return Json(Data24);
                         }
                         return Json(Data24);
                     }
-                    return Json(Data24);
-                }
 
-                else if (subCat == "25")
-                {
-                    var Data25 = JsonConvert.DeserializeObject<List<UPICashWithdrawalModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    else if (subCat == "25")
+                    {
+                        var Data25 = JsonConvert.DeserializeObject<List<UPICashWithdrawalModel>>(JsonConvert.SerializeObject(datadeserialize));
 
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data25.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data25);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data25)
-                        {
-                            UPICashWithdrawalResponseData.Add(new UPICashWithdrawalModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                PayerVirtualID = item.PayerVirtualID,
-                                BankRRNNumber = item.BankRRNNumber,
-                                PayerName = item.PayerName,
-                                Commission = item.Commission,
-                                CashWithdrawalAmount = item.CashWithdrawalAmount,
-                                RequestDate = item.RequestDate,
-                                Status = item.Status
-                            });
+                                var Datanew = Data25.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data25);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data25)
+                            {
+                                UPICashWithdrawalResponseData.Add(new UPICashWithdrawalModel
+                                {
+                                    PayerVirtualID = item.PayerVirtualID,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    PayerName = item.PayerName,
+                                    Commission = item.Commission,
+                                    CashWithdrawalAmount = item.CashWithdrawalAmount,
+                                    RequestDate = item.RequestDate,
+                                    Status = item.Status
+                                });
+                            }
+                            return Json(Data25);
                         }
                         return Json(Data25);
                     }
-                    return Json(Data25);
-                }
 
-                else if (subCat == "29")
-                {
-                    var Data29 = JsonConvert.DeserializeObject<List<MicroATMCashWithdrawalICICIModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "29")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data29 = JsonConvert.DeserializeObject<List<MicroATMCashWithdrawalICICIModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data29.Where(x => x.Status == a);
-                            return Json(Datanew);
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data29.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data29);
+                            }
                         }
-                        else
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
                         {
+                            foreach (var item in Data29)
+                            {
+                                //MicroATMCashWithdrawalICICIResponseData.Add(new MicroATMCashWithdrawalICICIModel
+                                //{
+                                //    PayerVirtualID = item.PayerVirtualID,
+                                //    BankRRNNumber = item.BankRRNNumber,
+                                //    PayerName = item.PayerName,
+                                //    Commission = item.Commission,
+                                //    CashWithdrawalAmount = item.CashWithdrawalAmount,
+                                //    RequestDate = item.RequestDate,
+                                //    Status = item.Status
+                                //});
+                            }
                             return Json(Data29);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data29)
-                        {
-                            //MicroATMCashWithdrawalICICIResponseData.Add(new MicroATMCashWithdrawalICICIModel
-                            //{
-                            //    PayerVirtualID = item.PayerVirtualID,
-                            //    BankRRNNumber = item.BankRRNNumber,
-                            //    PayerName = item.PayerName,
-                            //    Commission = item.Commission,
-                            //    CashWithdrawalAmount = item.CashWithdrawalAmount,
-                            //    RequestDate = item.RequestDate,
-                            //    Status = item.Status
-                            //});
                         }
                         return Json(Data29);
                     }
-                    return Json(Data29);
-                }
 
-                else if (subCat == "30")
-                {
-                    var Data30 = JsonConvert.DeserializeObject<List<MicroATMBalanceEnquiryICICIModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "30")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data30 = JsonConvert.DeserializeObject<List<MicroATMBalanceEnquiryICICIModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data30.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data30);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data30)
-                        {
-                            MicroATMBalanceEnquiryICICIResponseData.Add(new MicroATMBalanceEnquiryICICIModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                //PayerVirtualID = item.PayerVirtualID,
-                                //BankRRNNumber = item.BankRRNNumber,
-                                //PayerName = item.PayerName,
-                                //Commission = item.Commission,
-                                //CashWithdrawalAmount = item.CashWithdrawalAmount,
-                                //RequestDate = item.RequestDate,
-                                //Status = item.Status
-                            });
+                                var Datanew = Data30.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data30);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data30)
+                            {
+                                MicroATMBalanceEnquiryICICIResponseData.Add(new MicroATMBalanceEnquiryICICIModel
+                                {
+                                    //PayerVirtualID = item.PayerVirtualID,
+                                    //BankRRNNumber = item.BankRRNNumber,
+                                    //PayerName = item.PayerName,
+                                    //Commission = item.Commission,
+                                    //CashWithdrawalAmount = item.CashWithdrawalAmount,
+                                    //RequestDate = item.RequestDate,
+                                    //Status = item.Status
+                                });
+                            }
+                            return Json(Data30);
                         }
                         return Json(Data30);
                     }
-                    return Json(Data30);
-                }
 
-                else if (subCat == "31")
-                {
-                    var Data31 = JsonConvert.DeserializeObject<List<FinoDMTModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "31")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data31 = JsonConvert.DeserializeObject<List<FinoDMTModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data31.Where(x => x.Status == a);
-                            return Json(Datanew);
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data31.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data31);
+                            }
                         }
-                        else
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
                         {
+                            foreach (var item in Data31)
+                            {
+                                //FinoDMTModelResponseData.Add(new FinoDMTModel
+                                //{
+                                //    PayerVirtualID = item.PayerVirtualID,
+                                //    BankRRNNumber = item.BankRRNNumber,
+                                //    PayerName = item.PayerName,
+                                //    Commission = item.Commission,
+                                //    CashWithdrawalAmount = item.CashWithdrawalAmount,
+                                //    RequestDate = item.RequestDate,
+                                //    Status = item.Status
+                                //});
+                            }
                             return Json(Data31);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data31)
-                        {
-                            //FinoDMTModelResponseData.Add(new FinoDMTModel
-                            //{
-                            //    PayerVirtualID = item.PayerVirtualID,
-                            //    BankRRNNumber = item.BankRRNNumber,
-                            //    PayerName = item.PayerName,
-                            //    Commission = item.Commission,
-                            //    CashWithdrawalAmount = item.CashWithdrawalAmount,
-                            //    RequestDate = item.RequestDate,
-                            //    Status = item.Status
-                            //});
                         }
                         return Json(Data31);
                     }
-                    return Json(Data31);
-                }
 
-                else if (subCat == "15")
-                {
-                    var Data15 = JsonConvert.DeserializeObject<List<AePSCashWithdrawalModel>>(JsonConvert.SerializeObject(datadeserialize));
-
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "15")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data15 = JsonConvert.DeserializeObject<List<AePSCashWithdrawalModel>>(JsonConvert.SerializeObject(datadeserialize));
+
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data15.Where(x => x.Status == a);
-                            return Json(Datanew);
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data15.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data15);
+                            }
                         }
-                        else
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
                         {
+                            foreach (var item in Data15)
+                            {
+                                AePSCashWithdrawalResponseData.Add(new AePSCashWithdrawalModel
+                                {
+                                    //CustomerName = item.CustomerName,
+                                    CustomerMobileNumber = item.CustomerMobileNumber,
+                                    CustomerAadhaarNo = item.CustomerAadhaarNo,
+                                    TransactionAmount = item.TransactionAmount,
+                                    BankName = item.BankName,
+                                    IIN = item.IIN,
+                                    NPCITransactionId = item.NPCITransactionId,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    RedmilTransactionId = item.RedmilTransactionId,
+                                    BalanceAmount = item.BalanceAmount,
+                                    CommissionAmount = item.CommissionAmount,
+                                    FailureReason = item.FailureReason,
+                                    Status = item.Status,
+
+                                });
+                            }
                             return Json(Data15);
                         }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data15)
-                        {
-                            AePSCashWithdrawalResponseData.Add(new AePSCashWithdrawalModel
-                            {
-                                //CustomerName = item.CustomerName,
-                                CustomerMobileNumber = item.CustomerMobileNumber,
-                                CustomerAadhaarNo = item.CustomerAadhaarNo,
-                                TransactionAmount = item.TransactionAmount,
-                                BankName = item.BankName,
-                                IIN = item.IIN,
-                                NPCITransactionId = item.NPCITransactionId,
-                                BankRRNNumber = item.BankRRNNumber,
-                                RedmilTransactionId = item.RedmilTransactionId,
-                                BalanceAmount = item.BalanceAmount,
-                                CommissionAmount = item.CommissionAmount,
-                                FailureReason = item.FailureReason,
-                                Status = item.Status,
 
-                            });
-                        }
                         return Json(Data15);
                     }
 
-                    return Json(Data15);
-                }
-
-                else if (subCat == "16")
-                {
-                    var Data16 = JsonConvert.DeserializeObject<List<AePSMiniStatementModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "16")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data16 = JsonConvert.DeserializeObject<List<AePSMiniStatementModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data16.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data16);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data16)
-                        {
-                            AePSMiniStatementResponseData.Add(new AePSMiniStatementModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                CustomerName = item.CustomerName,
-                                CustomerMobileNumber = item.CustomerMobileNumber,
-                                CustomerAadhaarNo = item.CustomerAadhaarNo,
-                                TransactionAmount = item.TransactionAmount,
-                                BankName = item.BankName,
-                                IIN = item.IIN,
-                                NPCITransactionId = item.NPCITransactionId,
-                                BankRRNNumber = item.BankRRNNumber,
-                                RedmilTransactionId = item.RedmilTransactionId,
-                                BalanceAmount = item.BalanceAmount,
-                                CommissionAmount = item.CommissionAmount,
-                                FailureReason = item.FailureReason,
-                                Status = item.Status
+                                var Datanew = Data16.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data16);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data16)
+                            {
+                                AePSMiniStatementResponseData.Add(new AePSMiniStatementModel
+                                {
+                                    CustomerName = item.CustomerName,
+                                    CustomerMobileNumber = item.CustomerMobileNumber,
+                                    CustomerAadhaarNo = item.CustomerAadhaarNo,
+                                    TransactionAmount = item.TransactionAmount,
+                                    BankName = item.BankName,
+                                    IIN = item.IIN,
+                                    NPCITransactionId = item.NPCITransactionId,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    RedmilTransactionId = item.RedmilTransactionId,
+                                    BalanceAmount = item.BalanceAmount,
+                                    CommissionAmount = item.CommissionAmount,
+                                    FailureReason = item.FailureReason,
+                                    Status = item.Status
 
-                            });
+                                });
+                            }
+                            return Json(Data16);
                         }
                         return Json(Data16);
                     }
-                    return Json(Data16);
-                }
 
-                else if (subCat == "17")
-                {
-                    var Data17 = JsonConvert.DeserializeObject<List<AePSBalanceEnquiryModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "17")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data17 = JsonConvert.DeserializeObject<List<AePSBalanceEnquiryModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data17.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data17);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data17)
-                        {
-                            AePSBalanceEnquiryResponseData.Add(new AePSBalanceEnquiryModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                CustomerName = item.CustomerName,
-                                CustomerMobileNumber = item.CustomerMobileNumber,
-                                CustomerAadhaarNo = item.CustomerAadhaarNo,
-                                TransactionAmount = item.TransactionAmount,
-                                BankName = item.BankName,
-                                IIN = item.IIN,
-                                NPCITransactionId = item.NPCITransactionId,
-                                BankRRNNumber = item.BankRRNNumber,
-                                RedmilTransactionId = item.RedmilTransactionId,
-                                BalanceAmount = item.BalanceAmount,
-                                CommissionAmount = item.CommissionAmount,
-                                FailureReason = item.FailureReason,
-                                Status = item.Status
+                                var Datanew = Data17.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data17);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data17)
+                            {
+                                AePSBalanceEnquiryResponseData.Add(new AePSBalanceEnquiryModel
+                                {
+                                    CustomerName = item.CustomerName,
+                                    CustomerMobileNumber = item.CustomerMobileNumber,
+                                    CustomerAadhaarNo = item.CustomerAadhaarNo,
+                                    TransactionAmount = item.TransactionAmount,
+                                    BankName = item.BankName,
+                                    IIN = item.IIN,
+                                    NPCITransactionId = item.NPCITransactionId,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    RedmilTransactionId = item.RedmilTransactionId,
+                                    BalanceAmount = item.BalanceAmount,
+                                    CommissionAmount = item.CommissionAmount,
+                                    FailureReason = item.FailureReason,
+                                    Status = item.Status
 
-                            });
+                                });
+                            }
+                            return Json(Data17);
                         }
                         return Json(Data17);
                     }
-                    return Json(Data17);
-                }
 
-                else if (subCat == "18")
-                {
-                    var Data18 = JsonConvert.DeserializeObject<List<MicroATMCashWithdrawalModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "18")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data18 = JsonConvert.DeserializeObject<List<MicroATMCashWithdrawalModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data18.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data18);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data18)
-                        {
-                            MicroATMCashWithdrawalResponseData.Add(new MicroATMCashWithdrawalModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                CardHolderName = item.CardHolderName,
-                                CardHolderMobileNumber = item.CardHolderMobileNumber,
-                                CardType = item.CardType,
-                                CardNumber = item.CardNumber,
-                                TransactionAmount = item.TransactionAmount,
-                                NPCITransactionId = item.NPCITransactionId,
-                                BankRRNNumber = item.BankRRNNumber,
-                                RedmilTransactionId = item.RedmilTransactionId,
-                                BalanceAmount = item.BalanceAmount,
-                                FailureReason = item.FailureReason,
-                                Status = item.Status
+                                var Datanew = Data18.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data18);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data18)
+                            {
+                                MicroATMCashWithdrawalResponseData.Add(new MicroATMCashWithdrawalModel
+                                {
+                                    CardHolderName = item.CardHolderName,
+                                    CardHolderMobileNumber = item.CardHolderMobileNumber,
+                                    CardType = item.CardType,
+                                    CardNumber = item.CardNumber,
+                                    TransactionAmount = item.TransactionAmount,
+                                    NPCITransactionId = item.NPCITransactionId,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    RedmilTransactionId = item.RedmilTransactionId,
+                                    BalanceAmount = item.BalanceAmount,
+                                    FailureReason = item.FailureReason,
+                                    Status = item.Status
 
-                            });
+                                });
+                            }
+                            return Json(Data18);
                         }
                         return Json(Data18);
                     }
-                    return Json(Data18);
-                }
 
-                else if (subCat == "19")
-                {
-                    var Data19 = JsonConvert.DeserializeObject<List<MicroATMBalanceEnquiryModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "19")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data19 = JsonConvert.DeserializeObject<List<MicroATMBalanceEnquiryModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data19.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data19);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data19)
-                        {
-                            MicroATMBalanceEnquiryResponseData.Add(new MicroATMBalanceEnquiryModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                CardHolderName = item.CardHolderName,
-                                CardHolderMobileNumber = item.CardHolderMobileNumber,
-                                CardType = item.CardType,
-                                CardNumber = item.CardNumber,
-                                TransactionAmount = item.TransactionAmount,
-                                NPCITransactionId = item.NPCITransactionId,
-                                BankRRNNumber = item.BankRRNNumber,
-                                RedmilTransactionId = item.RedmilTransactionId,
-                                BalanceAmount = item.BalanceAmount,
-                                FailureReason = item.FailureReason,
-                                Status = item.Status
+                                var Datanew = Data19.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data19);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data19)
+                            {
+                                MicroATMBalanceEnquiryResponseData.Add(new MicroATMBalanceEnquiryModel
+                                {
+                                    CardHolderName = item.CardHolderName,
+                                    CardHolderMobileNumber = item.CardHolderMobileNumber,
+                                    CardType = item.CardType,
+                                    CardNumber = item.CardNumber,
+                                    TransactionAmount = item.TransactionAmount,
+                                    NPCITransactionId = item.NPCITransactionId,
+                                    BankRRNNumber = item.BankRRNNumber,
+                                    RedmilTransactionId = item.RedmilTransactionId,
+                                    BalanceAmount = item.BalanceAmount,
+                                    FailureReason = item.FailureReason,
+                                    Status = item.Status
 
-                            });
+                                });
+                            }
+                            return Json(Data19);
                         }
                         return Json(Data19);
                     }
-                    return Json(Data19);
-                }
 
-                else if (subCat == "21")
-                {
-                    var Data21 = JsonConvert.DeserializeObject<List<YBLDomesticMoneyTransferModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "21")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data21 = JsonConvert.DeserializeObject<List<YBLDomesticMoneyTransferModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data21.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data21);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data21)
-                        {
-                            YBLDomesticMoneyTransferResponseData.Add(new YBLDomesticMoneyTransferModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                RequestDate = item.RequestDate,
-                                SenderName = item.SenderName,
-                                SenderMobileNumber = item.SenderMobileNumber,
-                                TransactionAmount = item.TransactionAmount,
-                                Status = item.Status,
-                                ReceiverName = item.ReceiverName,
-                                ReceiverAccountNo = item.ReceiverAccountNo,
-                                BankName = item.BankName,
-                                IFSCCode = item.IFSCCode,
-                                TransactionType = item.TransactionType,
-                                Surcharge = item.Surcharge,
-                                CommissionAmount = item.CommissionAmount,
-                                RedmilReferenceId = item.RedmilReferenceId,
-                                WalletType = item.WalletType,
-                                Reason = item.Reason
+                                var Datanew = Data21.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data21);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data21)
+                            {
+                                YBLDomesticMoneyTransferResponseData.Add(new YBLDomesticMoneyTransferModel
+                                {
+                                    RequestDate = item.RequestDate,
+                                    SenderName = item.SenderName,
+                                    SenderMobileNumber = item.SenderMobileNumber,
+                                    TransactionAmount = item.TransactionAmount,
+                                    Status = item.Status,
+                                    ReceiverName = item.ReceiverName,
+                                    ReceiverAccountNo = item.ReceiverAccountNo,
+                                    BankName = item.BankName,
+                                    IFSCCode = item.IFSCCode,
+                                    TransactionType = item.TransactionType,
+                                    Surcharge = item.Surcharge,
+                                    CommissionAmount = item.CommissionAmount,
+                                    RedmilReferenceId = item.RedmilReferenceId,
+                                    WalletType = item.WalletType,
+                                    Reason = item.Reason
 
 
-                            });
+                                });
+                            }
+                            return Json(Data21);
                         }
                         return Json(Data21);
                     }
-                    return Json(Data21);
-                }
 
-                else if (subCat == "23")
-                {
-                    var Data23 = JsonConvert.DeserializeObject<List<CreditScoreModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "23")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data23 = JsonConvert.DeserializeObject<List<CreditScoreModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data23.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data23);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data23)
-                        {
-                            CreditScoreResponseData.Add(new CreditScoreModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                RequestDate = item.RequestDate,
-                                CustomerName = item.CustomerName,
-                                CustomerMobileNo = item.CustomerMobileNo,
-                                AmountPaid = item.AmountPaid,
-                                Status = item.Status,
-                                CommissionAmount = item.CommissionAmount,
-                                RedmilTransactionId = item.RedmilTransactionId,
-                                WalletType = item.WalletType
+                                var Datanew = Data23.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data23);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data23)
+                            {
+                                CreditScoreResponseData.Add(new CreditScoreModel
+                                {
+                                    RequestDate = item.RequestDate,
+                                    CustomerName = item.CustomerName,
+                                    CustomerMobileNo = item.CustomerMobileNo,
+                                    AmountPaid = item.AmountPaid,
+                                    Status = item.Status,
+                                    CommissionAmount = item.CommissionAmount,
+                                    RedmilTransactionId = item.RedmilTransactionId,
+                                    WalletType = item.WalletType
 
 
-                            });
+                                });
+                            }
+                            return Json(Data23);
                         }
                         return Json(Data23);
                     }
-                    return Json(Data23);
-                }
-                else if (subCat == "26")
-                {
-                    var Data26 = JsonConvert.DeserializeObject<List<GoldInvestmentBuyModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "26")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data26 = JsonConvert.DeserializeObject<List<GoldInvestmentBuyModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data26.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data26);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data26)
-                        {
-                            GoldInvestmentBuyResponseData.Add(new GoldInvestmentBuyModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                RequestDate = item.RequestDate,
-                                CustomerName = item.CustomerName,
-                                CustomerMobileNumber = item.CustomerMobileNumber,
-                                PurchaseAmount = item.PurchaseAmount,
-                                TransactionId = item.TransactionId,
-                                InvoiceID = item.InvoiceID,
-                                GoldRatePerGm = item.GoldRatePerGm,
-                                PurchaseQuantity = item.PurchaseQuantity,
-                                Commission = item.Commission,
-                                CustomerID = item.CustomerID,
-                                OldGoldBalance = item.OldGoldBalance,
-                                NewGoldBalance = item.NewGoldBalance,
-                                WalletType = item.WalletType,
-                                PANNo = item.PANNo,
-                                AccountNo = item.AccountNo,
-                                IFSCCode = item.IFSCCode,
-                                BankName = item.BankName,
-                                Status = item.Status
+                                var Datanew = Data26.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data26);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data26)
+                            {
+                                GoldInvestmentBuyResponseData.Add(new GoldInvestmentBuyModel
+                                {
+                                    RequestDate = item.RequestDate,
+                                    CustomerName = item.CustomerName,
+                                    CustomerMobileNumber = item.CustomerMobileNumber,
+                                    PurchaseAmount = item.PurchaseAmount,
+                                    TransactionId = item.TransactionId,
+                                    InvoiceID = item.InvoiceID,
+                                    GoldRatePerGm = item.GoldRatePerGm,
+                                    PurchaseQuantity = item.PurchaseQuantity,
+                                    Commission = item.Commission,
+                                    CustomerID = item.CustomerID,
+                                    OldGoldBalance = item.OldGoldBalance,
+                                    NewGoldBalance = item.NewGoldBalance,
+                                    WalletType = item.WalletType,
+                                    PANNo = item.PANNo,
+                                    AccountNo = item.AccountNo,
+                                    IFSCCode = item.IFSCCode,
+                                    BankName = item.BankName,
+                                    Status = item.Status
 
-                            });
+                                });
+                            }
+                            return Json(Data26);
                         }
                         return Json(Data26);
                     }
-                    return Json(Data26);
-                }
 
-                else if (subCat == "27")
-                {
-                    var Data27 = JsonConvert.DeserializeObject<List<GoldInvestmentSellModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "27")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data27 = JsonConvert.DeserializeObject<List<GoldInvestmentSellModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data27.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data27);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data27)
-                        {
-                            GoldInvestmentSellResponseData.Add(new GoldInvestmentSellModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                RequestDate = item.RequestDate,
-                                CustomerName = item.CustomerName,
-                                CustomerMobileNumber = item.CustomerMobileNumber,
-                                SellAmount = item.SellAmount,
-                                TransactionId = item.TransactionId,
-                                InvoiceID = item.InvoiceID,
-                                GoldRatePerGm = item.GoldRatePerGm,
-                                SellQuantity = item.SellQuantity,
-                                NetAmountCredited = item.NetAmountCredited,
-                                CustomerID = item.CustomerID,
-                                OldGoldBalance = item.OldGoldBalance,
-                                NewGoldBalance = item.NewGoldBalance,
-                                BankCharges = item.BankCharges,
-                                PANNo = item.PANNo,
-                                AccountNo = item.AccountNo,
-                                IFSCCode = item.IFSCCode,
-                                BankName = item.BankName,
-                                Status = item.Status
+                                var Datanew = Data27.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data27);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data27)
+                            {
+                                GoldInvestmentSellResponseData.Add(new GoldInvestmentSellModel
+                                {
+                                    RequestDate = item.RequestDate,
+                                    CustomerName = item.CustomerName,
+                                    CustomerMobileNumber = item.CustomerMobileNumber,
+                                    SellAmount = item.SellAmount,
+                                    TransactionId = item.TransactionId,
+                                    InvoiceID = item.InvoiceID,
+                                    GoldRatePerGm = item.GoldRatePerGm,
+                                    SellQuantity = item.SellQuantity,
+                                    NetAmountCredited = item.NetAmountCredited,
+                                    CustomerID = item.CustomerID,
+                                    OldGoldBalance = item.OldGoldBalance,
+                                    NewGoldBalance = item.NewGoldBalance,
+                                    BankCharges = item.BankCharges,
+                                    PANNo = item.PANNo,
+                                    AccountNo = item.AccountNo,
+                                    IFSCCode = item.IFSCCode,
+                                    BankName = item.BankName,
+                                    Status = item.Status
 
-                            });
+                                });
+                            }
+                            return Json(Data27);
                         }
                         return Json(Data27);
                     }
-                    return Json(Data27);
-                }
 
 
 
-                //Recharge And Bill Payments 
+                    //Recharge And Bill Payments 
 
-                else if (subCat == "1")
-                {
-                    var Data01 = JsonConvert.DeserializeObject<List<BillPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    else if (subCat == "1")
                     {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
+                        var Data01 = JsonConvert.DeserializeObject<List<BillPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
                         {
-                            var Datanew = Data01.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data01);
-                        }
-                    }
-                    //else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    //{
-                    //    foreach (var item in Data1)
-                    //    {
-                    //        Billl.Add(new GoldInvestmentSellModel
-                    //        {
-                    //            RequestDate = item.RequestDate,
-                    //            CustomerName = item.CustomerName,
-                    //            CustomerMobileNumber = item.CustomerMobileNumber,
-                    //            SellAmount = item.SellAmount,
-                    //            TransactionId = item.TransactionId,
-                    //            InvoiceID = item.InvoiceID,
-                    //            GoldRatePerGm = item.GoldRatePerGm,
-                    //            SellQuantity = item.SellQuantity,
-                    //            NetAmountCredited = item.NetAmountCredited,
-                    //            CustomerID = item.CustomerID,
-                    //            OldGoldBalance = item.OldGoldBalance,
-                    //            NewGoldBalance = item.NewGoldBalance,
-                    //            BankCharges = item.BankCharges,
-                    //            PANNo = item.PANNo,
-                    //            AccountNo = item.AccountNo,
-                    //            IFSCCode = item.IFSCCode,
-                    //            BankName = item.BankName,
-                    //            Status = item.Status
-
-                    //        });
-                    //    }
-                    //    return Json(Data27);
-                    //}
-                    return Json(Data01);
-                }
-
-                else if (subCat == "2")
-                {
-                    var Data02 = JsonConvert.DeserializeObject<List<DTHRechargeModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
-                        {
-                            var Datanew = Data02.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data02);
-                        }
-                    }
-                    return Json(Data02);
-                }
-
-                else if (subCat == "3")
-                {
-                    var Data03 = JsonConvert.DeserializeObject<List<MobilePrepaidModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
-                        {
-                            var Datanew = Data03.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data03);
-                        }
-                    }
-                    return Json(Data03);
-                }
-
-                else if (subCat == "4")
-                {
-                    var Data04 = JsonConvert.DeserializeObject<List<MobilePostpaidModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
-                        {
-                            var Datanew = Data04.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data04);
-                        }
-                    }
-                    return Json(Data04);
-                }
-
-                else if (subCat == "5")
-                {
-                    var Data05 = JsonConvert.DeserializeObject<List<LICPremiumPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
-                        {
-                            var Datanew = Data05.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data05);
-                        }
-                    }
-                    return Json(Data05);
-                }
-
-
-
-                //Travel Services
-
-                else if (subCat == "6")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    return Json(Data06);
-                }
-
-
-
-                else if (subCat == "7")
-                {
-
-                    return Json(new { Result = "RedirectToBooking", url = Url.Action("TravelServices", "MyBusinessReport") });
-                }
-                //var Data07 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
-                ////if (!string.IsNullOrEmpty(sort) && sort != "1")
-                ////{
-                ////    var a = ReplaceStatus(sort);
-                ////    if (a != "All")
-                ////    {
-                ////        var Datanew = Data07.Where(x => x.Status == a);
-                ////        return Json(Datanew);
-                ////    }
-                ////    else
-                ////    {
-                ////        return Json(Data07);
-                ////    }
-                ////}
-                //return Json(Data07);
-
-
-                //Payment Services
-                else if (subCat == "8")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<POSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    return Json(Data06);
-                }
-
-
-
-                else if (subCat == "9")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<POSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    return Json(Data06);
-                }
-
-
-                else if (subCat == "10")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<SMSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    return Json(Data06);
-                }
-                else if (subCat == "11")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<UPIDynamicQR>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    return Json(Data06);
-                }
-
-
-                else if (subCat == "12")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<UPIStaticQR>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    return Json(Data06);
-                }
-
-                else if (subCat == "13")
-                {
-                    // var Data06 = JsonConvert.DeserializeObject<List<>>(JsonConvert.SerializeObject(datadeserialize));
-                    //if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    //{
-                    //    var a = ReplaceStatus(sort);
-                    //    if (a != "All")
-                    //    {
-                    //        var Datanew = Data06.Where(x => x.Status == a);
-                    //        return Json(Datanew);
-                    //    }
-                    //    else
-                    //    {
-                    //        return Json(Data06);
-                    //    }
-                    //}
-                    // return Json(Data06);
-                }
-
-                //Digital Distribution Services
-
-                else if (subCat == "32")
-                {
-                    var Data06 = JsonConvert.DeserializeObject<List<AmazonPayGiftCardModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
-                        {
-                            var Datanew = Data06.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data06);
-                        }
-                    }
-                    return Json(Data06);
-                }
-
-
-
-                //Banking Solution Services
-
-                else if (subCat == "14")
-                {
-                    HttpContext.Session.SetString("UserId", requestModel.UserId);
-                    return Json(new { Result = "Redirect", url = Url.Action("PanCardRegistration", "MyBusinessReport") });
-                }
-
-
-                else if (subCat == "10")
-                {
-                    var Data10 = JsonConvert.DeserializeObject<List<SMSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(sort) && sort != "1")
-                    {
-                        var a = ReplaceStatus(sort);
-                        if (a != "All")
-                        {
-                            var Datanew = Data10.Where(x => x.Status == a);
-                            return Json(Datanew);
-                        }
-                        else
-                        {
-                            return Json(Data10);
-                        }
-                    }
-                    else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
-                    {
-                        foreach (var item in Data10)
-                        {
-                            SMSPaymentsResponseData.Add(new SMSPaymentsModel
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
                             {
-                                RequestDate = item.RequestDate,
-                                RequestData = item.RequestData,
-                                CustomerMobile = item.CustomerMobile,
-                                CreditAmount = item.CreditAmount,
-                                Status = item.Status,
-                                TransactionID = item.TransactionID,
-                                OrderID = item.OrderID,
-                                Mode = item.Mode,
-                                Surcharge = item.Surcharge
+                                var Datanew = Data01.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data01);
+                            }
+                        }
+                        //else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        //{
+                        //    foreach (var item in Data1)
+                        //    {
+                        //        Billl.Add(new GoldInvestmentSellModel
+                        //        {
+                        //            RequestDate = item.RequestDate,
+                        //            CustomerName = item.CustomerName,
+                        //            CustomerMobileNumber = item.CustomerMobileNumber,
+                        //            SellAmount = item.SellAmount,
+                        //            TransactionId = item.TransactionId,
+                        //            InvoiceID = item.InvoiceID,
+                        //            GoldRatePerGm = item.GoldRatePerGm,
+                        //            SellQuantity = item.SellQuantity,
+                        //            NetAmountCredited = item.NetAmountCredited,
+                        //            CustomerID = item.CustomerID,
+                        //            OldGoldBalance = item.OldGoldBalance,
+                        //            NewGoldBalance = item.NewGoldBalance,
+                        //            BankCharges = item.BankCharges,
+                        //            PANNo = item.PANNo,
+                        //            AccountNo = item.AccountNo,
+                        //            IFSCCode = item.IFSCCode,
+                        //            BankName = item.BankName,
+                        //            Status = item.Status
+
+                        //        });
+                        //    }
+                        //    return Json(Data27);
+                        //}
+                        return Json(Data01);
+                    }
+
+                    else if (subCat == "2")
+                    {
+                        var Data02 = JsonConvert.DeserializeObject<List<DTHRechargeModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        {
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data02.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data02);
+                            }
+                        }
+                        return Json(Data02);
+                    }
+
+                    else if (subCat == "3")
+                    {
+                        var Data03 = JsonConvert.DeserializeObject<List<MobilePrepaidModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        {
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data03.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data03);
+                            }
+                        }
+                        return Json(Data03);
+                    }
+
+                    else if (subCat == "4")
+                    {
+                        var Data04 = JsonConvert.DeserializeObject<List<MobilePostpaidModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        {
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data04.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data04);
+                            }
+                        }
+                        return Json(Data04);
+                    }
+
+                    else if (subCat == "5")
+                    {
+                        var Data05 = JsonConvert.DeserializeObject<List<LICPremiumPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        {
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data05.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data05);
+                            }
+                        }
+                        return Json(Data05);
+                    }
 
 
-                            });
+
+                    //Travel Services
+
+                    else if (subCat == "6")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        return Json(Data06);
+                    }
+
+
+
+                    else if (subCat == "7")
+                    {
+
+                        return Json(new { Result = "RedirectToBooking", url = Url.Action("TravelServices", "MyBusinessReport") });
+                    }
+                    //var Data07 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    ////if (!string.IsNullOrEmpty(sort) && sort != "1")
+                    ////{
+                    ////    var a = ReplaceStatus(sort);
+                    ////    if (a != "All")
+                    ////    {
+                    ////        var Datanew = Data07.Where(x => x.Status == a);
+                    ////        return Json(Datanew);
+                    ////    }
+                    ////    else
+                    ////    {
+                    ////        return Json(Data07);
+                    ////    }
+                    ////}
+                    //return Json(Data07);
+
+
+                    //Payment Services
+                    else if (subCat == "8")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<POSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        return Json(Data06);
+                    }
+
+
+
+                    else if (subCat == "9")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<POSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        return Json(Data06);
+                    }
+
+
+                    else if (subCat == "10")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<SMSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        return Json(Data06);
+                    }
+                    else if (subCat == "11")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<UPIDynamicQR>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        return Json(Data06);
+                    }
+
+
+                    else if (subCat == "12")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<UPIStaticQR>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        return Json(Data06);
+                    }
+
+                    else if (subCat == "13")
+                    {
+                        // var Data06 = JsonConvert.DeserializeObject<List<>>(JsonConvert.SerializeObject(datadeserialize));
+                        //if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        //{
+                        //    var a = ReplaceStatus(sort);
+                        //    if (a != "All")
+                        //    {
+                        //        var Datanew = Data06.Where(x => x.Status == a);
+                        //        return Json(Datanew);
+                        //    }
+                        //    else
+                        //    {
+                        //        return Json(Data06);
+                        //    }
+                        //}
+                        // return Json(Data06);
+                    }
+
+                    //Digital Distribution Services
+
+                    else if (subCat == "32")
+                    {
+                        var Data06 = JsonConvert.DeserializeObject<List<AmazonPayGiftCardModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        {
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data06.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data06);
+                            }
+                        }
+                        return Json(Data06);
+                    }
+
+
+
+                    //Banking Solution Services
+
+                    else if (subCat == "14")
+                    {
+                        HttpContext.Session.SetString("UserId", requestModel.UserId);
+                        return Json(new { Result = "Redirect", url = Url.Action("PanCardRegistration", "MyBusinessReport") });
+                    }
+
+
+                    else if (subCat == "10")
+                    {
+                        var Data10 = JsonConvert.DeserializeObject<List<SMSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(sort) && sort != "1")
+                        {
+                            var a = ReplaceStatus(sort);
+                            if (a != "All")
+                            {
+                                var Datanew = Data10.Where(x => x.Status == a);
+                                return Json(Datanew);
+                            }
+                            else
+                            {
+                                return Json(Data10);
+                            }
+                        }
+                        else if ((!string.IsNullOrEmpty(sort)) && sort == "1")
+                        {
+                            foreach (var item in Data10)
+                            {
+                                SMSPaymentsResponseData.Add(new SMSPaymentsModel
+                                {
+                                    RequestDate = item.RequestDate,
+                                    RequestData = item.RequestData,
+                                    CustomerMobile = item.CustomerMobile,
+                                    CreditAmount = item.CreditAmount,
+                                    Status = item.Status,
+                                    TransactionID = item.TransactionID,
+                                    OrderID = item.OrderID,
+                                    Mode = item.Mode,
+                                    Surcharge = item.Surcharge
+
+
+                                });
+                            }
+                            return Json(Data10);
                         }
                         return Json(Data10);
                     }
-                    return Json(Data10);
+
+                    return Json("");
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
                 }
 
-                return Json("");
             }
             catch (Exception ex)
             {
@@ -2174,12 +2214,24 @@ namespace Project_Redmil_MVC.Controllers
 
                 var result1 = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                //var datadeserialize = deserialize.Data;
-                var msgdeserialize = deserialize.Message;
-                //var data = JsonConvert.DeserializeObject<AePSCashWithdrawalModel1>(JsonConvert.SerializeObject(msgdeserialize));
-                //requestModel = data.ToList();
-                //return Json(requestModel);
-                return new(msgdeserialize);
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                {
+                    //var datadeserialize = deserialize.Data;
+                    var msgdeserialize = deserialize.Message;
+                    //var data = JsonConvert.DeserializeObject<AePSCashWithdrawalModel1>(JsonConvert.SerializeObject(msgdeserialize));
+                    //requestModel = data.ToList();
+                    //return Json(requestModel);
+                    return new(msgdeserialize);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -2320,18 +2372,29 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var msgdeserialize = deserialize.Message;
-
-                if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
-                    var docUrl = Baseurl + msgdeserialize;
-                    return Json(docUrl);
+                    var datadeserialize = deserialize.Data;
+                    var msgdeserialize = deserialize.Message;
+
+                    if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                    {
+                        var docUrl = Baseurl + msgdeserialize;
+                        return Json(docUrl);
+                    }
+                    var Data31 = JsonConvert.DeserializeObject<List<FinoDMTResponseModel.FinoDMTModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    //List<FinoDMTResponseModel> lst = new List<FinoDMTResponseModel>();
+                    //lst = Data31.ToList();
+                    return View(Data31);
                 }
-                var Data31 = JsonConvert.DeserializeObject<List<FinoDMTResponseModel.FinoDMTModel>>(JsonConvert.SerializeObject(datadeserialize));
-                //List<FinoDMTResponseModel> lst = new List<FinoDMTResponseModel>();
-                //lst = Data31.ToList();
-                return View(Data31);
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return View(deserialize);
+                }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
@@ -2407,54 +2470,66 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                ViewBag.Balance = lstdata.FirstOrDefault().MainBal;
-
-                PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
-                try
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
-                    requestModel.UserId = "2084";
-                    #region Checksum (CheckUTIAgentStatus|Unique Key|UserId|ServiceId)
+                    var data = deserialize.Data;
+                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                    ViewBag.Balance = lstdata.FirstOrDefault().MainBal;
 
-                    string inputN = Checksum.MakeChecksumString("CheckUTIAgentStatus", Checksum.checksumKey, requestModel.UserId);
-                    string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
-
-                    #endregion
-                    requestModel.checksum = CheckSumN;
-                    var clientN = new RestClient($"{Baseurl}{ApiName.CheckUTIAgentStatus}");
-                    var requestN = new RestRequest(Method.POST);
-                    requestN.AddHeader("Content-Type", "application/json");
-                    var jsonN = JsonConvert.SerializeObject(requestModel);
-                    requestN.AddJsonBody(jsonN);
-                    IRestResponse responseN = clientN.Execute(requestN);
-                    var resultN = responseN.Content;
-                    var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
-                    if (deserializeN.Statuscode == "UNR")
+                    PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
+                    try
                     {
-                        return Json(deserializeN);
+                        requestModel.UserId = "2084";
+                        #region Checksum (CheckUTIAgentStatus|Unique Key|UserId|ServiceId)
+
+                        string inputN = Checksum.MakeChecksumString("CheckUTIAgentStatus", Checksum.checksumKey, requestModel.UserId);
+                        string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
+
+                        #endregion
+                        requestModel.checksum = CheckSumN;
+                        var clientN = new RestClient($"{Baseurl}{ApiName.CheckUTIAgentStatus}");
+                        var requestN = new RestRequest(Method.POST);
+                        requestN.AddHeader("Content-Type", "application/json");
+                        var jsonN = JsonConvert.SerializeObject(requestModel);
+                        requestN.AddJsonBody(jsonN);
+                        IRestResponse responseN = clientN.Execute(requestN);
+                        var resultN = responseN.Content;
+                        var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
+                        if (deserializeN.Statuscode == "UNR")
+                        {
+                            return Json(deserializeN);
+                        }
+                        else
+                        {
+                            var dataN = deserializeN.Data;
+                            var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
+                            return View(deserialize1);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        var dataN = deserializeN.Data;
-                        var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
-                        return View(deserialize1);
+                        ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                        requestModel1.ExceptionMessage = ex;
+                        requestModel1.Data = requestModel;
+                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                        var requestEx = new RestRequest(Method.POST);
+                        requestEx.AddHeader("Content-Type", "application/json");
+                        var jsonEx = JsonConvert.SerializeObject(requestModel1);
+                        request.AddJsonBody(jsonEx);
+                        IRestResponse responseEx = client.Execute(requestEx);
+                        var resultEx = responseEx.Content;
                     }
                 }
-                catch (Exception ex)
+                else if (deserialize.Statuscode == "ERR")
                 {
-                    ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                    requestModel1.ExceptionMessage = ex;
-                    requestModel1.Data = requestModel;
-                    var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                    var requestEx = new RestRequest(Method.POST);
-                    requestEx.AddHeader("Content-Type", "application/json");
-                    var jsonEx = JsonConvert.SerializeObject(requestModel1);
-                    request.AddJsonBody(jsonEx);
-                    IRestResponse responseEx = client.Execute(requestEx);
-                    var resultEx = responseEx.Content;
+                    return View(deserialize);
                 }
+                else
+                {
+
+                }
+
 
             }
             catch (Exception ex)
@@ -2505,9 +2580,13 @@ namespace Project_Redmil_MVC.Controllers
                     var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
                     return Json(deserialize1);
                 }
-                else
+                else if (deserializeN.Statuscode == "ERR")
                 {
                     return Json(deserializeN);
+                }
+                else
+                {
+                    return Json("");
                 }
             }
             catch (Exception ex)
@@ -2566,22 +2645,34 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var msgdeserialize = deserialize.Message;
-
-                if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                if (deserialize != null && deserialize.Statuscode == "TXN")
                 {
-                    var docUrl = Baseurl + msgdeserialize;
-                    return Json(docUrl);
+                    var datadeserialize = deserialize.Data;
+                    var msgdeserialize = deserialize.Message;
+
+                    if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                    {
+                        var docUrl = Baseurl + msgdeserialize;
+                        return Json(docUrl);
+                    }
+                    var Data06 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    if (!string.IsNullOrEmpty(bookingID))
+                    {
+                        var DataNew = Data06.Where(x => x.BookingId == bookingID).ToList();
+                        return Json(DataNew);
+                    }
+
+                    return View(Data06);
                 }
-                var Data06 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
-                if (!string.IsNullOrEmpty(bookingID))
+                else if (deserialize.Statuscode == "ERR")
                 {
-                    var DataNew = Data06.Where(x => x.BookingId == bookingID).ToList();
-                    return Json(DataNew);
+                    return Json("");
+                }
+                else
+                {
+                    return Json("");
                 }
 
-                return View(Data06);
             }
             catch (Exception ex)
             {
@@ -2630,9 +2721,13 @@ namespace Project_Redmil_MVC.Controllers
                     var deserializeData = JsonConvert.DeserializeObject<CancelBusTicketsResponseModel>(data.ToString());
                     return Json(deserializeData);
                 }
-                else
+                else if (deserializeN.Statuscode == "ERR")
                 {
                     return Json(deserializeN);
+                }
+                else
+                {
+                    return Json("");
                 }
             }
             catch (Exception ex)
@@ -2651,6 +2746,5 @@ namespace Project_Redmil_MVC.Controllers
             return Json("");
         }
         #endregion
-
     }
 }
