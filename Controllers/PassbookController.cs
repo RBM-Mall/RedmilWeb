@@ -1754,6 +1754,5 @@ namespace Project_Redmil_MVC.Controllers
             return Json("");
         }
 
-
     }
 }
