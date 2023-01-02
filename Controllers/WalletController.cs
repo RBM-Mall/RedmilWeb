@@ -40,56 +40,85 @@ namespace Project_Redmil_MVC.Controllers
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             getBalanceRequestModel.Userid = "2084";
-
-            #region Checksum (GetBalance|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-
-            getBalanceRequestModel.checksum = CheckSum;
-            //API URL Has been changed by Siddhartha Sir
-            var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
-            //var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(getBalanceRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var statusCode = deserialize.Statuscode;
-
-            if(statusCode == "TXN")
+            try
             {
-                var data = deserialize.Data;
-                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                try
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
+                //var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
                 {
-                    foreach (var i in lstdata)
+                    var statusCode = deserialize.Statuscode;
+
+                    if (statusCode == "TXN")
                     {
-                        gBRM.Add(new GetBalanceResponseModel
+                        var data = deserialize.Data;
+                        List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                        lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                        try
                         {
-                            MainBal = i.MainBal,
-                            AdBal = i.AdBal,
-                            TotalIncentives = i.TotalIncentives,
-                            BReward = i.BReward,
-                            Reward = i.Reward,
-                            WalletAmount = i.AdBal + i.MainBal,
-                            REReward = i.REReward
-                            //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
+                            foreach (var i in lstdata)
+                            {
+                                gBRM.Add(new GetBalanceResponseModel
+                                {
+                                    MainBal = i.MainBal,
+                                    AdBal = i.AdBal,
+                                    TotalIncentives = i.TotalIncentives,
+                                    BReward = i.BReward,
+                                    Reward = i.Reward,
+                                    WalletAmount = i.AdBal + i.MainBal,
+                                    REReward = i.REReward
+                                    //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
 
-                        });
+                                });
 
+                            }
+                            return gBRM;
+                        }
+                        catch (Exception ex)
+                        {
+                            string message = ex.Message;
+                        }
                     }
+
+
                     return gBRM;
                 }
-                catch (Exception ex)
+                else if (deserialize.Statuscode == "ERR")
                 {
-                    string message = ex.Message;
+                    return gBRM;
                 }
+                else
+                {
+                    return gBRM;
+                }
+               
             }
-
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
             return gBRM;
         }
 

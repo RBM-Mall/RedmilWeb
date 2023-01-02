@@ -78,7 +78,7 @@ namespace Project_Redmil_MVC.Helper
         }
 
 
-        public string Decrypt(string textToDecrypt, string key)
+        public string YBLDecrypt(string textToDecrypt, string key)
 
         {
 

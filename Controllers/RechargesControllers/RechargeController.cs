@@ -3,18 +3,12 @@ using Project_Redmil_MVC.Models.RequestModel;
 using System.Data;
 using System.Text.RegularExpressions;
 using Project_Redmil_MVC.CommonHelper;
+using Project_Redmil_MVC.Models;
 
 namespace Project_Redmil_MVC.Controllers.RechargesControllers
 {
     public class RechargeController : Controller
     {
-        //private readonly ILogger<RechargeController> _logger;
-        //private readonly string Baseurl;
-        //public RechargeController(ILogger<RechargeController> logger)
-        //{
-        //    _logger = logger;
-        //    Baseurl = HelperMethod.GetBaseURl(_config);
-        //}
         private readonly string Baseurl;
         private readonly IConfiguration _config;
         public RechargeController(IConfiguration config)
@@ -34,7 +28,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         }
 
         [HttpPost]
-        public JsonResult PrepaidRecharge(string Number, string Operator, string Circle, string Amount, string Payment)
+        public IActionResult PrepaidRecharge(string Number, string Operator, string Circle, string Amount, string Payment)
         {
             if ((!string.IsNullOrEmpty(Number)) && (!string.IsNullOrEmpty(Operator)) && (!string.IsNullOrEmpty(Circle)) && (!string.IsNullOrEmpty(Amount)) && (!string.IsNullOrEmpty(Payment)))
             {
@@ -48,7 +42,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     var responseOperators = operaterData.Value as List<ResponseOperator>;
                     prepaidRechargeRequestModel.OpId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().Id.ToString();
                     prepaidRechargeRequestModel.ServiceId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().ServiceId.ToString();
-                    prepaidRechargeRequestModel.Mobileno = "";
+                    //prepaidRechargeRequestModel.Mobileno = Number;
                     //prepaidRechargeRequestModel.Mobileno = Number;
                     prepaidRechargeRequestModel.Mode = "App";
                     prepaidRechargeRequestModel.Amount = ToDigitsOnly(Amount);
@@ -70,13 +64,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     var result = response.Content;
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                     var data = deserialize.Data;
-                    if (deserialize.Statuscode == "TXN")
+                    if (deserialize != null && deserialize.Statuscode == "TXN")
                     {
                         var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
 
                         return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
                     }
-                    
+                    else if(deserialize != null && deserialize.Statuscode=="ERR")
+                    {
+                        var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<PrepaidRechargeResponseModel>>>(response.Content);
+
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                    }
+                    else
+                    {
+                        return (RedirectToAction("ErrorForExceptionLog","Error", new { message = "hi there!" }));
+                        //return RedirectToAction("ErrorForLogin", "Error");
+                    }
                     return Json(deserialize);
                 }
 
@@ -92,6 +96,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     request.AddJsonBody(json);
                     IRestResponse response = client.Execute(request);
                     var result = response.Content;
+                    return (RedirectToAction("ErrorForExceptionLog", "Error", new { message = "hi there!" }));
                 }
 
 
@@ -108,47 +113,77 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         [HttpPost]
         public JsonResult GetOperatorList()
         {
-            var baseImg = "https://api.redmilbusinessmall.com";
-            List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
             RequestModel1 requestModel = new RequestModel1();
-            requestModel.Userid = "2084";
-            requestModel.ServiceId = "21";
-
-            #region Checksum (addsender|Unique Key|UserId)
-
-            string input = Checksum.MakeChecksumString("GetOperaterList", Checksum.checksumKey, requestModel.Userid, requestModel.ServiceId);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-            #endregion
-
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetOperaterList");
-            var client = new RestClient($"{Baseurl}{ApiName.GetOperaterList}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
-            if (datalist != null)
+            try
             {
+                var baseImg = "https://api.redmilbusinessmall.com";
+                List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
+                
+                requestModel.Userid = "2084";
+                requestModel.ServiceId = "21";
 
-                foreach (var item in datalist)
+                #region Checksum (addsender|Unique Key|UserId)
+
+                string input = Checksum.MakeChecksumString("GetOperaterList", Checksum.checksumKey, requestModel.Userid, requestModel.ServiceId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                #endregion
+
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetOperaterList");
+                var client = new RestClient($"{Baseurl}{ApiName.GetOperaterList}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
                 {
-                    lstresponseOperator.Add(new ResponseOperator
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<ResponseOperator>>(JsonConvert.SerializeObject(data));
+                    if (datalist != null)
                     {
-                        Id = item.Id,
-                        Operatorname = item.Operatorname,
-                        Opcode = item.Opcode,
-                        Img1 = baseImg + item.Img,
-                        ServiceId = item.ServiceId
-                    });
+
+                        foreach (var item in datalist)
+                        {
+                            lstresponseOperator.Add(new ResponseOperator
+                            {
+                                Id = item.Id,
+                                Operatorname = item.Operatorname,
+                                Opcode = item.Opcode,
+                                Img1 = baseImg + item.Img,
+                                ServiceId = item.ServiceId
+                            });
+                        }
+                    }
+                    return Json(lstresponseOperator);
                 }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
-            return Json(lstresponseOperator);
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -159,29 +194,58 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             RequestModel1 requestModel = new RequestModel1();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            // var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            return Json(lstGetAllPlans);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                // var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    return Json(lstGetAllPlans);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
 
+            return Json("");
         }
         #endregion
 
@@ -192,26 +256,55 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public JsonResult GetMobileMNPDetails(string MobileNumber)
         {
             RequestModel1 requestModel = new RequestModel1();
-            requestModel.Userid = "2084";
-            requestModel.MobileNo = MobileNumber;
-            #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("GetMobileMNPDetails", Checksum.checksumKey, requestModel.Userid, requestModel.MobileNo.Trim());
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetMobileMNPDetails");
-            var client = new RestClient($"{Baseurl}{ApiName.GetMobileMNPDetails}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var datadeserialize = deserialize.Data;
-            var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
-            List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
-            return Json(data);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.MobileNo = MobileNumber;
+                #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("GetMobileMNPDetails", Checksum.checksumKey, requestModel.Userid, requestModel.MobileNo.Trim());
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/GetMobileMNPDetails");
+                var client = new RestClient($"{Baseurl}{ApiName.GetMobileMNPDetails}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<ResponseOperatorDetails>(JsonConvert.SerializeObject(datadeserialize));
+                    List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
+                    return Json(data);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel2 = new ExceptionLogRequestModel();
+                requestModel2.ExceptionMessage = ex;
+                requestModel2.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel2);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+            
         }
         #endregion
         #region GetAllPlansCombo
@@ -220,28 +313,57 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Combo Pack");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Combo Pack");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -251,28 +373,59 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Internet Pack");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if (deseserialize.Statuscode == "TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Internet Pack");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
+            
         }
         #endregion
         #region GetAllPlansTopUp
@@ -283,32 +436,61 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
 
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Topup Plan");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Topup Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
 
 
+            }
+            return Json("");
         }
         #endregion
 
@@ -319,28 +501,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Unlimited Pack" || x.PlanName == "Unlimited Packs");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Unlimited Pack" || x.PlanName == "Unlimited Packs");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+
+            }
+            return Json("");
+
         }
         #endregion #region GetAllPlansUnlimited
 
@@ -350,29 +564,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "VAS" || x.PlanName == "Full Talktime" || x.PlanName == "Validity Extension");
-            // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-            return Json(a);
+            try
+            {
+
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "VAS" || x.PlanName == "Full Talktime" || x.PlanName == "Validity Extension");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
         }
         #endregion
 
@@ -382,30 +627,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Full Talktime");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Full Talktime");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
         }
         #endregion
 
@@ -416,30 +691,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "International Roaming");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "International Roaming");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
         }
         #endregion
 
@@ -450,30 +755,61 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "ISD Plan" || x.PlanName == "Prime ISD Plan");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "ISD Plan" || x.PlanName == "Prime ISD Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
+
         }
         #endregion
 
@@ -484,31 +820,61 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Special Recharge");
-            // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if (deseserialize.Statuscode == "TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Special Recharge");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
         }
         #endregion
 
@@ -519,30 +885,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            // var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Validity Extention");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                // var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Validity Extention");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+
+            }
+            return Json("");
         }
         #endregion
 
@@ -554,30 +950,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "4G Data Voucher");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "4G Data Voucher");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -588,30 +1014,59 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone All in One Plan");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone All in One Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -621,30 +1076,59 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone Data Add On");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Jio Phone Data Add On");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
         }
         #endregion
 
@@ -654,31 +1138,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1 GB Plan");
-            // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1 GB Plan");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -688,31 +1201,61 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1.5 GB Plan");
-            // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 1.5 GB Plan");
+                    // var deserialize = JsonConvert.DeserializeObject<BaseResponseModel<GetAllPlansResponseModel>>(response.Content);
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
         }
         #endregion
 
@@ -722,30 +1265,62 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2 GB Plan");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2 GB Plan");
+                    return Json(a);
+
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
+
         }
         #endregion
 
@@ -755,30 +1330,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2.5 GB Plan");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 2.5 GB Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
+
         }
         #endregion
 
@@ -788,30 +1393,59 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 3 GB Plan");
-            return Json(a);
+            try {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime 3 GB Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
         }
         #endregion
 
@@ -821,30 +1455,60 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         {
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
-            requestModel.Userid = "2084";
-            requestModel.Circle = ReplaceCircleName(circle);
-            requestModel.OpName = ReplaceOperatorName(opname);
-            #region Checksum (JRIBrowsPlan|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            requestModel.checksum = CheckSum;
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
-            var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
-            //var client = new RestClient(baseUrl + "GetOperatorList");
-            ////Create request with GET
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deseserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-            lstGetAllPlans = datalist.ToList();
-            var a = lstGetAllPlans.Where(x => x.PlanName == "Prime No Daily limit Plan");
-            return Json(a);
+            try
+            {
+                requestModel.Userid = "2084";
+                requestModel.Circle = ReplaceCircleName(circle);
+                requestModel.OpName = ReplaceOperatorName(opname);
+                #region Checksum (JRIBrowsPlan|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("JRIBrowsPlan", Checksum.checksumKey, requestModel.Userid, requestModel.Circle + "|" + requestModel.OpName);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                requestModel.checksum = CheckSum;
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/JRIBrowsPlan");
+                var client = new RestClient($"{Baseurl}{ApiName.JRIBrowsPlan}");
+                //var client = new RestClient(baseUrl + "GetOperatorList");
+                ////Create request with GET
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deseserialize.Statuscode=="TXN" && deseserialize != null)
+                {
+                    var data = deseserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstGetAllPlans = datalist.ToList();
+                    var a = lstGetAllPlans.Where(x => x.PlanName == "Prime No Daily limit Plan");
+                    return Json(a);
+                }
+                else if (deseserialize.Statuscode == "ERR")
+                {
+                    return Json(deseserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
         #endregion
 
@@ -853,27 +1517,58 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         public JsonResult GetBalance()
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
-            getBalanceRequestModel.Userid = "2084";
-            #region Checksum (GetBalance|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            getBalanceRequestModel.checksum = CheckSum;
-            //API URL Has been changed by Siddhartha Sir
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
-            var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(getBalanceRequestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            var data = deserialize.Data;
-            var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-            List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-            lstdata = datalist.ToList();
-            return Json(lstdata);
+            try
+            {
+                getBalanceRequestModel.Userid = "2084";
+
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
+                var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                    lstdata = datalist.ToList();
+                    return Json(lstdata);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
+
         }
 
         #endregion

@@ -695,7 +695,9 @@
             <div class="div-recharge-opimage">
                 <div class="div-oprator-heading" style="text-align:center;"><h2><b>Housing Society Partner</b></h2></div>
                 <div class="row" style="text-align:center;">
-                    <div class="col-md-1 col-sm-12 col-xs-12 "></div>
+                    @*<div class="col-md-1 col-sm-12 col-xs-12 "></div>*@
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                    </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
                         <img src="~/css/Img_HousingSociety/darshan.jpeg" alt="darshan" class="img-width img-operator-logo">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="darshan"></a></div>
@@ -703,7 +705,6 @@
                             <br />
                         </div>
                     </div>
-
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
                         <img src="~/css/Img_HousingSociety/ebony.jpeg" alt="ebony" class="img-width img-operator-logo">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="ebony"></a></div>
@@ -718,6 +719,8 @@
                             <br />
                         </div>
                     </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                    </div>
                 </div>
             </div>
         </div>
@@ -726,7 +729,7 @@
 <script>
     var checkbox = document.querySelector("input[name=ccfCheckbox]");
     var chkCCF = "1";
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
         if (this.checked) {
             ccfChange("1");
             chkCCF = "1";
@@ -736,8 +739,8 @@
         }
     });
 
-    $(function() {
-        $("#txtCustomerMobile").keyup(function(e) {
+    $(function () {
+        $("#txtCustomerMobile").keyup(function (e) {
             var MobileNum;
             var a = $('#txtCustomerMobile').attr('id');
             var MobileNum = $("#txtCustomerMobile").val();
@@ -764,7 +767,7 @@
                 data: { 'OpId': operator },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     var ar = response;
                     window.open(ar);
                 }
@@ -785,7 +788,7 @@
                 data: { 'Number': MobileNum, 'Input1': Input1, 'Input2': Input2, 'ccf': chkCCF, 'Operator': Operator },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
+                success: function (responsedata) {
                     if (responsedata.statuscode == "ERR") {
                         document.getElementById("divBill").style.display = "block";
                         document.getElementById("divCancel").style.display = "block";
@@ -848,7 +851,7 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
+                success: function (responsedata) {
                     var sum = parseInt(responsedata.surcharge) + parseInt(amount);
                     document.getElementById("lblBillAmount").innerHTML = "";
                     document.getElementById("lblCCF").innerHTML = "";
@@ -870,7 +873,7 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
+                success: function (responsedata) {
                     var sum = parseInt(responsedata.surcharge) + parseInt(amount);
                     document.getElementById("lblBillAmount").innerHTML = "";
                     document.getElementById("lblCCF").innerHTML = "";
@@ -896,7 +899,7 @@
             data: { 'ccf': CCF, 'amount': amount },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
+            success: function (responsedata) {
 
                 var sum = parseInt(responsedata.surcharge) + parseInt(amount);
                 document.getElementById("lblBillAmount").innerHTML = "";
@@ -914,22 +917,22 @@
     }
 
     function bindAmountInput() {
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "/HousingSocietyBill/GetBalance",
                 data: {},
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                     document.getElementById("lblAdbal").innerHTML = response[0].adBal;
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -938,20 +941,20 @@
         });
 
     }
-    $("#myModalfinal").on('show.bs.modal', function(e) {
+    $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
 
-    $('#btnCloseModal').click(function() {
+    $('#btnCloseModal').click(function () {
         window.location.href = '@Url.Content("~/HousingSocietyBill/HousingSocietyBill")';
     });
-    $('#btnCloseTwo').click(function() {
+    $('#btnCloseTwo').click(function () {
         window.location.href = '@Url.Content("~/HousingSocietyBill/HousingSocietyBill")';
     });
-    $('#btnCloseFirst').click(function() {
+    $('#btnCloseFirst').click(function () {
         window.location.href = '@Url.Content("~/HousingSocietyBill/HousingSocietyBill")';
     });
-    $('#finaldismissbutton').click(function() {
+    $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/HousingSocietyBill/HousingSocietyBill")';
     });
 
@@ -959,7 +962,7 @@
 
 
 
-    $("#btnPayNow").click(function() {
+    $("#btnPayNow").click(function () {
         var MobileNum = $("#txtCustomerMobile").val();
         var SubSId = $("#txtAsiaSubsCode").val();
         var Operator = $("#Id").val();
@@ -972,7 +975,7 @@
                 data: { 'Number': MobileNum, 'SubSId': SubSId, 'Operator': Operator, 'ccf': chkCCF, 'Amount': Amount, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
                     if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
@@ -1038,10 +1041,10 @@
                     }
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -1055,9 +1058,9 @@
 </script>
 
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        
-        $("#Id").change(function(e) {
+    jQuery(document).ready(function () {
+
+        $("#Id").change(function (e) {
             $("#txtMobile").val("");
             document.getElementById("divBill").style.display = "none";
             document.getElementById("divFetch").style.display = "block";
@@ -1070,12 +1073,12 @@
                 data: { 'OpId': OpId },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
+                success: function (responsedata) {
                     for (var i = 0; i < responsedata[0].inputParam.length; i++) {
                         var id = "txtInput" + i;
                         $(".inc").append('<div class="controls">\
-                                        <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                    </div>');
+                                            <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                        </div>');
                     }
                 }
 
@@ -1083,7 +1086,7 @@
             return false;
         });
 
-        jQuery(document).on('click', '.remove_this', function() {
+        jQuery(document).on('click', '.remove_this', function () {
             jQuery(this).parent().remove();
             return false;
         });

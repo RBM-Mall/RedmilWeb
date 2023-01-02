@@ -12,6 +12,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Project_Redmil_MVC.Models.RequestModel.Applyforfrenchise;
 using Project_Redmil_MVC.CommonHelper;
+using Project_Redmil_MVC.Models.RequestModel;
 
 namespace Project_Redmil_MVC.Controllers.UserDashoard
 {
@@ -43,26 +44,44 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
         {
             
             ApplyForFrenchiseRequest requestModel = new ApplyForFrenchiseRequest();
-            requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
-            requestModel.Token = "";
-            requestModel.CityName = city;
-            requestModel.AreaName = area;
-            requestModel.Preference = frenchise;
-            #region Checksum (addsender|Unique Key|UserId)
-            string input = Checksum.MakeChecksumString(ApiName.ApplyForFranchise, Checksum.checksumKey,requestModel.Userid);
-            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/User/ValidateUser");
-            var client = new RestClient($"{Baseurl}{ApiName.ApplyForFranchise}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            requestModel.checksum = CheckSum;
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var des = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-            return Json(des);
+            try
+            {
+
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+                requestModel.Token = "";
+                requestModel.CityName = city;
+                requestModel.AreaName = area;
+                requestModel.Preference = frenchise;
+                #region Checksum (addsender|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString(ApiName.ApplyForFranchise, Checksum.checksumKey, requestModel.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/User/ValidateUser");
+                var client = new RestClient($"{Baseurl}{ApiName.ApplyForFranchise}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                requestModel.checksum = CheckSum;
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var des = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                return Json(des);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = requestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+            }
+            return Json("");
         }
     }
 }

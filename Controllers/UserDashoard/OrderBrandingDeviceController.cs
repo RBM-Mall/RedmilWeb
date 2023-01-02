@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project_Redmil_MVC.CommonHelper;
+using Project_Redmil_MVC.Models.RequestModel;
+using Project_Redmil_MVC.Models;
 using Project_Redmil_MVC.Models.ResponseModel.OrderBrandingResponseModel;
 
 namespace Project_Redmil_MVC.Controllers.UserDashoard
@@ -29,54 +31,71 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             }
             else
             {
-                //var baseUrl = _config.GetSection("ApiUrl").GetSection("BaseUrl").Value;
-                var baseUrl = "https://api.redmilbusinessmall.com";
-                var datainsert = new List<OrderBrandingResponseModel>();
-                List<OrderBrandingResponseModel> lstresponse = new List<OrderBrandingResponseModel>(); 
-                var Materials= new List<OrderBrandingDeviceController>(); 
-                #region Checksum (addsender|Unique Key|UserId)
-                string input = Checksum.MakeChecksumString("ShowMaterial", Checksum.checksumKey);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                #endregion
-                //var client = new RestClient("https://api.redmilbusinessmall.com/api/User/ValidateUser");
-                var client = new RestClient($"{Baseurl}{ApiName.ShowMaterial}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                var Orderbranddata = JsonConvert.DeserializeObject<OrderBrandingBaseResponseModel>(result);
-                var data = Orderbranddata.Materials;
-                var datalist = JsonConvert.DeserializeObject<List<OrderBrandingResponseModel>>(JsonConvert.SerializeObject(data));
-                lstresponse = datalist.ToList();
-                //    if (!string.IsNullOrEmpty(Cat))
-                //    {
-                //        var a = baseUrl + lstresponse.Where(x => x.Title == Cat).FirstOrDefault().ImgLink;
-                //        //baseUrl + item.ImgLink
-                //        return Json(a);
-
-                //}
-                if (lstresponse != null)
+                try
                 {
-                    foreach (var item in lstresponse)
-                    {
-                        datainsert.Add(new OrderBrandingResponseModel
-                        {
-                         Id=item.Id,
-                          MaterialName=item.MaterialName,
-                          SOrder=item.SOrder,
-                          Usage=item.Usage,
-                          Amount=item.Amount,
-                          MaterialType=item.MaterialType,
-                          ImgSample= baseUrl + item.ImgSample,
-                          ImgThumbnail= baseUrl + item.ImgThumbnail
+                    //var baseUrl = _config.GetSection("ApiUrl").GetSection("BaseUrl").Value;
+                    var baseUrl = "https://api.redmilbusinessmall.com";
+                    var datainsert = new List<OrderBrandingResponseModel>();
+                    List<OrderBrandingResponseModel> lstresponse = new List<OrderBrandingResponseModel>();
+                    var Materials = new List<OrderBrandingDeviceController>();
+                    #region Checksum (addsender|Unique Key|UserId)
+                    string input = Checksum.MakeChecksumString("ShowMaterial", Checksum.checksumKey);
+                    string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                    #endregion
+                    //var client = new RestClient("https://api.redmilbusinessmall.com/api/User/ValidateUser");
+                    var client = new RestClient($"{Baseurl}{ApiName.ShowMaterial}");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Content-Type", "application/json");
+                    IRestResponse response = client.Execute(request);
+                    var result = response.Content;
+                    var Orderbranddata = JsonConvert.DeserializeObject<OrderBrandingBaseResponseModel>(result);
+                    var data = Orderbranddata.Materials;
+                    var datalist = JsonConvert.DeserializeObject<List<OrderBrandingResponseModel>>(JsonConvert.SerializeObject(data));
+                    lstresponse = datalist.ToList();
+                    //    if (!string.IsNullOrEmpty(Cat))
+                    //    {
+                    //        var a = baseUrl + lstresponse.Where(x => x.Title == Cat).FirstOrDefault().ImgLink;
+                    //        //baseUrl + item.ImgLink
+                    //        return Json(a);
 
-                        });
+                    //}
+                    if (lstresponse != null)
+                    {
+                        foreach (var item in lstresponse)
+                        {
+                            datainsert.Add(new OrderBrandingResponseModel
+                            {
+                                Id = item.Id,
+                                MaterialName = item.MaterialName,
+                                SOrder = item.SOrder,
+                                Usage = item.Usage,
+                                Amount = item.Amount,
+                                MaterialType = item.MaterialType,
+                                ImgSample = baseUrl + item.ImgSample,
+                                ImgThumbnail = baseUrl + item.ImgThumbnail
+
+                            });
+                        }
+
+                        return View(datainsert);
+
                     }
-                   
-                    return View(datainsert);
+                    return View(lstresponse);
 
                 }
-                return View(lstresponse);
+                catch (Exception ex)
+                {
+                    ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                    requestModel1.ExceptionMessage = ex;
+                    requestModel1.Data = "";
+                    var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Content-Type", "application/json");
+                    var json = JsonConvert.SerializeObject(requestModel1);
+                    request.AddJsonBody(json);
+                    IRestResponse response = client.Execute(request);
+                    var result = response.Content;
+                }
 
 
             }
@@ -85,8 +104,6 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
         [HttpPost]
         public JsonResult  OrdeBrandingDevice()
         {
-
-          
             return Json("");   
 
         }
