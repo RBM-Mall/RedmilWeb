@@ -39,7 +39,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
 
         [HttpPost]
 
-        public JsonResult FetchBill(string Number, string Operator,string Input1, string Input2, string ccf, string Amount,string Payment)
+        public JsonResult FetchBill(string Number, string Operator, string Input1, string Input2, string ccf, string Amount, string Payment)
         {
             List<Operatornames> OpList = new List<Operatornames>();
             var baseUrl = "https://api.redmilbusinessmall.com";
@@ -342,29 +342,37 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                if (result.Equals("") || result.Equals(string.Empty) || result.Equals(null))
-                {
-
-                }
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var deserializeN = JsonConvert.DeserializeObject<FastagBillOperatorListResponseModel>(datadeserialize.ToString());
-
-                var arr = deserializeN.billerInfo;
-
-                if (arr != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
-                    foreach (var item in arr)
-                    {
-                        OpList.Add(new Operatornames
-                        {
-                            Id = item.Id,
-                            Operatorname = item.Operatorname
+                    var datadeserialize = deserialize.Data;
+                    var deserializeN = JsonConvert.DeserializeObject<FastagBillOperatorListResponseModel>(datadeserialize.ToString());
 
-                        });
+                    var arr = deserializeN.billerInfo;
+
+                    if (arr != null)
+                    {
+                        foreach (var item in arr)
+                        {
+                            OpList.Add(new Operatornames
+                            {
+                                Id = item.Id,
+                                Operatorname = item.Operatorname
+
+                            });
+                        }
                     }
+                    return OpList;
                 }
-                return OpList;
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return OpList;
+                }
+                else
+                {
+                    return null;
+                }
+
 
             }
             catch (Exception ex)
@@ -429,7 +437,19 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                return Json(deserialize);
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                {
+                    return Json(deserialize);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+
             }
             catch (Exception ex)
             {
@@ -474,11 +494,23 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                if (deserialize.Statuscode=="TXN" && deserialize!=null)
+                {
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
 
-                lstdata = datalist.ToList();
-                return Json(lstdata);
+                    lstdata = datalist.ToList();
+                    return Json(lstdata);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -584,12 +616,24 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var deserializeN = JsonConvert.DeserializeObject<FastagBillOperatorListResponseModel>(datadeserialize.ToString());
+                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                {
+                    var datadeserialize = deserialize.Data;
+                    var deserializeN = JsonConvert.DeserializeObject<FastagBillOperatorListResponseModel>(datadeserialize.ToString());
 
-                var arr = deserializeN.billerInfo;
-                var a = arr.Where(x => x.Id == OpId);
-                return Json(a);
+                    var arr = deserializeN.billerInfo;
+                    var a = arr.Where(x => x.Id == OpId);
+                    return Json(a);
+                }
+                else if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
+                else
+                {
+                    return Json("");
+                }
+                
             }
             catch (Exception ex)
             {
