@@ -177,7 +177,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.FilterBy = "All";
                 requestModel.WalletType = "Advance Wallet";
                 requestModel.PageNumber = "1";
@@ -265,7 +265,7 @@ namespace Project_Redmil_MVC.Controllers
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -322,7 +322,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             GetTransactionDetail obj = new GetTransactionDetail();
-            obj.Userid = "2084";
+            obj.Userid = HttpContext.Session.GetString("Id").ToString() ;
             obj.BalanceId = BalanceId;
             obj.Type = "1";
             obj.Wallet = "Cash Wallet";
@@ -349,7 +349,7 @@ namespace Project_Redmil_MVC.Controllers
             GetTransactionDetail obj = new GetTransactionDetail();
             try
             {
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.BalanceId = BalanceId;
                 obj.Type = "1";
                 obj.Wallet = "Advance Wallet";
@@ -392,7 +392,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
-            requestModel.UserId = "2180";
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
             requestModel.PageNumber = "1";
             requestModel.ToDate = currentDate;
             requestModel.FromDate = fromDate;
@@ -430,7 +430,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
-            requestModel.UserId = "2180";
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
             requestModel.PageNumber = "1";
             requestModel.ToDate = currentDate;
             requestModel.FromDate = fromDate;
@@ -467,7 +467,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
-            requestModel.UserId = "2180";
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString(); 
             requestModel.PageNumber = "1";
             requestModel.ToDate = currentDate;
             requestModel.FromDate = fromDate;
@@ -502,7 +502,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
-            requestModel.UserId = "2180";
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
             requestModel.PageNumber = "1";
             requestModel.ToDate = currentDate;
             requestModel.FromDate = fromDate;
@@ -544,7 +544,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.FilterBy = "All";
                 requestModel.WalletType = "BRewards";
                 requestModel.PageNumber = "1";
@@ -634,7 +634,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.FilterBy = "All";
                 requestModel.WalletType = "RERewards";
                 requestModel.PageNumber = "1";
@@ -724,7 +724,7 @@ namespace Project_Redmil_MVC.Controllers
             GetTransactionDetail obj = new GetTransactionDetail();
             try
             {
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.BalanceId = BalanceId;
                 obj.Type = "1";
                 obj.Wallet = "RERewards";
@@ -768,7 +768,7 @@ namespace Project_Redmil_MVC.Controllers
             GetTransactionDetail obj = new GetTransactionDetail();
             try
             {
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.BalanceId = BalanceId;
                 obj.Type = "1";
                 obj.Wallet = "BRewards";
@@ -824,7 +824,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetCashoutSurchargeNew", Checksum.checksumKey,
@@ -881,7 +881,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = "2180";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ModeId = "1";
                 requestModel.Amount = Amount;
                 ServiceId = ServiceId;
@@ -939,7 +939,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = "2180";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString(); 
                 requestModel.ModeId = "2";
                 requestModel.Amount = Amount;
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
@@ -994,7 +994,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = "2180";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ModeId = "3";
                 requestModel.Amount = Amount;
                 ServiceId = ServiceId;
@@ -1053,7 +1053,7 @@ namespace Project_Redmil_MVC.Controllers
             List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
             try
             {
-                requestModel.Userid = "2180";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString(); 
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetMultiAccountDetailsForUsers", Checksum.checksumKey,
@@ -1118,7 +1118,7 @@ namespace Project_Redmil_MVC.Controllers
             return Json("");
 
         }
-        String Amount;
+        string Amount;
         string ModeId;
         string BankId;
         string BankName;
@@ -1134,7 +1134,7 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 //List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
-                requestModel.Userid = "2180";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("AaadharPicVerification", Checksum.checksumKey,
@@ -1172,7 +1172,7 @@ namespace Project_Redmil_MVC.Controllers
                         {
                             objfinal.ModeId = "3";
                         }
-                        objfinal.UserId = "2180";
+                        objfinal.UserId = HttpContext.Session.GetString("Id").ToString();
                         objfinal.ServiceId = ServiceId;
                         objfinal.OpId = OpId;
                         objfinal.BankId = BankId;
@@ -1235,7 +1235,7 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 //List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
-                obj.Userid = "2180";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.FileName = showimage;
                 var client = new RestClient($"{Baseurl}{ApiName.FaceLiveliNess}");
                 var request = new RestRequest(Method.POST);
@@ -1418,7 +1418,7 @@ namespace Project_Redmil_MVC.Controllers
             VerificationwithchargeRequestModelcs requestModel = new VerificationwithchargeRequestModelcs();
 
 
-            requestModel.Userid = "2180";
+            requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
             requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
             requestModel.Account = Account;
             requestModel.Ifsc = Ifsc;
@@ -1492,7 +1492,7 @@ namespace Project_Redmil_MVC.Controllers
             ValidateOTPForMultiAccountRequestModel obj = new ValidateOTPForMultiAccountRequestModel();
             try
             {
-                obj.Userid = "2180";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.Mobile = HttpContext.Session.GetString("Mobile").ToString();
                 string input1 = Checksum.MakeChecksumString("SendOTPForMultiAccount", Checksum.checksumKey, obj.Userid, obj.Mobile);
                 string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
@@ -1533,7 +1533,7 @@ namespace Project_Redmil_MVC.Controllers
             {
                 objvalidate.Mobile = HttpContext.Session.GetString("Mobile").ToString();
                 objvalidate.Otp = Otp;
-                objvalidate.Userid = "2180";
+                objvalidate.Userid = HttpContext.Session.GetString("Id").ToString(); ;
                 string inputvalidate = Checksum.MakeChecksumString("ValidateOTPForMultiAccount", Checksum.checksumKey, objvalidate.Userid, objvalidate.Mobile, objvalidate.Otp);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(inputvalidate);
                 objvalidate.checksum = CheckSum;
@@ -1617,7 +1617,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     objMulti.BankId = BankList;
                     objMulti.RelationName = Relation;
-                    objMulti.Userid = "2180";
+                    objMulti.Userid = HttpContext.Session.GetString("Id").ToString(); ;
                     objMulti.AccountNo = Account;
                     objMulti.IFSC = IFSc;
                     objMulti.BeniName = BeneficaryName;
@@ -1705,7 +1705,7 @@ namespace Project_Redmil_MVC.Controllers
 
             objMulti.BankId = BankList;
             objMulti.RelationName = "";
-            objMulti.Userid = "2180";
+            objMulti.Userid = HttpContext.Session.GetString("Id").ToString(); ;
             objMulti.AccountNo = Account;
             objMulti.IFSC = IFSC;
             objMulti.BeniName = BeneficaryName;
@@ -1786,7 +1786,7 @@ namespace Project_Redmil_MVC.Controllers
             obj.Charge = "0.00";
             obj.Amount = AmountT;
             obj.ModeId = Mode;
-            obj.Userid = "2084";
+            obj.Userid = HttpContext.Session.GetString("Id").ToString();
             #region Checksum (MakeCashDeposite|Unique Key|UserId)
             //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
             string input = Checksum.MakeChecksumString("MakeCashDeposite", Checksum.checksumKey, obj.Userid, obj.ModeId, obj.Amount, obj.Charge, obj.ChargeType, obj.ChargedAmount, obj.Remarks, obj.Docs, obj.TransactionDate, obj.TransactionId);
