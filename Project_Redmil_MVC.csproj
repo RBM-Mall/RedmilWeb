@@ -31,9 +31,6 @@
     <Content Remove="Pages\Shared\_Layout.cshtml" />
     <Content Remove="Views\Home\Index - Copy.cshtml" />
     <Content Remove="Views\MyBusinessReports\MyBusinessReports1.cshtml" />
-    <Content Remove="wwwroot\css\ImageLogo\paytm.webp" />
-    <Content Remove="wwwroot\css\Img\Logo.png" />
-    <Content Remove="wwwroot\css\Img\redmil-1.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +43,106 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Pages\Shared\_ErrorView.cshtml" />
+    <None Include="wwwroot\aeps\jquery-1.8.2.js" />
+    <None Include="wwwroot\aeps\mfs100.js" />
+    <None Include="wwwroot\css\ImageLogo\paytm.webp" />
+    <None Include="wwwroot\DatePicker\bootstrap-material-datetimepicker.js" />
+    <None Include="wwwroot\js\autoplay.js" />
+    <None Include="wwwroot\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\js\bootstrap.esm.js" />
+    <None Include="wwwroot\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\bootstrap.js.map" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\js\BrandingOwlcarousel.js" />
+    <None Include="wwwroot\js\BrandinOwlthumb2.js" />
+    <None Include="wwwroot\js\custom.js" />
+    <None Include="wwwroot\js\home.js" />
+    <None Include="wwwroot\js\homepage.js" />
+    <None Include="wwwroot\js\inspect.js" />
+    <None Include="wwwroot\js\jquery-1.12.0.min.js" />
+    <None Include="wwwroot\js\jquery-2.2.4.min.js" />
+    <None Include="wwwroot\js\jquery.js" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\jquery.min.map" />
+    <None Include="wwwroot\js\notify.js" />
+    <None Include="wwwroot\js\orderbrandin.js" />
+    <None Include="wwwroot\js\orderbrandingmap.js" />
+    <None Include="wwwroot\js\owl.autoplay.js" />
+    <None Include="wwwroot\js\owl.carousel.js" />
+    <None Include="wwwroot\js\owl.carousel.min.js" />
+    <None Include="wwwroot\js\progressslider.js" />
+    <None Include="wwwroot\js\scrollup.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\slider.js" />
+    <None Include="wwwroot\js\slider1.js" />
+    <None Include="wwwroot\js\Toast.js" />
+    <None Include="wwwroot\js\verified_otp.js" />
+    <None Include="wwwroot\js\wow.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\bootstrap.min.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\creditly.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\easyResponsiveTabs.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\imagezoom.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery-1.11.1.min.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery-ui.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.countup.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.flexslider.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.waypoints.min.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\minicart.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\owl.carousel.js" />
+    <None Include="wwwroot\OrderBrandingDevice\assets\js\theme-change.js" />
+    <None Include="wwwroot\rechargejs\dthrecharge.js" />
+    <None Include="wwwroot\rechargejs\postpaidrecharge.js" />
+    <None Include="wwwroot\rechargejs\recharge.js" />
+    <None Include="wwwroot\scss\owl.carousel.scss" />
+    <None Include="wwwroot\Slick\slick.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,27 +162,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\bootstrap.min.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\creditly.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\easyResponsiveTabs.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\imagezoom.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery-1.11.1.min.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery-3.3.1.min.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery-ui.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.countup.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.flexslider.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.magnific-popup.min.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\jquery.waypoints.min.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\minicart.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\owl.carousel.js" />
-    <None Include="wwwroot\OrderBrandingDevice\assets\js\theme-change.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\ResponseModel\NewFolder\" />
     <Folder Include="wwwroot\css\LiveImage\" />
     <Folder Include="wwwroot\css\NewFolder2\" />
-    <Folder Include="wwwroot\UploadImages\Doc\" />
   </ItemGroup>
 
 </Project>

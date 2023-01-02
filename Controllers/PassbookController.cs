@@ -48,7 +48,10 @@ using static System.Net.WebRequestMethods;
 using Project_Redmil_MVC.Models.ResponseModel.InsertMultiAccountDetailNewRequestModel;
 using Project_Redmil_MVC.Models.RequestModel.InsertMultiAccoutn_NewRequestModel;
 using Project_Redmil_MVC.Models.ResponseModel.PssbookSuccesResponseModal;
-using NuGet.Protocol.Plugins;
+using Project_Redmil_MVC.Models.RequestModel.PassboookDownloadWalletRequestModel;
+using Project_Redmil_MVC.Models.ResponseModel.GetCashDepositeResponseModel;
+using Project_Redmil_MVC.Models.RequestModel.MakeCashOutDeposite;
+using System.Linq.Expressions;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -87,94 +90,77 @@ namespace Project_Redmil_MVC.Controllers
             List<RERewardResponseModel> RERewrads = REP();
             //var Data1 = new List<CashWalletRecentResponseDetailsPassbookModel>();
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
-            try
+            requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+            requestModel.FilterBy = "All";
+            requestModel.WalletType = "Cash Wallet";
+            requestModel.PageNumber = "1";
+            requestModel.Token = "ezPSD8JHSi-20841401";
+            requestModel.FromDate = "2022-11-01";
+            requestModel.ToDate = DateTime.Now.ToString("yyyy-MM-dd");
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            string input = Checksum.MakeChecksumString("GetUserBalanceSummaryWithPaging", Checksum.checksumKey,
+                requestModel.Userid, requestModel.FilterBy, requestModel.WalletType, requestModel.PageNumber,
+                requestModel.Token, requestModel.FromDate, requestModel.ToDate);
+            //string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            string CheckSum = "f42e229f1389fa25f4cffa1f976bc0941e8e5b1710645eaf85ce528afa463718c7f582fe376f30989b4b9f7dfc47001fb4f148b1a85c45e76d8c8b8961e400fa";
+            #endregion
+            CashWalletRecentResponseDetailsPassbookModel cashWalletRecent = new CashWalletRecentResponseDetailsPassbookModel();
+            cashWalletRecent.baseUrl = Baseurl;
+            requestModel.checksum = CheckSum;
+            //var client = new RestClient(Client);
+            var client = new RestClient($"{Baseurl}{ApiName.GetUserBalanceSummaryWithPaging}");
+            //Create request with GET
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            var datadeserialize = deserialize.Data;
+            var data = JsonConvert.DeserializeObject<List<CashWalletRecentResponseDetailsPassbookModel>>(JsonConvert.SerializeObject(datadeserialize));
+            if (deserialize.Statuscode == "TXN")
             {
-                requestModel.Userid = "2084";
-                requestModel.FilterBy = "All";
-                requestModel.WalletType = "Cash Wallet";
-                requestModel.PageNumber = "1";
-                requestModel.Token = "ezPSD8JHSi-20841401";
-                requestModel.FromDate = "2022-11-01";
-                requestModel.ToDate = DateTime.Now.ToString("yyyy-MM-dd");
-                #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
-                string input = Checksum.MakeChecksumString("GetUserBalanceSummaryWithPaging", Checksum.checksumKey,
-                    requestModel.Userid, requestModel.FilterBy, requestModel.WalletType, requestModel.PageNumber,
-                    requestModel.Token, requestModel.FromDate, requestModel.ToDate);
-                //string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                string CheckSum = "f42e229f1389fa25f4cffa1f976bc0941e8e5b1710645eaf85ce528afa463718c7f582fe376f30989b4b9f7dfc47001fb4f148b1a85c45e76d8c8b8961e400fa";
-                #endregion
-                CashWalletRecentResponseDetailsPassbookModel cashWalletRecent = new CashWalletRecentResponseDetailsPassbookModel();
-                cashWalletRecent.baseUrl = Baseurl;
-                requestModel.checksum = CheckSum;
-                //var client = new RestClient(Client);
-                var client = new RestClient($"{Baseurl}{ApiName.GetUserBalanceSummaryWithPaging}");
-                //Create request with GET
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (data.FirstOrDefault().New_bal.ToString() != null && data.FirstOrDefault().New_bal.ToString() != "")
                 {
-                    var datadeserialize = deserialize.Data;
-                    var data = JsonConvert.DeserializeObject<List<CashWalletRecentResponseDetailsPassbookModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<CashWalletRecentResponseDetailsPassbookModel>>>(response.Content);
                     HttpContext.Session.SetString("Balance", data.FirstOrDefault().New_bal.ToString());
                     HttpContext.Session.GetString("Balance").ToString();
-                    if (data != null)
-                    {
-                        foreach (var item in data)
-                        {
-                            gdata.Add(new CashWalletRecentResponseDetailsPassbookModel
-                            {
-                                Id = item.Id,
-                                Title = item.Title,
-                                Amount = item.Amount,
-                                Detail = item.Detail,
-                                CreditDebit = item.CreditDebit,
-                                Client = item.Client,
-                                GstAmount = item.GstAmount,
-                                TdsAmount = item.TdsAmount,
-                                New_bal = item.New_bal,
-                                Img = baseUrl + item.Img,
-                                Amount1 = string.Format("{0:0.00}", item.Amount - Convert.ToDouble(item.TdsAmount)).ToString(),
-                                AdvanceWalletResponsePassbookDetailsModel = adv,
-                                BRewardDetailResponseModel = BrRewads,
-                                RERewardResponseModel = RERewrads
-                            });
-                        }
-                    }
-
-                    return View(gdata);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return View();
-                    //return View(deserialize);
                 }
                 else
                 {
-                    return View();
+                    HttpContext.Session.SetString("Balance", "0");
                 }
-                
+                if (data != null)
+                {
+                    foreach (var item in data)
+                    {
+                        gdata.Add(new CashWalletRecentResponseDetailsPassbookModel
+                        {
+                            Id = item.Id,
+                            Title = item.Title,
+                            Amount = item.Amount,
+                            Detail = item.Detail,
+                            CreditDebit = item.CreditDebit,
+                            Client = item.Client,
+                            GstAmount = item.GstAmount,
+                            TdsAmount = item.TdsAmount,
+                            New_bal = item.New_bal,
+                            Img = baseUrl + item.Img,
+                            Amount1 = string.Format("{0:0.00}", item.Amount - Convert.ToDouble(item.TdsAmount)).ToString(),
+                            AdvanceWalletResponsePassbookDetailsModel = adv,
+                            BRewardDetailResponseModel = BrRewads,
+                            RERewardResponseModel = RERewrads
+                        });
+                    }
+                }
             }
-            catch (Exception ex)
+            //var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<CashWalletRecentResponseDetailsPassbookModel>>>(response.Content);
+            else
             {
-                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                requestModel1.ExceptionMessage = ex;
-                requestModel1.Data = requestModel;
-                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel1);
-                requestEx.AddJsonBody(json);
-                IRestResponse response = client.Execute(requestEx);
-                var result = response.Content;
-            }
-            return View();
 
+            }
+
+            return View(gdata);
         }
 
         #endregion
@@ -191,7 +177,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.FilterBy = "All";
                 requestModel.WalletType = "Advance Wallet";
                 requestModel.PageNumber = "1";
@@ -217,7 +203,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     var advData = JsonConvert.DeserializeObject<List<AdvanceWalletResponsePassbookDetailsModel>>(JsonConvert.SerializeObject(datadeserialize));
@@ -248,9 +234,9 @@ namespace Project_Redmil_MVC.Controllers
                 }
                 else
                 {
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -279,7 +265,7 @@ namespace Project_Redmil_MVC.Controllers
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -295,7 +281,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var data = deserialize.Data;
 
@@ -310,7 +296,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -336,44 +322,24 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             GetTransactionDetail obj = new GetTransactionDetail();
-            try
+            obj.Userid = HttpContext.Session.GetString("Id").ToString() ;
+            obj.BalanceId = BalanceId;
+            obj.Type = "1";
+            obj.Wallet = "Cash Wallet";
+            var client = new RestClient($"{Baseurl}{ApiName.GetTransactionDetailsUseingBalanceId}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(obj);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize.Statuscode == "ERR")
             {
-                obj.Userid = "2084";
-                obj.BalanceId = BalanceId;
-                obj.Type = "1";
-                obj.Wallet = "Cash Wallet";
-                var client = new RestClient($"{Baseurl}{ApiName.GetTransactionDetailsUseingBalanceId}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(obj);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                if (result != null)
-                {
-                    return Json(result);
-                }
-                else
-                {
-                    return Json("");
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                requestModel1.ExceptionMessage = ex;
-                requestModel1.Data = obj;
-                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel1);
-                requestEx.AddJsonBody(json);
-                IRestResponse response = client.Execute(requestEx);
-                var result = response.Content;
-            }
-            return Json("");
+                return Json(deserialize);
 
+            }
+            return Json(result);
 
         }
         #endregion
@@ -383,7 +349,7 @@ namespace Project_Redmil_MVC.Controllers
             GetTransactionDetail obj = new GetTransactionDetail();
             try
             {
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.BalanceId = BalanceId;
                 obj.Type = "1";
                 obj.Wallet = "Advance Wallet";
@@ -402,7 +368,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json("");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -424,36 +390,37 @@ namespace Project_Redmil_MVC.Controllers
         #region DownloadReportForWallet
         public JsonResult DownloadReportForWallet(string fromDate, string currentDate)
         {
-            try
-            {
-                string userId = "2084";
-                string wallet = "BRewards";
-                var Name = HttpContext.Session.GetString("Name");
-                var emailid = HttpContext.Session.GetString("Email");
-                var clientnn = new RestClient("https://proapitest8.redmilbusinessmall.com/api/getflavour");
-                var requestnn = new RestRequest(Method.POST);
-                requestnn.AddHeader("Content-Type", "application/json");
-                IRestResponse response = clientnn.Execute(requestnn);
-                var result = response.Content;
 
-                var url = "https://redmilbusinessmall.com/" + "finalpdf.aspx?Userid=" + userId + "&email=" + emailid + "&uname=" + Name + "" +
-                    "&WalletType=" + wallet + "&FromDate=" + fromDate + "&ToDate=" + currentDate;
-                return Json(url);
-            }
-            catch (Exception ex)
+            DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
+            requestModel.PageNumber = "1";
+            requestModel.ToDate = currentDate;
+            requestModel.FromDate = fromDate;
+            requestModel.ServiceType = "RewardWallet";
+            requestModel.Report = "true";
+            requestModel.SortBy = "desc";
+            requestModel.Status = "";
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("transactionsreport", Checksum.checksumKey,
+                requestModel.UserId);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.Checksum = CheckSum;
+            #endregion
+            var client = new RestClient($"{Baseurl}{ApiName.transactionsreport}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize.Statuscode == "TXN")
             {
-                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                requestModel1.ExceptionMessage = ex;
-                requestModel1.Data = "";
-                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel1);
-                requestEx.AddJsonBody(json);
-                IRestResponse response = client.Execute(requestEx);
-                var result = response.Content;
+                var myBaseUrl = "https://api.redmilbusinessmall.com/";
+                return Json(myBaseUrl + deserialize.Message);
             }
-            return Json("");
+            return Json(result);
 
 
         }
@@ -461,47 +428,111 @@ namespace Project_Redmil_MVC.Controllers
         #region RERewardsPassbook
         public JsonResult RERewardsPassbook(string fromDate, string currentDate)
         {
-            try
-            {
 
-                string userId = "2084";
-                string wallet = "RERewards";
-                var Name = HttpContext.Session.GetString("Name");
-                var emailid = HttpContext.Session.GetString("Email");
-                var clientnn = new RestClient("https://proapitest8.redmilbusinessmall.com/api/getflavour");
-                var requestnn = new RestRequest(Method.POST);
-                requestnn.AddHeader("Content-Type", "application/json");
-                IRestResponse response = clientnn.Execute(requestnn);
-                var result = response.Content;
-                var url = "https://redmilbusinessmall.com/" + "finalpdf.aspx?Userid=" + userId + "&email=" + emailid + "&uname=" + Name + "" +
-                    "&WalletType=" + wallet + "&FromDate=" + fromDate + "&ToDate=" + currentDate;
-                if (result != null)
-                {
-                    return Json(url);
-                }
-                else
-                {
-                    return Json("");
-                }
-                
-
-            }
-            catch (Exception ex)
+            DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
+            requestModel.PageNumber = "1";
+            requestModel.ToDate = currentDate;
+            requestModel.FromDate = fromDate;
+            requestModel.ServiceType = "ReferEarnWallet";
+            requestModel.Report = "true";
+            requestModel.SortBy = "desc";
+            requestModel.Status = "";
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("transactionsreport", Checksum.checksumKey,
+                requestModel.UserId);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.Checksum = CheckSum;
+            #endregion
+            var client = new RestClient($"{Baseurl}{ApiName.transactionsreport}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize.Statuscode == "TXN")
             {
-                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                requestModel1.ExceptionMessage = ex;
-                requestModel1.Data = "";
-                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel1);
-                requestEx.AddJsonBody(json);
-                IRestResponse response = client.Execute(requestEx);
-                var result = response.Content;
+                var myBaseUrl = "https://api.redmilbusinessmall.com/";
+                return Json(myBaseUrl + deserialize.Message);
             }
-            return Json("");
+            return Json(result);
         }
+
         #endregion
+
+        public JsonResult CashWallet(string fromDate, string currentDate)
+        {
+
+            DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString(); 
+            requestModel.PageNumber = "1";
+            requestModel.ToDate = currentDate;
+            requestModel.FromDate = fromDate;
+            requestModel.ServiceType = "CashWallet";
+            requestModel.Report = "true";
+            requestModel.SortBy = "desc";
+            requestModel.Status = "";
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("transactionsreport", Checksum.checksumKey,
+                requestModel.UserId);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.Checksum = CheckSum;
+            #endregion
+            var client = new RestClient($"{Baseurl}{ApiName.transactionsreport}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize.Statuscode == "TXN")
+            {
+                var myBaseUrl = "https://api.redmilbusinessmall.com/";
+                return Json(myBaseUrl + deserialize.Message);
+            }
+            return Json(result);
+
+        }
+        public JsonResult AdvancedDownload(string fromDate, string currentDate)
+        {
+
+            DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
+            requestModel.PageNumber = "1";
+            requestModel.ToDate = currentDate;
+            requestModel.FromDate = fromDate;
+            requestModel.ServiceType = "AdvanceWallet";
+            requestModel.Report = "true";
+            requestModel.SortBy = "desc";
+            requestModel.Status = "";
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("transactionsreport", Checksum.checksumKey,
+                requestModel.UserId);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.Checksum = CheckSum;
+            #endregion
+            var client = new RestClient($"{Baseurl}{ApiName.transactionsreport}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize.Statuscode == "TXN")
+            {
+                var myBaseUrl = "https://api.redmilbusinessmall.com/";
+                return Json(myBaseUrl + deserialize.Message);
+            }
+            return Json(deserialize);
+
+        }
         #region BRewardDetailResponseModel
         public List<BRewardDetailResponseModel> BRP()
         {
@@ -513,7 +544,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.FilterBy = "All";
                 requestModel.WalletType = "BRewards";
                 requestModel.PageNumber = "1";
@@ -539,7 +570,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     var data = JsonConvert.DeserializeObject<List<BRewardDetailResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
@@ -568,7 +599,7 @@ namespace Project_Redmil_MVC.Controllers
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
-                    
+
                 }
                 else
                 {
@@ -603,7 +634,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.FilterBy = "All";
                 requestModel.WalletType = "RERewards";
                 requestModel.PageNumber = "1";
@@ -629,7 +660,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     var data = JsonConvert.DeserializeObject<List<RERewardResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
@@ -693,7 +724,7 @@ namespace Project_Redmil_MVC.Controllers
             GetTransactionDetail obj = new GetTransactionDetail();
             try
             {
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.BalanceId = BalanceId;
                 obj.Type = "1";
                 obj.Wallet = "RERewards";
@@ -712,7 +743,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json("");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -737,7 +768,7 @@ namespace Project_Redmil_MVC.Controllers
             GetTransactionDetail obj = new GetTransactionDetail();
             try
             {
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.BalanceId = BalanceId;
                 obj.Type = "1";
                 obj.Wallet = "BRewards";
@@ -756,7 +787,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json("");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -793,7 +824,7 @@ namespace Project_Redmil_MVC.Controllers
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetCashoutSurchargeNew", Checksum.checksumKey,
@@ -808,7 +839,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     var AddCashData = JsonConvert.DeserializeObject<PassbookGetCashsurchargeRespnseModel>(JsonConvert.SerializeObject(datadeserialize));
@@ -823,7 +854,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     //return View()
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -850,7 +881,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = "2180";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ModeId = "1";
                 requestModel.Amount = Amount;
                 ServiceId = ServiceId;
@@ -873,7 +904,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json(deserialize);
                 }
-                else if(deserialize.Statuscode=="TXN")
+                else if (deserialize.Statuscode == "TXN")
                 {
                     var datadeserialize = deserialize.Data;
                     var TranferData = JsonConvert.DeserializeObject<TransferAmountResponseModel>(JsonConvert.SerializeObject(datadeserialize));
@@ -908,7 +939,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = "2180";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString(); 
                 requestModel.ModeId = "2";
                 requestModel.Amount = Amount;
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
@@ -929,7 +960,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json(deserialize);
                 }
-                else if(deserialize.Statuscode=="TXN")
+                else if (deserialize.Statuscode == "TXN")
                 {
                     var datadeserialize = deserialize.Data;
                     var TranferData = JsonConvert.DeserializeObject<TransferAmountResponseModel>(JsonConvert.SerializeObject(datadeserialize));
@@ -963,7 +994,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = "2180";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ModeId = "3";
                 requestModel.Amount = Amount;
                 ServiceId = ServiceId;
@@ -986,7 +1017,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json(deserialize);
                 }
-                else if(deserialize.Statuscode=="TXN")
+                else if (deserialize.Statuscode == "TXN")
                 {
                     var datadeserialize = deserialize.Data;
                     var TranferData = JsonConvert.DeserializeObject<TransferAmountResponseModel>(JsonConvert.SerializeObject(datadeserialize));
@@ -997,7 +1028,7 @@ namespace Project_Redmil_MVC.Controllers
                     return Json("");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
                 requestModel1.ExceptionMessage = ex;
@@ -1012,7 +1043,7 @@ namespace Project_Redmil_MVC.Controllers
 
             }
             return Json("");
-           
+
 
         }
         public JsonResult MultiAcountDetail()
@@ -1022,7 +1053,7 @@ namespace Project_Redmil_MVC.Controllers
             List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
             try
             {
-                requestModel.Userid = "2180";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString(); 
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetMultiAccountDetailsForUsers", Checksum.checksumKey,
@@ -1038,7 +1069,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     var data = JsonConvert.DeserializeObject<List<GetMultiAccountDetailResponse>>(JsonConvert.SerializeObject(datadeserialize));
@@ -1068,7 +1099,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json("");
                 }
-                
+
 
             }
             catch (Exception ex)
@@ -1087,7 +1118,7 @@ namespace Project_Redmil_MVC.Controllers
             return Json("");
 
         }
-        String Amount;
+        string Amount;
         string ModeId;
         string BankId;
         string BankName;
@@ -1103,7 +1134,7 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 //List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
-                requestModel.Userid = "2180";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("AaadharPicVerification", Checksum.checksumKey,
@@ -1141,7 +1172,7 @@ namespace Project_Redmil_MVC.Controllers
                         {
                             objfinal.ModeId = "3";
                         }
-                        objfinal.UserId = "2180";
+                        objfinal.UserId = HttpContext.Session.GetString("Id").ToString();
                         objfinal.ServiceId = ServiceId;
                         objfinal.OpId = OpId;
                         objfinal.BankId = BankId;
@@ -1181,7 +1212,7 @@ namespace Project_Redmil_MVC.Controllers
                 return Json(deserialize);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
                 requestModelEx.ExceptionMessage = ex;
@@ -1204,7 +1235,7 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 //List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
-                obj.Userid = "2180";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.FileName = showimage;
                 var client = new RestClient($"{Baseurl}{ApiName.FaceLiveliNess}");
                 var request = new RestRequest(Method.POST);
@@ -1269,7 +1300,7 @@ namespace Project_Redmil_MVC.Controllers
                     }
                 }
 
-                else if(deserialize.Statuscode=="ERR")
+                else if (deserialize.Statuscode == "ERR")
                 {
                     return Json(deserialize);
 
@@ -1346,7 +1377,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var Bankdetail = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(Bankdetail.Statuscode=="TXN" && Bankdetail != null)
+                if (Bankdetail.Statuscode == "TXN" && Bankdetail != null)
                 {
                     var data = Bankdetail.Data;
                     var datalist = JsonConvert.DeserializeObject<List<GetBankResponseModel>>(JsonConvert.SerializeObject(data));
@@ -1357,10 +1388,11 @@ namespace Project_Redmil_MVC.Controllers
                 {
 
                 }
-                else{
+                else
+                {
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -1384,106 +1416,83 @@ namespace Project_Redmil_MVC.Controllers
         public JsonResult VerifyAccountDetail(string Account, string ConfirmAccount, string Ifsc, string BeneficaryName)
         {
             VerificationwithchargeRequestModelcs requestModel = new VerificationwithchargeRequestModelcs();
-            try
+
+
+            requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+            requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
+            requestModel.Account = Account;
+            requestModel.Ifsc = Ifsc;
+            requestModel.BeniName = BeneficaryName;
+            requestModel.Mode = "Web";
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("AccountVerificationForSignupwithCharge", Checksum.checksumKey, requestModel.Userid, requestModel.Mobileno, requestModel.Account, requestModel.Ifsc, requestModel.Mode, requestModel.BeniName);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.checksum = CheckSum;
+            #endregion
+            var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AccountVerificationForSignupwithCharge");
+            //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<AccountSignWithChargeResponseModel>>>(response.Content);
+            if (deserialize.Statuscode == "TXN" && deserialize != null)
             {
-                requestModel.Userid = "2180";
-                requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
-                requestModel.Account = Account;
-                requestModel.Ifsc = Ifsc;
-                requestModel.BeniName = BeneficaryName;
-                requestModel.Mode = "Web";
-                #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
-                //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
-                string input = Checksum.MakeChecksumString("AccountVerificationForSignupwithCharge", Checksum.checksumKey, requestModel.Userid, requestModel.Mobileno, requestModel.Account, requestModel.Ifsc, requestModel.Mode, requestModel.BeniName);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                requestModel.checksum = CheckSum;
-                #endregion
-                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AccountVerificationForSignupwithCharge");
-                //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<AccountSignWithChargeResponseModel>>>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
-                {
-                    var datadeserialize = deserialize.Data;
-                    //var data = JsonConvert.DeserializeObject<List<AccountSignWithChargeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (deserialize.Statuscode == "ERR" || deserialize.Statuscode == "TXN")
-                    {
-                        return Json(deserialize);
-                    }
-                    //else if (deserialize.Statuscode == "TXN")
-                    //{
-                    //    return Json(deserialize);
-                    //}
-                    //else if (deserialize.Statuscode == "TXN" && requestModel.BeniName == HttpContext.Session.GetString("Name"))
-                    //{
-                    //    ValidateOTPForMultiAccountRequestModel obj = new ValidateOTPForMultiAccountRequestModel();
-                    //    obj.Userid = "2180";
-                    //    obj.Mobile = HttpContext.Session.GetString("Mobile").ToString();
-                    //    string input1 = Checksum.MakeChecksumString("SendOTPForMultiAccount", Checksum.checksumKey, obj.Userid, obj.Mobile);
-                    //    string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
-                    //    obj.checksum = CheckSum1;
-                    //    var client1 = new RestClient("https://proapitest2.redmilbusinessmall.com/api/SendOTPForMultiAccount");
-                    //    //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
-                    //    var request1 = new RestRequest(Method.POST);
-                    //    request1.AddHeader("Content-Type", "application/json");
-                    //    var json1 = JsonConvert.SerializeObject(obj);
-                    //    request1.AddJsonBody(json1);
-                    //    IRestResponse response1 = client1.Execute(request1);
-                    //    var result1 = response1.Content;
-                    //    var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
-                    //    //if (deserialize1.Statuscode == "OSS" && deserialize1.Message=="Otp Sent Successfully")
-                    //    //{
-
-                    //    return Json(deserialize1);
-
-                    //    // }
-
-                    //}
-                    else
-                    {
-                        return Json(deserialize);
-                        //return Json(new { data.FirstOrDefault().Surcharge, ERRS = "ERRS" });
-                    }
-
-                }
-                else if (deserialize.Statuscode == "ERR")
+                var datadeserialize = deserialize.Data;
+                //var data = JsonConvert.DeserializeObject<List<AccountSignWithChargeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                if (deserialize.Statuscode == "ERR" || deserialize.Statuscode == "TXN")
                 {
                     return Json(deserialize);
                 }
+                //else if (deserialize.Statuscode == "TXN")
+                //{
+                //    return Json(deserialize);
+                //}
+                //else if (deserialize.Statuscode == "TXN" && requestModel.BeniName == HttpContext.Session.GetString("Name"))
+                //{
+                //    ValidateOTPForMultiAccountRequestModel obj = new ValidateOTPForMultiAccountRequestModel();
+                //    obj.Userid = "2180";
+                //    obj.Mobile = HttpContext.Session.GetString("Mobile").ToString();
+                //    string input1 = Checksum.MakeChecksumString("SendOTPForMultiAccount", Checksum.checksumKey, obj.Userid, obj.Mobile);
+                //    string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
+                //    obj.checksum = CheckSum1;
+                //    var client1 = new RestClient("https://proapitest2.redmilbusinessmall.com/api/SendOTPForMultiAccount");
+                //    //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
+                //    var request1 = new RestRequest(Method.POST);
+                //    request1.AddHeader("Content-Type", "application/json");
+                //    var json1 = JsonConvert.SerializeObject(obj);
+                //    request1.AddJsonBody(json1);
+                //    IRestResponse response1 = client1.Execute(request1);
+                //    var result1 = response1.Content;
+                //    var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+                //    //if (deserialize1.Statuscode == "OSS" && deserialize1.Message=="Otp Sent Successfully")
+                //    //{
+
+                //    return Json(deserialize1);
+
+                //    // }
+
+                //}
                 else
                 {
-                    return Json("");
+                    return Json(deserialize);
+                    //return Json(new { data.FirstOrDefault().Surcharge, ERRS = "ERRS" });
                 }
-               
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = requestModel;
-                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(jsonEx);
-                IRestResponse responseEx = clientEx.Execute(requestEx);
-                var resultEx = responseEx.Content;
+
+
             }
             return Json("");
-
-
         }
+
         public JsonResult SendOtp()
         {
             ValidateOTPForMultiAccountRequestModel obj = new ValidateOTPForMultiAccountRequestModel();
             try
             {
-                obj.Userid = "2180";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 obj.Mobile = HttpContext.Session.GetString("Mobile").ToString();
                 string input1 = Checksum.MakeChecksumString("SendOTPForMultiAccount", Checksum.checksumKey, obj.Userid, obj.Mobile);
                 string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
@@ -1502,31 +1511,18 @@ namespace Project_Redmil_MVC.Controllers
 
                     return Json(deserialize1);
                 }
-                else if(deserialize1.Statuscode=="ERR")
+                else if (deserialize1.Statuscode == "ERR")
                 {
 
                     return Json(deserialize1);
                 }
-                else
-                {
-                    return Json("");
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = obj;
-                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(jsonEx);
-                IRestResponse responseEx = clientEx.Execute(requestEx);
-                var resultEx = responseEx.Content;
-            }
-            return Json("");
 
+            }
+            catch
+            {
+
+            }
+            return null;
 
         }
         public JsonResult ConfirmValidateOtpForUserAccount(string Otp)
@@ -1537,7 +1533,7 @@ namespace Project_Redmil_MVC.Controllers
             {
                 objvalidate.Mobile = HttpContext.Session.GetString("Mobile").ToString();
                 objvalidate.Otp = Otp;
-                objvalidate.Userid = "2180";
+                objvalidate.Userid = HttpContext.Session.GetString("Id").ToString(); ;
                 string inputvalidate = Checksum.MakeChecksumString("ValidateOTPForMultiAccount", Checksum.checksumKey, objvalidate.Userid, objvalidate.Mobile, objvalidate.Otp);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(inputvalidate);
                 objvalidate.checksum = CheckSum;
@@ -1550,7 +1546,7 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     return Json(deserialize);
                 }
@@ -1562,7 +1558,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json("");
                 }
-                
+
 
             }
 
@@ -1615,13 +1611,13 @@ namespace Project_Redmil_MVC.Controllers
             IRestResponse response = client.Execute(requestN);
             var result = response.Content;
             var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-            if(deserialize.Statuscode=="TXN" && deserialize != null)
+            if (deserialize.Statuscode == "TXN" && deserialize != null)
             {
                 try
                 {
                     objMulti.BankId = BankList;
                     objMulti.RelationName = Relation;
-                    objMulti.Userid = "2180";
+                    objMulti.Userid = HttpContext.Session.GetString("Id").ToString(); ;
                     objMulti.AccountNo = Account;
                     objMulti.IFSC = IFSc;
                     objMulti.BeniName = BeneficaryName;
@@ -1674,7 +1670,7 @@ namespace Project_Redmil_MVC.Controllers
                     var resultEx = responseEx.Content;
                 }
             }
-            else if(deserialize.Statuscode=="ERR")
+            else if (deserialize.Statuscode == "ERR")
             {
                 return Json(deserialize);
             }
@@ -1682,14 +1678,11 @@ namespace Project_Redmil_MVC.Controllers
             {
                 return Json("");
             }
-            
+
             return Json("");
 
 
         }
-
-
-
 
         public IActionResult ForSuccesPop()
         {
@@ -1709,49 +1702,107 @@ namespace Project_Redmil_MVC.Controllers
             //obj.AccountNo = Account;
             //obj.IFSC = IFSC;
             //obj.BeniName = BeneficaryName;
-            try
+
+            objMulti.BankId = BankList;
+            objMulti.RelationName = "";
+            objMulti.Userid = HttpContext.Session.GetString("Id").ToString(); ;
+            objMulti.AccountNo = Account;
+            objMulti.IFSC = IFSC;
+            objMulti.BeniName = BeneficaryName;
+            objMulti.PanStatus = "";
+            objMulti.UserNameInBank = BeneficaryName;
+            objMulti.RelationPanImagePath = "";
+            #region Checksum (InsertMultiAccountDetailsForUsers|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("InsertMultiAccountDetailsForUsers", Checksum.checksumKey, objMulti.Userid, objMulti.BankId, objMulti.AccountNo);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            objMulti.checksum = CheckSum;
+            #endregion
+            var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/InsertMultiAccountDetailsForUsers");
+            //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(objMulti);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            return Json(deserialize);
+        }
+
+        public JsonResult DetailDeposite()
+        {
+            var client = new RestClient($"{Baseurl}{ApiName.GetCashdepositeMode}");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            //var json = JsonConvert.SerializeObject(obj);
+            //request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            var datadeserialize = deserialize.Data;
+            var data = JsonConvert.DeserializeObject<List<GetcashdepositeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+            //var datadeserialize = deserialize.Data;
+            //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+            return Json(data);
+
+
+        }
+        public JsonResult FinalMakeCashDeposite(MakeCashoutDespoisteRequestModel File, string Tid, string Dataing, String Timing, string Remarks, string AmountT, string Mode)
+        {
+            string serverFolder = "";
+            IFormFile iform = File.Docss;
+            if (File.Docss != null)
             {
-                objMulti.BankId = BankList;
-                objMulti.RelationName = "";
-                objMulti.Userid = "2180";
-                objMulti.AccountNo = Account;
-                objMulti.IFSC = IFSC;
-                objMulti.BeniName = BeneficaryName;
-                objMulti.PanStatus = "";
-                objMulti.UserNameInBank = BeneficaryName;
-                objMulti.RelationPanImagePath = "";
-                #region Checksum (InsertMultiAccountDetailsForUsers|Unique Key|UserId)
-                //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
-                string input = Checksum.MakeChecksumString("InsertMultiAccountDetailsForUsers", Checksum.checksumKey, objMulti.Userid, objMulti.BankId, objMulti.AccountNo);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                objMulti.checksum = CheckSum;
-                #endregion
-                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/InsertMultiAccountDetailsForUsers");
-                //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(objMulti);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if (deserialize.Statuscode == "TXN" && deserialize != null)
-                    return Json(deserialize);
+                string folder = "Uploadimages/Doc/";
+                //folder += Guid.NewGuid().ToString() + "_" + files.file.FileName;
+                folder += Path.GetFileName(iform.FileName);
+                //files.file.FileName
+                serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                // await files.file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                using (FileStream stream = new FileStream(serverFolder, FileMode.Create))
+                {
+                    iform.CopyTo(stream);
+                }
             }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = objMulti;
-                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(jsonEx);
-                IRestResponse responseEx = clientEx.Execute(requestEx);
-                var resultEx = responseEx.Content;
-            }
-            return Json("");
+            //InserMutltiAccount obj = new InserMutltiAccount();
+            var client = new RestClient($"{Baseurl}{ApiName.File}");
+            var requestN = new RestRequest(Method.POST);
+            requestN.AddHeader("cache-control", "no-cache");
+            requestN.AddFile("doc", serverFolder);
+            requestN.AlwaysMultipartFormData = true;
+            //var json = JsonConvert.SerializeObject(obj);
+            //request.AddJsonBody(json);
+            IRestResponse response = client.Execute(requestN);
+            var result = response.Content;
+            var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            MakeCashoutDespoisteRequestModel obj = new MakeCashoutDespoisteRequestModel();
+            obj.TransactionId = Tid;
+            obj.TransactionDate = Dataing;
+            obj.Docs = deserialize1.Data.ToString();
+            obj.Remarks = Remarks;
+            obj.ChargedAmount = "0.00";
+            obj.ChargeType = "true";
+            obj.Charge = "0.00";
+            obj.Amount = AmountT;
+            obj.ModeId = Mode;
+            obj.Userid = HttpContext.Session.GetString("Id").ToString();
+            #region Checksum (MakeCashDeposite|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("MakeCashDeposite", Checksum.checksumKey, obj.Userid, obj.ModeId, obj.Amount, obj.Charge, obj.ChargeType, obj.ChargedAmount, obj.Remarks, obj.Docs, obj.TransactionDate, obj.TransactionId);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            obj.checksum = CheckSum;
+            #endregion
+            //var client = new RestClient($"{Baseurl}{ApiName.GetCashdepositeMode}");
+            var client1 = new RestClient("https://proapitest1.redmilbusinessmall.com/api/MakeCashDeposite");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(obj);
+            request.AddJsonBody(json);
+            IRestResponse response1 = client1.Execute(request);
+            var result1 = response1.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+            return Json(deserialize);
         }
 
     }
