@@ -113,18 +113,34 @@ namespace Project_Redmil_MVC.Controllers
                                 HttpContext.Session.SetString("Mallname", getdata[0].Mallname);
                                 HttpContext.Session.SetString("Rolltype", getdata[0].Rolltype);
                                 HttpContext.Session.SetString("Id", getdata[0].Id.ToString());
-                                HttpContext.Session.SetString("Account", getdata[0].AccountNo.ToString());
-                                HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
-                                HttpContext.Session.SetString("BankId", getdata[0].BankId.ToString());
+                                //HttpContext.Session.SetString("Account", getdata[0].AccountNo.ToString());
+                                //HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
+                                //HttpContext.Session.SetString("BankId", getdata[0].BankId.ToString());
+                                if (getdata.FirstOrDefault().AccountNo != null && getdata.FirstOrDefault().AccountNo != "")
+                                {
+                                    HttpContext.Session.SetString("Account", Convert.ToString(mpinResponseModels.FirstOrDefault().AccountNo));
+                                    var Account = HttpContext.Session.GetString("Account").ToString();
+                                }
+                                if (getdata.FirstOrDefault().BankId != null && getdata.FirstOrDefault().BankId.ToString() != "")
+                                {
+                                    HttpContext.Session.SetString("BankId", Convert.ToString(mpinResponseModels.FirstOrDefault().BankId));
+                                    var BankId = HttpContext.Session.GetString("BankId").ToString();
+
+                                }
+                                if (getdata.FirstOrDefault().Ifsc!= null && getdata.FirstOrDefault().Ifsc.ToString() != "")
+                                {
+                                    HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
+                                    var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
+                                }
                                 var Mallname = HttpContext.Session.GetString("Mallname");
                                 var Name = HttpContext.Session.GetString("Name");
                                 var MobileNo = HttpContext.Session.GetString("Mobile").ToString();
                                 var Email = HttpContext.Session.GetString("Email");
                                 var Rolltype = HttpContext.Session.GetString("Rolltype");
                                 var UserId = HttpContext.Session.GetString("Id").ToString();
-                                var Account = HttpContext.Session.GetString("Account").ToString();
-                                var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
-                                var BankId = HttpContext.Session.GetString("BankId").ToString();
+                                //var Account = HttpContext.Session.GetString("Account").ToString();
+                               // var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
+                                //var BankId = HttpContext.Session.GetString("BankId").ToString();
 
                                 ViewBag.id = UserId;
                                 return Json(deserializ);

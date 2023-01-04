@@ -3,7 +3,7 @@
     public class GetBalanceResponseModel:BaseResponseModel
     {
        
-            public double MainBal { get; set; }
+            public string MainBal { get; set; }
             public double AdBal { get; set; }
             public double Reward { get; set; }
             public double REReward { get; set; }

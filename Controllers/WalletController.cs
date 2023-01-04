@@ -78,7 +78,7 @@ namespace Project_Redmil_MVC.Controllers
                                     TotalIncentives = i.TotalIncentives,
                                     BReward = i.BReward,
                                     Reward = i.Reward,
-                                    WalletAmount = i.AdBal + i.MainBal,
+                                    WalletAmount =Double.Parse(i.AdBal + i.MainBal),
                                     REReward = i.REReward
                                     //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
 

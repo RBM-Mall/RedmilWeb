@@ -2,7 +2,7 @@
 
 namespace Project_Redmil_MVC.Models.ResponseModel
 {
-    public class CashWalletRecentResponseDetailsPassbookModel : BaseResponseModel
+    public class CashWalletRecentResponseDetailsPassbookModel:BaseResponseModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -18,14 +18,14 @@ namespace Project_Redmil_MVC.Models.ResponseModel
         public string baseUrl { get; set; }
         public string Type { get; set; }
         public double Old_bal { get; set; }
-        public double New_bal { get; set; }
+        public string New_bal { get; set; }
         public int OpId { get; set; }
         public string Amount1 { get; internal set; }
         public string? Detail { get; set; }
         public List<AdvanceWalletResponsePassbookDetailsModel> AdvanceWalletResponsePassbookDetailsModel { get; set; }
         public List<BRewardDetailResponseModel> BRewardDetailResponseModel { get; set; }
         public List<RERewardResponseModel> RERewardResponseModel { get; set; }
-        //public List<GetBalanceResponseModel> getBalanceResponseModels { get; set; }
+        public List<GetBalanceResponseModel> getBalanceResponseModels { get; set; }
 
     }
 }
