@@ -52,6 +52,7 @@ using Project_Redmil_MVC.Models.RequestModel.PassboookDownloadWalletRequestModel
 using Project_Redmil_MVC.Models.ResponseModel.GetCashDepositeResponseModel;
 using Project_Redmil_MVC.Models.RequestModel.MakeCashOutDeposite;
 using System.Linq.Expressions;
+using static Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.BeneficiaryAccountVerificationResponseModel;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -72,6 +73,7 @@ namespace Project_Redmil_MVC.Controllers
         }
 
         List<CashWalletRecentResponseDetailsPassbookModel> gdata = new List<CashWalletRecentResponseDetailsPassbookModel>();
+        List<GetBalanceResponseModel> balancedata = new List<GetBalanceResponseModel>();
         #region Cash Wallet Passbook 
 
         [HttpGet]
@@ -88,6 +90,7 @@ namespace Project_Redmil_MVC.Controllers
             List<AdvanceWalletResponsePassbookDetailsModel> adv = AdvanceWallet();
             List<BRewardDetailResponseModel> BrRewads = BRP();
             List<RERewardResponseModel> RERewrads = REP();
+            List<GetBalanceResponseModel> lstdata99 = new List<GetBalanceResponseModel>();
             //var Data1 = new List<CashWalletRecentResponseDetailsPassbookModel>();
             AdvanceWalletRequestPassbookDetailsModel requestModel = new AdvanceWalletRequestPassbookDetailsModel();
             requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
@@ -99,10 +102,9 @@ namespace Project_Redmil_MVC.Controllers
             requestModel.ToDate = DateTime.Now.ToString("yyyy-MM-dd");
             #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
             string input = Checksum.MakeChecksumString("GetUserBalanceSummaryWithPaging", Checksum.checksumKey,
-                requestModel.Userid, requestModel.FilterBy, requestModel.WalletType, requestModel.PageNumber,
-                requestModel.Token, requestModel.FromDate, requestModel.ToDate);
-            //string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            string CheckSum = "f42e229f1389fa25f4cffa1f976bc0941e8e5b1710645eaf85ce528afa463718c7f582fe376f30989b4b9f7dfc47001fb4f148b1a85c45e76d8c8b8961e400fa";
+                requestModel.Userid, requestModel.WalletType, requestModel.FilterBy, requestModel.PageNumber);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            //string CheckSum = "f42e229f1389fa25f4cffa1f976bc0941e8e5b1710645eaf85ce528afa463718c7f582fe376f30989b4b9f7dfc47001fb4f148b1a85c45e76d8c8b8961e400fa";
             #endregion
             CashWalletRecentResponseDetailsPassbookModel cashWalletRecent = new CashWalletRecentResponseDetailsPassbookModel();
             cashWalletRecent.baseUrl = Baseurl;
@@ -119,7 +121,35 @@ namespace Project_Redmil_MVC.Controllers
             var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
             var datadeserialize = deserialize.Data;
             var data = JsonConvert.DeserializeObject<List<CashWalletRecentResponseDetailsPassbookModel>>(JsonConvert.SerializeObject(datadeserialize));
-            if (deserialize.Statuscode == "TXN")
+            if (deserialize.Statuscode == "ERR" && deserialize != null)
+            {
+                gdata.Add(new CashWalletRecentResponseDetailsPassbookModel
+                {
+                   // Id =  "",
+                    Title = "",
+                    //Amount = "",
+                    Detail =  "",
+                    CreditDebit = "",
+                    Client = "",  
+                    GstAmount = "",
+                    TdsAmount = "",
+                    New_bal = "0",
+                    Img = "",
+                    Amount1 = "",
+                    AdvanceWalletResponsePassbookDetailsModel = adv,
+                    BRewardDetailResponseModel = BrRewads,
+                    RERewardResponseModel = RERewrads,
+                    //BRewardDetailResponseModel = "",
+                    //RERewardResponseModel = "",
+                    //getBalanceResponseModels=  lstdata,
+                });
+                //List<GetBalanceResponseModel> lstdata = GetBalance();
+
+                return View(gdata);
+                //}
+
+            }
+            else if (deserialize.Statuscode == "TXN")
             {
                 if (data.FirstOrDefault().New_bal.ToString() != null && data.FirstOrDefault().New_bal.ToString() != "")
                 {
@@ -149,7 +179,8 @@ namespace Project_Redmil_MVC.Controllers
                             Amount1 = string.Format("{0:0.00}", item.Amount - Convert.ToDouble(item.TdsAmount)).ToString(),
                             AdvanceWalletResponsePassbookDetailsModel = adv,
                             BRewardDetailResponseModel = BrRewads,
-                            RERewardResponseModel = RERewrads
+                            RERewardResponseModel = RERewrads,
+                            //getBalanceResponseModels=  lstdata,
                         });
                     }
                 }
@@ -192,8 +223,9 @@ namespace Project_Redmil_MVC.Controllers
                 #endregion
                 AdvanceWalletResponsePassbookDetailsModel advanceWalletRecent = new AdvanceWalletResponsePassbookDetailsModel();
                 advanceWalletRecent.baseUrl = baseUrl;
-                requestModel.checksum = "ac91b8846d245fc904ed71194f96b992575fc3f72b329f480c329833f7c7934f26caadc40b6981f303f9f06ab980c43f5d8168ed276e87d94008d91849d30b54";
+                //requestModel.checksum = "ac91b8846d245fc904ed71194f96b992575fc3f72b329f480c329833f7c7934f26caadc40b6981f303f9f06ab980c43f5d8168ed276e87d94008d91849d30b54";
                 //var client = new RestClient(Client);
+                requestModel.checksum = CheckSum;
                 var client = new RestClient($"{Baseurl}{ApiName.GetUserBalanceSummaryWithPaging}");
                 //Create request with GET
                 var request = new RestRequest(Method.POST);
@@ -226,10 +258,31 @@ namespace Project_Redmil_MVC.Controllers
                             });
                         }
                     }
+                    else 
+                    {
+                        advData1.Add(new AdvanceWalletResponsePassbookDetailsModel
+                        {
+                            
+                            Amount = 0,
+                            New_bal = 0,
+                           
+
+                        });
+                    }
                     return advData1;
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
+                    
+                        advData1.Add(new AdvanceWalletResponsePassbookDetailsModel
+                        {
+
+                            Amount = 0,
+                            New_bal = 0,
+
+
+                        });
+                   
                     return advData1;
                 }
                 else
@@ -322,7 +375,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             GetTransactionDetail obj = new GetTransactionDetail();
-            obj.Userid = HttpContext.Session.GetString("Id").ToString() ;
+            obj.Userid = HttpContext.Session.GetString("Id").ToString();
             obj.BalanceId = BalanceId;
             obj.Type = "1";
             obj.Wallet = "Cash Wallet";
@@ -420,7 +473,7 @@ namespace Project_Redmil_MVC.Controllers
                 var myBaseUrl = "https://api.redmilbusinessmall.com/";
                 return Json(myBaseUrl + deserialize.Message);
             }
-            return Json(result);
+            return Json(deserialize);
 
 
         }
@@ -458,7 +511,7 @@ namespace Project_Redmil_MVC.Controllers
                 var myBaseUrl = "https://api.redmilbusinessmall.com/";
                 return Json(myBaseUrl + deserialize.Message);
             }
-            return Json(result);
+            return Json(deserialize);
         }
 
         #endregion
@@ -467,7 +520,7 @@ namespace Project_Redmil_MVC.Controllers
         {
 
             DownloadWalletRequestModel requestModel = new DownloadWalletRequestModel();
-            requestModel.UserId = HttpContext.Session.GetString("Id").ToString(); 
+            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
             requestModel.PageNumber = "1";
             requestModel.ToDate = currentDate;
             requestModel.FromDate = fromDate;
@@ -495,7 +548,7 @@ namespace Project_Redmil_MVC.Controllers
                 var myBaseUrl = "https://api.redmilbusinessmall.com/";
                 return Json(myBaseUrl + deserialize.Message);
             }
-            return Json(result);
+            return Json(deserialize);
 
         }
         public JsonResult AdvancedDownload(string fromDate, string currentDate)
@@ -554,8 +607,8 @@ namespace Project_Redmil_MVC.Controllers
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("GetUserBalanceSummaryWithPaging", Checksum.checksumKey,
                     requestModel.Userid, requestModel.WalletType, requestModel.FilterBy, requestModel.PageNumber);
-                //string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                string CheckSum = "77311af5b2eb0057763a5a5650028f18743e3cb7b4b83fb6610650a168fedf5fe62efd90bca24ca1d95d4aa1e0c5fdc3f25ed233c9aef5ea3b979f7961da10ce";
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                //string CheckSum = "77311af5b2eb0057763a5a5650028f18743e3cb7b4b83fb6610650a168fedf5fe62efd90bca24ca1d95d4aa1e0c5fdc3f25ed233c9aef5ea3b979f7961da10ce";
                 #endregion
                 BRewardDetailResponseModel cashWalletRecent = new BRewardDetailResponseModel();
                 cashWalletRecent.baseUrl = Baseurl;
@@ -599,7 +652,14 @@ namespace Project_Redmil_MVC.Controllers
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
-
+                    BrRewads.Add(new BRewardDetailResponseModel
+                    {
+                        
+                        Old_bal =0,
+                        New_bal =0,
+                        
+                        //Amount1 = string.Format("{0:0.00}", item.Amount - item.TdsAmount).ToString()
+                    });
                 }
                 else
                 {
@@ -644,8 +704,8 @@ namespace Project_Redmil_MVC.Controllers
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("GetUserBalanceSummaryWithPaging", Checksum.checksumKey,
                     requestModel.Userid, requestModel.WalletType, requestModel.FilterBy, requestModel.PageNumber);
-                // string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                string CheckSum = "541fc499a9c9cbc125d0ddb34a209d3e7d2f46a167d6982500fa143dec5fc82aa6144c5588c4243a476ffbbb0751a98dd5b08b364596418a93f9193ca4785b65";
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                //string CheckSum = "541fc499a9c9cbc125d0ddb34a209d3e7d2f46a167d6982500fa143dec5fc82aa6144c5588c4243a476ffbbb0751a98dd5b08b364596418a93f9193ca4785b65";
                 #endregion
                 RERewardResponseModel cashWalletRecent = new RERewardResponseModel();
                 cashWalletRecent.baseUrl = Baseurl;
@@ -689,7 +749,14 @@ namespace Project_Redmil_MVC.Controllers
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
-
+                    RERewards.Add(new RERewardResponseModel
+                    {
+                        
+                        Old_bal = 0,
+                        New_bal = 0,
+                        
+                        //Amount1 = string.Format("{0:0.00}", item.Amount - item.TdsAmount).ToString()
+                    });
                 }
                 else
                 {
@@ -939,7 +1006,7 @@ namespace Project_Redmil_MVC.Controllers
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
             try
             {
-                requestModel.UserId = HttpContext.Session.GetString("Id").ToString(); 
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ModeId = "2";
                 requestModel.Amount = Amount;
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
@@ -1053,7 +1120,7 @@ namespace Project_Redmil_MVC.Controllers
             List<GetMultiAccountDetailResponse> Bankdetail = new List<GetMultiAccountDetailResponse>();
             try
             {
-                requestModel.Userid = HttpContext.Session.GetString("Id").ToString(); 
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetMultiAccountDetailsForUsers", Checksum.checksumKey,
@@ -1558,8 +1625,6 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     return Json("");
                 }
-
-
             }
 
             catch (Exception ex)
@@ -1680,8 +1745,6 @@ namespace Project_Redmil_MVC.Controllers
             }
 
             return Json("");
-
-
         }
 
         public IActionResult ForSuccesPop()
@@ -1702,7 +1765,6 @@ namespace Project_Redmil_MVC.Controllers
             //obj.AccountNo = Account;
             //obj.IFSC = IFSC;
             //obj.BeniName = BeneficaryName;
-
             objMulti.BankId = BankList;
             objMulti.RelationName = "";
             objMulti.Userid = HttpContext.Session.GetString("Id").ToString(); ;
