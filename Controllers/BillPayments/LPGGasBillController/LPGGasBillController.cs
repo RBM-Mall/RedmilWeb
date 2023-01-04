@@ -259,7 +259,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                                         {
                                                             var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetElectricityFinalResponseModel>>>(responseN1.Content);
 
-                                                            return Json(new BaseResponseModel() { Statuscode = deserializeN1.Statuscode, Message = deserializeN1.Message, Data = deserializeN1.Data.});
+                                                            return Json(new BaseResponseModel() { Statuscode = deserializeN1.Statuscode, Message = deserializeN1.Message, Data = deserializeN1.Data});
                                                         }
                                                     }
                                                     else if (deserializeN1.Statuscode == "ERR")
