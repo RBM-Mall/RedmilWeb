@@ -753,15 +753,15 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
                         var ar = response;
                         window.open(ar);
-                    }
+                    //}
 
                 }
 
@@ -781,13 +781,13 @@
             type: 'POST',
             dataType: 'json',
             success: function (responsedata) {
-                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
-                    //document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
-                }
+                //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
 
-                else if (responsedata.statuscode == "ERR") {
+                 if (responsedata.statuscode == "ERR") {
                     document.getElementById("divBill").style.display = "block";
                     document.getElementById("divCancel").style.display = "block";
                     document.getElementById("divFetch").style.display = "none";
@@ -852,12 +852,12 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (responsedata) {
-                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
+                    //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
                         var sum = parseInt(responsedata.surcharge) + parseInt(amount);
                         document.getElementById("lblBillAmount").innerHTML = "";
                         document.getElementById("lblCCF").innerHTML = "";
@@ -869,7 +869,7 @@
                         document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
                         document.getElementById("txtBill").style.display = "none";
                         document.getElementById("btnEdit").style.display = "none";
-                    }
+                    //}
 
                 }
             })
@@ -882,12 +882,12 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (responsedata) {
-                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
+                    //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
                         var sum = parseInt(responsedata.surcharge) + parseInt(amount);
                         document.getElementById("lblBillAmount").innerHTML = "";
                         document.getElementById("lblCCF").innerHTML = "";
@@ -899,7 +899,7 @@
                         document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
                         document.getElementById("txtBill").style.display = "none";
                         document.getElementById("btnEdit").style.display = "none";
-                    }
+                    //}
 
                 }
             })
@@ -916,12 +916,12 @@
             type: 'POST',
             dataType: 'json',
             success: function (responsedata) {
-                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
-                    //document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
-                }
-                else {
+                //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                //else {
                     var sum = parseInt(responsedata.surcharge) + parseInt(amount);
                     document.getElementById("lblBillAmount").innerHTML = "";
                     document.getElementById("lblCCF").innerHTML = "";
@@ -933,7 +933,7 @@
                     document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
                     document.getElementById("txtBill").style.display = "none";
                     document.getElementById("btnEdit").style.display = "none";
-                }
+                //}
 
             }
         })
@@ -948,15 +948,15 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                    //document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
-                }
-                else{
+                //    if (response == null || response.data == null || response.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                //else{
                         document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                         document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                }
+                //}
                     
 
                 },
@@ -1008,12 +1008,12 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else if (response.statuscode == "TXN") {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                     if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
                         document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'

@@ -548,15 +548,15 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
                         document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                         document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                    }
+                    //}
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -601,12 +601,12 @@
             type: 'POST',
             dataType: 'json',
             success: function (responsedata) {
-                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
-                    //document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
-                }
-                else {
+                //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                //else {
                     document.getElementById("divBill").style.display = "block";
                     document.getElementById("divFetch").style.display = "none";
                     document.getElementById("divPay").style.display = "block";
@@ -616,9 +616,7 @@
                     document.getElementById("lblBillPeriod").innerHTML = 'Bill Period: ' + " " + 'NA';
                     document.getElementById("lblTotalAmount").innerHTML = 'Bill Amount: ₹' + " " + responsedata.netamount;
                     document.getElementById("lblamount").innerHTML = " ₹ " + " " + responsedata.netamount;
-                }
-
-
+                //}
             }
         })
     }
@@ -637,12 +635,12 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else if (response.statuscode == "TXN") {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
                         document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
