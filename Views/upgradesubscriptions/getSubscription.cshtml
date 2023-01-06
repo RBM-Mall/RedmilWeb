@@ -203,37 +203,37 @@
     <div class="container">
         <div class="row">
 
-        @{
-            @foreach (var item in Model.DataumModel)
-            {
-                var a = @item.Subscribed;
-                <div class="col-sm-4">
-                    <h2 style="text-align:center" class="mt-5"></h2>
-                    <div class="card">
-                       
-                        <p class="PlanId" style="display:none">@item.Id</p>
-                        <p class="PlanType" id="PlanType" style="display:none">@item.PlanType</p>
-                        <img src="@item.Img" alt="" style="width:100%">
-                        <h3 class="pdfopen">@item.PlanName</h3>
-                        <h6 onclick='OpenPdf("@item.PlanName")' class="vPlan" style="font-weight:bold;cursor:pointer;">View Plan Branding</h6>
-                        @if (a!="")
-                        {
-                            <p>
-                                <button disabled class="forrate" id="forprice" data-target="#onlinepayment" data-toggle="modal"><span style="font-size: 29px;">@item.Subscribed </span></button>
-                            </p>
+            @{
+                @foreach (var item in Model.DataumModel)
+                {
+                    var a = @item.Subscribed;
+                    <div class="col-sm-4">
+                        <h2 style="text-align:center" class="mt-5"></h2>
+                        <div class="card">
 
-                        }
-                        else
-                        {
-                            <p>
-                                <button class="forrate" id="forprice" onclick='openonlinepay("@item.PlanName,@item.Total", "@item.Id", "@item.Price", "@item.PlanName","@item.PlanType")' data-target="#onlinepayment" data-toggle="modal">  Pay Amount Rs.@item.Price +  GST: Rs.@item.GST Total: Rs.@item.Total</button>
-                            </p>
+                            <p class="PlanId" style="display:none">@item.Id</p>
+                            <p class="PlanType" id="PlanType" style="display:none">@item.PlanType</p>
+                            <img src="@item.Img" alt="" style="width:100%">
+                            <h3 class="pdfopen">@item.PlanName</h3>
+                            <h6 onclick='OpenPdf("@item.PlanName")' class="vPlan" style="font-weight:bold;cursor:pointer;">View Plan Branding</h6>
+                            @if (a != "")
+                            {
+                                <p>
+                                    <button disabled class="forrate" id="forprice" data-target="#onlinepayment" data-toggle="modal"><span style="font-size: 29px;">@item.Subscribed </span></button>
+                                </p>
 
-                        }
+                            }
+                            else
+                            {
+                                <p>
+                                    <button class="forrate" id="forprice" onclick='openonlinepay("@item.PlanName,@item.Total", "@item.Id", "@item.Price", "@item.PlanName","@item.PlanType")' data-target="#onlinepayment" data-toggle="modal">  Pay Amount Rs.@item.Price +  GST: Rs.@item.GST Total: Rs.@item.Total</button>
+                                </p>
+
+                            }
+                        </div>
                     </div>
-                </div>
+                }
             }
-        }
         </div>
     </div>
     <!-- Modal Confirm Payment -->
@@ -251,8 +251,6 @@
                             <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
                         </div>
                         <div class="col-sm-4">
-
-
                         </div>
                         <div class="col-sm-4 custom_img_size pay-img2">
                             <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
@@ -274,7 +272,7 @@
                                 <form id="basic-form">
                                     <div class="form-group">
                                         <input type="text" id="Coupon" placeholder="Enter Coupon Code" class="form-control for-left" required onkeypress="return ValidateAlphanumeric(event);"><p class="btnlft bbtn" @*data-target="#ApplyCoupan" data-toggle="modal"*@>Apply</p>
-                                    
+
                                         <span id="lblError" style="color: red"></span>
 
                                     </div>
@@ -302,10 +300,10 @@
                             <button type="button" class=" btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="btnGetBalance" data-dismiss="modal" onclick="getBalance()" style="padding: 15px;"> <strong>Pay with Wallet </strong></button>
                         </div>
                     </div>
-                  @*  <div class="row">
-                        <div class="col-sm-12" style="text-align:center;">
-                            <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
-                        </div>
+                    @*  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                    <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
+                    </div>
                     </div>*@
                 </div>
 
@@ -329,7 +327,7 @@
     <!-- Modal For Suucess Coupan Applied -->
     <input type="button" id="ApplyCoupan" style="display:none" data-target="#ModalForApplyCopans" data-toggle="modal" />
     @*<div  role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">*@
-        <div  role="dialog" class="modal " id="ModalForApplyCopans">
+    <div role="dialog" class="modal " id="ModalForApplyCopans">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content  modalss ">
@@ -523,8 +521,16 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    var ar = response;
-                    window.open(ar);
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
+
                 }
             });
 
@@ -586,54 +592,58 @@
 
                 return false;
             }
-            else
-            {
-            $.ajax({
-                url: "/upgradesubscriptions/ApplyCoupan",
-                data: { 'PlanId': PlanId, 'CouponCode': CouponCode },
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    debugger;
-                    var counter;
-                          if(data.statuscode == "ERR") {
-                //ModalForCoupan
+            else {
+                $.ajax({
+                    url: "/upgradesubscriptions/ApplyCoupan",
+                    data: { 'PlanId': PlanId, 'CouponCode': CouponCode },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data == null || data.data == null || data.data == "") {
+                            //document.getElementById("walletTblborder11").style.display = "none";
+                            document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                            $("#btnNoDataFoundModel").trigger("click");
+                        }
+                        debugger;
+                        var counter;
+                        else if (data.statuscode == "ERR") {
+                            //ModalForCoupan
                             $("#ModalForCoupan").trigger("click");
                             $("#lblMsgcoupans").text(data.message);
-                //swal({
-                //    title: "Oops!",
-                //    text: "You clicked the button!",
-                //    icon: "error",
-                //});
+                            //swal({
+                            //    title: "Oops!",
+                            //    text: "You clicked the button!",
+                            //    icon: "error",
+                            //});
 
-            }
-                    else if (data[0].statuscode = "TXN") {
-                        d = data[0].discountedAmount;
-                        /* var sumtotal = $('#showprice').val();*/
-                        var sumtotal = $('#showprice').html();
-                        Total = sumtotal - d;
-                        var pln = plans;
-                        var d = data[0].discountedAmount;
-                        $('.DA').text(d);
-                        $('.fp').text(pln);
-                        $('.BA').text(sumtotal);
-                        $('.Total').text(Total);
-                        $(".bbtn").text("Applied");
-                        $(".bbtn").css("color", "Green");
-                        $(".bbtn").prop('disabled', true);
-                        $("input").prop('disabled', true);
-                        /*$('#showprice').hide()*/
-                        //$('.btn1').hide();
-                        //$('.btn2').show();
-                        $('#showprice').text(Total);
-                        $('#btnTest').text(Total);
-                        
-                        $("#ApplyCoupan").trigger("click");
+                        }
+                        else if (data[0].statuscode = "TXN") {
+                            d = data[0].discountedAmount;
+                            /* var sumtotal = $('#showprice').val();*/
+                            var sumtotal = $('#showprice').html();
+                            Total = sumtotal - d;
+                            var pln = plans;
+                            var d = data[0].discountedAmount;
+                            $('.DA').text(d);
+                            $('.fp').text(pln);
+                            $('.BA').text(sumtotal);
+                            $('.Total').text(Total);
+                            $(".bbtn").text("Applied");
+                            $(".bbtn").css("color", "Green");
+                            $(".bbtn").prop('disabled', true);
+                            $("input").prop('disabled', true);
+                            /*$('#showprice').hide()*/
+                            //$('.btn1').hide();
+                            //$('.btn2').show();
+                            $('#showprice').text(Total);
+                            $('#btnTest').text(Total);
+
+                            $("#ApplyCoupan").trigger("click");
+                        }
+
+
                     }
-                   
-
-                }
-            });
+                });
             }
 
         });
@@ -703,7 +713,12 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    if (data.deserialize.statuscode == "TXN") {
+                    if (data == null || data.data == null || data.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (data.deserialize.statuscode == "TXN") {
                         window.location.href = data.webViewURL;
                     }
                 }
@@ -746,7 +761,12 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (data) {
-                        if (data.statuscode == "TXN") {
+                        if (response == null || response.data == null || response.data == "") {
+                            //document.getElementById("walletTblborder11").style.display = "none";
+                            document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                            $("#btnNoDataFoundModel").trigger("click");
+                        }
+                        else if (data.statuscode == "TXN") {
                             document.getElementById("lblMsg").innerHTML = data.message;
                             document.getElementById("heading").innerHTML = "Success";
                             document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -782,9 +802,17 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                    $("#btnFinalModal").trigger("click");
+                    if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else{
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        $("#btnFinalModal").trigger("click");
+                }
+                    
                 }
             });
 

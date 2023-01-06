@@ -109,19 +109,19 @@
         text-align: center;
         box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
     }
-       .breadcumb-area {
-    position: relative;
-    padding: 221px 0;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-    background-position: 75% 10%;
-}
-.Feedack
-{
 
-margin-top: -18px;
-}
+    .breadcumb-area {
+        position: relative;
+        padding: 221px 0;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        background-position: 75% 10%;
+    }
+
+    .Feedack {
+        margin-top: -18px;
+    }
 </style>
 
 
@@ -623,22 +623,27 @@ margin-top: -18px;
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    $('#SId').html('');
-                    var options = '<option value="' + 0 + '">' + "--Choose Sub Department--" + '</option>';
-                    if (response.length > 0) {
-                        for (var i = 0; i < response.length; i++) {
-
-                            options += '<option value="' + response[i].department_key + '">' + response[i].department_name + '</option>';
-
-                        }
-                        $('#SId').show();
-                        $('#SId').append(options);
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
                     }
                     else {
-                        document.getElementById("SId").style.display = "none";
+                        $('#SId').html('');
+                        var options = '<option value="' + 0 + '">' + "--Choose Sub Department--" + '</option>';
+                        if (response.length > 0) {
+                            for (var i = 0; i < response.length; i++) {
+
+                                options += '<option value="' + response[i].department_key + '">' + response[i].department_name + '</option>';
+
+                            }
+                            $('#SId').show();
+                            $('#SId').append(options);
+                        }
+                        else {
+                            document.getElementById("SId").style.display = "none";
+                        }
                     }
-
-
                 }
             });
 
@@ -674,8 +679,12 @@ margin-top: -18px;
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-
-                    if (response.statuscode == "ERR" || response.statuscode == null) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (response.statuscode == "ERR" || response.statuscode == null) {
                         $("#btnmyModalfinal").trigger("click");
                         //$("#forcall").trigger("click");
                         document.getElementById("lblMsg").innerHTML = response.message;
@@ -698,12 +707,20 @@ margin-top: -18px;
                             type: 'POST',
                             dataType: 'json',
                             success: function (response) {
-                                document.getElementById("lblMsg1").innerHTML = response.message;
-                                document.getElementById("heading1").innerHTML = "Success";
-                                document.getElementById("img1").innerHTML = '<i class="fa fa-check"></i>'
-                                document.getElementById("icon1").style.backgroundColor = '#82ce34';
-                                document.getElementById("LocalLff").style.backgroundColor = '#82ce34';
-                                $("#frenchisess").trigger("click");
+                                if (response == null || response.data == null || response.data == "") {
+                                    //document.getElementById("walletTblborder11").style.display = "none";
+                                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                                    $("#btnNoDataFoundModel").trigger("click");
+                                }
+                                else {
+                                    document.getElementById("lblMsg1").innerHTML = response.message;
+                                    document.getElementById("heading1").innerHTML = "Success";
+                                    document.getElementById("img1").innerHTML = '<i class="fa fa-check"></i>'
+                                    document.getElementById("icon1").style.backgroundColor = '#82ce34';
+                                    document.getElementById("LocalLff").style.backgroundColor = '#82ce34';
+                                    $("#frenchisess").trigger("click");
+
+                                }
 
 
                             }
@@ -744,13 +761,21 @@ margin-top: -18px;
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
-                document.getElementById("lblMsgfeedback").innerHTML = response;
-                document.getElementById("headingfeedback").innerHTML = "Success";
-                document.getElementById("imgfeedback").innerHTML = '<i class="fa fa-check"></i>'
-                document.getElementById("iconfeedback").style.backgroundColor = '#82ce34';
-                document.getElementById("feedbacksuccessbtnfeedback").style.backgroundColor = '#82ce34';
-                $("#feedsuccesmodal").trigger("click");
+                if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else {
+                    debugger;
+                    document.getElementById("lblMsgfeedback").innerHTML = response;
+                    document.getElementById("headingfeedback").innerHTML = "Success";
+                    document.getElementById("imgfeedback").innerHTML = '<i class="fa fa-check"></i>'
+                    document.getElementById("iconfeedback").style.backgroundColor = '#82ce34';
+                    document.getElementById("feedbacksuccessbtnfeedback").style.backgroundColor = '#82ce34';
+                    $("#feedsuccesmodal").trigger("click");
+                }
+
             }
         });
 
@@ -763,12 +788,19 @@ margin-top: -18px;
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
+                if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else{
+                    debugger;
                 document.getElementById("lblNameLF").innerHTML = 'Name : ' + response.data[0].bhName;
                 document.getElementById("lblMobileLF").innerHTML = 'Mobile : ' + response.data[0].bhMobile;
                 Lfnum = document.getElementById("lblMobileLF").innerHTML;
                 document.getElementById("LocalLf").style.backgroundColor = '#82ce34';
                 $("#LocalFranchise").trigger("click");
+                }
             }
         })
 
@@ -783,13 +815,21 @@ margin-top: -18px;
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
-                document.getElementById("lblNameRM").innerHTML = 'Name :' + response.data[0].name;
-                document.getElementById("lblMobileRM").innerHTML = 'Mobile :' + response.data[0].mobileno;
-                Rnum = document.getElementById("lblNameRM").innerHTML;
-                document.getElementById("LocalRM").style.backgroundColor = '#82ce34';
-                $("#RM").trigger("click");
+                if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else{
+                    debugger;
+                    document.getElementById("lblNameRM").innerHTML = 'Name :' + response.data[0].name;
+                    document.getElementById("lblMobileRM").innerHTML = 'Mobile :' + response.data[0].mobileno;
+                    Rnum = document.getElementById("lblNameRM").innerHTML;
+                    document.getElementById("LocalRM").style.backgroundColor = '#82ce34';
+                    $("#RM").trigger("click");
 
+                }
+                
 
             }
         })

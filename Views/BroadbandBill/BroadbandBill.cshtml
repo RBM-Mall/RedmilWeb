@@ -329,7 +329,7 @@
 <div class="container-fluid" style="background:#ebebeb">
 
     <div class="main-head-recharge">
-       <div class="row-recharge ">
+        <div class="row-recharge ">
 
             <div class="col-md-3 col-sm-3 col-lg-3">
                 <div class="block-recharge" style="width:33%;">
@@ -619,7 +619,7 @@
                     <div class="card-body">
 
                         <h3 class="card-title div-browse-plans" id="heading" style="text-align:center;margin-left:75px;"><strong>Bill Details</strong><img src="~/css/ImgElectricity/BharatBill.jpeg" style="float:right;height:45px;width:100px" /></h3>
-                         <div class="main-table-recharge">
+                        <div class="main-table-recharge">
                             <br />
                             <hr />
                             <h4><label id="lblBillData" style="display:none;text-align:center;"></label></h4>
@@ -756,7 +756,7 @@
 <script>
     var checkbox = document.querySelector("input[name=ccfCheckbox]");
     var chkCCF = "1";
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
         if (this.checked) {
             ccfChange("1");
             chkCCF = "1";
@@ -766,8 +766,8 @@
         }
     });
 
-    $(function() {
-        $("#txtCustomerMobile").keyup(function(e) {
+    $(function () {
+        $("#txtCustomerMobile").keyup(function (e) {
             var MobileNum;
             var a = $('#txtCustomerMobile').attr('id');
             var MobileNum = $("#txtCustomerMobile").val();
@@ -786,15 +786,20 @@
     function fetchBill1() {
         var MobileNum = $("#txtCustomerMobile").val();
         var Operator = $("#Id").val();
-        var input1=$("#txtInput0").val();
-        var input2=$("#txtInput1").val();
+        var input1 = $("#txtInput0").val();
+        var input2 = $("#txtInput1").val();
         $.ajax({
             url: "/BroadbandBill/FetchBill",
-            data: { 'Number': MobileNum,'Operator': Operator ,'input1':input1,'input2':input2, 'ccf': chkCCF, },
+            data: { 'Number': MobileNum, 'Operator': Operator, 'input1': input1, 'input2': input2, 'ccf': chkCCF, },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
-                if (responsedata.statuscode == "ERR") {
+            success: function (responsedata) {
+                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else if (responsedata.statuscode == "ERR") {
                     document.getElementById("divBill").style.display = "block";
                     document.getElementById("divCancel").style.display = "block";
                     //var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
@@ -825,17 +830,17 @@
                     var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
                     document.getElementById("divFetch").style.display = "none";
                     document.getElementById("divPay").style.display = "block";
-                    document.getElementById("lblBillNum").innerHTML =  responsedata.data.billnumber;
-                    document.getElementById("lblCustomerName").innerHTML =  responsedata.data.customer_name;
-                    document.getElementById("lblDueDate").innerHTML =  responsedata.data.duedate;
-                    document.getElementById("lblBillPeriod").innerHTML =  responsedata.data.billperiod;
+                    document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
+                    document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
+                    document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
+                    document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
                     document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
                     $('#txtBill').val(responsedata.data.billamount);
                     document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
                     document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
                     document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
                     document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoName + " : " + responsedata.additionalInfo.info[0].infoValue;
-                    
+
                     document.getElementById("divBill").style.display = "block";
                     ccfChange("1");
                 }
@@ -859,18 +864,26 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                    document.getElementById("lblBillAmount").innerHTML = "";
-                    document.getElementById("lblCCF").innerHTML = "";
-                    document.getElementById("lblCommision").innerHTML = "";
-                    document.getElementById("lblTotalAmount").innerHTML = "";
-                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
-                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
-                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                    document.getElementById("txtBill").style.display = "none";
-                    document.getElementById("btnEdit").style.display = "none";
+                success: function (responsedata) {
+                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                        document.getElementById("lblBillAmount").innerHTML = "";
+                        document.getElementById("lblCCF").innerHTML = "";
+                        document.getElementById("lblCommision").innerHTML = "";
+                        document.getElementById("lblTotalAmount").innerHTML = "";
+                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        document.getElementById("txtBill").style.display = "none";
+                        document.getElementById("btnEdit").style.display = "none";
+                    }
+
                 }
             })
         }
@@ -881,18 +894,26 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                    document.getElementById("lblBillAmount").innerHTML = "";
-                    document.getElementById("lblCCF").innerHTML = "";
-                    document.getElementById("lblCommision").innerHTML = "";
-                    document.getElementById("lblTotalAmount").innerHTML = "";
-                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
-                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
-                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                    document.getElementById("txtBill").style.display = "none";
-                    document.getElementById("btnEdit").style.display = "none";
+                success: function (responsedata) {
+                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                        document.getElementById("lblBillAmount").innerHTML = "";
+                        document.getElementById("lblCCF").innerHTML = "";
+                        document.getElementById("lblCommision").innerHTML = "";
+                        document.getElementById("lblTotalAmount").innerHTML = "";
+                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        document.getElementById("txtBill").style.display = "none";
+                        document.getElementById("btnEdit").style.display = "none";
+                    }
+
                 }
             })
         }
@@ -907,40 +928,53 @@
             data: { 'ccf': CCF, 'amount': amount },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
+            success: function (responsedata) {
+                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else {
+                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                    document.getElementById("lblBillAmount").innerHTML = "";
+                    document.getElementById("lblCCF").innerHTML = "";
+                    document.getElementById("lblCommision").innerHTML = "";
+                    document.getElementById("lblTotalAmount").innerHTML = "";
+                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
+                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
+                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                    document.getElementById("txtBill").style.display = "none";
+                    document.getElementById("btnEdit").style.display = "none";
+                }
 
-                var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                document.getElementById("lblBillAmount").innerHTML = "";
-                document.getElementById("lblCCF").innerHTML = "";
-                document.getElementById("lblCommision").innerHTML = "";
-                document.getElementById("lblTotalAmount").innerHTML = "";
-                document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
-                document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
-                document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                document.getElementById("txtBill").style.display = "none";
-                document.getElementById("btnEdit").style.display = "none";
             }
         })
     }
 
     function bindAmountInput() {
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "/BroadbandBill/GetBalance",
                 data: {},
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                    }
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -949,20 +983,20 @@
         });
 
     }
-    $("#myModalfinal").on('show.bs.modal', function(e) {
+    $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
 
-    $('#btnCloseModal').click(function() {
+    $('#btnCloseModal').click(function () {
         window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
     });
-    $('#btnCloseTwo').click(function() {
+    $('#btnCloseTwo').click(function () {
         window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
     });
-    $('#btnCloseFirst').click(function() {
+    $('#btnCloseFirst').click(function () {
         window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
     });
-    $('#finaldismissbutton').click(function() {
+    $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
     });
 
@@ -970,22 +1004,27 @@
 
 
 
-    $("#btnPayNow").click(function() {
+    $("#btnPayNow").click(function () {
         var MobileNum = $("#txtCustomerMobile").val();
         var Operator = $("#Id").val();
-        var input1=$("#txtInput0").val();
-        var input2=$("#txtInput1").val();
+        var input1 = $("#txtInput0").val();
+        var input2 = $("#txtInput1").val();
         var Amount = $('#txtBill').val();
         var Payment = $('.radio1:checked').val();
         if (Payment != undefined && Payment != '') {
             $.ajax({
                 type: "POST",
                 url: "/BroadbandBill/FetchBill",
-                data: { 'Number': MobileNum,'input1':input1,'input2':input2, 'Operator': Operator,'ccf': chkCCF, 'Amount': Amount, 'Payment': Payment },
+                data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'Operator': Operator, 'ccf': chkCCF, 'Amount': Amount, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    if (response.statuscode == "TXN") {
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
                         document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -1048,12 +1087,15 @@
 
 
                     }
+                    else {
+
+                    }
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -1079,14 +1121,19 @@
                 data: { 'StateId': State, 'OpId': operator },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    var ar = response;
-                    window.open(ar);
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
                 }
-
             });
         }
-
     }
     function check(browser) {
         if (browser == "broadband") {
@@ -1099,33 +1146,39 @@
     }
 </script>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        $("#Id").change(function(e) {
+    jQuery(document).ready(function () {
+        $("#Id").change(function (e) {
             $("#txtCustomerMobile").val("");
-            document.getElementById("divBill").style.display = "none"; 
-            document.getElementById("divFetch").style.display = "block"; 
-            document.getElementById("divPay").style.display = "none"; 
+            document.getElementById("divBill").style.display = "none";
+            document.getElementById("divFetch").style.display = "block";
+            document.getElementById("divPay").style.display = "none";
             jQuery('.remove').parent().remove();
             var OpId = $("#Id").val();
             $.ajax({
                 url: "/BroadbandBill/GetOperatorListById",
-                data: {'OpId': OpId },
+                data: { 'OpId': OpId },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    for (var i = 0; i < responsedata[0].inputParam.length; i++) {
-                        var id = "txtInput" + i;
-                        $(".inc").append('<div class="controls">\
-                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                            </div>');
+                success: function (responsedata) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        for (var i = 0; i < responsedata[0].inputParam.length; i++) {
+                            var id = "txtInput" + i;
+                            $(".inc").append('<div class="controls">\
+                                                                            <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                                        </div>');
+                        }
                     }
                 }
-
             });
             return false;
         });
 
-        jQuery(document).on('click', '.remove_this', function() {
+        jQuery(document).on('click', '.remove_this', function () {
             jQuery(this).parent().remove();
             return false;
         });

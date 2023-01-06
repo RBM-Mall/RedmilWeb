@@ -683,7 +683,7 @@
 <script>
     var checkbox = document.querySelector("input[name=ccfCheckbox]");
     var chkCCF = "1";
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
         if (this.checked) {
             ccfChange("1");
             chkCCF = "1";
@@ -693,8 +693,8 @@
         }
     });
 
-    $(function() {
-        $("#txtMobile").keyup(function(e) {
+    $(function () {
+        $("#txtMobile").keyup(function (e) {
             var MobileNum;
             var a = $('#txtMobile').attr('id');
             var MobileNum = $("#txtMobile").val();
@@ -718,8 +718,13 @@
             data: { 'Number': MobileNum, 'Input': Input, 'Input2': Input2, 'ccf': chkCCF, 'Operator': Operator },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
-                if (responsedata.result == 'Redirect') {
+            success: function (responsedata) {
+                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else if (responsedata.result == 'Redirect') {
                     window.location = responsedata.url;
                 }
                 else if (responsedata.statuscode == "ERR") {
@@ -785,8 +790,13 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    if (responsedata.result == 'Redirect') {
+                success: function (responsedata) {
+                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (responsedata.result == 'Redirect') {
                         window.location = responsedata.url;
                     }
                     else {
@@ -813,8 +823,13 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    if (responsedata.result == 'Redirect') {
+                success: function (responsedata) {
+                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (responsedata.result == 'Redirect') {
                         window.location = responsedata.url;
                     }
                     else {
@@ -843,8 +858,13 @@
             data: { 'ccf': CCF, 'amount': amount },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
-                if (responsedata.result == 'Redirect') {
+            success: function (responsedata) {
+                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else if (responsedata.result == 'Redirect') {
                     window.location = responsedata.url;
                 }
                 else {
@@ -866,15 +886,20 @@
     }
 
     function bindAmountInput() {
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "/LoanRepaymentBill/GetBalance",
                 data: {},
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    if (response.result == 'Redirect') {
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (response.result == 'Redirect') {
                         window.location = responsedata.url;
                     }
                     else {
@@ -884,10 +909,10 @@
                     }
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -896,23 +921,23 @@
         });
 
     }
-    $("#myModalfinal").on('show.bs.modal', function(e) {
+    $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
 
-    $('#btnCloseModal').click(function() {
+    $('#btnCloseModal').click(function () {
         window.location.href = '@Url.Content("~/LoanRepaymentBill/LoanRepaymentBill")';
     });
-    $('#btnCloseTwo').click(function() {
+    $('#btnCloseTwo').click(function () {
         window.location.href = '@Url.Content("~/LoanRepaymentBill/LoanRepaymentBill")';
     });
-    $('#btnCloseFirst').click(function() {
+    $('#btnCloseFirst').click(function () {
         window.location.href = '@Url.Content("~/LoanRepaymentBill/LoanRepaymentBill")';
     });
-    $('#finaldismissbutton').click(function() {
+    $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/LoanRepaymentBill/LoanRepaymentBill")';
     });
-    $('#btnCancel').click(function() {
+    $('#btnCancel').click(function () {
         window.location.href = '@Url.Content("~/LoanRepaymentBill/LoanRepaymentBill")';
     });
 
@@ -920,7 +945,7 @@
 
 
 
-    $("#btnPayNow").click(function() {
+    $("#btnPayNow").click(function () {
         var MobileNum = $("#txtMobile").val();
         var AccountNum = $("#txtAccountNum").val();
         var State = $("#StateName").val();
@@ -935,8 +960,13 @@
                 data: { 'Number': MobileNum, 'Account': AccountNum, 'State': State, 'Operator': Operator, 'AccountN': Account, 'ccf': chkCCF, 'Amount': Amount, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    if (response.statuscode == "TXN") {
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
                         document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -1001,10 +1031,10 @@
                     }
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -1030,9 +1060,16 @@
                 data: { 'StateId': State, 'OpId': operator },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    var ar = response;
-                    window.open(ar);
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
                 }
 
             });
@@ -1041,8 +1078,8 @@
     }
 </script>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        $("#Id").change(function(e) {
+    jQuery(document).ready(function () {
+        $("#Id").change(function (e) {
             $("#txtMobile").val("");
 
             jQuery('.remove').parent().remove();
@@ -1053,20 +1090,28 @@
                 data: { 'OpId': OpId },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    for (var i = 0; i < responsedata[0].inputParam.length; i++) {
-                        var id = "txtInput" + i;
-                        $(".inc").append('<div class="controls">\
-                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                            </div>');
+                success: function (responsedata) {
+                    if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
                     }
+                    else {
+                        for (var i = 0; i < responsedata[0].inputParam.length; i++) {
+                            var id = "txtInput" + i;
+                            $(".inc").append('<div class="controls">\
+                                                                        <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                                    </div>');
+                        }
+                    }
+
                 }
 
             });
             return false;
         });
 
-        jQuery(document).on('click', '.remove_this', function() {
+        jQuery(document).on('click', '.remove_this', function () {
             jQuery(this).parent().remove();
             return false;
         });

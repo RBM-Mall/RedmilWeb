@@ -98,8 +98,16 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                var ar = response;
-                window.open(ar);
+                if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else{
+                    var ar = response;
+                    window.open(ar);
+                }
+                
             }
         });
     }

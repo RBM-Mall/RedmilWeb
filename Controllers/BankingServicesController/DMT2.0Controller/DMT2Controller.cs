@@ -59,7 +59,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 }
                 else
                 {
-                    return Json("");
+                    return RedirectToAction("ErrorHandle", "Error");
                 }
 
             }
@@ -165,7 +165,11 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetSenderStatusResponseModel>>>(response.Content);
-                if (deserializ.Statuscode == "TXN" && deserializ != null)
+                if (deserializ.Statuscode == "ERR")
+                {
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                }
+                else if (deserializ.Statuscode == "TXN" && deserializ != null)
                 {
                     var data = deserializ.Data;
                     if (data != null)
@@ -184,14 +188,16 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                     }
                     //return Json("");
                 }
-                else if (deserializ.Statuscode == "ERR")
-                {
-                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
-                }
                 else
                 {
-                    return Json("");
+                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+
                 }
+
+                //else
+                //{
+                //    return Json("");
+                //}
 
             }
             catch (Exception ex)
@@ -274,7 +280,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         #endregion
 
         #region OTP send
-        public IActionResult SendOTP(string mobNum, string name)
+        public JsonResult SendOTP(string mobNum, string name)
         {
             GetOTPRequestModel requestModel = new GetOTPRequestModel();
             try

@@ -247,7 +247,7 @@
 <div class="container-fluid" style="background:#ebebeb">
 
     <div class="main-head-recharge">
-         <div class="row-recharge ">
+        <div class="row-recharge ">
 
             <div class="col-md-3 col-sm-3 col-lg-3">
                 <div class="block-recharge" style="width:33%;">
@@ -345,8 +345,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Customer Detail</strong><img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h4>
-                      <hr />
-                      <hr />
+                        <hr />
+                        <hr />
                         <div class="row">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -539,23 +539,29 @@
     </div>
 </div>
 <script>
-     function bindAmountInput() {
-        $(document).ready(function() {
+    function bindAmountInput() {
+        $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "/LICIndiaBill/GetBalance",
                 data: {},
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                    }
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -566,20 +572,20 @@
     }
 
 
-    $("#myModalfinal").on('show.bs.modal', function(e) {
+    $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
 
-    $('#btnCloseModal').click(function() {
+    $('#btnCloseModal').click(function () {
         window.location.href = '@Url.Content("~/LICIndiaBill/LICIndiaBill")';
     });
-    $('#btnCloseTwo').click(function() {
+    $('#btnCloseTwo').click(function () {
         window.location.href = '@Url.Content("~/LICIndiaBill/LICIndiaBill")';
     });
-    $('#btnCloseFirst').click(function() {
+    $('#btnCloseFirst').click(function () {
         window.location.href = '@Url.Content("~/LICIndiaBill/LICIndiaBill")';
     });
-    $('#finaldismissbutton').click(function() {
+    $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/LICIndiaBill/LICIndiaBill")';
     });
 
@@ -588,44 +594,55 @@
     function fetchBill1() {
         var CANumber = $("#txtCANumber").val();
         var Email = $("#txtEmail").val();
-        
+
         $.ajax({
             url: "/LICIndiaBill/FetchBill",
-            data: { 'caNumber': CANumber, 'email': Email},
+            data: { 'caNumber': CANumber, 'email': Email },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
-                
-                document.getElementById("divBill").style.display = "block";
-                document.getElementById("divFetch").style.display = "none";
-                document.getElementById("divPay").style.display = "block";
-                document.getElementById("lblBillNum").innerHTML = 'Bill Number: ' + " " + 'NA';
-                document.getElementById("lblCustomerName").innerHTML = 'Customer Name: ' + " " + responsedata.customerName;
-                document.getElementById("lblDueDate").innerHTML = 'Due Date: ' + " " + responsedata.duedatefromto;
-                document.getElementById("lblBillPeriod").innerHTML = 'Bill Period: ' + " " + 'NA';
-                document.getElementById("lblTotalAmount").innerHTML = 'Bill Amount: ₹' + " " + responsedata.netamount;
-                document.getElementById("lblamount").innerHTML =" ₹ "+" "+ responsedata.netamount;
-                
+            success: function (responsedata) {
+                if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+                else {
+                    document.getElementById("divBill").style.display = "block";
+                    document.getElementById("divFetch").style.display = "none";
+                    document.getElementById("divPay").style.display = "block";
+                    document.getElementById("lblBillNum").innerHTML = 'Bill Number: ' + " " + 'NA';
+                    document.getElementById("lblCustomerName").innerHTML = 'Customer Name: ' + " " + responsedata.customerName;
+                    document.getElementById("lblDueDate").innerHTML = 'Due Date: ' + " " + responsedata.duedatefromto;
+                    document.getElementById("lblBillPeriod").innerHTML = 'Bill Period: ' + " " + 'NA';
+                    document.getElementById("lblTotalAmount").innerHTML = 'Bill Amount: ₹' + " " + responsedata.netamount;
+                    document.getElementById("lblamount").innerHTML = " ₹ " + " " + responsedata.netamount;
+                }
+
+
             }
         })
     }
 </script>
 <script>
-      $("#btnPayNow").click(function() {
-        var caNumber =$("#txtCANumber").val();
-        var email =  $("#txtEmail").val();
+    $("#btnPayNow").click(function () {
+        var caNumber = $("#txtCANumber").val();
+        var email = $("#txtEmail").val();
         var Payment = $('.radio1:checked').val();
-        
+
         if (Payment != undefined && Payment != '') {
             $.ajax({
                 type: "POST",
                 url: "/LICIndiaBill/FetchBill",
-                data: { 'caNumber': caNumber, 'email': email, 'Payment': Payment},
+                data: { 'caNumber': caNumber, 'email': email, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    
-                    if (response.statuscode == "TXN") {
+                success: function (response) {
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
                         document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -690,10 +707,10 @@
                     }
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -705,26 +722,26 @@
     });
 
 
-    
-$(function() {
-    $("#txtCANumber").keyup(function(e) {
-        var CANumber;
-        var a = $('#txtCANumber').attr('id');
-        var CANumber = $("#txtCANumber").val();
-        if (CANumber.length < 5) {
-            $("#errCANumber").html("Please insert number between 5 to 15 digits");
-        }
-        else if (MobileNum.length >6) {
-            $("#errCANumber").html("");
-            
-        }
-    })
 
-});
+    $(function () {
+        $("#txtCANumber").keyup(function (e) {
+            var CANumber;
+            var a = $('#txtCANumber').attr('id');
+            var CANumber = $("#txtCANumber").val();
+            if (CANumber.length < 5) {
+                $("#errCANumber").html("Please insert number between 5 to 15 digits");
+            }
+            else if (MobileNum.length > 6) {
+                $("#errCANumber").html("");
+
+            }
+        })
+
+    });
 
 
-$(function() {
-        $("#txtEmail").keyup(function(e) {
+    $(function () {
+        $("#txtEmail").keyup(function (e) {
             var Email;
             //var a = $('#txtAccountNum').attr('id');
             var Email = $("#txtEmail").val();
