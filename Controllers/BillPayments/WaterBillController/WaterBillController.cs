@@ -722,9 +722,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     {
                         return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                   
                 }
-               
             }
             catch (Exception ex)
             {

@@ -133,40 +133,46 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var datadeserialize = deserialize.Data;
-                    var data = JsonConvert.DeserializeObject<List<SubCategoryReportsModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (data != null)
-                    {
-
-                        var SubCategoryData = data.Where(x => x.CategoryId == Id);
-                        foreach (var item in SubCategoryData)
-                        {
-                            subCatData1.Add(new SubCategoryReportsModel
-                            {
-                                Title = item.Title,
-                                CategoryId = item.CategoryId,
-                                Id = item.Id,
-
-                            });
-                        }
-                    }
-
-                    subCatData1.Insert(0, new SubCategoryReportsModel { Id = 0, Title = "-- Select SubCategories --" });
-                    //DataTable dt = ToDataTable(Data1);
-                    return Json(new SelectList(subCatData1, "Id", "Title"));
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
+                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var datadeserialize = deserialize.Data;
+                        var data = JsonConvert.DeserializeObject<List<SubCategoryReportsModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (data != null)
+                        {
 
+                            var SubCategoryData = data.Where(x => x.CategoryId == Id);
+                            foreach (var item in SubCategoryData)
+                            {
+                                subCatData1.Add(new SubCategoryReportsModel
+                                {
+                                    Title = item.Title,
+                                    CategoryId = item.CategoryId,
+                                    Id = item.Id,
+
+                                });
+                            }
+                        }
+
+                        subCatData1.Insert(0, new SubCategoryReportsModel { Id = 0, Title = "-- Select SubCategories --" });
+                        //DataTable dt = ToDataTable(Data1);
+                        return Json(new SelectList(subCatData1, "Id", "Title"));
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -180,9 +186,8 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -220,23 +225,31 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
 
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize1 = deserialize.Statuscode;
-                var datadeserialize = deserialize.Data;
-
-                if (datadeserialize1 == "TXN")
+                if (string.IsNullOrEmpty(result))
                 {
-                    var Data5 = JsonConvert.DeserializeObject<List<StatusResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    return Json(Data5);
-                }
-                else if (datadeserialize1 == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    var datadeserialize1 = deserialize.Statuscode;
+                    var datadeserialize = deserialize.Data;
+
+                    if (datadeserialize1 == "TXN")
+                    {
+                        var Data5 = JsonConvert.DeserializeObject<List<StatusResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        return Json(Data5);
+                    }
+                    else if (datadeserialize1 == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -250,11 +263,8 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
-
-
         }
 
         #region GetTransactionReports
@@ -360,7 +370,7 @@ namespace Project_Redmil_MVC.Controllers
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json("");
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -1468,7 +1478,7 @@ namespace Project_Redmil_MVC.Controllers
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
             }
@@ -1484,784 +1494,799 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
 
         #region ViewReceipt
         public JsonResult ViewReceipt(string subCat, BusinessReportModel result) // ad1,ad2,ad3
         {
-            AePSCashWithdrawalModel aePSCashWithdrawalModel = new AePSCashWithdrawalModel();
-            AePSMiniStatementModel aePSMiniStatementModel = new AePSMiniStatementModel();
-            AePSBalanceEnquiryModel aePSBalanceEnquiryModel = new AePSBalanceEnquiryModel();
-            MicroATMCashWithdrawalModel microATMCashWithdrawalModel = new MicroATMCashWithdrawalModel();
-            MicroATMBalanceEnquiryModel microATMBalanceEnquiryModel = new MicroATMBalanceEnquiryModel();
-            MicroATMCashWithdrawalICICIModel microATMCashWithdrawalICICIModel = new MicroATMCashWithdrawalICICIModel();
-            MicroATMBalanceEnquiryICICIModel microATMBalanceEnquiryICICIModel = new MicroATMBalanceEnquiryICICIModel();
-            UPICashWithdrawalModel upiCashWithdrawalModel = new UPICashWithdrawalModel();
-            YBLDomesticMoneyTransferModel yBLDomesticMoneyTransferModel = new YBLDomesticMoneyTransferModel();
-            CreditScoreModel creditScoreModel = new CreditScoreModel();
-            FinoDMTModel finoDMTModel = new FinoDMTModel();
-
-            GoldInvestmentBuyModel1 goldInvestmentBuyModel1 = new GoldInvestmentBuyModel1();
-            GoldInvestmentSellModel1 goldInvestmentSellModel1 = new GoldInvestmentSellModel1();
-
-            POSPaymentsModel pOSPaymentsModel = new POSPaymentsModel();
-
-            BillPaymentsModel billPaymentsModel = new BillPaymentsModel();
-            DTHRechargeModel dTHRechargeModel = new DTHRechargeModel();
-            MobilePrepaidModel mobilePrepaidModel = new MobilePrepaidModel();
-            MobilePostpaidModel mobilePostpaidModel = new MobilePostpaidModel();
-            LICPremiumPaymentsModel licPremiumPaymentsModel = new LICPremiumPaymentsModel();
-            AmazonPayGiftCardModel amazonPayGiftCardModel = new AmazonPayGiftCardModel();
-            switch (subCat)
-            {
-
-                //Banking Services
-                case "15":
-                    if (result.aePSCashWithdrawalModel != null)
-                    {
-                        aePSCashWithdrawalModel = JsonConvert.DeserializeObject<AePSCashWithdrawalModel>(JsonConvert.SerializeObject(result.aePSCashWithdrawalModel));
-                    }
-                    else
-                    {
-                        aePSCashWithdrawalModel = JsonConvert.DeserializeObject<AePSCashWithdrawalModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-                case "16":
-                    if (result.aePSCashWithdrawalModel != null)
-                    {
-                        aePSMiniStatementModel = JsonConvert.DeserializeObject<AePSMiniStatementModel>(JsonConvert.SerializeObject(result.aePSCashWithdrawalModel));
-                    }
-                    else
-                    {
-                        aePSMiniStatementModel = JsonConvert.DeserializeObject<AePSMiniStatementModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-                case "17":
-                    if (result.aePSCashWithdrawalModel != null)
-                    {
-                        aePSBalanceEnquiryModel = JsonConvert.DeserializeObject<AePSBalanceEnquiryModel>(JsonConvert.SerializeObject(result.aePSCashWithdrawalModel));
-                    }
-                    else
-                    {
-                        aePSBalanceEnquiryModel = JsonConvert.DeserializeObject<AePSBalanceEnquiryModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-                case "18":
-                    if (result.microATMCashWithdrawalModel != null)
-                    {
-                        microATMCashWithdrawalModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalModel>(JsonConvert.SerializeObject(result.microATMCashWithdrawalModel));
-                    }
-                    else
-                    {
-                        microATMCashWithdrawalModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-                case "19":
-                    if (result.microATMBalanceEnquiryModel != null)
-                    {
-                        microATMBalanceEnquiryModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryModel>(JsonConvert.SerializeObject(result.microATMBalanceEnquiryModel));
-                    }
-                    else
-                    {
-                        microATMBalanceEnquiryModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-
-                case "21":
-                    if (result.yBLDomesticMoneyTransferModel != null)
-                    {
-                        yBLDomesticMoneyTransferModel = JsonConvert.DeserializeObject<YBLDomesticMoneyTransferModel>(JsonConvert.SerializeObject(result.yBLDomesticMoneyTransferModel));
-                    }
-                    else
-                    {
-                        yBLDomesticMoneyTransferModel = JsonConvert.DeserializeObject<YBLDomesticMoneyTransferModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-
-                case "23":
-                    if (result.creditScoreModel != null)
-                    {
-                        creditScoreModel = JsonConvert.DeserializeObject<CreditScoreModel>(JsonConvert.SerializeObject(result.creditScoreModel));
-                    }
-                    else
-                    {
-                        creditScoreModel = JsonConvert.DeserializeObject<CreditScoreModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-
-                case "25":
-                    upiCashWithdrawalModel = JsonConvert.DeserializeObject<UPICashWithdrawalModel>(JsonConvert.SerializeObject(result));
-                    break;
-
-
-                case "29":
-                    if (result.microATMCashWithdrawalModel != null)
-                    {
-                        microATMCashWithdrawalICICIModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalICICIModel>(JsonConvert.SerializeObject(result.microATMCashWithdrawalModel));
-                    }
-                    else
-                    {
-                        microATMCashWithdrawalICICIModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalICICIModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-                case "30":
-                    if (result.microATMCashWithdrawalModel != null)
-                    {
-                        microATMBalanceEnquiryICICIModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryICICIModel>(JsonConvert.SerializeObject(result.microATMCashWithdrawalModel));
-                    }
-                    else
-                    {
-                        microATMBalanceEnquiryICICIModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryICICIModel>(JsonConvert.SerializeObject(result));
-                    }
-                    break;
-
-                case "31":
-                    if (result.finoDMTModel != null)
-                    {
-                        finoDMTModel = JsonConvert.DeserializeObject<FinoDMTModel>(JsonConvert.SerializeObject(result.finoDMTModel));
-                    }
-                    else
-                    {
-                        finoDMTModel = JsonConvert.DeserializeObject<FinoDMTModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-
-
-
-                //microATMBalanceEnquiryICICIModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryICICIModel>(JsonConvert.SerializeObject(result));
-
-                //case "9":
-                //    pOSPaymentsModel = JsonConvert.DeserializeObject<POSPaymentsModel>(JsonConvert.SerializeObject(result));
-                //    break;
-
-
-
-                //Investment Services
-                case "26":
-                    if (result.goldInvestmentBuyModel1 != null)
-                    {
-                        goldInvestmentBuyModel1 = JsonConvert.DeserializeObject<GoldInvestmentBuyModel1>(JsonConvert.SerializeObject(result.goldInvestmentBuyModel1));
-                    }
-                    else
-                    {
-                        goldInvestmentBuyModel1 = JsonConvert.DeserializeObject<GoldInvestmentBuyModel1>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-                case "27":
-                    if (result.goldInvestmentSellModel1 != null)
-                    {
-                        goldInvestmentSellModel1 = JsonConvert.DeserializeObject<GoldInvestmentSellModel1>(JsonConvert.SerializeObject(result.goldInvestmentSellModel1));
-                    }
-                    else
-                    {
-                        goldInvestmentSellModel1 = JsonConvert.DeserializeObject<GoldInvestmentSellModel1>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-
-                //Recharges and Bill Payments
-                case "1":
-                    if (result.billPaymentsModel != null)
-                    {
-                        billPaymentsModel = JsonConvert.DeserializeObject<BillPaymentsModel>(JsonConvert.SerializeObject(result.billPaymentsModel));
-                    }
-                    else
-                    {
-                        billPaymentsModel = JsonConvert.DeserializeObject<BillPaymentsModel>(JsonConvert.SerializeObject(result));
-                    }
-                    break;
-                case "2":
-                    if (result.mobilePrepaidPostpaid != null)
-                    {
-                        dTHRechargeModel = JsonConvert.DeserializeObject<DTHRechargeModel>(JsonConvert.SerializeObject(result.mobilePrepaidPostpaid));
-                    }
-                    else
-                    {
-                        dTHRechargeModel = JsonConvert.DeserializeObject<DTHRechargeModel>(JsonConvert.SerializeObject(result));
-                    }
-                    break;
-                case "3":
-                    if (result.mobilePrepaidPostpaid != null)
-                    {
-                        mobilePrepaidModel = JsonConvert.DeserializeObject<MobilePrepaidModel>(JsonConvert.SerializeObject(result.mobilePrepaidPostpaid));
-                    }
-                    else
-                    {
-                        mobilePrepaidModel = JsonConvert.DeserializeObject<MobilePrepaidModel>(JsonConvert.SerializeObject(result));
-                    }
-                    break;
-                case "4":
-                    if (result.mobilePrepaidPostpaid != null)
-                    {
-                        mobilePostpaidModel = JsonConvert.DeserializeObject<MobilePostpaidModel>(JsonConvert.SerializeObject(result.mobilePrepaidPostpaid));
-                    }
-                    else
-                    {
-                        mobilePostpaidModel = JsonConvert.DeserializeObject<MobilePostpaidModel>(JsonConvert.SerializeObject(result));
-                    }
-                    break;
-
-                case "5":
-                    if (result.licPremiumPaymentsModel != null)
-                    {
-                        licPremiumPaymentsModel = JsonConvert.DeserializeObject<LICPremiumPaymentsModel>(JsonConvert.SerializeObject(result.licPremiumPaymentsModel));
-                    }
-                    else
-                    {
-                        licPremiumPaymentsModel = JsonConvert.DeserializeObject<LICPremiumPaymentsModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-
-
-                //Amazon Pay Gift Cards
-                case "32":
-                    if (result.amazonPayGiftCardModel != null)
-                    {
-                        amazonPayGiftCardModel = JsonConvert.DeserializeObject<AmazonPayGiftCardModel>(JsonConvert.SerializeObject(result.amazonPayGiftCardModel));
-                    }
-                    else
-                    {
-                        amazonPayGiftCardModel = JsonConvert.DeserializeObject<AmazonPayGiftCardModel>(JsonConvert.SerializeObject(result));
-                    }
-
-                    break;
-            }
-
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/transactions/receipt");
-            //var client = new RestClient($"{Baseurl}{ApiName.TransactionSubCategory}");
-
-            dynamic dynamicvalue;
-
-            AePSCashWithdrawalModel1 requestModel = new AePSCashWithdrawalModel1();
-
-            var json = "";
-
-            if (subCat == "15")
-            {
-                requestModel.Status = aePSCashWithdrawalModel.Status;
-                requestModel.RequestDate = aePSCashWithdrawalModel.RequestDate;
-                requestModel.RequestTime = aePSCashWithdrawalModel.RequestTime;
-                requestModel.BalAmount = Convert.ToInt64(aePSCashWithdrawalModel.BalanceAmount);
-                requestModel.CustomerName = aePSCashWithdrawalModel.CustomerName;
-                requestModel.AadhaarNumber = aePSCashWithdrawalModel.CustomerAadhaarNo;
-                requestModel.CustomerMobile = aePSCashWithdrawalModel.CustomerMobileNumber;
-                requestModel.BankName = aePSCashWithdrawalModel.BankName;
-                requestModel.RRN = aePSCashWithdrawalModel.BankRRNNumber;
-                requestModel.Reason = aePSCashWithdrawalModel.FailureReason;
-                requestModel.IIN = Convert.ToInt32(aePSCashWithdrawalModel.IIN);
-                requestModel.NpciTransId = aePSCashWithdrawalModel.NPCITransactionId;
-                requestModel.RedmilTransactionId = Convert.ToInt32(aePSCashWithdrawalModel.RedmilTransactionId);
-                requestModel.Amount = Convert.ToInt64(aePSCashWithdrawalModel.TransactionAmount);
-                requestModel.DEName = aePSCashWithdrawalModel.DEName;
-                requestModel.DEMobile = aePSCashWithdrawalModel.DEMobile;
-                requestModel.ServiceType = ReplaceServices(subCat);
-                json = JsonConvert.SerializeObject(requestModel);
-
-            }
-
-            else if (subCat == "16")
-            {
-                requestModel.Status = aePSMiniStatementModel.Status;
-                requestModel.RequestDate = aePSMiniStatementModel.RequestDate;
-                requestModel.RequestTime = aePSMiniStatementModel.RequestTime;
-                requestModel.BalAmount = Convert.ToInt64(aePSMiniStatementModel.BalanceAmount);
-                requestModel.CustomerName = aePSMiniStatementModel.CustomerName;
-                requestModel.AadhaarNumber = aePSMiniStatementModel.CustomerAadhaarNo;
-                requestModel.CustomerMobile = aePSMiniStatementModel.CustomerMobileNumber;
-                requestModel.BankName = aePSMiniStatementModel.BankName;
-                requestModel.RRN = aePSMiniStatementModel.BankRRNNumber;
-                requestModel.Reason = aePSMiniStatementModel.FailureReason;
-                requestModel.IIN = Convert.ToInt32(aePSMiniStatementModel.IIN);
-                requestModel.NpciTransId = aePSMiniStatementModel.NPCITransactionId;
-                requestModel.RedmilTransactionId = Convert.ToInt32(aePSMiniStatementModel.RedmilTransactionId);
-                requestModel.Amount = aePSMiniStatementModel.TransactionAmount;
-                requestModel.DEName = aePSMiniStatementModel.DEName;
-                requestModel.DEMobile = aePSMiniStatementModel.DEMobile;
-                requestModel.ServiceType = ReplaceServices(subCat);
-                json = JsonConvert.SerializeObject(requestModel);
-
-            }
-
-            else if (subCat == "17")
-            {
-                requestModel.Status = aePSBalanceEnquiryModel.Status;
-                requestModel.RequestDate = aePSBalanceEnquiryModel.RequestDate;
-                requestModel.RequestTime = aePSBalanceEnquiryModel.RequestTime;
-                requestModel.BalAmount = Convert.ToInt64(aePSBalanceEnquiryModel.BalanceAmount);
-                requestModel.CustomerName = aePSBalanceEnquiryModel.CustomerName;
-                requestModel.AadhaarNumber = aePSBalanceEnquiryModel.CustomerAadhaarNo;
-                requestModel.CustomerMobile = aePSBalanceEnquiryModel.CustomerMobileNumber;
-                requestModel.BankName = aePSBalanceEnquiryModel.BankName;
-                requestModel.RRN = aePSBalanceEnquiryModel.BankRRNNumber;
-                requestModel.Reason = aePSBalanceEnquiryModel.FailureReason;
-                requestModel.IIN = Convert.ToInt32(aePSBalanceEnquiryModel.IIN);
-                requestModel.NpciTransId = aePSBalanceEnquiryModel.NPCITransactionId;
-                requestModel.RedmilTransactionId = Convert.ToInt32(aePSBalanceEnquiryModel.RedmilTransactionId);
-                requestModel.Amount = Convert.ToInt64(aePSBalanceEnquiryModel.TransactionAmount);
-                requestModel.DEName = aePSBalanceEnquiryModel.DEName;
-                requestModel.DEMobile = aePSBalanceEnquiryModel.DEMobile;
-                requestModel.ServiceType = ReplaceServices(subCat);
-                json = JsonConvert.SerializeObject(requestModel);
-            }
-
-            YBLDomesticMoneyTransferModel1 yBLDomesticMoneyTransferModel1 = new YBLDomesticMoneyTransferModel1();
-
-            if (subCat == "21")
-            {
-                yBLDomesticMoneyTransferModel1.Status = yBLDomesticMoneyTransferModel.Status;
-                yBLDomesticMoneyTransferModel1.RequestDate = yBLDomesticMoneyTransferModel.RequestDate;
-                yBLDomesticMoneyTransferModel1.RequestTime = yBLDomesticMoneyTransferModel.RequestTime;
-                yBLDomesticMoneyTransferModel1.SenderName = yBLDomesticMoneyTransferModel.SenderName;
-                yBLDomesticMoneyTransferModel1.SenderMobileNumber = yBLDomesticMoneyTransferModel.SenderMobileNumber.ToString();
-                yBLDomesticMoneyTransferModel1.RedmilTransId = yBLDomesticMoneyTransferModel.RedmilReferenceId.ToString();
-                yBLDomesticMoneyTransferModel1.Amount = yBLDomesticMoneyTransferModel.TransactionAmount.ToString();
-                yBLDomesticMoneyTransferModel1.recMobile = yBLDomesticMoneyTransferModel.ReceiverMobileNumber;
-                yBLDomesticMoneyTransferModel1.recBankName = yBLDomesticMoneyTransferModel.BankName;
-                yBLDomesticMoneyTransferModel1.recAcNum = yBLDomesticMoneyTransferModel.ReceiverAccountNo.ToString();
-                yBLDomesticMoneyTransferModel1.Reason = yBLDomesticMoneyTransferModel.Reason;
-                yBLDomesticMoneyTransferModel1.rrn = yBLDomesticMoneyTransferModel.BankRRNNumber;
-                yBLDomesticMoneyTransferModel1.TransType = yBLDomesticMoneyTransferModel.TransactionType;
-                yBLDomesticMoneyTransferModel1.recName = yBLDomesticMoneyTransferModel.ReceiverName;
-                yBLDomesticMoneyTransferModel1.Surcharge = yBLDomesticMoneyTransferModel.Surcharge.ToString();
-                yBLDomesticMoneyTransferModel1.recIfsc = yBLDomesticMoneyTransferModel.IFSCCode.ToString();
-                yBLDomesticMoneyTransferModel1.DEName = yBLDomesticMoneyTransferModel.DEName;
-                yBLDomesticMoneyTransferModel1.DEMobile = yBLDomesticMoneyTransferModel.DEMobile;
-
-                yBLDomesticMoneyTransferModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(yBLDomesticMoneyTransferModel1);
-
-            }
-
-            CreditScoreModel1 creditScoreModel1 = new CreditScoreModel1();
-
-            if (subCat == "23")
-            {
-
-
-                creditScoreModel1.Status = creditScoreModel.Status;
-                creditScoreModel1.RequestDate = creditScoreModel.RequestDate;
-                creditScoreModel1.RequestTime = creditScoreModel.RequestTime;
-                creditScoreModel1.CustomerName = creditScoreModel.CustomerName;
-                creditScoreModel1.CustomerMobileNo = creditScoreModel.CustomerMobileNo;
-                creditScoreModel1.TransactionAmount = creditScoreModel.AmountPaid.ToString();
-                creditScoreModel1.RedmilTransactionID = creditScoreModel.RedmilTransactionId.ToString();
-                creditScoreModel1.DEName = creditScoreModel.DEName;
-                creditScoreModel1.DEMobile = creditScoreModel.DEMobile;
-                if (creditScoreModel.CIBILScorePDFLink.Equals("null"))
-                {
-                    creditScoreModel1.CIBILScorePDFLink = "Rajneesh";
-
-                }
-                else
-                {
-                    creditScoreModel1.CIBILScorePDFLink = creditScoreModel.CIBILScorePDFLink;
-                }
-
-
-                creditScoreModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(creditScoreModel1);
-
-            }
-
-            FinoDMTModel1 finoDMTModel1 = new FinoDMTModel1();
-
-            if (subCat == "31")
-            {
-                finoDMTModel1.Status = finoDMTModel.Status;
-                finoDMTModel1.RequestDate = finoDMTModel.RequestDate;
-                finoDMTModel1.RequestTime = finoDMTModel.RequestTime;
-                if (!string.IsNullOrEmpty(finoDMTModel.TransactionID))
-                {
-                    finoDMTModel1.TransId = finoDMTModel.TransactionID;
-                }
-                else
-                {
-                    finoDMTModel1.TransId = "null";
-                }
-                finoDMTModel1.reqId = finoDMTModel.RequestId;
-                finoDMTModel1.TransType = finoDMTModel.TransactionType;
-                finoDMTModel1.RedmilTransId = finoDMTModel.RedmilReferenceId.ToString();
-                finoDMTModel1.Unique = finoDMTModel.ClientUniqueId;
-                finoDMTModel1.sendName = finoDMTModel.SenderName;
-                finoDMTModel1.sendMobile = finoDMTModel.SenderMobileNumber.ToString();
-                finoDMTModel1.recName = finoDMTModel.ReceiverName;
-                finoDMTModel1.recAcNum = finoDMTModel.ReceiverAccountNo;
-                finoDMTModel1.recBankName = finoDMTModel.BankName;
-                finoDMTModel1.recIfsc = finoDMTModel.IFSCCode;
-                finoDMTModel1.Surcharge = finoDMTModel.Surcharge;
-                finoDMTModel1.amount = finoDMTModel.TransactionAmount.ToString();
-                finoDMTModel1.bankCharges = finoDMTModel.BankCharges.ToString();
-                finoDMTModel1.ServiceType = ReplaceServices(subCat);
-                finoDMTModel1.DEName = finoDMTModel.DEName;
-                finoDMTModel1.DEMobile = finoDMTModel.DEMobile;
-                json = JsonConvert.SerializeObject(finoDMTModel1);
-
-            }
-
-            GoldInvestmentBuySellModel goldInvestmentBuySellModel = new GoldInvestmentBuySellModel();
-
-            if (subCat == "26")
-            {
-                //goldInvestmentBuySellModel.BankName = goldInvestmentBuyModel.BankName;
-                //goldInvestmentBuySellModel.RequestDate = goldInvestmentBuyModel.RequestDate;
-                //goldInvestmentBuySellModel.RequestTime = goldInvestmentBuyModel.RequestTime;
-                //goldInvestmentBuySellModel.CustomerName = goldInvestmentBuyModel.CustomerName;
-                //goldInvestmentBuySellModel.CustomerMobileNumber = goldInvestmentBuyModel.CustomerMobileNumber;
-                //goldInvestmentBuySellModel.GoldRatePerGram = goldInvestmentBuyModel.GoldRatePerGm;
-                //goldInvestmentBuySellModel.CustomerID = goldInvestmentBuyModel.CustomerID.ToString();
-                //goldInvestmentBuySellModel.OldGoldBalance = goldInvestmentBuyModel.OldGoldBalance;
-                //goldInvestmentBuySellModel.NewGoldBalance = goldInvestmentBuyModel.NewGoldBalance;
-                //goldInvestmentBuySellModel.cusInvoice = goldInvestmentBuyModel.InvoiceID;
-
-
-                //goldInvestmentBuySellModel.TransactionAmount = goldInvestmentBuyModel.PurchaseAmount;
-                //goldInvestmentBuySellModel.Quantity = goldInvestmentBuyModel.PurchaseQuantity;
-
-                ////else
-                ////{
-                ////    goldInvestmentBuySellModel.TransactionAmount = goldInvestmentSellModel.SellAmount.ToString();
-                ////    goldInvestmentBuySellModel.Quantity = goldInvestmentSellModel.SellQuantity;
-                ////    goldInvestmentBuySellModel.BankCharge = goldInvestmentSellModel.BankCharges;
-                ////    goldInvestmentBuySellModel.NetAmount = goldInvestmentSellModel.NetAmountCredited;
-                ////}
-
-                //goldInvestmentBuySellModel.Quantity = goldInvestmentSellModel.SellQuantity;
-                //goldInvestmentBuySellModel.InvoiceId = goldInvestmentBuyModel.InvoiceID;
-                //goldInvestmentBuySellModel.RedmilTransactionID = goldInvestmentBuyModel.TransactionId.ToString();
-                //goldInvestmentBuySellModel.pan = goldInvestmentBuyModel.PANNo;
-                //goldInvestmentBuySellModel.BankAccountNumber = goldInvestmentBuyModel.AccountNo;
-                //goldInvestmentBuySellModel.IFSC = goldInvestmentBuyModel.BankName;
-                //goldInvestmentBuySellModel.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(result.goldInvestmentBuyModel1);
-            }
-
-            GoldInvestmentSellModel goldInvestmentSellRequestModel = new GoldInvestmentSellModel();
-            if (subCat == "27")
-            {
-
-                //goldInvestmentSellModel1.IFSCCode = goldInvestmentSellRequestModel.IFSCCode;
-                //goldInvestmentSellModel1.BankAccountNumber = goldInvestmentSellRequestModel.AccountNo;
-                //goldInvestmentSellModel1.DEName = goldInvestmentSellRequestModel.DEName;
-                //goldInvestmentSellModel1.DEMobile = goldInvestmentSellRequestModel.DEMobile;
-                //goldInvestmentSellModel1.BankCharges = goldInvestmentSellRequestModel.BankCharges;
-                //goldInvestmentSellModel1.RequestDate = goldInvestmentSellRequestModel.RequestDate;
-                //goldInvestmentSellModel1.RequestTime = goldInvestmentSellRequestModel.RequestTime;
-                //goldInvestmentSellModel1.CustomerName = goldInvestmentSellRequestModel.CustomerName;
-                //goldInvestmentSellModel1.CustomerMobileNumber = goldInvestmentSellRequestModel.CustomerMobileNumber;
-                //goldInvestmentSellModel1.TransactionAmount = goldInvestmentSellRequestModel.SellAmount;
-                //goldInvestmentSellModel1.TransactionID = goldInvestmentSellRequestModel.TransactionId;
-                //goldInvestmentSellModel1.InvoiceId = goldInvestmentSellRequestModel.InvoiceID;
-                //goldInvestmentSellModel1.GoldRatePerGram = goldInvestmentSellRequestModel.GoldRatePerGm;
-                //goldInvestmentSellModel1.SellQuantity = goldInvestmentSellRequestModel.SellQuantity;
-                ////if (subCat == "26")
-                ////{
-                ////    goldInvestmentBuySellModel.TransactionAmount = goldInvestmentBuyModel.PurchaseAmount;
-                ////    goldInvestmentBuySellModel.Quantity = goldInvestmentBuyModel.PurchaseQuantity;
-                ////}
-
-                //goldInvestmentSellModel1.CustomerID = goldInvestmentSellRequestModel.CustomerID;
-                //goldInvestmentSellModel1.OldGoldBalance = goldInvestmentSellRequestModel.OldGoldBalance;
-                //goldInvestmentSellModel1.NewGoldBalance = goldInvestmentSellRequestModel.NewGoldBalance;
-                //goldInvestmentSellModel1.CustomerPanNumber = goldInvestmentSellRequestModel.PANNo;
-
-                //goldInvestmentSellModel1.BankName = goldInvestmentSellRequestModel.BankName;
-                //goldInvestmentSellModel1.TransactionAmount = goldInvestmentSellRequestModel.NetAmountCredited;
-
-                //goldInvestmentSellModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(result.goldInvestmentSellModel1);
-            }
-
-
-
-
-
-            MicroATMCashWithdrawalModel1 requestModel1 = new MicroATMCashWithdrawalModel1();
-
-            if (subCat == "30")
-            {
-
-
-                requestModel1.Status = microATMBalanceEnquiryICICIModel.Status;
-                requestModel1.RequestDate = microATMBalanceEnquiryICICIModel.RequestDate;
-                requestModel1.RequestTime = microATMBalanceEnquiryICICIModel.RequestTime;
-                requestModel1.Balamount = Convert.ToInt64(microATMBalanceEnquiryICICIModel.BalanceAmount);
-                requestModel1.CardHolderName = microATMBalanceEnquiryICICIModel.CardHolderName;
-                requestModel1.CardHolderContactNumber = microATMBalanceEnquiryICICIModel.CardHolderMobileNumber;
-                requestModel1.CardType = microATMBalanceEnquiryICICIModel.CardType;
-                requestModel1.CardNumber = microATMBalanceEnquiryICICIModel.CardNumber;
-                requestModel1.RRN = microATMBalanceEnquiryICICIModel.BankRRNNumber;
-                requestModel1.Reason = microATMBalanceEnquiryICICIModel.FailureReason;
-                requestModel1.NPCITransactionID = microATMBalanceEnquiryICICIModel.NPCITransactionId;
-                requestModel1.RedmilTransactionID = microATMBalanceEnquiryICICIModel.RedmilTransactionId;
-                requestModel1.TransactionAmount = Convert.ToInt64(microATMBalanceEnquiryICICIModel.TransactionAmount);
-                requestModel.DEName = microATMBalanceEnquiryICICIModel.DEName;
-                requestModel.DEMobile = microATMBalanceEnquiryICICIModel.DEMobile;
-
-                requestModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(requestModel1);
-
-
-            }
-
-            else if (subCat == "29")
-            {
-                requestModel1.Status = microATMCashWithdrawalICICIModel.Status;
-                requestModel1.RequestDate = microATMCashWithdrawalICICIModel.RequestDate;
-                requestModel1.RequestTime = microATMCashWithdrawalICICIModel.RequestTime;
-                requestModel1.Balamount = Convert.ToInt64(microATMCashWithdrawalICICIModel.BalanceAmount);
-                requestModel1.CardHolderName = microATMCashWithdrawalICICIModel.CardHolderName;
-                requestModel1.CardHolderContactNumber = microATMCashWithdrawalICICIModel.CardHolderMobileNumber;
-                requestModel1.CardType = microATMCashWithdrawalICICIModel.CardType;
-                requestModel1.CardNumber = microATMCashWithdrawalICICIModel.CardNumber;
-                requestModel1.RRN = microATMCashWithdrawalICICIModel.BankRRNNumber;
-                requestModel1.Reason = microATMCashWithdrawalICICIModel.FailureReason;
-                requestModel1.NPCITransactionID = microATMCashWithdrawalICICIModel.NPCITransactionId;
-                requestModel1.RedmilTransactionID = microATMCashWithdrawalICICIModel.RedmilTransactionId;
-                requestModel1.TransactionAmount = Convert.ToInt64(microATMCashWithdrawalICICIModel.TransactionAmount);
-                requestModel1.DEName = microATMCashWithdrawalICICIModel.DEName;
-                requestModel1.DEMobile = microATMCashWithdrawalICICIModel.DEMobile;
-
-                requestModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(requestModel1);
-            }
-
-            else if (subCat == "18")
-            {
-                requestModel1.Status = microATMCashWithdrawalModel.Status;
-                requestModel1.RequestDate = microATMCashWithdrawalModel.RequestDate;
-                requestModel1.RequestTime = microATMCashWithdrawalModel.RequestTime;
-                requestModel1.Balamount = Convert.ToInt64(microATMCashWithdrawalModel.BalanceAmount);
-                requestModel1.CardHolderName = microATMCashWithdrawalModel.CardHolderName;
-                requestModel1.CardHolderContactNumber = microATMCashWithdrawalModel.CardHolderMobileNumber;
-                requestModel1.CardType = microATMCashWithdrawalModel.CardType;
-                requestModel1.CardNumber = microATMCashWithdrawalModel.CardNumber;
-                requestModel1.RRN = microATMCashWithdrawalModel.BankRRNNumber;
-                requestModel1.Reason = microATMCashWithdrawalModel.FailureReason;
-                requestModel1.NPCITransactionID = microATMCashWithdrawalModel.NPCITransactionId;
-                requestModel1.RedmilTransactionID = microATMCashWithdrawalModel.RedmilTransactionId;
-                requestModel1.TransactionAmount = Convert.ToInt64(microATMCashWithdrawalModel.TransactionAmount);
-                requestModel1.DEName = microATMCashWithdrawalModel.DEName;
-                requestModel1.DEMobile = microATMCashWithdrawalModel.DEMobile;
-                requestModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(requestModel1);
-            }
-
-            else if (subCat == "19")
-            {
-                requestModel1.Status = microATMBalanceEnquiryModel.Status;
-                requestModel1.RequestDate = microATMBalanceEnquiryModel.RequestDate;
-                requestModel1.RequestTime = microATMBalanceEnquiryModel.RequestTime;
-                requestModel1.Balamount = Convert.ToInt64(microATMBalanceEnquiryModel.BalanceAmount);
-                requestModel1.CardHolderName = microATMBalanceEnquiryModel.CardHolderName;
-                requestModel1.CardHolderContactNumber = microATMBalanceEnquiryModel.CardHolderMobileNumber;
-                requestModel1.CardType = microATMBalanceEnquiryModel.CardType;
-                requestModel1.CardNumber = microATMBalanceEnquiryModel.CardNumber;
-                requestModel1.RRN = microATMBalanceEnquiryModel.BankRRNNumber;
-                requestModel1.Reason = microATMBalanceEnquiryModel.FailureReason;
-                requestModel1.NPCITransactionID = microATMBalanceEnquiryModel.NPCITransactionId;
-                requestModel1.RedmilTransactionID = microATMBalanceEnquiryModel.RedmilTransactionId;
-                requestModel1.TransactionAmount = Convert.ToInt64(microATMBalanceEnquiryModel.TransactionAmount);
-                requestModel1.DEName = microATMBalanceEnquiryModel.DEName;
-                requestModel1.DEMobile = microATMBalanceEnquiryModel.DEMobile;
-
-                requestModel1.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(requestModel1);
-            }
-
-            //else if (subCat == "9")
-            //{
-            //    requestModel1.Status = microATMCashWithdrawalModel.Status;
-            //    requestModel1.RequestDate = microATMCashWithdrawalModel.RequestDate;
-            //    requestModel1.RequestTime = microATMCashWithdrawalModel.RequestTime;
-            //    requestModel1.Balamount = Convert.ToInt64(microATMCashWithdrawalModel.BalanceAmount);
-            //    requestModel1.CardHolderName = microATMCashWithdrawalModel.CardHolderName;
-            //    requestModel1.CardHolderContactNumber = microATMCashWithdrawalModel.CardHolderMobileNumber;
-            //    requestModel1.CardType = microATMCashWithdrawalModel.CardType;
-            //    requestModel1.CardNumber = microATMCashWithdrawalModel.CardNumber;
-            //    requestModel1.RRN = microATMCashWithdrawalModel.BankRRNNumber;
-            //    requestModel1.Reason = microATMCashWithdrawalModel.FailureReason;
-            //    requestModel1.NPCITransactionID = microATMCashWithdrawalModel.NPCITransactionId;
-            //    requestModel1.RedmilTransactionID = microATMCashWithdrawalModel.RedmilTransactionId;
-            //    requestModel1.TransactionAmount = Convert.ToInt64(microATMCashWithdrawalModel.TransactionAmount);
-            //    requestModel.DEName = microATMCashWithdrawalModel.DEName;
-            //    requestModel.DEMobile = microATMCashWithdrawalModel.DEMobile;
-
-            //    requestModel1.ServiceType = ReplaceServices(subCat);
-
-            //    json = JsonConvert.SerializeObject(requestModel1);
-            //}
-
-
-
-            BillPaymentsModel1 billPaymentsModel1 = new BillPaymentsModel1();
-
-            if (subCat == "1")
-            {
-                billPaymentsModel1.Status = billPaymentsModel.Status;
-                billPaymentsModel1.RequestDate = billPaymentsModel.RequestDate;
-                billPaymentsModel1.RequestTime = billPaymentsModel.RequestTime;
-                billPaymentsModel1.CustomerMobile = billPaymentsModel.CustomerMobileNumber;
-                billPaymentsModel1.BillCategory = billPaymentsModel.BillerCategory;
-                billPaymentsModel1.BillerName = billPaymentsModel.BillerName;
-                billPaymentsModel1.BillerAmount = billPaymentsModel.BillAmount;
-                billPaymentsModel1.CustomerConvenienceFees = billPaymentsModel.CCF;
-                billPaymentsModel1.CustomerInputField = billPaymentsModel.CustomerInputField;
-                billPaymentsModel1.CustomerInputFieldValue = billPaymentsModel.CustomerInputFieldValue;
-                billPaymentsModel1.BillerTransactionID = billPaymentsModel.BillerReferenceId;
-                billPaymentsModel1.RedmilTransactionID = billPaymentsModel.RedmilTransactionId.ToString();
-                billPaymentsModel1.DEMobile = billPaymentsModel.DEMobile;
-                billPaymentsModel1.DEName = billPaymentsModel.DEName;
-                billPaymentsModel1.ServiceType = ReplaceServices(subCat);
-                json = JsonConvert.SerializeObject(billPaymentsModel1);
-            }
-
-            MobilePrepaidPostpaidDTHRechargeModel mobilePrepaidPostpaidModel = new MobilePrepaidPostpaidDTHRechargeModel();
-
-            if (subCat == "3" || subCat == "4" || subCat == "2")
-            {
-                mobilePrepaidPostpaidModel.Status = result.mobilePrepaidPostpaid.Status;
-                mobilePrepaidPostpaidModel.RequestDate = result.mobilePrepaidPostpaid.RequestDate;
-                mobilePrepaidPostpaidModel.RequestTime = result.mobilePrepaidPostpaid.RequestTime;
-                mobilePrepaidPostpaidModel.CustomerMobile = result.mobilePrepaidPostpaid.CustomerMobile;
-                mobilePrepaidPostpaidModel.OperatorName = result.mobilePrepaidPostpaid.OperatorName;
-                mobilePrepaidPostpaidModel.Amount = result.mobilePrepaidPostpaid.Amount;
-                mobilePrepaidPostpaidModel.TransactionId = result.mobilePrepaidPostpaid.OperatorTransactionId;
-                mobilePrepaidPostpaidModel.RedmilTransactionId = result.mobilePrepaidPostpaid.RedmilTransactionId.ToString();
-                mobilePrepaidPostpaidModel.DEName = result.mobilePrepaidPostpaid.DEName;
-                mobilePrepaidPostpaidModel.DEMobile = result.mobilePrepaidPostpaid.DEMobile;
-                mobilePrepaidPostpaidModel.ServiceType = ReplaceServices(subCat);
-
-                json = JsonConvert.SerializeObject(mobilePrepaidPostpaidModel);
-            }
-
-            LICPremiumPaymentsModel1 licPremiumPaymentsModel1 = new LICPremiumPaymentsModel1();
-
-            if (subCat == "5")
-            {
-                licPremiumPaymentsModel1.Status = licPremiumPaymentsModel.Status;
-                licPremiumPaymentsModel1.RequestDate = licPremiumPaymentsModel.RequestDate;
-                licPremiumPaymentsModel1.RequestTime = licPremiumPaymentsModel.RequestTime;
-                licPremiumPaymentsModel1.caNumber = licPremiumPaymentsModel.CaNumber;
-                licPremiumPaymentsModel1.BillerAmount = licPremiumPaymentsModel.BillPayAmount.ToString();
-                licPremiumPaymentsModel1.Status = licPremiumPaymentsModel.Status;
-                licPremiumPaymentsModel1.BillerTransactionID = licPremiumPaymentsModel.BillReferenceId;
-                licPremiumPaymentsModel1.RedmilTransactionID = licPremiumPaymentsModel.RedmilTransactionId;
-                licPremiumPaymentsModel1.DEName = licPremiumPaymentsModel.DEName;
-                licPremiumPaymentsModel1.DEMobile = licPremiumPaymentsModel.DEMobile;
-                licPremiumPaymentsModel1.ServiceType = ReplaceServices(subCat);
-                json = JsonConvert.SerializeObject(licPremiumPaymentsModel1);
-
-            }
-
-            //Amazon Pay Gift Cards
-            if (subCat == "32")
-            {
-                ViewRecieptAmazonGiftCard requestViewRecieptAmazonGiftCardModel = new ViewRecieptAmazonGiftCard();
-                requestViewRecieptAmazonGiftCardModel.RequestDate = result.amazonPayGiftCardModel.RequestDate;
-                requestViewRecieptAmazonGiftCardModel.RequestTime = result.amazonPayGiftCardModel.RequestTime;
-                requestViewRecieptAmazonGiftCardModel.SenderName = result.amazonPayGiftCardModel.SenderName;
-                requestViewRecieptAmazonGiftCardModel.SenderMobile = result.amazonPayGiftCardModel.SenderMobile;
-                requestViewRecieptAmazonGiftCardModel.DEMobile = result.amazonPayGiftCardModel.DEMobile;
-                requestViewRecieptAmazonGiftCardModel.DEName = result.amazonPayGiftCardModel.DEName;
-                requestViewRecieptAmazonGiftCardModel.CustomerName = result.amazonPayGiftCardModel.ReceiverName;
-                requestViewRecieptAmazonGiftCardModel.customerEmail = result.amazonPayGiftCardModel.ReceiverEmailID;
-                requestViewRecieptAmazonGiftCardModel.CustomerMobileNumber = result.amazonPayGiftCardModel.ReceiverMobileNumber;
-                requestViewRecieptAmazonGiftCardModel.qty = result.amazonPayGiftCardModel.Quantity;
-                requestViewRecieptAmazonGiftCardModel.RedmilTransId = result.amazonPayGiftCardModel.RedmilTransactionId;
-                requestViewRecieptAmazonGiftCardModel.Amount = result.amazonPayGiftCardModel.TransactionAmount;
-                requestViewRecieptAmazonGiftCardModel.tAmount = result.amazonPayGiftCardModel.TotalAmount;
-                requestViewRecieptAmazonGiftCardModel.card = result.amazonPayGiftCardModel.CardNumber;
-                requestViewRecieptAmazonGiftCardModel.cardpin = result.amazonPayGiftCardModel.CardPin;
-                requestViewRecieptAmazonGiftCardModel.catname = result.amazonPayGiftCardModel.CardDesigncategoryName;
-                requestViewRecieptAmazonGiftCardModel.Status = result.amazonPayGiftCardModel.Status;
-                requestViewRecieptAmazonGiftCardModel.carddesign = result.amazonPayGiftCardModel.CardDesignname;
-                requestViewRecieptAmazonGiftCardModel.refno = result.amazonPayGiftCardModel.AmazonReferenceNumber;
-                requestViewRecieptAmazonGiftCardModel.GiftMessage = result.amazonPayGiftCardModel.GiftMessage;
-                requestViewRecieptAmazonGiftCardModel.orderid = result.amazonPayGiftCardModel.OrderId;
-                requestViewRecieptAmazonGiftCardModel.ResponseCode = result.amazonPayGiftCardModel.ResponseCode;
-                requestViewRecieptAmazonGiftCardModel.ServiceType = ReplaceServices(subCat);
-                json = JsonConvert.SerializeObject(requestViewRecieptAmazonGiftCardModel);
-            }
             try
             {
-                var client = new RestClient("https://api.redmilbusinessmall.com/api/transactions/receipt");
+                AePSCashWithdrawalModel aePSCashWithdrawalModel = new AePSCashWithdrawalModel();
+                AePSMiniStatementModel aePSMiniStatementModel = new AePSMiniStatementModel();
+                AePSBalanceEnquiryModel aePSBalanceEnquiryModel = new AePSBalanceEnquiryModel();
+                MicroATMCashWithdrawalModel microATMCashWithdrawalModel = new MicroATMCashWithdrawalModel();
+                MicroATMBalanceEnquiryModel microATMBalanceEnquiryModel = new MicroATMBalanceEnquiryModel();
+                MicroATMCashWithdrawalICICIModel microATMCashWithdrawalICICIModel = new MicroATMCashWithdrawalICICIModel();
+                MicroATMBalanceEnquiryICICIModel microATMBalanceEnquiryICICIModel = new MicroATMBalanceEnquiryICICIModel();
+                UPICashWithdrawalModel upiCashWithdrawalModel = new UPICashWithdrawalModel();
+                YBLDomesticMoneyTransferModel yBLDomesticMoneyTransferModel = new YBLDomesticMoneyTransferModel();
+                CreditScoreModel creditScoreModel = new CreditScoreModel();
+                FinoDMTModel finoDMTModel = new FinoDMTModel();
 
-                //Create request with GET
-                var requestResp = new RestRequest(Method.POST);
-                requestResp.AddHeader("Content-Type", "application/json");
+                GoldInvestmentBuyModel1 goldInvestmentBuyModel1 = new GoldInvestmentBuyModel1();
+                GoldInvestmentSellModel1 goldInvestmentSellModel1 = new GoldInvestmentSellModel1();
 
-                //var json = JsonConvert.SerializeObject(reqModel);
-                requestResp.AddJsonBody(json);
+                POSPaymentsModel pOSPaymentsModel = new POSPaymentsModel();
 
-                IRestResponse response = client.Execute(requestResp);
-
-                var result1 = response.Content;
-                if (string.IsNullOrEmpty(result1))
+                BillPaymentsModel billPaymentsModel = new BillPaymentsModel();
+                DTHRechargeModel dTHRechargeModel = new DTHRechargeModel();
+                MobilePrepaidModel mobilePrepaidModel = new MobilePrepaidModel();
+                MobilePostpaidModel mobilePostpaidModel = new MobilePostpaidModel();
+                LICPremiumPaymentsModel licPremiumPaymentsModel = new LICPremiumPaymentsModel();
+                AmazonPayGiftCardModel amazonPayGiftCardModel = new AmazonPayGiftCardModel();
+                switch (subCat)
                 {
-                    return Json("");
+
+                    //Banking Services
+                    case "15":
+                        if (result.aePSCashWithdrawalModel != null)
+                        {
+                            aePSCashWithdrawalModel = JsonConvert.DeserializeObject<AePSCashWithdrawalModel>(JsonConvert.SerializeObject(result.aePSCashWithdrawalModel));
+                        }
+                        else
+                        {
+                            aePSCashWithdrawalModel = JsonConvert.DeserializeObject<AePSCashWithdrawalModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+                    case "16":
+                        if (result.aePSCashWithdrawalModel != null)
+                        {
+                            aePSMiniStatementModel = JsonConvert.DeserializeObject<AePSMiniStatementModel>(JsonConvert.SerializeObject(result.aePSCashWithdrawalModel));
+                        }
+                        else
+                        {
+                            aePSMiniStatementModel = JsonConvert.DeserializeObject<AePSMiniStatementModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+                    case "17":
+                        if (result.aePSCashWithdrawalModel != null)
+                        {
+                            aePSBalanceEnquiryModel = JsonConvert.DeserializeObject<AePSBalanceEnquiryModel>(JsonConvert.SerializeObject(result.aePSCashWithdrawalModel));
+                        }
+                        else
+                        {
+                            aePSBalanceEnquiryModel = JsonConvert.DeserializeObject<AePSBalanceEnquiryModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+                    case "18":
+                        if (result.microATMCashWithdrawalModel != null)
+                        {
+                            microATMCashWithdrawalModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalModel>(JsonConvert.SerializeObject(result.microATMCashWithdrawalModel));
+                        }
+                        else
+                        {
+                            microATMCashWithdrawalModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+                    case "19":
+                        if (result.microATMBalanceEnquiryModel != null)
+                        {
+                            microATMBalanceEnquiryModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryModel>(JsonConvert.SerializeObject(result.microATMBalanceEnquiryModel));
+                        }
+                        else
+                        {
+                            microATMBalanceEnquiryModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+
+                    case "21":
+                        if (result.yBLDomesticMoneyTransferModel != null)
+                        {
+                            yBLDomesticMoneyTransferModel = JsonConvert.DeserializeObject<YBLDomesticMoneyTransferModel>(JsonConvert.SerializeObject(result.yBLDomesticMoneyTransferModel));
+                        }
+                        else
+                        {
+                            yBLDomesticMoneyTransferModel = JsonConvert.DeserializeObject<YBLDomesticMoneyTransferModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+
+                    case "23":
+                        if (result.creditScoreModel != null)
+                        {
+                            creditScoreModel = JsonConvert.DeserializeObject<CreditScoreModel>(JsonConvert.SerializeObject(result.creditScoreModel));
+                        }
+                        else
+                        {
+                            creditScoreModel = JsonConvert.DeserializeObject<CreditScoreModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+
+                    case "25":
+                        upiCashWithdrawalModel = JsonConvert.DeserializeObject<UPICashWithdrawalModel>(JsonConvert.SerializeObject(result));
+                        break;
+
+
+                    case "29":
+                        if (result.microATMCashWithdrawalModel != null)
+                        {
+                            microATMCashWithdrawalICICIModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalICICIModel>(JsonConvert.SerializeObject(result.microATMCashWithdrawalModel));
+                        }
+                        else
+                        {
+                            microATMCashWithdrawalICICIModel = JsonConvert.DeserializeObject<MicroATMCashWithdrawalICICIModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+                    case "30":
+                        if (result.microATMCashWithdrawalModel != null)
+                        {
+                            microATMBalanceEnquiryICICIModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryICICIModel>(JsonConvert.SerializeObject(result.microATMCashWithdrawalModel));
+                        }
+                        else
+                        {
+                            microATMBalanceEnquiryICICIModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryICICIModel>(JsonConvert.SerializeObject(result));
+                        }
+                        break;
+
+                    case "31":
+                        if (result.finoDMTModel != null)
+                        {
+                            finoDMTModel = JsonConvert.DeserializeObject<FinoDMTModel>(JsonConvert.SerializeObject(result.finoDMTModel));
+                        }
+                        else
+                        {
+                            finoDMTModel = JsonConvert.DeserializeObject<FinoDMTModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+
+
+
+                    //microATMBalanceEnquiryICICIModel = JsonConvert.DeserializeObject<MicroATMBalanceEnquiryICICIModel>(JsonConvert.SerializeObject(result));
+
+                    //case "9":
+                    //    pOSPaymentsModel = JsonConvert.DeserializeObject<POSPaymentsModel>(JsonConvert.SerializeObject(result));
+                    //    break;
+
+
+
+                    //Investment Services
+                    case "26":
+                        if (result.goldInvestmentBuyModel1 != null)
+                        {
+                            goldInvestmentBuyModel1 = JsonConvert.DeserializeObject<GoldInvestmentBuyModel1>(JsonConvert.SerializeObject(result.goldInvestmentBuyModel1));
+                        }
+                        else
+                        {
+                            goldInvestmentBuyModel1 = JsonConvert.DeserializeObject<GoldInvestmentBuyModel1>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+                    case "27":
+                        if (result.goldInvestmentSellModel1 != null)
+                        {
+                            goldInvestmentSellModel1 = JsonConvert.DeserializeObject<GoldInvestmentSellModel1>(JsonConvert.SerializeObject(result.goldInvestmentSellModel1));
+                        }
+                        else
+                        {
+                            goldInvestmentSellModel1 = JsonConvert.DeserializeObject<GoldInvestmentSellModel1>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+
+                    //Recharges and Bill Payments
+                    case "1":
+                        if (result.billPaymentsModel != null)
+                        {
+                            billPaymentsModel = JsonConvert.DeserializeObject<BillPaymentsModel>(JsonConvert.SerializeObject(result.billPaymentsModel));
+                        }
+                        else
+                        {
+                            billPaymentsModel = JsonConvert.DeserializeObject<BillPaymentsModel>(JsonConvert.SerializeObject(result));
+                        }
+                        break;
+                    case "2":
+                        if (result.mobilePrepaidPostpaid != null)
+                        {
+                            dTHRechargeModel = JsonConvert.DeserializeObject<DTHRechargeModel>(JsonConvert.SerializeObject(result.mobilePrepaidPostpaid));
+                        }
+                        else
+                        {
+                            dTHRechargeModel = JsonConvert.DeserializeObject<DTHRechargeModel>(JsonConvert.SerializeObject(result));
+                        }
+                        break;
+                    case "3":
+                        if (result.mobilePrepaidPostpaid != null)
+                        {
+                            mobilePrepaidModel = JsonConvert.DeserializeObject<MobilePrepaidModel>(JsonConvert.SerializeObject(result.mobilePrepaidPostpaid));
+                        }
+                        else
+                        {
+                            mobilePrepaidModel = JsonConvert.DeserializeObject<MobilePrepaidModel>(JsonConvert.SerializeObject(result));
+                        }
+                        break;
+                    case "4":
+                        if (result.mobilePrepaidPostpaid != null)
+                        {
+                            mobilePostpaidModel = JsonConvert.DeserializeObject<MobilePostpaidModel>(JsonConvert.SerializeObject(result.mobilePrepaidPostpaid));
+                        }
+                        else
+                        {
+                            mobilePostpaidModel = JsonConvert.DeserializeObject<MobilePostpaidModel>(JsonConvert.SerializeObject(result));
+                        }
+                        break;
+
+                    case "5":
+                        if (result.licPremiumPaymentsModel != null)
+                        {
+                            licPremiumPaymentsModel = JsonConvert.DeserializeObject<LICPremiumPaymentsModel>(JsonConvert.SerializeObject(result.licPremiumPaymentsModel));
+                        }
+                        else
+                        {
+                            licPremiumPaymentsModel = JsonConvert.DeserializeObject<LICPremiumPaymentsModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
+
+
+                    //Amazon Pay Gift Cards
+                    case "32":
+                        if (result.amazonPayGiftCardModel != null)
+                        {
+                            amazonPayGiftCardModel = JsonConvert.DeserializeObject<AmazonPayGiftCardModel>(JsonConvert.SerializeObject(result.amazonPayGiftCardModel));
+                        }
+                        else
+                        {
+                            amazonPayGiftCardModel = JsonConvert.DeserializeObject<AmazonPayGiftCardModel>(JsonConvert.SerializeObject(result));
+                        }
+
+                        break;
                 }
-                else
+
+                //var client = new RestClient("https://api.redmilbusinessmall.com/api/transactions/receipt");
+                //var client = new RestClient($"{Baseurl}{ApiName.TransactionSubCategory}");
+
+                dynamic dynamicvalue;
+
+                AePSCashWithdrawalModel1 requestModel = new AePSCashWithdrawalModel1();
+
+                var json = "";
+
+                if (subCat == "15")
                 {
-                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    requestModel.Status = aePSCashWithdrawalModel.Status;
+                    requestModel.RequestDate = aePSCashWithdrawalModel.RequestDate;
+                    requestModel.RequestTime = aePSCashWithdrawalModel.RequestTime;
+                    requestModel.BalAmount = Convert.ToInt64(aePSCashWithdrawalModel.BalanceAmount);
+                    requestModel.CustomerName = aePSCashWithdrawalModel.CustomerName;
+                    requestModel.AadhaarNumber = aePSCashWithdrawalModel.CustomerAadhaarNo;
+                    requestModel.CustomerMobile = aePSCashWithdrawalModel.CustomerMobileNumber;
+                    requestModel.BankName = aePSCashWithdrawalModel.BankName;
+                    requestModel.RRN = aePSCashWithdrawalModel.BankRRNNumber;
+                    requestModel.Reason = aePSCashWithdrawalModel.FailureReason;
+                    requestModel.IIN = Convert.ToInt32(aePSCashWithdrawalModel.IIN);
+                    requestModel.NpciTransId = aePSCashWithdrawalModel.NPCITransactionId;
+                    requestModel.RedmilTransactionId = Convert.ToInt32(aePSCashWithdrawalModel.RedmilTransactionId);
+                    requestModel.Amount = Convert.ToInt64(aePSCashWithdrawalModel.TransactionAmount);
+                    requestModel.DEName = aePSCashWithdrawalModel.DEName;
+                    requestModel.DEMobile = aePSCashWithdrawalModel.DEMobile;
+                    requestModel.ServiceType = ReplaceServices(subCat);
+                    json = JsonConvert.SerializeObject(requestModel);
+
+                }
+
+                else if (subCat == "16")
+                {
+                    requestModel.Status = aePSMiniStatementModel.Status;
+                    requestModel.RequestDate = aePSMiniStatementModel.RequestDate;
+                    requestModel.RequestTime = aePSMiniStatementModel.RequestTime;
+                    requestModel.BalAmount = Convert.ToInt64(aePSMiniStatementModel.BalanceAmount);
+                    requestModel.CustomerName = aePSMiniStatementModel.CustomerName;
+                    requestModel.AadhaarNumber = aePSMiniStatementModel.CustomerAadhaarNo;
+                    requestModel.CustomerMobile = aePSMiniStatementModel.CustomerMobileNumber;
+                    requestModel.BankName = aePSMiniStatementModel.BankName;
+                    requestModel.RRN = aePSMiniStatementModel.BankRRNNumber;
+                    requestModel.Reason = aePSMiniStatementModel.FailureReason;
+                    requestModel.IIN = Convert.ToInt32(aePSMiniStatementModel.IIN);
+                    requestModel.NpciTransId = aePSMiniStatementModel.NPCITransactionId;
+                    requestModel.RedmilTransactionId = Convert.ToInt32(aePSMiniStatementModel.RedmilTransactionId);
+                    requestModel.Amount = aePSMiniStatementModel.TransactionAmount;
+                    requestModel.DEName = aePSMiniStatementModel.DEName;
+                    requestModel.DEMobile = aePSMiniStatementModel.DEMobile;
+                    requestModel.ServiceType = ReplaceServices(subCat);
+                    json = JsonConvert.SerializeObject(requestModel);
+
+                }
+
+                else if (subCat == "17")
+                {
+                    requestModel.Status = aePSBalanceEnquiryModel.Status;
+                    requestModel.RequestDate = aePSBalanceEnquiryModel.RequestDate;
+                    requestModel.RequestTime = aePSBalanceEnquiryModel.RequestTime;
+                    requestModel.BalAmount = Convert.ToInt64(aePSBalanceEnquiryModel.BalanceAmount);
+                    requestModel.CustomerName = aePSBalanceEnquiryModel.CustomerName;
+                    requestModel.AadhaarNumber = aePSBalanceEnquiryModel.CustomerAadhaarNo;
+                    requestModel.CustomerMobile = aePSBalanceEnquiryModel.CustomerMobileNumber;
+                    requestModel.BankName = aePSBalanceEnquiryModel.BankName;
+                    requestModel.RRN = aePSBalanceEnquiryModel.BankRRNNumber;
+                    requestModel.Reason = aePSBalanceEnquiryModel.FailureReason;
+                    requestModel.IIN = Convert.ToInt32(aePSBalanceEnquiryModel.IIN);
+                    requestModel.NpciTransId = aePSBalanceEnquiryModel.NPCITransactionId;
+                    requestModel.RedmilTransactionId = Convert.ToInt32(aePSBalanceEnquiryModel.RedmilTransactionId);
+                    requestModel.Amount = Convert.ToInt64(aePSBalanceEnquiryModel.TransactionAmount);
+                    requestModel.DEName = aePSBalanceEnquiryModel.DEName;
+                    requestModel.DEMobile = aePSBalanceEnquiryModel.DEMobile;
+                    requestModel.ServiceType = ReplaceServices(subCat);
+                    json = JsonConvert.SerializeObject(requestModel);
+                }
+
+                YBLDomesticMoneyTransferModel1 yBLDomesticMoneyTransferModel1 = new YBLDomesticMoneyTransferModel1();
+
+                if (subCat == "21")
+                {
+                    yBLDomesticMoneyTransferModel1.Status = yBLDomesticMoneyTransferModel.Status;
+                    yBLDomesticMoneyTransferModel1.RequestDate = yBLDomesticMoneyTransferModel.RequestDate;
+                    yBLDomesticMoneyTransferModel1.RequestTime = yBLDomesticMoneyTransferModel.RequestTime;
+                    yBLDomesticMoneyTransferModel1.SenderName = yBLDomesticMoneyTransferModel.SenderName;
+                    yBLDomesticMoneyTransferModel1.SenderMobileNumber = yBLDomesticMoneyTransferModel.SenderMobileNumber.ToString();
+                    yBLDomesticMoneyTransferModel1.RedmilTransId = yBLDomesticMoneyTransferModel.RedmilReferenceId.ToString();
+                    yBLDomesticMoneyTransferModel1.Amount = yBLDomesticMoneyTransferModel.TransactionAmount.ToString();
+                    yBLDomesticMoneyTransferModel1.recMobile = yBLDomesticMoneyTransferModel.ReceiverMobileNumber;
+                    yBLDomesticMoneyTransferModel1.recBankName = yBLDomesticMoneyTransferModel.BankName;
+                    yBLDomesticMoneyTransferModel1.recAcNum = yBLDomesticMoneyTransferModel.ReceiverAccountNo.ToString();
+                    yBLDomesticMoneyTransferModel1.Reason = yBLDomesticMoneyTransferModel.Reason;
+                    yBLDomesticMoneyTransferModel1.rrn = yBLDomesticMoneyTransferModel.BankRRNNumber;
+                    yBLDomesticMoneyTransferModel1.TransType = yBLDomesticMoneyTransferModel.TransactionType;
+                    yBLDomesticMoneyTransferModel1.recName = yBLDomesticMoneyTransferModel.ReceiverName;
+                    yBLDomesticMoneyTransferModel1.Surcharge = yBLDomesticMoneyTransferModel.Surcharge.ToString();
+                    yBLDomesticMoneyTransferModel1.recIfsc = yBLDomesticMoneyTransferModel.IFSCCode.ToString();
+                    yBLDomesticMoneyTransferModel1.DEName = yBLDomesticMoneyTransferModel.DEName;
+                    yBLDomesticMoneyTransferModel1.DEMobile = yBLDomesticMoneyTransferModel.DEMobile;
+
+                    yBLDomesticMoneyTransferModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(yBLDomesticMoneyTransferModel1);
+
+                }
+
+                CreditScoreModel1 creditScoreModel1 = new CreditScoreModel1();
+
+                if (subCat == "23")
+                {
+
+
+                    creditScoreModel1.Status = creditScoreModel.Status;
+                    creditScoreModel1.RequestDate = creditScoreModel.RequestDate;
+                    creditScoreModel1.RequestTime = creditScoreModel.RequestTime;
+                    creditScoreModel1.CustomerName = creditScoreModel.CustomerName;
+                    creditScoreModel1.CustomerMobileNo = creditScoreModel.CustomerMobileNo;
+                    creditScoreModel1.TransactionAmount = creditScoreModel.AmountPaid.ToString();
+                    creditScoreModel1.RedmilTransactionID = creditScoreModel.RedmilTransactionId.ToString();
+                    creditScoreModel1.DEName = creditScoreModel.DEName;
+                    creditScoreModel1.DEMobile = creditScoreModel.DEMobile;
+                    if (creditScoreModel.CIBILScorePDFLink.Equals("null"))
                     {
-                        //var datadeserialize = deserialize.Data;
-                        var msgdeserialize = deserialize.Message;
-                        //var data = JsonConvert.DeserializeObject<AePSCashWithdrawalModel1>(JsonConvert.SerializeObject(msgdeserialize));
-                        //requestModel = data.ToList();
-                        //return Json(requestModel);
-                        return new(msgdeserialize);
-                    }
-                    else if (deserialize.Statuscode == "ERR")
-                    {
-                        return Json(deserialize);
+                        creditScoreModel1.CIBILScorePDFLink = "Rajneesh";
+
                     }
                     else
                     {
-                        return Json("");
+                        creditScoreModel1.CIBILScorePDFLink = creditScoreModel.CIBILScorePDFLink;
                     }
-                }
-               
 
+
+                    creditScoreModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(creditScoreModel1);
+
+                }
+
+                FinoDMTModel1 finoDMTModel1 = new FinoDMTModel1();
+
+                if (subCat == "31")
+                {
+                    finoDMTModel1.Status = finoDMTModel.Status;
+                    finoDMTModel1.RequestDate = finoDMTModel.RequestDate;
+                    finoDMTModel1.RequestTime = finoDMTModel.RequestTime;
+                    if (!string.IsNullOrEmpty(finoDMTModel.TransactionID))
+                    {
+                        finoDMTModel1.TransId = finoDMTModel.TransactionID;
+                    }
+                    else
+                    {
+                        finoDMTModel1.TransId = "null";
+                    }
+                    finoDMTModel1.reqId = finoDMTModel.RequestId;
+                    finoDMTModel1.TransType = finoDMTModel.TransactionType;
+                    finoDMTModel1.RedmilTransId = finoDMTModel.RedmilReferenceId.ToString();
+                    finoDMTModel1.Unique = finoDMTModel.ClientUniqueId;
+                    finoDMTModel1.sendName = finoDMTModel.SenderName;
+                    finoDMTModel1.sendMobile = finoDMTModel.SenderMobileNumber.ToString();
+                    finoDMTModel1.recName = finoDMTModel.ReceiverName;
+                    finoDMTModel1.recAcNum = finoDMTModel.ReceiverAccountNo;
+                    finoDMTModel1.recBankName = finoDMTModel.BankName;
+                    finoDMTModel1.recIfsc = finoDMTModel.IFSCCode;
+                    finoDMTModel1.Surcharge = finoDMTModel.Surcharge;
+                    finoDMTModel1.amount = finoDMTModel.TransactionAmount.ToString();
+                    finoDMTModel1.bankCharges = finoDMTModel.BankCharges.ToString();
+                    finoDMTModel1.ServiceType = ReplaceServices(subCat);
+                    finoDMTModel1.DEName = finoDMTModel.DEName;
+                    finoDMTModel1.DEMobile = finoDMTModel.DEMobile;
+                    json = JsonConvert.SerializeObject(finoDMTModel1);
+
+                }
+
+                GoldInvestmentBuySellModel goldInvestmentBuySellModel = new GoldInvestmentBuySellModel();
+
+                if (subCat == "26")
+                {
+                    //goldInvestmentBuySellModel.BankName = goldInvestmentBuyModel.BankName;
+                    //goldInvestmentBuySellModel.RequestDate = goldInvestmentBuyModel.RequestDate;
+                    //goldInvestmentBuySellModel.RequestTime = goldInvestmentBuyModel.RequestTime;
+                    //goldInvestmentBuySellModel.CustomerName = goldInvestmentBuyModel.CustomerName;
+                    //goldInvestmentBuySellModel.CustomerMobileNumber = goldInvestmentBuyModel.CustomerMobileNumber;
+                    //goldInvestmentBuySellModel.GoldRatePerGram = goldInvestmentBuyModel.GoldRatePerGm;
+                    //goldInvestmentBuySellModel.CustomerID = goldInvestmentBuyModel.CustomerID.ToString();
+                    //goldInvestmentBuySellModel.OldGoldBalance = goldInvestmentBuyModel.OldGoldBalance;
+                    //goldInvestmentBuySellModel.NewGoldBalance = goldInvestmentBuyModel.NewGoldBalance;
+                    //goldInvestmentBuySellModel.cusInvoice = goldInvestmentBuyModel.InvoiceID;
+
+
+                    //goldInvestmentBuySellModel.TransactionAmount = goldInvestmentBuyModel.PurchaseAmount;
+                    //goldInvestmentBuySellModel.Quantity = goldInvestmentBuyModel.PurchaseQuantity;
+
+                    ////else
+                    ////{
+                    ////    goldInvestmentBuySellModel.TransactionAmount = goldInvestmentSellModel.SellAmount.ToString();
+                    ////    goldInvestmentBuySellModel.Quantity = goldInvestmentSellModel.SellQuantity;
+                    ////    goldInvestmentBuySellModel.BankCharge = goldInvestmentSellModel.BankCharges;
+                    ////    goldInvestmentBuySellModel.NetAmount = goldInvestmentSellModel.NetAmountCredited;
+                    ////}
+
+                    //goldInvestmentBuySellModel.Quantity = goldInvestmentSellModel.SellQuantity;
+                    //goldInvestmentBuySellModel.InvoiceId = goldInvestmentBuyModel.InvoiceID;
+                    //goldInvestmentBuySellModel.RedmilTransactionID = goldInvestmentBuyModel.TransactionId.ToString();
+                    //goldInvestmentBuySellModel.pan = goldInvestmentBuyModel.PANNo;
+                    //goldInvestmentBuySellModel.BankAccountNumber = goldInvestmentBuyModel.AccountNo;
+                    //goldInvestmentBuySellModel.IFSC = goldInvestmentBuyModel.BankName;
+                    //goldInvestmentBuySellModel.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(result.goldInvestmentBuyModel1);
+                }
+
+                GoldInvestmentSellModel goldInvestmentSellRequestModel = new GoldInvestmentSellModel();
+                if (subCat == "27")
+                {
+
+                    //goldInvestmentSellModel1.IFSCCode = goldInvestmentSellRequestModel.IFSCCode;
+                    //goldInvestmentSellModel1.BankAccountNumber = goldInvestmentSellRequestModel.AccountNo;
+                    //goldInvestmentSellModel1.DEName = goldInvestmentSellRequestModel.DEName;
+                    //goldInvestmentSellModel1.DEMobile = goldInvestmentSellRequestModel.DEMobile;
+                    //goldInvestmentSellModel1.BankCharges = goldInvestmentSellRequestModel.BankCharges;
+                    //goldInvestmentSellModel1.RequestDate = goldInvestmentSellRequestModel.RequestDate;
+                    //goldInvestmentSellModel1.RequestTime = goldInvestmentSellRequestModel.RequestTime;
+                    //goldInvestmentSellModel1.CustomerName = goldInvestmentSellRequestModel.CustomerName;
+                    //goldInvestmentSellModel1.CustomerMobileNumber = goldInvestmentSellRequestModel.CustomerMobileNumber;
+                    //goldInvestmentSellModel1.TransactionAmount = goldInvestmentSellRequestModel.SellAmount;
+                    //goldInvestmentSellModel1.TransactionID = goldInvestmentSellRequestModel.TransactionId;
+                    //goldInvestmentSellModel1.InvoiceId = goldInvestmentSellRequestModel.InvoiceID;
+                    //goldInvestmentSellModel1.GoldRatePerGram = goldInvestmentSellRequestModel.GoldRatePerGm;
+                    //goldInvestmentSellModel1.SellQuantity = goldInvestmentSellRequestModel.SellQuantity;
+                    ////if (subCat == "26")
+                    ////{
+                    ////    goldInvestmentBuySellModel.TransactionAmount = goldInvestmentBuyModel.PurchaseAmount;
+                    ////    goldInvestmentBuySellModel.Quantity = goldInvestmentBuyModel.PurchaseQuantity;
+                    ////}
+
+                    //goldInvestmentSellModel1.CustomerID = goldInvestmentSellRequestModel.CustomerID;
+                    //goldInvestmentSellModel1.OldGoldBalance = goldInvestmentSellRequestModel.OldGoldBalance;
+                    //goldInvestmentSellModel1.NewGoldBalance = goldInvestmentSellRequestModel.NewGoldBalance;
+                    //goldInvestmentSellModel1.CustomerPanNumber = goldInvestmentSellRequestModel.PANNo;
+
+                    //goldInvestmentSellModel1.BankName = goldInvestmentSellRequestModel.BankName;
+                    //goldInvestmentSellModel1.TransactionAmount = goldInvestmentSellRequestModel.NetAmountCredited;
+
+                    //goldInvestmentSellModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(result.goldInvestmentSellModel1);
+                }
+
+
+
+
+
+                MicroATMCashWithdrawalModel1 requestModel1 = new MicroATMCashWithdrawalModel1();
+
+                if (subCat == "30")
+                {
+
+
+                    requestModel1.Status = microATMBalanceEnquiryICICIModel.Status;
+                    requestModel1.RequestDate = microATMBalanceEnquiryICICIModel.RequestDate;
+                    requestModel1.RequestTime = microATMBalanceEnquiryICICIModel.RequestTime;
+                    requestModel1.Balamount = Convert.ToInt64(microATMBalanceEnquiryICICIModel.BalanceAmount);
+                    requestModel1.CardHolderName = microATMBalanceEnquiryICICIModel.CardHolderName;
+                    requestModel1.CardHolderContactNumber = microATMBalanceEnquiryICICIModel.CardHolderMobileNumber;
+                    requestModel1.CardType = microATMBalanceEnquiryICICIModel.CardType;
+                    requestModel1.CardNumber = microATMBalanceEnquiryICICIModel.CardNumber;
+                    requestModel1.RRN = microATMBalanceEnquiryICICIModel.BankRRNNumber;
+                    requestModel1.Reason = microATMBalanceEnquiryICICIModel.FailureReason;
+                    requestModel1.NPCITransactionID = microATMBalanceEnquiryICICIModel.NPCITransactionId;
+                    requestModel1.RedmilTransactionID = microATMBalanceEnquiryICICIModel.RedmilTransactionId;
+                    requestModel1.TransactionAmount = Convert.ToInt64(microATMBalanceEnquiryICICIModel.TransactionAmount);
+                    requestModel.DEName = microATMBalanceEnquiryICICIModel.DEName;
+                    requestModel.DEMobile = microATMBalanceEnquiryICICIModel.DEMobile;
+
+                    requestModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(requestModel1);
+
+
+                }
+
+                else if (subCat == "29")
+                {
+                    requestModel1.Status = microATMCashWithdrawalICICIModel.Status;
+                    requestModel1.RequestDate = microATMCashWithdrawalICICIModel.RequestDate;
+                    requestModel1.RequestTime = microATMCashWithdrawalICICIModel.RequestTime;
+                    requestModel1.Balamount = Convert.ToInt64(microATMCashWithdrawalICICIModel.BalanceAmount);
+                    requestModel1.CardHolderName = microATMCashWithdrawalICICIModel.CardHolderName;
+                    requestModel1.CardHolderContactNumber = microATMCashWithdrawalICICIModel.CardHolderMobileNumber;
+                    requestModel1.CardType = microATMCashWithdrawalICICIModel.CardType;
+                    requestModel1.CardNumber = microATMCashWithdrawalICICIModel.CardNumber;
+                    requestModel1.RRN = microATMCashWithdrawalICICIModel.BankRRNNumber;
+                    requestModel1.Reason = microATMCashWithdrawalICICIModel.FailureReason;
+                    requestModel1.NPCITransactionID = microATMCashWithdrawalICICIModel.NPCITransactionId;
+                    requestModel1.RedmilTransactionID = microATMCashWithdrawalICICIModel.RedmilTransactionId;
+                    requestModel1.TransactionAmount = Convert.ToInt64(microATMCashWithdrawalICICIModel.TransactionAmount);
+                    requestModel1.DEName = microATMCashWithdrawalICICIModel.DEName;
+                    requestModel1.DEMobile = microATMCashWithdrawalICICIModel.DEMobile;
+
+                    requestModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(requestModel1);
+                }
+
+                else if (subCat == "18")
+                {
+                    requestModel1.Status = microATMCashWithdrawalModel.Status;
+                    requestModel1.RequestDate = microATMCashWithdrawalModel.RequestDate;
+                    requestModel1.RequestTime = microATMCashWithdrawalModel.RequestTime;
+                    requestModel1.Balamount = Convert.ToInt64(microATMCashWithdrawalModel.BalanceAmount);
+                    requestModel1.CardHolderName = microATMCashWithdrawalModel.CardHolderName;
+                    requestModel1.CardHolderContactNumber = microATMCashWithdrawalModel.CardHolderMobileNumber;
+                    requestModel1.CardType = microATMCashWithdrawalModel.CardType;
+                    requestModel1.CardNumber = microATMCashWithdrawalModel.CardNumber;
+                    requestModel1.RRN = microATMCashWithdrawalModel.BankRRNNumber;
+                    requestModel1.Reason = microATMCashWithdrawalModel.FailureReason;
+                    requestModel1.NPCITransactionID = microATMCashWithdrawalModel.NPCITransactionId;
+                    requestModel1.RedmilTransactionID = microATMCashWithdrawalModel.RedmilTransactionId;
+                    requestModel1.TransactionAmount = Convert.ToInt64(microATMCashWithdrawalModel.TransactionAmount);
+                    requestModel1.DEName = microATMCashWithdrawalModel.DEName;
+                    requestModel1.DEMobile = microATMCashWithdrawalModel.DEMobile;
+                    requestModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(requestModel1);
+                }
+
+                else if (subCat == "19")
+                {
+                    requestModel1.Status = microATMBalanceEnquiryModel.Status;
+                    requestModel1.RequestDate = microATMBalanceEnquiryModel.RequestDate;
+                    requestModel1.RequestTime = microATMBalanceEnquiryModel.RequestTime;
+                    requestModel1.Balamount = Convert.ToInt64(microATMBalanceEnquiryModel.BalanceAmount);
+                    requestModel1.CardHolderName = microATMBalanceEnquiryModel.CardHolderName;
+                    requestModel1.CardHolderContactNumber = microATMBalanceEnquiryModel.CardHolderMobileNumber;
+                    requestModel1.CardType = microATMBalanceEnquiryModel.CardType;
+                    requestModel1.CardNumber = microATMBalanceEnquiryModel.CardNumber;
+                    requestModel1.RRN = microATMBalanceEnquiryModel.BankRRNNumber;
+                    requestModel1.Reason = microATMBalanceEnquiryModel.FailureReason;
+                    requestModel1.NPCITransactionID = microATMBalanceEnquiryModel.NPCITransactionId;
+                    requestModel1.RedmilTransactionID = microATMBalanceEnquiryModel.RedmilTransactionId;
+                    requestModel1.TransactionAmount = Convert.ToInt64(microATMBalanceEnquiryModel.TransactionAmount);
+                    requestModel1.DEName = microATMBalanceEnquiryModel.DEName;
+                    requestModel1.DEMobile = microATMBalanceEnquiryModel.DEMobile;
+
+                    requestModel1.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(requestModel1);
+                }
+
+                //else if (subCat == "9")
+                //{
+                //    requestModel1.Status = microATMCashWithdrawalModel.Status;
+                //    requestModel1.RequestDate = microATMCashWithdrawalModel.RequestDate;
+                //    requestModel1.RequestTime = microATMCashWithdrawalModel.RequestTime;
+                //    requestModel1.Balamount = Convert.ToInt64(microATMCashWithdrawalModel.BalanceAmount);
+                //    requestModel1.CardHolderName = microATMCashWithdrawalModel.CardHolderName;
+                //    requestModel1.CardHolderContactNumber = microATMCashWithdrawalModel.CardHolderMobileNumber;
+                //    requestModel1.CardType = microATMCashWithdrawalModel.CardType;
+                //    requestModel1.CardNumber = microATMCashWithdrawalModel.CardNumber;
+                //    requestModel1.RRN = microATMCashWithdrawalModel.BankRRNNumber;
+                //    requestModel1.Reason = microATMCashWithdrawalModel.FailureReason;
+                //    requestModel1.NPCITransactionID = microATMCashWithdrawalModel.NPCITransactionId;
+                //    requestModel1.RedmilTransactionID = microATMCashWithdrawalModel.RedmilTransactionId;
+                //    requestModel1.TransactionAmount = Convert.ToInt64(microATMCashWithdrawalModel.TransactionAmount);
+                //    requestModel.DEName = microATMCashWithdrawalModel.DEName;
+                //    requestModel.DEMobile = microATMCashWithdrawalModel.DEMobile;
+
+                //    requestModel1.ServiceType = ReplaceServices(subCat);
+
+                //    json = JsonConvert.SerializeObject(requestModel1);
+                //}
+
+
+
+                BillPaymentsModel1 billPaymentsModel1 = new BillPaymentsModel1();
+
+                if (subCat == "1")
+                {
+                    billPaymentsModel1.Status = billPaymentsModel.Status;
+                    billPaymentsModel1.RequestDate = billPaymentsModel.RequestDate;
+                    billPaymentsModel1.RequestTime = billPaymentsModel.RequestTime;
+                    billPaymentsModel1.CustomerMobile = billPaymentsModel.CustomerMobileNumber;
+                    billPaymentsModel1.BillCategory = billPaymentsModel.BillerCategory;
+                    billPaymentsModel1.BillerName = billPaymentsModel.BillerName;
+                    billPaymentsModel1.BillerAmount = billPaymentsModel.BillAmount;
+                    billPaymentsModel1.CustomerConvenienceFees = billPaymentsModel.CCF;
+                    billPaymentsModel1.CustomerInputField = billPaymentsModel.CustomerInputField;
+                    billPaymentsModel1.CustomerInputFieldValue = billPaymentsModel.CustomerInputFieldValue;
+                    billPaymentsModel1.BillerTransactionID = billPaymentsModel.BillerReferenceId;
+                    billPaymentsModel1.RedmilTransactionID = billPaymentsModel.RedmilTransactionId.ToString();
+                    billPaymentsModel1.DEMobile = billPaymentsModel.DEMobile;
+                    billPaymentsModel1.DEName = billPaymentsModel.DEName;
+                    billPaymentsModel1.ServiceType = ReplaceServices(subCat);
+                    json = JsonConvert.SerializeObject(billPaymentsModel1);
+                }
+
+                MobilePrepaidPostpaidDTHRechargeModel mobilePrepaidPostpaidModel = new MobilePrepaidPostpaidDTHRechargeModel();
+
+                if (subCat == "3" || subCat == "4" || subCat == "2")
+                {
+                    mobilePrepaidPostpaidModel.Status = result.mobilePrepaidPostpaid.Status;
+                    mobilePrepaidPostpaidModel.RequestDate = result.mobilePrepaidPostpaid.RequestDate;
+                    mobilePrepaidPostpaidModel.RequestTime = result.mobilePrepaidPostpaid.RequestTime;
+                    mobilePrepaidPostpaidModel.CustomerMobile = result.mobilePrepaidPostpaid.CustomerMobile;
+                    mobilePrepaidPostpaidModel.OperatorName = result.mobilePrepaidPostpaid.OperatorName;
+                    mobilePrepaidPostpaidModel.Amount = result.mobilePrepaidPostpaid.Amount;
+                    mobilePrepaidPostpaidModel.TransactionId = result.mobilePrepaidPostpaid.OperatorTransactionId;
+                    mobilePrepaidPostpaidModel.RedmilTransactionId = result.mobilePrepaidPostpaid.RedmilTransactionId.ToString();
+                    mobilePrepaidPostpaidModel.DEName = result.mobilePrepaidPostpaid.DEName;
+                    mobilePrepaidPostpaidModel.DEMobile = result.mobilePrepaidPostpaid.DEMobile;
+                    mobilePrepaidPostpaidModel.ServiceType = ReplaceServices(subCat);
+
+                    json = JsonConvert.SerializeObject(mobilePrepaidPostpaidModel);
+                }
+
+                LICPremiumPaymentsModel1 licPremiumPaymentsModel1 = new LICPremiumPaymentsModel1();
+
+                if (subCat == "5")
+                {
+                    licPremiumPaymentsModel1.Status = licPremiumPaymentsModel.Status;
+                    licPremiumPaymentsModel1.RequestDate = licPremiumPaymentsModel.RequestDate;
+                    licPremiumPaymentsModel1.RequestTime = licPremiumPaymentsModel.RequestTime;
+                    licPremiumPaymentsModel1.caNumber = licPremiumPaymentsModel.CaNumber;
+                    licPremiumPaymentsModel1.BillerAmount = licPremiumPaymentsModel.BillPayAmount.ToString();
+                    licPremiumPaymentsModel1.Status = licPremiumPaymentsModel.Status;
+                    licPremiumPaymentsModel1.BillerTransactionID = licPremiumPaymentsModel.BillReferenceId;
+                    licPremiumPaymentsModel1.RedmilTransactionID = licPremiumPaymentsModel.RedmilTransactionId;
+                    licPremiumPaymentsModel1.DEName = licPremiumPaymentsModel.DEName;
+                    licPremiumPaymentsModel1.DEMobile = licPremiumPaymentsModel.DEMobile;
+                    licPremiumPaymentsModel1.ServiceType = ReplaceServices(subCat);
+                    json = JsonConvert.SerializeObject(licPremiumPaymentsModel1);
+
+                }
+
+                //Amazon Pay Gift Cards
+                if (subCat == "32")
+                {
+                    ViewRecieptAmazonGiftCard requestViewRecieptAmazonGiftCardModel = new ViewRecieptAmazonGiftCard();
+                    requestViewRecieptAmazonGiftCardModel.RequestDate = result.amazonPayGiftCardModel.RequestDate;
+                    requestViewRecieptAmazonGiftCardModel.RequestTime = result.amazonPayGiftCardModel.RequestTime;
+                    requestViewRecieptAmazonGiftCardModel.SenderName = result.amazonPayGiftCardModel.SenderName;
+                    requestViewRecieptAmazonGiftCardModel.SenderMobile = result.amazonPayGiftCardModel.SenderMobile;
+                    requestViewRecieptAmazonGiftCardModel.DEMobile = result.amazonPayGiftCardModel.DEMobile;
+                    requestViewRecieptAmazonGiftCardModel.DEName = result.amazonPayGiftCardModel.DEName;
+                    requestViewRecieptAmazonGiftCardModel.CustomerName = result.amazonPayGiftCardModel.ReceiverName;
+                    requestViewRecieptAmazonGiftCardModel.customerEmail = result.amazonPayGiftCardModel.ReceiverEmailID;
+                    requestViewRecieptAmazonGiftCardModel.CustomerMobileNumber = result.amazonPayGiftCardModel.ReceiverMobileNumber;
+                    requestViewRecieptAmazonGiftCardModel.qty = result.amazonPayGiftCardModel.Quantity;
+                    requestViewRecieptAmazonGiftCardModel.RedmilTransId = result.amazonPayGiftCardModel.RedmilTransactionId;
+                    requestViewRecieptAmazonGiftCardModel.Amount = result.amazonPayGiftCardModel.TransactionAmount;
+                    requestViewRecieptAmazonGiftCardModel.tAmount = result.amazonPayGiftCardModel.TotalAmount;
+                    requestViewRecieptAmazonGiftCardModel.card = result.amazonPayGiftCardModel.CardNumber;
+                    requestViewRecieptAmazonGiftCardModel.cardpin = result.amazonPayGiftCardModel.CardPin;
+                    requestViewRecieptAmazonGiftCardModel.catname = result.amazonPayGiftCardModel.CardDesigncategoryName;
+                    requestViewRecieptAmazonGiftCardModel.Status = result.amazonPayGiftCardModel.Status;
+                    requestViewRecieptAmazonGiftCardModel.carddesign = result.amazonPayGiftCardModel.CardDesignname;
+                    requestViewRecieptAmazonGiftCardModel.refno = result.amazonPayGiftCardModel.AmazonReferenceNumber;
+                    requestViewRecieptAmazonGiftCardModel.GiftMessage = result.amazonPayGiftCardModel.GiftMessage;
+                    requestViewRecieptAmazonGiftCardModel.orderid = result.amazonPayGiftCardModel.OrderId;
+                    requestViewRecieptAmazonGiftCardModel.ResponseCode = result.amazonPayGiftCardModel.ResponseCode;
+                    requestViewRecieptAmazonGiftCardModel.ServiceType = ReplaceServices(subCat);
+                    json = JsonConvert.SerializeObject(requestViewRecieptAmazonGiftCardModel);
+                }
+                try
+                {
+                    var client = new RestClient("https://api.redmilbusinessmall.com/api/transactions/receipt");
+
+                    //Create request with GET
+                    var requestResp = new RestRequest(Method.POST);
+                    requestResp.AddHeader("Content-Type", "application/json");
+
+                    //var json = JsonConvert.SerializeObject(reqModel);
+                    requestResp.AddJsonBody(json);
+
+                    IRestResponse response = client.Execute(requestResp);
+
+                    var result1 = response.Content;
+                    if (string.IsNullOrEmpty(result1))
+                    {
+                        return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                    else
+                    {
+                        var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                        if (deserialize.Statuscode == "TXN" && deserialize != null)
+                        {
+                            //var datadeserialize = deserialize.Data;
+                            var msgdeserialize = deserialize.Message;
+                            //var data = JsonConvert.DeserializeObject<AePSCashWithdrawalModel1>(JsonConvert.SerializeObject(msgdeserialize));
+                            //requestModel = data.ToList();
+                            //return Json(requestModel);
+                            return new(msgdeserialize);
+                        }
+                        else if (deserialize.Statuscode == "ERR")
+                        {
+                            return Json(deserialize);
+                        }
+                        else
+                        {
+                            return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                        }
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                    requestModelEx.ExceptionMessage = ex;
+                    requestModelEx.Data = json;
+                    var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                    var requestEx = new RestRequest(Method.POST);
+                    requestEx.AddHeader("Content-Type", "application/json");
+                    var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                    requestEx.AddJsonBody(json);
+                    IRestResponse responseEx = clientEx.Execute(requestEx);
+                    var resultEx = responseEx.Content;
+                    return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
             }
             catch (Exception ex)
             {
                 ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
                 requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = json;
+                requestModelEx.Data = result;
                 var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
                 var requestEx = new RestRequest(Method.POST);
                 requestEx.AddHeader("Content-Type", "application/json");
                 var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(json);
+                requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
 
@@ -2385,30 +2410,38 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
-                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var datadeserialize = deserialize.Data;
-                    var msgdeserialize = deserialize.Message;
-
-                    if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
-                    {
-                        var docUrl = Baseurl + msgdeserialize;
-                        return Json(docUrl);
-                    }
-                    var Data31 = JsonConvert.DeserializeObject<List<FinoDMTResponseModel.FinoDMTModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //List<FinoDMTResponseModel> lst = new List<FinoDMTResponseModel>();
-                    //lst = Data31.ToList();
-                    return View(Data31);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return View(deserialize);
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var datadeserialize = deserialize.Data;
+                        var msgdeserialize = deserialize.Message;
 
+                        if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                        {
+                            var docUrl = Baseurl + msgdeserialize;
+                            return Json(docUrl);
+                        }
+                        var Data31 = JsonConvert.DeserializeObject<List<FinoDMTResponseModel.FinoDMTModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //List<FinoDMTResponseModel> lst = new List<FinoDMTResponseModel>();
+                        //lst = Data31.ToList();
+                        return View(Data31);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return View(deserialize);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -2422,10 +2455,8 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return View();
-
-
         }
         #endregion
 
@@ -2483,68 +2514,74 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var data = deserialize.Data;
-                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                    lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                    ViewBag.Balance = lstdata.FirstOrDefault().MainBal;
-
-                    PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
-                    try
-                    {
-                        requestModel.UserId = "2084";
-                        #region Checksum (CheckUTIAgentStatus|Unique Key|UserId|ServiceId)
-
-                        string inputN = Checksum.MakeChecksumString("CheckUTIAgentStatus", Checksum.checksumKey, requestModel.UserId);
-                        string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
-
-                        #endregion
-                        requestModel.checksum = CheckSumN;
-                        var clientN = new RestClient($"{Baseurl}{ApiName.CheckUTIAgentStatus}");
-                        var requestN = new RestRequest(Method.POST);
-                        requestN.AddHeader("Content-Type", "application/json");
-                        var jsonN = JsonConvert.SerializeObject(requestModel);
-                        requestN.AddJsonBody(jsonN);
-                        IRestResponse responseN = clientN.Execute(requestN);
-                        var resultN = responseN.Content;
-                        var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
-                        if (deserializeN.Statuscode == "UNR")
-                        {
-                            return Json(deserializeN);
-                        }
-                        else
-                        {
-                            var dataN = deserializeN.Data;
-                            var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
-                            return View(deserialize1);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                        requestModel1.ExceptionMessage = ex;
-                        requestModel1.Data = requestModel;
-                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                        var requestEx = new RestRequest(Method.POST);
-                        requestEx.AddHeader("Content-Type", "application/json");
-                        var jsonEx = JsonConvert.SerializeObject(requestModel1);
-                        request.AddJsonBody(jsonEx);
-                        IRestResponse responseEx = client.Execute(requestEx);
-                        var resultEx = responseEx.Content;
-                    }
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return View(deserialize);
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var data = deserialize.Data;
+                        List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                        lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                        ViewBag.Balance = lstdata.FirstOrDefault().MainBal;
 
+                        PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
+                        try
+                        {
+                            requestModel.UserId = "2084";
+                            #region Checksum (CheckUTIAgentStatus|Unique Key|UserId|ServiceId)
+
+                            string inputN = Checksum.MakeChecksumString("CheckUTIAgentStatus", Checksum.checksumKey, requestModel.UserId);
+                            string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
+
+                            #endregion
+                            requestModel.checksum = CheckSumN;
+                            var clientN = new RestClient($"{Baseurl}{ApiName.CheckUTIAgentStatus}");
+                            var requestN = new RestRequest(Method.POST);
+                            requestN.AddHeader("Content-Type", "application/json");
+                            var jsonN = JsonConvert.SerializeObject(requestModel);
+                            requestN.AddJsonBody(jsonN);
+                            IRestResponse responseN = clientN.Execute(requestN);
+                            var resultN = responseN.Content;
+                            var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
+                            if (deserializeN.Statuscode == "UNR")
+                            {
+                                return Json(deserializeN);
+                            }
+                            else
+                            {
+                                var dataN = deserializeN.Data;
+                                var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
+                                return View(deserialize1);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                            requestModel1.ExceptionMessage = ex;
+                            requestModel1.Data = requestModel;
+                            var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                            var requestEx = new RestRequest(Method.POST);
+                            requestEx.AddHeader("Content-Type", "application/json");
+                            var jsonEx = JsonConvert.SerializeObject(requestModel1);
+                            requestEx.AddJsonBody(jsonEx);
+                            IRestResponse responseEx = client.Execute(requestEx);
+                            var resultEx = responseEx.Content;
+                            return RedirectToAction("ErrorForExceptionLog", "Error");
+                        }
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return View(deserialize);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -2558,17 +2595,14 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return Json("");
-
-
-
+            return View();
         }
 
         #endregion
 
         #region PSARegistration
-
         public JsonResult PSARegistration()
         {
             PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
@@ -2587,21 +2621,29 @@ namespace Project_Redmil_MVC.Controllers
                 requestN.AddJsonBody(jsonN);
                 IRestResponse responseN = clientN.Execute(requestN);
                 var resultN = responseN.Content;
-                var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
-                if (deserializeN.Statuscode == "TXN")
+                if (string.IsNullOrEmpty(resultN))
                 {
-                    var dataN = deserializeN.Data;
-                    var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
-                    return Json(deserialize1);
-                }
-                else if (deserializeN.Statuscode == "ERR")
-                {
-                    return Json(deserializeN);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
+                    if (deserializeN.Statuscode == "TXN")
+                    {
+                        var dataN = deserializeN.Data;
+                        var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
+                        return Json(deserialize1);
+                    }
+                    else if (deserializeN.Statuscode == "ERR")
+                    {
+                        return Json(deserializeN);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
+               
             }
             catch (Exception ex)
             {
@@ -2615,9 +2657,8 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -2658,34 +2699,42 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
-                if (deserialize != null && deserialize.Statuscode == "TXN")
+                if (string.IsNullOrEmpty(result))
                 {
-                    var datadeserialize = deserialize.Data;
-                    var msgdeserialize = deserialize.Message;
-
-                    if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
-                    {
-                        var docUrl = Baseurl + msgdeserialize;
-                        return Json(docUrl);
-                    }
-                    var Data06 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    if (!string.IsNullOrEmpty(bookingID))
-                    {
-                        var DataNew = Data06.Where(x => x.BookingId == bookingID).ToList();
-                        return Json(DataNew);
-                    }
-
-                    return View(Data06);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json("");
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
+                    if (deserialize != null && deserialize.Statuscode == "TXN")
+                    {
+                        var datadeserialize = deserialize.Data;
+                        var msgdeserialize = deserialize.Message;
+
+                        if (!string.IsNullOrEmpty(msgdeserialize) && !msgdeserialize.Equals("First Page"))
+                        {
+                            var docUrl = Baseurl + msgdeserialize;
+                            return Json(docUrl);
+                        }
+                        var Data06 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        if (!string.IsNullOrEmpty(bookingID))
+                        {
+                            var DataNew = Data06.Where(x => x.BookingId == bookingID).ToList();
+                            return Json(DataNew);
+                        }
+
+                        return View(Data06);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return View(deserialize);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
+                
 
             }
             catch (Exception ex)
@@ -2700,8 +2749,8 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return Json("");
         }
         #endregion
 
@@ -2728,21 +2777,29 @@ namespace Project_Redmil_MVC.Controllers
                 requestN.AddJsonBody(jsonN);
                 IRestResponse responseN = clientN.Execute(requestN);
                 var resultN = responseN.Content;
-                var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
-                if (deserializeN.Statuscode == "TXN")
+                if (string.IsNullOrEmpty(resultN))
                 {
-                    var data = deserializeN.Data;
-                    var deserializeData = JsonConvert.DeserializeObject<CancelBusTicketsResponseModel>(data.ToString());
-                    return Json(deserializeData);
-                }
-                else if (deserializeN.Statuscode == "ERR")
-                {
-                    return Json(deserializeN);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
+                    if (deserializeN.Statuscode == "TXN")
+                    {
+                        var data = deserializeN.Data;
+                        var deserializeData = JsonConvert.DeserializeObject<CancelBusTicketsResponseModel>(data.ToString());
+                        return Json(deserializeData);
+                    }
+                    else if (deserializeN.Statuscode == "ERR")
+                    {
+                        return Json(deserializeN);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -2756,8 +2813,8 @@ namespace Project_Redmil_MVC.Controllers
                 requestEx.AddJsonBody(json);
                 IRestResponse response = client.Execute(requestEx);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
         #endregion
     }

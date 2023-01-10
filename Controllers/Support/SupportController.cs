@@ -9,6 +9,8 @@ using Project_Redmil_MVC.Models.RequestModel.RmDetailRequestModel;
 using Project_Redmil_MVC.Models.RequestModel.SupportRequestModel;
 using Project_Redmil_MVC.Models.ResponseModel.RmDetailwiseResponseModel;
 using Project_Redmil_MVC.Models.ResponseModel.SupportResponseModel;
+using Project_Redmil_MVC.Models.ResponseModel.WaterBillResponseModel;
+using System.Security.Cryptography;
 
 namespace Project_Redmil_MVC.Controllers.Support
 {
@@ -22,11 +24,16 @@ namespace Project_Redmil_MVC.Controllers.Support
             _config = config;
             Baseurl = HelperMethod.GetBaseURl(_config);
         }
+
+        #region Index
         public IActionResult Index()
         {
             return View();
 
         }
+        #endregion
+
+        #region Support
         public IActionResult Support()
         {
             try
@@ -62,9 +69,12 @@ namespace Project_Redmil_MVC.Controllers.Support
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return View();
         }
+        #endregion
+
+        #region GetDepartmentCall
         public List<DepartmentOnCalllistResponseModel> GetDepartmentCall(string Heading_name)
         {
             GetcallRequestModel GetcallRequestModelsobj = new GetcallRequestModel();
@@ -126,6 +136,10 @@ namespace Project_Redmil_MVC.Controllers.Support
 
 
         }
+        #endregion
+
+
+        #region ForHeading
         [HttpPost]
         public JsonResult ForHeading(string ForHeading)
         {
@@ -149,22 +163,30 @@ namespace Project_Redmil_MVC.Controllers.Support
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<DepartmentOnCalllistBaseResponseModel>(response.Content);
-                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var data = deserialize.Data;
-                    var datalist = JsonConvert.DeserializeObject<List<DepartmentOnCalllistResponseModel>>(JsonConvert.SerializeObject(data));
-                    var dataaa = datalist.Where(x => x.Department_head == ForHeading).ToList();
-                    return Json(dataaa);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<DepartmentOnCalllistBaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var data = deserialize.Data;
+                        var datalist = JsonConvert.DeserializeObject<List<DepartmentOnCalllistResponseModel>>(JsonConvert.SerializeObject(data));
+                        var dataaa = datalist.Where(x => x.Department_head == ForHeading).ToList();
+                        return Json(dataaa);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
+
 
             }
             catch (Exception ex)
@@ -179,10 +201,13 @@ namespace Project_Redmil_MVC.Controllers.Support
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
+        #endregion
+
+
+        #region IVRDurationCheck
         [HttpPost]
         public JsonResult IVRDurationCheck(string MaindepartmentName, string mobileno, string ApiKey)
         {
@@ -207,18 +232,26 @@ namespace Project_Redmil_MVC.Controllers.Support
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if (deserialize.Statuscode == "TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    return Json(deserialize);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        return Json(deserialize);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+
                 }
 
             }
@@ -234,11 +267,12 @@ namespace Project_Redmil_MVC.Controllers.Support
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
-
         }
+        #endregion
+
+        #region  Calluser
         [HttpPost]
 
         public JsonResult Calluser(string mobileno, string ApiKey)
@@ -262,19 +296,27 @@ namespace Project_Redmil_MVC.Controllers.Support
                 request1.AddJsonBody(json1);
                 IRestResponse response1 = client1.Execute(request1);
                 var result1 = response1.Content;
-                var deserialize1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
-                if (deserialize1.Statuscode == "TXN" && deserialize1 != null)
+                if (string.IsNullOrEmpty(result1))
                 {
-                    return Json(deserialize1);
-                }
-                else if (deserialize1.Statuscode == "ERR")
-                {
-                    return Json(deserialize1);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
+                    if (deserialize1.Statuscode == "TXN" && deserialize1 != null)
+                    {
+                        return Json(deserialize1);
+                    }
+                    else if (deserialize1.Statuscode == "ERR")
+                    {
+                        return Json(deserialize1);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
+
 
             }
             catch (Exception ex)
@@ -289,10 +331,14 @@ namespace Project_Redmil_MVC.Controllers.Support
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
+
+        #endregion
+
+
+        #region Feedback
         [HttpPost]
         public JsonResult Feedback(string Remark, string SatisfiedY_N, string Reason, string mobileno)
         {
@@ -321,9 +367,26 @@ namespace Project_Redmil_MVC.Controllers.Support
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                return Json(deserialize.Message);
-
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize1 = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize1.Statuscode == "TXN" && deserialize1 != null)
+                    {
+                        return Json(deserialize1.Message);
+                    }
+                    else if (deserialize1.Statuscode == "ERR")
+                    {
+                        return Json(deserialize1.Message);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -337,10 +400,13 @@ namespace Project_Redmil_MVC.Controllers.Support
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
+        #endregion
+
+
+        #region RmDetailUserWise
         [HttpPost]
         public JsonResult RmDetailUserWise()
         {
@@ -362,8 +428,26 @@ namespace Project_Redmil_MVC.Controllers.Support
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var dataNew = JsonConvert.DeserializeObject<BaseResponseModelT<List<RmDetaiwiseResponseModel>>>(response.Content);
-                return Json(dataNew);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var dataNew = JsonConvert.DeserializeObject<BaseResponseModelT<List<RmDetaiwiseResponseModel>>>(response.Content);
+                    if (dataNew.Statuscode == "TXN" && dataNew != null)
+                    {
+                        return Json(dataNew);
+                    }
+                    else if (dataNew.Statuscode == "ERR")
+                    {
+                        return Json(dataNew);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -377,9 +461,9 @@ namespace Project_Redmil_MVC.Controllers.Support
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
-
+        #endregion
     }
 }

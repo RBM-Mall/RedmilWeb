@@ -22,7 +22,7 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
             _config = config;
             Baseurl = HelperMethod.GetBaseURl(_config);
         }
-
+        #region MyTeamDashboardDataGet
         [HttpGet]
         public IActionResult MyTeamDashboard()
         {
@@ -50,21 +50,29 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<GetMyTeamMemberCountNewResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                if (data.Statuscode != null&& data.Statuscode=="TXN")
+                if (string.IsNullOrEmpty(result))
                 {
-                    return View(data);
-                }
-                else if (data.Statuscode == "ERR")
-                {
-                    return View();
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
-                    return RedirectToAction("ErrorHandle", "Error");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<GetMyTeamMemberCountNewResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+                    if (data.Statuscode != null && data.Statuscode == "TXN")
+                    {
+                        return View(data);
+                    }
+                    else if (data.Statuscode == "ERR")
+                    {
+                        return View(data);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -78,10 +86,12 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return View();
-
         }
+        #endregion
+
+
         #region MyTeamDashboardData
         [HttpPost]
         public IActionResult MyTeamDashboardData()
@@ -104,21 +114,29 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<GetMyTeamMemberCountNewResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                if (data.Statuscode == "TXN")
+                if (string.IsNullOrEmpty(result))
                 {
-                    return Json(data);
-                }
-                else if (data.Statuscode == "ERR")
-                {
-                    return Json(data);
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
-                    return RedirectToAction("ErrorHandle", "Error");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<GetMyTeamMemberCountNewResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+                    if (data.Statuscode == "TXN")
+                    {
+                        return Json(data);
+                    }
+                    else if (data.Statuscode == "ERR")
+                    {
+                        return Json(data);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
+               
             }
             catch (Exception ex)
             {
@@ -132,11 +150,9 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return Json("");
-
         }
         #endregion
-
     }
 }
