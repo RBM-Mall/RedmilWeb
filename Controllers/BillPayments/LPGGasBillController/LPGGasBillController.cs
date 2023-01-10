@@ -43,7 +43,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
 
         [HttpPost]
 
-        public JsonResult FetchBill(string input1, string input2, string input3, string input4, string customerMobile, string State, string Operator,string ccf,string Amount, string Payment)
+        public JsonResult FetchBill(string input1, string input2, string input3, string input4, string customerMobile, string State, string Operator, string ccf, string Amount, string Payment)
         {
             var baseUrl = _config.GetSection("ApiUrl").GetSection("BaseUrl").Value;
             GetLPGGasOperatorListRequestModel requestModel = new GetLPGGasOperatorListRequestModel();
@@ -68,12 +68,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 var resultBbpsBillerByState = responseBbpsBillerByState.Content;
                 if (string.IsNullOrEmpty(resultBbpsBillerByState))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserializeBbpsBillerByState = JsonConvert.DeserializeObject<BaseResponseModel>(responseBbpsBillerByState.Content);
-                    if(deserializeBbpsBillerByState.Statuscode=="TXN" && deserializeBbpsBillerByState != null)
+                    if (deserializeBbpsBillerByState.Statuscode == "TXN" && deserializeBbpsBillerByState != null)
                     {
                         var datadeserializeBbpsBillerByState = deserializeBbpsBillerByState.Data;
                         getLPGOperatorListResponseModel = JsonConvert.DeserializeObject<LPGGasBillOperatorListResponseModel>(datadeserializeBbpsBillerByState.ToString());
@@ -146,7 +146,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                 var result = response.Content;
                                 if (string.IsNullOrEmpty(result))
                                 {
-                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                 }
                                 else
                                 {
@@ -248,18 +248,18 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                                 var resultN1 = responseN1.Content;
                                                 if (string.IsNullOrEmpty(resultN1))
                                                 {
-                                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                 }
                                                 else
                                                 {
                                                     var deserializeN1 = JsonConvert.DeserializeObject<BaseBillResponseModel>(responseN1.Content);
-                                                    if(deserializeN1.Statuscode=="TXN" && deserializeN1 != null)
+                                                    if (deserializeN1.Statuscode == "TXN" && deserializeN1 != null)
                                                     {
                                                         var dataFinal = deserializeN1.Data;
                                                         {
                                                             var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetElectricityFinalResponseModel>>>(responseN1.Content);
 
-                                                            return Json(new BaseResponseModel() { Statuscode = deserializeN1.Statuscode, Message = deserializeN1.Message, Data = deserializeN1.Data});
+                                                            return Json(new BaseResponseModel() { Statuscode = deserializeN1.Statuscode, Message = deserializeN1.Message, Data = deserializeN1.Data });
                                                         }
                                                     }
                                                     else if (deserializeN1.Statuscode == "ERR")
@@ -271,12 +271,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                                     }
                                                     else
                                                     {
-                                                        return Json("");
+                                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                     }
-                                                    
                                                 }
-                                             
-
                                             }
                                             catch (Exception ex)
                                             {
@@ -290,9 +287,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                                 requestEx.AddJsonBody(jsonEx);
                                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                                 var resultEx = responseEx.Content;
+                                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                             }
-
-
                                         }
                                         else
                                         {
@@ -302,15 +298,17 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                                 additionalInfo = datalist1
                                             });
                                         }
-
-
                                     }
                                     else if (deserialize.Statuscode == "ERR")
                                     {
                                         return Json(deserialize);
                                     }
+                                    else
+                                    {
+                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                    }
                                 }
-                               
+
                             }
                             catch (Exception ex)
                             {
@@ -324,11 +322,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                                 requestEx.AddJsonBody(jsonEx);
                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                 var resultEx = responseEx.Content;
+                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
-
-
                         }
-
                         return Json(getLPGOperatorListResponseModel);
                     }
                     else if (deserializeBbpsBillerByState.Statuscode == "ERR")
@@ -337,7 +333,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
             }
@@ -353,9 +349,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -392,9 +387,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                     {
                         return null;
                     }
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -442,16 +437,14 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
-                        var datadeserialize = deserialize.Data;
-                        var deserializeN = JsonConvert.DeserializeObject<LPGGasBillOperatorListResponseModel>(datadeserialize.ToString());
-                        return Json(deserializeN);
+                        return Json(deserialize);
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {
@@ -459,10 +452,10 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -476,9 +469,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
 
@@ -571,12 +563,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         return Json(deserialize);
                     }
@@ -586,11 +578,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                    
                 }
-                
             }
             catch (Exception ex)
             {
@@ -604,11 +594,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
-
         #endregion
 
 
@@ -636,12 +624,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var data = deserialize.Data;
                         var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
@@ -655,11 +643,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                    
                 }
-                
             }
             catch (Exception ex)
             {
@@ -673,15 +659,13 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
-
         #endregion
 
         #region GetLPGGasBillOperatorListById
-        public JsonResult GetOperatorListById(string StateId,string Operator)
+        public JsonResult GetOperatorListById(string StateId, string Operator)
         {
             var baseUrl = "https://api.redmilbusinessmall.com";
             GetLPGGasOperatorListRequestModel requestModel = new GetLPGGasOperatorListRequestModel();
@@ -706,12 +690,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var datadeserialize = deserialize.Data;
                         var deserializeN = JsonConvert.DeserializeObject<LPGGasBillOperatorListResponseModel>(datadeserialize.ToString());
@@ -725,10 +709,10 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -742,12 +726,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
-
         #endregion
-
     }
 }

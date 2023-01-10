@@ -339,7 +339,8 @@
                                                             <div class="modal-footer div-pay-row">
                                                                 <div class="row div-pay-row">
                                                                     <div class="col-sm-4 final-pay-button">
-                                                                        <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">Pay</button>
+                                                                        @*<button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">Pay</button>*@
+                                                                        <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" onclick="payNow()">Pay</button>
                                                                     </div>
                                                                     <div class="col-sm-4 final-cancel-button">
                                                                         <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
@@ -355,7 +356,9 @@
                                                 <!-- Modal -->
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-lg-12">
-                                                        <div id="myModalfinal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                                                        <input type="button" id="btnmyModalfinal" style="display:none" data-target="#modalfinalRecharge" data-toggle="modal" />
+                                                        <div class="modal fade" id="modalfinalRecharge" style="margin-top:50px;" role="dialog" data-backdrop="static" data-keyboard="false">
+                                                        @*<div id="myModalfinal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">*@
                                                             <div class="modal-dialog modal-confirm" style="width: 650px;">
                                                                 <div class="modal-content" style="height: 550px;color:black;">
                                                                     <div class="">
@@ -708,13 +711,17 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    //if (data == null || data.data == null || data.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    //else {
-                        document.getElementById('divplans').style.display = "block";
+                    if (data.result == "EmptyResult") {
+                            window.location.href = data.url;
+                        }
+                        else if (data.result == "UnExpectedStatusCode") {
+                            window.location.href = data.url;
+                        }
+                        else if (data.result == "RedirectToException") {
+                            window.location.href = data.url;
+                        }
+                        else{
+                            document.getElementById('divplans').style.display = "block";
                         document.getElementById("txtAmount").disabled = false;
                         document.getElementById('thAirtelSDPack').style.display = "none";
                         document.getElementById('thSunBroadcasterPack').style.display = "none";
@@ -848,10 +855,7 @@
 
 
                         $("#output").html(output);
-                    //}
-
-
-
+                        }
                 },
                 failure: function (data) {
                     alert(data.responseText);
@@ -879,13 +883,17 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                //if (data == null || data.data == null || data.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
-                //else {
-                    document.getElementById('thAirtelSDPack').style.display = "none";
+                 if (data.result == "EmptyResult") {
+                            window.location.href = data.url;
+                        }
+                        else if (data.result == "UnExpectedStatusCode") {
+                            window.location.href = data.url;
+                        }
+                        else if (data.result == "RedirectToException") {
+                            window.location.href = data.url;
+                        }
+                        else{
+                             document.getElementById('thAirtelSDPack').style.display = "none";
                     document.getElementById('thSunBroadcasterPack').style.display = "none";
                     document.getElementById('thAirtelHDPack').style.display = "none";
                     document.getElementById('thSonyBroadcasterPack').style.display = "none";
@@ -1017,6 +1025,8 @@
 
                     $("#output").html(output);
 
+                        }
+                   
                 //}
 
 
@@ -1067,15 +1077,19 @@
                         type: 'POST',
                         dataType: 'json',
                         success: function (response) {
-                            //if (response == null || response.data == null || response.data == "") {
-                            //    //document.getElementById("walletTblborder11").style.display = "none";
-                            //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                            //    $("#btnNoDataFoundModel").trigger("click");
-                            //}
-                            //else {
-                                document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                            if (response.result == "EmptyResult") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "UnExpectedStatusCode") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "RedirectToException") {
+                                window.location.href = response.url;
+                        }
+                        else{
+                            document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                                 document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                            //}
+                            }
                         },
                         failure: function (response) {
                             alert(response.responseText);
@@ -1117,14 +1131,24 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        //if (response == null || response.data == null || response.data == "") {
-                        //    //document.getElementById("walletTblborder11").style.display = "none";
-                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        //    $("#btnNoDataFoundModel").trigger("click");
-                        //}
-                        //else {
+                        if (response.result == "EmptyResult") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "UnExpectedStatusCode") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "RedirectToException") {
+                                window.location.href = response.url;
+                        }
+                        else{
                             document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                            document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                                document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                            }
+                            else{
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                            }
+                           
                         //}
                     },
                     failure: function (response) {
@@ -1157,8 +1181,7 @@
 
 </script>
 <script>
-    $(function () {
-        $("#btnPayNow").click(function () {
+        function payNow() {
             var Operator = $("#Operatorname").val();
             var CustomerID = $("#txtCustomerId").val();
             var Amount = $("#txtAmount").val();
@@ -1171,13 +1194,17 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        //if (response == null || response.data == null || response.data == "") {
-                        //    //document.getElementById("walletTblborder11").style.display = "none";
-                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        //    $("#btnNoDataFoundModel").trigger("click");
-                        //}
+                        if (response.result == "EmptyResult") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "UnExpectedStatusCode") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "RedirectToException") {
+                                window.location.href = response.url;
+                        }
 
-                        if (response.statuscode == "TXN") {
+                        else if (response.statuscode == "TXN") {
                             document.getElementById("lblMsg").innerHTML = response.message;
                             document.getElementById("heading").innerHTML = "Success";
                             document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -1198,7 +1225,9 @@
                             document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
                             document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $('#Operatorname').val();
                             document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + response.data.tRefId;;
-                            document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34'
+                            document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34';
+                             $("#btnmyModalfinal").trigger("click");
+                                $("#myModal").hide();
                         }
                         else if (response.statuscode == "ERR") {
                             document.getElementById("lblMsg").innerHTML = response.message;
@@ -1220,21 +1249,32 @@
                             else {
                                 document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
                             }
+                            var datetime = response.data.reqdate;
+                            date = datetime.split('T')[0];
+                            time = datetime.split('T')[1];
+                            const timeString = time;
+
+                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                                .toLocaleTimeString('en-US',
+                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                                );
                             if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
                                 document.getElementById("lblDate").innerHTML = 'Date :' + " " + 'NA';
                             }
                             else {
-                                document.getElementById("lblDate").innerHTML = 'Date :' + " " + response.data.reqdate;
+                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
                             }
                             if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
                                 document.getElementById("lblTime").innerHTML = 'Time :' + " " + 'NA';
                             }
                             else {
-                                document.getElementById("lblTime").innerHTML = 'Time :' + " " + response.data.reqdate;
+                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr
                             }
                             document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $('#Operatorname').val();
                             document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
                             document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
+                             $("#btnmyModalfinal").trigger("click");
+                                $("#myModal").hide();
                         }
                     },
                     failure: function (response) {
@@ -1249,8 +1289,7 @@
                 document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
                 return false;
             }
-        });
-    });
+             }
 </script>
 
 <script>

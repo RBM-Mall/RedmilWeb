@@ -39,6 +39,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
 
         #region GetOperatorState
         public List<GetWaterStateListResponseModel> GetOperatorState()
+        //public dynamic GetOperatorState()
         {
             List<GetWaterStateListResponseModel> lstd = new List<GetWaterStateListResponseModel>();
             try
@@ -58,6 +59,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                     if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
+                        //return RedirectToAction("Error", "Error");
                         var data = deserialize.Data;
                         var dataList = JsonConvert.DeserializeObject<List<GetWaterStateListResponseModel>>(JsonConvert.SerializeObject(data));
                         return dataList;
@@ -68,7 +70,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     }
                     else
                     {
-                        // return Json("");
+                        //return RedirectToAction("Error", "Error");
+                        //return Json("");
                     }
 
                 }
@@ -124,7 +127,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 var resultBbpsBillerByState = responseBbpsBillerByState.Content;
                 if (string.IsNullOrEmpty(resultBbpsBillerByState))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -194,9 +197,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                                 request.AddJsonBody(json);
                                 IRestResponse response = client.Execute(request);
                                 var result = response.Content;
-                                if (string.IsNullOrEmpty(resultBbpsBillerByState))
+                                if (string.IsNullOrEmpty(result))
                                 {
-                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                 }
                                 else
                                 {
@@ -299,7 +302,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                                                 var resultN = responseN.Content;
                                                 if (string.IsNullOrEmpty(resultN))
                                                 {
-                                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                 }
                                                 else
                                                 {
@@ -322,11 +325,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                                                     }
                                                     else
                                                     {
-                                                        return Json("");
+                                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                     }
                                                 }
-
-
                                             }
                                             catch (Exception ex)
                                             {
@@ -340,10 +341,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                                                 requestEx.AddJsonBody(jsonEx);
                                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                                 var resultEx = responseEx.Content;
+                                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                             }
-                                            return Json("");
-
-
                                         }
                                         else
                                         {
@@ -360,7 +359,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                                     }
                                     else
                                     {
-                                        return Json("");
+                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                     }
                                 }
 
@@ -377,12 +376,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                                 requestEx.AddJsonBody(jsonEx);
                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                 var resultEx = responseEx.Content;
+                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
-                            return Json("");
-
                         }
-
-
                         return Json(getWaterOperatorListResponseModel);
                     }
                     else if (deserializeBbpsBillerByState.Statuscode == "ERR")
@@ -391,11 +387,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -409,9 +403,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -445,7 +438,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -482,7 +475,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
 
                 }
@@ -500,8 +493,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
 
         #endregion
@@ -524,17 +517,54 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
             }
 
             GetCCFRequestModel requestModel = new GetCCFRequestModel();
-            requestModel.ccf = Ccf;
-            requestModel.amount = amount;
-            var client = new RestClient($"{Baseurl}{ApiName.CCF}");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/json");
-            var json = JsonConvert.SerializeObject(requestModel);
-            request.AddJsonBody(json);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-            return Json(deserialize);
+            try
+            {
+                requestModel.ccf = Ccf;
+                requestModel.amount = amount;
+                var client = new RestClient($"{Baseurl}{ApiName.CCF}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+
+                }
+                else
+                {
+                    var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        return Json(deserialize);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = requestModel;
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+            
         }
 
         #endregion
@@ -564,7 +594,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -583,7 +613,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
                 
@@ -600,11 +630,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json(lstdata);
-
         }
-
         #endregion
 
 
@@ -674,7 +702,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -692,7 +720,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                    
                 }
@@ -710,12 +738,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
-
-
         #endregion
     }
 }

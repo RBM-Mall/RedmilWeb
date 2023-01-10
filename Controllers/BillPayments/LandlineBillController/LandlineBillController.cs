@@ -36,7 +36,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
 
         [HttpPost]
 
-        public JsonResult FetchBill(string Number, string Operator,string input1,string input2, string ccf, string Amount, string Payment)
+        public JsonResult FetchBill(string Number, string Operator, string input1, string input2, string ccf, string Amount, string Payment)
         {
             GetLandlineOperatorListRequestModel requestModel = new GetLandlineOperatorListRequestModel();
             try
@@ -59,8 +59,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     lstOperatorResponse = JsonConvert.DeserializeObject<GetLandlineOperatorListResponseModel>(datadeserialize.ToString());
@@ -135,137 +139,172 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                             requestN.AddJsonBody(jsonN);
                             IRestResponse responseN = clientN.Execute(requestN);
                             var resultN = responseN.Content;
-                            var deserializeN = JsonConvert.DeserializeObject<BaseBillResponseModel>(responseN.Content);
-                            if (deserializeN?.Statuscode == "TXN")
+                            if (string.IsNullOrEmpty(resultN))
                             {
-                                var data = deserializeN.Data;
-                                var data22 = deserializeN.AdditionalInfo;
-
-                                GetBBPSBillsTmpResponseModel.Data getBBPSBillsTmpResponseModel = JsonConvert.DeserializeObject<GetBBPSBillsTmpResponseModel.Data>(data.ToString());
-                                GetBBPSBillsTmpResponseModel.AdditionalInfo datalist1 = JsonConvert.DeserializeObject<GetBBPSBillsTmpResponseModel.AdditionalInfo>(data22.ToString());
-                                //Final Bill Payment
-                                if (!string.IsNullOrEmpty(Amount) && (!string.IsNullOrEmpty(ccf)) && (!string.IsNullOrEmpty(Payment)))
+                                return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                            }
+                            else
+                            {
+                                var deserializeN = JsonConvert.DeserializeObject<BaseBillResponseModel>(responseN.Content);
+                                if (deserializeN?.Statuscode == "TXN")
                                 {
-                                    PayBBPSBillsTmpRequestModel requestPayModel = new PayBBPSBillsTmpRequestModel();
-                                    try
-                                    {
-                                        requestPayModel.RequestId = getBBPSBillsTmpResponseModel.ReqestNo;
-                                        requestPayModel.Mobileno = Number;
-                                        requestPayModel.BillerId = lstOperatorResponse.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().Bbps;
-                                        requestPayModel.Biller = getBBPSBillsTmpResponseModel.billerResponseEnc;
-                                        requestPayModel.AdditionalInfo = getBBPSBillsTmpResponseModel.additionalInfoEnc;
-                                        requestPayModel.Input = getBBPSBillsTmpResponseModel.inputParamsEnc;
-                                        requestPayModel.IpAddress = GetIp();
-                                        requestPayModel.MacAddress = GetMacAddress(requestPayModel.IpAddress);
-                                        requestPayModel.ccf = ccf;
-                                        requestPayModel.billerAdhoc = billerAdhoc;
-                                        string inputParamKey1 = "";
-                                        int count1N = 1;
-                                        if (dataBillerInfo.FirstOrDefault().inputParam.Length > 1)
-                                        {
-                                            for (int i = 0; i < dataBillerInfo.FirstOrDefault().inputParam.Length; i++)
-                                            {
+                                    var data = deserializeN.Data;
+                                    var data22 = deserializeN.AdditionalInfo;
 
-                                                if (count1 <= dataBillerInfo.FirstOrDefault().inputParam.Length - 1)
+                                    GetBBPSBillsTmpResponseModel.Data getBBPSBillsTmpResponseModel = JsonConvert.DeserializeObject<GetBBPSBillsTmpResponseModel.Data>(data.ToString());
+                                    GetBBPSBillsTmpResponseModel.AdditionalInfo datalist1 = JsonConvert.DeserializeObject<GetBBPSBillsTmpResponseModel.AdditionalInfo>(data22.ToString());
+                                    //Final Bill Payment
+                                    if (!string.IsNullOrEmpty(Amount) && (!string.IsNullOrEmpty(ccf)) && (!string.IsNullOrEmpty(Payment)))
+                                    {
+                                        PayBBPSBillsTmpRequestModel requestPayModel = new PayBBPSBillsTmpRequestModel();
+                                        try
+                                        {
+                                            requestPayModel.RequestId = getBBPSBillsTmpResponseModel.ReqestNo;
+                                            requestPayModel.Mobileno = Number;
+                                            requestPayModel.BillerId = lstOperatorResponse.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().Bbps;
+                                            requestPayModel.Biller = getBBPSBillsTmpResponseModel.billerResponseEnc;
+                                            requestPayModel.AdditionalInfo = getBBPSBillsTmpResponseModel.additionalInfoEnc;
+                                            requestPayModel.Input = getBBPSBillsTmpResponseModel.inputParamsEnc;
+                                            requestPayModel.IpAddress = GetIp();
+                                            requestPayModel.MacAddress = GetMacAddress(requestPayModel.IpAddress);
+                                            requestPayModel.ccf = ccf;
+                                            requestPayModel.billerAdhoc = billerAdhoc;
+                                            string inputParamKey1 = "";
+                                            int count1N = 1;
+                                            if (dataBillerInfo.FirstOrDefault().inputParam.Length > 1)
+                                            {
+                                                for (int i = 0; i < dataBillerInfo.FirstOrDefault().inputParam.Length; i++)
                                                 {
-                                                    inputParamKey1 += dataBillerInfo.FirstOrDefault().inputParam[i].Name + "^";
+
+                                                    if (count1 <= dataBillerInfo.FirstOrDefault().inputParam.Length - 1)
+                                                    {
+                                                        inputParamKey1 += dataBillerInfo.FirstOrDefault().inputParam[i].Name + "^";
+                                                    }
+                                                    else
+                                                    {
+                                                        inputParamKey1 += dataBillerInfo.FirstOrDefault().inputParam[i].Name;
+                                                    }
+                                                    count1N++;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                inputParamKey = dataBillerInfo.FirstOrDefault().inputParam.FirstOrDefault().Name;
+                                            }
+                                            requestPayModel.InputParam1 = inputParamKey;
+                                            if (!string.IsNullOrEmpty(input1))
+                                            {
+                                                string inputpar = "";
+                                                inputpar = input1;
+                                                if (!string.IsNullOrEmpty(input2))
+                                                {
+                                                    inputpar += "^" + input2;
+                                                }
+                                                requestPayModel.InputParam2 = inputpar;
+                                            }
+
+                                            requestPayModel.type = "Pay";
+                                            requestPayModel.billValidationStatus = lstOperatorResponse.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().BillValidation;
+                                            requestPayModel.Wallet = Payment;
+                                            string amount = Amount;
+                                            string FinalAmount = string.Empty;
+                                            if (amount.Contains('₹'))
+                                            {
+                                                string[] arrAmount = amount.Split('₹');
+                                                FinalAmount = arrAmount[1].Trim();
+                                            }
+                                            else
+                                            {
+                                                FinalAmount = amount;
+                                            }
+                                            requestPayModel.Amount = FinalAmount;
+                                            requestPayModel.Mode = "App";
+                                            requestPayModel.Userid = "2084";
+                                            string UseridCheck = "2084";
+                                            //requestPayModel.Token = "";
+
+                                            #region Checksum (PayBBPSBillsTmp|Unique Key|UseridCheck|Mobileno|Mode|Amount|RequestID|BillerId|InputParam1|InputParam2)
+                                            string inputN1 = Checksum.MakeChecksumString("PayBBPSBillsTmp", Checksum.checksumKey, requestPayModel.Userid,
+                                                requestPayModel.Mobileno, requestPayModel.Mode, requestPayModel.Amount, requestPayModel.RequestId, requestPayModel.BillerId,
+                                                requestPayModel.InputParam1, requestPayModel.InputParam2);
+
+                                            string CheckSumN1 = Checksum.ConvertStringToSCH512Hash(inputN1);
+                                            #endregion
+                                            requestPayModel.checksum = CheckSumN1;
+
+                                            var clientN1 = new RestClient("https://proapitest5.redmilbusinessmall.com/api/PayBBPSBillsTmp");
+                                            var requestN1 = new RestRequest(Method.POST);
+                                            requestN1.AddHeader("Content-Type", "application/json");
+                                            var jsonN1 = JsonConvert.SerializeObject(requestPayModel);
+                                            requestN1.AddJsonBody(jsonN1);
+                                            IRestResponse responseN1 = clientN1.Execute(requestN1);
+                                            var resultN1 = responseN1.Content;
+                                            if (string.IsNullOrEmpty(resultN1))
+                                            {
+                                                return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                            }
+                                            else
+                                            {
+                                                var deserializeN1 = JsonConvert.DeserializeObject<BaseBillResponseModel>(responseN1.Content);
+                                                if (deserializeN1.Statuscode == "TXN" && deserializeN1 != null)
+                                                {
+                                                    var dataFinal = deserializeN1.Data;
+
+                                                    {
+                                                        var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetElectricityFinalResponseModel>>>(responseN1.Content);
+
+                                                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                                                    }
+
+                                                    //return Json(deserialize);
+
+                                                }
+                                                else if (deserializeN1.Statuscode == "ERR")
+                                                {
+                                                    var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetElectricityFinalResponseModel>>>(responseN1.Content);
+                                                    return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
                                                 }
                                                 else
                                                 {
-                                                    inputParamKey1 += dataBillerInfo.FirstOrDefault().inputParam[i].Name;
+                                                    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                 }
-                                                count1N++;
                                             }
+
                                         }
-                                        else
+                                        catch (Exception ex)
                                         {
-                                            inputParamKey = dataBillerInfo.FirstOrDefault().inputParam.FirstOrDefault().Name;
-                                        }
-                                        requestPayModel.InputParam1 = inputParamKey;
-                                        if (!string.IsNullOrEmpty(input1))
-                                        {
-                                            string inputpar = "";
-                                            inputpar = input1;
-                                            if (!string.IsNullOrEmpty(input2))
-                                            {
-                                                inputpar += "^" + input2;
-                                            }
-                                            requestPayModel.InputParam2 = inputpar;
-                                        }
-
-                                        requestPayModel.type = "Pay";
-                                        requestPayModel.billValidationStatus = lstOperatorResponse.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().BillValidation;
-                                        requestPayModel.Wallet = Payment;
-                                        string amount = Amount;
-                                        string FinalAmount = string.Empty;
-                                        if (amount.Contains('₹'))
-                                        {
-                                            string[] arrAmount = amount.Split('₹');
-                                            FinalAmount = arrAmount[1].Trim();
-                                        }
-                                        else
-                                        {
-                                            FinalAmount = amount;
-                                        }
-                                        requestPayModel.Amount = FinalAmount;
-                                        requestPayModel.Mode = "App";
-                                        requestPayModel.Userid = "2084";
-                                        string UseridCheck = "2084";
-                                        //requestPayModel.Token = "";
-
-                                        #region Checksum (PayBBPSBillsTmp|Unique Key|UseridCheck|Mobileno|Mode|Amount|RequestID|BillerId|InputParam1|InputParam2)
-                                        string inputN1 = Checksum.MakeChecksumString("PayBBPSBillsTmp", Checksum.checksumKey, requestPayModel.Userid,
-                                            requestPayModel.Mobileno, requestPayModel.Mode, requestPayModel.Amount, requestPayModel.RequestId, requestPayModel.BillerId,
-                                            requestPayModel.InputParam1, requestPayModel.InputParam2);
-
-                                        string CheckSumN1 = Checksum.ConvertStringToSCH512Hash(inputN1);
-                                        #endregion
-                                        requestPayModel.checksum = CheckSumN1;
-
-                                        var clientN1 = new RestClient("https://proapitest5.redmilbusinessmall.com/api/PayBBPSBillsTmp");
-                                        var requestN1 = new RestRequest(Method.POST);
-                                        requestN1.AddHeader("Content-Type", "application/json");
-                                        var jsonN1 = JsonConvert.SerializeObject(requestPayModel);
-                                        requestN1.AddJsonBody(jsonN1);
-                                        IRestResponse responseN1 = clientN1.Execute(requestN1);
-                                        var resultN1 = responseN1.Content;
-                                        var deserializeN1 = JsonConvert.DeserializeObject<BaseBillResponseModel>(responseN1.Content);
-                                        var dataFinal = deserializeN1.Data;
-
-                                        {
-                                            var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<GetElectricityFinalResponseModel>>>(responseN1.Content);
-
-                                            return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message, Data = deserializ.Data.FirstOrDefault() });
+                                            ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                                            requestModelEx.ExceptionMessage = ex;
+                                            requestModelEx.Data = requestPayModel;
+                                            var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                                            var requestEx = new RestRequest(Method.POST);
+                                            requestEx.AddHeader("Content-Type", "application/json");
+                                            var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                                            requestEx.AddJsonBody(jsonEx);
+                                            IRestResponse responseEx = clientEx.Execute(requestEx);
+                                            var resultEx = responseEx.Content;
+                                            return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                         }
                                     }
-                                    catch (Exception ex)
+                                    else
                                     {
-                                        ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                                        requestModelEx.ExceptionMessage = ex;
-                                        requestModelEx.Data = requestPayModel;
-                                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                                        var requestEx = new RestRequest(Method.POST);
-                                        requestEx.AddHeader("Content-Type", "application/json");
-                                        var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                                        requestEx.AddJsonBody(jsonEx);
-                                        IRestResponse responseEx = clientEx.Execute(requestEx);
-                                        var resultEx = responseEx.Content;
+                                        return Json(new
+                                        {
+                                            data = getBBPSBillsTmpResponseModel,
+                                            additionalInfo = datalist1
+                                        });
                                     }
-                                    return Json(deserialize);
+                                }
+                                else if (deserializeN.Statuscode == "ERR")
+                                {
+                                    return Json(deserializeN);
                                 }
                                 else
                                 {
-                                    return Json(new
-                                    {
-                                        data = getBBPSBillsTmpResponseModel,
-                                        additionalInfo = datalist1
-                                    });
+                                    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                 }
                             }
-                            else if (deserializeN.Statuscode == "ERR")
-                            {
-                                return Json(deserializeN);
-                            }
+
                         }
                         catch (Exception ex)
                         {
@@ -279,12 +318,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                             requestEx.AddJsonBody(jsonEx);
                             IRestResponse responseEx = clientEx.Execute(requestEx);
                             var resultEx = responseEx.Content;
+                            return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                         }
-
                     }
-
-
-                    return Json(lstOperatorResponse);
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
@@ -292,9 +328,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 }
                 else
                 {
-                    return Json("");
+                    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -308,8 +344,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
+            return Json(""); 
         }
 
         #endregion
@@ -342,7 +379,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (deserialize.Statuscode == "TXN" && deserialize != null)
                 {
                     var datadeserialize = deserialize.Data;
                     var deserializeN = JsonConvert.DeserializeObject<GetLandlineOperatorListResponseModel>(datadeserialize.ToString());
@@ -366,7 +403,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
-                    return OpList;  
+                    return OpList;
                 }
                 else
                 {
@@ -423,20 +460,29 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    return Json(deserialize);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        return Json(deserialize);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+
                 }
-                
+
+
             }
             catch (Exception ex)
             {
@@ -450,8 +496,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json(""); 
         }
 
         #endregion
@@ -479,24 +525,33 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var data = deserialize.Data;
-                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-
-                    lstdata = datalist.ToList();
-                    return Json(lstdata);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return null;
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var data = deserialize.Data;
+                        var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+
+                        lstdata = datalist.ToList();
+                        return Json(lstdata);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+
                 }
                 
+
             }
             catch (Exception ex)
             {
@@ -510,9 +565,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -602,25 +656,33 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize!= null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var datadeserialize = deserialize.Data;
-                    var deserializeN = JsonConvert.DeserializeObject<GetLandlineOperatorListResponseModel>(datadeserialize.ToString());
-
-                    var arr = deserializeN.billerInfo;
-                    var a = arr.Where(x => x.Id == OpId);
-                    return Json(a);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var datadeserialize = deserialize.Data;
+                        var deserializeN = JsonConvert.DeserializeObject<GetLandlineOperatorListResponseModel>(datadeserialize.ToString());
+
+                        var arr = deserializeN.billerInfo;
+                        var a = arr.Where(x => x.Id == OpId);
+                        return Json(a);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
-                
+               
+
             }
             catch (Exception ex)
             {
@@ -634,11 +696,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LandlineBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
         #endregion
-
-
     }
 }
