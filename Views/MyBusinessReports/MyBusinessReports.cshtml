@@ -469,12 +469,16 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                if (response.result == "Redirect" || response == "") {
-                    window.location.href = "/MyBusinessReports/PanCardRegistration";
+                if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+
+                }
+                else if (response.result == "PanCard") {
+                    window.location.href = response.url;
 
                 }
                 else if (response.result == "RedirectToBooking") {
-                    window.location.href = "/MyBusinessReports/TravelServices";
+                    window.location.href = response.url;
                 }
                 else {
                     $("#tempTbl1").find("tr").remove();

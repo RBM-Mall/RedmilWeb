@@ -368,13 +368,19 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
 
                 var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
                 if (string.IsNullOrEmpty(result))
                 {
                     return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
+                else if (subCat == "14" && deserialize.Statuscode=="ERR")
+                {
+                    HttpContext.Session.SetString("UserId", requestModel.UserId);
+                    return Json(new { Result = "PanCard", url = Url.Action("PanCardRegistration", "MyBusinessReports") });
+                }
                 else
                 {
-                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
+                    
                     if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var datadeserialize = deserialize.Data;
@@ -1261,7 +1267,7 @@ namespace Project_Redmil_MVC.Controllers
                         else if (subCat == "7")
                         {
 
-                            return Json(new { Result = "RedirectToBooking", url = Url.Action("TravelServices", "MyBusinessReport") });
+                            return Json(new { Result = "RedirectToBooking", url = Url.Action("TravelServices", "MyBusinessReports") });
                         }
                         //var Data07 = JsonConvert.DeserializeObject<List<BusBookingModel>>(JsonConvert.SerializeObject(datadeserialize));
                         ////if (!string.IsNullOrEmpty(sort) && sort != "1")
@@ -1426,10 +1432,8 @@ namespace Project_Redmil_MVC.Controllers
                         else if (subCat == "14")
                         {
                             HttpContext.Session.SetString("UserId", requestModel.UserId);
-                            return Json(new { Result = "Redirect", url = Url.Action("PanCardRegistration", "MyBusinessReport") });
+                            return Json(new { Result = "PanCard", url = Url.Action("PanCardRegistration", "MyBusinessReports") });
                         }
-
-
                         else if (subCat == "10")
                         {
                             var Data10 = JsonConvert.DeserializeObject<List<SMSPaymentsModel>>(JsonConvert.SerializeObject(datadeserialize));
@@ -1469,12 +1473,11 @@ namespace Project_Redmil_MVC.Controllers
                             }
                             return Json(Data10);
                         }
-
                         return Json("");
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {
-                        return Json(deserialize);
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                     else
                     {
