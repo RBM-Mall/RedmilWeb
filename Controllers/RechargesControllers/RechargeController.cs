@@ -35,7 +35,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 PrepaidRechargeRequestModel prepaidRechargeRequestModel = new PrepaidRechargeRequestModel();
                 try
                 {
-                    prepaidRechargeRequestModel.Userid = "2084";
+                    prepaidRechargeRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                     prepaidRechargeRequestModel.Token = "";
                     var op = ReplaceOperatorName(Operator);
                     var operaterData = GetOperatorList();
@@ -119,7 +119,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 var baseImg = "https://api.redmilbusinessmall.com";
                 List<ResponseOperator> lstresponseOperator = new List<ResponseOperator>();
                 
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ServiceId = "21";
 
                 #region Checksum (addsender|Unique Key|UserId)
@@ -196,7 +196,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             RequestModel1 requestModel = new RequestModel1();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -258,7 +258,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             RequestModel1 requestModel = new RequestModel1();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.MobileNo = MobileNumber;
                 #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("GetMobileMNPDetails", Checksum.checksumKey, requestModel.Userid, requestModel.MobileNo.Trim());
@@ -315,7 +315,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -375,7 +375,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -438,7 +438,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -503,7 +503,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -629,7 +629,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -693,7 +693,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -757,7 +757,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -822,7 +822,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -887,7 +887,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -952,7 +952,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1016,7 +1016,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1078,7 +1078,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1140,7 +1140,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1203,7 +1203,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1267,7 +1267,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1332,7 +1332,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1394,7 +1394,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             List<GetAllPlansResponseModel> lstGetAllPlans = new List<GetAllPlansResponseModel>();
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1457,7 +1457,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetAllPlansRequestModel requestModel = new GetAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = ReplaceCircleName(circle);
                 requestModel.OpName = ReplaceOperatorName(opname);
                 #region Checksum (JRIBrowsPlan|Unique Key|UserId)
@@ -1519,7 +1519,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
 
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);

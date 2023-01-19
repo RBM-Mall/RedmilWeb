@@ -40,7 +40,7 @@ namespace Project_Redmil_MVC.Controllers
                 PrepaidRechargeRequestModel prepaidRechargeRequestModel = new PrepaidRechargeRequestModel();
                 try
                 {
-                    prepaidRechargeRequestModel.Userid = "2084";
+                    prepaidRechargeRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                     prepaidRechargeRequestModel.Token = "";
                     var op = ReplaceOperatorName(Operator);
                     var operaterData = GetOperatorList();
@@ -115,7 +115,7 @@ namespace Project_Redmil_MVC.Controllers
             RequestModel1 requestModel = new RequestModel1();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.MobileNo = MobileNumber;
                 #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("GetMobileMNPDetails", Checksum.checksumKey, requestModel.Userid, requestModel.MobileNo.Trim());
@@ -172,7 +172,7 @@ namespace Project_Redmil_MVC.Controllers
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -317,7 +317,7 @@ namespace Project_Redmil_MVC.Controllers
             RequestModel1 requestModel = new RequestModel1();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ServiceId = "22";
 
                 #region Checksum (addsender|Unique Key|UserId)

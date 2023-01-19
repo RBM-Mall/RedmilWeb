@@ -38,7 +38,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             DTHRechargeRequestModel dTHRechargeRequestModel = new DTHRechargeRequestModel();
             try
             {
-                dTHRechargeRequestModel.Userid = "2084";
+                dTHRechargeRequestModel.Userid = HttpContext.Session.GetString("Id").ToString(); ;
                 dTHRechargeRequestModel.Mobileno = cutomerid;
                 dTHRechargeRequestModel.Amount = ToDigitsOnly(amount);
                 dTHRechargeRequestModel.Wallet = payment;
@@ -107,7 +107,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             List<GetDTHOperatorListResponseModel> lstresponse = new List<GetDTHOperatorListResponseModel>();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.ServiceId = "23";
                 
 
@@ -186,7 +186,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetDTHAllPlansRequestModel requestModel = new GetDTHAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = "";
                 requestModel.OpName = opName;
                 #region Checksum (DthPlan|Unique Key|UserId|ServiceId)
@@ -250,7 +250,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetDTHAllPlansRequestModel requestModel = new GetDTHAllPlansRequestModel();
             try
             {
-                requestModel.Userid = "2084";
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Circle = "";
                 requestModel.OpName = opName;
                 #region Checksum (DthPlan|Unique Key|UserId|ServiceId)
@@ -371,7 +371,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);

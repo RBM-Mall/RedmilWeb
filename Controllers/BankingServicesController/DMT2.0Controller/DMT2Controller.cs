@@ -27,7 +27,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -88,7 +88,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -148,7 +148,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             GetSenderStatusRequestModel requestModel = new GetSenderStatusRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.SenderMobile = mobileNum;
                 #region Checksum (senderstatus|Unique Key|UserId|ServiceId)
 
@@ -220,7 +220,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             List<GetRecentSenderListResponseModel> lstData = new List<GetRecentSenderListResponseModel>();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.PageNumber = "1";
                 #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
 
@@ -279,7 +279,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             GetOTPRequestModel requestModel = new GetOTPRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.SenderName = name;
                 requestModel.SenderMobile = mobNum;
                 #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
@@ -349,7 +349,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             GetOtpConfirmationRequestModel requestModel = new GetOtpConfirmationRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.OTP = otp;
                 requestModel.SenderMobile = mobNum;
                 #region Checksum (otpconfirmation|Unique Key|UserId)
@@ -370,7 +370,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 if (deserializ.Statuscode == "TXN")
                 {
                     GetAddSenderRequestModel requestmodel = new GetAddSenderRequestModel();
-                    requestmodel.UserId = "2084";
+                    requestmodel.UserId = HttpContext.Session.GetString("Id").ToString();
                     requestmodel.SenderName = name;
                     requestmodel.SenderMobile = deserializ.Data.FirstOrDefault().SenderMobile;
                     #region Checksum (addsender|Unique Key|UserId)
@@ -437,7 +437,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             GetSenderStatusRequestModel requestModel = new GetSenderStatusRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.SenderMobile = mobileNum;
                 #region Checksum (senderstatus|Unique Key|UserId|ServiceId)
 

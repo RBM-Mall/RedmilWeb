@@ -657,7 +657,6 @@ namespace Project_Redmil_MVC.Controllers
                         
                         Old_bal =0,
                         New_bal =0,
-                        
                         //Amount1 = string.Format("{0:0.00}", item.Amount - item.TdsAmount).ToString()
                     });
                 }
@@ -1485,9 +1484,9 @@ namespace Project_Redmil_MVC.Controllers
             VerificationwithchargeRequestModelcs requestModel = new VerificationwithchargeRequestModelcs();
 
 
-            requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+            requestModel.Userid =   HttpContext.Session.GetString("Id").ToString();
             requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
-            requestModel.Account = Account;
+            requestModel.Account =  Account;
             requestModel.Ifsc = Ifsc;
             requestModel.BeniName = BeneficaryName;
             requestModel.Mode = "Web";
@@ -1721,7 +1720,7 @@ namespace Project_Redmil_MVC.Controllers
                         return Json("");
                     }
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
                     requestModelEx.ExceptionMessage = ex;
@@ -1743,7 +1742,6 @@ namespace Project_Redmil_MVC.Controllers
             {
                 return Json("");
             }
-
             return Json("");
         }
 

@@ -301,7 +301,7 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 obj.Mode = "Online";
                 obj.PlanType = PlanType;
                 obj.AddOnItems = Itemname;
-                var name = HttpContext.Session.GetString("Name");
+                var name = HttpContext.Session.GetString("Name");  
                 var mobile = HttpContext.Session.GetString("Mobile").ToString();
                 var email = HttpContext.Session.GetString("Email");
                 var Mallname = HttpContext.Session.GetString("Mallname");
@@ -327,8 +327,7 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                return Json(new { deserialize, webViewURL, name });
-
+                return Json(new { deserialize, webViewURL,name});
             }
             catch (Exception ex)
             {

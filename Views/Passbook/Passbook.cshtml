@@ -730,7 +730,7 @@
                                 <div class="row">
                                     <div class="col-sm-4"></div>
                                     <div class="col-sm-4">
-                                        <img src="~/css/paymentimages/redmillogo.jpg" style="height:98px;margin-left:58px;margin-top:20px" />
+                                        <img src="~/css/ImageLogo/redmil-new-logo2.png" style="height:80px;margin-left:58px;margin-top:2px" />
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
@@ -1007,7 +1007,7 @@
                                             </button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button class="button-21">Learn With Video</button>
+                                                <button class="button-21 LearnVideo">Learn With Video</button>
                                             </div>
                             </div>
                             </div>
@@ -1023,7 +1023,7 @@
             </div>
         </div>
     
-<!--Modal For AddharVerification-->
+<!--Modal For sIGNUP pROCESS VIDEO-->
  <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Addharverificaions" style="display:none" data-target="#Addharverificaion" data-toggle="modal" />
@@ -1048,7 +1048,8 @@
                                 <div class="row">
                                     <div class="col-sm-4"></div>
                                     <div class="col-sm-4">
-                                        <img src="~/css/paymentimages/redmillogo.jpg" style="height:80px;margin-left:58px;margin-top:2px" />
+                                        
+                                        <img src="~/css/ImageLogo/redmil-new-logo2.png" style="height:80px;margin-left:58px;margin-top:2px" />
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
@@ -1092,8 +1093,43 @@
             </div>
         </div>
     </div>
+   </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="SignupProccessModal" style="display:none" data-target="#SignupProccessModals" data-toggle="modal" />
+            <div id="SignupProccessModals" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                    <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="" style="color: #1a61d0;margin-left: 123px;font-size:24px;">
+                                        Signup Process
+                                    </div>
+                                    <img src="~/css/ImageLogo/redmil-new-logo2.png" style="height:80px;margin-left:154px;margin-top:49px" /><br />
+                                    <b style="margin-left: 139px;margin-top:-19px;">Featured Video</b>
+                                </div>
+                            </div>
+                            <div style="margin-top:-127px;">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top:-40px">
+                        <button type="button" onclick="okfunction()" class="button-21" data-dismiss="modal" style="margin-top: -56px;width:146px;margin-left:-109px;">
+                            <b>Ok</b>
+                        </button>
+                    </div>
 
-@*<link rel="stylesheet" href="/code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<link rel="stylesheet" href="/code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>*@
@@ -1545,7 +1581,10 @@
             $('#Addharverificaions').trigger('click');
             $('#LaunchYourModal').hide('click');
     }
-
+        $('.LearnVideo').on('click', function () {
+           $('#LaunchYourModal').hide('click');
+            $('#SignupProccessModal').trigger('click');
+        })
 </script>
 
 <script>

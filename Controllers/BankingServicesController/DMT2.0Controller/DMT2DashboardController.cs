@@ -43,7 +43,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             {
                 requestModel.SenderMobile = SenderMobile();
                 requestModel.SenderId = SenderId();
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
 
                 #region Checksum (senderdetails|Unique Key|UserId|ServiceId)
 
@@ -110,7 +110,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 requestModel.BeneficiaryName = accName;
                 requestModel.AccountNumber = accountNum;
                 requestModel.SenderId = SenderId();
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.BankName = Bank;
                 requestModel.IFSCCode = IFSC;
                 #region Checksum (addbeneficiarydetails|Unique Key|UserId|ServiceId)
@@ -170,7 +170,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             {
                 requestModel.SenderMobile = SenderMobile();
                 requestModel.SenderId = SenderId();
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
 
                 #region Checksum (senderdetails|Unique Key|UserId|ServiceId)
 
@@ -236,7 +236,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             try
             {
                 requestModel.BeneficiaryId = id;
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
 
                 #region Checksum (deletebeneficiarydetails|Unique Key|UserId|ServiceId)
 
@@ -294,7 +294,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             try
             {
                 requestModel.SenderMobile = SenderMobile();
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.PaymentMode = "AccountVerification";
                 requestModel.PaymentAmount = "1";
 
@@ -358,7 +358,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             BeneficiaryAccountVerificationRequestModel requestModel = new BeneficiaryAccountVerificationRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.AccountNumber = listData.FirstOrDefault().AccountNumber;
                 requestModel.Amount = "1";
                 requestModel.BankName = listData.FirstOrDefault().BankName;
@@ -435,7 +435,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -499,7 +499,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             FinalPaymentRequestModel requestModel = new FinalPaymentRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.CustomerMobileNo = SenderMobile();
                 requestModel.CustomerName = SenderName();
                 requestModel.SenderId = SenderId();
@@ -604,7 +604,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             try
             {
                 requestModel.SenderMobile = SenderMobile();
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 if (mode.Equals("IMPS"))
                 {
                     requestModel.PaymentMode = "IMPS";
