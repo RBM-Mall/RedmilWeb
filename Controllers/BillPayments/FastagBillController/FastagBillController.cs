@@ -143,7 +143,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                             requestN.AddJsonBody(jsonN);
                             IRestResponse responseN = clientN.Execute(requestN);
                             var resultN = responseN.Content;
-                            if (string.IsNullOrEmpty(result))
+                            if (string.IsNullOrEmpty(resultN))
                             {
                                 return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
@@ -692,8 +692,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                         return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
-               
-                
             }
             catch (Exception ex)
             {
@@ -710,7 +708,5 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                 return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
         }
-
-
     }
 }

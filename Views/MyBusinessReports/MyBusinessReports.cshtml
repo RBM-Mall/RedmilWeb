@@ -99,7 +99,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                                                                                  border-top: none;*/
+                                                                                                                              border-top: none;*/
     }
 
         .tabcontent .title {
@@ -262,7 +262,7 @@
                                     </div>
                                 </div>
                             </div>
-                       </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -382,7 +382,7 @@
         </div>
 
     </div>
-    
+
 
 </div>
 
@@ -423,18 +423,28 @@
 
                 contentType: "html",
                 success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        $('#SId').html('');
 
-                    $('#SId').html('');
+                        var options = '';
 
-                    var options = '';
+                        for (var i = 0; i < response.length; i++) {
 
-                    for (var i = 0; i < response.length; i++) {
+                            options += '<option value="' + response[i].value + '">' + response[i].text + '</option>';
 
-                        options += '<option value="' + response[i].value + '">' + response[i].text + '</option>';
+                        }
+                        $('#SId').append(options);
 
                     }
-                    $('#SId').append(options);
-
                 }
             });
 
@@ -469,9 +479,15 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                if (response.result == "UnExpectedStatusCode") {
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
                     window.location.href = response.url;
 
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
                 }
                 else if (response.result == "PanCard") {
                     window.location.href = response.url;
@@ -613,6 +629,17 @@
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
                     //else {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
                         $("#tempTbl1").find("tr").remove();
                         var tr = '<tr>';
                         var columnName = Object.keys(response[0]);
@@ -655,6 +682,9 @@
                         $("#tempTbl1").append(tr);
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         document.getElementById('walletTblborder11').style.display = "block";
+                    }
+
+
                     //}
                 }
             });
@@ -764,6 +794,18 @@
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
                     //else {
+
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
                         $("#tempTbl1").find("tr").remove();
                         var tr = '<tr>';
                         var columnName = Object.keys(response[0]);
@@ -796,7 +838,7 @@
                         }
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         $("#tempTbl1").append(tr);
-                    //}
+                    }
                 },
             });
         });
@@ -832,7 +874,19 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    window.open(response);
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        window.open(response);
+                    }
                 },
             });
         }
@@ -868,17 +922,28 @@
                 dataType: 'json',
                 success: function (response) {
                     debugger;
-                    $('#ddlStatus').html('');
-
-                    var options = '<option value="' + 0 + '">' + "--Choose Operator--" + '</option>';
-
-                    for (var i = 0; i < response.length; i++) {
-
-                        options += '<option value="' + response[i].status + '">' + response[i].status + '</option>';
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
 
                     }
-                    $('#ddlStatus').append(options);
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        $('#ddlStatus').html('');
 
+                        var options = '<option value="' + 0 + '">' + "--Sort By Status--" + '</option>';
+
+                        for (var i = 0; i < response.length; i++) {
+
+                            options += '<option value="' + response[i].status + '">' + response[i].status + '</option>';
+
+                        }
+                        $('#ddlStatus').append(options);
+                    }
                 }
             });
 
@@ -1256,11 +1321,24 @@
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
                     //else{
+                    //}
+                    if (msgdeserialize.result == "EmptyResult") {
+                        window.location.href = msgdeserialize.url;
+                    }
+                    else if (msgdeserialize.result == "UnExpectedStatusCode") {
+                        window.location.href = msgdeserialize.url;
+
+                    }
+                    else if (msgdeserialize.result == "RedirectToException") {
+                        window.location.href = msgdeserialize.url;
+                    }
+                    else{
                         var viewReceipt = msgdeserialize;
                         var viewReceiptWindow = window.open();
                         viewReceiptWindow.document.write(viewReceipt);
                         viewReceiptWindow.print();
-                    //}
+                    }
+                    
                 },
                 failure: function (msgdeserialize) {
                     alert(msgdeserialize.responseText);

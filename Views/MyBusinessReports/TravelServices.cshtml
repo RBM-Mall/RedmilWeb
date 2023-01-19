@@ -538,11 +538,15 @@
             dataType: 'json',
             success: function (response) {
                 debugger;
-                if (response == null || response.data == null || response.data == "") {
-                    //document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
-                }
+                if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
                 else {
                     document.getElementById("lblHeadingPickup").innerHTML = response[0].sourcePickupCity + " - ";
                     document.getElementById("lblHeadingPickup1").innerHTML = response[0].sourcePickupCity + " To ";
@@ -641,10 +645,14 @@
             dataType: 'json',
             success: function (response) {
                 debugger;
-                if (response == null || response.data == null || response.data == "") {
-                    //document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
                 }
 
                 else if (response.statuscode == "ERR") {
@@ -694,10 +702,14 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
                     }
                     else {
                         window.open(response);

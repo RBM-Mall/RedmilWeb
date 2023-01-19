@@ -390,7 +390,16 @@
                 data: { 'materialname': materialname, 'Quantity': Quantity, 'detail': detail },
                 type: 'POST',
                 success: function (response) {
-                    if (response == "")
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response == "")
                     {
 
                         //let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.locationName + "</td><td>" + i.planName + "</td><td>" + i.validity + "</td><td>" + i.description + "</td><td id='id1'onclick='bindAmount()' button class='btn-process-recharge3  btn-amount-bind2 btn-amount-bind1'>" + "₹" + i.amount + "</button></td></tr>");

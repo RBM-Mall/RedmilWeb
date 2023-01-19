@@ -421,9 +421,14 @@
                     $("#btnPSARegistrationModel").trigger("click");
 
                 }
-                else {
-                    alert("Hello");
-
+                else if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
                 }
             }
         });

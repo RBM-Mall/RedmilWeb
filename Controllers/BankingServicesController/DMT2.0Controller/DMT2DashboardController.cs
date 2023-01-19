@@ -22,6 +22,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             Baseurl = HelperMethod.GetBaseURl(_config);
         }
 
+        #region DMTDashboard
         [HttpGet]
         public IActionResult DMTDashboard()
         {
@@ -104,6 +105,8 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 return RedirectToAction("ErrorForExceptionLog", "Error");
             }
         }
+
+        #endregion
 
         #region AddBeneficiary
         [HttpPost]
@@ -286,7 +289,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {
-                        return Json(deserialize);
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                     else
                     {

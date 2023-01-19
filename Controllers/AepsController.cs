@@ -134,11 +134,22 @@ namespace Project_Redmil_MVC.Controllers
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    var data = deserialize.Data;
-                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                    lstdata = datalist.ToList();
-                    return Json(lstdata);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var data = deserialize.Data;
+                        var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                        List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                        lstdata = datalist.ToList();
+                        return Json(lstdata);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
 
             }

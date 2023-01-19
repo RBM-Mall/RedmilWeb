@@ -358,7 +358,7 @@
                                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                                         <input type="button" id="btnmyModalfinal" style="display:none" data-target="#modalfinalRecharge" data-toggle="modal" />
                                                         <div class="modal fade" id="modalfinalRecharge" style="margin-top:50px;" role="dialog" data-backdrop="static" data-keyboard="false">
-                                                        @*<div id="myModalfinal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">*@
+                                                            @*<div id="myModalfinal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">*@
                                                             <div class="modal-dialog modal-confirm" style="width: 650px;">
                                                                 <div class="modal-content" style="height: 550px;color:black;">
                                                                     <div class="">
@@ -712,16 +712,16 @@
                 dataType: 'json',
                 success: function (data) {
                     if (data.result == "EmptyResult") {
-                            window.location.href = data.url;
-                        }
-                        else if (data.result == "UnExpectedStatusCode") {
-                            window.location.href = data.url;
-                        }
-                        else if (data.result == "RedirectToException") {
-                            window.location.href = data.url;
-                        }
-                        else{
-                            document.getElementById('divplans').style.display = "block";
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else {
+                        document.getElementById('divplans').style.display = "block";
                         document.getElementById("txtAmount").disabled = false;
                         document.getElementById('thAirtelSDPack').style.display = "none";
                         document.getElementById('thSunBroadcasterPack').style.display = "none";
@@ -855,7 +855,7 @@
 
 
                         $("#output").html(output);
-                        }
+                    }
                 },
                 failure: function (data) {
                     alert(data.responseText);
@@ -883,17 +883,17 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                 if (data.result == "EmptyResult") {
-                            window.location.href = data.url;
-                        }
-                        else if (data.result == "UnExpectedStatusCode") {
-                            window.location.href = data.url;
-                        }
-                        else if (data.result == "RedirectToException") {
-                            window.location.href = data.url;
-                        }
-                        else{
-                             document.getElementById('thAirtelSDPack').style.display = "none";
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else {
+                    document.getElementById('thAirtelSDPack').style.display = "none";
                     document.getElementById('thSunBroadcasterPack').style.display = "none";
                     document.getElementById('thAirtelHDPack').style.display = "none";
                     document.getElementById('thSonyBroadcasterPack').style.display = "none";
@@ -1025,8 +1025,8 @@
 
                     $("#output").html(output);
 
-                        }
-                   
+                }
+
                 //}
 
 
@@ -1078,16 +1078,16 @@
                         dataType: 'json',
                         success: function (response) {
                             if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
                                 window.location.href = response.url;
-                        }
-                        else{
-                            document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                            }
+                            else if (response.result == "UnExpectedStatusCode") {
+                                window.location.href = response.url;
+                            }
+                            else if (response.result == "RedirectToException") {
+                                window.location.href = response.url;
+                            }
+                            else {
+                                document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                                 document.getElementById("lblAdbal").innerHTML = response[0].adBal;
                             }
                         },
@@ -1138,18 +1138,12 @@
                             window.location.href = response.url;
                         }
                         else if (response.result == "RedirectToException") {
-                                window.location.href = response.url;
+                            window.location.href = response.url;
                         }
-                        else{
+                        else {
                             document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                                document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                            }
-                            else{
-                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                            }
-                           
-                        //}
+                            document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        }
                     },
                     failure: function (response) {
                         alert(response.responseText);
@@ -1181,115 +1175,115 @@
 
 </script>
 <script>
-        function payNow() {
-            var Operator = $("#Operatorname").val();
-            var CustomerID = $("#txtCustomerId").val();
-            var Amount = $("#txtAmount").val();
-            var Payment = $('.radio1:checked').val();
-            if (Payment != undefined && Payment != '') {
-                $.ajax({
-                    type: "POST",
-                    url: "/DTHRecharge/DTHRecharge",
-                    data: { 'opName': Operator, 'cutomerid': CustomerID, 'amount': Amount, 'payment': Payment },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                                window.location.href = response.url;
-                        }
-
-                        else if (response.statuscode == "TXN") {
-                            document.getElementById("lblMsg").innerHTML = response.message;
-                            document.getElementById("heading").innerHTML = "Success";
-                            document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
-                            document.getElementById("icon").style.backgroundColor = '#82ce34';
-                            document.getElementById("lblPrice").innerHTML = 'Amount: ₹' + " " + response.data.amount;
-                            document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
-                            document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
-                            var datetime = response.data.reqdate;
-                            date = datetime.split('T')[0];
-                            time = datetime.split('T')[1];
-                            const timeString = time;
-
-                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
-                                .toLocaleTimeString('en-US',
-                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
-                                );
-                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
-                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
-                            document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $('#Operatorname').val();
-                            document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + response.data.tRefId;;
-                            document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34';
-                             $("#btnmyModalfinal").trigger("click");
-                                $("#myModal").hide();
-                        }
-                        else if (response.statuscode == "ERR") {
-                            document.getElementById("lblMsg").innerHTML = response.message;
-                            document.getElementById("heading").innerHTML = "Failed";
-                            document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
-                            document.getElementById("icon").style.backgroundColor = '#880808';
-                            document.getElementById("lblPrice").style.color = '#880808'
-                            document.getElementById("lblPrice").innerHTML = 'Amount: ' + " " + $("#txtAmount").val();
-
-                            if (response.data.id === undefined || response.data.id === null || response.data.id === 0) {
-                                document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + 'NA';
-                            }
-                            else {
-                                document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
-                            }
-                            if (response.data.mobileno === undefined || response.data.mobileno === null || response.data.mobileno === 0) {
-                                document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + 'NA';
-                            }
-                            else {
-                                document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
-                            }
-                            var datetime = response.data.reqdate;
-                            date = datetime.split('T')[0];
-                            time = datetime.split('T')[1];
-                            const timeString = time;
-
-                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
-                                .toLocaleTimeString('en-US',
-                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
-                                );
-                            if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
-                                document.getElementById("lblDate").innerHTML = 'Date :' + " " + 'NA';
-                            }
-                            else {
-                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
-                            }
-                            if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
-                                document.getElementById("lblTime").innerHTML = 'Time :' + " " + 'NA';
-                            }
-                            else {
-                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr
-                            }
-                            document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $('#Operatorname').val();
-                            document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
-                            document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
-                             $("#btnmyModalfinal").trigger("click");
-                                $("#myModal").hide();
-                        }
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
+    function payNow() {
+        var Operator = $("#Operatorname").val();
+        var CustomerID = $("#txtCustomerId").val();
+        var Amount = $("#txtAmount").val();
+        var Payment = $('.radio1:checked').val();
+        if (Payment != undefined && Payment != '') {
+            $.ajax({
+                type: "POST",
+                url: "/DTHRecharge/DTHRecharge",
+                data: { 'opName': Operator, 'cutomerid': CustomerID, 'amount': Amount, 'payment': Payment },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
                     }
-                });
-            }
-            else {
-                document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
-                return false;
-            }
-             }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+
+                    else if (response.statuscode == "TXN") {
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "Success";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#82ce34';
+                        document.getElementById("lblPrice").innerHTML = 'Amount: ₹' + " " + response.data.amount;
+                        document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
+                        document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
+                        var datetime = response.data.reqdate;
+                        date = datetime.split('T')[0];
+                        time = datetime.split('T')[1];
+                        const timeString = time;
+
+                        const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                            .toLocaleTimeString('en-US',
+                                { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                            );
+                        document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
+                        document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
+                        document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $('#Operatorname').val();
+                        document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + response.data.tRefId;;
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34';
+                        $("#btnmyModalfinal").trigger("click");
+                        $("#myModal").hide();
+                    }
+                    else if (response.statuscode == "ERR") {
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "Failed";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#880808';
+                        document.getElementById("lblPrice").style.color = '#880808'
+                        document.getElementById("lblPrice").innerHTML = 'Amount: ' + " " + $("#txtAmount").val();
+
+                        if (response.data.id === undefined || response.data.id === null || response.data.id === 0) {
+                            document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
+                        }
+                        if (response.data.mobileno === undefined || response.data.mobileno === null || response.data.mobileno === 0) {
+                            document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
+                        }
+                        var datetime = response.data.reqdate;
+                        date = datetime.split('T')[0];
+                        time = datetime.split('T')[1];
+                        const timeString = time;
+
+                        const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                            .toLocaleTimeString('en-US',
+                                { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                            );
+                        if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
+                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
+                        }
+                        if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
+                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + 'NA';
+                        }
+                        else {
+                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr
+                        }
+                        document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $('#Operatorname').val();
+                        document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
+                        $("#btnmyModalfinal").trigger("click");
+                        $("#myModal").hide();
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+        else {
+            document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
+            return false;
+        }
+    }
 </script>
 
 <script>

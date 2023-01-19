@@ -193,7 +193,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                                                      border-top: none;*/
+                                                                                                                  border-top: none;*/
     }
 
         .tabcontent .title {
@@ -633,7 +633,7 @@
         <div id="ModalForErrorrr" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
                 <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
-                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close" >
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                     </button>
                     <div class="modal-body forhide">
@@ -964,7 +964,7 @@
     </div>
 </div>
 <!--For Image-->
-<input type="button" id="staticimages"  data-target="#staticimage" data-toggle="modal" style="display:none" />
+<input type="button" id="staticimages" data-target="#staticimage" data-toggle="modal" style="display:none" />
 <div class="modal fade" id="staticimage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" style="margin-top:116px;">
         <div class="modal-content" style="height: 87px;width: 128%;height:565px;">
@@ -1284,20 +1284,33 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    ActualAmount = data.actualAmount;
-                    Charge = data.charge;
-                    Mode = data.mode;
-                    debugger;
-                    $('#TextImps').val("");
-                    if (data.statuscode == "ERR") {
-                        $("#ModalForErrorsss").trigger("click");
-                        $("#lblMsgERRData").text(data.message)
-
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
                     }
                     else {
-                        $("#ModalForPrceed").trigger("click");
-                        $("#ActualAmount").text(ActualAmount);
+                        ActualAmount = data.actualAmount;
+                        Charge = data.charge;
+                        Mode = data.mode;
+                        debugger;
+                        $('#TextImps').val("");
+                        if (data.statuscode == "ERR") {
+                            $("#ModalForErrorsss").trigger("click");
+                            $("#lblMsgERRData").text(data.message)
+
+                        }
+                        else {
+                            $("#ModalForPrceed").trigger("click");
+                            $("#ActualAmount").text(ActualAmount);
+                        }
                     }
+
+
                 }
             })
         }
@@ -1316,24 +1329,36 @@
         else {
             $.ajax({
                 url: "/Passbook/NefttransferAmount",
-                data: { 'Amount': Amount, 'ServiceId': ServiceId, 'OpId': OpId},
+                data: { 'Amount': Amount, 'ServiceId': ServiceId, 'OpId': OpId },
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
-                    ActualAmount = data.actualAmount;
-                    Charge = data.charge;
-                    Mode = data.mode;
-                    $('#Textneft').val("");
-                    if (data.statuscode == "ERR") {
-                        $("#ModalForErrorsss").trigger("click");
-                        $("#lblMsgERRData").text(data.message)
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
                     }
                     else {
+                        debugger;
+                        ActualAmount = data.actualAmount;
+                        Charge = data.charge;
+                        Mode = data.mode;
+                        $('#Textneft').val("");
+                        if (data.statuscode == "ERR") {
+                            $("#ModalForErrorsss").trigger("click");
+                            $("#lblMsgERRData").text(data.message)
+                        }
+                        else {
 
-                        $("#ModalForPrceed").trigger("click");
-                        $("#ActualAmount").text(ActualAmount);
+                            $("#ModalForPrceed").trigger("click");
+                            $("#ActualAmount").text(ActualAmount);
+                        }
                     }
+
                 }
             })
         }
@@ -1357,20 +1382,31 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
-                    $('#Textrtgs').val("");
-                    ActualAmount = data.actualAmount;
-                    Charge = data.charge;
-                    Mode = data.mode;
-
-                    if (data.statuscode == "ERR") {
-                        $("#ModalForErrorsss").trigger("click");
-                        $("#lblMsgERRData").text(data.message)
-
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
                     }
                     else {
-                        $("#ModalForPrceed").trigger("click");
-                        $("#ActualAmount").text(ActualAmount);
+                        debugger;
+                        $('#Textrtgs').val("");
+                        ActualAmount = data.actualAmount;
+                        Charge = data.charge;
+                        Mode = data.mode;
+
+                        if (data.statuscode == "ERR") {
+                            $("#ModalForErrorsss").trigger("click");
+                            $("#lblMsgERRData").text(data.message)
+
+                        }
+                        else {
+                            $("#ModalForPrceed").trigger("click");
+                            $("#ActualAmount").text(ActualAmount);
+                        }
                     }
                 }
             })
@@ -1427,11 +1463,21 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger
-                let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td style='margin-top:3px;' id='id1' data-dismiss='modal' button class='btn-process-recharge3  btn-amount-bind2 btn_bank btn-amount-bind1'>" + 'Pay With This Bank' + "</button></td></tr>");
-                $("#tbloutputs").html(output);
-                $("#ModalFobandetail").trigger("click");
-
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else {
+                    debugger
+                    let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td style='margin-top:3px;' id='id1' data-dismiss='modal' button class='btn-process-recharge3  btn-amount-bind2 btn_bank btn-amount-bind1'>" + 'Pay With This Bank' + "</button></td></tr>");
+                    $("#tbloutputs").html(output);
+                    $("#ModalFobandetail").trigger("click");
+                }
             }
         })
     }
@@ -1456,16 +1502,23 @@
             dataType: 'json',
             success: function (data) {
                 debugger;
-
-                if (data.statuscode == "TXN" && data.message == "Non Verified") {
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else if (data.statuscode == "TXN" && data.message == "Non Verified") {
                     $("#nonverifi").text(data.message);
                     $("#staticBackdrops").trigger("click");
-                    //$("#btnVerify").trigger("click");    
-                    
+                    //$("#btnVerify").trigger("click");
+
                 }
-                else if(data.statuscode = "SKP")
-                {
-                $("#staticBackdrops").trigger("click");
+                else if (data.statuscode = "SKP") {
+                    $("#staticBackdrops").trigger("click");
                 }
                 else if (data.statuscode = "TXN" && data.message == "Transaction Success") {
                     $("#ModalForSuccessBanks").trigger("click");
@@ -1548,7 +1601,7 @@
 
 
     function Veryfyimage() {
-        
+
         var data_uri = document.getElementById('snapShot').innerHTML;
         var result = data_uri.indexOf(",");
         var legth = data_uri.length;
@@ -1559,21 +1612,28 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-            
-                if (data.statuscode == "ERR") {
-           
-                      //$('.close').click();
-                     //$("#staticBackdrop").hide();
-                     //$("#ModalForErrorsss").trigger("click");
-                     //$("#lblMsgERRData").text(data.message)
-                      $("#staticimage").hide();
-                     $.notify(
-                            data.message,
-                            { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
-                        );                    
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
                 }
-                else if(data.statuscode=="TXN")
-                {
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else if (data.statuscode == "ERR") {
+
+                    //$('.close').click();
+                    //$("#staticBackdrop").hide();
+                    //$("#ModalForErrorsss").trigger("click");
+                    //$("#lblMsgERRData").text(data.message)
+                    $("#staticimage").hide();
+                    $.notify(
+                        data.message,
+                        { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+                    );
+                }
+                else if (data.statuscode == "TXN") {
                     $("#ModalForSuccessBanks").trigger("click");
                     $("#B").text(data.data[0].beniName);
                     $("#Acn").text(data.data[0].account);
@@ -1593,7 +1653,7 @@
                     $("#Charge").text(data.data[0].surcharge);
                     $("#Bac").text(ActualAmount);
                     $("#DT").text(data.data[0].editDate);
-                    
+
                 }
             }
         });
@@ -1669,50 +1729,62 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
-                message = data.message;
-                if (data.statuscode == "ERR") {
-                    //$('.close').click();
-                    $("#ModalForSurcharge").trigger("click");
-                    $("#lblMsgSurcharge").text(data.data[0].surcharge);
-                    $("#okay").show();
-                    $("#nonokay").hide();
-                    $("#Otp").hide();
-
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
                 }
-                else if (data.statuscode == null) {
-
-                    $("#ErrorMessageModals").trigger("click");
-                    $("#lblmsgErrorSc").text(data.message);
-
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
                 }
-
-
-                else if (data.statuscode == "TXN" && BeneficaryName.replace(/\s/g, '').toUpperCase() == "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase()) {
-                    $("#ModalForSurcharge").trigger("click");
-                    $("#lblMsgSurcharge").text(data.data[0].surcharge);
-                    $("#hidefornonverify").show();
-                    $("#verify").hide();
-                    $("#okay").hide();
-                    $("#nonokay").hide();
-                    $("#Otp").show();
-
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
                 }
-
                 else {
+                    debugger;
+                    message = data.message;
+                    if (data.statuscode == "ERR") {
+                        //$('.close').click();
+                        $("#ModalForSurcharge").trigger("click");
+                        $("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        $("#okay").show();
+                        $("#nonokay").hide();
+                        $("#Otp").hide();
 
-                    $("#ModalForSurcharge").trigger("click");
-                    $("#lblMsgSurcharge").text(data.data[0].surcharge);
-                    $("#okay").hide();
-                    $("#Otp").hide();
-                    $("#nonokay").show();
-                    $("#verify").hide();
-                    $(".btPics").show();
-                    $("#file").show();
+                    }
+                    else if (data.statuscode == null) {
+
+                        $("#ErrorMessageModals").trigger("click");
+                        $("#lblmsgErrorSc").text(data.message);
+
+                    }
 
 
-                    //$("#lblmsgfordata").text(data.)
+                    else if (data.statuscode == "TXN" && BeneficaryName.replace(/\s/g, '').toUpperCase() == "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase()) {
+                        $("#ModalForSurcharge").trigger("click");
+                        $("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        $("#hidefornonverify").show();
+                        $("#verify").hide();
+                        $("#okay").hide();
+                        $("#nonokay").hide();
+                        $("#Otp").show();
+
+                    }
+
+                    else {
+
+                        $("#ModalForSurcharge").trigger("click");
+                        $("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        $("#okay").hide();
+                        $("#Otp").hide();
+                        $("#nonokay").show();
+                        $("#verify").hide();
+                        $(".btPics").show();
+                        $("#file").show();
+
+
+                        //$("#lblmsgfordata").text(data.)
+                    }
                 }
+
             }
         });
 
@@ -1780,34 +1852,46 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
-                    if (data.statuscode == "ERR") {
-                        $("#ErrorMessageModals").trigger("click");
-                        $("#lblmsgErrorSc").text(data.message);
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
                     }
-                    else if (data.statuscode == "TXN") {
-                        $.notify(
-                            data.message,
-                            { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
-                        );
-
-
-                        $("#AddAcount").hide();
-                        $("#ModalFobandetail").trigger("click");
-
-
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
                     }
                     else {
-                        //$("#ModalForSurcharge").trigger("click");
-                        //$("#lblMsgSurcharge").text(data.surcharge);
-                        //$(".verify").hide();
-                        //$("#upan").show();
-                        //$("#ur").show();
-                        //$("#showerror").text("Non verified with our record");
-                        //$("#showerror").css("color", "red");
-                        //$("#showerror").css("margin-left", "456px");
-                        //$("#lblmsgfordata").text(data.)
+                        debugger;
+                        if (data.statuscode == "ERR") {
+                            $("#ErrorMessageModals").trigger("click");
+                            $("#lblmsgErrorSc").text(data.message);
+                        }
+                        else if (data.statuscode == "TXN") {
+                            $.notify(
+                                data.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+                            );
+
+
+                            $("#AddAcount").hide();
+                            $("#ModalFobandetail").trigger("click");
+
+
+                        }
+                        else {
+                            //$("#ModalForSurcharge").trigger("click");
+                            //$("#lblMsgSurcharge").text(data.surcharge);
+                            //$(".verify").hide();
+                            //$("#upan").show();
+                            //$("#ur").show();
+                            //$("#showerror").text("Non verified with our record");
+                            //$("#showerror").css("color", "red");
+                            //$("#showerror").css("margin-left", "456px");
+                            //$("#lblmsgfordata").text(data.)
+                        }
                     }
+
                 }
             });
 
@@ -1824,37 +1908,49 @@
             dataType: 'json',
             success: function (data) {
                 debugger;
-                if (data.statuscode == "TXN") {
-
-
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
                 }
-                else if (data.statuscode == "OSS") {
-                    debugger;
-                    var timeLeft = 30;
-                    var elem = document.getElementById('some_divss');
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else {
+                    if (data.statuscode == "TXN") {
 
-                    var timerId = setInterval(countdown, 1000);
 
-                    function countdown() {
-
-                        if (timeLeft == -1) {
-                            clearTimeout(timerId);
-
-                            document.getElementById("some_divss").innerHTML = "OTP Expired. Please click on Resend Button";
-                            document.getElementById("some_divss").style.color = "red";
-                            document.getElementById("btnResendOTPforAc").style.display = "block";
-
-                        }
-                        else {
-                            elem.innerHTML = timeLeft + ' seconds remaining';
-                            timeLeft--;
-                        }
                     }
+                    else if (data.statuscode == "OSS") {
+                        debugger;
+                        var timeLeft = 30;
+                        var elem = document.getElementById('some_divss');
 
-                    $("#Accountveriotpmodals").trigger("click");
+                        var timerId = setInterval(countdown, 1000);
 
-                }
-                else if (data.statuscode == "ERR") {
+                        function countdown() {
+
+                            if (timeLeft == -1) {
+                                clearTimeout(timerId);
+
+                                document.getElementById("some_divss").innerHTML = "OTP Expired. Please click on Resend Button";
+                                document.getElementById("some_divss").style.color = "red";
+                                document.getElementById("btnResendOTPforAc").style.display = "block";
+
+                            }
+                            else {
+                                elem.innerHTML = timeLeft + ' seconds remaining';
+                                timeLeft--;
+                            }
+                        }
+
+                        $("#Accountveriotpmodals").trigger("click");
+
+                    }
+                    else if (data.statuscode == "ERR") {
+
+                    }
 
                 }
 
@@ -1875,29 +1971,41 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
-                    if (data.statuscode == "TXN") {
-                        $(".verify").hide();
-                        $("#btnupload").hide();
-
-                        $("#showerror").text("verified");
-                        $("#showerror").css("color", "#0b8000");
-                        $("#showerror").css("margin-left", "591px");
-                        $.notify(
-                            data.message,
-                            { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
-
-
-                        );
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
                     }
-                    else if (data.statuscode == "ERR") {
-                        $.notify(
-                            data.message,
-                            { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
-
-
-                        );
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
                     }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else {
+                        debugger;
+                        if (data.statuscode == "TXN") {
+                            $(".verify").hide();
+                            $("#btnupload").hide();
+
+                            $("#showerror").text("verified");
+                            $("#showerror").css("color", "#0b8000");
+                            $("#showerror").css("margin-left", "591px");
+                            $.notify(
+                                data.message,
+                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+                        }
+                        else if (data.statuscode == "ERR") {
+                            $.notify(
+                                data.message,
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+                            );
+                        }
+                    }
+
 
                 }
             });
@@ -2102,7 +2210,16 @@
                     data: fileData,
                     success: function (result, status, xhr) {
                         debugger;
-                        if (result.statuscode == "ERR") {
+                        if (result.result == "EmptyResult") {
+                            window.location.href = result.url;
+                        }
+                        else if (result.result == "UnExpectedStatusCode") {
+                            window.location.href = result.url;
+                        }
+                        else if (result.result == "RedirectToException") {
+                            window.location.href = result.url;
+                        }
+                        else if (result.statuscode == "ERR") {
                             Cleardata();
                             $("#ErrorMessageModals").trigger("click");
                             $("#lblmsgErrorSc").text(result.message);
@@ -2246,7 +2363,7 @@
         //Validate TextBox value against the Regex.
         var isValid = regex.test(String.fromCharCode(keyCode));
         if (!isValid) {
-             Text_neft.innerHTML = "Only Numbers allowed.";
+            Text_neft.innerHTML = "Only Numbers allowed.";
             //$("#staticBackdrops").trigger("click");
             $('#Text_neft').css('margin-left', '46px');
             $('#Text_neft').css('color', 'red');

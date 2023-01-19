@@ -368,12 +368,13 @@ namespace Project_Redmil_MVC.Controllers
                 IRestResponse response = client.Execute(request);
 
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
                 if (string.IsNullOrEmpty(result))
                 {
                     return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
-                else if (subCat == "14" && deserialize.Statuscode=="ERR")
+                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel2>(response.Content);
+                
+                if (subCat == "14" && deserialize.Statuscode=="ERR")
                 {
                     HttpContext.Session.SetString("UserId", requestModel.UserId);
                     return Json(new { Result = "PanCard", url = Url.Action("PanCardRegistration", "MyBusinessReports") });
@@ -2549,17 +2550,25 @@ namespace Project_Redmil_MVC.Controllers
                             requestN.AddJsonBody(jsonN);
                             IRestResponse responseN = clientN.Execute(requestN);
                             var resultN = responseN.Content;
-                            var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
-                            if (deserializeN.Statuscode == "UNR")
+                            if (string.IsNullOrEmpty(resultN))
                             {
-                                return Json(deserializeN);
+                                return RedirectToAction("ErrorForExceptionLog", "Error");
                             }
                             else
                             {
-                                var dataN = deserializeN.Data;
-                                var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
-                                return View(deserialize1);
+                                var deserializeN = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
+                                if (deserializeN.Statuscode == "UNR")
+                                {
+                                    return Json(deserializeN);
+                                }
+                                else
+                                {
+                                    var dataN = deserializeN.Data;
+                                    var deserialize1 = JsonConvert.DeserializeObject<PanCardRegistrationResponseModel>(dataN.ToString());
+                                    return View(deserialize1);
+                                }
                             }
+                            
                         }
                         catch (Exception ex)
                         {
@@ -2600,7 +2609,6 @@ namespace Project_Redmil_MVC.Controllers
                 var result = response.Content;
                 return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return View();
         }
 
         #endregion

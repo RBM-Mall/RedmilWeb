@@ -101,7 +101,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                              border-top: none;*/
+                                                                                  border-top: none;*/
     }
 
         .tabcontent .title {
@@ -536,7 +536,16 @@
                     //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
-                    if (response.statuscode == "SNR") {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.statuscode == "SNR") {
                         $('#txtMobile').val(MobileNum);
                         $("#btnModalAddUser").trigger("click");
                     }
@@ -573,7 +582,16 @@
                     //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
-                    if (response.statuscode == "TXN") {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.statuscode == "TXN") {
                         document.getElementById("lblOTPModalNumber").innerHTML = mobNum;
                         var timeLeft = 30;
                         var elem = document.getElementById('some_div');
@@ -595,8 +613,8 @@
                         $("#btnModalOTP").trigger("click");
                     }
                     else if (response.statuscode == "ERR") {
+                        window.location.href = response.url;
                     }
-
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -620,19 +638,20 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
-                if (response.statuscode == "TXN") {
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else if (response.statuscode == "TXN") {
                     document.getElementById("lblOTPModalNumber").innerHTML = mobNum;
                     //$("#modalOTP").hide();
                     //$("#btnModalOTP").trigger("click");
                 }
-                else if (response.statuscode == "ERR") {
-                }
-
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -658,20 +677,21 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    //if (response == null || response.data == null || response.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    if (response.Result = "Redirect") {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.Result = "Redirect") {
                         window.location.href = response.url;
                     }
                     else if (response.statuscode == "TXN") {
-
+                        window.location.href = response.url;
                     }
-                    else if (response.statuscode == "ERR") {
-                    }
-
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -693,16 +713,20 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
-                //else {
-                let output = response.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.senderName + "</td><td>" + i.senderMobile + "</td><td>" + i.monthlyLimit + "</td><td>" + i.usedLimit + "</td><td style='margin-top:3px;' id='id1'onclick='sendDashboard()' button class='btn-process-recharge3  btn-amount-bind2 btn-amount-bind1'>" + 'Transfer Money' + "</button></td></tr>");
-                $("#tbloutput").html(output);
-                $("#btnModalSenderDetails").trigger("click");
-                //}
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    let output = response.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.senderName + "</td><td>" + i.senderMobile + "</td><td>" + i.monthlyLimit + "</td><td>" + i.usedLimit + "</td><td style='margin-top:3px;' id='id1'onclick='sendDashboard()' button class='btn-process-recharge3  btn-amount-bind2 btn-amount-bind1'>" + 'Transfer Money' + "</button></td></tr>");
+                    $("#tbloutput").html(output);
+                    $("#btnModalSenderDetails").trigger("click");
+                }
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -739,15 +763,18 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        //if (response == null || response.data == null || response.data == "") {
-                        //    document.getElementById("walletTblborder11").style.display = "none";
-                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        //    $("#btnNoDataFoundModel").trigger("click");
-                        //}
-
-                        window.location.href = "/DMT2Dashboard/DMTDashboard?";
-
-
+                        if (response.result == "EmptyResult") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "UnExpectedStatusCode") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "RedirectToException") {
+                            window.location.href = response.url;
+                        }
+                        else {
+                            window.location.href = "/DMT2Dashboard/DMTDashboard?";
+                        }
                     },
                     failure: function (response) {
                         alert(response.responseText);

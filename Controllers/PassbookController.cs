@@ -311,7 +311,7 @@ namespace Project_Redmil_MVC.Controllers
                 }
                 else
                 {
-
+                    return null;
                 }
 
             }
@@ -2195,12 +2195,20 @@ namespace Project_Redmil_MVC.Controllers
                 //request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                var datadeserialize = deserialize.Data;
-                var data = JsonConvert.DeserializeObject<List<GetcashdepositeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
-                //var datadeserialize = deserialize.Data;
-                //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                return Json(data);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<List<GetcashdepositeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    //var datadeserialize = deserialize.Data;
+                    //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+                    return Json(data);
+                }
+                
             }
             catch (Exception ex)
             {

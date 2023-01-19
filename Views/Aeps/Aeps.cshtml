@@ -1119,11 +1119,21 @@
                 success: function (response) {
                     //for (Data1.result == 'Redirect') {
                     //let output = response.map(i => "<div id='choosBank'>" + i.choosBank + "</div>");
-
-                    document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else{
+                        document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
                     document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
                     document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
                     $("#btnChooseBankModal").trigger("click");
+                    }
                     //$("#deviceModal").hide();
                     //window.location = response.url;
                     // }
