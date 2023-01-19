@@ -710,32 +710,32 @@
 
 
             $("tr").not(':first').hover(
-                function() {
+                function () {
                     $(this).css("background", "grey");
                 },
-                function() {
+                function () {
                     $(this).css("background", "");
                 }
             );
 
 
-            $("#myModalfinal").on('show.bs.modal', function(e) {
+            $("#myModalfinal").on('show.bs.modal', function (e) {
                 $("#myModal").modal("hide");
             });
 
-            $('#btnCloseModal').click(function() {
+            $('#btnCloseModal').click(function () {
                 window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
             });
-            $('#btnCancelBill').click(function() {
+            $('#btnCancelBill').click(function () {
                 window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
             });
-            $('#btnCloseTwo').click(function() {
+            $('#btnCloseTwo').click(function () {
                 window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
             });
-            $('#btnCloseFirst').click(function() {
+            $('#btnCloseFirst').click(function () {
                 window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
             });
-            $('#finaldismissbutton').click(function() {
+            $('#finaldismissbutton').click(function () {
                 window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
             });
 
@@ -796,7 +796,7 @@
 <script>
     var checkbox = document.querySelector("input[name=ccfCheckbox]");
     var chkCCF = "1";
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
         if (this.checked) {
             ccfChange("1");
             chkCCF = "1";
@@ -808,8 +808,8 @@
 
 
 
-    $(function() {
-        $("#txtMobile").keyup(function(e) {
+    $(function () {
+        $("#txtMobile").keyup(function (e) {
             var MobileNum;
             var a = $('#txtMobile').attr('id');
             var MobileNum = $("#txtMobile").val();
@@ -825,24 +825,24 @@
     })
 
 
-    $(document).ready(function() {
-        $("#statelist").change(function() {
+    $(document).ready(function () {
+        $("#statelist").change(function () {
             document.getElementById('divBill').style.display = "none";
             $("#txtMobile").val("");
         })
     })
 
 
-    $(document).ready(function() {
-        $("#operatorlist").change(function() {
+    $(document).ready(function () {
+        $("#operatorlist").change(function () {
             document.getElementById('divBill').style.display = "none";
             $("#txtMobile").val("");
         });
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-        $("#StateName").change(function() {
+        $("#StateName").change(function () {
             var StateID = $(this).val();
             var number = $("#txtMobile").val();
             $.ajax({
@@ -850,18 +850,24 @@
                 data: { 'StateId': StateID, 'Number': number },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    $('#OpId').html('');
+                success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
+                        $('#OpId').html('');
 
-                    var options = '<option value="' + 0 + '">' + "--Choose Operator--" + '</option>';
+                        var options = '<option value="' + 0 + '">' + "--Choose Operator--" + '</option>';
 
-                    for (var i = 0; i < response.billerInfo.length; i++) {
+                        for (var i = 0; i < response.billerInfo.length; i++) {
 
-                        options += '<option value="' + response.billerInfo[i].id + '">' + response.billerInfo[i].operatorname + '</option>';
+                            options += '<option value="' + response.billerInfo[i].id + '">' + response.billerInfo[i].operatorname + '</option>';
 
-                    }
-                    $('#OpId').append(options);
-
+                        }
+                        $('#OpId').append(options);
+                    //}
                 }
             });
 
@@ -879,12 +885,20 @@
         else {
             $.ajax({
                 url: "/ElectricityBill/GetOperatorList",
-                data: { 'StateId': State, 'OpId': operator ,'Image':image},
+                data: { 'StateId': State, 'OpId': operator, 'Image': image },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    var ar = response;
-                    window.open(ar);
+                success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
+                        var ar = response;
+                        window.open(ar);
+                    //}
+
                 }
 
             });
@@ -894,18 +908,22 @@
 
     function fetchBill1() {
         var MobileNum = $("#txtMobile").val();
-        var Input1=$("#txtInput0").val();
-        var Input2=$("#txtInput1").val();
+        var Input1 = $("#txtInput0").val();
+        var Input2 = $("#txtInput1").val();
         var State = $("#StateName").val();
         var Operator = $("#OpId").val();
         if (MobileNum.length == 10 && Input1.length > 5) {
             $.ajax({
                 url: "/ElectricityBill/FetchBill",
-                data: { 'Number': MobileNum, 'Operator': Operator, 'State': State, 'Input1':Input1,'Input2':Input2, 'ccf': chkCCF },
+                data: { 'Number': MobileNum, 'Operator': Operator, 'State': State, 'Input1': Input1, 'Input2': Input2, 'ccf': chkCCF },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    
+                success: function (responsedata) {
+                    //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
                     if (responsedata.statuscode == "ERR") {
                         document.getElementById("divBill").style.display = "block";
                         document.getElementById("divCancel").style.display = "block";
@@ -972,18 +990,26 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                    document.getElementById("lblBillAmount").innerHTML = "";
-                    document.getElementById("lblCCF").innerHTML = "";
-                    document.getElementById("lblCommision").innerHTML = "";
-                    document.getElementById("lblTotalAmount").innerHTML = "";
-                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
-                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
-                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                    document.getElementById("txtBill").style.display = "none";
-                    document.getElementById("btnEdit").style.display = "none";
+                success: function (responsedata) {
+                    //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
+                        var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                        document.getElementById("lblBillAmount").innerHTML = "";
+                        document.getElementById("lblCCF").innerHTML = "";
+                        document.getElementById("lblCommision").innerHTML = "";
+                        document.getElementById("lblTotalAmount").innerHTML = "";
+                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        document.getElementById("txtBill").style.display = "none";
+                        document.getElementById("btnEdit").style.display = "none";
+                    //}
+
                 }
             })
         }
@@ -994,18 +1020,26 @@
                 data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                    document.getElementById("lblBillAmount").innerHTML = "";
-                    document.getElementById("lblCCF").innerHTML = "";
-                    document.getElementById("lblCommision").innerHTML = "";
-                    document.getElementById("lblTotalAmount").innerHTML = "";
-                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
-                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
-                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                    document.getElementById("txtBill").style.display = "none";
-                    document.getElementById("btnEdit").style.display = "none";
+                success: function (responsedata) {
+                    //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else{
+                        var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                        document.getElementById("lblBillAmount").innerHTML = "";
+                        document.getElementById("lblCCF").innerHTML = "";
+                        document.getElementById("lblCommision").innerHTML = "";
+                        document.getElementById("lblTotalAmount").innerHTML = "";
+                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        document.getElementById("txtBill").style.display = "none";
+                        document.getElementById("btnEdit").style.display = "none";
+                    //}
+                    
                 }
             })
         }
@@ -1020,40 +1054,54 @@
             data: { 'ccf': CCF, 'amount': amount },
             type: 'POST',
             dataType: 'json',
-            success: function(responsedata) {
-
-                var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                document.getElementById("lblBillAmount").innerHTML = "";
-                document.getElementById("lblCCF").innerHTML = "";
-                document.getElementById("lblCommision").innerHTML = "";
-                document.getElementById("lblTotalAmount").innerHTML = "";
-                document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
-                document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
-                document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                document.getElementById("txtBill").style.display = "none";
-                document.getElementById("btnEdit").style.display = "none";
+            success: function (responsedata) {
+                //if (responsedata == null || responsedata.data == null || responsedata.data == "") {
+                //        //document.getElementById("walletTblborder11").style.display = "none";
+                //        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //        $("#btnNoDataFoundModel").trigger("click");
+                //    }
+                //    else{
+                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                    document.getElementById("lblBillAmount").innerHTML = "";
+                    document.getElementById("lblCCF").innerHTML = "";
+                    document.getElementById("lblCommision").innerHTML = "";
+                    document.getElementById("lblTotalAmount").innerHTML = "";
+                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
+                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
+                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                    document.getElementById("txtBill").style.display = "none";
+                    document.getElementById("btnEdit").style.display = "none";
+                    //}
             }
         })
     }
 
     function bindAmountInput() {
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "/ElectricityBill/GetBalance",
                 data: {},
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else{
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                    //}
+                    
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -1062,20 +1110,20 @@
         });
 
     }
-    $("#myModalfinal").on('show.bs.modal', function(e) {
+    $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
 
-    $('#btnCloseModal').click(function() {
+    $('#btnCloseModal').click(function () {
         window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
     });
-    $('#btnCloseTwo').click(function() {
+    $('#btnCloseTwo').click(function () {
         window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
     });
-    $('#btnCloseFirst').click(function() {
+    $('#btnCloseFirst').click(function () {
         window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
     });
-    $('#finaldismissbutton').click(function() {
+    $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
     });
 
@@ -1083,10 +1131,10 @@
 
 
 
-    $("#btnPayNow").click(function() {
+    $("#btnPayNow").click(function () {
         var MobileNum = $("#txtMobile").val();
-        var Input1=$("#txtInput0").val();
-        var Input2=$("#txtInput1").val();
+        var Input1 = $("#txtInput0").val();
+        var Input2 = $("#txtInput1").val();
         var State = $("#StateName").val();
         var Operator = $("#OpId").val();
         var Amount = $('#txtBill').val();
@@ -1095,11 +1143,16 @@
             $.ajax({
                 type: "POST",
                 url: "/ElectricityBill/FetchBill",
-                data: { 'Number': MobileNum, 'Input1':Input1,'Input2':Input2, 'State': State, 'Operator': Operator,'ccf': chkCCF, 'Amount': Amount, 'Payment': Payment },
+                data: { 'Number': MobileNum, 'Input1': Input1, 'Input2': Input2, 'State': State, 'Operator': Operator, 'ccf': chkCCF, 'Amount': Amount, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    if (response.statuscode == "TXN") {
+                success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                   if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
                         document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -1164,10 +1217,10 @@
                     }
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -1181,34 +1234,40 @@
 
 </script>
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-        $("#OpId").change(function(e) {
+    jQuery(document).ready(function () {
+        $("#OpId").change(function (e) {
             $("#txtMobile").val("");
-            document.getElementById("divBill").style.display = "none"; 
-            document.getElementById("divFetch").style.display = "block"; 
-            document.getElementById("divPay").style.display = "none"; 
+            document.getElementById("divBill").style.display = "none";
+            document.getElementById("divFetch").style.display = "block";
+            document.getElementById("divPay").style.display = "none";
             jQuery('.remove').parent().remove();
             var StateId = $("#StateName").val();
             var OpId = $("#OpId").val();
             $.ajax({
                 url: "/ElectricityBill/GetOperatorList",
-                data: {'StateId':StateId,'OpId': OpId },
+                data: { 'StateId': StateId, 'OpId': OpId },
                 type: 'POST',
                 dataType: 'json',
-                success: function(responsedata) {
-                    for (var i = 0; i < responsedata[0].inputParam.length; i++) {
-                        var id = "txtInput" + i;
-                        $(".inc").append('<div class="controls">\
-                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                            </div>');
-                    }
+                success: function (responsedata) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else{
+                        for (var i = 0; i < responsedata[0].inputParam.length; i++) {
+                            var id = "txtInput" + i;
+                            $(".inc").append('<div class="controls">\
+                                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                            </div>');
+                        }
+                    //}
                 }
-
             });
             return false;
         });
 
-        jQuery(document).on('click', '.remove_this', function() {
+        jQuery(document).on('click', '.remove_this', function () {
             jQuery(this).parent().remove();
             return false;
         });

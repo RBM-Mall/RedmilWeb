@@ -382,39 +382,7 @@
         </div>
 
     </div>
-    <!-- Modal For No Data Found-->
-
-    <input type="button" id="btnNoDataFoundModel" style="display:none" data-target="#modalNoDataFoundModel" data-toggle="modal" />
-    <div class="modal fade" id="modalNoDataFoundModel" role="dialog" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        @*<div class="modal fade" id="modalServiceComing" role="dialog">*@
-        <div class="modal-dialog" style="margin-top:100px;">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header modal-header-recharge" style="background:indianred;">
-                    <a href="/MyBusinessReports/MyBusinessReports" style="padding-top:12px;" class="close">&times;</a>
-                    <h2 style="text-align:center;color:white;"><b>ERROR</b></h2>
-                </div>
-                <div class="modal-body" style="background-color:white;">
-                    <div class="row">
-                        <div class="col-sm-12" style="text-align:center">
-                            <h4><label id="lblDataMessage"></label></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="/MyBusinessReports/MyBusinessReports" type="button" id="btnPayNow" class="no-record">
-                                Ok
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 </div>
 
@@ -496,12 +464,12 @@
             contentType: "json",
             success: function (response) {
                 debugger;
-                if (response == null) {
-                    document.getElementById("walletTblborder11").style.display = "none";
-                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    $("#btnNoDataFoundModel").trigger("click");
-                }
-                else if (response.result == "Redirect" || response == "") {
+                //if (response == null||response.data==null||response.data=="") {
+                //    document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                if (response.result == "Redirect" || response == "") {
                     window.location.href = "/MyBusinessReports/PanCardRegistration";
 
                 }
@@ -635,12 +603,12 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response == "") {
-                        document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
+                    //if (response == null || response == "" || response.data==null){
+                    //    document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
                         $("#tempTbl1").find("tr").remove();
                         var tr = '<tr>';
                         var columnName = Object.keys(response[0]);
@@ -683,7 +651,7 @@
                         $("#tempTbl1").append(tr);
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         document.getElementById('walletTblborder11').style.display = "block";
-                    }
+                    //}
                 }
             });
         });
@@ -786,12 +754,12 @@
 
                 success: function (response) {
                     debugger;
-                    if (response == null || response == "") {
-                        document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
+                    //if (response == null || response == "" || response.data==null) {
+                    //    document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
                         $("#tempTbl1").find("tr").remove();
                         var tr = '<tr>';
                         var columnName = Object.keys(response[0]);
@@ -824,7 +792,7 @@
                         }
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         $("#tempTbl1").append(tr);
-                    }
+                    //}
                 },
             });
         });
@@ -1278,10 +1246,17 @@
                 dataType: 'json',
                 success: function (msgdeserialize) {
                     debugger;
-                    var viewReceipt = msgdeserialize;
-                    var viewReceiptWindow = window.open();
-                    viewReceiptWindow.document.write(viewReceipt);
-                    viewReceiptWindow.print();
+                    //if (msgdeserialize == null || msgdeserialize == "" || msgdeserialize.data == null) {
+                    //    document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else{
+                        var viewReceipt = msgdeserialize;
+                        var viewReceiptWindow = window.open();
+                        viewReceiptWindow.document.write(viewReceipt);
+                        viewReceiptWindow.print();
+                    //}
                 },
                 failure: function (msgdeserialize) {
                     alert(msgdeserialize.responseText);

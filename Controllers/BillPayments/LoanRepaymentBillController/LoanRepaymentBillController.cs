@@ -41,7 +41,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
 
         [HttpPost]
 
-        public IActionResult FetchBill(string Number, string Operator, string Input, string Input2, string ccf, string Amount, string Payment)
+        public JsonResult FetchBill(string Number, string Operator, string Input, string Input2, string ccf, string Amount, string Payment)
         {
             List<Operatornames> OpList = new List<Operatornames>();
             var baseUrl = "https://api.redmilbusinessmall.com";

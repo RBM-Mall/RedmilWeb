@@ -131,7 +131,7 @@
                                     <td style="font-weight:700">
                                         @item.SourcePickupCity
                                     </td>
-                                    
+
                                     <td>
                                         <label id="lblName">@item.DestinationCity</label>
                                     </td>
@@ -538,79 +538,87 @@
             dataType: 'json',
             success: function (response) {
                 debugger;
-
-                document.getElementById("lblHeadingPickup").innerHTML = response[0].sourcePickupCity + " - ";
-                document.getElementById("lblHeadingPickup1").innerHTML = response[0].sourcePickupCity + " To ";
-                document.getElementById("lblHeadingPickupCancel").innerHTML = response[0].sourcePickupCity + " To ";
-                document.getElementById("lblHeadingPickupCancelW").innerHTML = response[0].sourcePickupCity + " To ";
-                document.getElementById("lblHeadingPickup11").innerHTML = 'Pickup Point: ' + response[0].sourcePickupCity;
-                document.getElementById("lblHeadingDestination").innerHTML = response[0].destinationCity;
-                document.getElementById("lblHeadingDestinationCancel").innerHTML = response[0].destinationCity;
-                document.getElementById("lblHeadingDestinationCancelW").innerHTML = response[0].destinationCity;
-                document.getElementById("lblHeadingDestination1").innerHTML = response[0].destinationCity;
-                document.getElementById("lblHeadingDestination11").innerHTML = 'Destination Point: ' + response[0].destinationCity;
-                document.getElementById("lblHeadingStartDate").innerHTML = response[0].pickUpTime + " - ";
-                document.getElementById("lblHeadingStartDate11").innerHTML = response[0].pickUpTime;
-                document.getElementById("lblHeadingStartDateCancel").innerHTML = response[0].pickUpTime;
-                document.getElementById("lblHeadingStartDateCancelW").innerHTML = response[0].pickUpTime;
-                document.getElementById("lblHeadingEndDate").innerHTML = response[0].dropTime;
-
-                //hidden value for cancel ticket
-                document.getElementById("lblTin").innerHTML = response[0].bookingId;
-                document.getElementById("lblTinW").innerHTML = response[0].bookingId;
-                document.getElementById("lblSeat").innerHTML = response[0].seatNumber;
-                document.getElementById("lblSeatW").innerHTML = response[0].seatNumber;
-
-                document.getElementById("lblHeadingEndDate11").innerHTML = response[0].dropTime;
-                document.getElementById("lblHeadingTravleName").innerHTML = response[0].travelAgencyName + "" + response[0].busName;
-                document.getElementById("lblHeadingTravelAgaencyCancel").innerHTML = response[0].travelAgencyName;
-                document.getElementById("lblHeadingTravelAgaencyCancelW").innerHTML = response[0].travelAgencyName;
-                document.getElementById("lblOperatorContactNumber").innerHTML = 'Operator Contact Number: ' + response[0].pickupContactNumber;
-                document.getElementById("lblTravelAgenecy").innerHTML = response[0].busName;
-
-                document.getElementById("lblPickUpPoint").innerHTML = 'Pickup Point: ' + response[0].sourcePickupCity;
-                document.getElementById("lblDestinationPoint").innerHTML = 'Destination Point: ' + response[0].destinationCity;
-                document.getElementById("lblSeatNo").innerHTML = 'Seat No: ' + response[0].seatNumber;
-                document.getElementById("lblSeatCancel").innerHTML = 'Seats : ' + response[0].seatNumber;
-                document.getElementById("lblSeatCancelW").innerHTML = 'Seats : ' + response[0].seatNumber;
-                document.getElementById("lblSeatNo11").innerHTML = 'Seat No: ' + response[0].seatNumber;
-                document.getElementById("lblPassengerSeatNumber").innerHTML = 'Seat No: ' + response[0].seatNumber;
-                document.getElementById("lblBaseFare").innerHTML = 'Base Fare: ' + " ₹ " + response[0].baseFare;
-                document.getElementById("lblPassengerStatusCancel").innerHTML = 'Cancel Status: ' + response[0].bookingStatus;
-                document.getElementById("lblPassengerStatusCancelW").innerHTML = 'Cancel Status: ' + response[0].bookingStatus;
-                document.getElementById("lblCancellationChargeW").innerHTML = 'Cancellation Charge: ' + " ₹ " + response[0].cancellationCharges;
-                document.getElementById("lblCancellationCharge").innerHTML = 'Cancellation Charge: ' + " ₹ " + response[0].cancellationCharges;
-                document.getElementById("lblRefundableAmount").innerHTML = 'Refundable Amount: ' + " ₹ " + response[0].refundAmount;
-                document.getElementById("lblRefundableAmountW").innerHTML = 'Refundable Amount: ' + " ₹ " + response[0].refundAmount;
-                document.getElementById("lblBusOperator").innerHTML = 'Bus Operator GST: ' + " ₹ " + response[0].busOperatorGST
-                document.getElementById("lblGST").innerHTML = 'GST: ' + " ₹ " + response[0].gst;
-                document.getElementById("lblConvenienceFee").innerHTML = 'Convenience Fee: ' + " ₹ " + response[0].convenienceFees;
-                document.getElementById("lblTotalPrice").innerHTML = 'Total Price : ' + " ₹ " + parseInt(response[0].convenienceFees) + parseInt(response[0].gst) + parseInt(response[0].bookingAmount);
-                document.getElementById("lblPassengerName").innerHTML = 'Passenger Name: ' + response[0].passengerName;
-                document.getElementById("lblBookingAmountCancel").innerHTML = 'Booking Amount: ' + " ₹ " + response[0].finalAmount
-                document.getElementById("lblBookingAmountCancelW").innerHTML = 'Booking Amount: ' + " ₹ " + response[0].finalAmount
-                document.getElementById("lblPassengerNameCancel").innerHTML = 'Passenger Name: ' + response[0].passengerName;
-                document.getElementById("lblPassengerNameCancelW").innerHTML = 'Passenger Name: ' + response[0].passengerName;
-                document.getElementById("lblPassengerName1").innerHTML = 'Passenger Name: ' + response[0].passengerName;
-                document.getElementById("lblPassengerGender").innerHTML = 'Passenger Gender:  ' + "M";//Static
-                document.getElementById("lblPassengerGender1").innerHTML = 'Passenger Gender:  ' + "M";//Static
-                document.getElementById("lblPassengerAge").innerHTML = 'Passenger Age:  ' + "26";//Static
-                document.getElementById("lblPassengerAge1").innerHTML = 'Passenger Age:  ' + "26";//Static
-                document.getElementById("lblPassengerMobile").innerHTML = 'Passenger Mobile:  ' + response[0].passengerContact;
-                document.getElementById("lblPassengerMobile1").innerHTML = 'Passenger Mobile:  ' + response[0].passengerContact;
-                document.getElementById("lblPassengerEmail").innerHTML = 'Passenger Email: ' + "Test@gmail.com";//Static
-                if (value == "CancelTickets" && response[0].bookingStatus == "Cancelled Booking") {
-                    $("#btnmodalforCancelTicketsWaterMark").trigger("click");
+                if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
                 }
-                if (value == "BookingDetails") {
-                    $("#btnmodalforBookingDetails").trigger("click");
+                else {
+                    document.getElementById("lblHeadingPickup").innerHTML = response[0].sourcePickupCity + " - ";
+                    document.getElementById("lblHeadingPickup1").innerHTML = response[0].sourcePickupCity + " To ";
+                    document.getElementById("lblHeadingPickupCancel").innerHTML = response[0].sourcePickupCity + " To ";
+                    document.getElementById("lblHeadingPickupCancelW").innerHTML = response[0].sourcePickupCity + " To ";
+                    document.getElementById("lblHeadingPickup11").innerHTML = 'Pickup Point: ' + response[0].sourcePickupCity;
+                    document.getElementById("lblHeadingDestination").innerHTML = response[0].destinationCity;
+                    document.getElementById("lblHeadingDestinationCancel").innerHTML = response[0].destinationCity;
+                    document.getElementById("lblHeadingDestinationCancelW").innerHTML = response[0].destinationCity;
+                    document.getElementById("lblHeadingDestination1").innerHTML = response[0].destinationCity;
+                    document.getElementById("lblHeadingDestination11").innerHTML = 'Destination Point: ' + response[0].destinationCity;
+                    document.getElementById("lblHeadingStartDate").innerHTML = response[0].pickUpTime + " - ";
+                    document.getElementById("lblHeadingStartDate11").innerHTML = response[0].pickUpTime;
+                    document.getElementById("lblHeadingStartDateCancel").innerHTML = response[0].pickUpTime;
+                    document.getElementById("lblHeadingStartDateCancelW").innerHTML = response[0].pickUpTime;
+                    document.getElementById("lblHeadingEndDate").innerHTML = response[0].dropTime;
+
+                    //hidden value for cancel ticket
+                    document.getElementById("lblTin").innerHTML = response[0].bookingId;
+                    document.getElementById("lblTinW").innerHTML = response[0].bookingId;
+                    document.getElementById("lblSeat").innerHTML = response[0].seatNumber;
+                    document.getElementById("lblSeatW").innerHTML = response[0].seatNumber;
+
+                    document.getElementById("lblHeadingEndDate11").innerHTML = response[0].dropTime;
+                    document.getElementById("lblHeadingTravleName").innerHTML = response[0].travelAgencyName + "" + response[0].busName;
+                    document.getElementById("lblHeadingTravelAgaencyCancel").innerHTML = response[0].travelAgencyName;
+                    document.getElementById("lblHeadingTravelAgaencyCancelW").innerHTML = response[0].travelAgencyName;
+                    document.getElementById("lblOperatorContactNumber").innerHTML = 'Operator Contact Number: ' + response[0].pickupContactNumber;
+                    document.getElementById("lblTravelAgenecy").innerHTML = response[0].busName;
+
+                    document.getElementById("lblPickUpPoint").innerHTML = 'Pickup Point: ' + response[0].sourcePickupCity;
+                    document.getElementById("lblDestinationPoint").innerHTML = 'Destination Point: ' + response[0].destinationCity;
+                    document.getElementById("lblSeatNo").innerHTML = 'Seat No: ' + response[0].seatNumber;
+                    document.getElementById("lblSeatCancel").innerHTML = 'Seats : ' + response[0].seatNumber;
+                    document.getElementById("lblSeatCancelW").innerHTML = 'Seats : ' + response[0].seatNumber;
+                    document.getElementById("lblSeatNo11").innerHTML = 'Seat No: ' + response[0].seatNumber;
+                    document.getElementById("lblPassengerSeatNumber").innerHTML = 'Seat No: ' + response[0].seatNumber;
+                    document.getElementById("lblBaseFare").innerHTML = 'Base Fare: ' + " ₹ " + response[0].baseFare;
+                    document.getElementById("lblPassengerStatusCancel").innerHTML = 'Cancel Status: ' + response[0].bookingStatus;
+                    document.getElementById("lblPassengerStatusCancelW").innerHTML = 'Cancel Status: ' + response[0].bookingStatus;
+                    document.getElementById("lblCancellationChargeW").innerHTML = 'Cancellation Charge: ' + " ₹ " + response[0].cancellationCharges;
+                    document.getElementById("lblCancellationCharge").innerHTML = 'Cancellation Charge: ' + " ₹ " + response[0].cancellationCharges;
+                    document.getElementById("lblRefundableAmount").innerHTML = 'Refundable Amount: ' + " ₹ " + response[0].refundAmount;
+                    document.getElementById("lblRefundableAmountW").innerHTML = 'Refundable Amount: ' + " ₹ " + response[0].refundAmount;
+                    document.getElementById("lblBusOperator").innerHTML = 'Bus Operator GST: ' + " ₹ " + response[0].busOperatorGST
+                    document.getElementById("lblGST").innerHTML = 'GST: ' + " ₹ " + response[0].gst;
+                    document.getElementById("lblConvenienceFee").innerHTML = 'Convenience Fee: ' + " ₹ " + response[0].convenienceFees;
+                    document.getElementById("lblTotalPrice").innerHTML = 'Total Price : ' + " ₹ " + parseInt(response[0].convenienceFees) + parseInt(response[0].gst) + parseInt(response[0].bookingAmount);
+                    document.getElementById("lblPassengerName").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                    document.getElementById("lblBookingAmountCancel").innerHTML = 'Booking Amount: ' + " ₹ " + response[0].finalAmount
+                    document.getElementById("lblBookingAmountCancelW").innerHTML = 'Booking Amount: ' + " ₹ " + response[0].finalAmount
+                    document.getElementById("lblPassengerNameCancel").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                    document.getElementById("lblPassengerNameCancelW").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                    document.getElementById("lblPassengerName1").innerHTML = 'Passenger Name: ' + response[0].passengerName;
+                    document.getElementById("lblPassengerGender").innerHTML = 'Passenger Gender:  ' + "M";//Static
+                    document.getElementById("lblPassengerGender1").innerHTML = 'Passenger Gender:  ' + "M";//Static
+                    document.getElementById("lblPassengerAge").innerHTML = 'Passenger Age:  ' + "26";//Static
+                    document.getElementById("lblPassengerAge1").innerHTML = 'Passenger Age:  ' + "26";//Static
+                    document.getElementById("lblPassengerMobile").innerHTML = 'Passenger Mobile:  ' + response[0].passengerContact;
+                    document.getElementById("lblPassengerMobile1").innerHTML = 'Passenger Mobile:  ' + response[0].passengerContact;
+                    document.getElementById("lblPassengerEmail").innerHTML = 'Passenger Email: ' + "Test@gmail.com";//Static
+                    if (value == "CancelTickets" && response[0].bookingStatus == "Cancelled Booking") {
+                        $("#btnmodalforCancelTicketsWaterMark").trigger("click");
+                    }
+                    if (value == "BookingDetails") {
+                        $("#btnmodalforBookingDetails").trigger("click");
+                    }
+                    if (value == "BoardingDetails") {
+                        $("#btnmodalforBoardingPass").trigger("click");
+                    }
+                    if (value == "CancelTickets" && response[0].bookingStatus != "Cancelled Booking") {
+                        $("#btnmodalforCancelTickets").trigger("click");
+                    }
                 }
-                if (value == "BoardingDetails") {
-                    $("#btnmodalforBoardingPass").trigger("click");
-                }
-                if (value == "CancelTickets" && response[0].bookingStatus != "Cancelled Booking") {
-                    $("#btnmodalforCancelTickets").trigger("click");
-                }
+
+
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -633,7 +641,13 @@
             dataType: 'json',
             success: function (response) {
                 debugger;
-                if (response.statuscode == "ERR") {
+                if (response == null || response.data == null || response.data == "") {
+                    //document.getElementById("walletTblborder11").style.display = "none";
+                    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    $("#btnNoDataFoundModel").trigger("click");
+                }
+
+                else if (response.statuscode == "ERR") {
                     document.getElementById("lblERR").innerHTML = response.message;
                     $("#btnmodalCancelBookingError").trigger("click");
                     $("#modalCancelBookingConfirm").hide();
@@ -680,7 +694,14 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    window.open(response);
+                    if (response == null || response.data == null || response.data == "") {
+                        //document.getElementById("walletTblborder11").style.display = "none";
+                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        $("#btnNoDataFoundModel").trigger("click");
+                    }
+                    else {
+                        window.open(response);
+                    }
                 },
             });
         }

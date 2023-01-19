@@ -7,24 +7,22 @@
 <h1>PayoutCommision</h1>
 <link rel="stylesheet" href="~/css/businessReport.css" />
 <style>
-    .form-control
-    {
-    
-    padding-left: 32px;
-    height: 65px;
+    .form-control {
+        padding-left: 32px;
+        height: 65px;
     }
 </style>
 
 <div class="container-fluid">
     @*<div class="row">
-            <div class="col-12">
-                <img src="~/css/CommisionImages/payoutandcommision.png" class="img-fluid" alt="Responsive image" />
-            </div>
-        </div>*@
+    <div class="col-12">
+    <img src="~/css/CommisionImages/payoutandcommision.png" class="img-fluid" alt="Responsive image" />
+    </div>
+    </div>*@
     <div class="section breadcumb-area background-image" style="background-image: url('/css/CommisionImages/payoutandcommision.png') ">
         <div class="container-fluid ">
             <div class="row">
-                
+
                 <div class="col-sm-12 text-center">
                     <ul>
                         <li><strong>Payout Commision</strong></li>
@@ -47,7 +45,7 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">
-              Category Name:
+                Category Name:
             </label>
             @if (ViewBag.Payout != null)
             {
@@ -56,12 +54,11 @@
             }
         </div>
         <div class="col-sm-1">
-
         </div>
         <div class="col-sm-5">
             <label class="control-label">
                 Subcategory Name:
-                </label>
+            </label>
             <select class="form-control" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
                 <option> -- Please Select -- </option>
             </select>
@@ -92,26 +89,33 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script>
     $(document).ready(function () {
-        
+
         $("#Id").change(function () {
             debugger;
             var Category = $(this).val();
             $.ajax({
                 url: "/PayoutCommision/SubCategoryPayOutCommision",
                 data: { 'Category': Category },
-                type:'POST',
-                dataType:'json',
+                type: 'POST',
+                dataType: 'json',
                 success: function (response) {
-                    
-                    $('#SId').html('');
-                    var options = '';
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
+                        $('#SId').html('');
+                        var options = '';
 
-                    for (var i = 0; i < response.length; i++) {
+                        for (var i = 0; i < response.length; i++) {
 
-                        options += '<option value="' + response[i].id + '">' + response[i].title + '</option>';
+                            options += '<option value="' + response[i].id + '">' + response[i].title + '</option>';
 
-                    }
-                    $('#SId').append(options);
+                        }
+                        $('#SId').append(options);
+
+                    //}
 
                 }
             });
@@ -122,19 +126,26 @@
 
 <script>
     $("#SId").change(function () {
-        
+
         var e = $('#SId').val();
         var f = $('#Id').val();
         $.ajax({
             url: "/PayoutCommision/SubCategoryPayOutCommision",
-            data: {'Category': f, 'SubCategory': e },
+            data: { 'Category': f, 'SubCategory': e },
             type: 'POST',
             dataType: 'json',
-            success: function (response){
-        
-                var ar = response[0].imgLing;
-                window.open(ar);
-                /* $('a[href$="ar"]').attr('target', '_blank');*/
+            success: function (response) {
+                //if (response == null || response.data == null || response.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                //else {
+                    var ar = response[0].imgLing;
+                    window.open(ar);
+                    /* $('a[href$="ar"]').attr('target', '_blank');*/
+                //}
+
 
             }
 

@@ -1,4 +1,4 @@
-﻿@using Project_Redmil_MVC
+﻿ @using Project_Redmil_MVC
 @{
     ViewData["Title"] = "Online Recharge - Online Mobile Recharge & Prepaid Recharge Plans";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
@@ -73,7 +73,7 @@
 </style>
 <style>
 
-   
+
     .operatorspan {
         font-size: 12px;
         color: #00baf2;
@@ -201,7 +201,7 @@
 <div class="container-fluid" style="background:#ebebeb">
     <div class="main-head-recharge">
         <!--Header Div Starts From Here-->
-         <div class="row-recharge ">
+        <div class="row-recharge ">
 
             <div class="col-md-3 col-sm-3 col-lg-3">
                 <div class="block-recharge" style="width:33%;">
@@ -299,8 +299,8 @@
                     <div class="card-body">
                         <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Mobile Bill</strong><img src="~/css/Icon_Logo_BBPS/iconPostpaid.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h4>
                         <hr />
-                       <hr />
-                       <div class="row">
+                        <hr />
+                        <div class="row">
                             <div class="radioRecharge">
                                 <div class="col-sm-6 col-sm-6 col-lg-6">
                                     <div class="radiobtn-recharge-body">
@@ -554,7 +554,7 @@
 <script>
 
     function check(browser) {
-        
+
         if (browser == "prepaid") {
             window.location.href = '@Url.Content("~/Recharge/PrepaidRecharge")';
         }
@@ -565,9 +565,9 @@
     }
 </script>
 <script>
-    $(function() {
+    $(function () {
 
-        $("#txtMobile").keyup(function(e) {
+        $("#txtMobile").keyup(function (e) {
             var MobileNum;
             var a = $('#txtMobile').attr('id');
             document.getElementById("txtAmount").disabled = true;
@@ -589,22 +589,29 @@
                     data: { 'MobileNumber': MobileNum },
                     type: 'POST',
                     dataType: 'json',
-                    success: function(response) {
-                        $("#txtCircle").val(response.currentLocation);
-                        $("#txtOperator").val(response.currentOperator);
-                        $("#operatordropdownlist").html($('<option/>', { value: response.currentOperator, text: response.currentOperator }));
-                        if (response.currentOperator == "India") {
-                            document.getElementById('divplans').style.display = "block";
-                            document.getElementById("txtAmount").disabled = true;
-                            var message = 'Sorry! No Records Found'
-                            $("#output").html(message).css({ 'color': 'red', 'font-size': '150%', 'text-align': 'center', 'font-weight': 'bold' });
+                    success: function (response) {
+                        //if (response == null || response.data == null || response.data == "") {
+                        //    //document.getElementById("walletTblborder11").style.display = "none";
+                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        //    $("#btnNoDataFoundModel").trigger("click");
+                        //}
+                        //else {
+                            $("#txtCircle").val(response.currentLocation);
+                            $("#txtOperator").val(response.currentOperator);
+                            $("#operatordropdownlist").html($('<option/>', { value: response.currentOperator, text: response.currentOperator }));
+                            if (response.currentOperator == "India") {
+                                document.getElementById('divplans').style.display = "block";
+                                document.getElementById("txtAmount").disabled = true;
+                                var message = 'Sorry! No Records Found'
+                                $("#output").html(message).css({ 'color': 'red', 'font-size': '150%', 'text-align': 'center', 'font-weight': 'bold' });
 
+                            //}
                         }
                     },
-                    failure: function(response) {
+                    failure: function (response) {
                         alert(response.responseText);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert(response.responseText);
                     }
 
@@ -620,8 +627,8 @@
 
 <script>
     function bindAmount() {
-        $(document).ready(function() {
-            $("#myTable").on('click', '#id1', function() {
+        $(document).ready(function () {
+            $("#myTable").on('click', '#id1', function () {
                 // get the current row
                 var currentRow = $(this).closest("tr");
                 var col5 = currentRow.find("td:eq(4)").html(); // get current row 5th table cell  TD value
@@ -638,15 +645,23 @@
                     data: {},
                     type: 'POST',
                     dataType: 'json',
-                    success: function(response) {
-                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                    success: function (response) {
+                        //if (response == null || response.data == null || response.data == "") {
+                        //    //document.getElementById("walletTblborder11").style.display = "none";
+                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        //    $("#btnNoDataFoundModel").trigger("click");
+                        //}
+                        //else {
+                            document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                            document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        //}
+
 
                     },
-                    failure: function(response) {
+                    failure: function (response) {
                         alert(response.responseText);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert(response.responseText);
                     }
                 });
@@ -659,7 +674,7 @@
 </script>
 <script>
     function bindAmountInput() {
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             var a = $("#txtAmount").val;
             var b = document.getElementById("txtAmount");
@@ -672,15 +687,23 @@
                 data: {},
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
-                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                    //}
+
 
                 },
-                failure: function(response) {
+                failure: function (response) {
                     alert(response.responseText);
                 },
-                error: function(response) {
+                error: function (response) {
                     alert(response.responseText);
                 }
             });
@@ -689,20 +712,20 @@
         });
 
     }
-    $("#myModalfinal").on('show.bs.modal', function(e) {
+    $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
 
-    $('#btnCloseModal').click(function() {
+    $('#btnCloseModal').click(function () {
         window.location.href = '@Url.Content("~/PostpaidRecharge/PostpaidRecharge")';
     });
-    $('#btnCloseTwo').click(function() {
+    $('#btnCloseTwo').click(function () {
         window.location.href = '@Url.Content("~/PostpaidRecharge/PostpaidRecharge")';
     });
-    $('#btnCloseFirst').click(function() {
+    $('#btnCloseFirst').click(function () {
         window.location.href = '@Url.Content("~/PostpaidRecharge/PostpaidRecharge")';
     });
-    $('#finaldismissbutton').click(function() {
+    $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/PostpaidRecharge/PostpaidRecharge")';
     });
 
@@ -714,21 +737,29 @@
             type: "POST",
             url: "/PostpaidRecharge/GetOperatorList",
             data: "{}",
-            success: function(data) {
-                
-                $('#operatordropdownlist').html('');
+            success: function (data) {
+                //if (response == null || response.data == null || response.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                //else {
+                    $('#operatordropdownlist').html('');
 
-                var options = '';
+                    var options = '';
 
-                options += '<option value="Select">Select</option>';
+                    options += '<option value="Select">Select</option>';
 
-                for (var i = 0; i < data.length; i++) {
+                    for (var i = 0; i < data.length; i++) {
 
-                    options += '<option value="' + data[i].operatorname + '" data-left="' + data[i].img + '">' + data[i].operatorname + '</option>';
+                        options += '<option value="' + data[i].operatorname + '" data-left="' + data[i].img + '">' + data[i].operatorname + '</option>';
 
-                }
-                $('#operatordropdownlist').append(options);
-                operatordropdownlist.classList.toggle("show");
+                    }
+                    $('#operatordropdownlist').append(options);
+                    operatordropdownlist.classList.toggle("show");
+                //}
+
+
 
             }
 
@@ -737,8 +768,8 @@
     }
 </script>
 <script>
-    $(function() {
-        $("#txtAmount").keyup(function() {
+    $(function () {
+        $("#txtAmount").keyup(function () {
             var dInput = this.value;
             var a = $('#txtAmount').attr('id');
             var mobile = $("#txtMobile").val();
@@ -757,8 +788,8 @@
 <!--Final Amount Pay-->
 
 <script>
-    $(function() {
-        $("#btnPayNow").click(function() {
+    $(function () {
+        $("#btnPayNow").click(function () {
             var Number = $("#txtMobile").val();
             var Operator = $("#txtOperator").val();
             var Circle = $("#txtCircle").val();
@@ -772,10 +803,15 @@
                     data: { 'Number': Number, 'Operator': Operator, 'Circle': Circle, 'Amount': Amount, 'Payment': Payment },
                     type: 'POST',
                     dataType: 'json',
-                    success: function(response) {
-                        
+                    success: function (response) {
+                        //if (response == null || response.data == null || response.data == "") {
+                        //    //document.getElementById("walletTblborder11").style.display = "none";
+                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        //    $("#btnNoDataFoundModel").trigger("click");
+                        //}
+
                         if (response.statuscode == "TXN") {
-                            
+
                             document.getElementById("lblMsg").innerHTML = response.message;
                             document.getElementById("heading").innerHTML = "Success";
                             document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
@@ -848,10 +884,10 @@
                         }
 
                     },
-                    failure: function(response) {
+                    failure: function (response) {
                         alert(response.responseText);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert(response.responseText);
                     }
                 });
@@ -865,33 +901,42 @@
     });
 </script>
 <script>
-function dropdownchange() {
-    var MobileNum = $("#txtMobile").val();
-    if (MobileNum.length < 10) {
-        $("#errMobile").html("Please insert 10 digits number");
-    }
-    else {
-        $.ajax({
-            type: "POST",
-            url: "/Recharge/GetOperatorList",
-            data: "{}",
-            success: function(data) {
-                $('#ul11s').html('');
-                var li = '';
-                li += '<li value="Select Operator" class="li-title options">Select Operator</li>';
-                for (var i = 0; i < data.length; i++) {
-                    $('#ul11s').html('');
-                    var id = 'myPara' + i;
-                    li += "<li class='li-title options' id='myListImage' ><img class='my-img' src='" + data[i].img1 + "'><p id='" + id + "' onclick='GetListName(this.id)'>" + data[i].operatorname + "</p></img></li>";
+    function dropdownchange() {
+        var MobileNum = $("#txtMobile").val();
+        if (MobileNum.length < 10) {
+            $("#errMobile").html("Please insert 10 digits number");
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/Recharge/GetOperatorList",
+                data: "{}",
+                success: function (data) {
+                    //if (data == null || data.data == null || data.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
+                    //else {
+                        $('#ul11s').html('');
+                        var li = '';
+                        li += '<li value="Select Operator" class="li-title options">Select Operator</li>';
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ul11s').html('');
+                            var id = 'myPara' + i;
+                            li += "<li class='li-title options' id='myListImage' ><img class='my-img' src='" + data[i].img1 + "'><p id='" + id + "' onclick='GetListName(this.id)'>" + data[i].operatorname + "</p></img></li>";
+
+                        }
+                        $('#ul11').html(li);
+                    //}
+
 
                 }
-                $('#ul11').html(li);
-            }
-        });
+            });
+        }
     }
-}
 </script>
-    <script type="text/javascript">
+<script type="text/javascript">
     function GetListName(clicked_id) {
         var list = document.getElementById("ul11");
         $("#txtOperator").val("");

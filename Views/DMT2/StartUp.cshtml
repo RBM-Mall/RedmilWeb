@@ -101,7 +101,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                              border-top: none;*/
+                                                              border-top: none;*/
     }
 
         .tabcontent .title {
@@ -192,10 +192,11 @@
         overflow: auto;
         width: 100%;
     }
+
     .div-second-plan-head1 {
-    width: 12%;
-    padding: 7px 104px;
-}
+        width: 12%;
+        padding: 7px 104px;
+    }
 
     .close_cross {
         float: right;
@@ -208,7 +209,6 @@
         color: white solid imp;
         color: lightyellow;
     }
-                                   
 </style>
 <br />
 <div class="container-fluid" style="background:#ebebeb">
@@ -235,18 +235,19 @@
     </div>
     <br />
     <div class="container" style="background-color:white;">
-        <div class="row formedia">        <div class="col-md-3 col-lg-3 col-sm-3">
-            <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" style="height:100px;width:120px;">
-        </div>
-        <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-            <p class="aval_bal" style="font-size:20px; margin-top:28px;"><b>Cash Wallet</b></p>
-        </div>
-        <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-            <p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance: <label id="lblBalance">₹ @Model.FirstOrDefault().MainBal</label></b></p>
-        </div>
-        <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-            <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
-        </div>
+        <div class="row formedia">
+            <div class="col-md-3 col-lg-3 col-sm-3">
+                <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" style="height:100px;width:120px;">
+            </div>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px; margin-top:28px;"><b>Cash Wallet</b></p>
+            </div>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance: <label id="lblBalance">₹ @Model.FirstOrDefault().MainBal</label></b></p>
+            </div>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
+            </div>
         </div>
 
     </div>
@@ -337,7 +338,7 @@
                                         </div>
                                         <div class="form-group-recharge" style="margin-left:-20px;">
                                             <input id="txtName" autocomplete="off" type="text" required="required" class="txt-input txt-input-text" placeholder="Name (as per PAN)" />
-                                           <br />
+                                            <br />
                                             <h6><span id="errtxtName" style="color:red;" class="errMsg"></span></h6>
                                         </div>
                                     </div>
@@ -518,10 +519,10 @@
     </div>
 </div>
 <script>
-    $("#btnProceed").click(function() {
+    $("#btnProceed").click(function () {
         var MobileNum = $("#txtCustomerMobile").val();
-        var valid=document.getElementById("errCustomerMobile").innerHTML
-        if (MobileNum.length == 10 && valid=="") {
+        var valid = document.getElementById("errCustomerMobile").innerHTML
+        if (MobileNum.length == 10 && valid == "") {
             document.getElementById("errCustomerMobile").innerHTML = "";
             $.ajax({
                 type: "POST",
@@ -529,7 +530,12 @@
                 data: { 'mobileNum': MobileNum },
                 type: 'POST',
                 dataType: 'json',
-                success: function(response) {
+                success: function (response) {
+                    //if (response == null) {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
                     if (response.statuscode == "SNR") {
                         $('#txtMobile').val(MobileNum);
                         $("#btnModalAddUser").trigger("click");
@@ -548,13 +554,13 @@
 
     });
 
-    $("#btnSendOTP").click(function() {
+    $("#btnSendOTP").click(function () {
         var name = $("#txtName").val();
         var mobNum = $("#txtMobile").val();
         if (name.length === 0) {
             document.getElementById("errtxtName").innerHTML = "Please Enter Name";
         }
-        else{
+        else {
             $.ajax({
                 type: "POST",
                 url: "/DMT2/SendOTP",
@@ -562,6 +568,11 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
                     if (response.statuscode == "TXN") {
                         document.getElementById("lblOTPModalNumber").innerHTML = mobNum;
                         var timeLeft = 30;
@@ -595,10 +606,10 @@
                 }
             });
         }
-        
+
     });
 
-    $("#btnResendOTP").click(function() {
+    $("#btnResendOTP").click(function () {
         var name = $("#txtName").val();
         var mobNum = $("#txtMobile").val();
 
@@ -608,7 +619,12 @@
             data: { 'mobNum': mobNum, 'name': name },
             type: 'POST',
             dataType: 'json',
-            success: function(response) {
+            success: function (response) {
+                //if (response == null || response.data == null || response.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
                 if (response.statuscode == "TXN") {
                     document.getElementById("lblOTPModalNumber").innerHTML = mobNum;
                     //$("#modalOTP").hide();
@@ -618,23 +634,23 @@
                 }
 
             },
-            failure: function(response) {
+            failure: function (response) {
                 alert(response.responseText);
             },
-            error: function(response) {
+            error: function (response) {
                 alert(response.responseText);
             }
         });
     });
 
-    $("#btnVerifyOTP").click(function() {
+    $("#btnVerifyOTP").click(function () {
         var mobnum = $("#txtMobile").val();
         var otp = $("#txtOTP").val();
         var name = $("#txtName").val();
         if (otp.length < 4) {
             document.getElementById("errtxtOTP").innerHTML = "Please Enter 4 Digits Valid OTP";
         }
-        else{
+        else {
             $.ajax({
                 type: "POST",
                 url: "/DMT2/ConfirmOTP",
@@ -642,6 +658,11 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    //if (response == null || response.data == null || response.data == "") {
+                    //    //document.getElementById("walletTblborder11").style.display = "none";
+                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                    //    $("#btnNoDataFoundModel").trigger("click");
+                    //}
                     if (response.Result = "Redirect") {
                         window.location.href = response.url;
                     }
@@ -660,35 +681,39 @@
                 }
             });
         }
-        
+
     });
 
 
-    $("#btnRecentSender").click(function() {
+    $("#btnRecentSender").click(function () {
         $.ajax({
             type: "POST",
             url: "/DMT2/RecentSenders",
             data: {},
             type: 'POST',
             dataType: 'json',
-            success: function(response) {
+            success: function (response) {
+                //if (response == null || response.data == null || response.data == "") {
+                //    //document.getElementById("walletTblborder11").style.display = "none";
+                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                //    $("#btnNoDataFoundModel").trigger("click");
+                //}
+                //else {
                 let output = response.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.senderName + "</td><td>" + i.senderMobile + "</td><td>" + i.monthlyLimit + "</td><td>" + i.usedLimit + "</td><td style='margin-top:3px;' id='id1'onclick='sendDashboard()' button class='btn-process-recharge3  btn-amount-bind2 btn-amount-bind1'>" + 'Transfer Money' + "</button></td></tr>");
-
-
                 $("#tbloutput").html(output);
                 $("#btnModalSenderDetails").trigger("click");
-
+                //}
             },
-            failure: function(response) {
+            failure: function (response) {
                 alert(response.responseText);
             },
-            error: function(response) {
+            error: function (response) {
                 alert(response.responseText);
             }
         });
     });
 
-    $("#txtCustomerMobile").keyup(function(e) {
+    $("#txtCustomerMobile").keyup(function (e) {
         var phoneno = /^(0|91)?[6-9][0-9]{9}$/;
         var MobileNum = $("#txtCustomerMobile").val();
         if (!phoneno.test(MobileNum)) {
@@ -701,8 +726,8 @@
     });
 
     function sendDashboard() {
-        $(document).ready(function() {
-            $("#myTable").on('click', '#id1', function() {
+        $(document).ready(function () {
+            $("#myTable").on('click', '#id1', function () {
                 // get the current row
                 var currentRow = $(this).closest("tr");
                 var col2 = currentRow.find("td:eq(1)").html(); // get current row 5th table cell  TD value
@@ -713,13 +738,21 @@
                     data: { 'mobileNum': col2 },
                     type: 'POST',
                     dataType: 'json',
-                    success: function(response) {
+                    success: function (response) {
+                        //if (response == null || response.data == null || response.data == "") {
+                        //    document.getElementById("walletTblborder11").style.display = "none";
+                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+                        //    $("#btnNoDataFoundModel").trigger("click");
+                        //}
+
                         window.location.href = "/DMT2Dashboard/DMTDashboard?";
+
+
                     },
-                    failure: function(response) {
+                    failure: function (response) {
                         alert(response.responseText);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert(response.responseText);
                     }
                 });

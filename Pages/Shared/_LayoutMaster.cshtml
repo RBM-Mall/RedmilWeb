@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="~/css/creative-main.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/login3-style.css" asp-append-version="true">
     <link rel="stylesheet" href="~/Slick/slick.woff" asp-append-version="true">
-     <link href="~/css/comingsoon/comingsoon.css" rel="stylesheet" />
+    @*<link href="~/css/comingsoon/comingsoon.css" rel="stylesheet" />*@
     <script src="~/js/inspect.js" asp-append-version="true"></script>
-   
+
     @*<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />*@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/js/wow.min.js" asp-append-version="true"></script>
@@ -205,49 +205,45 @@
                 }
 
 
- .cross{
-        background-color: #222;
-        width: 28px;
-        height: 28px;
-        border-radius: 14px;
-        margin: 7px;
-        border: 3px solid;
-        border-color: var(--white);
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
-        background-repeat: no-repeat;
-        background-position: 50%;
-        white-space: nowrap;
-        box-sizing: border-box;
-       top: -71px;
-    right: -16px;
-    z-index: 9;
-    cursor: pointer;
-    position: fixed;
-    }
-        
-
-
-
+        .cross {
+            background-color: #222;
+            width: 28px;
+            height: 28px;
+            border-radius: 14px;
+            margin: 7px;
+            border: 3px solid;
+            border-color: var(--white);
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            white-space: nowrap;
+            box-sizing: border-box;
+            top: -71px;
+            right: -16px;
+            z-index: 9;
+            cursor: pointer;
+            position: fixed;
+        }
     </style>
 </head>
 
 <body>
 
-   @* <div class="image-loader">
-		<div class="rect">
-			<div class="dot d_i"></div>
-			<div class="dot d_ii"></div>
-		</div>
-	</div>
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-		<defs>
-			<filter id="goo">
-				<feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-				<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -5" result="goo" />
-				<feBlend in="SourceGraphic" in2="goo" />
-			</filter>
-		</defs>
-	</svg>*@
+    @* <div class="image-loader">
+    <div class="rect">
+    <div class="dot d_i"></div>
+    <div class="dot d_ii"></div>
+    </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+    <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -5" result="goo" />
+    <feBlend in="SourceGraphic" in2="goo" />
+    </filter>
+    </defs>
+    </svg>*@
 
 
 
@@ -380,7 +376,7 @@
 
                                     </li>
                                 }
-                            }   
+                            }
                         </ul>
                         <div class="div-nav">
 
@@ -962,49 +958,75 @@
 
                 <!--Modal For Coming Soon-->
                 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ComingSoons" style="display:none" data-target="#ComingSoon" data-toggle="modal" />
-        <div id="ComingSoon" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
-                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
-                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>*@
-                    <div class="modal-body">
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                        <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            
-                        </button>
-                        </div>
-                        <div class="wrapper cns" style="margin-top:183px;width:834px;height:564px" >
-                     <h1 class="cn" >coming soon<span class="dot">.</span></h1>
-                  <p>We are preparing something exciting & amazing for you.</p>
-                  <div class="icons">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <input type="button" id="ComingSoons" style="display:none" data-target="#ComingSoon" data-toggle="modal" />
+                        <div id="ComingSoon" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
+                                    </button>*@
+                                    <div class="modal-body">
+                                        <div class="cross" aria-label="Close" data-dismiss="modal">
+                                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="wrapper cns" style="margin-top:183px;width:834px;height:564px">
+                                            <h1 class="cn">coming soon<span class="dot">.</span></h1>
+                                            <p>We are preparing something exciting & amazing for you.</p>
+                                            <div class="icons">
                                                 <a href=""><i class="fa fa-instagram"></i></a>
                                                 <a href=""><i class="fa fa-linkedin"></i></a>
                                                 <a href=""><i class="fa fa-facebook"></i></a>
-  </div>
- </div>
-                        
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                   
-
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
                 <!--End Err Modal-->
                 <!--End All Submit Open Modal-->
-
-
             </nav>
+        </div>
+        <div>
+            <!-- Modal For No Data Found-->
+
+            <input type="button" id="btnNoDataFoundModel" style="display:none" data-target="#modalNoDataFoundModel" data-toggle="modal" />
+            <div class="modal fade" id="modalNoDataFoundModel" role="dialog" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                @*<div class="modal fade" id="modalServiceComing" role="dialog">*@
+                <div class="modal-dialog" style="margin-top:100px;">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge" style="background:indianred;">
+                            <a href="/MyBusinessReports/MyBusinessReports" style="padding-top:12px;" class="close">&times;</a>
+                            <h2 style="text-align:center;color:white;"><b>ERROR</b></h2>
+                        </div>
+                        <div class="modal-body" style="background-color:white;">
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align:center">
+                                    <h4><label id="lblDataMessage"></label></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer div-pay-row">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/Home/Index" type="button" id="btnPayNow" class="no-record">
+                                        Ok
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
     <br />
@@ -1029,7 +1051,7 @@
 
                             <ul>
                                 <li><a href="">Terms &amp; Conditions</a></li>
-                                <li><p style="margin-left: -100px;cursor: pointer;"  onclick="comingsoon()">Schedule of Charges</p></li>
+                                <li><p style="margin-left: -100px;cursor: pointer;" onclick="comingsoon()">Schedule of Charges</p></li>
                                 <li><a href="">Privacy Policy</a></li>
                                 <li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>
 
@@ -1088,10 +1110,9 @@
     </footer>
     <script>
 
-        function comingsoon()
-        {
+        function comingsoon() {
             $("#ComingSoons").trigger("click");
-        
+
         }
 
 

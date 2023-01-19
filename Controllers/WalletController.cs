@@ -78,8 +78,9 @@ namespace Project_Redmil_MVC.Controllers
                                     TotalIncentives = i.TotalIncentives,
                                     BReward = i.BReward,
                                     Reward = i.Reward,
-                                    WalletAmount =Double.Parse(i.AdBal + i.MainBal),
-                                    REReward = i.REReward
+                                    WalletAmount =(i.AdBal + i.MainBal),
+                                    REReward = i.REReward,
+                                    //TotalIncentives=i.TotalIncentives
                                     //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
 
                                 });
@@ -89,7 +90,16 @@ namespace Project_Redmil_MVC.Controllers
                         }
                         catch (Exception ex)
                         {
-                            string message = ex.Message;
+                            ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                            requestModel1.ExceptionMessage = ex;
+                            requestModel1.Data = getBalanceRequestModel;
+                            var clientN1 = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                            var requestN1 = new RestRequest(Method.POST);
+                            requestN1.AddHeader("Content-Type", "application/json");
+                            var jsonN1 = JsonConvert.SerializeObject(requestModel1);
+                            requestN1.AddJsonBody(jsonN1);
+                            IRestResponse responseN1 = clientN1.Execute(requestN1);
+                            var resultN1 = responseN1.Content;
                         }
                     }
 

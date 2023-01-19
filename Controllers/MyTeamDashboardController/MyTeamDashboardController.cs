@@ -63,7 +63,7 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 }
                 else
                 {
-
+                    return RedirectToAction("ErrorHandle", "Error");
                 }
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
         }
         #region MyTeamDashboardData
         [HttpPost]
-        public JsonResult MyTeamDashboardData()
+        public IActionResult MyTeamDashboardData()
         {
             GetMyTeamMemberCountNewRequestModel req = new GetMyTeamMemberCountNewRequestModel();
             try
@@ -117,7 +117,7 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
                 }
                 else
                 {
-
+                    return RedirectToAction("ErrorHandle", "Error");
                 }
             }
             catch (Exception ex)

@@ -260,7 +260,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                         }
                         else
                         {
-
+                            return Json("");
                         }
                     }
                     return Json(getElectricityOperatorListResponseModel);

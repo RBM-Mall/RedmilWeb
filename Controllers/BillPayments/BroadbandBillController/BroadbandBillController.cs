@@ -40,7 +40,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.BroadbandBillController
 
         [HttpPost]
 
-        public IActionResult FetchBill(string Number, string Operator, string input1, string input2, string ccf, string Amount, string Payment)
+        public JsonResult FetchBill(string Number, string Operator, string input1, string input2, string ccf, string Amount, string Payment)
         {
             var baseUrl = "https://api.redmilbusinessmall.com";
             GetBroadbandOperatorListRequestModel requestModel = new GetBroadbandOperatorListRequestModel();
@@ -266,7 +266,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.BroadbandBillController
                                         requestEx.AddJsonBody(jsonEx);
                                         IRestResponse responseEx = client.Execute(requestEx);
                                         var resultEx = responseEx.Content;
-                                        return (RedirectToAction("ErrorForExceptionLog", "Error", new { message = "hi there!" }));
+                                        return Json("");
                                     }
                                 }
                                 else
@@ -299,7 +299,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.BroadbandBillController
                             requestEx.AddJsonBody(jsonEx);
                             IRestResponse responseEx = client.Execute(requestEx);
                             var resultEx = responseEx.Content;
-                            return (RedirectToAction("ErrorForExceptionLog", "Error", new { message = "hi there!" }));
+                            return Json("");
                         }
 
                     }
@@ -327,7 +327,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.BroadbandBillController
                 request.AddJsonBody(jsonEx);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                return (RedirectToAction("ErrorForExceptionLog", "Error", new { message = "hi there!" }));
+                return Json("");
             }
         }
 

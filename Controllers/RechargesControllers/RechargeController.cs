@@ -28,7 +28,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
         }
 
         [HttpPost]
-        public IActionResult PrepaidRecharge(string Number, string Operator, string Circle, string Amount, string Payment)
+        public JsonResult PrepaidRecharge(string Number, string Operator, string Circle, string Amount, string Payment)
         {
             if ((!string.IsNullOrEmpty(Number)) && (!string.IsNullOrEmpty(Operator)) && (!string.IsNullOrEmpty(Circle)) && (!string.IsNullOrEmpty(Amount)) && (!string.IsNullOrEmpty(Payment)))
             {
@@ -78,8 +78,8 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     }
                     else
                     {
-                        return (RedirectToAction("ErrorForExceptionLog","Error", new { message = "hi there!" }));
-                        //return RedirectToAction("ErrorForLogin", "Error");
+
+                        return Json("");
                     }
                     return Json(deserialize);
                 }
@@ -96,7 +96,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     request.AddJsonBody(json);
                     IRestResponse response = client.Execute(request);
                     var result = response.Content;
-                    return (RedirectToAction("ErrorForExceptionLog", "Error", new { message = "hi there!" }));
+                    return Json("");
                 }
 
 

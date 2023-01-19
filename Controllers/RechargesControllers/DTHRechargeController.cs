@@ -245,7 +245,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
 
         #region GetFirstDTHPlan For All Operator 
         [HttpPost]
-        public JsonResult GetFirstDTHPlan(string opName, string planName)
+        public IActionResult GetFirstDTHPlan(string opName, string planName)
         {
             GetDTHAllPlansRequestModel requestModel = new GetDTHAllPlansRequestModel();
             try
@@ -330,7 +330,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 }
                 else
                 {
-                    return Json("");
+                    return RedirectToAction("ErrorForNullHandle", "Error");
                 }
                 
             }
