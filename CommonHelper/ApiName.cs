@@ -83,6 +83,8 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string GetCashdepositeMode = "GetCashdepositeMode";
         public static string MakeCashDeposite = "MakeCashDeposite";
         public static string File = "FileUploading/UploadFile";
+        public static string InitiateAadharApiForDevwithoutCharge = "InitiateAadharApiForDevwithoutCharge";
+        public static string InitiateAadharApiForDevWithCharge = "InitiateAadharApiForDevWithCharge";
         //public static string transactions/report = "transactions/report";
 
 

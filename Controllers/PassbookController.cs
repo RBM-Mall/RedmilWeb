@@ -53,6 +53,7 @@ using Project_Redmil_MVC.Models.ResponseModel.GetCashDepositeResponseModel;
 using Project_Redmil_MVC.Models.RequestModel.MakeCashOutDeposite;
 using System.Linq.Expressions;
 using static Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.BeneficiaryAccountVerificationResponseModel;
+using Project_Redmil_MVC.Models.RequestModel.AadharVerificationRequestModel;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -125,7 +126,7 @@ namespace Project_Redmil_MVC.Controllers
             {
                 gdata.Add(new CashWalletRecentResponseDetailsPassbookModel
                 {
-                   // Id =  "",
+                    //Id =  "",
                     Title = "",
                     //Amount = "",
                     Detail =  "",
@@ -265,7 +266,6 @@ namespace Project_Redmil_MVC.Controllers
                             
                             Amount = 0,
                             New_bal = 0,
-                           
 
                         });
                     }
@@ -1864,6 +1864,45 @@ namespace Project_Redmil_MVC.Controllers
             var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
             return Json(deserialize);
         }
+        public JsonResult SendOtpForAadhar(string Aadhar)
+        {
+            AadharVerificationRequestModel requestModel = new AadharVerificationRequestModel();
+            requestModel.Userid= HttpContext.Session.GetString("Id").ToString();
+            requestModel.Aadhaar= Aadhar;   
+            #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("InitiateAadharApiForDevwithoutCharge", Checksum.checksumKey,
+                requestModel.Userid,requestModel.Aadhaar);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.checksum = CheckSum;
+            #endregion
+            //var client = new RestClient($"{Baseurl}{ApiName.InitiateAadharApiForDevwithoutCharge}");
+            var client = new RestClient("https://proapitest2.redmilbusinessmall.com/api/InitiateAadharApiForDevwithoutCharge");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+            var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize.Statuscode == "TXN")
+            {
+                return Json(deserialize);
+            }
+            else if (deserialize.Statuscode == "MLR")
+            {
+                return Json(deserialize);
+            }
+            else
+            {
+                return Json(deserialize);
+            }
+            return Json(deserialize);
+        }
+        public JsonResult VerifyOtpForAadhar(string OtpFOrAadhar)
+        {
+            return Json("");
+        }
 
-    }
+        }
 }
