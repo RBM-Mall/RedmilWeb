@@ -1,22 +1,427 @@
-﻿
-.nWhEP .GkeQS ._3OoXW {
+﻿.nWhEP .GkeQS ._3OoXW {
     width: 507px;
 }
+
 .heading_RedMIl {
     float: right;
     color: red;
     font-weight: 600;
 }
+
 .download_button {
     vertical-align: middle;
     padding-top: 10px;
     text-decoration: unset;
 }
+
 .tagline_image {
     background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);
     background-size: cover;
 }
+
 .partners {
     width: 228px;
 }
+
+.passbooktabs {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    color: #f1f1f1;
+    background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);
+    display: flex;
+    margin-top: 10px;
+}
+
+    /* Style the buttons inside the tab */
+    .passbooktabs button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+        /* Change background color of buttons on hover */
+        .passbooktabs button:hover {
+            background-color: #ddd;
+            color: #313142;
+        }
+
+        /* Create an active/current tablink class */
+        .passbooktabs button.active {
+            /*background-color: #5437b7;*/
+        }
+
+    .passbooktabs .tablinks {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        margin-left: 150px;
+        /*background-color: #5437b7;*/
+    }
+
+.tablinksactive {
+    letter-spacing: 2px;
+    margin-right: 25px;
+    background-color: #5437b7;
+    transition: all 0.4s ease;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 20px 12px;
+    border: 1px solid #ccc;
+    /*width: 1200px;
+                                                                                                            border-top: none;*/
+}
+
+    .tabcontent .title {
+        text-align: center;
+        padding-bottom: 80px;
+    }
+
+        .tabcontent .title h1 {
+            font-weight: 800;
+        }
+
+        .tabcontent .title .aval_bal, .cashBal {
+            margin-top: 20px;
+        }
+
+        .tabcontent .title .aval_bal, .AdvBal {
+            margin-top: -30px;
+        }
+
+        .tabcontent .title .advAval_bal, .AdvBal {
+            margin-top: -33px;
+        }
+
+    .tabcontent .item_info {
+        display: block;
+        margin-top: 50px;
+    }
+
+        .tabcontent .item_info button {
+            align-items: center;
+            background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+            background-size: calc(100% + 20px) calc(100% + 20px);
+            border-radius: 100px;
+            border-width: 0;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: CircularStd,sans-serif;
+            font-size: 1.5rem;
+            height: auto;
+            justify-content: center;
+            line-height: 1.5;
+            padding: 6px 25px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .2s,background-position .2s;
+            user-select: none;
+            margin-right: 24px;
+            float: none;
+            /*margin-top: 40px;*/
+            /*margin-left: 60px;*/
+            z-index: 1;
+        }
+
+    .tabcontent .title .item_info .rewbtn {
+        margin-left: 300px;
+    }
+
+    /*.tabcontent.item_info.btn2{
+                                                                                                                            margin-left:200px;
+                                                                                                                        }*/
+
+    .tabcontent hr {
+        margin: 93px 0 0 20px;
+        padding: 10px;
+    }
+
+    .tabcontent h3 {
+        text-align: center;
+        margin-bottom: 60px;
+        font-weight: 700;
+    }
+
+.rowaepsChooseTrasaction {
+    background: darkgray;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-radius:25px;
+}
+/*Media Query Starts for Small Smartphone*/
+@media screen and (max-width:339px) and (min-width:279px) {
+    .nWhEP .GkeQS ._3OoXW {
+        height: 310px;
+        width: auto;
+        /*background: #002970;*/
+        margin-top: -54px;
+        margin-left: -30px;
+    }
+
+    .heading_RedMIl {
+        float: right;
+        color: red;
+        font-weight: 600;
+    }
+
+    .nWhEP .GkeQS ._3OoXW h1 {
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 40px;
+    }
+
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 200px;
+        margin-bottom: 36px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    .download_button {
+        margin-left: -69px;
+        text-align: center;
+        padding-left: 12px;
+    }
+
+    .header-area .navbar-brand img {
+        /*margin-top: -65px;*/
+        width: 190px;
+    }
+
+    .passbooktabs .tablinks {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        margin-left: 2px;
+        font-size: 8px;
+        /* background-color: #5437b7; */
+    }
+
+    .heading_chooseTransaction {
+        font-weight: bold;
+        font-size: 22px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .inner_radio {
+        font-weight: 700;
+        font-size: 10px;
+        text-align: center;
+        margin-left: 5px;
+        display: inherit;
+    }
+    .btn_Proceed{
+        margin-left:90px;
+    }
+    /*Services of Index*/
+
+    /*.section-title {
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgb(0 0 0 / 20%);*/
+    /* max-width: 90%; */
+    /*padding-top: 2px;
+        padding-bottom: 2px;
+        text-align: center;
+        margin-left: 80px;
+    }*/
+}
+
+@media screen and (min-width:340px) and (max-width:399px) {
+    .nWhEP .GkeQS ._3OoXW {
+        height: 310px;
+        width: auto;
+        /*background: #002970;*/
+        margin-top: -54px;
+        margin-left: -30px;
+    }
+
+    .heading_RedMIl {
+        float: right;
+        color: red;
+        font-weight: 600;
+    }
+
+    .nWhEP .GkeQS ._3OoXW h1 {
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 40px;
+    }
+
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 300px;
+        margin-bottom: 36px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    .download_button {
+        margin-left: -51px;
+        text-align: center;
+        padding-left: 12px;
+    }
+
+    .header-area .navbar-brand img {
+        /*margin-top: 1px;*/
+        width: 265px;
+    }
+
+    .passbooktabs .tablinks {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        margin-left: 2px;
+        font-size: 10px;
+        /* background-color: #5437b7; */
+    }
+
+    .heading_chooseTransaction {
+        font-weight: bold;
+        font-size: 22px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .inner_radio {
+        font-weight: 700;
+        font-size: 10px;
+        text-align: center;
+        margin-left: 5px;
+        display: inherit;
+    }
+    .btn_Proceed {
+        margin-left: 110px;
+    }
+}
+
+@media screen and (max-width:550px) and (min-width:400px) {
+    .nWhEP .GkeQS ._3OoXW {
+        height: 310px;
+        width: auto;
+        /*background: #002970;*/
+        margin-top: -54px;
+        margin-left: -30px;
+    }
+
+    .heading_RedMIl {
+        float: right;
+        color: red;
+        font-weight: 600;
+    }
+
+    .nWhEP .GkeQS ._3OoXW h1 {
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 40px;
+    }
+
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 335px;
+        margin-bottom: 36px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    .download_button {
+        /*margin-left: -51px;*/
+        text-align: center;
+        padding-left: 12px;
+    }
+
+    .header-area .navbar-brand img {
+        /*margin-top: 1px;*/
+        width: 265px;
+    }
+
+    .passbooktabs .tablinks {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        margin-left: 2px;
+        font-size: 13px;
+        /* background-color: #5437b7; */
+    }
+
+    .heading_chooseTransaction {
+        font-weight: bold;
+        font-size: 25px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .inner_radio {
+        font-weight: 700;
+        font-size: 12px;
+        text-align: center;
+        margin-left: 5px;
+        display: inherit;
+    }
+    .btn_Proceed {
+        margin-left: 150px;
+    }
+
+}
+
+@media screen and (max-width:768px) and (min-width:551px) {
+    .passbooktabs .tablinks {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        margin-left: 2px;
+        font-size: 16px;
+        margin-left: 50px;
+        /* background-color: #5437b7; */
+    }
+
+    .heading_chooseTransaction {
+        font-weight: bold;
+        font-size: 27px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .inner_radio {
+        font-weight: 700;
+        font-size: 13px;
+        text-align: center;
+        margin-left: 5px;
+        display: inherit;
+    }
+    .btn_Proceed {
+        margin-left: 215px;
+    }
+
+}
+@media screen and (min-width:769px) {
+    .heading_chooseTransaction {
+        font-weight: bold;
+        font-size: 36px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .inner_radio {
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+        margin-left: 5px;
+        display: inherit;
+    }
+}
+
+    /*@media screen and (max-width:549px) and (min-width:423px) {
+    .modal-header-recharge {
+        margin-top: 67px;
+    }
+}*/
 

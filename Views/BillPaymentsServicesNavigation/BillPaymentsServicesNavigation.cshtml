@@ -3,8 +3,12 @@
     ViewData["Title"] = "Bill Payment Services";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
-
-<style>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+@*<style>
     .button-23:hover {
         color: white;
     }
@@ -57,7 +61,7 @@
                 .wallet_breadcumb-area ul li a {
                     color: #ffffff;
                 }
-</style>
+</style>*@
 <br />
 <br />
 <br />
@@ -68,8 +72,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center padding-bottom-30">
-            <div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 50%;padding-top: 2px;padding-bottom: 2px;">
-                <h1 style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Bill Payments Services</span></h1>
+            @*<div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;>*@
+            <div class="section-title section_title">
+                @*<h1 class="heading_services" style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>*@
+                <h1 class="heading_services"><span>Bill Payments Services</span></h1>
             </div>
         </div>
     </div>
@@ -84,11 +90,11 @@
 <div class="section services-area padding-top-bottom-60">
     <div class="container">
         <section class="customer-logos slider" data-arrows="true">
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px;">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/ElectricityBill/ElectricityBill" class="radio1" style="text-align: center;margin-left: 80px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/ElectricityBill/ElectricityBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Electricity-Bill.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -99,9 +105,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/GasBill/GasBill" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
+                        <a href="~/GasBill/GasBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border" style="border: 5px solid #2d385e;">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Gas-Bill.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -112,9 +118,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/WaterBill/WaterBill" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/WaterBill/WaterBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border" style="border: 5px solid #2d385e;">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Water-Bill.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -128,11 +134,11 @@
                 </div>
             </div>
 
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/LPGGasBill/LPGGasBill" class="radio1" style="text-align: center;margin-left: 125px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/LPGGasBill/LPGGasBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/LPG.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -143,9 +149,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/LandlineBill/LandlineBill" class="radio1" style="text-align: center;margin-left: 106px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/LandlineBill/LandlineBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Land-Line.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -156,9 +162,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/CableTVBill/CableTVBill" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/CableTVBill/CableTVBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Cable-TV.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -171,11 +177,11 @@
 
                 </div>
             </div>
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/BroadbandBill/BroadbandBill" class="radio1" style="text-align: center;margin-left: 95px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/BroadbandBill/BroadbandBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Broadband.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -186,9 +192,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="/LifeInsuranceBill/LifeInsuranceBill" class="radio1" style="text-align: center;margin-left: 5px;display: inherit;margin-top:20px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="/LifeInsuranceBill/LifeInsuranceBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Life-Insurance.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -199,9 +205,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/HealthBill/HealthBill" class="radio1" style="text-align: center;margin-left: 125px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/HealthBill/HealthBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Health-Insurance.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -214,11 +220,11 @@
                 </div>
             </div>
 
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/LoanRepaymentBill/LoanRepaymentBill" class="radio1" style="text-align: center;margin-left: 65px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                   <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/LoanRepaymentBill/LoanRepaymentBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Digital-Business-Loan.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -229,9 +235,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/CreditCardBill/CreditCardBill" class="radio1" style="text-align: center;margin-left: 5px;display:inherit;margin-top:20px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/CreditCardBill/CreditCardBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Credit-Card.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -242,9 +248,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/HospitalBill/HospitalBill" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/HospitalBill/HospitalBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Hospital.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -257,24 +263,24 @@
 
                 </div>
             </div>
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/HousingSocietyBill/HousingSocietyBill" class="radio1" style="text-align: center;margin-left: 70px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/HousingSocietyBill/HousingSocietyBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Housign-&-Society.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Hosuing Society</b>
+                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Housing Society</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/InsuranceBill/InsuranceBill" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/InsuranceBill/InsuranceBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Insurance-2.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -285,9 +291,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/MunicipialServicesBill/MunicipialServicesBill" class="radio1" style="text-align: center;margin-left: 60px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/MunicipialServicesBill/MunicipialServicesBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Municipal-Services.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -300,11 +306,11 @@
                 </div>
             </div>
 
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/MunicipialTaxesBill/MunicipialTaxesBill" class="radio1" style="text-align: center;margin-left: 70px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/MunicipialTaxesBill/MunicipialTaxesBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Municipal-Taxes.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -315,9 +321,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/SubscriptionsBill/SubscriptionsBill" class="radio1" style="text-align: center;margin-left: 80px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/SubscriptionsBill/SubscriptionsBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Subscriptions.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -328,9 +334,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="/ClubAndAssociationBill/ClubAndAssociationBill" class="radio1" style="text-align: center;margin-left: 50px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                   <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="/ClubAndAssociationBill/ClubAndAssociationBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Clubs-&-Assoiciations.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -343,11 +349,11 @@
                 </div>
             </div>
 
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/LICIndiaBill/LICIndiaBill" class="radio1" style="text-align: center;margin-left: 110px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        <a href="~/LICIndiaBill/LICIndiaBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/LIC.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
