@@ -65,7 +65,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                                 var result1 = response1.Content;
                                 if (string.IsNullOrEmpty(result1))
                                 {
-                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                 }
                                 else
                                 {
@@ -250,7 +250,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                                                 var resultN = responseN.Content;
                                                 if (string.IsNullOrEmpty(resultN))
                                                 {
-                                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                 }
                                                 else
                                                 {
@@ -273,13 +273,10 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                                                     }
                                                     else
                                                     {
-                                                        return Json("");
+                                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                     }
 
                                                 }
-
-
-
                                             }
                                             catch (Exception ex)
                                             {
@@ -293,11 +290,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                                                 requestEx.AddJsonBody(jsonEx);
                                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                                 var resultEx = responseEx.Content;
+                                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                             }
-
-                                            return Json(deserialize);
-
-
                                         }
                                         else
                                         {
@@ -314,10 +308,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                                     }
                                     else
                                     {
-                                        return Json("");
+                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                     }
                                 }
-
                             }
                             catch (Exception ex)
                             {
@@ -331,8 +324,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                                 requestEx.AddJsonBody(jsonEx);
                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                 var resultEx = responseEx.Content;
+                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
-
                         }
                         return Json(lstOperator);
                     }
@@ -342,10 +335,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -359,8 +351,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json(lstOperator);
         }
 
         #endregion
@@ -399,7 +391,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var datadeserialize = deserialize.Data;
                         var deserializeN = JsonConvert.DeserializeObject<MunicipialTaxesOperatorListResponseModel>(datadeserialize.ToString());
@@ -429,9 +421,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                     {
                         return null;
                     }
-                    
+
                 }
-                
+
 
 
             }
@@ -485,12 +477,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         return Json(deserialize);
                     }
@@ -500,11 +492,11 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -518,9 +510,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -550,12 +541,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var data = deserialize.Data;
                         var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
@@ -569,11 +560,11 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                   
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -587,8 +578,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json(lstdata);
         }
 
         #endregion
@@ -677,12 +668,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var datadeserialize = deserialize.Data;
                         var deserializeN = JsonConvert.DeserializeObject<MunicipialTaxesOperatorListResponseModel>(datadeserialize.ToString());
@@ -697,11 +688,11 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                    
+
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -715,11 +706,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.MunicipialTaxesBillControl
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-
-            return Json("");
         }
-
         #endregion
     }
 }

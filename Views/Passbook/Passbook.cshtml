@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="~/css/businessReport.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <style>
     * {
         box-sizing: border-box;
@@ -276,7 +277,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                        border-top: none;*/
+                                                            border-top: none;*/
     }
 
         .tabcontent .title {
@@ -337,8 +338,8 @@
         }
 
         /*.tabcontent.item_info.btn2{
-                                                        margin-left:200px;
-                                                    }*/
+                                                                            margin-left:200px;
+                                                                        }*/
 
         .tabcontent hr {
             margin: 93px 0 0 20px;
@@ -406,8 +407,8 @@
     .tabcontents {
         display: none;
         /* padding: 6px 12px;
-                border: 1px solid #ccc;
-                border-top: none;*/
+                                    border: 1px solid #ccc;
+                                    border-top: none;*/
         font-size: 15px;
     }
 
@@ -425,7 +426,7 @@
     .tabs {
         overflow: hidden;
         /*  border: 1px solid #ccc;
-                background-color: #f1f1f1;*/
+                                    background-color: #f1f1f1;*/
     }
 
         /* Style the buttons inside the tab */
@@ -593,7 +594,7 @@ color:green;
                 <p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE:&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
             </div>
         </div>
-        <hr/>
+        <hr />
         <div class="row" id="cashde">
             <h3>Recent Transaction Details</h3>
             <div style="overflow-x:auto;">
@@ -1141,17 +1142,17 @@ color:green;
                                 <div class="row">
                                     <div class="" style="color: #1a61d0;margin-left: 123px;font-size:24px;">
                                         Launch Your Mall
-                                    </div> 
                                     </div>
                                 </div>
-                                <div class="progress progress-striped">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:55%;">
-                                        <span>55% Complete </span>
-                                    </div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:55%;">
+                                    <span>55% Complete </span>
                                 </div>
-                                <div style="margin-top:-127px;">
-                                    <b style="margin-left: 112px;">It takes 2 mintutes of your time</b>
-                                    <div class="col-sm-6">
+                            </div>
+                            <div style="margin-top:-127px;">
+                                <b style="margin-left: 112px;">It takes 2 mintutes of your time</b>
+                                <div class="col-sm-6">
                                     <button class="button-21" style="" onclick="AdharVeri()">
                                             Complete Signup
                                             </button>
@@ -1160,13 +1161,13 @@ color:green;
                                                 <button class="button-21 LearnVideo">Learn With Video</button>
                                             </div>
                             </div>
-                            </div>
                         </div>
-                        <div class="modal-footer" style="margin-top:-40px">
+                    </div>
+                    <div class="modal-footer" style="margin-top:-40px">
                         <button type="button" onclick="okfunction()" class="button-21" data-dismiss="modal" style="margin-top: -56px;width:146px;margin-left:-109px;">
-                                <b>Ok</b>
-                            </button>
-                        </div>
+                            <b>Ok</b>
+                        </button>
+                    </div>
 
                     </div>
                 </div>
@@ -1563,7 +1564,16 @@ color:green;
             dataType: 'json',
             success: function (data) {
                 debugger;
-                if (data.statuscode == "ERR") {
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else if (data.statuscode == "ERR") {
 
                     $('#lblMsgNoData').text(data.message);
                     $("#BtnNoDatafound").trigger("click");
@@ -1607,26 +1617,34 @@ color:green;
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-
-                var response = JSON.parse(data);
-                var length = Object.keys(response.Data).length;
-                var data1 = response.Data;
-                $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
-                $("#DetailTitle").text(response.Data.Title);
-                var result = Object.entries(data1);
-                for (var i = 0; i < length; i++) {
-                    if (result[i][0] == "Logo" || result[i][0] == "Title") {
-
-
-                    }
-                    else {
-                        $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
-                    }
-
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
                 }
-                $("#Detail").trigger("click");
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else {
+                    var response = JSON.parse(data);
+                    var length = Object.keys(response.Data).length;
+                    var data1 = response.Data;
+                    $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                    $("#DetailTitle").text(response.Data.Title);
+                    var result = Object.entries(data1);
+                    for (var i = 0; i < length; i++) {
+                        if (result[i][0] == "Logo" || result[i][0] == "Title") {
 
 
+                        }
+                        else {
+                            $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                        }
+
+                    }
+                    $("#Detail").trigger("click");
+                }
             }
 
         });
@@ -1644,23 +1662,35 @@ color:green;
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                var response = JSON.parse(data);
-                var length = Object.keys(response.Data).length;
-                var data1 = response.Data;
-                $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
-                $("#DetailTitle").text(response.Data.Title);
-                var result = Object.entries(data1);
-                for (var i = 0; i < length; i++) {
-                    if (result[i][0] == "Logo" || result[i][0] == "Title") {
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else {
+                    var response = JSON.parse(data);
+                    var length = Object.keys(response.Data).length;
+                    var data1 = response.Data;
+                    $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                    $("#DetailTitle").text(response.Data.Title);
+                    var result = Object.entries(data1);
+                    for (var i = 0; i < length; i++) {
+                        if (result[i][0] == "Logo" || result[i][0] == "Title") {
 
 
+                        }
+                        else {
+                            $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                        }
+
                     }
-                    else {
-                        $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
-                    }
+                    $("#Detail").trigger("click");
 
                 }
-                $("#Detail").trigger("click");
 
 
             }
@@ -1679,38 +1709,48 @@ color:green;
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                var response = JSON.parse(data);
-                if (response.Statuscode == "ERR") {
-                    $("#BtnNoDatafound").trigger("click");
-                    $("#lblMsgNoData").text(response.Message);
-
-
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
                 }
                 else {
+                    var response = JSON.parse(data);
+                    if (response.Statuscode == "ERR") {
+                        $("#BtnNoDatafound").trigger("click");
+                        $("#lblMsgNoData").text(response.Message);
 
-                    var length = Object.keys(response.Data).length;
-
-                    var data1 = response.Data;
-                    $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
-                    $("#DetailTitle").text(response.Data.Title);
-                    var result = Object.entries(data1);
-                    for (var i = 0; i < length; i++) {
-                        if (result[i][0] == "Logo" || result[i][0] == "Title") {
-
-
-                        }
-                        else {
-                            $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
-                        }
 
                     }
-                    $("#Detail").trigger("click");
+                    else {
 
+                        var length = Object.keys(response.Data).length;
+
+                        var data1 = response.Data;
+                        $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
+                        $("#DetailTitle").text(response.Data.Title);
+                        var result = Object.entries(data1);
+                        for (var i = 0; i < length; i++) {
+                            if (result[i][0] == "Logo" || result[i][0] == "Title") {
+
+
+                            }
+                            else {
+                                $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                            }
+
+                        }
+                        $("#Detail").trigger("click");
+                    }
                 }
             }
-
         });
     }
+
     jQuery('.remove').parent().remove();
 
      $('.clse').on('click', function () {
@@ -1751,14 +1791,25 @@ color:green;
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    $('#datepicker').val("");
-                    $('#datepicker1').val("");
-                     
-                    //var dataReceipt = data;
-                    //var dataReceiptWindow = window.open(data.message);
-                    window.open(data);
-                    //dataReceiptWindow.document.write(dataReceipt);
-                    //dataReceiptWindow.print();
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else {
+                        $('#datepicker').val("");
+                        $('#datepicker1').val("");
+                        debugger;
+                        //var dataReceipt = data;
+                        //var dataReceiptWindow = window.open(data.message);
+                        window.open(data);
+                        //dataReceiptWindow.document.write(dataReceipt);
+                        //dataReceiptWindow.print();
+                    }
                 }
             });
         }
@@ -1796,14 +1847,25 @@ color:green;
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    
-                    $('#datepickerRe').val("");
-                    $('#datepickerRe1').val("");
-                    //var dataReceipt = data;
-                    //var dataReceiptWindow = window.open();
-                    //dataReceiptWindow.document.write(dataReceipt);
-                    //dataReceiptWindow.print();
-                    window.open(data);
+                    debugger;
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else {
+                        $('#datepickerRe').val("");
+                        $('#datepickerRe1').val("");
+                        //var dataReceipt = data;
+                        //var dataReceiptWindow = window.open();
+                        //dataReceiptWindow.document.write(dataReceipt);
+                        //dataReceiptWindow.print();
+                        window.open(data);
+                    }
                 }
             });
         }
@@ -1838,9 +1900,18 @@ color:green;
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                     
+                    debugger;
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
 
-                    if (data.statuscode == "ERR") {
+                    else if (data.statuscode == "ERR") {
                         $("#Advanced").hide();
                         $('#lblMsgNoData').text(data.message);
                         $('#datepickerAd').val("");
@@ -1888,9 +1959,17 @@ color:green;
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                     
-
-                    if (data.statuscode == "ERR") {
+                    debugger;
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.statuscode == "ERR") {
                         $("#Advanced").hide();
                         $('#lblMsgNoData').text(data.message);
                         $('#datepickerAd').val("");
@@ -1930,7 +2009,7 @@ color:green;
     function LaunchYourMall() {
         $('#LaunchYourModals').trigger('click');
     }
-    function AdharVeri(){
+    function AdharVeri() {
 
             $('#Addharverificaions').trigger('click');
             $('#LaunchYourModal').hide('click');

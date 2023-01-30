@@ -23,16 +23,14 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             return View();
         }
 
-        
+
+        #region RatesandRow
         public IActionResult RatesandRow(string Id,string Cat)
         {
             if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
             {
-
                 return RedirectToAction("ErrorForLogin", "Error");
-
             }
-           
             var baseUrl = "https://api.redmilbusinessmall.com";
             RatesandRoiRequestModel obj = new RatesandRoiRequestModel();
             var datainsert = new List<RatesandRoiResponseModel>();
@@ -57,33 +55,50 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var Payoutdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = Payoutdata.Data;
-                var datalist = JsonConvert.DeserializeObject<List<RatesandRoiResponseModel>>(JsonConvert.SerializeObject(data));
-                lstresponse = datalist.ToList();
-                if (!string.IsNullOrEmpty(Cat))
+                if (string.IsNullOrEmpty(result))
                 {
-                    var a = baseUrl + lstresponse.Where(x => x.Title == Cat).FirstOrDefault().ImgLink;
-                    //baseUrl + item.ImgLink
-                    return Json(a);
-
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
-                if (lstresponse != null)
+                else
                 {
-                    foreach (var item in lstresponse)
+                    var Payoutdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if(Payoutdata.Statuscode=="TXN")
                     {
-                        datainsert.Add(new RatesandRoiResponseModel
+                        var data = Payoutdata.Data;
+                        var datalist = JsonConvert.DeserializeObject<List<RatesandRoiResponseModel>>(JsonConvert.SerializeObject(data));
+                        lstresponse = datalist.ToList();
+                        if (!string.IsNullOrEmpty(Cat))
                         {
-                            Id = item.Id,
-                            Title = item.Title,
-                            ImgLink = baseUrl + item.ImgLink
-                        });
+                            var a = baseUrl + lstresponse.Where(x => x.Title == Cat).FirstOrDefault().ImgLink;
+                            //baseUrl + item.ImgLink
+                            return Json(a);
+
+                        }
+                        if (lstresponse != null)
+                        {
+                            foreach (var item in lstresponse)
+                            {
+                                datainsert.Add(new RatesandRoiResponseModel
+                                {
+                                    Id = item.Id,
+                                    Title = item.Title,
+                                    ImgLink = baseUrl + item.ImgLink
+                                });
+                            }
+                            return View(datainsert);
+
+                        }
+                        return View(lstresponse);
                     }
-                    return View(datainsert);
-
+                    else if(Payoutdata.Statuscode == "ERR")
+                    {
+                        return View(lstresponse);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
-                return View(lstresponse);
-
             }
             catch (Exception ex)
             {
@@ -97,8 +112,9 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return Json("");
         }
+        #endregion
     }
 }

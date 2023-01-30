@@ -6,6 +6,7 @@
 }
 <h1>PayoutCommision</h1>
 <link rel="stylesheet" href="~/css/businessReport.css" />
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <style>
     .form-control {
         padding-left: 32px;
@@ -99,12 +100,16 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    //if (response == null || response.data == null || response.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    //else {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
                         $('#SId').html('');
                         var options = '';
 
@@ -115,7 +120,7 @@
                         }
                         $('#SId').append(options);
 
-                    //}
+                    }
 
                 }
             });
@@ -135,16 +140,20 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
-                //else {
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
                     var ar = response[0].imgLing;
                     window.open(ar);
                     /* $('a[href$="ar"]').attr('target', '_blank');*/
-                //}
+                }
 
 
             }

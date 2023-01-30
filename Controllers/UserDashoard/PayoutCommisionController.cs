@@ -34,7 +34,7 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
 
 
         }
-
+        #region PayoutCommision
         public List<PayOutCommisionResponseModel> PayoutCommision()
         {
 
@@ -78,7 +78,9 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             }
             return lstresponse;
         }
+        #endregion
 
+        #region SubCategoryPayOutCommision
         [HttpPost]
         public JsonResult SubCategoryPayOutCommision(string Category, string SubCategory)
          {
@@ -104,32 +106,52 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var subpayoutdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = subpayoutdata.Data;
-                if ((!string.IsNullOrEmpty(SubCategory) && int.Parse(SubCategory) > 0))
+                if (string.IsNullOrEmpty(result))
                 {
-                    var datalist = JsonConvert.DeserializeObject<List<PcSubcateResponse>>(JsonConvert.SerializeObject(data));
-                    var lstResponse = datalist.Where(x => x.Id == int.Parse(SubCategory));
-                    if (lstResponse != null)
-                    {
-
-                        foreach (var item in lstResponse)
-                        {
-                            subCatData1.Add(new PcSubcateResponse
-                            {
-                                ImgLing = baseUrl + item.ImgLing
-                            });
-                        }
-                    }
-
-                    return Json(subCatData1);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    var datalist = JsonConvert.DeserializeObject<List<PcSubcateResponse>>(JsonConvert.SerializeObject(data));
-                    List<PcSubcateResponse> lstResponse = datalist.Where(x => x.CategoryId == int.Parse(Category)).ToList();
-                    return Json(lstResponse);
+                    var subpayoutdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (subpayoutdata.Statuscode == "TXN")
+                    {
+                        var data = subpayoutdata.Data;
+                        if ((!string.IsNullOrEmpty(SubCategory) && int.Parse(SubCategory) > 0))
+                        {
+                            var datalist = JsonConvert.DeserializeObject<List<PcSubcateResponse>>(JsonConvert.SerializeObject(data));
+                            var lstResponse = datalist.Where(x => x.Id == int.Parse(SubCategory));
+                            if (lstResponse != null)
+                            {
+
+                                foreach (var item in lstResponse)
+                                {
+                                    subCatData1.Add(new PcSubcateResponse
+                                    {
+                                        ImgLing = baseUrl + item.ImgLing
+                                    });
+                                }
+                            }
+
+                            return Json(subCatData1);
+                        }
+                        else
+                        {
+                            var datalist = JsonConvert.DeserializeObject<List<PcSubcateResponse>>(JsonConvert.SerializeObject(data));
+                            List<PcSubcateResponse> lstResponse = datalist.Where(x => x.CategoryId == int.Parse(Category)).ToList();
+                            return Json(lstResponse);
+                        }
+                    }
+                    else if (subpayoutdata.Statuscode == "ERR")
+                    {
+                        return Json(subpayoutdata);    
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                    
                 }
+                
 
             }
             catch (Exception ex)
@@ -144,13 +166,11 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
-
         }
+        #endregion
 
-      
         public IActionResult Index()
         {
             return View();

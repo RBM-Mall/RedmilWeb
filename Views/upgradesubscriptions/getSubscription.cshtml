@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 
     @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" />*@
     @*<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css' />*@
@@ -521,15 +522,19 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    //if (response == null || response.data == null || response.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    //else {
-                    var ar = response;
-                    window.open(ar);
-                    //}
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
 
                 }
             });
@@ -562,19 +567,32 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    var datas = data.addOn;
-                    var st = "";
-                    let i = 0;
-                    $.each(datas, function (index) {
-                        st += "<tr class='hidetd'><td><img src='" + datas[index].icon + "' class='mg - width' style='height: 103px;width: 487px;'></td>";
-                        st += "<td style='font-size:14px;padding: 8px;'>" + datas[index].desc + "</td>";
-                        st += "<td class='b'>" + "<div class='numbers'><input type='text' class='txtchange' id='txtchange" + (i + 1) + "' value='Add' readonly/><span class='plus' id='plus" + (i + 1) + "' onclick='foradd(this)'>+</span><input type='text' class='txtchange' id='txtchanges" + (i + 1) + "' value='Added' readonly/ style='display:none'><span class='minus' id='minus" + (i + 1) + "' style='display:none;' onclick='forminus(this)'> - </span></div>" + "</td>";
-                        st += "<td><span id='price" + (i + 1) + "'>" + 'Rs.' + datas[index].price + "</span></td>";
-                        st += "<td id='itemName" + (i + 1) + "'>" + datas[index].itemName + "</td>";
-                        st += "<td style='display:none'>" + datas[index].Id + "</td></tr>";
-                        i++;
-                    });
-                    $("#tbl_data").html(st);
+                    if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else {
+                        var datas = data.addOn;
+                        var st = "";
+                        let i = 0;
+                        $.each(datas, function (index) {
+                            st += "<tr class='hidetd'><td><img src='" + datas[index].icon + "' class='mg - width' style='height: 103px;width: 487px;'></td>";
+                            st += "<td style='font-size:14px;padding: 8px;'>" + datas[index].desc + "</td>";
+                            st += "<td class='b'>" + "<div class='numbers'><input type='text' class='txtchange' id='txtchange" + (i + 1) + "' value='Add' readonly/><span class='plus' id='plus" + (i + 1) + "' onclick='foradd(this)'>+</span><input type='text' class='txtchange' id='txtchanges" + (i + 1) + "' value='Added' readonly/ style='display:none'><span class='minus' id='minus" + (i + 1) + "' style='display:none;' onclick='forminus(this)'> - </span></div>" + "</td>";
+                            st += "<td><span id='price" + (i + 1) + "'>" + 'Rs.' + datas[index].price + "</span></td>";
+                            st += "<td id='itemName" + (i + 1) + "'>" + datas[index].itemName + "</td>";
+                            st += "<td style='display:none'>" + datas[index].Id + "</td></tr>";
+                            i++;
+                        });
+                        $("#tbl_data").html(st);
+                    }
+
+
                 }
             });
         }
@@ -599,48 +617,55 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (data) {
-                        //if (data == null || data.data == null || data.data == "") {
-                        //    //document.getElementById("walletTblborder11").style.display = "none";
-                        //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        //    $("#btnNoDataFoundModel").trigger("click");
-                        //}
-                        debugger;
-                        var counter;
-                        if (data.statuscode == "ERR") {
-                            //ModalForCoupan
-                            $("#ModalForCoupan").trigger("click");
-                            $("#lblMsgcoupans").text(data.message);
-                            //swal({
-                            //    title: "Oops!",
-                            //    text: "You clicked the button!",
-                            //    icon: "error",
-                            //});
+                        if (data.result == "EmptyResult") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "UnExpectedStatusCode") {
+                        window.location.href = data.url;
+                    }
+                    else if (data.result == "RedirectToException") {
+                        window.location.href = data.url;
+                    }
+                    else{
+                            debugger;
+                            var counter;
+                            if (data.statuscode == "ERR") {
+                                //ModalForCoupan
+                                $("#ModalForCoupan").trigger("click");
+                                $("#lblMsgcoupans").text(data.message);
+                                //swal({
+                                //    title: "Oops!",
+                                //    text: "You clicked the button!",
+                                //    icon: "error",
+                                //});
 
-                        }
-                        else if (data[0].statuscode = "TXN") {
-                            d = data[0].discountedAmount;
-                            /* var sumtotal = $('#showprice').val();*/
-                            var sumtotal = $('#showprice').html();
-                            Total = sumtotal - d;
-                            var pln = plans;
-                            var d = data[0].discountedAmount;
-                            $('.DA').text(d);
-                            $('.fp').text(pln);
-                            $('.BA').text(sumtotal);
-                            $('.Total').text(Total);
-                            $(".bbtn").text("Applied");
-                            $(".bbtn").css("color", "Green");
-                            $(".bbtn").prop('disabled', true);
-                            $("input").prop('disabled', true);
-                            /*$('#showprice').hide()*/
-                            //$('.btn1').hide();
-                            //$('.btn2').show();
-                            $('#showprice').text(Total);
-                            $('#btnTest').text(Total);
+                            }
+                            else if (data[0].statuscode = "TXN") {
+                                d = data[0].discountedAmount;
+                                /* var sumtotal = $('#showprice').val();*/
+                                var sumtotal = $('#showprice').html();
+                                Total = sumtotal - d;
+                                var pln = plans;
+                                var d = data[0].discountedAmount;
+                                $('.DA').text(d);
+                                $('.fp').text(pln);
+                                $('.BA').text(sumtotal);
+                                $('.Total').text(Total);
+                                $(".bbtn").text("Applied");
+                                $(".bbtn").css("color", "Green");
+                                $(".bbtn").prop('disabled', true);
+                                $("input").prop('disabled', true);
+                                /*$('#showprice').hide()*/
+                                //$('.btn1').hide();
+                                //$('.btn2').show();
+                                $('#showprice').text(Total);
+                                $('#btnTest').text(Total);
 
-                            $("#ApplyCoupan").trigger("click");
-                        }
+                                $("#ApplyCoupan").trigger("click");
+                            }
 
+                    }
+                        
 
                     }
                 });

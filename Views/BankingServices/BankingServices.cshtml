@@ -6,7 +6,9 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
-<style>
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+@*<style>
     .button-23:hover {
         color: white;
     }
@@ -58,7 +60,7 @@
                 .wallet_breadcumb-area ul li a {
                     color: #ffffff;
                 }
-</style>
+</style>*@
 <br />
 <br />
 <br />
@@ -68,8 +70,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center padding-bottom-30">
-            <div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;">
-                <h1 style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>
+            @*<div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;>*@
+            <div class="section-title section_title">
+                @*<h1 class="heading_services" style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>*@
+                <h1 class="heading_services"><span>Banking Services</span></h1>
             </div>
         </div>
     </div>
@@ -84,12 +88,16 @@
 <div class="section services-area padding-top-bottom-60">
     <div class="container">
         <section class="customer-logos slider" data-arrows="true">
-            <div class="row " id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px;">
+            @*<div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px;">*@
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px; margin-top: 20px;">
-                        <a href="~/Aeps/AEPS" class="radio1" style="text-align: center;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    @*<div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px; margin-top: 20px;">*@
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                        @*<a href="~/Aeps/AEPS" class="radio1" style="text-align: center;">*@
+                        <a href="~/Aeps/AEPS" class="radio1 radio1_center">
+                            @*<div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">*@
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner slide">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/AEPS.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -99,9 +107,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    @*<div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">*@
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner slide">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/DMT-Yes-Bank.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -111,9 +120,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                        <a href="~/DMT2/StartUp" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                    @*<div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">*@
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="minStatement">
+                        <a href="~/DMT2/StartUp" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner slide">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/DMT-2.0.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -125,11 +135,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Micro-ATM.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -139,9 +149,9 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/UPI-CashWithdrawal.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -151,9 +161,9 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="minStatement">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Savings-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -165,11 +175,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 70px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Salaried-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -179,9 +189,9 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 5px;display: inherit;margin-top:20px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Individual-Current-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -191,9 +201,9 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="minStatement">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 70px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Current-Account.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -205,11 +215,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Credit-Card-2.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -220,9 +230,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 5px;display:inherit;margin-top:20px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Buy-Now-Pay-Later.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -233,9 +243,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="minStatement">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/EMI-Cards.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
@@ -248,11 +258,11 @@
 
                 </div>
             </div>
-            <div class="row" id="aepsChooseTrasaction" style="margin-left:96px;margin-top:25px">
+            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="cashWithdrawal" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 70px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Cash-Collection.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
@@ -263,9 +273,9 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="balanceEnquiry" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 15px;margin-top:20px;">
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Credit-Crad-Bill-Payment.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
@@ -276,10 +286,10 @@
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
+                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="minStatement">
                         <a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">
                             @*<a data-target="#modalServiceComing" data-toggle="modal" class="radio1" style="text-align: center;margin-left: 100px;">*@
-                            <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
                                         <img src="/css/Img_IconForNavigation/Rent-Payment.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">

@@ -20,6 +20,8 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
         {
             return View();
         }
+
+        #region OrderBrandingDevice
         public IActionResult OrderBrandingDevice()
         {
            
@@ -48,40 +50,57 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                     request.AddHeader("Content-Type", "application/json");
                     IRestResponse response = client.Execute(request);
                     var result = response.Content;
-                    var Orderbranddata = JsonConvert.DeserializeObject<OrderBrandingBaseResponseModel>(result);
-                    var data = Orderbranddata.Materials;
-                    var datalist = JsonConvert.DeserializeObject<List<OrderBrandingResponseModel>>(JsonConvert.SerializeObject(data));
-                    lstresponse = datalist.ToList();
-                    //    if (!string.IsNullOrEmpty(Cat))
-                    //    {
-                    //        var a = baseUrl + lstresponse.Where(x => x.Title == Cat).FirstOrDefault().ImgLink;
-                    //        //baseUrl + item.ImgLink
-                    //        return Json(a);
-
-                    //}
-                    if (lstresponse != null)
+                    if (string.IsNullOrEmpty(result))
                     {
-                        foreach (var item in lstresponse)
-                        {
-                            datainsert.Add(new OrderBrandingResponseModel
-                            {
-                                Id = item.Id,
-                                MaterialName = item.MaterialName,
-                                SOrder = item.SOrder,
-                                Usage = item.Usage,
-                                Amount = item.Amount,
-                                MaterialType = item.MaterialType,
-                                ImgSample = baseUrl + item.ImgSample,
-                                ImgThumbnail = baseUrl + item.ImgThumbnail
-
-                            });
-                        }
-
-                        return View(datainsert);
-
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
                     }
-                    return View(lstresponse);
+                    else
+                    {
+                        var Orderbranddata = JsonConvert.DeserializeObject<OrderBrandingBaseResponseModel>(result);
+                        if(Orderbranddata.Statuscode=="TXN" && Orderbranddata != null)
+                        {
+                            var data = Orderbranddata.Materials;
+                            var datalist = JsonConvert.DeserializeObject<List<OrderBrandingResponseModel>>(JsonConvert.SerializeObject(data));
+                            lstresponse = datalist.ToList();
+                            //    if (!string.IsNullOrEmpty(Cat))
+                            //    {
+                            //        var a = baseUrl + lstresponse.Where(x => x.Title == Cat).FirstOrDefault().ImgLink;
+                            //        //baseUrl + item.ImgLink
+                            //        return Json(a);
 
+                            //}
+                            if (lstresponse != null)
+                            {
+                                foreach (var item in lstresponse)
+                                {
+                                    datainsert.Add(new OrderBrandingResponseModel
+                                    {
+                                        Id = item.Id,
+                                        MaterialName = item.MaterialName,
+                                        SOrder = item.SOrder,
+                                        Usage = item.Usage,
+                                        Amount = item.Amount,
+                                        MaterialType = item.MaterialType,
+                                        ImgSample = baseUrl + item.ImgSample,
+                                        ImgThumbnail = baseUrl + item.ImgThumbnail
+
+                                    });
+                                }
+
+                                return View(datainsert);
+
+                            }
+                            return View(lstresponse);
+                        }
+                        else if (Orderbranddata.Statuscode == "ERR")
+                        {
+                            return View(lstresponse);
+                        }
+                        else
+                        {
+                            return RedirectToAction("ErrorForExceptionLog", "Error");
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -95,12 +114,13 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                     request.AddJsonBody(json);
                     IRestResponse response = client.Execute(request);
                     var result = response.Content;
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
-
-
             }
-            return View();
         }
+
+        #endregion
+
         [HttpPost]
         public JsonResult  OrdeBrandingDevice()
         {

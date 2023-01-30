@@ -6,8 +6,17 @@
     ViewData["Title"] = "Aadhaar ATM";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
+@*<link href="~/ResponsiveCSS/Aeps.css" rel="stylesheet" />*@
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <style>
+    .col-spaced {
+        margin-left: 15px;
+        margin-right: 10px;
+    }
+</style>
+@*<style>
 
     .button-23:hover {
         color: white;
@@ -98,8 +107,8 @@
         overflow: hidden;
         transition: max-height 0.2s ease-out;
     }
-</style>
-<style>
+</style>*@
+@*<style>
 
     .img1 {
         display: flex;
@@ -357,7 +366,7 @@
         color: lightyellow;
     }
 
-</style>
+</style>*@
 @*<br />
 <br />
 <br />
@@ -395,27 +404,33 @@
             <div class="col-md-3 col-lg-3 col-sm-3">
                 <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" style="height:100px;width:120px;">
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                <p class="aval_bal" style="font-size:20px; margin-top:28px;"><b>Cash Wallet</b></p>
+            <div class="col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                @*<p class="aval_bal" style="font-size:20px; margin-top:28px;"><b>Cash Wallet</b></p>*@
+                <p class="aval_bal aval_bal_font"><b>Cash Wallet</b></p>
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                <p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance: <label id="lblBalance">₹ @ViewBag.Balance</label></b></p>
+            <div class="col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                @*<p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance: <label id="lblBalance">₹ @ViewBag.Balance</label></b></p>*@
+                <p class="aval_bal aval_bal_font"><b>Available Balance: <label id="lblBalance">₹ @ViewBag.Balance</label></b></p>
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
+            <div class="col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                @*<p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>*@
+                <p class="aval_bal aval_bal_font"><button class="button-21"> Add Money</button></p>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="passbooktabs">
             <div class="col-md-4">
-                <button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>
+                @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>*@
+                <button class="tablinks" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>
             </div>
             <div class="col-md-4">
-                <button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'Commission')">COMMISSION</button>
+                @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'Commission')">COMMISSION</button>*@
+                <button class="tablinks" onclick="openPassbook(event,'Commission')">COMMISSION</button>
             </div>
             <div class="col-md-4">
-                <button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>
+                @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>*@
+                <button class="tablinks" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>
             </div>
         </div>
     </div>
@@ -450,7 +465,8 @@
     <div class="section single-services-area">
         <div class="row" style="margin-right: 0;">
             <div class="col col-md-12 col-sm-12 col-lg-12">
-                <img src="/img/img_devices/harbhajan-Banner.png" style="width:100%;height:400px" alt="Norway" />
+                @*<img src="/img/img_devices/harbhajan-Banner.png" style="width:100%;height:400px" alt="Norway" />*@
+                <img src="/img/img_devices/harbhajan-Banner.png" style="width:100%;" alt="Norway" />
             </div>
         </div>
     </div>
@@ -463,8 +479,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center padding-bottom-30">
-            <div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);  max-width: 20%;">
-                <h1 style="padding: 10px; font-weight: 800; color: #2d385e;"><span>AEPS</span></h1>
+            @*<div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;>*@
+            <div class="section-title section_title">
+                @*<h1 class="heading_services" style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>*@
+                <h1 class="heading_services"><span>AEPS</span></h1>
             </div>
         </div>
     </div>
@@ -479,61 +497,72 @@
 
 <div class="section services-area padding-top-bottom-60">
     <div class="container">
-        <h1 class="transaction center" style="font-weight: 800; color: #2d385e; text-align: center; margin-bottom: 50px;">Choose Transaction</h1>
-        <div class="row" id="aepsChooseTrasaction" style="margin-left:96px">
+        @*<h1 class="transaction center" style="font-weight: 800; color: #2d385e; text-align: center; margin-bottom: 50px;">Choose Transaction</h1>*@
+        <h1 class="transaction center heading_chooseTransaction">Choose Transaction</h1>
+        @*<div class="row" id="aepsChooseTrasaction" style="margin-left:96px">*@
+        <div class="row rowaepsChooseTrasaction" id="aepsChooseTrasaction">
 
-            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
-                <div class="wallet-box bg-wt-round radio1" type="radio" id="cashWithdrawal" style="border: 5px solid #2d385e;">
-                    <div class="inner">
-                        <div class="advantage-images">
-                            <img src="/img/img_devices/CASH.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
-                        </div>
-                        <input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b><!--0 For True and 1 for False-->
-                        @*<p class="text-center"><b>₹ 45922.178</b></p>*@
-                        @* <input type="radio" class="radio1" asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;">Cash Withdrawal</b>*@
-                        @*<input asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b>*@
-                        @*<input type="button" id="btntesttst" onclick="CaptureFinger(60, 10)" value="Button Test" />*@
+            @*<div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">*@
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
-                <div class="wallet-box bg-wt-round " style="border: 5px solid #2d385e;">
-
-                    <div class="inner">
-                        <div class="advantage-images">
-                            <img src="/img/img_devices/BALANCE.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
-                        </div>
-                        <input type="radio" class="radio1" name="test" id="rdbbalanceEnquiry" value="Balance Enquiry"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Balance Enquiry</b><!--0 For True and 1 for False-->
-                        @*<p class="text-center"><b>₹ 3486.67</b></p>*@
-                        @*<input class="radio1" asp-for="Balance Enquiry" value="Balance Enquiry" type="radio" id="balanceEnquiry" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Balance Enquiry</b>*@
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-6 col-xs-6 radio1" type="radio" id="minStatement" style="width:350px; cursor: pointer; padding-right: 20px;">
-                <div class="wallet-box bg-wt-round" style="border: 5px solid #2d385e;">
-                    <div class="radio1" type="radio" id="balanceEnquiry">
+            <div class="col-md-4 col-sm-4 col-4 col-xs-4 divrowaepsChooseTrasaction">
+                <div class="col-spaced">
+                    @*<div class="wallet-box bg-wt-round radio1" type="radio" id="cashWithdrawal" style="border: 5px solid #2d385e;">*@
+                    <div class="wallet-box bg-wt-round radio1 div_radio" type="radio" id="cashWithdrawal">
                         <div class="inner">
                             <div class="advantage-images">
-                                <img src="/img/img_devices/MINI-STATEMENT.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                <img src="/img/img_devices/CASH.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
                             </div>
-                            @*<p class="text-center"><b>₹ 1467.122</b></p>*@
-                            <input type="radio" class="radio1" name="test" id="rdbminiStatement" value="Mini Statement"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Mini Statement</b><!--0 For True and 1 for False-->
-                            @*<input class="radio1" type="radio" id="miniStatement" asp-for="Mini Statement" value="Mini Statement" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Mini Statement</b>*@
+                            @*<input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b><!--0 For True and 1 for False-->*@
+                            <input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal"><b class="inner_radio">Cash Withdrawal</b><!--0 For True and 1 for False-->
+                            @*<p class="text-center"><b>₹ 45922.178</b></p>*@
+                            @* <input type="radio" class="radio1" asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;">Cash Withdrawal</b>*@
+                            @*<input asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b>*@
+                            @*<input type="button" id="btntesttst" onclick="CaptureFinger(60, 10)" value="Button Test" />*@
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-4 col-xs-4 divrowaepsChooseTrasaction">
+                <div class="col-spaced">
+                    <div class="wallet-box bg-wt-round radio1 div_radio" type="radio" id="cashWithdrawal">
+                        <div class="inner">
+                            <div class="advantage-images">
+                                <img src="/img/img_devices/BALANCE.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                            </div>
+                            <input type="radio" class="radio1" name="test" id="rdbbalanceEnquiry" value="Balance Enquiry"><b class="inner_radio">Balance Enquiry</b><!--0 For True and 1 for False-->
+                            @*<p class="text-center"><b>₹ 3486.67</b></p>*@
+                            @*<input class="radio1" asp-for="Balance Enquiry" value="Balance Enquiry" type="radio" id="balanceEnquiry" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Balance Enquiry</b>*@
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-md-4 col-sm-4 col-4 col-xs-4 divrowaepsChooseTrasaction">
+                <div class="col-spaced">
+                    <div class="wallet-box bg-wt-round radio1 div_radio" type="radio" id="cashWithdrawal">
+                        <div class="radio1" type="radio" id="balanceEnquiry">
+                            <div class="inner">
+                                <div class="advantage-images">
+                                    <img src="/img/img_devices/MINI-STATEMENT.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                </div>
+                                @*<p class="text-center"><b>₹ 1467.122</b></p>*@
+                                <input type="radio" class="radio1" name="test" id="rdbminiStatement" value="Mini Statement"><b class="inner_radio">Mini Statement</b><!--0 For True and 1 for False-->
+                                @*<input class="radio1" type="radio" id="miniStatement" asp-for="Mini Statement" value="Mini Statement" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Mini Statement</b>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12" style="text-align:center;">
-
                 <h3><span id="walletMode" class="text-danger font-weight-bold"></span></h3>
             </div>
         </div>
-        <button class="button-21 text-center" id="btnTransaction" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>
+        <button class="button-21 text-center btn_Proceed" id="btnTransaction">Proceed</button>
         @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>VerifyFaceBiometricModal*@
 
     </div>
@@ -1119,11 +1148,21 @@
                 success: function (response) {
                     //for (Data1.result == 'Redirect') {
                     //let output = response.map(i => "<div id='choosBank'>" + i.choosBank + "</div>");
-
-                    document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
-                    document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
-                    document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
-                    $("#btnChooseBankModal").trigger("click");
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
+                        document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
+                        document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
+                        $("#btnChooseBankModal").trigger("click");
+                    }
                     //$("#deviceModal").hide();
                     //window.location = response.url;
                     // }

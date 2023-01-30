@@ -41,6 +41,8 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             }
             return View();
         }
+
+
         #region getSubscription
         public IActionResult getSubscription(string foropenpdf, string showplan, string showprice)
         {
@@ -77,119 +79,139 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var dataAddOn = JsonConvert.DeserializeObject<GetSubscriptionPlanBaseResponseModel>(result);
-                var data = dataAddOn.Data;
-                var data1 = dataAddOn.AddOn;
-                var datalist = JsonConvert.DeserializeObject<List<UpgradeSubscriptionDatumResponseModel>>(JsonConvert.SerializeObject(data));
-                lstDataAddon = JsonConvert.DeserializeObject<List<UpgradeSubscriptionAddOnResponseModel>>(JsonConvert.SerializeObject(data1));
-                concatemodels con1 = new concatemodels()
+                if (string.IsNullOrEmpty(result))
                 {
-                    addOn = datainsert1,
-
-                };
-                if (!string.IsNullOrEmpty(showplan) && !string.IsNullOrEmpty(showprice))
-                {
-                    var planName = Split(showplan);
-                    lstDataAddon = lstDataAddon.Where(x => x.PlanName == planName).ToList();
-                    if (lstDataAddon != null)
-                    {
-                        foreach (var item in lstDataAddon)
-                        {
-                            datainsert1.Add(new UpgradeSubscriptionAddOnResponseModel
-                            {
-                                Id = item.Id,
-                                PlanName = item.PlanName,
-                                Price = item.Price,
-                                PlanType = item.PlanType,
-                                Icon = baseUrl + item.Icon,
-                                Desc = item.Desc,
-                                ItemName = item.ItemName,
-                                PlanId = item.PlanId
-                            });
-                        }
-                        return Json(con1); ;
-                        //return View();
-                    }
-                }
-                lstResponse = datalist.ToList();
-                string Subscribed = "";
-                var a111 = string.Empty;
-                List<GetUserSubscriptionDetailsResponseModel> lsassa = new List<GetUserSubscriptionDetailsResponseModel>();
-                lsassa = GetUserSubscriptionDetails();
-                if (lsassa.Count > 0)
-                {
-                    var a1 = lstResponse.Where(x => x.PlanName.Equals(lsassa.FirstOrDefault().PlanName));
-                    a111 = a1.FirstOrDefault().PlanName;
-
-                    //con.DataumModel.AddRange(lstResponse);
-                    if (!string.IsNullOrEmpty(foropenpdf))
-                    {
-                        var a = baseUrl + lstResponse.Where(x => x.PlanName == foropenpdf).FirstOrDefault().SampleImg;
-                        //baseUrl + item.ImgLink
-                        return Json(a);
-                    }
-                    //double GS,TotaL;
-                    if (lstResponse != null)
-                    {
-                        foreach (var item in lstResponse)
-                        {
-                            datainsert.Add(new UpgradeSubscriptionDatumResponseModel
-                            {
-
-                                Id = item.Id,
-                                PlanName = item.PlanName,
-                                Price = item.Price,
-                                GST = Math.Round((item.Price * 18) / 100),
-                                Total = (item.Price + Math.Round((item.Price * 18) / 100)),
-                                Status = item.Status,
-                                Img = baseUrl + item.Img,
-                                PlanType = item.PlanType,
-                                SampleImg = baseUrl + item.SampleImg,
-                                Subscribed = Subscribed,
-
-                            });
-                        }
-
-
-
-                        datainsert.Where(x => x.PlanName == a111).FirstOrDefault().Subscribed = "Subscribed";
-                        //con.DataumModel.AddRange(lstResponse);
-                        concatemodels con2 = new concatemodels()
-                        {
-                            DataumModel = datainsert
-                        };
-                        return View(con2);
-
-                    }
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
-                    foreach (var item in lstResponse)
+                    var dataAddOn = JsonConvert.DeserializeObject<GetSubscriptionPlanBaseResponseModel>(result);
+                    if (dataAddOn.Statuscode == "TXN")
                     {
-                        datainsert.Add(new UpgradeSubscriptionDatumResponseModel
+                        var data = dataAddOn.Data;
+                        var data1 = dataAddOn.AddOn;
+                        var datalist = JsonConvert.DeserializeObject<List<UpgradeSubscriptionDatumResponseModel>>(JsonConvert.SerializeObject(data));
+                        lstDataAddon = JsonConvert.DeserializeObject<List<UpgradeSubscriptionAddOnResponseModel>>(JsonConvert.SerializeObject(data1));
+                        concatemodels con1 = new concatemodels()
                         {
+                            addOn = datainsert1,
 
-                            Id = item.Id,
-                            PlanName = item.PlanName,
-                            Price = item.Price,
-                            GST = Math.Round((item.Price * 18) / 100),
-                            Total = (item.Price + Math.Round((item.Price * 18) / 100)),
-                            Status = item.Status,
-                            Img = baseUrl + item.Img,
-                            PlanType = item.PlanType,
-                            SampleImg = baseUrl + item.SampleImg,
-                            Subscribed = Subscribed,
+                        };
+                        if (!string.IsNullOrEmpty(showplan) && !string.IsNullOrEmpty(showprice))
+                        {
+                            var planName = Split(showplan);
+                            lstDataAddon = lstDataAddon.Where(x => x.PlanName == planName).ToList();
+                            if (lstDataAddon != null)
+                            {
+                                foreach (var item in lstDataAddon)
+                                {
+                                    datainsert1.Add(new UpgradeSubscriptionAddOnResponseModel
+                                    {
+                                        Id = item.Id,
+                                        PlanName = item.PlanName,
+                                        Price = item.Price,
+                                        PlanType = item.PlanType,
+                                        Icon = baseUrl + item.Icon,
+                                        Desc = item.Desc,
+                                        ItemName = item.ItemName,
+                                        PlanId = item.PlanId
+                                    });
+                                }
+                                return Json(con1); ;
+                                //return View();
+                            }
+                        }
+                        lstResponse = datalist.ToList();
+                        string Subscribed = "";
+                        var a111 = string.Empty;
+                        List<GetUserSubscriptionDetailsResponseModel> lsassa = new List<GetUserSubscriptionDetailsResponseModel>();
+                        lsassa = GetUserSubscriptionDetails();
+                        if (lsassa.Count > 0)
+                        {
+                            var a1 = lstResponse.Where(x => x.PlanName.Equals(lsassa.FirstOrDefault().PlanName));
+                            a111 = a1.FirstOrDefault().PlanName;
 
-                        });
+                            //con.DataumModel.AddRange(lstResponse);
+                            if (!string.IsNullOrEmpty(foropenpdf))
+                            {
+                                var a = baseUrl + lstResponse.Where(x => x.PlanName == foropenpdf).FirstOrDefault().SampleImg;
+                                //baseUrl + item.ImgLink
+                                return Json(a);
+                            }
+                            //double GS,TotaL;
+                            if (lstResponse != null)
+                            {
+                                foreach (var item in lstResponse)
+                                {
+                                    datainsert.Add(new UpgradeSubscriptionDatumResponseModel
+                                    {
+
+                                        Id = item.Id,
+                                        PlanName = item.PlanName,
+                                        Price = item.Price,
+                                        GST = Math.Round((item.Price * 18) / 100),
+                                        Total = (item.Price + Math.Round((item.Price * 18) / 100)),
+                                        Status = item.Status,
+                                        Img = baseUrl + item.Img,
+                                        PlanType = item.PlanType,
+                                        SampleImg = baseUrl + item.SampleImg,
+                                        Subscribed = Subscribed,
+
+                                    });
+                                }
+
+
+
+                                datainsert.Where(x => x.PlanName == a111).FirstOrDefault().Subscribed = "Subscribed";
+                                //con.DataumModel.AddRange(lstResponse);
+                                concatemodels con2 = new concatemodels()
+                                {
+                                    DataumModel = datainsert
+                                };
+                                return View(con2);
+
+                            }
+                        }
+                        else
+                        {
+                            foreach (var item in lstResponse)
+                            {
+                                datainsert.Add(new UpgradeSubscriptionDatumResponseModel
+                                {
+
+                                    Id = item.Id,
+                                    PlanName = item.PlanName,
+                                    Price = item.Price,
+                                    GST = Math.Round((item.Price * 18) / 100),
+                                    Total = (item.Price + Math.Round((item.Price * 18) / 100)),
+                                    Status = item.Status,
+                                    Img = baseUrl + item.Img,
+                                    PlanType = item.PlanType,
+                                    SampleImg = baseUrl + item.SampleImg,
+                                    Subscribed = Subscribed,
+
+                                });
+                            }
+                            concatemodels con2 = new concatemodels()
+                            {
+                                DataumModel = datainsert
+                            };
+                            return View(con2);
+
+                        }
+                        return View(con1);
                     }
-                    concatemodels con2 = new concatemodels()
+                    else if (dataAddOn.Statuscode == "ERR")
                     {
-                        DataumModel = datainsert
-                    };
-                    return View(con2);
-
+                        return View(dataAddOn);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
+                 
                 }
-                return View(con1);
+                
             }
             catch (Exception ex)
             {
@@ -203,12 +225,15 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return Json("");
-
         }
-        [HttpPost]
         #endregion
+
+
+
+        #region ApplyCoupan
+        [HttpPost]
         public JsonResult ApplyCoupan(string PlanId, string CouponCode)
         {
             RequestApplyCoupanCode obj = new RequestApplyCoupanCode();
@@ -229,24 +254,32 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if (deserialize.Statuscode == "ERR")
+                if (string.IsNullOrEmpty(result))
                 {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    var ds = JsonConvert.DeserializeObject<List<ApplyCoupanCodeResponseModel>>(deserialize.Data.ToString());
-                    return Json(ds);
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        var ds = JsonConvert.DeserializeObject<List<ApplyCoupanCodeResponseModel>>(deserialize.Data.ToString());
+                        return Json(ds);
 
+                    }
+                    //if (deserialize.Statuscode == "ERR")
+                    //{
+
+                    //    var ds = JsonConvert.DeserializeObject<ApplyCoupanCodeResponseModel>(deserialize.ToString());
+                    //    return Json(ds);
+                    //}
+                    return Json(deserialize);
                 }
-                //if (deserialize.Statuscode == "ERR")
-                //{
-
-                //    var ds = JsonConvert.DeserializeObject<ApplyCoupanCodeResponseModel>(deserialize.ToString());
-                //    return Json(ds);
-                //}
-                return Json(deserialize);
+               
             }
             catch (Exception ex)
             {
@@ -260,10 +293,14 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
+        #endregion
+
+
+
+        #region Split
         [HttpPost]
         public string Split(string value)
         {
@@ -281,12 +318,16 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             return rvalue;
 
         }
+        #endregion
+
 
         public Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary GetTempData()
         {
             return TempData;
         }
-        #region PayWithWallet
+
+
+        #region OnlinePayWallet
         [HttpPost]
         public JsonResult OnlinePayWallet(string Amount, string PlanId, string checksum, string PlanType, string OrderId, string RequestData, string Itemname)
         {
@@ -326,8 +367,17 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                return Json(new { deserialize, webViewURL,name});
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    return Json(new { deserialize, webViewURL, name });
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -341,11 +391,14 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
+
+
+
+
         #region PayWithWallet
         [HttpPost]
         public JsonResult PayWithWallet(string Amount, string PlanId, string checksum, string Itemname, string CouponCode, string DiscountedAmount, string Wallet)
@@ -380,8 +433,14 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var Payoutdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                return Json(Payoutdata);
+                if(string.IsNullOrEmpty(result)) {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else {
+                    var Payoutdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    return Json(Payoutdata);
+                }
+               
 
             }
             catch (Exception ex)
@@ -396,9 +455,8 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
 
@@ -425,12 +483,20 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = deserialize.Data;
-                var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-                List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                lstdata = datalist.ToList();
-                return Json(lstdata);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    var data = deserialize.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                    lstdata = datalist.ToList();
+                    return Json(lstdata);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -444,8 +510,8 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
 
         #endregion
