@@ -14,35 +14,35 @@ namespace Project_Redmil_MVC.Models.ResponseModel.PassbookGetCashOutSurchargeNew
 
     public class Imps
     {
-        public string Amount { get; set; }
-        public string Timing { get; set; }
-        public string Days { get; set; }
+        public string? Amount { get; set; }
+        public string? Timing { get; set; }
+        public string? Days { get; set; }
         public List<Slab> Slab { get; set; }
     }
 
     public class Neft
     {
-        public string Amount { get; set; }
-        public string Timing { get; set; }
-        public string Days { get; set; }
+        public string? Amount { get; set; }
+        public string? Timing { get; set; }
+        public string? Days { get; set; }
         public List<Slab> Slab { get; set; }
     }
 
 
     public class Rtgs
     {
-        public string Amount { get; set; }
-        public string Timing { get; set; }
-        public string Days { get; set; }
+        public string? Amount { get; set; }
+        public string? Timing { get; set; }
+        public string? Days { get; set; }
         public List<Slab> Slab { get; set; }
     }
 
     public class Slab
     {
-        public string Slabname { get; set; }
-        public string SlabAmount { get; set; }
-        public string ServiceId { get; set; }
-        public string Opid { get; set; }
+        public string? Slabname { get; set; }
+        public string? SlabAmount { get; set; }
+        public string? ServiceId { get; set; }
+        public string? Opid { get; set; }
     }
     //public class GetBankResponseModel
     //{

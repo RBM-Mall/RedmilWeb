@@ -7,6 +7,16 @@ namespace Project_Redmil_MVC.Models
         public object? Message { get; set; }
         public object? Data { get; set; }
     }
+    public class ResponseModelAAdharVerification
+    {
+        public string? Statuscode { get; set; }
+        public object? Message { get; set; }
+        public object? Surcharge { get; set; }
+        public string? code  {get; set;}
+        public string? Aadhar  {get; set;}
+        public string? Name  {get; set;}
+        
+    }
     public class ResponseOperator
     {
         public int Id { get; set; }

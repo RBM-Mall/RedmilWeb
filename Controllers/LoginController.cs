@@ -113,6 +113,7 @@ namespace Project_Redmil_MVC.Controllers
                                 HttpContext.Session.SetString("Mallname", getdata[0].Mallname);
                                 HttpContext.Session.SetString("Rolltype", getdata[0].Rolltype);
                                 HttpContext.Session.SetString("Id", getdata[0].Id.ToString());
+                                HttpContext.Session.SetString("Kycstatus",getdata[0].Kycstatus==true?"1":"0");
                                 //HttpContext.Session.SetString("Account", getdata[0].AccountNo.ToString());
                                 //HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
                                 //HttpContext.Session.SetString("BankId", getdata[0].BankId.ToString());
@@ -121,6 +122,13 @@ namespace Project_Redmil_MVC.Controllers
                                     HttpContext.Session.SetString("Account", Convert.ToString(mpinResponseModels.FirstOrDefault().AccountNo));
                                     var Account = HttpContext.Session.GetString("Account").ToString();
                                 }
+                                else
+                                {
+                                    HttpContext.Session.SetString("Account", string.IsNullOrEmpty(mpinResponseModels.FirstOrDefault().AccountNo).ToString());
+                                    TempData["Account"] = HttpContext.Session.GetString("Account").ToString();
+                                    
+                                }
+
                                 if (getdata.FirstOrDefault().BankId != null && getdata.FirstOrDefault().BankId.ToString() != "")
                                 {
                                     HttpContext.Session.SetString("BankId", Convert.ToString(mpinResponseModels.FirstOrDefault().BankId));
@@ -138,10 +146,11 @@ namespace Project_Redmil_MVC.Controllers
                                 var Email = HttpContext.Session.GetString("Email");
                                 var Rolltype = HttpContext.Session.GetString("Rolltype");
                                 var UserId = HttpContext.Session.GetString("Id").ToString();
+                                TempData["Kycstatus"] = HttpContext.Session.GetString("Kycstatus").Trim();
+                                //TempData["Kycstatus"] = HttpContext.Session.GetString("Kycstatus").Trim()=="1"?true:false;
                                 //var Account = HttpContext.Session.GetString("Account").ToString();
                                // var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
                                 //var BankId = HttpContext.Session.GetString("BankId").ToString();
-
                                 ViewBag.id = UserId;
                                 return Json(deserializ);
                             }

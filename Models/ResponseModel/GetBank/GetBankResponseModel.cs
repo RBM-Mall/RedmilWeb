@@ -2,7 +2,7 @@
 {
     public class GetBankResponseModel
     {
-        public int Id { get; set; }
-        public string BankName { get; set; }
+        public int? Id { get; set; }
+        public string? BankName { get; set; }
     }
 }

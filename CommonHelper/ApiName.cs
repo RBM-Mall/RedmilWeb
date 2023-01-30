@@ -85,6 +85,11 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string File = "FileUploading/UploadFile";
         public static string InitiateAadharApiForDevwithoutCharge = "InitiateAadharApiForDevwithoutCharge";
         public static string InitiateAadharApiForDevWithCharge = "InitiateAadharApiForDevWithCharge";
+        public static string SubmitAadharForDev = "SubmitAadharForDev";
+        public static string PanVerificationForSignUp = "PanVerificationForSignUp";
+        public static string GetCommissionSurchargeOperatorwise = "GetCommissionSurchargeOperatorwise";
+        public static string PanVerificationForSignupWithCharge = "PanVerificationForSignupWithCharge";
+
         //public static string transactions/report = "transactions/report";
 
 

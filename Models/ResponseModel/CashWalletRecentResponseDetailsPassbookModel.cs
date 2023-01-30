@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Project_Redmil_MVC.Models.ResponseModel.GetBank;
 
 namespace Project_Redmil_MVC.Models.ResponseModel
 {
@@ -26,6 +27,9 @@ namespace Project_Redmil_MVC.Models.ResponseModel
         public List<BRewardDetailResponseModel> BRewardDetailResponseModel { get; set; }
         public List<RERewardResponseModel> RERewardResponseModel { get; set; }
         public List<GetBalanceResponseModel> getBalanceResponseModels { get; set; }
+        public List<GetBankResponseModel> getBankResponseModels { get; set; }
+     
 
     }
+
 }
