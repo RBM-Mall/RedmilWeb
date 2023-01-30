@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
 <style>
     .button-23:hover {
         color: white;
@@ -263,8 +264,9 @@
     </div>
     <br />
     <div class="row div-pay-row">
-        <div class="col-sm-4 final-pay-button button_addbeneficiary" style="margin-left:630px;">
-            <button type="button" id="btnAddBeneficiary" data-target="#modalAddBeneficiary" data-toggle="modal" style="background-color: var(--button_bg_color);background-image: var(--bg-image);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Add Beneficiary</button>
+        <div class="form-group-recharge">
+            <button type="button" id="btnAddBeneficiary" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal" style="background-color: var(--button_bg_color);background-image: var(--bg-image);">Add Beneficiary</button>
+            @*<button type="submit" id="btnProceed" class="button-21">Proceed</button>*@
         </div>
         <!-- Modal for add beneficery-->
         <div class="modal fade" id="modalAddBeneficiary" role="dialog">
@@ -307,7 +309,7 @@
                     <div class="modal-footer div-pay-row">
                         <div class="row div-pay-row">
                             <div class="col-sm-4 final-pay-button">
-                                <button type="button" id="btnAddBeneficiery" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Add Beneficiery</button>
+                                <button type="button" id="btnAddBeneficiery" class="button-21">Add Beneficiery</button>
                             </div>
                         </div>
 

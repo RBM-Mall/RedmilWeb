@@ -648,6 +648,9 @@ nav.navbar.fixed-top {
         height: 54px;
         width: 225px;
     }
+    .heading_customer_phone{
+        font-size:18px;
+    }
 }
 
 
@@ -794,6 +797,9 @@ nav.navbar.fixed-top {
     .dmt-user-img {
         margin-left: 110px;
     }
+    .heading_customer_phone {
+        font-size: 19px;
+    }
 }
 
 @media screen and (max-width:419px) and (min-width:400px) {
@@ -804,12 +810,18 @@ nav.navbar.fixed-top {
     .dropdownDTH1 {
         font-size: 12px;
     }
+    .heading_customer_phone {
+        font-size: 19px;
+    }
 }
 
 
 @media screen and (max-width:549px) and (min-width:423px) {
     .modal-header-recharge {
         margin-top: 67px;
+    }
+    .heading_customer_phone {
+        font-size: 20px;
     }
 }
 
@@ -932,6 +944,9 @@ nav.navbar.fixed-top {
     .dropdownDTH1 {
         font-size: 12px;
     }
+    .heading_customer_phone {
+        font-size: 21px;
+    }
 }
 
 /*Media Query End For Small Smartphones*/
@@ -1041,6 +1056,9 @@ nav.navbar.fixed-top {
 
     #navbar-header-button {
         margin-right: 40px;
+    }
+    .heading_customer_phone {
+        font-size: 22px;
     }
 }
 
@@ -1206,6 +1224,9 @@ nav.navbar.fixed-top {
         margin-left: 86px;
         width: 311px;
     }
+    .heading_customer_phone {
+        font-size: 23px;
+    }
 }
 
 @media (min-width: 959px) and (max-width: 999px) {
@@ -1297,6 +1318,9 @@ nav.navbar.fixed-top {
     .txt-input {
         font-size: 14px;
     }
+    .heading_customer_phone {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 1280px) {
@@ -1304,6 +1328,9 @@ nav.navbar.fixed-top {
         margin-left: 120px;
         margin-top: 10px;
         margin-bottom: 20px;
+    }
+    .heading_customer_phone {
+        font-size: 22px;
     }
 }
 @media (max-width: 1280px) {
