@@ -13,9 +13,6 @@ namespace Project_Redmil_MVC.Controllers
             _config = config;
             Baseurl = HelperMethod.GetBaseURl(_config);
         }
-
-
-        
         public IActionResult ContactUs()
         {
             return View();

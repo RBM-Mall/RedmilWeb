@@ -38,11 +38,13 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             return View();
         }
 
+
+        #region ApplyForFrenchise
         [HttpPost]
-       
-       public JsonResult ApplyForFrenchise(string city,string area,string frenchise)
+
+        public JsonResult ApplyForFrenchise(string city, string area, string frenchise)
         {
-            
+
             ApplyForFrenchiseRequest requestModel = new ApplyForFrenchiseRequest();
             try
             {
@@ -65,8 +67,26 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var des = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                return Json(des);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize1 = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize1.Statuscode == "TXN" && deserialize1 != null)
+                    {
+                        return Json(deserialize1);
+                    }
+                    else if (deserialize1.Statuscode == "ERR")
+                    {
+                        return Json(deserialize1);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -80,8 +100,9 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
+        #endregion
     }
 }

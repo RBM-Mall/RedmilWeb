@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <style>
     .row-fernchise-body {
         margin: 0 auto;
@@ -153,7 +154,16 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response.statuscode == "TXN") {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.statuscode == "TXN") {
                         frenchiseclear();
                         $.notify(response.message, { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 });
                     }

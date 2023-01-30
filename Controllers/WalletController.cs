@@ -18,27 +18,15 @@ namespace Project_Redmil_MVC.Controllers
         //    Baseurl = HelperMethod.GetBaseURl(_config);
         //}
 
-        List<GetBalanceResponseModel> gBRM =new List<GetBalanceResponseModel>();
+        
         public IActionResult Wallet()
        {
             if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
             {
                 return RedirectToAction("ErrorForLogin", "Error");
             }
-
-            //GetBalance();
-
-
-            List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-            lstdata = GetBalance();
-
-            return View(lstdata);
-        }
-
-        [HttpPost]
-        public List<GetBalanceResponseModel> GetBalance()
-        {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
+            List<GetBalanceResponseModel> gBRM = new List<GetBalanceResponseModel>();
             getBalanceRequestModel.Userid = "2084";
             try
             {
@@ -57,64 +45,67 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var statusCode = deserialize.Statuscode;
-
-                    if (statusCode == "TXN")
-                    {
-                        var data = deserialize.Data;
-                        List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                        lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                        try
-                        {
-                            foreach (var i in lstdata)
-                            {
-                                gBRM.Add(new GetBalanceResponseModel
-                                {
-                                    MainBal = i.MainBal,
-                                    AdBal = i.AdBal,
-                                    TotalIncentives = i.TotalIncentives,
-                                    BReward = i.BReward,
-                                    Reward = i.Reward,
-                                    WalletAmount =(i.AdBal + i.MainBal),
-                                    REReward = i.REReward,
-                                    //TotalIncentives=i.TotalIncentives
-                                    //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
-
-                                });
-
-                            }
-                            return gBRM;
-                        }
-                        catch (Exception ex)
-                        {
-                            ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
-                            requestModel1.ExceptionMessage = ex;
-                            requestModel1.Data = getBalanceRequestModel;
-                            var clientN1 = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                            var requestN1 = new RestRequest(Method.POST);
-                            requestN1.AddHeader("Content-Type", "application/json");
-                            var jsonN1 = JsonConvert.SerializeObject(requestModel1);
-                            requestN1.AddJsonBody(jsonN1);
-                            IRestResponse responseN1 = clientN1.Execute(requestN1);
-                            var resultN1 = responseN1.Content;
-                        }
-                    }
-
-
-                    return gBRM;
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return gBRM;
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
                 else
                 {
-                    return gBRM;
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var statusCode = deserialize.Statuscode;
+
+                        if (statusCode == "TXN")
+                        {
+                            var data = deserialize.Data;
+                            List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                            lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
+                            try
+                            {
+                                foreach (var i in lstdata)
+                                {
+                                    gBRM.Add(new GetBalanceResponseModel
+                                    {
+                                        MainBal = i.MainBal,
+                                        AdBal = i.AdBal,
+                                        TotalIncentives = i.TotalIncentives,
+                                        BReward = i.BReward,
+                                        Reward = i.Reward,
+                                        WalletAmount = (i.AdBal + i.MainBal),
+                                        REReward = i.REReward,
+                                        //TotalIncentives=i.TotalIncentives
+                                        //WalletAmount = string.Format("{0:0.00}", i.AdBal + i.MainBal).ToString()
+                                    });
+                                }
+                                return View(gBRM);
+                            }
+                            catch (Exception ex)
+                            {
+                                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                                requestModel1.ExceptionMessage = ex;
+                                requestModel1.Data = getBalanceRequestModel;
+                                var clientN1 = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                                var requestN1 = new RestRequest(Method.POST);
+                                requestN1.AddHeader("Content-Type", "application/json");
+                                var jsonN1 = JsonConvert.SerializeObject(requestModel1);
+                                requestN1.AddJsonBody(jsonN1);
+                                IRestResponse responseN1 = clientN1.Execute(requestN1);
+                                var resultN1 = responseN1.Content;
+                                return RedirectToAction("ErrorForExceptionLog", "Error");
+                            }
+                        }
+                        return View(gBRM);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return View(gBRM);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                    }
                 }
-               
             }
             catch (Exception ex)
             {
@@ -128,8 +119,8 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
-            return gBRM;
         }
 
         #region Replace Service ID's

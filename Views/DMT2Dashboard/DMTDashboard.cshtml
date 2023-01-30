@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <style>
     .button-23:hover {
         color: white;
@@ -977,7 +978,16 @@
                     //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
-                    if (response.statuscode == "TXN") {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.statuscode == "TXN") {
                         $("#btnmodalSuccessAddBeneficiery").trigger("click");
                         $("#txtAccountHoldName").val("");
                         $("#txtAccountNum").val("");
@@ -986,12 +996,6 @@
                         document.getElementById("lblAddBeneficiery").innerHTML = response.message;
                         $("#modalAddBeneficiary").hide();
                     }
-                    else if (response.statuscode == "ERR") {
-                    }
-                    else {
-
-                    }
-
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -1017,14 +1021,23 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-
-                document.getElementById("lblAcName").innerHTML = "A/C Holder Name:  " + response[0].beneficiaryName;
-                document.getElementById("lblAcNum").innerHTML = "Account Number:  " + response[0].accountNumber;
-                document.getElementById("lblIFSC").innerHTML = "IFSC Code:  " + response[0].ifscCode;
-                document.getElementById("lblBankName").innerHTML = "Bank Name:  " + response[0].bankName;
-                document.getElementById("hdfId").value = response[0].benificiaryId;
-                $("#btnmodalDeleteBeneficiery").trigger("click");
-
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    document.getElementById("lblAcName").innerHTML = "A/C Holder Name:  " + response[0].beneficiaryName;
+                    document.getElementById("lblAcNum").innerHTML = "Account Number:  " + response[0].accountNumber;
+                    document.getElementById("lblIFSC").innerHTML = "IFSC Code:  " + response[0].ifscCode;
+                    document.getElementById("lblBankName").innerHTML = "Bank Name:  " + response[0].bankName;
+                    document.getElementById("hdfId").value = response[0].benificiaryId;
+                    $("#btnmodalDeleteBeneficiery").trigger("click");
+                }
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -1050,10 +1063,20 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                document.getElementById("lblFinalMsg").innerHTML = response.message;
-                $("#btnmodalDeleteFinal").trigger("click");
-                $("#modalDeleteBeneficiery").hide();
-
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    document.getElementById("lblFinalMsg").innerHTML = response.message;
+                    $("#btnmodalDeleteFinal").trigger("click");
+                    $("#modalDeleteBeneficiery").hide();
+                }
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -1078,10 +1101,21 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                document.getElementById("lblBankAccountCharge").innerHTML = response.message + " is ₹ " + response.data.totalDebitAmount;
-                document.getElementById("lblSenderID").innerHTML = id;
-                $("#btnmodalBankVerifyCharges").trigger("click");
-                //$("#modalDeleteBeneficiery").hide();
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    document.getElementById("lblBankAccountCharge").innerHTML = response.message + " is ₹ " + response.data.totalDebitAmount;
+                    document.getElementById("lblSenderID").innerHTML = id;
+                    $("#btnmodalBankVerifyCharges").trigger("click");
+                    //$("#modalDeleteBeneficiery").hide();
+                }
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -1106,7 +1140,16 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                if (response.statuscode == "ERR") {
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else if (response.statuscode == "ERR") {
                     document.getElementById("lblErrorName").innerHTML = response.message;
                     $("#btnmodalErrorBankVerifyCharges").trigger("click");
                     $("#modalBankVerifyCharges").hide();
@@ -1115,7 +1158,6 @@
                     document.getElementById("lblBeneficiaryName").innerHTML = response.additionalInfo.beneName;
                     $("#btnmodalSuccessBankVerifyCharges").trigger("click");
                     $("#modalBankVerifyCharges").hide();
-
                 }
 
             },
@@ -1162,10 +1204,22 @@
                     //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
-                    document.getElementById("lblTransferMode").innerHTML = 'Transfer Mode : ' + mode;
-                    document.getElementById("lblTransactionAmount").innerHTML = 'Transaction Amount ₹: ' + response.data.transferAmount;
-                    document.getElementById("lblBankCharges").innerHTML = 'Bank Charges ₹: ' + response.data.bankCharges;
-                    document.getElementById("lblTotalDebitAmount").innerHTML = 'Total Debit Amount ₹: ' + response.data.totalDebitAmount;
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        document.getElementById("lblTransferMode").innerHTML = 'Transfer Mode : ' + mode;
+                        document.getElementById("lblTransactionAmount").innerHTML = 'Transaction Amount ₹: ' + response.data.transferAmount;
+                        document.getElementById("lblBankCharges").innerHTML = 'Bank Charges ₹: ' + response.data.bankCharges;
+                        document.getElementById("lblTotalDebitAmount").innerHTML = 'Total Debit Amount ₹: ' + response.data.totalDebitAmount;
+                    }
+
                 },
                 failure: function (response) {
                     alert(response.responsetext);
@@ -1187,12 +1241,24 @@
                     //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    } 
+                    else {
                         document.getElementById("lblBeneficiaryName1").innerHTML = 'Beneficiary Name: ' + response[0].beneficiaryName;
                         document.getElementById("lblBeneficiaryAcc").innerHTML = 'Beneficiary A/C Number: ' + response[0].accountNumber;
                         document.getElementById("lblBeneficiaryIFSCCode").innerHTML = 'Beneficiary IFSC Code: ' + response[0].ifscCode;
                         document.getElementById("lblBankName1").innerHTML = 'Bank Name: ' + response[0].bankName;
                         $("#btnmodalPopuForConfirmPayment").trigger("click");
                         $("#modalPay").hide();
+                    }
+
                 },
                 failure: function (response) {
                     alert(response.responsetext);
@@ -1239,11 +1305,12 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                    document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                    document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                    document.getElementById("lblamountNewFinal").innerHTML = '₹: ' + amount;
-                    $("#btnmodalfinalLast").trigger("click");
-                    $("#modalPopuForConfirmPayment").hide();
+                
+                document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                document.getElementById("lblamountNewFinal").innerHTML = '₹: ' + amount;
+                $("#btnmodalfinalLast").trigger("click");
+                $("#modalPopuForConfirmPayment").hide();
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -1269,10 +1336,14 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    if (response == null || response.data == null || response.data == "") {
-                        //document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
                     }
                     else if (response.statuscode == "TXN") {
                         document.getElementById("heading").innerHTML = "Transaction Success";
@@ -1319,10 +1390,6 @@
                         $("#btnmyModalfinal").trigger("click");
                         $("#lastModalPay").hide();
                     }
-                    else {
-
-                    }
-
                 },
                 failure: function (response) {
                     alert(response.responseText);

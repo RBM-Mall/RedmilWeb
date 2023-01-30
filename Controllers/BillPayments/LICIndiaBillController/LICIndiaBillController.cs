@@ -57,98 +57,114 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseLICResponseModelT<GetLICIndiaBillResponseModel>>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    getLICIndiaBillResponseModel = deserialize.Data;
-                    getLICIndiaBillFetchResponseModel = deserialize.Data.bill_fetch;
-
-                    #region Pay LIC Bill
-                    if (deserialize.Statuscode == "TXN")
-                    {
-                        if (!string.IsNullOrEmpty(Payment))
-                        {
-                            PayLICIndiaBillRequestModel requestmodel = new PayLICIndiaBillRequestModel();
-                            try
-                            {
-                                requestmodel.canumber = caNumber;
-                                requestmodel.Userid = "2084";
-                                requestmodel.amount = getLICIndiaBillResponseModel.amount;
-                                requestmodel.Wallet = Payment;
-                                requestmodel.ad1 = email;
-                                requestmodel.ad2 = "";
-                                requestmodel.ad3 = "";
-                                requestmodel.latitude = "28.582121";
-                                requestmodel.longitude = "77.326698";
-                                requestmodel.bill_fetch = getLICIndiaBillResponseModel.bill_fetch;
-                                requestmodel.Token = "";
-                                //requestmodel.mode = "";
-                                #region Checksum (PayLICBill|Unique Key|Userid|canumber|ad1|amount)
-                                string inputN = Checksum.MakeChecksumString("PayLICBill", Checksum.checksumKey, requestmodel.Userid, requestmodel.canumber, requestmodel.ad1, requestmodel.amount);
-                                string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
-                                #endregion
-
-                                requestmodel.checksum = CheckSumN;
-                                var clientN = new RestClient($"{Baseurl}{ApiName.PayLICBill}");
-                                var requestN = new RestRequest(Method.POST);
-                                request.AddHeader("Content-Type", "application/json");
-                                var jsonN = JsonConvert.SerializeObject(requestmodel);
-                                requestN.AddJsonBody(jsonN);
-                                IRestResponse responseN = client.Execute(requestN);
-                                var resultN = responseN.Content;
-                                var deserializePayLICBill = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
-                                if (deserializePayLICBill.Statuscode == "TXN" && deserializePayLICBill!=null)
-                                {
-                                    var dataPayLICBill = deserializePayLICBill.Data;
-
-                                    var dataListPayLICBill = JsonConvert.DeserializeObject<List<PayLICIndiaBillResponseModel>>(JsonConvert.SerializeObject(dataPayLICBill));
-                                    return Json(dataListPayLICBill);
-                                }
-                                else if(deserializePayLICBill.Statuscode=="ERR")
-                                {
-                                    //var dataPayLICBill = deserializePayLICBill.Message;
-                                    return Json(deserializePayLICBill);
-
-                                }
-                                else
-                                {
-                                    return Json("");
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                                requestModelEx.ExceptionMessage = ex;
-                                requestModelEx.Data = requestmodel;
-                                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                                var requestEx = new RestRequest(Method.POST);
-                                requestEx.AddHeader("Content-Type", "application/json");
-                                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                                requestEx.AddJsonBody(jsonEx);
-                                IRestResponse responseEx = clientEx.Execute(requestEx);
-                                var resultEx = responseEx.Content;
-                            }
-                            return Json("");
-
-                        }
-
-                        return Json(getLICIndiaBillFetchResponseModel);
-                    }
-                    else if (deserialize.Statuscode == "ERR")
-                    {
-                        return Json(deserialize.Message);
-                    }
-                    #endregion
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<BaseLICResponseModelT<GetLICIndiaBillResponseModel>>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        getLICIndiaBillResponseModel = deserialize.Data;
+                        getLICIndiaBillFetchResponseModel = deserialize.Data.bill_fetch;
+
+                        #region Pay LIC Bill
+                        if (deserialize.Statuscode == "TXN")
+                        {
+                            if (!string.IsNullOrEmpty(Payment))
+                            {
+                                PayLICIndiaBillRequestModel requestmodel = new PayLICIndiaBillRequestModel();
+                                try
+                                {
+                                    requestmodel.canumber = caNumber;
+                                    requestmodel.Userid = "2084";
+                                    requestmodel.amount = getLICIndiaBillResponseModel.amount;
+                                    requestmodel.Wallet = Payment;
+                                    requestmodel.ad1 = email;
+                                    requestmodel.ad2 = "";
+                                    requestmodel.ad3 = "";
+                                    requestmodel.latitude = "28.582121";
+                                    requestmodel.longitude = "77.326698";
+                                    requestmodel.bill_fetch = getLICIndiaBillResponseModel.bill_fetch;
+                                    requestmodel.Token = "";
+                                    //requestmodel.mode = "";
+                                    #region Checksum (PayLICBill|Unique Key|Userid|canumber|ad1|amount)
+                                    string inputN = Checksum.MakeChecksumString("PayLICBill", Checksum.checksumKey, requestmodel.Userid, requestmodel.canumber, requestmodel.ad1, requestmodel.amount);
+                                    string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
+                                    #endregion
+
+                                    requestmodel.checksum = CheckSumN;
+                                    var clientN = new RestClient($"{Baseurl}{ApiName.PayLICBill}");
+                                    var requestN = new RestRequest(Method.POST);
+                                    request.AddHeader("Content-Type", "application/json");
+                                    var jsonN = JsonConvert.SerializeObject(requestmodel);
+                                    requestN.AddJsonBody(jsonN);
+                                    IRestResponse responseN = client.Execute(requestN);
+                                    var resultN = responseN.Content;
+                                    if (string.IsNullOrEmpty(resultN))
+                                    {
+                                        return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                    }
+                                    else
+                                    {
+                                        var deserializePayLICBill = JsonConvert.DeserializeObject<BaseResponseModel>(responseN.Content);
+                                        if (deserializePayLICBill.Statuscode == "TXN" && deserializePayLICBill != null)
+                                        {
+                                            var dataPayLICBill = deserializePayLICBill.Data;
+
+                                            var dataListPayLICBill = JsonConvert.DeserializeObject<List<PayLICIndiaBillResponseModel>>(JsonConvert.SerializeObject(dataPayLICBill));
+                                            return Json(dataListPayLICBill);
+                                        }
+                                        else if (deserializePayLICBill.Statuscode == "ERR")
+                                        {
+                                            //var dataPayLICBill = deserializePayLICBill.Message;
+                                            return Json(deserializePayLICBill);
+
+                                        }
+                                        else
+                                        {
+                                            return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                        }
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                                    requestModelEx.ExceptionMessage = ex;
+                                    requestModelEx.Data = requestmodel;
+                                    var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                                    var requestEx = new RestRequest(Method.POST);
+                                    requestEx.AddHeader("Content-Type", "application/json");
+                                    var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                                    requestEx.AddJsonBody(jsonEx);
+                                    IRestResponse responseEx = clientEx.Execute(requestEx);
+                                    var resultEx = responseEx.Content;
+                                    return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                }
+                            }
+                            return Json(getLICIndiaBillFetchResponseModel);
+                        }
+                        else if (deserialize.Statuscode == "ERR")
+                        {
+                            return Json(deserialize);
+                        }
+                        else
+                        {
+                            return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                        }
+                        #endregion
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -162,8 +178,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
 
         #endregion
@@ -189,24 +205,30 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                if(deserialize.Statuscode=="TXN" && deserialize != null)
+                if (string.IsNullOrEmpty(result))
                 {
-                    var data = deserialize.Data;
-                    var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
-                    List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
-                    lstdata = datalist.ToList();
-                    return Json(lstdata);
-                }
-                else if (deserialize.Statuscode == "ERR")
-                {
-                    return Json(deserialize);
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
-                    return Json("");
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    {
+                        var data = deserialize.Data;
+                        var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
+                        List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+                        lstdata = datalist.ToList();
+                        return Json(lstdata);
+                    }
+                    else if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -220,11 +242,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
-
         #endregion
     }
 }

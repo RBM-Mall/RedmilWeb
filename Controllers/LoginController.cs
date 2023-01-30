@@ -55,14 +55,16 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                if (result.Equals(null) || result.Equals(""))
+                if (string.IsNullOrEmpty(result))
                 {
-                    return PartialView("_TestPartial");
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
                 }
-                var des = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                var data = des.Data;
-                var datalist = JsonConvert.DeserializeObject<List<ValidateResponseModel>>(JsonConvert.SerializeObject(data));
-                var UId = datalist.FirstOrDefault().Id;
+                else
+                {
+                    var des = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    var data = des.Data;
+                    var datalist = JsonConvert.DeserializeObject<List<ValidateResponseModel>>(JsonConvert.SerializeObject(data));
+                    var UId = datalist.FirstOrDefault().Id;
 
                 if (des.Message.ToString() != null && des.Statuscode.ToString().Equals("OSS"))
                 {
@@ -160,70 +162,82 @@ namespace Project_Redmil_MVC.Controllers
                             return Json(des1);
                         }
 
-                        else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ODL")
-                        {
-                            RequestOtpModel obj2 = new RequestOtpModel();
-                            try
-                            {
-                                obj2.Mobile = Mobile;
-                                string input2 = Checksum.MakeChecksumString("SendAnotherDeviceLoginOtp", Checksum.checksumKey, "NA", obj2.Mobile);
-                                string CheckSum2 = Checksum.ConvertStringToSCH512Hash(input2);
-                                obj2.checksum = CheckSum2;
-                                //var client2 = new RestClient("https://api.redmilbusinessmall.com/api/SendAnotherDeviceLoginOtp");
-                                var client2 = new RestClient($"{Baseurl}{ApiName.SendAnotherDeviceLoginOtp}");
-                                var request2 = new RestRequest(Method.POST);
-                                request.AddHeader("Content-Type", "application/json");
-                                var json2 = JsonConvert.SerializeObject(obj2);
-                                request2.AddJsonBody(json2);
-                                IRestResponse response2 = client2.Execute(request2);
-                                var result2 = response2.Content;
-                                BaseResponseModel des2 = JsonConvert.DeserializeObject<BaseResponseModel>(response2.Content);
-                                if (des2.Statuscode == "ERR")
+                                else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ODL")
                                 {
-                                    des2.Statuscode = "ODLERR";
-                                    return Json(des2);
-                                    //return some msg to identify there is some problem while sending otp please try again login and close the login popup.
-                                }
-                                des2.Statuscode = "ODLOSS";
+                                    RequestOtpModel obj2 = new RequestOtpModel();
+                                    try
+                                    {
+                                        obj2.Mobile = Mobile;
+                                        string input2 = Checksum.MakeChecksumString("SendAnotherDeviceLoginOtp", Checksum.checksumKey, "NA", obj2.Mobile);
+                                        string CheckSum2 = Checksum.ConvertStringToSCH512Hash(input2);
+                                        obj2.checksum = CheckSum2;
+                                        //var client2 = new RestClient("https://api.redmilbusinessmall.com/api/SendAnotherDeviceLoginOtp");
+                                        var client2 = new RestClient($"{Baseurl}{ApiName.SendAnotherDeviceLoginOtp}");
+                                        var request2 = new RestRequest(Method.POST);
+                                        request.AddHeader("Content-Type", "application/json");
+                                        var json2 = JsonConvert.SerializeObject(obj2);
+                                        request2.AddJsonBody(json2);
+                                        IRestResponse response2 = client2.Execute(request2);
+                                        var result2 = response2.Content;
+                                        if (string.IsNullOrEmpty(result2))
+                                        {
+                                            return RedirectToAction("ErrorForExceptionLog", "Error");
+                                        }
+                                        else
+                                        {
+                                            BaseResponseModel des2 = JsonConvert.DeserializeObject<BaseResponseModel>(response2.Content);
+                                            if (des2.Statuscode == "ERR")
+                                            {
+                                                des2.Statuscode = "ODLERR";
+                                                return Json(des2);
+                                                //return some msg to identify there is some problem while sending otp please try again login and close the login popup.
+                                            }
+                                            des2.Statuscode = "ODLOSS";
 
-                                return Json(des2);
-                            }
-                            catch (Exception ex)
-                            {
-                                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                                requestModelEx.ExceptionMessage = ex;
-                                requestModelEx.Data = obj2;
-                                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                                var requestEx = new RestRequest(Method.POST);
-                                requestEx.AddHeader("Content-Type", "application/json");
-                                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                                requestEx.AddJsonBody(jsonEx);
-                                IRestResponse responseEx = clientEx.Execute(requestEx);
-                                var resultEx = responseEx.Content;
+                                            return Json(des2);
+                                        }
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                                        requestModelEx.ExceptionMessage = ex;
+                                        requestModelEx.Data = obj2;
+                                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                                        var requestEx = new RestRequest(Method.POST);
+                                        requestEx.AddHeader("Content-Type", "application/json");
+                                        var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                                        requestEx.AddJsonBody(jsonEx);
+                                        IRestResponse responseEx = clientEx.Execute(requestEx);
+                                        var resultEx = responseEx.Content;
+                                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                                    }
+
+                                }
                             }
 
                         }
 
+                        catch (Exception ex)
+                        {
+                            ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                            requestModelEx.ExceptionMessage = ex;
+                            requestModelEx.Data = userNumber;
+                            var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                            var requestEx = new RestRequest(Method.POST);
+                            requestEx.AddHeader("Content-Type", "application/json");
+                            var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                            requestEx.AddJsonBody(jsonEx);
+                            IRestResponse responseEx = clientEx.Execute(requestEx);
+                            var resultEx = responseEx.Content;
+                            return RedirectToAction("ErrorForExceptionLog", "Error");
+                        }
                     }
-
-                    catch (Exception ex)
+                    else
                     {
-                        ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                        requestModelEx.ExceptionMessage = ex;
-                        requestModelEx.Data = userNumber;
-                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                        var requestEx = new RestRequest(Method.POST);
-                        requestEx.AddHeader("Content-Type", "application/json");
-                        var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                        requestEx.AddJsonBody(jsonEx);
-                        IRestResponse responseEx = clientEx.Execute(requestEx);
-                        var resultEx = responseEx.Content;
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
                     }
                 }
-                else
-                {
-                }
-
             }
             catch (Exception ex)
             {
@@ -237,13 +251,16 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
             }
             return View();
         }
-
         #endregion
-        [HttpPost]
+
+
+
         #region OtpVerfication
+        [HttpPost]
         public JsonResult OtpVerfication(string Mobile, string AppId, String Otp)
         {
             RequestOtpModel obj3 = new RequestOtpModel();
@@ -263,9 +280,15 @@ namespace Project_Redmil_MVC.Controllers
                 request3.AddJsonBody(json3);
                 IRestResponse response3 = client3.Execute(request3);
                 var result3 = response3.Content;
-                BaseResponseModel des3 = JsonConvert.DeserializeObject<BaseResponseModel>(response3.Content);
-                return Json(des3);
-
+                if (string.IsNullOrEmpty(result3))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    BaseResponseModel des3 = JsonConvert.DeserializeObject<BaseResponseModel>(response3.Content);
+                    return Json(des3);
+                }
             }
             catch (Exception ex)
             {
@@ -279,12 +302,16 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
         #endregion
-        [HttpPost]
+
+
+
+
         #region SentOtpForResetMpin
+        [HttpPost]
         public JsonResult SentOtpForResetMpin(string Mobile)
         {
             RequestOtpModel obj4 = new RequestOtpModel();
@@ -302,8 +329,15 @@ namespace Project_Redmil_MVC.Controllers
                 request4.AddJsonBody(json4);
                 IRestResponse response4 = client4.Execute(request4);
                 var result4 = response4.Content;
-                BaseResponseModel des4 = JsonConvert.DeserializeObject<BaseResponseModel>(response4.Content);
-                return Json(des4);
+                if (string.IsNullOrEmpty(result4))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    BaseResponseModel des4 = JsonConvert.DeserializeObject<BaseResponseModel>(response4.Content);
+                    return Json(des4);
+                }
             }
             catch (Exception ex)
             {
@@ -317,11 +351,13 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
+
+
+
         #region ChangesMpins
         public JsonResult ChangeMpins(string Mobile, string Mpin, string Otp)
         {
@@ -342,8 +378,16 @@ namespace Project_Redmil_MVC.Controllers
                 request5.AddJsonBody(json5);
                 IRestResponse response5 = client5.Execute(request5);
                 var result5 = response5.Content;
-                BaseResponseModel des5 = JsonConvert.DeserializeObject<BaseResponseModel>(response5.Content);
-                return Json(des5);
+                if (string.IsNullOrEmpty(result5))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    BaseResponseModel des5 = JsonConvert.DeserializeObject<BaseResponseModel>(response5.Content);
+                    return Json(des5);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -357,10 +401,12 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
         #endregion
+
+
         public string GetIp()
         {
             var hostName = System.Net.Dns.GetHostName();
@@ -461,6 +507,8 @@ namespace Project_Redmil_MVC.Controllers
             //var u = HttpContext.Session.GetString("Name");
 
         }
+       
+        
         #region ClearSession
         [HttpPost]
 
@@ -474,6 +522,7 @@ namespace Project_Redmil_MVC.Controllers
             return Json("");
         }
         #endregion
+
 
         #region SessionHandle
         [HttpPost]

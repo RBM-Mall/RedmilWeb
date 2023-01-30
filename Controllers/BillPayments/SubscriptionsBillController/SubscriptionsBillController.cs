@@ -152,7 +152,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -231,9 +231,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                                 request1.AddJsonBody(json1);
                                 IRestResponse response1 = client1.Execute(request1);
                                 var result1 = response1.Content;
-                                if (string.IsNullOrEmpty(result))
+                                if (string.IsNullOrEmpty(result1))
                                 {
-                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                 }
                                 else
                                 {
@@ -340,7 +340,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                                                 var resultN = responseN.Content;
                                                 if (string.IsNullOrEmpty(resultN))
                                                 {
-                                                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                                                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                 }
                                                 else
                                                 {
@@ -363,7 +363,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                                                     }
                                                     else
                                                     {
-                                                        return Json("");
+                                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                                     }
                                                 }
 
@@ -380,6 +380,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                                                 requestEx.AddJsonBody(jsonEx);
                                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                                 var resultEx = responseEx.Content;
+                                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                             }
 
                                         }
@@ -398,7 +399,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                                     }
                                     else
                                     {
-                                        return Json("");
+                                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                                     }
                                 }
 
@@ -415,11 +416,10 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                                 requestEx.AddJsonBody(jsonEx);
                                 IRestResponse responseEx = clientEx.Execute(requestEx);
                                 var resultEx = responseEx.Content;
+                                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
 
                         }
-
-
                         return Json(lstOperator);
                     }
                     else if (deserialize.Statuscode == "ERR")
@@ -428,7 +428,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
 
                 }
@@ -446,8 +446,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
 
         #endregion
@@ -484,12 +484,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         return Json(deserialize);
                     }
@@ -499,12 +499,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
 
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -518,9 +518,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
 
         #endregion
@@ -550,12 +549,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var data = deserialize.Data;
                         var datalist = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data));
@@ -569,11 +568,11 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                   
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -587,8 +586,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json(lstdata);
         }
 
         #endregion
@@ -678,12 +677,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
                         var datadeserialize = deserialize.Data;
                         var deserializeN = JsonConvert.DeserializeObject<SubscriptionBillOperatorListResponseModel>(datadeserialize.ToString());
@@ -698,11 +697,11 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                     }
                     else
                     {
-                        return Json("");
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-                    
+
                 }
-               
+
 
             }
             catch (Exception ex)
@@ -717,9 +716,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.SubscriptionsBillControlle
                 requestEx.AddJsonBody(jsonEx);
                 IRestResponse responseEx = clientEx.Execute(requestEx);
                 var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
-
         }
         #endregion
     }
