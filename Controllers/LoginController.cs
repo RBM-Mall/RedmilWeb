@@ -66,158 +66,155 @@ namespace Project_Redmil_MVC.Controllers
                     var datalist = JsonConvert.DeserializeObject<List<ValidateResponseModel>>(JsonConvert.SerializeObject(data));
                     var UId = datalist.FirstOrDefault().Id;
 
-                if (des.Message.ToString() != null && des.Statuscode.ToString().Equals("OSS"))
-                {
-                    return Json(des);
-                }
-                else if (!string.IsNullOrEmpty(des.Statuscode) && des.Statuscode == "TXN")
-                {
-                    RequestMpinModel obj = new RequestMpinModel();
-                    try
+                    if (des.Message.ToString() != null && des.Statuscode.ToString().Equals("OSS"))
                     {
-                        obj.IpAddress = GetIp();
-                        obj.MacAddress = GetMacAddress(obj.IpAddress);
-                        obj.Version = "4.1.37";
-                        obj.AppId = "faisal";
-                        obj.Userid = "NA";
-                        obj.Mobile = Mobile;
-                        obj.Mpin = Mpin;
-                        #region Checksum (addsender|Unique Key|UserId|)
-                        string input1 = Checksum.MakeChecksumString("Mpin", Checksum.checksumKey, obj.Userid, obj.Mobile, obj.Mpin, obj.IpAddress, obj.MacAddress, obj.Version);
-                        string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
-                        #endregion
-                        obj.checksum = CheckSum1;
-                        //var client1 = new RestClient("https://api.redmilbusinessmall.com/api/Mpin");
-                        var client1 = new RestClient($"{Baseurl}{ApiName.Mpin}");
-                        var request1 = new RestRequest(Method.POST);
-                        request.AddHeader("Content-Type", "application/json");
-                        var json1 = JsonConvert.SerializeObject(obj);
-                        request1.AddJsonBody(json1);
-                        IRestResponse response1 = client1.Execute(request1);
-                        var result1 = response1.Content;
-                        var des1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
-                        if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
+                        return Json(des);
+                    }
+                    else if (!string.IsNullOrEmpty(des.Statuscode) && des.Statuscode == "TXN")
+                    {
+                        RequestMpinModel obj = new RequestMpinModel();
+                        try
                         {
-                            return Json(des1);
-                        }
-                        else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "TXN")
-                        {
-                            List<ResponseMpinModel> mpinResponseModels = JsonConvert.DeserializeObject<List<ResponseMpinModel>>(JsonConvert.SerializeObject(des1.Data));
-                            StoreSession(mpinResponseModels.FirstOrDefault());
-                            //var u = HttpContext.Session.GetString("MobileNo");
-                            if ((!string.IsNullOrEmpty(Convert.ToString(mpinResponseModels.FirstOrDefault().Id))))
+                            obj.IpAddress = GetIp();
+                            obj.MacAddress = GetMacAddress(obj.IpAddress);
+                            obj.Version = "4.1.37";
+                            obj.AppId = "faisal";
+                            obj.Userid = "NA";
+                            obj.Mobile = Mobile;
+                            obj.Mpin = Mpin;
+                            #region Checksum (addsender|Unique Key|UserId|)
+                            string input1 = Checksum.MakeChecksumString("Mpin", Checksum.checksumKey, obj.Userid, obj.Mobile, obj.Mpin, obj.IpAddress, obj.MacAddress, obj.Version);
+                            string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
+                            #endregion
+                            obj.checksum = CheckSum1;
+                            //var client1 = new RestClient("https://api.redmilbusinessmall.com/api/Mpin");
+                            var client1 = new RestClient($"{Baseurl}{ApiName.Mpin}");
+                            var request1 = new RestRequest(Method.POST);
+                            request.AddHeader("Content-Type", "application/json");
+                            var json1 = JsonConvert.SerializeObject(obj);
+                            request1.AddJsonBody(json1);
+                            IRestResponse response1 = client1.Execute(request1);
+                            var result1 = response1.Content;
+                            var des1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
+                            if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
                             {
-                                var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<ResponseMpinModel>>>(response1.Content);
-                                var getdata = deserializ.Data;
-                                HttpContext.Session.SetString("Name", getdata[0].Name);
-                                HttpContext.Session.SetString("Mobile", getdata[0].Mobileno);
-                                HttpContext.Session.SetString("Email", getdata[0].Emailid);
-                                HttpContext.Session.SetString("Mallname", getdata[0].Mallname);
-                                HttpContext.Session.SetString("Rolltype", getdata[0].Rolltype);
-                                HttpContext.Session.SetString("Id", getdata[0].Id.ToString());
-                                HttpContext.Session.SetString("Kycstatus",getdata[0].Kycstatus==true?"1":"0");
-                                //HttpContext.Session.SetString("Account", getdata[0].AccountNo.ToString());
-                                //HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
-                                //HttpContext.Session.SetString("BankId", getdata[0].BankId.ToString());
-                                if (getdata.FirstOrDefault().AccountNo != null && getdata.FirstOrDefault().AccountNo != "")
-                                {
-                                    HttpContext.Session.SetString("Account", Convert.ToString(mpinResponseModels.FirstOrDefault().AccountNo));
-                                    var Account = HttpContext.Session.GetString("Account").ToString();
-                                }
-                                else
-                                {
-                                    HttpContext.Session.SetString("Account", string.IsNullOrEmpty(mpinResponseModels.FirstOrDefault().AccountNo).ToString());
-                                    TempData["Account"] = HttpContext.Session.GetString("Account").ToString();
-                                    
-                                }
-
-                                if (getdata.FirstOrDefault().BankId != null && getdata.FirstOrDefault().BankId.ToString() != "")
-                                {
-                                    HttpContext.Session.SetString("BankId", Convert.ToString(mpinResponseModels.FirstOrDefault().BankId));
-                                    var BankId = HttpContext.Session.GetString("BankId").ToString();
-
-                                }
-                                if (getdata.FirstOrDefault().Ifsc!= null && getdata.FirstOrDefault().Ifsc.ToString() != "")
-                                {
-                                    HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
-                                    var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
-                                }
-                                var Mallname = HttpContext.Session.GetString("Mallname");
-                                var Name = HttpContext.Session.GetString("Name");
-                                var MobileNo = HttpContext.Session.GetString("Mobile").ToString();
-                                var Email = HttpContext.Session.GetString("Email");
-                                var Rolltype = HttpContext.Session.GetString("Rolltype");
-                                var UserId = HttpContext.Session.GetString("Id").ToString();
-                                TempData["Kycstatus"] = HttpContext.Session.GetString("Kycstatus").Trim();
-                                //TempData["Kycstatus"] = HttpContext.Session.GetString("Kycstatus").Trim()=="1"?true:false;
-                                //var Account = HttpContext.Session.GetString("Account").ToString();
-                               // var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
-                                //var BankId = HttpContext.Session.GetString("BankId").ToString();
-                                ViewBag.id = UserId;
-                                return Json(deserializ);
+                                return Json(des1);
                             }
-                        }
-                        else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "UAB")
-                        {
-                            return Json(des1);
-                        }
-
-                                else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ODL")
+                            else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "TXN")
+                            {
+                                List<ResponseMpinModel> mpinResponseModels = JsonConvert.DeserializeObject<List<ResponseMpinModel>>(JsonConvert.SerializeObject(des1.Data));
+                                StoreSession(mpinResponseModels.FirstOrDefault());
+                                //var u = HttpContext.Session.GetString("MobileNo");
+                                if ((!string.IsNullOrEmpty(Convert.ToString(mpinResponseModels.FirstOrDefault().Id))))
                                 {
-                                    RequestOtpModel obj2 = new RequestOtpModel();
-                                    try
+                                    var deserializ = JsonConvert.DeserializeObject<BaseResponseModelT<List<ResponseMpinModel>>>(response1.Content);
+                                    var getdata = deserializ.Data;
+                                    HttpContext.Session.SetString("Name", getdata[0].Name);
+                                    HttpContext.Session.SetString("Mobile", getdata[0].Mobileno);
+                                    HttpContext.Session.SetString("Email", getdata[0].Emailid);
+                                    HttpContext.Session.SetString("Mallname", getdata[0].Mallname);
+                                    HttpContext.Session.SetString("Rolltype", getdata[0].Rolltype);
+                                    HttpContext.Session.SetString("Id", getdata[0].Id.ToString());
+                                    HttpContext.Session.SetString("Kycstatus", getdata[0].Kycstatus == true ? "1" : "0");
+                                    //HttpContext.Session.SetString("Account", getdata[0].AccountNo.ToString());
+                                    //HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
+                                    //HttpContext.Session.SetString("BankId", getdata[0].BankId.ToString());
+                                    if (getdata.FirstOrDefault().AccountNo != null && getdata.FirstOrDefault().AccountNo != "")
                                     {
-                                        obj2.Mobile = Mobile;
-                                        string input2 = Checksum.MakeChecksumString("SendAnotherDeviceLoginOtp", Checksum.checksumKey, "NA", obj2.Mobile);
-                                        string CheckSum2 = Checksum.ConvertStringToSCH512Hash(input2);
-                                        obj2.checksum = CheckSum2;
-                                        //var client2 = new RestClient("https://api.redmilbusinessmall.com/api/SendAnotherDeviceLoginOtp");
-                                        var client2 = new RestClient($"{Baseurl}{ApiName.SendAnotherDeviceLoginOtp}");
-                                        var request2 = new RestRequest(Method.POST);
-                                        request.AddHeader("Content-Type", "application/json");
-                                        var json2 = JsonConvert.SerializeObject(obj2);
-                                        request2.AddJsonBody(json2);
-                                        IRestResponse response2 = client2.Execute(request2);
-                                        var result2 = response2.Content;
-                                        if (string.IsNullOrEmpty(result2))
-                                        {
-                                            return RedirectToAction("ErrorForExceptionLog", "Error");
-                                        }
-                                        else
-                                        {
-                                            BaseResponseModel des2 = JsonConvert.DeserializeObject<BaseResponseModel>(response2.Content);
-                                            if (des2.Statuscode == "ERR")
-                                            {
-                                                des2.Statuscode = "ODLERR";
-                                                return Json(des2);
-                                                //return some msg to identify there is some problem while sending otp please try again login and close the login popup.
-                                            }
-                                            des2.Statuscode = "ODLOSS";
-
-                                            return Json(des2);
-                                        }
+                                        HttpContext.Session.SetString("Account", Convert.ToString(mpinResponseModels.FirstOrDefault().AccountNo));
+                                        var Account = HttpContext.Session.GetString("Account").ToString();
+                                    }
+                                    else
+                                    {
+                                        HttpContext.Session.SetString("Account", string.IsNullOrEmpty(mpinResponseModels.FirstOrDefault().AccountNo).ToString());
+                                        TempData["Account"] = HttpContext.Session.GetString("Account").ToString();
 
                                     }
-                                    catch (Exception ex)
+
+                                    if (getdata.FirstOrDefault().BankId != null && getdata.FirstOrDefault().BankId.ToString() != "")
                                     {
-                                        ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                                        requestModelEx.ExceptionMessage = ex;
-                                        requestModelEx.Data = obj2;
-                                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                                        var requestEx = new RestRequest(Method.POST);
-                                        requestEx.AddHeader("Content-Type", "application/json");
-                                        var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                                        requestEx.AddJsonBody(jsonEx);
-                                        IRestResponse responseEx = clientEx.Execute(requestEx);
-                                        var resultEx = responseEx.Content;
+                                        HttpContext.Session.SetString("BankId", Convert.ToString(mpinResponseModels.FirstOrDefault().BankId));
+                                        var BankId = HttpContext.Session.GetString("BankId").ToString();
+
+                                    }
+                                    if (getdata.FirstOrDefault().Ifsc != null && getdata.FirstOrDefault().Ifsc.ToString() != "")
+                                    {
+                                        HttpContext.Session.SetString("Ifsc", getdata[0].Ifsc.ToString());
+                                        var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
+                                    }
+                                    var Mallname = HttpContext.Session.GetString("Mallname");
+                                    var Name = HttpContext.Session.GetString("Name");
+                                    var MobileNo = HttpContext.Session.GetString("Mobile").ToString();
+                                    var Email = HttpContext.Session.GetString("Email");
+                                    var Rolltype = HttpContext.Session.GetString("Rolltype");
+                                    var UserId = HttpContext.Session.GetString("Id").ToString();
+                                    TempData["Kycstatus"] = HttpContext.Session.GetString("Kycstatus").Trim();
+                                    //TempData["Kycstatus"] = HttpContext.Session.GetString("Kycstatus").Trim()=="1"?true:false;
+                                    //var Account = HttpContext.Session.GetString("Account").ToString();
+                                    // var Ifsc = HttpContext.Session.GetString("Ifsc").ToString();
+                                    //var BankId = HttpContext.Session.GetString("BankId").ToString();
+                                    ViewBag.id = UserId;
+                                    return Json(deserializ);
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "UAB")
+                            {
+                                return Json(des1);
+                            }
+
+                            else if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ODL")
+                            {
+                                RequestOtpModel obj2 = new RequestOtpModel();
+                                try
+                                {
+                                    obj2.Mobile = Mobile;
+                                    string input2 = Checksum.MakeChecksumString("SendAnotherDeviceLoginOtp", Checksum.checksumKey, "NA", obj2.Mobile);
+                                    string CheckSum2 = Checksum.ConvertStringToSCH512Hash(input2);
+                                    obj2.checksum = CheckSum2;
+                                    //var client2 = new RestClient("https://api.redmilbusinessmall.com/api/SendAnotherDeviceLoginOtp");
+                                    var client2 = new RestClient($"{Baseurl}{ApiName.SendAnotherDeviceLoginOtp}");
+                                    var request2 = new RestRequest(Method.POST);
+                                    request.AddHeader("Content-Type", "application/json");
+                                    var json2 = JsonConvert.SerializeObject(obj2);
+                                    request2.AddJsonBody(json2);
+                                    IRestResponse response2 = client2.Execute(request2);
+                                    var result2 = response2.Content;
+                                    if (string.IsNullOrEmpty(result2))
+                                    {
                                         return RedirectToAction("ErrorForExceptionLog", "Error");
                                     }
+                                    else
+                                    {
+                                        BaseResponseModel des2 = JsonConvert.DeserializeObject<BaseResponseModel>(response2.Content);
+                                        if (des2.Statuscode == "ERR")
+                                        {
+                                            des2.Statuscode = "ODLERR";
+                                            return Json(des2);
+                                            //return some msg to identify there is some problem while sending otp please try again login and close the login popup.
+                                        }
+                                        des2.Statuscode = "ODLOSS";
+
+                                        return Json(des2);
+                                    }
 
                                 }
+                                catch (Exception ex)
+                                {
+                                    ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                                    requestModelEx.ExceptionMessage = ex;
+                                    requestModelEx.Data = obj2;
+                                    var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                                    var requestEx = new RestRequest(Method.POST);
+                                    requestEx.AddHeader("Content-Type", "application/json");
+                                    var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                                    requestEx.AddJsonBody(jsonEx);
+                                    IRestResponse responseEx = clientEx.Execute(requestEx);
+                                    var resultEx = responseEx.Content;
+                                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                                }
+
                             }
-
                         }
-
                         catch (Exception ex)
                         {
                             ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();

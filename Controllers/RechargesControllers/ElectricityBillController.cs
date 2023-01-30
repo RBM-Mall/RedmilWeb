@@ -94,17 +94,6 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                             {
                                 for (int i = 0; i < dataBillerInfo.FirstOrDefault().inputParam.Length; i++)
                                 {
-                        List<GetBBPSBillsTmpResponseModel> lstResponse = new List<GetBBPSBillsTmpResponseModel>();
-                        GetBBPSBillsTmpRequestModel requestmodel = new GetBBPSBillsTmpRequestModel();
-                        requestmodel.Userid = HttpContext.Session.GetString("Id").ToString(); ;
-                        requestmodel.Mobileno = Number;
-                        requestmodel.BillerId = dataBillerInfo.FirstOrDefault().Bbps;
-                        string inputParamKey = "";
-                        int count1 = 1;
-                        if (dataBillerInfo.FirstOrDefault().inputParam.Length > 1)
-                        {
-                            for (int i = 0; i < dataBillerInfo.FirstOrDefault().inputParam.Length; i++)
-                            {
 
                                     if (count1 <= dataBillerInfo.FirstOrDefault().inputParam.Length - 1)
                                     {
@@ -231,26 +220,6 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                                         requestPayModel.Userid = "2084";
                                         string UseridCheck = "2084";
                                         //requestPayModel.Token = "";
-                                requestPayModel.type = "Pay";
-                                //requestPayModel.billValidationStatus = getElectricityOperatorListResponseModel.billerInfo.FirstOrDefault().BillValidation;
-                                requestPayModel.billValidationStatus = getElectricityOperatorListResponseModel.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().BillValidation;
-                                requestPayModel.Wallet = Payment;
-                                string amount = Amount;
-                                string FinalAmount = string.Empty;
-                                if (amount.Contains('₹'))
-                                {
-                                    string[] arrAmount = amount.Split('₹');
-                                    FinalAmount = arrAmount[1].Trim();
-                                }
-                                else
-                                {
-                                    FinalAmount = amount;
-                                }
-                                requestPayModel.Amount = FinalAmount;
-                                requestPayModel.Mode = "App";
-                                requestPayModel.Userid = HttpContext.Session.GetString("Id").ToString(); ;
-                                string UseridCheck = HttpContext.Session.GetString("Id").ToString(); ;
-                                //requestPayModel.Token = "";
 
                                         #region Checksum (PayBBPSBillsTmp|Unique Key|UseridCheck|Mobileno|Mode|Amount|RequestID|BillerId|InputParam1|InputParam2)
                                         string inputN = Checksum.MakeChecksumString("PayBBPSBillsTmp", Checksum.checksumKey, requestPayModel.Userid,
@@ -359,7 +328,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 IRestResponse responseBbpsStates = clientBbpsStates.Execute(requestBbpsStates);
                 var resultBbpsStates = responseBbpsStates.Content;
                 var deserializeBbpsStates = JsonConvert.DeserializeObject<BaseResponseModel>(responseBbpsStates.Content);
-                if(deserializeBbpsStates.Statuscode=="TXN" && deserializeBbpsStates != null)
+                if (deserializeBbpsStates.Statuscode == "TXN" && deserializeBbpsStates != null)
                 {
                     var dataBbpsStates = deserializeBbpsStates.Data;
                     var dataListBbpsStates = JsonConvert.DeserializeObject<List<GetElectricityStateListResponseModel>>(JsonConvert.SerializeObject(dataBbpsStates));
@@ -367,11 +336,11 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 }
                 else if (deserializeBbpsStates.Statuscode == "ERR")
                 {
-                    
+
                 }
                 else
                 {
-                    
+
                 }
             }
             catch (Exception ex)
@@ -555,7 +524,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             try
             {
-                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+                getBalanceRequestModel.Userid = "2084";
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
