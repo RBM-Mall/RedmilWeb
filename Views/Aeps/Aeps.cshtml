@@ -628,7 +628,8 @@
                         </div>
                     </div>
                 </div>
-                <button class="button-21 pull-center" id="btnbankModal" onclick="chooseBank()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>
+                @*<button class="button-21 pull-center" id="btnbankModal" onclick="chooseBank()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
+                <button class="button-21 pull-center btn_Proceed" id="btnbankModal" onclick="chooseBank()">Continue</button>
                 @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
                 @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
             </div>
@@ -654,24 +655,27 @@
                 <h4 class="modal-title" style="font-weight: 900; text-align: center;">SELECT DEVICE</h4>
                 <div class="col-sm-5 col-xs-12 pull-right">
                     <div class="read-more padding-top-bottom-40">
-                        <h3 style="color: #fff; display: inline-flex;">Cash Wallet -- </h3>
+                        <h3 class="heading_Balance" style="color: #fff; display: inline-flex;">Cash Wallet -- </h3>
                         <a href="#" target="_blank" class="button-23" style="cursor: auto; text-decoration: unset;">₹ @ViewBag.Balance </a>
                     </div>
                 </div>
             </div>
             <div class="modal-body" id="1selectDevice">
-                <p style="font-weight: 900; text-align: center; color:#2d385e;">How to Work</p>
+                @*<p style="font-weight: 900; text-align: center; color:#2d385e;">How to Work</p>*@
+                <p class="p_Verify_Face">How to Work</p>
                 <hr />
                 <div class="col-md-12">
                     <div class="section single-services-area">
                         <div class="row" style="margin-right: 0;">
                             <div class="col col-md-12 col-sm-12 col-lg-12">
-                                <img src="~/img/img_devices/How-to-Work.png" style="width:100%;height:400px" alt="Norway" />
+                                @*<img src="~/img/img_devices/How-to-Work.png" style="width:100%;height:400px" alt="Norway" />*@
+                                <img src="~/img/img_devices/How-to-Work.png" style="width:100%;" alt="Norway" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <p style="font-weight: 900; text-align: center; color:#2d385e;">CHOOSE DEVICE</p>
+                @*<p style="font-weight: 900; text-align: center; color:#2d385e;">CHOOSE DEVICE</p>*@
+                <p class="p_Verify_Face">CHOOSE DEVICE</p>
                 <hr />
                 <div class="col-md-12">
                     <div class="col-md-3 morpho radio2" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
@@ -721,7 +725,8 @@
                     </div>
                 </div>
                 @*<button class="button-21 pull-center" id="selectDeviceProceed" onclick="faceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
-                <button class="button-21 pull-center" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: -5px;">Proceed</button>
+                @*<button class="button-21 pull-center btn_Proceed_Center" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: -5px;">Proceed</button>*@
+                <button class="button-21 pull-center btn_Proceed" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: -5px;">Proceed</button>
             </div>
             <div class="modal-footer">
                 <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
@@ -766,7 +771,8 @@
                 <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
             </div>
             <div class="modal-body">
-                <p style="font-weight: 900; text-align: center; color:#2d385e;">Verify your face OR fingerprint biometric</p>
+                @*<p style="font-weight: 900; text-align: center; color:#2d385e;">Verify your face OR fingerprint biometric</p>*@
+                <p class="p_Verify_Face">Verify your face OR fingerprint biometric</p>
                 <hr />
                 <div>
 
@@ -774,26 +780,33 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @*<div class="col-md-6">*@
-                                <img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />
+                                @*<img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />*@
+                                <img src="../img/device biometric image/fingerprint.jpg" class="img_fingurprint"/>
                                 @*</div>*@
                             </div>
                         </div>
                     </div>
-                    <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Your Security matters the most to us!</p>
-                    <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>
+                    @*<p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Your Security matters the most to us!</p>*@
+                    <p class="p_Security">Your Security matters the most to us!</p>
+                    @*<p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>*@
+                    <p class="p_Verify">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>
                     <input type="hidden" name="long" id="hdnLong" />
                     <input type="hidden" name="lat" id="hdnLat" />
                     <div class="col-md-12">
 
-                        <div class="col-md-4" style="margin-top: 60px;">
-                            <button class="button-21" id="deviceModal" data-toggle="modal" data-target="#deviceModal" style="margin-left:100px; font-weight: 900; margin-top: 50px;">
+                        @*<div class="col-md-4" style="margin-top: 60px;">*@
+                        <div class="col-md-4 col_Verify">
+                            @*<button class="button-21" id="deviceModal" data-toggle="modal" data-target="#deviceModal" style="margin-left:100px; font-weight: 900; margin-top: 50px;">*@
+                            <button class="button-21 btn_Proceed_Final" id="deviceModal" data-toggle="modal" data-target="#deviceModal">
                                 Verify Face
                             </button>
                         </div>
 
-                        <div class="col-sm-2 vl" style="border-left: 6px solid #2d385e; height: 150px; margin-top: 50px; margin-left: 140px;"></div>
+                        @*<div class="col-sm-2 vl vertical_align" style="border-left: 6px solid #2d385e; height: 150px; margin-top: 50px; margin-left: 140px;"></div>*@
+                        <div class="col-sm-2 vl vertical_align"></div>
 
-                        <div class="col-md-4" style="margin-top: 60px;">
+                        @*<div class="col-md-4" style="margin-top: 60px;">*@
+                        <div class="col-md-4 col_Verify">
                             @*<button class="button-21" id="deviceModal" onclick="CaptureFinger(65, 10)" style="font-weight: 900; margin-top: 50px;">*@
                             <button class="button-21" id="deviceModal" onclick="getLocation()" style="font-weight: 900; margin-top: 50px;">
                                 Verify Using Biometric
@@ -1146,6 +1159,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
                     //for (Data1.result == 'Redirect') {
                     //let output = response.map(i => "<div id='choosBank'>" + i.choosBank + "</div>");
                     if (response.result == "EmptyResult") {
@@ -1197,6 +1211,7 @@
 
     //var select = document.getElementById('aepsChooseTrasaction');
     function VerifyFaceBiometricModal() {
+        debugger;
         var radioValDevice = $('.morpho:checked').val();
         if (radioValDevice == undefined || radioValDevice == '' || radioValDevice == null) {
             document.getElementById("errDevice").innerHTML = "Please Select Atleast One Device to Proceed";
@@ -1210,6 +1225,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
                     if (response.result == 'Connected') {
                         $.ajax({
                             url: "/Aeps/GetBankList",
@@ -1230,12 +1246,18 @@
                         //$("#btnCustomerDetails").trigger("click");
                         $("#deviceModal").hide();
                     }
-
+                    else if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
                     //document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
                     //document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
                     //document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
-
-
                 }
             });
         }

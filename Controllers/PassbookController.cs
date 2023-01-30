@@ -545,7 +545,7 @@ namespace Project_Redmil_MVC.Controllers
                     }
                     else if (deserialize.Statuscode == "TXN")
                     {
-                        return Json(deserialize);
+                        return Json(result);
                     }
                     else
                     {
