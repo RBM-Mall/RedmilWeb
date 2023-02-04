@@ -1828,9 +1828,9 @@ nav.navbar.fixed-top {
 
     @media screen and (max-width:339px) and (min-width:280px) {
         .dmt {
-            margin-top: 10px;
+            margin-top: 48px;
             text-align: center;
-            margin-left: -200px;
+            margin-left: -117px;
         }
 
         .aval_bal_font {
@@ -1847,9 +1847,9 @@ nav.navbar.fixed-top {
 
     @media screen and (max-width:399px) and (min-width:340px) {
         .dmt {
-            margin-top: 10px;
+            margin-top: 39px;
             text-align: center;
-            margin-left: -180px;
+            margin-left: -108px;
         }
 
         .aval_bal_font {
@@ -1866,7 +1866,7 @@ nav.navbar.fixed-top {
 
     @media screen and (min-width: 400px) and (max-width:550px) {
         .dmt {
-            margin-top: 0px;
+            margin-top: 52px;
             text-align: center;
             margin-left: -150px;
         }
@@ -1924,7 +1924,7 @@ nav.navbar.fixed-top {
 
     @media screen and (min-width: 701px) and (max-width:767px) {
         .dmt {
-            margin-top: 2px;
+            margin-top: 70px;
             text-align: center;
             margin-left: -152px;
         }

@@ -11,8 +11,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
 <script src="/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<srcipt src="jquery.redirect.js"></srcipt>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-<style>
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
+@*<style>
     .button-23:hover {
         color: white;
     }
@@ -100,7 +107,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                                                                                              border-top: none;*/
+                                                                                                                                      border-top: none;*/
     }
 
         .tabcontent .title {
@@ -237,15 +244,16 @@
         width: 100%;
     }
 
-</style>
+</style>*@
 
+@*<br />
 <br />
 <br />
-<br />
-<br />
+<br />*@
 <br />
 
-<div class="container-fluid" style="background:#ebebeb">
+@*<div class="container-fluid" style="background:#ebebeb">*@
+<div class="container-fluid" style="background:white">
     <div class="first-header">
         <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;height:150px;">
             <div class="container">
@@ -255,13 +263,13 @@
                             <div class="row">
                                 <div class="col-sm-7 col-xs-12 dmt">
                                     <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:300px;text-align:center; font-weight: 700; cursor: pointer;"><u>Business Reports</u></h3>
+                                    @*<h3 class="padding-left-right-50 " style="margin-top: 20px;text-align:center; font-weight: 700; cursor: pointer;"><u>Business Reports</u></h3>*@
                                     <br />
-
                                 </div>
-                                <div class="col-sm-5 col-xs-12 text-right">
+                                @*<div class="col-sm-5 col-xs-12 text-right">
                                     <div class="read-more padding-top-bottom-40">
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -272,17 +280,34 @@
     <hr />
     <div>
         <div class="col col-md-12 col-sm-12 col-lg-12">
-            <img src="/css/Img_BusinessReport/report.jpg" style="width: 60%;height:400px;margin-left: 330px;padding-bottom:20px;" alt="Norway" />
+            @*<img src="/css/Img_BusinessReport/report.jpg" style="width: 60%;height:400px;margin-left: 330px;padding-bottom:20px;" alt="Norway" />*@
+            <img src="/css/Img_BusinessReport/report11N.jpg" style="width: 100%;" alt="Norway" />
         </div>
     </div>
-    <hr>
+    <hr />
+    <br />
     <div style="background: white;padding-top: 5px;padding-bottom: 40px;">
         <h3 class="tag">Get Complete Transparency & Keep Good Track Of Your Business Transactions With Business Reports</h3>
     </div>
-
-    <hr>
+    <hr/>
+   @* <div class="third-header">
+        <div class="container card" style="background:#ebebeb; border: 2px solid white ;padding: 10px;border-radius: 25px;">
+            <div class="card-body" style="font-size: 40px;text-align:center; font-weight: 700; cursor: pointer;">
+                <div class="form-group-recharge">
+                    <h3 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong class="heading_customer_phone">Select Category</strong>
+                    <input id="txtCustomerMobile" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Customer Mobile Number" />
+                    </h3>
+                    <br />
+                    <h3 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong class="heading_customer_phone">Select Sub Category</strong>
+                    <input id="txtCustomerMobile" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Customer Mobile Number" />
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>*@
     <div class="row">
         <div class="accordion">
+            @*<div class="btn-group">*@
             <div class="container-fluid" style="width: 100%;">
                 <div class="row">
                     <div class="col-md-6">
@@ -474,12 +499,6 @@
             url: "/MyBusinessReports/GetTransactionReports?subCat=" + e,
             contentType: "json",
             success: function (response) {
-                debugger;
-                //if (response == null||response.data==null||response.data=="") {
-                //    document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -501,7 +520,6 @@
                     $("#tempTbl1").find("tr").remove();
                     var tr = '<tr>';
                     var columnName = Object.keys(response[0]);
-                    debugger;
                     for (var i = 0; i <= columnName.length; i++) {
 
                         if (i == columnName.length && f != 7 && f != 3) {
@@ -538,7 +556,6 @@
                         }
                         tr += '</tr>';
                     }
-                    debugger;
                     $("#tempTbl1").append(tr);
                     document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                     document.getElementById('walletTblborder11').style.display = "block";
@@ -624,12 +641,6 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    //if (response == null || response == "" || response.data==null){
-                    //    document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    //else {
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -644,7 +655,6 @@
                         $("#tempTbl1").find("tr").remove();
                         var tr = '<tr>';
                         var columnName = Object.keys(response[0]);
-                        debugger;
                         for (var i = 0; i <= columnName.length; i++) {
 
                             if (i == columnName.length && (f != 7 && f != 3)) {
@@ -679,14 +689,10 @@
                             }
                             tr += '</tr>';
                         }
-                        debugger;
                         $("#tempTbl1").append(tr);
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         document.getElementById('walletTblborder11').style.display = "block";
                     }
-
-
-                    //}
                 }
             });
         });
@@ -694,78 +700,78 @@
 </script>
 
 @*<script>
-    $(document).ready(function () {
-        $("#ddlStatus").change(function () {
-            document.getElementById("errfromDate").innerHTML = "";
-            document.getElementById("errtoDate").innerHTML = "";
-            var from = $('#fromDate').val();
-            var to = $('#toDate').val();
-            var e = $('#ddlStatus').val();
-            var subCat = $('#SId').val();
-            var f = $('#Id').val();
-            var d = $('#transactionReportDownload').val();
+    $(document).ready(function () {
+    $("#ddlStatus").change(function () {
+    document.getElementById("errfromDate").innerHTML = "";
+    document.getElementById("errtoDate").innerHTML = "";
+    var from = $('#fromDate').val();
+    var to = $('#toDate').val();
+    var e = $('#ddlStatus').val();
+    var subCat = $('#SId').val();
+    var f = $('#Id').val();
+    var d = $('#transactionReportDownload').val();
 
-            $.ajax({
-                type: "POST",
-                url: "/MyBusinessReports/GetTransactionReports",
-                data: { 'sort': e, 'fromdate': from, 'todate': to, 'subCat': subCat },
-                type: 'POST',
-                dataType: 'json',
-                success: function (response) {
-                    if (response == null || response == "") {
-                        document.getElementById("walletTblborder11").style.display = "none";
-                        document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                        $("#btnNoDataFoundModel").trigger("click");
-                    }
-                    else {
-                        $("#tempTbl1").find("tr").remove();
-                        var tr = '<tr>';
-                        var columnName = Object.keys(response[0]);
-                        debugger;
-                        for (var i = 0; i <= columnName.length; i++) {
+    $.ajax({
+    type: "POST",
+    url: "/MyBusinessReports/GetTransactionReports",
+    data: { 'sort': e, 'fromdate': from, 'todate': to, 'subCat': subCat },
+    type: 'POST',
+    dataType: 'json',
+    success: function (response) {
+    if (response == null || response == "") {
+    document.getElementById("walletTblborder11").style.display = "none";
+    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
+    $("#btnNoDataFoundModel").trigger("click");
+    }
+    else {
+    $("#tempTbl1").find("tr").remove();
+    var tr = '<tr>';
+    var columnName = Object.keys(response[0]);
+    debugger;
+    for (var i = 0; i <= columnName.length; i++) {
 
-                            if (i == columnName.length && (f != 7 && f != 3)) {
-                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
-                            }
-                            else if (i == columnName.length && (f == 7 || f == 3)) { }
-                            else {
-                                tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
-                            }
-                        }
-                        tr += '</tr>';
-                        for (var i = 0; i < response.length; i++) {
-                            tr += '<tr>'
-                            var columnValue = Object.values(response[i]);
-                            for (var j = 0; j <= columnValue.length; j++) {
-                                if (j == 0) {
-                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
-                                }
+    if (i == columnName.length && (f != 7 && f != 3)) {
+    tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
+    }
+    else if (i == columnName.length && (f == 7 || f == 3)) { }
+    else {
+    tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
+    }
+    }
+    tr += '</tr>';
+    for (var i = 0; i < response.length; i++) {
+    tr += '<tr>'
+    var columnValue = Object.values(response[i]);
+    for (var j = 0; j <= columnValue.length; j++) {
+    if (j == 0) {
+    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
+    }
 
-                                else if (j == columnValue.length && (f != 7 && f != 3)) {
-                                    if (f == 2) {
-                                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">Button1</button><button style="background:#4CC713;color:white" id=2' + i + ' class="btnViewReceipt">Button2</button><button style="background:#4CC713;color:white" id=3' + i + ' class="btnViewReceipt">Button3</button></td>'
-                                    }
-                                    else {
-                                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">View Receipt</button></td>'
-                                    }
-                                }
-                                else if (j == columnValue.length && (f == 7 || f == 3)) { }
-                                else {
-                                    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
-                                }
-                            }
-                            tr += '</tr>';
-                        }
-                        debugger;
-                        $("#tempTbl1").append(tr);
-                        document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
-                        document.getElementById('walletTblborder11').style.display = "block";
-                    }
-                }
-            });
-        });
-    });
-</script>*@
+    else if (j == columnValue.length && (f != 7 && f != 3)) {
+    if (f == 2) {
+    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">Button1</button><button style="background:#4CC713;color:white" id=2' + i + ' class="btnViewReceipt">Button2</button><button style="background:#4CC713;color:white" id=3' + i + ' class="btnViewReceipt">Button3</button></td>'
+    }
+    else {
+    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">View Receipt</button></td>'
+    }
+    }
+    else if (j == columnValue.length && (f == 7 || f == 3)) { }
+    else {
+    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
+    }
+    }
+    tr += '</tr>';
+    }
+    debugger;
+    $("#tempTbl1").append(tr);
+    document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
+    document.getElementById('walletTblborder11').style.display = "block";
+    }
+    }
+    });
+    });
+    });
+    </script>*@
 
 
 <!--Sorting Method-->
@@ -788,14 +794,6 @@
                 dataType: 'json',
 
                 success: function (response) {
-                    debugger;
-                    //if (response == null || response == "" || response.data==null) {
-                    //    document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    //else {
-
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -852,7 +850,6 @@
         var to = $('#toDate').val();
         var d = "x";
         var subCat = $('#SId').val();
-        debugger;
         if (from == '' && to == '') {
             document.getElementById('errfromDate').innerHTML = "Please Select From Date";
             document.getElementById('errtoDate').innerHTML = "Please Select To Date";
@@ -922,7 +919,6 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    debugger;
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -959,7 +955,6 @@
         $("#tempTbl1").on('click', ".btnViewReceipt", function () {
             var currentRow = $(this).closest('tr');
             var subCat = $('#SId').val();
-            debugger;
             // 15
             var requestDate = $('#requestDate').val();
             var requestTime = $('#requestTime').val();
@@ -1019,7 +1014,6 @@
 
 
             else if (subCat == "30" || subCat == "29" || subCat == "18" || subCat == "9") {
-                debugger;
                 var microATMCashWithdrawalModel = {
                     RequestDate: currentRow.find('td:eq(1)').text(),
                     RequestTime: currentRow.find('td:eq(2)').text(),
@@ -1209,7 +1203,6 @@
             }
 
             else if (subCat == "32") {
-                debugger;
                 var amazonPayGiftCardModel = {
                     RequestDate: currentRow.find('td:eq(1)').text(),
                     RequestTime: currentRow.find('td:eq(2)').text(),
@@ -1315,14 +1308,7 @@
                 data: { result, subCat },
                 dataType: 'json',
                 success: function (msgdeserialize) {
-                    debugger;
-                    //if (msgdeserialize == null || msgdeserialize == "" || msgdeserialize.data == null) {
-                    //    document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
-                    //else{
-                    //}
+
                     if (msgdeserialize.result == "EmptyResult") {
                         window.location.href = msgdeserialize.url;
                     }
@@ -1333,13 +1319,13 @@
                     else if (msgdeserialize.result == "RedirectToException") {
                         window.location.href = msgdeserialize.url;
                     }
-                    else{
+                    else {
                         var viewReceipt = msgdeserialize;
                         var viewReceiptWindow = window.open();
                         viewReceiptWindow.document.write(viewReceipt);
                         viewReceiptWindow.print();
                     }
-                    
+
                 },
                 failure: function (msgdeserialize) {
                     alert(msgdeserialize.responseText);
