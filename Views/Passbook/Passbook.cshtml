@@ -22,7 +22,7 @@
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Passbook.css" rel="stylesheet" />
 
-@*<style>
+<style>
 
     .ts {
         margin-left: 226px;
@@ -202,7 +202,7 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                            border-top: none;*/
+                                                                border-top: none;*/
     }
 
         .tabcontent .title {
@@ -263,8 +263,8 @@
         }
 
         /*.tabcontent.item_info.btn2{
-                                                                            margin-left:200px;
-                                                                        }*/
+                                                                                margin-left:200px;
+                                                                            }*/
 
         .tabcontent hr {
             margin: 93px 0 0 20px;
@@ -332,8 +332,8 @@
     .tabcontents {
         display: none;
         /* padding: 6px 12px;
-                                    border: 1px solid #ccc;
-                                    border-top: none;*/
+                                        border: 1px solid #ccc;
+                                        border-top: none;*/
         font-size: 15px;
     }
 
@@ -351,7 +351,7 @@
     .tabs {
         overflow: hidden;
         /*  border: 1px solid #ccc;
-                                    background-color: #f1f1f1;*/
+                                        background-color: #f1f1f1;*/
     }
 
         /* Style the buttons inside the tab */
@@ -395,25 +395,26 @@
         cursor: pointer;
         position: fixed;
     }
+
     .cross1 {
-    background-color: #222;
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
-    margin: 7px;
-    border: 3px solid;
-    border-color: var(--white);
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    white-space: nowrap;
-    box-sizing: border-box;
-    top: -25px;
-    right: 159px;
-    z-index: 9;
-    cursor: pointer;
-    position: fixed;
-}
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -25px;
+        right: 159px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
 
     .progress {
         overflow: hidden;
@@ -453,39 +454,165 @@
         font-size: 24px;
     }
 
-   /* input {
-        text-align: center
-    }*/
-    input.valid
-    {
-            background-color: white;
-            width: 440px;
+    /* input {
+            text-align: center
+        }*/
+    input.valid {
+        background-color: white;
+        width: 440px;
+        height: 50px;
     }
 
 
-.gr
-{
+    .gr {
         position: absolute;
         top: 23px;
         margin-left: 391px;
+    }
 
+    .gre {
+        position: absolute;
+        left: 391px;
+        top: 92px;
+    }
 
-}
-.gre
-{
-    position: absolute;
-    left: 391px;
-    top: 74px;
-}
-.grr
-{
-display:none;
-color:green;
-}
+    .grr {
+        display: none;
+        color: green;
+    }
 
+    .grrAcc {
+        display: none;
+        color: green;
+    }
 
+    .psdt {
+        margin-left: 110px;
+        margin-top: 26px;
+    }
+
+    .PAa {
+        height: 45px;
+        width: 257px;
+        margin-top: 7px;
+    }
+
+    .pspd {
+        margin-left: 109px;
+        margin-top: 18px;
+    }
+
+    .psfs {
+        margin-top: 20px;
+    }
+
+    .pstxt {
+        margin-top: 56px;
+        margin-left: 79px;
+    }
+
+    .psAdd {
+        margin-top: 10px;
+    }
+
+    .psinput {
+        margin-left: 59px;
+        margin-top: 41px;
+        margin-bottom: 16px;
+    }
+
+    .validchkr {
+        position: absolute;
+        left: -226px;
+        height: 20px;
+    }
+
+    .trmcdn {
+        padding: 6px;
+        margin-left: 18px;
+    }
+
+    .op11 {
+        width: 441px;
+        height: 49px;
+        margin-top: 20px;
+    }
 </style>
-*@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 100px auto;
+        font-family: Raleway;
+        padding: 40px;
+        width: 70%;
+        min-width: 300px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+    }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
+
+    button {
+        background-color: #04AA6D;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #04AA6D;
+        }
+</style>
 <br />
 <br />
 
@@ -1148,16 +1275,11 @@ color:green;
                                 </div>
                             </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
     <!--Modal for error-->
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1168,7 +1290,7 @@ color:green;
                         <button type="button" class="close fist" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" onclick="okfunction()" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                         </button>
-                        <button style="display:none" type="button" class="close second third">
+                        <button style="display:none" type="button" class="close second third"  >
                             <span aria-hidden="true" onclick="okfunction()" class="third" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                         </button>
                         <div class="modal-body">
@@ -1187,11 +1309,6 @@ color:green;
                             </div>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--Modal for Launch your Mall -->
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1377,6 +1494,7 @@ color:green;
         </div>
     </div>
 </div>
+
 <!-- Modal For Instant Pay-->
 
 <div class="row">
@@ -1384,8 +1502,8 @@ color:green;
         <input type="button" id="ModalInstanPay" style="display:none" data-target="#ModalInstanPays" data-toggle="modal" />
         <div id="ModalInstanPays" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="width:800px;margin-top:135px;margin-left:600px">
-                <div class="modal-content" style="height: 1392px;width: 626px;color: black;padding:4px;background-color: #e4e4e4;">
-                    <div class="cross1 " aria-label="Close">
+                <div class="modal-content" style="height: 1477px;width: 626px;color: black;padding:4px;background-color: #e4e4e4;">
+                    <div class="cross1 " aria-label="Close" data-dismiss="modal">
                         <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
@@ -1397,60 +1515,79 @@ color:green;
                             <div class="tab forinstant">
                                 <div class="row">
 
-                                    <div class="col-md-3" style="margin-top: 56px;margin-left:79px;">
+                                    <div class="col-md-3 pstxt">
                                         <span style="font-size: 21px;">Partner Name as Per Aadhar</span><br />
                                         <span style="font-size: 21px;">Partner Name as Per Pan</span><br>
                                         <span style="font-size: 21px;">Partner Name as Per Bank</span>
                                     </div>
-                                    <div class="col-md-3" style="margin-left: 59px;margin-top: 41px;margin-bottom:16px;">
+                                    <div class="col-md-3 psinput">
                                         <br>
-                                        <input type="text" readonly="" class="invalid PAa"><br>
-                                        <input type="text" readonly="" class="invalid" style="margin-top: 10px;">
-                                        <input type="text" readonly="" class=" invalid " style="margin-top:10px;">
+                                        <input type="text" readonly="" class="PAa ForAadhanme"><br>
+                                        <input type="text" readonly="" class=" PAa pancard PancardName">
+                                        <input type="text" readonly="" class=" PAa">
                                     </div>
 
-                                    <div class="col-md-6" style="margin-left: -136px;margin-top: 23px;">
-                                        <input type="text" placeholder="PAN No." oninput="this.className = ''" class="valid " style="margin-top: 10px;" id="txtPANNumber" name="name" maxlength="10" onchange="validatePanNumber(this)"><a href="#" class="gr pans">Verify</a><a href="#" readonly="readonly" class="gr grr ">Verified</a>
+                                    <div class="col-md-6 psdt">
+                                        <input type="text" placeholder="PAN No." class="valid  " style="margin-top: 10px;" id="txtPANNumber" name="name" maxlength="10" >
+                                        <a class="gr pans" >Verify</a>
+                                        <a readonly="readonly"   class="gr grr" id="">Verified</a>
                                         <span id="pan_ver"></span>
-                                        <input type="text" placeholder="Account No." oninput="this.className = ''" class="valid" style="margin-top: 10px;"><a href="#" class="gre">Verify</a><a href="#" class="gre grr">Verified</a>
-                                        <input type="text" placeholder="IFSC Code" oninput="this.className = ''" class="valid" style="margin-top: 10px;">
+                                        <span id="pan_vers"></span>
+                                        <input type="text" placeholder="Account No." onkeypress="return ValidateAlphanumericAccount(event);" id="Txt_Accounts" class="valid" style="margin-top: 10px;">
+                                        <a class="gre" id="VerifyAccount" value="0">Verify</a>
+                                        <a class="gre grrAcc">Verified</a>
+                                        <span id="lbl_Account"></span>
+                                        <input type="text" placeholder="IFSC Code" id="Iifsc" class="valid" style="margin-top: 10px;">
+                                        <span id="Txt_ifsc"></span>
                                         <div class="form-group">
-                                            <select id="op1" style="width: 441px;height: 49px;margin-top: 20px;" oninput="this.className = ''">
-                                                <option> -- Select BankName --</option>
+                                            <select id="op1" class="op11">
+                                                <option value=""> -- Select Bank Name --</option>
                                             </select>
+                                            <span id="BankName"></span>
 
                                         </div>
                                         <p>Note: Your Name as per PAN card and Bank record should match.</p>
                                     </div>
 
                                 </div>
-                                <div class="col-md-6" style="margin-left:101px;margin-top:20px;">
+                                <div class="col-md-6 pspd">
                                     <div class="row">
                                         <span style="font-size:20px">PERSIONAL DETAIL</span><br />
-                                        <input type="text" placeholder="IFSC Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''"><br />
-                                        <input type="text" placeholder="DOB/DOI(DD-MM-YYYY)" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <select style="padding: 15px;margin-top: 10px;width: 130%;" oninput="this.className = ''">
-                                            <option>-- Select Gender --</option>
+
+                                        <input type="text" placeholder="DOB/DOI(DD-MM-YYYY)" id="datepickerDob" class="valid psfs dob" style="">
+                                        <span class="pddetail"></span>
+                                        <select style="padding: 15px;margin-top: 10px;width: 130%;" class="gender" id="Txt_Gender">
+                                            <option value="">-- Select Gender --</option>
                                             <option>Male</option>
                                             <option>Female</option>
                                             <option>Other</option>
                                         </select>
-                                        <input type="text" placeholder="IFSC Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
+                                        <span class="spgender"></span>
+                                        <input type="text" placeholder="" class="valid" style="margin-top: 10px;">
                                     </div>
-                                    <div class="row" style="margin-top:20px;">
+                                    <div class="row">
                                         <span style="font-size:20px">ADDRESS</span><br />
-                                        <input type="text" placeholder="House No./Flat No./Office No." class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <input type="text" placeholder="Building Name/Street" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <input type="text" placeholder="Locality/Area/Landmark" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <input type="text" placeholder="Pin Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <input type="text" placeholder="State" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <div style="padding:20px">
-                                            <input type="checkbox" class="valid" style="position: absolute;left: -232px;"><span>I ACCEPT <a>TERMS & CONDITIONS</a></span><br />
+                                        <input type="text" placeholder="House No./Flat No./Office No." class="valid psAdd Hno">
+                                        <span class="Txt_Hno"></span>
+                                        <input type="text" placeholder="Building Name/Street" class="valid psAdd   Bn">
+                                        <span class="Txt_Bn"></span>
+                                        <input type="text" placeholder="Locality/Area/Landmark" class="valid psAdd LaL">
+                                        <span class="Txt_LAL"></span>
+                                        <input type="text" placeholder="Pin Code" class="valid psAdd Pinc" id="Pincodee" maxlength="6">
+                                        <span class="Txt_Pin" id="pin_Code"></span>
+                                        <input type="text" placeholder="State" class="valid psAdd State">
+                                        <span class="Txt_State"></span>
+                                        <div class="trmcdn">
+                                            <input type="checkbox" class="valid validchkr" style="height:18px">
+                                            <span>I ACCEPT <a>TERMS & CONDITIONS</a></span><br />
                                             <span>Not able to Signup? <a>Request for Manual Signup</a></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab">
+                                    Contact Info
+                                    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
+                                    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
                                 </div>
                                 <div class="tab">
                                 </div>
@@ -1459,7 +1596,7 @@ color:green;
                                 <div style="">
                                     <div style="float:right;">
                                         <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                        <button type="button" id="nextBtn" onclick="nextPrev(1)" style="margin-top: 664px;margin-left:-358px;">Continue</button>
+                                        <button type="button" class="finalConfirm" id="nextBtn" onclick="nextPrev(1)" style="margin-top:685px;margin-left:-358px;">Continue</button>
                                     </div>
                                 </div>
                                 <br />
@@ -1481,7 +1618,185 @@ color:green;
         </div>
     </div>
 </div>
+<!-- Modal For Pan Detail-->
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="ModalForPanSurcharge" style="display:none" data-target="#ModalForPanSurcharges" data-toggle="modal" />
+        <div id="ModalForPanSurcharges" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:317px;margin-left:636px">
+                <div class="modal-content" style="height:255px;width:464px;color: black;padding:4px;">
+                    <div class="cross1" aria-label="Close" data-dismiss="modal">
+                        <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body forhides">
+                        @* <h4> <span id="lblMsgSurcharge"></span></h4>*@
+                    </div>
+                    <h4 id="fornull">You have your three attempt exceeded PAN  Validation Charges: Rs. <span id="lblMsgSurchargeForPan"></span></h4>
+                    <div class="modal-footer" style="padding: 197px;margin-left:-134px;">
+                        <button type="button" class="button-21 Panchr" style="width: 135px;margin-right: 201px;margin-top:-149px;">
+                            <b>Yes</b>
+                        </button>
+                        <button type="button" class="button-21" data-dismiss="modal" style="width: 135px;margin-left: 227px;margin-top:-167px;">
+                            <b>No</b>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal for error-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="BtnNoDatafound" style="display:none" data-target="#ModalNoData" data-toggle="modal" />
+        <div id="ModalNoData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                    <button type="button" class="close fist" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" onclick="okfunction()" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    <button style="display:none" type="button" class="close second third">
+                        <span aria-hidden="true" onclick="okfunction()" class="third" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    <div class="modal-body">
+                        <div class="" id="" style="margin-top:-45px;">
+                            <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
+                            @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
+                        </div>
+                        <h4 id="lblMsgNoData" class="modal-title w-100"></h4>
+                        <input type="text" readonly="" class=" ForAadhanme"><br>
+                        <div class="modal-footer" style="margin-top:-40px">
+                            <button type="button" onclick="okfunction()" class="button-21 first" data-dismiss="modal" style="width: 194px;margin-left: 46px;">
+                                <b>Ok</b>
+                            </button>
+                            <button type="button" onclick="okfunction()" class="button-21 second third" style="width: 194px;margin-left: 46px;display:none">
+                                <b>Ok</b>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            }
+
+                        }
+
+                    });
+
+
 <script>
+
+
+
+    $('.finalConfirm').on('click', function () {
+        debugger;
+
+        var VerifyPan = $('#txtPANNumber').val()
+        var VerifyAccount = $('#Txt_Accounts').val()
+        var Dob = $('.dob').val()
+        var Gender = $('.gender').val();
+        var HFO = $('.Hno').val();
+        var BuildingName = $('.Bn').val();
+        var LAL = $('.LaL').val();
+        var Pincode = $('.Pinc').val();
+        var State = $('.State').val();
+        //var PanVerified=$('#VerifyPan').text();
+        //var AccounNumber=$('#VerifyAccount').text();
+        if(VerifyPan.trim()=="")
+        {
+        //$.notify(
+        //          "Please Veriy Pan Number",
+        //        { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+        //                    );
+        
+        $('#pan_ver').text('Please Verify Pan Number ');
+            $('#pan_ver').css('color', 'red');
+        }
+        else if (VerifyAccount.trim() == "") {
+
+            //$.notify(
+            //    "Please Veriy Account Number",
+            //    { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+
+
+            //);
+            $('#lbl_Account').text('Please Verify Account Number ');
+            $('#lbl_Account').css('color', 'red');
+
+      
+        }
+        else if (Dob.trim() == "") {
+
+            $('.pddetail').text('Please Enter Date Of Birth ');
+            $('.pddetail').css('color', 'red');
+        }
+        else if (Gender.trim() == "") {
+            $('.spgender').text('Please Select Gender');
+            $('.spgender').css('color', 'red');
+
+        }
+        else if (HFO.trim() == "") {
+
+            $('.Txt_Hno').text('Please enter House No./ Flat No./ Office No.');
+            $('.Txt_Hno').css('color', 'red');
+        }
+        else if (BuildingName.trim() == "") {
+            $('.Txt_Bn').text('Please enter Building Name/ Street');
+            $('.Txt_Bn').css('color', 'red');
+        }
+        else if (LAL.trim() == "") {
+            $('.Txt_LAL').text('Please enter Locality/Area/Landmark');
+            $('.Txt_LAL').css('color', 'red');
+        }
+        else if (Pincode.trim() == "") {
+            $('#pin_Code').text('Please enter Pin Code');
+            $('#pin_Code').css('color', 'red');
+        }
+        else if (State.trim() == "") {
+            $('.Txt_State').text('Please select any State');
+            $('.Txt_State').css('color', 'red');
+        }
+
+        else {
+            $.ajax({
+                url: "/Passbook/RERewardDetail",
+                data: { 'BalanceId': BalanceId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) 
+                {
+
+                }
+
+
+            })
+        }
+
+    })
+
+
+    //Data Table
+    $(document).ready(function () {
+
+        $('#example').DataTable();
+        $('#example1').DataTable();
+        $('#BRewards').DataTable();
+        $('#RERewards').DataTable();
+
+    });
+    function okfunction() {
+        location.reload();
+    }
+    //Function for Bind Bank Detail
     $(document).ready(function () {
 
         $.ajax({
@@ -1499,119 +1814,7 @@ color:green;
             }
 
         });
-
-
     });
-
-    $('.pans').on('click', function () {
-        var Panno = $('#txt_pan').val();
-        if (Panno.trim() == "") {
-            $('#pan_ver').text("Please Enter Pan Number");
-        }
-        else {
-            $.ajax({
-                url: "/Passbook/VerifyPan",
-                data: { 'Panno': Panno },
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-
-
-                }
-            })
-
-        }
-
-
-    });
-    function validatePanNumber(pan) {
-
-        let pannumber = $(pan).val();
-
-        var regex = /[a-zA-z]{5}\d{4}[a-zA-Z]{1}/;
-
-        if (pannumber.match(regex)) {
-
-        }
-
-        else {
-
-            $('#pan_ver').text("Invalid PAN number");
-
-
-            $(pan).val("");
-
-        }
-
-    }
-
-</script>
-
-<script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-    function openCity(evt, cityName) {
-        var i, tabcontents, tablinkss;
-        tabcontents = document.getElementsByClassName("tabcontents");
-        for (i = 0; i < tabcontents.length; i++) {
-            tabcontents[i].style.display = "none";
-        }
-        tablinkss = document.getElementsByClassName("tablinkss");
-        for (i = 0; i < tablinkss.length; i++) {
-            tablinkss[i].className = tablinkss[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-</script>
-
-
-
-<script>
-
-    function openPassbook(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    document.getElementById("defaultOpen").click();
-
-
-    document.getElementById("defaultOpen").click();
-    //Data Table
-    $(document).ready(function () {
-
-        $('#example').DataTable();
-        $('#example1').DataTable();
-        $('#BRewards').DataTable();
-        $('#RERewards').DataTable();
-
-    });
-    function okfunction() {
-        location.reload();
-    }
-
     //For Cash Detail
     function ButtonDetail(e) {
         var BalanceId = e;
@@ -2054,7 +2257,8 @@ color:green;
     //    }
     //});
     function LaunchYourMall() {
-        $('#LaunchYourModals').trigger('click');
+         $('#LaunchYourModals').trigger('click');
+        //$("#ModalInstanPay").trigger("click");
     }
     function AdharVeri() {
 
@@ -2075,8 +2279,10 @@ color:green;
 
     var surcharge;
     var Aadhar;
+    var name;
+    var Panno
     $('.SOA').on('click', function () {
-        
+        debugger;
         Aadhar = $('#Txt_Aadhar').val();
 
         if (Aadhar.trim() == "") {
@@ -2090,13 +2296,14 @@ color:green;
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
+
                     $('#Txt_Aadhar').val("");
                     surcharge = response.surcharge;
-
-
                     if (response.statuscode == "ERR") {
                         $("#BtnNoDatafound").trigger("click");
                         $("#lblMsgNoData").text(response.message);
+                        //$(".ForAadhanme").attr("placeholder", response.message);
                         $('#Addharverificaion').hide();
                         $('.first').hide();
                         $('.second').show();
@@ -2134,12 +2341,13 @@ color:green;
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    
-
-                    $('#Otpforaadhar').val("");
+                    debugger;
+                    name = response.name;
+                    $('#Otpforaadhar').val(""); ``
                     if (response.statuscode == "TXN") {
-                        
-                        $('.PAa').text(response.name);
+                        debugger;
+
+                        $(".ForAadhanme").attr("placeholder", name);
                         $('#Addharverificaion').hide();
                         $('#ModalForAdharSurcharges').hide();
                         $("#ModalInstanPay").trigger("click");
@@ -2163,14 +2371,14 @@ color:green;
     })
 
     $('.chr').on('click', function () {
-        
+        debugger;
         $.ajax({
             url: "/Passbook/verifysurchargeAadar",
             data: { 'Aadhar': Aadhar },
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                
+                debugger;
                 $('#Txt_Aadhar').val("");
                 if (response.statuscode == "TXN") {
                     $('#ModalForAdharSurcharges').hide();
@@ -2198,6 +2406,123 @@ color:green;
         })
     })
 
+    $('.pans').on('click', function () {
+        debugger;
+        Panno = $('#txtPANNumber').val();
+        if (Panno.trim() == "") {
+
+            $('#pan_ver').text("Please Enter Pan Number");
+            $('#pan_ver').css("color", "red");
+        }
+        else {
+            $.ajax({
+                url: "/Passbook/VerifyPan",
+                data: { 'Panno': Panno },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    debugger;
+                    if (data.statuscode == "TXN") {
+                        $.notify(
+                            data.message,
+                            { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+                        );
+                        $('.pans').hide();
+                        $('.grr').show();
+                        $(".pancard").attr("placeholder", data.name);
+                        //$('.pancard').text(data.name);
+
+                    }
+                    else if (data.message == "MLR") {
+
+                        $("#ModalForPanSurcharge").trigger("click");
+                        $("#lblMsgSurchargeForPan").text(data.data.data[0].sur);
+
+
+                    }
+
+                }
+            })
+
+        }
+
+    });
+    $('.Panchr').on('click', function () {
+
+        $.ajax({
+            url: "/Passbook/VerifyPanConfirm",
+            data: { 'Panno': Panno },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                if (data.message == "TXN") {
+                    $.notify(
+                        data.message,
+                        { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+
+                    );
+                    $('.pans').hide();
+                    $('#ModalForPanSurcharges').hide();
+                    $('.grr').show();
+                    //$('.PancardName').text(data.data.name);
+                    $(".PancardName").attr("placeholder", data.data.name);
+
+                }
+                else if (data.message == "ERR") {
+
+                    $("#BtnNoDatafound").trigger("click");
+                    $("#lblMsgNoData").text(data.message);
+
+
+                }
+                if (data.statuscode == "ERR") {
+
+                    $("#ModalForPanSurcharges").hide();
+                    $("#BtnNoDatafound").trigger("click");
+                    $("#lblMsgNoData").text(data.message);
+                }
+
+
+
+            }
+        })
+    })
+    $('.gre').on('click', function () {
+        debugger;
+        var Account = $('#Txt_Accounts').val();
+        var Iifsc = $('#Iifsc').val();
+        var op1 = $('#op1').val();
+        if (Account.trim() == "") {
+            $('#lbl_Account').text('Please Enter Account No.');
+            $('#lbl_Account').css('color', 'red');
+        }
+        else if (Iifsc.trim() == "") {
+            $('#Txt_ifsc').text('Please Enter Ifsc No.');
+            $('#Txt_ifsc').css('color', 'red');
+        }
+        else if (op1.trim() == "") {
+            $('#BankName').text('Please Select Bank Name');
+            $('#BankName').css('color', 'red');
+        }
+
+        else {
+            $.ajax({
+                url: "/Passbook/VerifyAccount",
+                data: { 'Account': Account, 'name': name },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                }
+
+            })
+        }
+
+
+    })
+
+
 </script>
 
 <script>
@@ -2217,7 +2542,10 @@ color:green;
         $("#datepickerCd").datepicker();
         $("#datepickerCd1").datepicker();
     });
+    $(function () {
+        $("#datepickerDob").datepicker();
 
+    });
     $(function () {
         $("#Txt_Aadhar").keypress(function (e) {
             var keyCode = e.keyCode || e.which;
@@ -2233,6 +2561,68 @@ color:green;
             return isValid;
         });
     });
+    $(function () {
+        $("#Txt_Accounts").keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+            $("#lbl_Account").html("");
+            //Regex for Valid Characters i.e. Numbers.
+            var regex = /^[0-9]+$/;
+            //Validate TextBox value against the Regex.
+            var isValid = regex.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                $("#lbl_Account").html("Only Numbers allowed.");
+                $("#lbl_Account").css("color", "red");
+            }
+            return isValid;
+        });
+    });
+    $(function () {
+        $("#txtPANNumber").keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+            $("#pan_vers").html("");
+            //Regex for Valid Characters i.e. Numbers.
+            var regex = /^[A-Za-z0-9]+$/;
+            //Validate TextBox value against the Regex.
+            var isValid = regex.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                $("#pan_vers").html("Only Alphabets & Numbers allowed.");
+                $("#pan_vers").css("color", "red");
+            }
+            return isValid;
+        });
+    });
+    $(function () {
+        $("#Iifsc").keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+            $("#Txt_ifsc").html("");
+            //Regex for Valid Characters i.e. Numbers.
+            var regex = /^[A-Za-z0-9]+$/;
+            //Validate TextBox value against the Regex.
+            var isValid = regex.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                $("#Txt_ifsc").html("Only Alphabets & Numbers allowed.");
+                $("#Txt_ifsc").css("color", "red");
+            }
+            return isValid;
+        }); ``
+    });
+    $(function () {
+        debugger;
+        $("#Pincodee").keypress(function (e) {
+            var keyCode = e.keyCode || e.which;
+            $("#pin_Code").html("");
+            //Regex for Valid Characters i.e. Numbers.
+            var regex = /^[0-9]+$/;
+            //Validate TextBox value against the Regex.
+            var isValid = regex.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                $("#pin_Code").html("Only Numbers allowed.");
+                $("#pin_Code").css("color", "red");
+            }
+            return isValid;
+        });
+    });
+
 
 </script>
 <script>
@@ -2311,6 +2701,56 @@ color:green;
     }
 
 </script>
+<script>
+    function openCity(evt, cityName) {
+        debugger;
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    function openCity(evt, cityName) {
+        debugger;
+        var i, tabcontents, tablinkss;
+        tabcontents = document.getElementsByClassName("tabcontents");
+        for (i = 0; i < tabcontents.length; i++) {
+            tabcontents[i].style.display = "none";
+        }
+        tablinkss = document.getElementsByClassName("tablinkss");
+        for (i = 0; i < tablinkss.length; i++) {
+            tablinkss[i].className = tablinkss[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    function openPassbook(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
+
+
+    document.getElementById("defaultOpen").click();
+
+</script>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" asp-append-version="true"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>

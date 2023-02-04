@@ -764,14 +764,14 @@
                                                         </div>
                                                         <form action="" class="mt-5">
                                                             <label id="lblBindMobile"></label>
-                                                            @* <input class="otp" id="ot1" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 />*@
-                                                            <input class="otp" id="ot1" type="text" maxlength=1 />
-                                                            @* <input id="ot2" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 />*@
-                                                            <input id="ot2" class="otp" type="text" maxlength=1 />
-                                                            @*<input id="ot3" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 />*@
-                                                            <input id="ot3" class="otp" type="text" maxlength=1 />
-                                                            @*<input id="ot4" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 />*@
-                                                            <input id="ot4" class="otp" type="text" maxlength=1 />
+                                                             <input class="otp" id="ot1" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 />
+                                                            @*<input class="otp" id="ot1" type="text" maxlength=1 />*@
+                                                             <input id="ot2" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 />
+                                                            @*<input id="ot2" class="otp" type="text" maxlength=1 />*@
+                                                            <input id="ot3" class="otp" type="text"  oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 />
+                                                         @*   <input id="ot3" class="otp" type="text" maxlength=1 />*@
+                                                            <input id="ot4" class="otp" type="text"  oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 />
+                                                            @*<input id="ot4" class="otp" type="text" maxlength=1 />*@
                                                             <hr class="mt-4">
                                                             <span id="Err" style="color:red"></span>
                                                             <h3 id="some_divs"></h3>
@@ -861,7 +861,7 @@
                                         <div class="authfy-panel panel-login text-center active">
                                             <div class="authfy-heading">
                                                 <h3 class="auth-title">Recover your Mpin</h3>
-                                                <p>Please enter your Mobile number to change your Mpin</p>
+                                                <p>Otp has been sent to  <span id="recoverMpin" style="font-weight:600"></span> </p>
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12">
@@ -1149,7 +1149,7 @@
         var MobileNo;
 
         function verifiedLogin() {
-
+            debugger;
 
             var MobileNum = $('[Id*=txtNumber]').val();
             $('#lblMobile').text(MobileNum);
@@ -1348,12 +1348,14 @@
 
     <script>
         function ResendOtp() {
+            debugger;
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum.trim() == "") {
                 $.notify("Please Enter Mobile Number ? ", "warn");
                 $('[Id*=txtNumber]').focus();
-            } else if (pinNum.trim() == "") {
+            }
+            else if (pinNum.trim() == "") {
 
                 $.notify("Please Enter Mpin ? ", "warn");
                 $('[Id*=txtMpin]').focus();
@@ -1367,16 +1369,14 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
+                         debugger;
                         if (response.statuscode == "OSS") {
                             $.notify(
                                 response.message,
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
 
-
                             );
-                            $("#ReopenLogin").trigger("click");
-                            window.location.href = '@Url.Content("~/Home/Index")'
-
+                           
 
                         }
                         else {
@@ -1416,11 +1416,13 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-
-
+                        debugger;
+                        var OtpReccover=response.data;
+                      
                         if (response.statuscode == "OSS") {
                             $("#Changepin").trigger("click");
                             $("#modalRecoverMpin").hide();
+                            $('#recoverMpin').text(OtpReccover)
 
                             $.notify(
                                 response.message,
@@ -1598,21 +1600,23 @@
 
     </script>
 
-    @* <script>
-    let digitValidate = function (ele) {
-    console.log(ele.value);
-    ele.value = ele.value.replace(/[^0-9]/g, '');
-    }
+     <script>
 
-    let tabChange = function (val) {
+let digitValidate = function(ele){
+ console.log(ele.value);
+ele.value = ele.value.replace(/[^0-9]/g,'');
+}
+let tabChange = function(val){
+    //let ele = document.querySelectorAll('input');
     let ele = document.getElementsByClassName('otp');
-    if (ele[val - 1].value != '') {
-    ele[val].focus()
-    } else if (ele[val - 1].value == '') {
-    ele[val - 2].focus()
-    }
-    //}
-    </script>*@
+    if(ele[val-1].value != ''){
+      ele[val].focus()
+    }else if(ele[val-1].value == ''){
+      ele[val-2].focus()
+    }   
+ }
+
+    </script>
 
     <script>
         function LoginClear() {
@@ -1702,12 +1706,33 @@
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum == "" && pinNum == "") {
 
-                $.notify("Please Enter All Field ? ", "warn");
+                
+                $.notify(
+                                "Please Enter Mobile Number? ",
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
+
+                            );
                 chkRemember.checked = false;
             }
+            else if (pinNum == "")
+            {
+
+                
+                $.notify(
+                                "Please Enter Password ? ",
+                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
+
+                            );
+                chkRemember.checked = false;
+            }
+
+            else
+            {
             document.cookie = "mymobile=" + MobileNum + ";path=http://https://localhost:7102/";
             document.cookie = "myMpin=" + pinNum + ";path=http://https://localhost:7102/";
-        }
+        
+            }
+            }
         function getcookiedata() {
             console.log(document.cookie);
             var cookisMobile = getCookie('mymobile');
