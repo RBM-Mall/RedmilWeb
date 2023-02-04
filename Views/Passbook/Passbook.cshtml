@@ -461,15 +461,15 @@
             background-color: white;
             width: 440px;
     }
- 
+
 
 .gr
 {
         position: absolute;
         top: 23px;
         margin-left: 391px;
-       
-    
+
+
 }
 .gre
 {
@@ -502,21 +502,22 @@ color:green;
             <h1>Cash Wallet Passbook</h1>
             <div class="item_info pull-left">
                 <button class="button-21" onclick="CashWallets()">Download Wallet Statement</button>
-               
+
                 @{
-                if((string)TempData["Kycstatus"]=="1")
-                {
-                                <button class="button-21 tb" onclick="document.location.href='/Passbook/TranferToBank';">Transfer Cash To Bank</button>
+                    if ((string)TempData["Kycstatus"] == "1")
+                    {
+                        <button class="button-21 tb" onclick="document.location.href='/Passbook/TranferToBank';">Transfer Cash To Bank</button>
+                    }
+                    else
+                    {
+                        <button class="button-21 tb1" onclick="LaunchYourMall()">Transfer Cash To Bank</button>
+                    }
                 }
-                else
-                {
-                                <button class="button-21 tb1" onclick="LaunchYourMall()">Transfer Cash To Bank</button>
-                }
-                }
-                <button class="button-21" onclick="document.location.href='/Passbook/RechargeyourCash';"/>Recharge Your Cash</button>
+                <button class="button-21" onclick="document.location.href='/Passbook/RechargeyourCash';" />Recharge Your Cash</button>
             </div>
             <div class="cashBal">
-                <p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
+                @*<p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>*@
+                <p class="aval_bal pull-right"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
             </div>
         </div>
         <hr />
@@ -835,8 +836,8 @@ color:green;
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header modal-header-recharge">
-                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="text-align:center;"><b>Details</b></h4>
+                    <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="text-align:center;"><b>Details</b></h4>
                 </div>
                 <div class="modal-body" style="background-color:white;">
                     <div class="row div-recharge-img">
@@ -852,15 +853,16 @@ color:green;
                     <div class="row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4">
-                            <img src="~/css/paymentimages/redmillogo.jpg" style="height:98px;margin-left:58px;margin-top:20px" />
+                            @*<img src="~/css/paymentimages/redmillogo.jpg" style="height:98px;margin-left:58px;margin-top:20px" />*@
+                            <img src="~/css/paymentimages/redmillogo.jpg" class="img_center_modal" />
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
                     @*<div class="">
-                        <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-3px"></h4>
-                        <div class="">
-                            <img id="DetailLogo" style="height:67px;margin-left:269px;margin-top: 15px;">
-                        </div>
+                    <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-3px"></h4>
+                    <div class="">
+                    <img id="DetailLogo" style="height:67px;margin-left:269px;margin-top: 15px;">
+                    </div>
 
                     </div>*@
                     @*<div class="row">
@@ -876,21 +878,24 @@ color:green;
                     </div>*@
                     <div class="row">
                         <div class="">
-                        <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-3px"></h4>
-                        <div class="">
-                            <img id="DetailLogo" style="height:67px;margin-left:269px;margin-top: 15px;">
+                            @*<h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-3px"></h4>*@
+                            <h4 id="DetailTitle" class="heading_details_modal"></h4>
+                            <div class="">
+                                @*<img id="DetailLogo" style="height:67px;margin-left:269px;margin-top: 15px;">*@
+                                <img id="DetailLogo" class="img_center_modal_2">
+                            </div>
+                        </div>
+                        @*<div class="inc" style="margin-left:13px;font-size:18px;margin-top: 38px;">*@
+                        <div class="inc inc_modal_body">
+                            <div class="controls">
+                            </div>
                         </div>
                     </div>
-                    <div class="inc" style="margin-left:13px;font-size:18px;margin-top: 38px;">
-                        <div class="controls">
-                        </div>
+
+                    @*  <div class="col-sm-12">
+                    <div class="modal-footer">
+                    <a href="~/Passbook/Passbook" type="button" class="btn-final" id="DetailButton" style="color:green"><b>Done</b></a>
                     </div>
-                    </div>
-                    
-                  @*  <div class="col-sm-12">
-                        <div class="modal-footer">
-                            <a href="~/Passbook/Passbook" type="button" class="btn-final" id="DetailButton" style="color:green"><b>Done</b></a>
-                        </div>
                     </div>*@
                 </div>
                 <div class="modal-footer div-pay-row">
@@ -914,21 +919,14 @@ color:green;
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="RewardPoint" style="display:none" data-target="#RewardPoints" data-toggle="modal" />
             <div id="RewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                <div class="modal-dialog">
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @*<span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report Reward for Wallet</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report Reward for Wallet</h4>
-                            </div>
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -943,9 +941,14 @@ color:green;
                                     <label id="todate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="modal-footer" style="margin-top:-40px">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="Downloadreport()"><b>Download Report</b></button>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="Downloadreport()"><b>Download Report</b></button>
+                                    </div>
+                                    <div class="col-sm-4 final-cancel-button">
+                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -961,22 +964,14 @@ color:green;
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="RERewardPoint" style="display:none" data-target="#RERewardPoints" data-toggle="modal" />
             <div id="RERewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                <div class="modal-dialog">
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for Refer & Earn Wallet</h4>
                         </div>
-
                         <div class="modal-body">
-                            <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for Refer & Earn Wallet</h4>
-                            </div>
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -991,9 +986,15 @@ color:green;
                                     <label id="Retodate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="modal-footer" style="margin-top:-40px">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
+
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
+                                    </div>
+                                    <div class="col-sm-4 final-cancel-button">
+                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1008,22 +1009,15 @@ color:green;
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Advanceds" style="display:none" data-target="#Advanced" data-toggle="modal" />
             <div id="Advanced" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                <div class="modal-dialog">
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for AdvanceWallet</h4>
                         </div>
 
-                        <div class="modal-body">
-                            <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for AdvanceWallet</h4>
-                            </div>
+                        <div class="modal-body" style="background-color:white;">
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -1038,39 +1032,94 @@ color:green;
                                     <label id="Adtodate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="modal-footer" style="margin-top:-40px">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="AdvancedDownloadreport()"><b>Download Report</b></button>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="AdvancedDownloadreport()"><b>Download Report</b></button>
+                                    </div>
+                                    <div class="col-sm-4 final-cancel-button">
+                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <!--Modal For Cash Passbook Download -->
+
+
+
+
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Cashs" style="display:none" data-target="#Cash" data-toggle="modal" />
             <div id="Cash" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                @*<div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">*@
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
 
-                        <div class="modal-body">
+                @*<div class="modal-content" style="height:303px;color:black;">
+                <div class="cross" aria-label="Close" data-dismiss="modal">
+                <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                </button>
+                </div>
+
+                <div class="modal-body">
+                <div class="">
+                <div class="">
+                <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                </div>
+                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>
+                </div>
+                <div class="col-sm-12">
+                <div class="col-sm-6">
+                <label class="dateLbl1"><b>From Date:</b></label>
+                <p><input type="text" id="datepickerCd" placeholder="From Date" class="form-control" style="width:82%"></p>
+                <label class="dateLbl1">Transaction to be download from date</label>
+                <label id="Cdfordate"></label>
+                </div>
+                <div class="col-sm-6">
+                <label class="dateLbl1"><b>To Date:</b></label>
+                <p> <input type="text" id="datepickerCd1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                <label class="dateLbl1">Transaction to be download till date</label>
+                <label id="Cdtodate"></label>
+                </div>
+                </div>
+                <div class="col-sm-12" style="margin-top:-40px">
+                <div class="modal-footer">
+                <button type="button" class="button-21" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                </div>
+                </div>
+                </div>
+
+                </div>*@
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            @*<div class="cross" aria-label="Close" data-dismiss="modal">
+                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close"></button>*@
+                            @*<div class="">
                             <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>
+                            <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                            </div>*@
+                            @*<h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>*@
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download report for CashWallet</h4>
+                            @*</div>*@
+                            @*</div>*@
+                        </div>
+                        <div class="modal-body" style="background-color:white;">
+                            @*<div class="">
+                            <div class="">
+                            <img id="DetailLogo" style="height:63px;margin-left:288px;">
                             </div>
+                            <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>
+                            </div>*@
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -1085,18 +1134,30 @@ color:green;
                                     <label id="Cdtodate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12" style="margin-top:-40px">
-                                <div class="modal-footer">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="modal-footer div-pay-row">
+                            <div class="row div-pay-row">
+                                <div class="col-sm-4 final-pay-button">
+                                    @*<button type="button" class="button-21" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>*@
+                                    <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                                </div>
+                                <div class="col-sm-4 final-cancel-button">
+                                    <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
     <!--Modal for error-->
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1107,7 +1168,7 @@ color:green;
                         <button type="button" class="close fist" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" onclick="okfunction()" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                         </button>
-                        <button style="display:none" type="button" class="close second third"  >
+                        <button style="display:none" type="button" class="close second third">
                             <span aria-hidden="true" onclick="okfunction()" class="third" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                         </button>
                         <div class="modal-body">
@@ -1159,12 +1220,12 @@ color:green;
                                 <b style="margin-left: 112px;">It takes 2 mintutes of your time</b>
                                 <div class="col-sm-6">
                                     <button class="button-21" style="" onclick="AdharVeri()">
-                                            Complete Signup
-                                            </button>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <button class="button-21 LearnVideo">Learn With Video</button>
-                                            </div>
+                                        Complete Signup
+                                    </button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="button-21 LearnVideo">Learn With Video</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1174,13 +1235,13 @@ color:green;
                         </button>
                     </div>
 
-                    </div>
                 </div>
             </div>
         </div>
-    
-<!--Modal For sIGNUP pROCESS VIDEO-->
- <div class="row">
+    </div>
+
+    <!--Modal For sIGNUP pROCESS VIDEO-->
+    <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Addharverificaions" style="display:none" data-target="#Addharverificaion" data-toggle="modal" />
             <div id="Addharverificaion" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
@@ -1204,7 +1265,7 @@ color:green;
                                 <div class="row">
                                     <div class="col-sm-4"></div>
                                     <div class="col-sm-4">
-                                        
+
                                         <img src="~/css/ImageLogo/redmil-new-logo2.png" style="height:80px;margin-left:58px;margin-top:2px" />
                                     </div>
                                     <div class="col-sm-4" style="margin-top:20px;"></div>
@@ -1221,37 +1282,37 @@ color:green;
                                     <b style="margin-left: 70px;margin-top: 29px;">Mobile Number Not Linked?<a>Request Video KYC</a></b>
                                     <h2 style="margin-left:90px;color:#877e7fa3;" class="Aov">Aadhaar OTP Verification</h2>
                                     <div class="col-sm-12 AVerfication" style="margin-left:154px;">
-                                    <b>Enter Your Aadhaar Number</b><br>
+                                        <b>Enter Your Aadhaar Number</b><br>
                                         <input type="text" style="height: 40px;width: 58%;background: gainsboro;border: -11px solid #bc3434;border-radius: 1px solid;border-radius: 53px; margin-left:-56px;" id="Txt_Aadhar" maxLength="19"><br>
-                                    <span class="txt_Aadhars"></span>
-                                    
-                                    <h6><b>Free Verification Attemps:- 1</b></h6>
-                                </div>
+                                        <span class="txt_Aadhars"></span>
+
+                                        <h6><b>Free Verification Attemps:- 1</b></h6>
+                                    </div>
                                     <div class="col-sm-12 EnterOtp" style="margin-left: 158px;margin-top: 28px;display:none">
                                         <b style="margin-left: 36px;">Enter Your OTP</b><br>
                                         <input type="text" id="Otpforaadhar" style="height: 40px;width: 58%;background: gainsboro;border: -11px solid #bc3434;border-radius: 1px solid;border-radius: 53px; margin-left:-56px;"><br>
                                         <h5 style="margin-left: -72px;color: black;font-weight: bold;" class="otp_text">An OTP Send to your Aadhaar linked Mobile Number</h5>
-                                        <span style="font-size: 17px;margin-left:29px;"  ><b id="otpsend" style="color: rgb(255, 0, 0);"></b></span>
+                                        <span style="font-size: 17px;margin-left:29px;"><b id="otpsend" style="color: rgb(255, 0, 0);"></b></span>
                                     </div>
-                            </div>
-                            <div class="col-sm-12 hidesentotp" >
-                                <div class="modal-footer">
-                                    <input type="button" class="button-21 SendOtp SOA" value="Send OTP">
+                                </div>
+                                <div class="col-sm-12 hidesentotp">
+                                    <div class="modal-footer">
+                                        <input type="button" class="button-21 SendOtp SOA" value="Send OTP">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 opensendotp" style="display:none">
+                                    <div class="modal-footer">
+                                        <input type="button" class="button-21 ConfirmOtpforaadhar" style="margin-top: 4px; margin-left: -2px;" value="ConfirmOTP">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 opensendotp" style="display:none">
-                                <div class="modal-footer">
-                                        <input type="button" class="button-21 ConfirmOtpforaadhar"  style="margin-top: 4px; margin-left: -2px;" value="ConfirmOTP">
-                                </div>
-                            </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   </div>
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="SignupProccessModal" style="display:none" data-target="#SignupProccessModals" data-toggle="modal" />
@@ -1272,7 +1333,6 @@ color:green;
                                 </div>
                             </div>
                             <div style="margin-top:-127px;">
-                                
                             </div>
                         </div>
                     </div>
@@ -1286,8 +1346,8 @@ color:green;
             </div>
         </div>
     </div>
-    </div>
-  <!-- Modal For Surcharge Detail-->
+</div>
+<!-- Modal For Surcharge Detail-->
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1303,8 +1363,8 @@ color:green;
                         @* <h4> <span id="lblMsgSurcharge"></span></h4>*@
                     </div>
                     <h4 id="fornull">Aadhar Validation Charges: Rs. <span id="lblMsgSurchargeForAadhar"></span></h4>
-                    <div class="modal-footer"style="padding:229px;margin-left:-185px;">
-                        <button type="button" class="button-21 chr"  style="width: 135px;margin-right: 201px;margin-top:-149px;">
+                    <div class="modal-footer" style="padding:229px;margin-left:-185px;">
+                        <button type="button" class="button-21 chr" style="width: 135px;margin-right: 201px;margin-top:-149px;">
                             <b>Yes</b>
                         </button>
                         <button type="button" class="button-21" data-dismiss="modal" style="width: 135px;margin-left: 227px;margin-top:-167px;">
@@ -1317,7 +1377,7 @@ color:green;
         </div>
     </div>
 </div>
- <!-- Modal For Instant Pay-->
+<!-- Modal For Instant Pay-->
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
@@ -1325,32 +1385,32 @@ color:green;
         <div id="ModalInstanPays" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="width:800px;margin-top:135px;margin-left:600px">
                 <div class="modal-content" style="height: 1392px;width: 626px;color: black;padding:4px;background-color: #e4e4e4;">
-                    <div class="cross1 " aria-label="Close" >
+                    <div class="cross1 " aria-label="Close">
                         <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                        
+
                             <h4 class="mt-5">Enter your  detail so that we can you pay <span>"Instantly"</span></h4>
                             <!-- One "tab" for each step in the form: -->
                             <div class="tab forinstant">
-                               <div class="row">
-                                     
-                                              <div class="col-md-3" style="margin-top: 56px;margin-left:79px;">
-                                              <span style="font-size: 21px;">Partner Name as Per Aadhar</span><br />
-                                              <span style="font-size: 21px;">Partner Name as Per Pan</span><br>
-                                              <span style="font-size: 21px;">Partner Name as Per Bank</span>
-                                              </div>
+                                <div class="row">
+
+                                    <div class="col-md-3" style="margin-top: 56px;margin-left:79px;">
+                                        <span style="font-size: 21px;">Partner Name as Per Aadhar</span><br />
+                                        <span style="font-size: 21px;">Partner Name as Per Pan</span><br>
+                                        <span style="font-size: 21px;">Partner Name as Per Bank</span>
+                                    </div>
                                     <div class="col-md-3" style="margin-left: 59px;margin-top: 41px;margin-bottom:16px;">
                                         <br>
                                         <input type="text" readonly="" class="invalid PAa"><br>
                                         <input type="text" readonly="" class="invalid" style="margin-top: 10px;">
                                         <input type="text" readonly="" class=" invalid " style="margin-top:10px;">
-                                      </div>
+                                    </div>
 
-                                      <div class="col-md-6"  style="margin-left: -136px;margin-top: 23px;">
-                                        <input type="text" placeholder="PAN No." oninput="this.className = ''" class="valid " style="margin-top: 10px;" id="txtPANNumber" name="name" maxlength="10" onchange="validatePanNumber(this)"><a href="#" class="gr pans">Verify</a><a href="#" readonly="readonly" class="gr grr " >Verified</a>
+                                    <div class="col-md-6" style="margin-left: -136px;margin-top: 23px;">
+                                        <input type="text" placeholder="PAN No." oninput="this.className = ''" class="valid " style="margin-top: 10px;" id="txtPANNumber" name="name" maxlength="10" onchange="validatePanNumber(this)"><a href="#" class="gr pans">Verify</a><a href="#" readonly="readonly" class="gr grr ">Verified</a>
                                         <span id="pan_ver"></span>
                                         <input type="text" placeholder="Account No." oninput="this.className = ''" class="valid" style="margin-top: 10px;"><a href="#" class="gre">Verify</a><a href="#" class="gre grr">Verified</a>
                                         <input type="text" placeholder="IFSC Code" oninput="this.className = ''" class="valid" style="margin-top: 10px;">
@@ -1358,16 +1418,16 @@ color:green;
                                             <select id="op1" style="width: 441px;height: 49px;margin-top: 20px;" oninput="this.className = ''">
                                                 <option> -- Select BankName --</option>
                                             </select>
-                                       
-                        </div>
+
+                                        </div>
                                         <p>Note: Your Name as per PAN card and Bank record should match.</p>
-                                      </div>
-                         
-                            </div>
-                            <div class="col-md-6"  style="margin-left:101px;margin-top:20px;">
-                            <div class="row">
-                                <span style="font-size:20px">PERSIONAL DETAIL</span><br />
-                                 <input type="text" placeholder="IFSC Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''"><br />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" style="margin-left:101px;margin-top:20px;">
+                                    <div class="row">
+                                        <span style="font-size:20px">PERSIONAL DETAIL</span><br />
+                                        <input type="text" placeholder="IFSC Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''"><br />
                                         <input type="text" placeholder="DOB/DOI(DD-MM-YYYY)" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
                                         <select style="padding: 15px;margin-top: 10px;width: 130%;" oninput="this.className = ''">
                                             <option>-- Select Gender --</option>
@@ -1375,124 +1435,120 @@ color:green;
                                             <option>Female</option>
                                             <option>Other</option>
                                         </select>
-                                        <input type="text" placeholder="IFSC Code" class="valid" style="margin-top: 10px;"oninput="this.className = ''">
-                            </div>
-                             <div class="row" style="margin-top:20px;" >
-                                <span style="font-size:20px">ADDRESS</span><br />
-                                 <input type="text" placeholder="House No./Flat No./Office No." class="valid" style="margin-top: 10px;" oninput="this.className = ''">
+                                        <input type="text" placeholder="IFSC Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
+                                    </div>
+                                    <div class="row" style="margin-top:20px;">
+                                        <span style="font-size:20px">ADDRESS</span><br />
+                                        <input type="text" placeholder="House No./Flat No./Office No." class="valid" style="margin-top: 10px;" oninput="this.className = ''">
                                         <input type="text" placeholder="Building Name/Street" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
                                         <input type="text" placeholder="Locality/Area/Landmark" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
                                         <input type="text" placeholder="Pin Code" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
                                         <input type="text" placeholder="State" class="valid" style="margin-top: 10px;" oninput="this.className = ''">
-                                        <div style="padding:20px"><input type="checkbox"  class="valid" style="position: absolute;left: -232px;"><span>I ACCEPT <a>TERMS & CONDITIONS</a></span><br />
-                                        <span>Not able to Signup? <a >Request for Manual Signup</a></span></div>
-                            </div>
-                            </div>
-                            <div class="tab">
-                                
-                            </div>
-                            <div class="tab">
-                               
-                            </div>
-                            <div class="tab">
-                               
-                            </div>
-                            <div style="">
-                                <div style="float:right;">
-                                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                                    <button type="button" id="nextBtn" onclick="nextPrev(1)" style="margin-top: 664px;margin-left:-358px;">Continue</button>
+                                        <div style="padding:20px">
+                                            <input type="checkbox" class="valid" style="position: absolute;left: -232px;"><span>I ACCEPT <a>TERMS & CONDITIONS</a></span><br />
+                                            <span>Not able to Signup? <a>Request for Manual Signup</a></span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <br />
-                            <br />
-                            <!-- Circles which indicates the steps of the form: -->
-                            <div style="text-align:center;margin-top:695px;">
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                                <span class="step"></span>
-                            </div>
-                        
-                    </div>
-                    </div>
-                </div>
+                                <div class="tab">
+                                </div>
+                                <div class="tab">
+                                </div>
+                                <div class="tab">
+                                </div>
+                                <div style="">
+                                    <div style="float:right;">
+                                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                        <button type="button" id="nextBtn" onclick="nextPrev(1)" style="margin-top: 664px;margin-left:-358px;">Continue</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <!-- Circles which indicates the steps of the form: -->
+                                <div style="text-align:center;margin-top:695px;">
+                                    <span class="step"></span>
+                                    <span class="step"></span>
+                                    <span class="step"></span>
+                                    <span class="step"></span>
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 <script>
-        $(document).ready(function () {
-              
-                      $.ajax({
-                           
-                        url: "/Passbook/BankDetailss",
-                        type: "Get",
-                        success: function (data) {
-                       
-                            for (var i = 0; i < data.length; i++) {
-                                var opt = new Option(data[i].bankName,data[i].id);
-                                $('#op1').append(opt);
+    $(document).ready(function () {
 
-                            }
+        $.ajax({
 
-                        }
+            url: "/Passbook/BankDetailss",
+            type: "Get",
+            success: function (data) {
 
-                    });
+                for (var i = 0; i < data.length; i++) {
+                    var opt = new Option(data[i].bankName, data[i].id);
+                    $('#op1').append(opt);
 
-              
+                }
+
+            }
+
         });
 
-         $('.pans').on('click', function () {
-             var Panno=$('#txt_pan').val();
-             if(Panno.trim()=="")
-             {
-              $('#pan_ver').text("Please Enter Pan Number");
-             }
-             else
-             {
+
+    });
+
+    $('.pans').on('click', function () {
+        var Panno = $('#txt_pan').val();
+        if (Panno.trim() == "") {
+            $('#pan_ver').text("Please Enter Pan Number");
+        }
+        else {
             $.ajax({
                 url: "/Passbook/VerifyPan",
                 data: { 'Panno': Panno },
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    
-                    
+
+
                 }
-             })
-
-             }
-         
-         
-         });
-         function validatePanNumber(pan) {
-
-            let pannumber = $(pan).val();
-
-            var regex = /[a-zA-z]{5}\d{4}[a-zA-Z]{1}/;
-
-            if (pannumber.match(regex)) {
-
-            }
-
-            else {
-
-            $('#pan_ver').text("Invalid PAN number");
-            
-
-                $(pan).val("");
-
-            }
+            })
 
         }
 
-    </script>
+
+    });
+    function validatePanNumber(pan) {
+
+        let pannumber = $(pan).val();
+
+        var regex = /[a-zA-z]{5}\d{4}[a-zA-Z]{1}/;
+
+        if (pannumber.match(regex)) {
+
+        }
+
+        else {
+
+            $('#pan_ver').text("Invalid PAN number");
+
+
+            $(pan).val("");
+
+        }
+
+    }
+
+</script>
 
 <script>
     function openCity(evt, cityName) {
-        debugger;
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -1506,7 +1562,6 @@ color:green;
         evt.currentTarget.className += " active";
     }
     function openCity(evt, cityName) {
-        debugger;
         var i, tabcontents, tablinkss;
         tabcontents = document.getElementsByClassName("tabcontents");
         for (i = 0; i < tabcontents.length; i++) {
@@ -1561,7 +1616,6 @@ color:green;
     function ButtonDetail(e) {
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
-        debugger;
         $.ajax({
             url: "/Passbook/GetBalancedetail",
             data: { 'BalanceId': BalanceId },
@@ -1599,6 +1653,7 @@ color:green;
                         }
 
                     }
+                    jQuery('.remove').parent().remove();
                     $("#Detail").trigger("click");
 
                 }
@@ -1607,11 +1662,10 @@ color:green;
 
         });
     }
-    jQuery('.remove').parent().remove();
+    //jQuery('.remove').parent().remove();
     //For Advanced Detail
     function ButtonADDetail(e) {
 
-        debugger;
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
 
@@ -1659,7 +1713,6 @@ color:green;
     function RERewards(e) {
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
-        debugger;
         $.ajax({
             url: "/Passbook/RERewardDetail",
             data: { 'BalanceId': BalanceId },
@@ -1706,7 +1759,6 @@ color:green;
     function BRewards(e) {
         BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
-        debugger;
         $.ajax({
             url: "/Passbook/BRReward",
             data: { 'BalanceId': BalanceId },
@@ -1757,12 +1809,12 @@ color:green;
 
     jQuery('.remove').parent().remove();
 
-     $('.clse').on('click', function () {
-         
-         $('#ModalInstanPays').hide();
-         $('#ModalForAdharSurcharges').hide();
-          location.reload();
-     })
+    $('.clse').on('click', function () {
+
+        $('#ModalInstanPays').hide();
+        $('#ModalForAdharSurcharges').hide();
+        location.reload();
+    })
     //For Rewards Points Passbok.
     function Rewardspont() {
 
@@ -1770,7 +1822,6 @@ color:green;
 
     }
     function Downloadreport() {
-        debugger;
         var fromDate = $('#datepicker').val();
         $('#fordate').text("");
         var currentDate = $('#datepicker1').val();
@@ -1788,7 +1839,6 @@ color:green;
             $('#todate').focus();
         }
         else {
-            debugger;
             $.ajax({
                 url: "/Passbook/DownloadReportForWallet",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -1826,7 +1876,6 @@ color:green;
 
     }
     function REDownloadreport() {
-        debugger;
         var fromDate = $('#datepickerRe').val();
         $('#Refordate').text("");
         var currentDate = $('#datepickerRe1').val();
@@ -1843,7 +1892,6 @@ color:green;
             $('#Retodate').focus();
         }
         else {
-            debugger;
             $.ajax({
                 url: "/Passbook/RERewardsPassbook",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -1878,7 +1926,6 @@ color:green;
         $("#Advanceds").trigger("click");
     }
     function AdvancedDownloadreport() {
-        debugger;
         var fromDate = $('#datepickerAd').val();
         $('#Adfordate').text("");
         var currentDate = $('#datepickerAd1').val();
@@ -1895,7 +1942,6 @@ color:green;
             $('#Adtodate').focus();
         }
         else {
-            debugger;
             $.ajax({
                 url: "/Passbook/AdvancedDownload",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -1938,7 +1984,6 @@ color:green;
         $("#Cashs").trigger("click");
     }
     function CashWallet() {
-        debugger;
         var fromDate = $('#datepickerCd').val();
         $('#Cdfordate').text("");
         var currentDate = $('#datepickerCd1').val();
@@ -1954,7 +1999,7 @@ color:green;
             $('#Cdtodate').focus();
         }
         else {
-            debugger;
+            
             $.ajax({
                 url: "/Passbook/CashWallet",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -1992,7 +2037,7 @@ color:green;
         }
     }
     //$(document).ready(function () {
-      
+
     //    var adb = $('.txt_Ab').text();
     //    var result = adb.slice(1);
     //    var Bl = $('.text_val').text();
@@ -2013,54 +2058,50 @@ color:green;
     }
     function AdharVeri() {
 
-            $('#Addharverificaions').trigger('click');
-            $('#LaunchYourModal').hide('click');
+        $('#Addharverificaions').trigger('click');
+        $('#LaunchYourModal').hide('click');
     }
-        $('.LearnVideo').on('click', function () {
-           $('#LaunchYourModal').hide('click');
-            $('#SignupProccessModal').trigger('click');
-        })
-         $('.third').on('click', function () {
-              
-           $('#ModalNoData').hide('click');
-          $('#Addharverificaions').trigger('click');
+    $('.LearnVideo').on('click', function () {
+        $('#LaunchYourModal').hide('click');
+        $('#SignupProccessModal').trigger('click');
+    })
+    $('.third').on('click', function () {
+
+        $('#ModalNoData').hide('click');
+        $('#Addharverificaions').trigger('click');
+
+    })
+
+
+    var surcharge;
+    var Aadhar;
+    $('.SOA').on('click', function () {
         
-         })
+        Aadhar = $('#Txt_Aadhar').val();
 
-
-         var surcharge;
-         var Aadhar;
-        $('.SOA').on('click', function () {
-              debugger;
-             Aadhar=$('#Txt_Aadhar').val();
-
-             if(Aadhar.trim()=="")
-             {
-              $('.txt_Aadhars').text("Please Enter Aadhar Number");
-              $('.txt_Aadhars').css("color","red");
-             }
-             else
-             {
+        if (Aadhar.trim() == "") {
+            $('.txt_Aadhars').text("Please Enter Aadhar Number");
+            $('.txt_Aadhars').css("color", "red");
+        }
+        else {
             $.ajax({
-            url: "/Passbook/SendOtpForAadhar",
-            data: { 'Aadhar': Aadhar },
-            type: 'POST',
-            dataType: 'json',
-            success: function (response) {
-                       $('#Txt_Aadhar').val("");
-                       surcharge=response.surcharge;
+                url: "/Passbook/SendOtpForAadhar",
+                data: { 'Aadhar': Aadhar },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    $('#Txt_Aadhar').val("");
+                    surcharge = response.surcharge;
 
-                      
-                    if (response.statuscode == "ERR") 
-                    {
+
+                    if (response.statuscode == "ERR") {
                         $("#BtnNoDatafound").trigger("click");
                         $("#lblMsgNoData").text(response.message);
                         $('#Addharverificaion').hide();
                         $('.first').hide();
                         $('.second').show();
                     }
-                    else if(response.statuscode == "TXN")
-                    {
+                    else if (response.statuscode == "TXN") {
                         $('.AVerfication').hide();
                         $('.hidesentotp').hide();
                         $('.Aov').hide();
@@ -2068,76 +2109,70 @@ color:green;
                         $('.opensendotp').show();
                         $('.otp_text').show();
                     }
-                    else if(response.statuscode == "MLR")
-                    {
+                    else if (response.statuscode == "MLR") {
 
                         $("#ModalForAdharSurcharge").trigger("click");
                         $("#lblMsgSurchargeForAadhar").text(surcharge);
-                       
-                        
+
+
                     }
-           
-            }
-              })
-             }
-        })
+
+                }
+            })
+        }
+    })
     $('.ConfirmOtpforaadhar').on('click', function () {
-        var OtpFOrAadhar=$('#Otpforaadhar').val();
-        if(OtpFOrAadhar.trim()=="")
-        {
+        var OtpFOrAadhar = $('#Otpforaadhar').val();
+        if (OtpFOrAadhar.trim() == "") {
             $('#otpsend').text("Please enter otp");
             $('#otpsend').css("color", "red");
         }
-        else
-        {   
-        $.ajax({
+        else {
+            $.ajax({
                 url: "/Passbook/VerifyOtpForAadhar",
                 data: { 'OtpFOrAadhar': OtpFOrAadhar, 'Aadhar': Aadhar },
-            type: 'POST',
-            dataType: 'json',
-            success: function (response) 
-            {
-                debugger;
-                 
-                $('#Otpforaadhar').val("");
-            if(response.statuscode=="TXN")
-            {
-                   debugger;     
-                 $('.PAa').text(response.name);
-                 $('#Addharverificaion').hide();
-                 $('#ModalForAdharSurcharges').hide();
-                 $("#ModalInstanPay").trigger("click"); 
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    
+
+                    $('#Otpforaadhar').val("");
+                    if (response.statuscode == "TXN") {
+                        
+                        $('.PAa').text(response.name);
+                        $('#Addharverificaion').hide();
+                        $('#ModalForAdharSurcharges').hide();
+                        $("#ModalInstanPay").trigger("click");
                         //$('.Addharverificaion').hide();
-                        //$("#ModalInstanPays").trigger("click");       
-            }
-            else {      
-                        $('#ModalForAdharSurcharges').hide(); 
+                        //$("#ModalInstanPays").trigger("click");
+                    }
+                    else {
+                        $('#ModalForAdharSurcharges').hide();
                         $('#Addharverificaion').hide();
                         $("#BtnNoDatafound").trigger("click");
                         $("#lblMsgNoData").text(response.message);
 
-            
-            }
-            
-            }
 
-        })
+                    }
+
+                }
+
+            })
         }
+
+    })
+
+    $('.chr').on('click', function () {
         
-        })
-     
-        $('.chr').on('click', function () {
-        debugger;
         $.ajax({
             url: "/Passbook/verifysurchargeAadar",
             data: { 'Aadhar': Aadhar },
-            type: 'POST', 
+            type: 'POST',
             dataType: 'json',
             success: function (response) {
-                 debugger;
+                
                 $('#Txt_Aadhar').val("");
-                if(response.statuscode=="TXN")
-                {
+                if (response.statuscode == "TXN") {
                     $('#ModalForAdharSurcharges').hide();
                     $('.Aov').hide();
                     $('.AVerfication').hide();
@@ -2146,23 +2181,22 @@ color:green;
                     $('.otp_text').show();
                     $('.opensendotp').show();
                     //$('#Addharverificaions').trigger('click');
-                    
+
                 }
-                else
-                {
-                    
+                else {
+
                     $('#ModalForAdharSurcharges').hide();
                     $('#Addharverificaion').hide();
                     $("#BtnNoDatafound").trigger("click");
                     $("#lblMsgNoData").text(response.message);
                     // $('.Addharverificaion').hide();
                     //$('#ModalForAdharSurcharges').hide();
-                    //    $("#ModalInstanPay").trigger("click");    
+                    //    $("#ModalInstanPay").trigger("click");
                 }
-            
+
             }
         })
-        })
+    })
 
 </script>
 
@@ -2184,9 +2218,9 @@ color:green;
         $("#datepickerCd1").datepicker();
     });
 
-     $(function () {
+    $(function () {
         $("#Txt_Aadhar").keypress(function (e) {
-var keyCode = e.keyCode || e.which;
+            var keyCode = e.keyCode || e.which;
             $(".txt_Aadhars").html("");
             //Regex for Valid Characters i.e. Numbers.
             var regex = /^[0-9]+$/;
@@ -2199,82 +2233,82 @@ var keyCode = e.keyCode || e.which;
             return isValid;
         });
     });
-   
+
 </script>
 <script>
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
 
-function showTab(n) {
-     
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Continue";
-  }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
+    function showTab(n) {
 
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    // ... the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Continue";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
     }
-  }
-  // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
-    document.getElementsByClassName("step")[currentTab].className += " finish";
-  }
-  return valid; // return the valid status
-}
 
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class on the current step:
-  x[n].className += " active";
-}
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+    }
+
+    function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
+            }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+    }
 
 </script>
 

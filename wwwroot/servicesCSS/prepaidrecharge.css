@@ -449,534 +449,181 @@ nav.navbar.fixed-top {
 .modal-header-recharge {
     margin-top: 49px;
 }
+.inc_modal_body {
+    margin-left: 13px;
+    font-size: 18px;
+    margin-top: 38px;
+}
+.img_center_modal {
+    height: 98px;
+    margin-left: 58px;
+    margin-top: 20px
+}
+.img_center_modal_2 {
+    height: 125px;
+    margin-left: 220px;
+    margin-top: 15px;
+    width: auto;
+}
+.recharge_urchash_img {
+    margin-left: 300px;
+}
+.recharge_urchash_img_1 {
+    width: 237px;
+}
+.card_title_deposite {
+    margin-top: 15px;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+.card_title_deposite_1 {
+    font-size: 22px;
+}
+.img_upload_image {
+    width: 136px;
+    margin-left: 236px
+}
 
-@media screen and (min-width: 900px) {
-    #navbar-toggle, #navbar-toggle[aria-expanded="true"] {
-        display: none;
-    }
+.modal_deposite_transfer {
+    width: 650px;
+    margin-top: 171px;
+}
+.modal_deposite_transfer_header {
+    height: 100%;
+    width: 640px;
+    color: black;
+    padding: 31px;
+    background-color: whitesmoke
+}
+.modal_deposite_transfer_close {
+    padding-right: 3px;
+    font-size: 25px;
+    font-weight: bolder;
+}
 
-        #navbar-menu,
-        #navbar-toggle[aria-expanded="true"] #navbar-menu {
-            visibility: visible;
-            opacity: 1;
-            position: static;
-            display: block;
-            height: 100%;
+
+
+.modal_deposite_transfer_div {
+    background-color: gainsboro;
+    height: 668px;
+    width: 484px;
+    margin-top: -7px;
+    margin-left: 66px;
+}
+
+.modal_deposite_transfer_body {
+    padding: 22px;
+}
+.modal_deposite_transfer_body_heading {
+    font-size: 24px;
+    font-weight: 600;
+}
+.modal_deposite_transfer_body_heading_2 {
+    font-size: 14px;
+}
+/*.modal_deposite_transfer_succuess {
+    margin-top: 222px;
+}*/
+.modal_deposite_transfer_succuess_content {
+    height: 308px;
+    width: 498px;
+}
+.btnLF{
+    font-size:20px;
+}
+.suport_content {
+    margin-left: 30px;
+}
+.suport_content_dropdown {
+    margin-left: 30px;
+    width:50%;
+}
+.support_content_modal {
+    background-color: lightgray;
+    border-style: double;
+    margin-top: 65px;
+    margin-left: 10px;
+    height: 500px;
+}
+
+
+    @media screen and (min-width: 900px) {
+        #navbar-toggle, #navbar-toggle[aria-expanded="true"] {
+            display: none;
         }
 
-            .navbar-links,
-            #navbar-toggle[aria-expanded="true"] #navbar-menu .navbar-links {
-                margin: 0;
-                padding: 0;
-                box-shadow: none;
+            #navbar-menu,
+            #navbar-toggle[aria-expanded="true"] #navbar-menu {
+                visibility: visible;
+                opacity: 1;
                 position: static;
-                flex-direction: row;
-                width: 100%;
+                display: block;
                 height: 100%;
             }
-}
 
-/*Media Query Starts for Small Smartphone*/
-@media screen and (min-width:279px) and (max-width:339px) {
-    .main-head-recharge {
-        height: 410px;
-        width: auto;
-        background: #002970;
-        margin-top: 119px;
+                .navbar-links,
+                #navbar-toggle[aria-expanded="true"] #navbar-menu .navbar-links {
+                    margin: 0;
+                    padding: 0;
+                    box-shadow: none;
+                    position: static;
+                    flex-direction: row;
+                    width: 100%;
+                    height: 100%;
+                }
     }
-
-    .plan-description-amount {
-        margin-left: 20px;
-    }
-
-    .block-recharge .p-recharge {
-        font-size: 10px;
-        padding-top: 20px;
-    }
-
-    .radiobtn-recharge-body {
-        /* margin-left: 60px;*/
-    }
-
-    .radioRecharge {
-        display: inline-flex;
-    }
-
-    .txt-input-text {
-        font-size: 11px;
-        width: 210px;
-    }
-
-    #operatorspan {
-        font-size: 10px;
-    }
-
-    .btn-process-recharge1 {
-        font-size: 14px;
-    }
-
-    btn-process-recharge3 {
-        height: 40px;
-    }
-
-    .form-group-recharge {
-        margin-left: 13px;
-    }
-
-    .form-group-recharge-button {
-        margin-left: 40px;
-    }
-
-    .form-group-recharge .errorMsg {
-        font-size: 12px;
-        padding-top: 1px;
-        padding-left: 102px;
-        margin-left: 0px;
-    }
-
-    .div-plans-table {
-        margin-top: 30px;
-    }
-
-        .div-plans-table .main-table-recharge .button_header {
-            font-size: 13px;
+    /*Media Query Starts for Small Smartphone*/
+    @media screen and (min-width:279px) and (max-width:339px) {
+        .main-head-recharge {
+            height: 410px;
+            width: auto;
+            background: #002970;
+            margin-top: 119px;
         }
 
-        .div-plans-table .main-table-recharge .div-second-plan-head {
-            font-size: 13px;
+        .plan-description-amount {
+            margin-left: 20px;
         }
 
-
-
-    /*For Modal Popup*/
-    .div-recharge-img {
-        display: inline-flex;
-    }
-
-    .img-wallet-select {
-        height: 120px;
-        width: 150px;
-    }
-
-    .pay-img {
-        height: 100px;
-        width: 120px;
-    }
-
-    .pay-img2 {
-        margin-left: 68px;
-    }
-
-    .wallet-select {
-        /*display: inline-flex;*/
-    }
-
-    .first-wallet {
-        margin-left: 31px;
-        font-weight: 700;
-        font-size: 20px;
-    }
-
-    /*Model Footer Button*/
-
-    .div-pay-row {
-        display: inline-flex;
-    }
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 80px;
-    }
-
-    .final-pay-button {
-        width: 138px;
-        margin-left: 0px;
-    }
-
-    .final-cancel-button {
-        margin-top: 9px;
-        margin-left: -105px;
-    }
-
-    .btn-cancel-btn {
-        height: 50px;
-    }
-
-    #lblMainbal {
-        color: darkblue;
-    }
-
-    #lblAdbal {
-        color: darkblue;
-    }
-
-    #lblamount {
-        color: darkblue;
-    }
-
-    #butn-cancel {
-        /*     margin-left: 98px;
-       */
-        padding-right: 18px;
-    }
-
-    #navbar-header-button {
-        margin-right: 40px;
-    }
-
-    .final-modal-popup {
-        width: 283px;
-        margin-left: 14px;
-    }
-
-    .modal-header-recharge {
-        margin-top: 104px;
-    }
-
-    .dropdownDTH1 {
-        font-size: 12px;
-        border-radius: 0;
-        -moz-border-radius: 0;
-        -webkit-border-radius: 0;
-        font-weight: 500;
-        padding: 10px 10px 10px 5px;
-        border-bottom: 1px solid #ebebeb !important;
-        border: none;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        margin-top: 22px;
-        margin-left: 30px;
-        height: 54px;
-        width: 225px;
-    }
-    .heading_customer_phone{
-        font-size:18px;
-    }
-}
-
-
-
-
-
-
-
-
-
-@media screen and (max-width:399px) and (min-width:340px) {
-    .main-head-recharge {
-        height: 411px;
-        width: auto;
-        background: #002970;
-        margin-top: 122px;
-    }
-
-    .block-recharge .p-recharge {
-        font-size: 12px;
-        padding-top: 20px;
-    }
-
-    .radiobtn-recharge-body {
-        margin-left: 60px;
-        padding-left: 0px;
-    }
-
-    .radioRecharge {
-        display: inline-flex;
-    }
-
-    /* .form-group-recharge {
-        margin-left: 91px;
-    }*/
-
-    .form-group-recharge .errorMsg {
-        font-size: 12px;
-        padding-top: 1px;
-        padding-left: 100px;
-        margin-left: 0px;
-    }
-
-    .div-plans-table {
-        margin-top: 30px;
-    }
-
-        .div-plans-table .main-table-recharge .button_header {
-            font-size: 13px;
+        .block-recharge .p-recharge {
+            font-size: 10px;
+            padding-top: 20px;
         }
 
-        .div-plans-table .main-table-recharge .div-second-plan-head {
-            font-size: 13px;
+        .radiobtn-recharge-body {
+            /* margin-left: 60px;*/
         }
 
-
-
-    /*For Modal Popup*/
-    .div-recharge-img {
-        display: inline-flex;
-        
-    }
-
-    .pay-img {
-        height: 100px;
-        width: 120px;
-    }
-
-    .pay-img2 {
-        margin-left: 230px;
-    }
-
-    .wallet-select {
-        display: inline-flex;
-    }
-
-    .first-wallet {
-        margin-left: 31px;
-        font-weight: 700;
-        font-size: 20px;
-    }
-
-    /*Model Footer Button*/
-
-    .div-pay-row {
-        display: inline-flex;
-    }
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 140px;
-    }
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 90px;
-    }
-
-    .final-pay-button {
-        width: 138px;
-        margin-left: 5px;
-    }
-
-    .btn-cancel-btn {
-        height: 50px;
-    }
-
-    .final-cancel-button {
-        /* margin-top: 9px;*/
-        margin-left: -42px;
-    }
-
-    #lblMainbal {
-        color: darkblue;
-    }
-
-    #lblAdbal {
-        color: darkblue;
-    }
-
-    #lblamount {
-        color: darkblue;
-    }
-
-    #butn-cancel {
-        margin-left: 65px;
-        padding-right: 18px;
-    }
-
-    #navbar-header-button {
-        margin-right: 40px;
-    }
-
-    .final-modal-popup {
-        width: 309px;
-        margin-left: 20px;
-    }
-
-    .modal-header-recharge {
-        margin-top: 104px;
-    }
-
-    .dropdownDTH1 {
-        font-size: 12px;
-    }
-    .dmt-user-img {
-        margin-left: 110px;
-    }
-    .heading_customer_phone {
-        font-size: 19px;
-    }
-}
-
-@media screen and (max-width:419px) and (min-width:400px) {
-    .modal-header-recharge {
-        margin-top: 104px;
-    }
-
-    .dropdownDTH1 {
-        font-size: 12px;
-    }
-    .heading_customer_phone {
-        font-size: 19px;
-    }
-}
-
-
-@media screen and (max-width:549px) and (min-width:423px) {
-    .modal-header-recharge {
-        margin-top: 67px;
-    }
-    .heading_customer_phone {
-        font-size: 20px;
-    }
-}
-
-/*For recharge Header*/
-@media screen and (max-width:550px) and (min-width:400px) {
-    .main-head-recharge {
-        height: 405px;
-        width: auto;
-        background: #002970;
-        margin-top: 84px;
-    }
-
-    .block-recharge .p-recharge {
-        font-size: 12px;
-        padding-top: 20px;
-    }
-
-    .radiobtn-recharge-body {
-        margin-left: 40px;
-    }
-
-    .radioRecharge {
-        display: inline-flex;
-    }
-
-    .form-group-recharge {
-        margin-left: 91px;
-    }
-
-        .form-group-recharge .errorMsg {
-            font-size: 12px;
-            padding-top: 1px;
-            padding-left: 146px;
-            margin-left: 0px;
+        .radioRecharge {
+            display: inline-flex;
         }
 
-    .div-plans-table {
-        margin-top: 30px;
-    }
-
-        .div-plans-table .main-table-recharge .button_header {
-            font-size: 13px;
+        .txt-input-text {
+            font-size: 11px;
+            width: 210px;
         }
 
-        .div-plans-table .main-table-recharge .div-second-plan-head {
-            font-size: 13px;
+        #operatorspan {
+            font-size: 10px;
         }
 
+        .btn-process-recharge1 {
+            font-size: 14px;
+        }
 
+        btn-process-recharge3 {
+            height: 40px;
+        }
 
-    /*For Modal Popup*/
-    .div-recharge-img {
-        display: inline-flex;
-    }
+        .form-group-recharge {
+            margin-left: 13px;
+        }
 
-    .pay-img {
-        height: 100px;
-        width: 120px;
-    }
-
-    .pay-img2 {
-        margin-left: 230px;
-    }
-
-    .wallet-select {
-        display: inline-flex;
-    }
-
-    .first-wallet {
-        margin-left: 31px;
-        font-weight: 700;
-        font-size: 20px;
-    }
-
-    /*Model Footer Button*/
-
-    .div-pay-row {
-        display: inline-flex;
-        margin-left: 91px;
-    }
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 150px;
-    }
-
-    .final-pay-button {
-        width: 138px;
-        margin-left: 14px;
-    }
-
-    .btn-cancel-btn {
-        height: 50px;
-    }
-
-    #lblMainbal {
-        color: darkblue;
-    }
-
-    #lblAdbal {
-        color: darkblue;
-    }
-
-    #lblamount {
-        color: darkblue;
-    }
-
-    #butn-cancel {
-        margin-left: 65px;
-        padding-right: 18px;
-    }
-
-    #navbar-header-button {
-        margin-right: 40px;
-    }
-
-    #operator-change {
-        font-size: 10px;
-    }
-
-    .dropdownDTH1 {
-        font-size: 12px;
-    }
-    .heading_customer_phone {
-        font-size: 21px;
-    }
-}
-
-/*Media Query End For Small Smartphones*/
-
-/*Media Query Starts For Large SmartPhones Here*/
-
-@media screen and (min-width:551px) and (max-width:768px) {
-    .main-head-recharge {
-        height: 410px;
-        width: auto;
-        background: #002970;
-        margin-top: 84px;
-    }
-
-    .block-recharge .p-recharge {
-        font-size: 12px;
-        padding-top: 20px;
-    }
-
-    .radiobtn-recharge-body {
-        margin-left: 60px;
-    }
-
-    .radioRecharge {
-        display: inline-flex;
-    }
-
-    .form-group-recharge {
-        margin-left: 91px;
-    }
+        .form-group-recharge-button {
+            margin-left: 40px;
+        }
 
         .form-group-recharge .errorMsg {
             font-size: 12px;
@@ -985,486 +632,1446 @@ nav.navbar.fixed-top {
             margin-left: 0px;
         }
 
-    .div-plans-table {
-        margin-top: 30px;
+        .div-plans-table {
+            margin-top: 30px;
+        }
+
+            .div-plans-table .main-table-recharge .button_header {
+                font-size: 13px;
+            }
+
+            .div-plans-table .main-table-recharge .div-second-plan-head {
+                font-size: 13px;
+            }
+
+
+
+        /*For Modal Popup*/
+        .div-recharge-img {
+            display: inline-flex;
+        }
+
+        .img-wallet-select {
+            height: 120px;
+            width: 150px;
+        }
+
+        .pay-img {
+            height: 100px;
+            width: 120px;
+        }
+
+        .pay-img2 {
+            margin-left: 68px;
+        }
+
+        .wallet-select {
+            /*display: inline-flex;*/
+        }
+
+        .first-wallet {
+            margin-left: 31px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /*Model Footer Button*/
+
+        .div-pay-row {
+            display: inline-flex;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 80px;
+        }
+
+        .final-pay-button {
+            width: 138px;
+            margin-left: 0px;
+        }
+
+        .final-cancel-button {
+            margin-top: 9px;
+            margin-left: -105px;
+        }
+
+        .btn-cancel-btn {
+            height: 50px;
+        }
+
+        #lblMainbal {
+            color: darkblue;
+        }
+
+        #lblAdbal {
+            color: darkblue;
+        }
+
+        #lblamount {
+            color: darkblue;
+        }
+
+        #butn-cancel {
+            /*     margin-left: 98px;
+       */
+            padding-right: 18px;
+        }
+
+        #navbar-header-button {
+            margin-right: 40px;
+        }
+
+        .final-modal-popup {
+            width: 283px;
+            margin-left: 14px;
+        }
+
+        .modal-header-recharge {
+            /*margin-top: 104px;*/
+            margin-top: 72px;
+        }
+
+        .dropdownDTH1 {
+            font-size: 12px;
+            border-radius: 0;
+            -moz-border-radius: 0;
+            -webkit-border-radius: 0;
+            font-weight: 500;
+            padding: 10px 10px 10px 5px;
+            border-bottom: 1px solid #ebebeb !important;
+            border: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin-top: 22px;
+            margin-left: 30px;
+            height: 54px;
+            width: 225px;
+        }
+
+        .heading_customer_phone {
+            font-size: 18px;
+        }
+
+        .img_center_modal {
+            height: 80px;
+            margin-left: 112px;
+            margin-top: 20px;
+        }
+
+        .img_center_modal_2 {
+            height: 80px;
+            margin-left: 105px;
+            margin-top: 20px;
+        }
+
+        .inc_modal_body {
+            margin-left: 45px;
+            font-size: 11px;
+            margin-top: 38px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 20px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 135px;
+        }
+
+        .card_title_deposite {
+            font-size: 12px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 18px;
+        }
+
+        .button-21 {
+            align-items: center;
+            appearance: none;
+            background-color: #3EB2FD;
+            background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+            background-size: calc(100% + 20px) calc(100% + 20px);
+            border-radius: 100px;
+            border-width: 0;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: CircularStd,sans-serif;
+            font-size: 10px;
+            height: auto;
+            justify-content: center;
+            line-height: 1.5;
+            padding: 6px 25px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .2s,background-position .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            white-space: nowrap;
+            margin-right: 50px;
+            /* float: right;*/
+            margin-top: 28px;
+            z-index: 1;
+        }
+
+        .img_upload_image {
+            width: 90px;
+            margin-left: 90px;
+        }
+
+        .modal_deposite_transfer_div {
+            background-color: gainsboro;
+            height: 657px;
+            width: 265px;
+            margin-top: -7px;
+            margin-left: 5px;
+        }
+
+        .modal_deposite_transfer_body_heading {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .modal_deposite_transfer_body_heading_2 {
+            font-size: 12px;
+        }
+
+        #DetailTitle {
+            font-size: 15px;
+        }
+
+        .btnLF {
+            font-size: 14px;
+        }
     }
 
-        .div-plans-table .main-table-recharge .button_header {
+
+
+
+
+
+
+
+    @media screen and (max-width:399px) and (min-width:340px) {
+        .main-head-recharge {
+            height: 411px;
+            width: auto;
+            background: #002970;
+            margin-top: 122px;
+        }
+
+        .block-recharge .p-recharge {
+            font-size: 12px;
+            padding-top: 20px;
+        }
+
+        .radiobtn-recharge-body {
+            margin-left: 60px;
+            padding-left: 0px;
+        }
+
+        .radioRecharge {
+            display: inline-flex;
+        }
+
+        /* .form-group-recharge {
+        margin-left: 91px;
+    }*/
+
+        .form-group-recharge .errorMsg {
+            font-size: 12px;
+            padding-top: 1px;
+            padding-left: 100px;
+            margin-left: 0px;
+        }
+
+        .div-plans-table {
+            margin-top: 30px;
+        }
+
+            .div-plans-table .main-table-recharge .button_header {
+                font-size: 13px;
+            }
+
+            .div-plans-table .main-table-recharge .div-second-plan-head {
+                font-size: 13px;
+            }
+
+
+
+        /*For Modal Popup*/
+        .div-recharge-img {
+            display: inline-flex;
+        }
+
+        .pay-img {
+            height: 100px;
+            width: 120px;
+        }
+
+        .pay-img2 {
+            /*margin-left: 230px;*/
+            margin-left: 175px;
+        }
+
+        .wallet-select {
+            display: inline-flex;
+        }
+
+        .first-wallet {
+            margin-left: 31px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /*Model Footer Button*/
+
+        .div-pay-row {
+            display: inline-flex;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 140px;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 90px;
+        }
+
+        .final-pay-button {
+            width: 138px;
+            margin-left: 5px;
+        }
+
+        .btn-cancel-btn {
+            height: 50px;
+        }
+
+        .final-cancel-button {
+            /* margin-top: 9px;*/
+            margin-left: -42px;
+        }
+
+        #lblMainbal {
+            color: darkblue;
+        }
+
+        #lblAdbal {
+            color: darkblue;
+        }
+
+        #lblamount {
+            color: darkblue;
+        }
+
+        #butn-cancel {
+            margin-left: 65px;
+            padding-right: 18px;
+        }
+
+        #navbar-header-button {
+            margin-right: 40px;
+        }
+
+        .final-modal-popup {
+            width: 309px;
+            margin-left: 20px;
+        }
+
+        .modal-header-recharge {
+            /*margin-top: 104px;*/
+            margin-top: 68px;
+        }
+
+        .dropdownDTH1 {
+            font-size: 12px;
+        }
+
+        .dmt-user-img {
+            margin-left: 110px;
+        }
+
+        .heading_customer_phone {
+            font-size: 19px;
+        }
+
+        .img_center_modal {
+            height: 80px;
+            margin-left: 130px;
+            margin-top: 20px;
+        }
+
+        .img_center_modal_2 {
+            height: 100px;
+            margin-left: 104px;
+            margin-top: 20px;
+        }
+
+        .inc_modal_body {
+            margin-left: 45px;
+            font-size: 14px;
+            margin-top: 38px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 20px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 135px;
+            margin-left: 39px;
+        }
+
+        .card_title_deposite {
+            font-size: 12px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 18px;
+        }
+
+        .button-21 {
+            font-size: 11px;
+        }
+
+        .img_upload_image {
+            width: 97px;
+            margin-left: 137px;
+        }
+
+        .modal_deposite_transfer_div {
+            background-color: gainsboro;
+            height: 657px;
+            width: 265px;
+            margin-top: -7px;
+            margin-left: 5px;
+        }
+
+        .modal_deposite_transfer_body_heading {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .modal_deposite_transfer_body_heading_2 {
             font-size: 13px;
         }
 
-        .div-plans-table .main-table-recharge .div-second-plan-head {
+        #DetailTitle {
+            font-size: 16px;
+        }
+
+        .btnLF {
+            font-size: 15px;
+        }
+    }
+
+    @media screen and (max-width:419px) and (min-width:400px) {
+        .modal-header-recharge {
+            /*margin-top: 104px;*/
+            margin-top: 70px;
+        }
+
+        .dropdownDTH1 {
+            font-size: 12px;
+        }
+
+        .heading_customer_phone {
+            font-size: 19px;
+        }
+
+        .btnLF {
+            font-size: 16px;
+        }
+    }
+
+    @media screen and (min-width: 501px) and (max-width: 548px) {
+        .pay-img2 {
+            margin-left: 285px;
+        }
+
+        .img_center_modal {
+            margin-left: 210px;
+        }
+
+        .img_center_modal_2 {
+            margin-left: 210px;
+        }
+
+        .inc_modal_body {
+            font-size: 16px;
+        }
+
+        .card_title_deposite {
             font-size: 13px;
         }
 
+        .card_title_deposite_1 {
+            font-size: 19px;
+        }
 
+        .button-21 {
+            font-size: 14px;
+        }
 
-    /*For Modal Popup*/
-    .div-recharge-img {
-        display: inline-flex;
+        .img_upload_image {
+            width: 120px;
+            margin-left: 190px;
+        }
+
+        .modal_deposite_transfer_div {
+            background-color: gainsboro;
+            height: 657px;
+            width: 315px;
+            margin-top: -7px;
+            margin-left: 89px;
+        }
+
+        .modal_deposite_transfer_body_heading {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .modal_deposite_transfer_body_heading_2 {
+            font-size: 13px;
+        }
+
+        #DetailTitle {
+            font-size: 16px;
+        }
+
+        .btnLF {
+            font-size: 16px;
+        }
     }
 
-    .pay-img {
-        height: 100px;
-        width: 120px;
+    @media screen and (max-width:500px) and (min-width:400px) {
+        .pay-img2 {
+            margin-left: 285px;
+        }
+
+        .img_center_modal {
+            height: 80px;
+            margin-left: 172px;
+            margin-top: 20px;
+        }
+
+        .img_center_modal_2 {
+            height: 100px;
+            margin-left: 140px;
+            margin-top: 20px;
+        }
+
+        .inc_modal_body {
+            font-size: 15px;
+        }
+
+        .card_title_deposite {
+            font-size: 12px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 18px;
+        }
+
+        .button-21 {
+            font-size: 13px;
+        }
+
+        .img_upload_image {
+            width: 97px;
+            margin-left: 137px;
+        }
+
+        .modal_deposite_transfer_div {
+            background-color: gainsboro;
+            height: 657px;
+            width: 315px;
+            margin-top: -7px;
+            margin-left: 48px;
+        }
+
+        .modal_deposite_transfer_body_heading {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .modal_deposite_transfer_body_heading_2 {
+            font-size: 13px;
+        }
+
+        #DetailTitle {
+            font-size: 16px;
+        }
+
+        .btnLF {
+            font-size: 16px;
+        }
     }
 
-    .pay-img2 {
-        margin-left: 379px;
+
+    @media screen and (max-width:549px) and (min-width:423px) {
+        .modal-header-recharge {
+            /*margin-top: 67px;*/
+            margin-top: 70px;
+        }
+
+        .heading_customer_phone {
+            font-size: 20px;
+        }
+
+        .btnLF {
+            font-size: 16px;
+        }
+    }
+    /*For recharge Header*/
+    @media screen and (max-width:550px) and (min-width:400px) {
+        .main-head-recharge {
+            height: 405px;
+            width: auto;
+            background: #002970;
+            margin-top: 84px;
+        }
+
+        .block-recharge .p-recharge {
+            font-size: 12px;
+            padding-top: 20px;
+        }
+
+        .radiobtn-recharge-body {
+            margin-left: 40px;
+        }
+
+        .radioRecharge {
+            display: inline-flex;
+        }
+
+        .form-group-recharge {
+            margin-left: 91px;
+        }
+
+            .form-group-recharge .errorMsg {
+                font-size: 12px;
+                padding-top: 1px;
+                padding-left: 146px;
+                margin-left: 0px;
+            }
+
+        .div-plans-table {
+            margin-top: 30px;
+        }
+
+            .div-plans-table .main-table-recharge .button_header {
+                font-size: 13px;
+            }
+
+            .div-plans-table .main-table-recharge .div-second-plan-head {
+                font-size: 13px;
+            }
+
+
+
+        /*For Modal Popup*/
+        .div-recharge-img {
+            display: inline-flex;
+        }
+
+        .pay-img {
+            height: 100px;
+            width: 120px;
+        }
+
+        /*.pay-img2 {
+        margin-left: 230px;
+    }*/
+
+        .wallet-select {
+            display: inline-flex;
+        }
+
+        .first-wallet {
+            margin-left: 31px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /*Model Footer Button*/
+
+        .div-pay-row {
+            display: inline-flex;
+            /*margin-left: 91px;*/
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 150px;
+        }
+
+        .final-pay-button {
+            width: 138px;
+            margin-left: 14px;
+        }
+
+        .btn-cancel-btn {
+            height: 50px;
+        }
+
+        #lblMainbal {
+            color: darkblue;
+        }
+
+        #lblAdbal {
+            color: darkblue;
+        }
+
+        #lblamount {
+            color: darkblue;
+        }
+
+        #butn-cancel {
+            margin-left: 65px;
+            padding-right: 18px;
+        }
+
+        #navbar-header-button {
+            margin-right: 40px;
+        }
+
+        #operator-change {
+            font-size: 10px;
+        }
+
+        .dropdownDTH1 {
+            font-size: 12px;
+        }
+
+        .heading_customer_phone {
+            font-size: 21px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 96px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 135px;
+        }
+
+        .btnLF {
+            font-size: 16px;
+        }
+    }
+    /*Media Query End For Small Smartphones*/
+    /*Media Query Starts For Large SmartPhones Here*/
+
+    @media screen and (min-width:551px) and (max-width:768px) {
+        .modal-header-recharge {
+            margin-top: 70px;
+        }
+
+        .main-head-recharge {
+            height: 410px;
+            width: auto;
+            background: #002970;
+            margin-top: 84px;
+        }
+
+        .block-recharge .p-recharge {
+            font-size: 12px;
+            padding-top: 20px;
+        }
+
+        .radiobtn-recharge-body {
+            margin-left: 60px;
+        }
+
+        .radioRecharge {
+            display: inline-flex;
+        }
+
+        .form-group-recharge {
+            margin-left: 91px;
+        }
+
+            .form-group-recharge .errorMsg {
+                font-size: 12px;
+                padding-top: 1px;
+                padding-left: 102px;
+                margin-left: 0px;
+            }
+
+        .div-plans-table {
+            margin-top: 30px;
+        }
+
+            .div-plans-table .main-table-recharge .button_header {
+                font-size: 13px;
+            }
+
+            .div-plans-table .main-table-recharge .div-second-plan-head {
+                font-size: 13px;
+            }
+
+
+
+        /*For Modal Popup*/
+        .div-recharge-img {
+            display: inline-flex;
+        }
+
+        .pay-img {
+            height: 100px;
+            width: 120px;
+        }
+
+        .pay-img2 {
+            margin-left: 379px;
+        }
+
+        .wallet-select {
+            display: inline-flex;
+        }
+
+        .first-wallet {
+            margin-left: 31px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /*Model Footer Button*/
+
+        .div-pay-row {
+            display: inline-flex;
+        }
+
+        .final-pay-button {
+            width: 138px;
+        }
+
+        .btn-cancel-btn {
+            height: 50px;
+        }
+
+        #lblMainbal {
+            color: darkblue;
+        }
+
+        #lblAdbal {
+            color: darkblue;
+        }
+
+        #lblamount {
+            color: darkblue;
+        }
+
+        #butn-cancel {
+            margin-left: 65px;
+            padding-right: 18px;
+        }
+
+        #navbar-header-button {
+            margin-right: 40px;
+        }
+
+        .heading_customer_phone {
+            font-size: 22px;
+        }
+
+        .img_center_modal {
+            margin-left: 210px;
+        }
+
+        .img_center_modal_2 {
+            margin-left: 210px;
+        }
+
+        .inc_modal_body {
+            font-size: 17px;
+        }
+
+        .button-21 {
+            font-size: 16px;
+        }
+
+        .modal_deposite_transfer_div {
+            background-color: gainsboro;
+            height: 657px;
+            width: 444px;
+            margin-top: -7px;
+            margin-left: 72px;
+        }
+
+        .modal_deposite_transfer_body_heading {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .modal_deposite_transfer_body_heading_2 {
+            font-size: 13px;
+        }
+
+        #DetailTitle {
+            font-size: 16px;
+        }
+
+        .btnLF {
+            font-size: 17px;
+        }
+    }
+    /*Media Query Ends For Large SmartPhones Here*/
+
+    @media screen and (max-width:450px) and (min-width:400px) {
+        .final-modal-popup {
+            width: 362px;
+            margin-left: 14px;
+        }
     }
 
-    .wallet-select {
-        display: inline-flex;
+    @media screen and (max-width:500px) and (min-width:451px) {
+        .final-modal-popup {
+            width: 405px;
+            margin-left: 14px;
+        }
     }
 
-    .first-wallet {
-        margin-left: 31px;
-        font-weight: 700;
-        font-size: 20px;
+    @media screen and (max-width:768px) {
+        .img-management {
+            height: 100px;
+        }
     }
 
-    /*Model Footer Button*/
 
-    .div-pay-row {
-        display: inline-flex;
+    @media screen and (min-width: 768px) and (max-width:899px) {
+        .col-sm-3 {
+            width: 50%;
+        }
+
+        .main-head-recharge {
+            height: 223px;
+            width: auto;
+            background: #002970;
+            margin-top: 150px;
+        }
+
+        .div-input {
+            background: white;
+            border-radius: 25px;
+            width: 600px;
+            margin-left: 36px;
+            margin-top: 35px;
+        }
+
+        .txt-input {
+            margin-left: 84px;
+            width: 326px;
+        }
+
+        .radiobtn-recharge-body {
+            margin-bottom: 10px;
+            margin-top: 20px;
+            padding-left: 122px;
+        }
+
+        .errorMsg {
+            font-size: 14px;
+            color: red;
+            padding-top: 1px;
+            padding-left: 155px;
+        }
+
+        .form-group-recharge-button {
+            margin-left: 122px;
+            margin-right: 51px;
+        }
+
+        .div-plans-table {
+            background: white;
+            border-radius: 20px;
+            display: none;
+            height: 580px;
+            overflow: auto;
+            width: 608px;
+            margin-left: 32px;
+            margin-top: 30px;
+        }
+
+        .plan-description-amount {
+            padding-left: 85px;
+        }
+
+        .modal-header-recharge {
+            margin-top: 130px;
+            /*border-radius: 30px;*/
+            padding-top: 24px;
+        }
+
+        .dropdownDTH {
+            margin-left: 86px;
+            width: 311px;
+        }
+
+        .btnLF {
+            font-size: 17px;
+        }
     }
 
-    .final-pay-button {
-        width: 138px;
-    }
 
-    .btn-cancel-btn {
-        height: 50px;
-    }
+    @media screen and (min-width: 900px) and (max-width:999px) {
+        .col-sm-3 {
+            width: 50%;
+        }
 
-    #lblMainbal {
-        color: darkblue;
-    }
+        .main-head-recharge {
+            height: 223px;
+            width: auto;
+            background: #002970;
+            margin-top: 85px;
+        }
 
-    #lblAdbal {
-        color: darkblue;
-    }
+        .div-input {
+            background: white;
+            border-radius: 25px;
+            width: 800px;
+            margin-left: 36px;
+            margin-top: 35px;
+        }
 
-    #lblamount {
-        color: darkblue;
-    }
+        .txt-input {
+            margin-left: 84px;
+            width: 326px;
+        }
 
-    #butn-cancel {
-        margin-left: 65px;
-        padding-right: 18px;
-    }
+        .radiobtn-recharge-body {
+            margin-bottom: 10px;
+            margin-top: 20px;
+            padding-left: 122px;
+        }
 
-    #navbar-header-button {
-        margin-right: 40px;
-    }
-    .heading_customer_phone {
-        font-size: 22px;
-    }
-}
+        .errorMsg {
+            font-size: 14px;
+            color: red;
+            padding-top: 1px;
+            padding-left: 155px;
+        }
 
-/*Media Query Ends For Large SmartPhones Here*/
+        .form-group-recharge-button {
+            margin-left: 122px;
+            margin-right: 51px;
+        }
 
-@media screen and (max-width:450px) and (min-width:400px) {
-    .final-modal-popup {
-        width: 362px;
-        margin-left: 14px;
-    }
-}
+        .div-plans-table {
+            background: white;
+            border-radius: 20px;
+            display: none;
+            height: 580px;
+            overflow: auto;
+            width: 800px;
+            margin-left: 32px;
+            margin-top: 30px;
+        }
 
-@media screen and (max-width:500px) and (min-width:451px) {
-    .final-modal-popup {
-        width: 405px;
-        margin-left: 14px;
-    }
-}
+        .plan-description-amount {
+            padding-left: 85px;
+        }
 
-@media screen and (max-width:768px) {
-    .img-management {
-        height: 100px;
-    }
-}
-
-
-@media (min-width: 768px) and (max-width:899px) {
-    .col-sm-3 {
-        width: 50%;
-    }
-
-    .main-head-recharge {
-        height: 223px;
-        width: auto;
-        background: #002970;
-        margin-top: 150px;
-    }
-
-    .div-input {
-        background: white;
-        border-radius: 25px;
-        width: 600px;
-        margin-left: 36px;
-        margin-top: 35px;
-    }
-
-    .txt-input {
-        margin-left: 84px;
-        width: 326px;
-    }
-
-    .radiobtn-recharge-body {
-        margin-bottom: 10px;
-        margin-top: 20px;
-        padding-left: 122px;
-    }
-
-    .errorMsg {
-        font-size: 14px;
-        color: red;
-        padding-top: 1px;
-        padding-left: 155px;
-    }
-
-    .form-group-recharge-button {
-        margin-left: 122px;
-        margin-right: 51px;
-    }
-
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 580px;
-        overflow: auto;
-        width: 608px;
-        margin-left: 32px;
-        margin-top: 30px;
-    }
-
-    .plan-description-amount {
-        padding-left: 85px;
-    }
-
-    .modal-header-recharge {
+        /*.modal-header-recharge {
         margin-top: 130px;
         border-radius: 30px;
         padding-top: 24px;
+    }*/
+
+        .dropdownDTH {
+            margin-left: 86px;
+            width: 311px;
+        }
+
+        .heading_customer_phone {
+            font-size: 23px;
+        }
+
+        .btnLF {
+            font-size: 18px;
+        }
     }
 
-    .dropdownDTH {
-        margin-left: 86px;
-        width: 311px;
-    }
-}
-
-
-@media (min-width: 900px) and (max-width:999px) {
-    .col-sm-3 {
-        width: 50%;
+    @media screen and (min-width: 959px) and (max-width: 999px) {
+        .modal-header-recharge {
+            /*margin-top: 84px;*/
+            margin-top: 90px;
+            /*border-radius: 30px;*/
+            padding-top: 24px;
+        }
     }
 
-    .main-head-recharge {
-        height: 223px;
-        width: auto;
-        background: #002970;
-        margin-top: 85px;
+    @media screen and (min-width: 899px) and (max-width: 959px) {
+        .modal-header-recharge {
+            margin-top: 132px;
+            /*border-radius: 30px;*/
+            padding-top: 24px;
+        }
     }
 
-    .div-input {
-        background: white;
-        border-radius: 25px;
-        width: 800px;
-        margin-left: 36px;
-        margin-top: 35px;
+    @media screen and (min-width: 1000px) and (max-width: 1100px) {
+        .main-head-recharge {
+            height: 223px;
+            width: auto;
+            background: #002970;
+            margin-top: 40px;
+        }
+
+        .form-group-recharge {
+            margin-bottom: 15px;
+            margin-left: 0px;
+        }
+
+        .form-group-recharge-button {
+            margin-left: 29px;
+            width: 318px;
+        }
+
+        .col-sm-3 {
+            width: 50%;
+        }
+
+        .radiobtn-recharge-body {
+            margin-bottom: 10px;
+            margin-top: 20px;
+            padding-left: 30px;
+        }
+
+        .operatorspan {
+            font-size: 11px;
+            margin-top: -37px;
+            margin-right: 43px;
+        }
+
+        .plan-description-amount {
+            margin-left: 40px;
+        }
+
+        #btnProcessRecharge {
+            width: 203px;
+            margin-left: 15px;
+        }
+
+        .modal-header-recharge {
+            margin-top: 84px;
+        }
+
+        .div-input {
+            background: white;
+            border-radius: 25px;
+            width: 230px;
+            margin-left: 36px;
+            margin-top: 35px;
+        }
+
+        .row-recharge-body {
+            float: left;
+            margin-left: 30px;
+        }
+
+        .div-plans-table {
+            background: white;
+            border-radius: 20px;
+            display: none;
+            height: 580px;
+            overflow: auto;
+            margin-top: 36px;
+        }
+
+        .txt-input {
+            font-size: 14px;
+        }
+
+        .heading_customer_phone {
+            font-size: 22px;
+        }
     }
 
-    .txt-input {
-        margin-left: 84px;
-        width: 326px;
+    @media screen and (min-width: 1101px) and (max-width: 1279px) {
+        .modal-header-recharge {
+            margin-top: 90px;
+            /*border-radius: 30px;*/
+            padding-top: 24px;
+        }
     }
 
-    .radiobtn-recharge-body {
-        margin-bottom: 10px;
-        margin-top: 20px;
-        padding-left: 122px;
+
+    @media screen and (max-width: 1280px) {
+        .formedia {
+            margin-left: 120px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .heading_customer_phone {
+            font-size: 22px;
+        }
     }
 
-    .errorMsg {
-        font-size: 14px;
-        color: red;
-        padding-top: 1px;
-        padding-left: 155px;
+    @media screen and (max-width: 1280px) {
+        .dmt {
+            margin-top: 88px;
+            text-align: center;
+            margin-left: 65px;
+        }
     }
 
-    .form-group-recharge-button {
-        margin-left: 122px;
-        margin-right: 51px;
+    @media screen and (max-width:339px) and (min-width:280px) {
+        .dmt {
+            margin-top: 10px;
+            text-align: center;
+            margin-left: -200px;
+        }
+
+        .aval_bal_font {
+            font-size: 12px;
+            margin-top: 28px;
+        }
+
+        .formedia {
+            margin-left: 80px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
     }
 
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 580px;
-        overflow: auto;
-        width: 800px;
-        margin-left: 32px;
-        margin-top: 30px;
+    @media screen and (max-width:399px) and (min-width:340px) {
+        .dmt {
+            margin-top: 10px;
+            text-align: center;
+            margin-left: -180px;
+        }
+
+        .aval_bal_font {
+            font-size: 13px;
+            margin-top: 28px;
+        }
+
+        .formedia {
+            margin-left: 90px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
     }
 
-    .plan-description-amount {
-        padding-left: 85px;
+    @media screen and (min-width: 400px) and (max-width:550px) {
+        .dmt {
+            margin-top: 0px;
+            text-align: center;
+            margin-left: -150px;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 140px;
+        }
+
+        .aval_bal_font {
+            font-size: 14px;
+            margin-top: 28px;
+        }
+
+        .formedia {
+            margin-left: 100px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
     }
 
-    .modal-header-recharge {
-        margin-top: 130px;
-        border-radius: 30px;
-        padding-top: 24px;
+    @media screen and (min-width: 551px) and (max-width:700px) {
+        .dmt {
+            margin-top: 2px;
+            text-align: center;
+            margin-left: -149px;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 180px;
+        }
+
+        .aval_bal_font {
+            font-size: 16px;
+            margin-top: 28px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 96px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 202px;
+        }
+
+        .card_title_deposite {
+            font-size: 13px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 19px;
+        }
     }
 
-    .dropdownDTH {
-        margin-left: 86px;
-        width: 311px;
-    }
-    .heading_customer_phone {
-        font-size: 23px;
-    }
-}
+    @media screen and (min-width: 701px) and (max-width:767px) {
+        .dmt {
+            margin-top: 2px;
+            text-align: center;
+            margin-left: -152px;
+        }
 
-@media (min-width: 959px) and (max-width: 999px) {
-    .modal-header-recharge {
-        margin-top: 84px;
-        border-radius: 30px;
-        padding-top: 24px;
-    }
-}
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 250px;
+        }
 
-@media (min-width: 899px) and (max-width: 959px) {
-    .modal-header-recharge {
-        margin-top: 132px;
-        border-radius: 30px;
-        padding-top: 24px;
-    }
-}
+        .aval_bal_font {
+            font-size: 17px;
+            margin-top: 28px;
+        }
 
-@media (min-width: 1000px) and (max-width: 1100px) {
-    .main-head-recharge {
-        height: 223px;
-        width: auto;
-        background: #002970;
-        margin-top: 40px;
-    }
+        .recharge_urchash_img {
+            margin-left: 188px;
+        }
 
-    .form-group-recharge {
-        margin-bottom: 15px;
-        margin-left: 0px;
+        .recharge_urchash_img_1 {
+            width: 202px;
+        }
+
+        .card_title_deposite {
+            font-size: 14px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 20px;
+        }
     }
 
-    .form-group-recharge-button {
-        margin-left: 29px;
-        width: 318px;
+    @media screen and (min-width: 768px) and (max-width:851px) {
+        .dmt {
+            margin-top: 131px;
+            text-align: center;
+            margin-left: 8px;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 250px;
+        }
+
+        .aval_bal_font {
+            font-size: 18px;
+            margin-top: 28px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 228px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 202px;
+        }
+
+        .card_title_deposite {
+            font-size: 15px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 20px;
+        }
     }
 
-    .col-sm-3 {
-        width: 50%;
+    @media screen and (min-width: 851px) and (max-width:900px) {
+        .dmt {
+            margin-top: 121px;
+            text-align: center;
+            margin-left: 2px;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 400px;
+        }
+
+        .aval_bal_font {
+            font-size: 19px;
+            margin-top: 28px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 228px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 202px;
+        }
+
+        .card_title_deposite {
+            font-size: 15px;
+        }
+
+        .card_title_deposite_1 {
+            font-size: 20px;
+        }
     }
 
-    .radiobtn-recharge-body {
-        margin-bottom: 10px;
-        margin-top: 20px;
-        padding-left: 30px;
+    @media screen and (min-width: 901px) and (max-width:950px) {
+        .dmt {
+            margin-top: 57px;
+            text-align: center;
+            margin-left: 2px;
+        }
+
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 400px;
+        }
+
+        .aval_bal_font {
+            font-size: 19px;
+            margin-top: 28px;
+        }
+
+        .recharge_urchash_img {
+            margin-left: 228px;
+        }
+
+        .recharge_urchash_img_1 {
+            width: 202px;
+        }
     }
 
-    .operatorspan {
-        font-size: 11px;
-        margin-top: -37px;
-        margin-right: 43px;
-    }
+    @media screen and (min-width: 951px) and (max-width:1100px) {
+        .button_addbeneficiary {
+            display: inline-flex;
+            margin-left: 550px;
+        }
 
-    .plan-description-amount {
-        margin-left: 40px;
-    }
+        .aval_bal_font {
+            font-size: 22px;
+            margin-top: 28px;
+        }
 
-    #btnProcessRecharge {
-        width: 203px;
-        margin-left: 15px;
-    
-    }
+        .dmt {
+            margin-top: 57px;
+            text-align: center;
+            margin-left: 2px;
+        }
 
-    .modal-header-recharge {
-        margin-top: 84px;
-    }
+        .recharge_urchash_img {
+            margin-left: 228px;
+        }
 
-    .div-input {
-        background: white;
-        border-radius: 25px;
-        width:230px;
-        margin-left: 36px;
-        margin-top: 35px;
+        .recharge_urchash_img_1 {
+            width: 202px;
+        }
     }
-
-    .row-recharge-body {
-        float: left;
-        margin-left: 30px;
-    }
-
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 580px;
-        overflow: auto;
-        margin-top: 36px;
-    }
-
-    .txt-input {
-        font-size: 14px;
-    }
-    .heading_customer_phone {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 1280px) {
-    .formedia {
-        margin-left: 120px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    .heading_customer_phone {
-        font-size: 22px;
-    }
-}
-@media (max-width: 1280px) {
-    .dmt {
-        margin-top: 88px;
-        text-align: center;
-        margin-left: 65px;
-    
-    }
-}
-@media screen and (max-width:339px) and (min-width:280px) {
-    .dmt {
-        margin-top: 10px;
-        text-align: center;
-        margin-left: -200px;
-    }
-    .aval_bal_font {
-        font-size: 12px;
-        margin-top: 28px;
-    }
-    .formedia {
-        margin-left: 80px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-}
-@media screen and (max-width:399px) and (min-width:340px) {
-    .dmt {
-        margin-top: 10px;
-        text-align: center;
-        margin-left: -180px;
-    }
-
-    .aval_bal_font {
-        font-size: 13px;
-        margin-top: 28px;
-    }
-    .formedia {
-        margin-left: 90px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-}
-@media screen and (min-width: 400px) and (max-width:550px) {
-    .dmt {
-        margin-top: 0px;
-        text-align: center;
-        margin-left: -150px;
-    }
-
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 140px;
-    }
-    .aval_bal_font {
-        font-size: 14px;
-        margin-top: 28px;
-    }
-    .formedia {
-        margin-left: 100px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-}
-@media screen and (min-width: 551px) and (max-width:700px) {
-    .dmt {
-        margin-top: 2px;
-        text-align: center;
-        margin-left: -149px;
-    }
-
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 180px;
-    }
-    .aval_bal_font {
-        font-size: 16px;
-        margin-top: 28px;
-    }
-}
-@media screen and (min-width: 701px) and (max-width:767px) {
-    .dmt {
-        margin-top: 2px;
-        text-align: center;
-        margin-left: -152px;
-    }
-
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 250px;
-    }
-    .aval_bal_font {
-        font-size: 17px;
-        margin-top: 28px;
-    }
-}
-@media screen and (min-width: 768px) and (max-width:851px) {
-    .dmt {
-        margin-top: 77px;
-        text-align: center;
-        margin-left: -7px;
-    }
-
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 250px;
-    }
-    .aval_bal_font {
-        font-size: 18px;
-        margin-top: 28px;
-    }
-}
-@media (min-width: 851px) and (max-width:950px) {
-    .dmt {
-        margin-top: 57px;
-        text-align: center;
-        margin-left: 2px;
-    }
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 400px;
-    }
-    .aval_bal_font {
-        font-size: 19px;
-        margin-top: 28px;
-    }
-}
-@media (min-width: 951px){
-    .button_addbeneficiary {
-        display: inline-flex;
-        margin-left: 550px;
-    }
-    .aval_bal_font {
-        font-size: 22px;
-        margin-top: 28px;
-    }
-}

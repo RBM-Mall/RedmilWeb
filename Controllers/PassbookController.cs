@@ -1186,6 +1186,10 @@ namespace Project_Redmil_MVC.Controllers
         #region RechargeyourCash
         public IActionResult RechargeyourCash()
         {
+            if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
+            {
+                return RedirectToAction("ErrorForLogin", "Error");
+            }
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             lstdata = GetBalance();
             return View(lstdata);
@@ -1195,6 +1199,10 @@ namespace Project_Redmil_MVC.Controllers
         #region TransferToBank
         public IActionResult TranferToBank()
         {
+            if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
+            {
+                return RedirectToAction("ErrorForLogin", "Error");
+            }
 
             ViewBag.BankAccount = new SelectList(BankDetail(), "Id", "BankName");
             var baseUrl = "https://api.redmilbusinessmall.com";
@@ -2077,6 +2085,10 @@ namespace Project_Redmil_MVC.Controllers
 
         public IActionResult uploadimages(InserMutltiAccount fileData, string Account, string BeneficaryName, string IFSc, string BankList, string Relation)
         {
+            if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
+            {
+                return RedirectToAction("ErrorForLogin", "Error");
+            }
             string serverFolder = "";
             IFormFile iform = fileData.file;
             if (fileData.file != null)
@@ -2175,6 +2187,10 @@ namespace Project_Redmil_MVC.Controllers
         #region ForSuccessPop
         public IActionResult ForSuccesPop()
         {
+            if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
+            {
+                return RedirectToAction("ErrorForLogin", "Error");
+            }
             string msg = ViewBag.SuccessMessage;
             ViewBag.Sudsdsd = msg;
             return View();

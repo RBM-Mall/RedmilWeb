@@ -419,6 +419,36 @@ div.wrapper {
     color: green
 }
 
+.heading_details_modal {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modal_download_report {
+    width: 40%;
+    margin-top: 161px;
+}
+
+.modal_download_report_1 {
+    height: 303px;
+    color: black;
+}
+
+.img_detailLogo_download {
+    height: 63px;
+    margin-left: 288px;
+}
+.heading_download_report {
+    margin-top: -100px;
+    padding: 34px;
+}
+.input_from_date {
+    width: 82%;
+}
+.div_footer {
+    margin-top: -40px;
+}
 @media screen and (max-width:339px) and (min-width:280px) {
     .tabcontent .title .aval_bal, .AdvBal {
         margin-top: -207px;
@@ -426,17 +456,21 @@ div.wrapper {
         text-align: center;
         margin-left: 0px;
     }
+
     .tabcontent .title h1 {
         font-weight: 800;
         font-size: 20px;
     }
+
     .tabcontent h3 {
         font-weight: 700;
         font-size: 18px;
     }
+
     .advance_bal {
         margin-top: 20px;
     }
+
     .tabcontent .item_info button {
         font-size: 10px;
     }
@@ -451,6 +485,7 @@ div.wrapper {
         text-align: center;
         margin-left: 0px;
     }
+
     .tabcontent .title h1 {
         font-weight: 800;
         font-size: 21px;
@@ -460,6 +495,7 @@ div.wrapper {
         font-weight: 700;
         font-size: 18px;
     }
+
     .tabcontent .item_info button {
         font-size: 11px;
     }
@@ -482,6 +518,7 @@ div.wrapper {
         font-weight: 700;
         font-size: 18px;
     }
+
     .tabcontent .item_info button {
         font-size: 12px;
     }
@@ -504,10 +541,12 @@ div.wrapper {
         font-weight: 700;
         font-size: 18px;
     }
+
     .tabcontent .item_info button {
         font-size: 12px;
     }
 }
+
 @media screen and (max-width:550px) and (min-width:519px) {
 
     .tabcontent .title .aval_bal, .AdvBal {
@@ -516,6 +555,7 @@ div.wrapper {
         text-align: center;
         margin-left: 0px;
     }
+
     .tabcontent .title h1 {
         font-weight: 800;
         font-size: 22px;
@@ -525,10 +565,12 @@ div.wrapper {
         font-weight: 700;
         font-size: 18px;
     }
+
     .tabcontent .item_info button {
         font-size: 12px;
     }
 }
+
 @media screen and (max-width:768px) and (min-width:551px) {
     .tabcontent .title .aval_bal, .AdvBal {
         margin-top: 5px;
@@ -536,6 +578,7 @@ div.wrapper {
         text-align: center;
         margin-left: 0px;
     }
+
     .tabcontent .title h1 {
         font-weight: 800;
         font-size: 23px;
@@ -545,6 +588,7 @@ div.wrapper {
         font-weight: 700;
         font-size: 18px;
     }
+
     .tabcontent .item_info button {
         font-size: 14px;
     }
@@ -619,6 +663,7 @@ div.wrapper {
         font-size: 17px;
     }
 }
+
 @media screen and (max-width:1279px) and (min-width:1151px) {
     .tabcontent .title .aval_bal, .AdvBal {
         margin-top: 5px;
