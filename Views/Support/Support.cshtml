@@ -3,25 +3,27 @@
     ViewData["Title"] = "Support";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <link rel="stylesheet" href="~/css/businessReport.css" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <style>
-</style>
-<style>
-    .accordion {
-    width: 50%;
-    margin: 25px auto;
-    margin: 200px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 338px;
-}
+    /*.accordion {
+                width: 50%;
+                margin: 25px auto;
+                margin: 200px auto;
+                display: flex;
+                flex-direction: column;
+                gap: 338px;
+            }*/
 
-    .ts {
-        margin-left: 226px;
-        font-size: 26px;
-    }
+    /*.ts {
+                margin-left: 226px;
+                font-size: 26px;
+            }*/
 
     .btn-final {
         display: block;
@@ -119,52 +121,106 @@
         box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
     }
 
-    .breadcumb-area {
-        position: relative;
-        padding: 221px 0;
-        background-size: cover;
-        background-position: center center;
-        position: relative;
-        background-position: 75% 10%;
-    }
+    /* .breadcumb-area {
+                position: relative;
+                padding: 221px 0;
+                background-size: cover;
+                background-position: center center;
+                position: relative;
+                background-position: 75% 10%;
+            }*/
 
     .Feedack {
         margin-top: -18px;
     }
+
+    hr {
+        border: none;
+        border-top: 1px dotted black;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+        width: 100%;
+    }
 </style>
 
 
-<div class="section breadcumb-area" style="background-image: url('../css/Img/forsupport.png')">
+<div class="section breadcumb-area background-image" style="background-image: url('../css/Img/new_tech_11.png')">
     <div class="container ">
         <div class="row">
             <div class="col-sm-12 text-center">
                 <ul>
-                    <li><strong style="color:black">Help and Support</strong></li>
+                    @*<li><strong style="color:white">Help and Support</strong></li>*@
+                    <li><strong>Help and Support</strong></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 
+@*<br />
 <br />
 <br />
-<br />
-<br />
-<br />
-<h3><strong class="ts">Call us Technical Support</strong></h3>
+<br />*@
+@*<br />*@
+<hr />
+<div>
+    <div class="col col-md-12 col-sm-12 col-lg-12">
+        <img src="/css/Img/help_and_support11.jpg" style="width:100%;" alt="Norway" />
+        @*<img src="/css/ImageSlide/REDMIL-BUSINESS-MALL-01.png" style="width:100%;height:400px" alt="Norway" />*@
+    </div>
+</div>
+<hr />
+@*<h3><strong class="ts">Call us Technical Support</strong></h3>*@
 
 
 <div class="container-fluid">
-    <div class="row" style="margin-left:100px;">
-        @*<div class="col-sm-4"></div>*@
-        <div class="col-sm-6" @*style=" margin-left: 523px;"*@>
+    <div class="row">
+        @*<div class="row" style="margin-left:100px;">*@
+        <div class="col col-sm-4 col-lg-4">
+            @*<div class="container-fluid" style="margin-top: -120px; margin-bottom: -300px">*@
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="accordion" id="divRMCall">
+                        <div class="item" style="display:block;">
+                            <p class="number"></p>
+                            <h4 class="btnLF"><img src="~/css/img/usergroup.png" style="height:20px" />CALL YOUR  LOCAL FRANCHISE</h4>
 
-            <div class="row" style="margin-right: 275px; padding: 57px; background-color: lightgray;">
-                <h4 class=""><strong>Confirm your detail so we can call you</strong> </h4><br />
-                <h5> <strong>Preferred Language</strong></h5>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+
+                        <div class="item">
+                            <p class="number"></p>
+                            <h4 class="btnRAC btnLF"><img src="~/css/img/complain.png" style="height:37px" />RAISE A COMPLAINT </h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*//Call Us For technical Support*@
+        <div class="col col-sm-4 col-lg-4">
+            @*<h3 style="text-align:center;"><strong>CALL US - TECHNICAL SUPPORT</strong></h3>
+            <div class="container">*@
+            <div class="row">
+                <div class="col-sm-12 text-center padding-bottom-30">
+                    @*<div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;>*@
+                    <div class="section-title section_title">
+                        @*<h1 class="heading_services" style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>*@
+                        <h1 class="heading_services"><span>CALL US - TECHNICAL SUPPORT</span></h1>
+                    </div>
+                </div>
+                @*</div>*@
+            </div>
+            @*<div class="row" style="background-color: lightgray;border-style: double;margin-top: 65px;margin-left: 10px;height: 500px;">*@
+            <div class="row support_content_modal">
+                <h4 style=""><strong class="suport_content">Confirm your detail so we can call you</strong> </h4><br />
+                <h5><strong class="suport_content">Preferred Language</strong></h5>
                 <div class="col-sm-6">
-
-                    <div class="form-check">
+                    <div class="form-check suport_content">
                         <input class="form-check-inputs" type="radio" name="exampleRadios" value="Hindi" checked style="height:20px">
                         <label class="form-check-label" for="exampleRadios1">
                             Hindi
@@ -172,8 +228,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-
-                    <div class="form-check">
+                    <div class="form-check suport_content">
                         <input class="form-check-inputs" type="radio" name="exampleRadios" value="English" style="height:20px">
                         <label class="form-check-label" for="exampleRadios2">
                             English
@@ -193,7 +248,7 @@
                     @if (ViewBag.Department != null)
                     {
 
-                        @Html.DropDownListFor(x => x.Department_Position, ViewBag.Department as SelectList, "-- Select Department --", new { @class = "form-control" })
+                        @Html.DropDownListFor(x => x.Department_Position, ViewBag.Department as SelectList, "-- Select Department --", new { @class = "form-control suport_content_dropdown" })
 
                     }
 
@@ -203,57 +258,54 @@
                     <label class="control-label">
 
                     </label>
-                    <select class="form-control" id="SId" asp-items="" style="display:none">
+                    <select class="form-control suport_content_dropdown" id="SId" asp-items="" style="display:none">
                         <option> -- Choose Sub Department -- </option>
                     </select><br />
                     <br />
                     <h5><span id="errSubDepartent" style="color:red;"></span></h5>
 
-                    <input class="form-control" type="text" placeholder="Mobile Number" name="usrnm" id="mobileno" value="@ViewBag.Mobile">
+                    <input class="form-control suport_content_dropdown" type="text" placeholder="Mobile Number" name="usrnm" id="mobileno" value="@ViewBag.Mobile">
 
 
                     <div class="col-sm-6">
                         <h1><span id="Errors" class="text-danger font-weight-bold"></span></h1>
                     </div>
                 </div>
-
-
-                <button type="submit" class="button-21 IVRDurationCheck">CALL ME BACK</button>
+                <button type="submit" class="button-21 IVRDurationCheck suport_content">CALL ME BACK</button>
             </div>
-
         </div>
-        <div class="col-sm-6">
-            @*<h1 class="reportHeadName">My Business Report</h1>
-            <h4 class="tag">Get Complete Transparency & Keep Good Track Of Your Business Transactions With Business Reports</h4>*@
 
-            <div class="container-fluid" style="margin-top: -120px; margin-bottom: -300px">
+
+        <div class="col col-sm-4 col-lg-4">
+            @*<div class="container-fluid" style="margin-top: -120px; margin-bottom: -300px">*@
+            <div class="container-fluid">
                 <div class="row">
 
 
 
-
+                    @*
                     <div class="accordion" id="divRMCall">
-                        <div class="item" style="display:block;">
-                            <p class="number"></p>
-                            <h4 class="btnLF"><img src="~/css/img/usergroup.png" style="height:20px" />CALL YOUR  LOCAL FRANCHISE</h4>
+                    <div class="item" style="display:block;">
+                    <p class="number"></p>
+                    <h4 class="btnLF"><img src="~/css/img/usergroup.png" style="height:20px" />CALL YOUR  LOCAL FRANCHISE</h4>
 
-                        </div>
+                    </div>
                     </div>
 
                     <div class="accordion">
 
-                        <div class="item">
-                            <p class="number"></p>
-                            <h4 class="btnRAC"><img src="~/css/img/complain.png" style="height:37px" />RAISE A COMPLAINT </h4>
-
-                        </div>
+                    <div class="item">
+                    <p class="number"></p>
+                    <h4 class="btnRAC"><img src="~/css/img/complain.png" style="height:37px" />RAISE A COMPLAINT </h4>
 
                     </div>
+
+                    </div>*@
                     <div class="accordion">
 
                         <div class="item">
                             <p class="number"></p>
-                            <h4 class="btnSAF"><img src="~/css/img/feedbacks.png" style="height:20px" />SUGGESTION AND FEEDBACK</h4>
+                            <h4 class="btnSAF btnLF"><img src="~/css/img/feedbacks.png" style="height:20px" />SUGGESTION AND FEEDBACK</h4>
 
                         </div>
 
@@ -263,7 +315,7 @@
                         <div class="accordion">
                             <div class="item" style="display:none;">
                                 <p class="number"></p>
-                                <h4 class="btnRM"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
+                                <h4 class="btnRM btnLF"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
 
                             </div>
                         </div>
@@ -274,7 +326,7 @@
                         <div class="accordion">
                             <div class="item" style="display:block;">
                                 <p class="number"></p>
-                                <h4 class="btnRM"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
+                                <h4 class="btnRM btnLF"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
 
                             </div>
                         </div>
@@ -282,6 +334,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <!--Modal for error-->
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -347,8 +402,7 @@
                                         <input class="form-check-input" value="No" type="radio" name="exampleRadios" id="exampleRadios2" style="height:20px">
                                         <label class="form-check-label" for="exampleRadios2">
                                             No
-                                        </label>
-                                    </div>
+                                        </label>                                  </div>
                                 </div>
 
                                 <textarea id="Remark" name="w3review" placeholder="Reamarks(Optional)" rows="4" cols="50"></textarea>
@@ -524,8 +578,10 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <input type="button" id="LocalFranchise" style="display:none" data-target="#frenchise" data-toggle="modal" />
                 <div id="frenchise" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-confirm" style="width: 521px;margin-top: 158px">
-                        <div class="modal-content" style="height: 397px;color:black;">
+                    @*<div class="modal-dialog modal-confirm" style="width: 521px;margin-top: 158px">*@
+                    <div class="modal-dialog modal-confirm modal_support_1 modal_top">
+                        @*<div class="modal-content" style="height: 397px;color:black;">*@
+                        <div class="modal-content">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" style="padding-right: 14px; padding-right: 11px; font-size: 25px; font-weight: bolder;">×</span>
                             </button>
@@ -535,12 +591,12 @@
                                 </div>
                                 <h4 id="headingLF" class="modal-title w-100" style=""></h4>
                             </div>
-                            <div class="modal-body" style="margin-top:-164px;margin-left: 158px;">
+                            <div class="modal-body modal_supoort_2content">
                                 <h3 class="p-new text-center"><label id="lblMsgLF"></label></h3>
                                 <p class="p-new"><label id="lblNameLF"></label></p>
                                 <p class="p-new"><label id="lblMobileLF"></label></p>
                                 <div class="modal-footer" style="margin-top: -10px;margin-left: -238px;">
-                                    <button type="button" class="btn-final" id="LocalLf" data-dismiss="modal" onclick="LF()"><b>Call Franchise</b></button>
+                                    <button type="button" class="btn-final m-mfinalmodal" id="LocalLf" data-dismiss="modal" onclick="LF()"><b>Call Franchise</b></button>
                                 </div>
                             </div>
 
@@ -638,20 +694,20 @@
                     //    $("#btnNoDataFoundModel").trigger("click");
                     //}
                     //else {
-                        $('#SId').html('');
-                        var options = '<option value="' + 0 + '">' + "--Choose Sub Department--" + '</option>';
-                        if (response.length > 0) {
-                            for (var i = 0; i < response.length; i++) {
+                    $('#SId').html('');
+                    var options = '<option value="' + 0 + '">' + "--Choose Sub Department--" + '</option>';
+                    if (response.length > 0) {
+                        for (var i = 0; i < response.length; i++) {
 
-                                options += '<option value="' + response[i].department_key + '">' + response[i].department_name + '</option>';
+                            options += '<option value="' + response[i].department_key + '">' + response[i].department_name + '</option>';
 
-                            }
-                            $('#SId').show();
-                            $('#SId').append(options);
                         }
-                        else {
-                            document.getElementById("SId").style.display = "none";
-                        }
+                        $('#SId').show();
+                        $('#SId').append(options);
+                    }
+                    else {
+                        document.getElementById("SId").style.display = "none";
+                    }
                     //}
                 }
             });
@@ -660,7 +716,7 @@
     });
     var mobileno;
     $('.IVRDurationCheck').on('click', function () {
-        debugger;
+        
         var MaindepartmentName = $("#Department_Position option:selected").text();
         var lang = $("#Department_Position").val();
         var rdbvalue = $('.form-check-inputs:checked').val();
@@ -671,7 +727,7 @@
         //var value=apiKey.value;
         //var apiKey = $("#Department_Position").val();
         mobileno = $("#mobileno").val();
-        debugger;
+       
         if (rdbvalue == null || rdbvalue == "" || rdbvalue == undefined) {
             document.getElementById("errRadio").innerHTML = "Please Select Atleast One Language";
         }
@@ -679,7 +735,7 @@
             document.getElementById("errDepartent").innerHTML = "Please Select Atleast One Department";
         }
         else {
-            debugger;
+           
             document.getElementById("errRadio").innerHTML = "";
             document.getElementById("errDepartent").innerHTML = "";
             $.ajax({
@@ -704,7 +760,7 @@
 
                     }
                     else if (response.statuscode == "TXN") {
-                        debugger;
+                       
                         $("#forcall").trigger("click");
                         document.getElementById("lblMsgcall").innerHTML = response.message;
                         //document.getElementById("headingcall").innerHTML = "We will call you back within 5 minute";
@@ -722,12 +778,12 @@
                                 //    $("#btnNoDataFoundModel").trigger("click");
                                 //}
                                 //else {
-                                    document.getElementById("lblMsg1").innerHTML = response.message;
-                                    document.getElementById("heading1").innerHTML = "Success";
-                                    document.getElementById("img1").innerHTML = '<i class="fa fa-check"></i>'
-                                    document.getElementById("icon1").style.backgroundColor = '#82ce34';
-                                    document.getElementById("LocalLff").style.backgroundColor = '#82ce34';
-                                    $("#frenchisess").trigger("click");
+                                document.getElementById("lblMsg1").innerHTML = response.message;
+                                document.getElementById("heading1").innerHTML = "Success";
+                                document.getElementById("img1").innerHTML = '<i class="fa fa-check"></i>'
+                                document.getElementById("icon1").style.backgroundColor = '#82ce34';
+                                document.getElementById("LocalLff").style.backgroundColor = '#82ce34';
+                                $("#frenchisess").trigger("click");
 
                                 //}
 
@@ -759,7 +815,7 @@
 
     });
     $('.btn-feedback').on('click', function () {
-        debugger;
+       
 
         var SatisfiedY_N = $('.form-check-input:checked').val();
         var Remarks = $('#Remark').val();
@@ -776,13 +832,13 @@
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
                 //else {
-                    debugger;
-                    document.getElementById("lblMsgfeedback").innerHTML = response;
-                    document.getElementById("headingfeedback").innerHTML = "Success";
-                    document.getElementById("imgfeedback").innerHTML = '<i class="fa fa-check"></i>'
-                    document.getElementById("iconfeedback").style.backgroundColor = '#82ce34';
-                    document.getElementById("feedbacksuccessbtnfeedback").style.backgroundColor = '#82ce34';
-                    $("#feedsuccesmodal").trigger("click");
+               
+                document.getElementById("lblMsgfeedback").innerHTML = response;
+                document.getElementById("headingfeedback").innerHTML = "Success";
+                document.getElementById("imgfeedback").innerHTML = '<i class="fa fa-check"></i>'
+                document.getElementById("iconfeedback").style.backgroundColor = '#82ce34';
+                document.getElementById("feedbacksuccessbtnfeedback").style.backgroundColor = '#82ce34';
+                $("#feedsuccesmodal").trigger("click");
                 //}
 
             }
@@ -790,7 +846,7 @@
 
     })
     $('.btnLF').on('click', function () {
-        debugger;
+       
         $.ajax({
             url: "/Support/RmDetailUserWise",
             data: {},
@@ -803,7 +859,7 @@
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
                 //else{
-                    debugger;
+               
                 document.getElementById("lblNameLF").innerHTML = 'Name : ' + response.data[0].bhName;
                 document.getElementById("lblMobileLF").innerHTML = 'Mobile : ' + response.data[0].bhMobile;
                 Lfnum = document.getElementById("lblMobileLF").innerHTML;
@@ -817,7 +873,7 @@
 
     var Rnum;
     $('.btnRM').on('click', function () {
-        debugger;
+       
         $.ajax({
             url: "/Support/RmDetailUserWise",
             data: {},
@@ -830,15 +886,15 @@
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
                 //else{
-                    debugger;
-                    document.getElementById("lblNameRM").innerHTML = 'Name :' + response.data[0].name;
-                    document.getElementById("lblMobileRM").innerHTML = 'Mobile :' + response.data[0].mobileno;
-                    Rnum = document.getElementById("lblNameRM").innerHTML;
-                    document.getElementById("LocalRM").style.backgroundColor = '#82ce34';
-                    $("#RM").trigger("click");
+               
+                document.getElementById("lblNameRM").innerHTML = 'Name :' + response.data[0].name;
+                document.getElementById("lblMobileRM").innerHTML = 'Mobile :' + response.data[0].mobileno;
+                Rnum = document.getElementById("lblNameRM").innerHTML;
+                document.getElementById("LocalRM").style.backgroundColor = '#82ce34';
+                $("#RM").trigger("click");
 
                 //}
-                
+
 
             }
         })
@@ -847,7 +903,7 @@
 
 
     $('.btnRAC').on('click', function () {
-        debugger;
+       
         var custName = "@ViewBag.name";
         var custContactNo = "@ViewBag.Mobile";
         var custEmailId = "@ViewBag.Email";
@@ -861,7 +917,7 @@
     })
 
     $('.btnSAF').on('click', function () {
-        debugger;
+       
         var custName = "@ViewBag.name";
         var custContactNo = "@ViewBag.Mobile";
         var custEmailId = "@ViewBag.Email";

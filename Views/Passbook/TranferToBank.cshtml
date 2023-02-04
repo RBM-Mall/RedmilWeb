@@ -1,6 +1,6 @@
 ﻿@model Project_Redmil_MVC.Models.ResponseModel.PassbookGetCashOutSurchargeNewResponseModel.PassbookGetCashsurchargeRespnseModel
 @{
-    ViewData["Title"] = "DMT 2.0 - Direct Money Transfer";
+    ViewData["Title"] = "Passbook - Tranfer To Bank";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 @using Microsoft.AspNetCore.Http
@@ -10,7 +10,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+@*<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />*@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
@@ -18,6 +18,8 @@
 <srcipt src="jquery.redirect.js"></srcipt>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 
 <style>

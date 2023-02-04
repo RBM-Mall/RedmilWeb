@@ -89,8 +89,8 @@
 
 .accordion {
     width: 50%;
-    margin: 25px auto;
-    /*margin: 200px auto;*/
+    /*margin: 25px auto;*/
+    margin: 200px auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -261,3 +261,101 @@
     font-family: Arial;
     font-weight: 600;
 }
+.modal_support_1 {
+    width: 521px;
+    margin-top: 158px;
+}
+.modal_support_1_content {
+    height: 397px;
+    color: black;
+}
+.modal_supoort_2content
+{
+    margin-top: -160px;
+    margin-left: 137px;
+}
+.modal-confirm.modal-dialog {
+    margin-top: 149px;
+}
+@media screen and (min-width:279px) and (max-width:339px) {
+
+    .modal-confirm {
+        padding: 11px;
+        margin-left: -81px;
+        width: 400px;
+    }
+
+    .modal-body {
+        margin-top: -172px;
+        margin-left: 116px;
+    }
+
+    .modal_top {
+        width: 422px;
+    }
+
+    .m-mfinalmodal {
+        display: block;
+        margin-left: 208px;
+        border-bottom: 42px;
+        width: 179px;
+        border-radius: 41px;
+        height: 35px;
+        font-size: 12px;
+        color: white;
+        border-color: white;
+        border-right: white;
+        border-left: white;
+        border-top: white;
+    }
+   
+}
+
+
+    @media screen and (min-width:279px) and (max-width:339px) {
+        .accordion {
+            margin: 105px auto;
+        }
+    }
+
+    @media screen and (min-width:340px) and (max-width:420px) {
+        .accordion {
+            margin: 105px auto;
+        }
+    }
+
+    @media screen and (min-width:421px) and (max-width:500px) {
+        .accordion {
+            margin: 105px auto;
+        }
+    }
+
+    @media screen and (min-width:501px) and (max-width:600px) {
+        .accordion {
+            margin: 105px auto;
+        }
+    }
+
+    @media screen and (min-width:601px) and (max-width:768px) {
+        .accordion {
+            margin: 105px auto;
+        }
+    }
+
+    @media screen and (min-width:769px) and (max-width:850px) {
+        .accordion {
+            width: 70%;
+        }
+    }
+
+    @media screen and (min-width:851px) and (max-width:1000px) {
+        .accordion {
+            width: 70%;
+        }
+    }
+
+    @media screen and (min-width:1001px) and (max-width:1280px) {
+        .accordion {
+            width: 70%;
+        }
+    }

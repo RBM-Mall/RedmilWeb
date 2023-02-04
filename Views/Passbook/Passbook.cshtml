@@ -643,7 +643,8 @@
                 <button class="button-21" onclick="document.location.href='/Passbook/RechargeyourCash';" />Recharge Your Cash</button>
             </div>
             <div class="cashBal">
-                <p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
+                @*<p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>*@
+                <p class="aval_bal pull-right"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
             </div>
         </div>
         <hr />
@@ -979,7 +980,8 @@
                     <div class="row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4">
-                            <img src="~/css/paymentimages/redmillogo.jpg" style="height:98px;margin-left:58px;margin-top:20px" />
+                            @*<img src="~/css/paymentimages/redmillogo.jpg" style="height:98px;margin-left:58px;margin-top:20px" />*@
+                            <img src="~/css/paymentimages/redmillogo.jpg" class="img_center_modal" />
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
@@ -1003,12 +1005,15 @@
                     </div>*@
                     <div class="row">
                         <div class="">
-                            <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-3px"></h4>
+                            @*<h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-3px"></h4>*@
+                            <h4 id="DetailTitle" class="heading_details_modal"></h4>
                             <div class="">
-                                <img id="DetailLogo" style="height:67px;margin-left:269px;margin-top: 15px;">
+                                @*<img id="DetailLogo" style="height:67px;margin-left:269px;margin-top: 15px;">*@
+                                <img id="DetailLogo" class="img_center_modal_2">
                             </div>
                         </div>
-                        <div class="inc" style="margin-left:13px;font-size:18px;margin-top: 38px;">
+                        @*<div class="inc" style="margin-left:13px;font-size:18px;margin-top: 38px;">*@
+                        <div class="inc inc_modal_body">
                             <div class="controls">
                             </div>
                         </div>
@@ -1041,21 +1046,14 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="RewardPoint" style="display:none" data-target="#RewardPoints" data-toggle="modal" />
             <div id="RewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                <div class="modal-dialog">
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @*<span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report Reward for Wallet</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report Reward for Wallet</h4>
-                            </div>
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -1070,9 +1068,14 @@
                                     <label id="todate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="modal-footer" style="margin-top:-40px">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="Downloadreport()"><b>Download Report</b></button>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="Downloadreport()"><b>Download Report</b></button>
+                                    </div>
+                                    <div class="col-sm-4 final-cancel-button">
+                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1088,22 +1091,14 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="RERewardPoint" style="display:none" data-target="#RERewardPoints" data-toggle="modal" />
             <div id="RERewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                <div class="modal-dialog">
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for Refer & Earn Wallet</h4>
                         </div>
-
                         <div class="modal-body">
-                            <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for Refer & Earn Wallet</h4>
-                            </div>
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -1118,9 +1113,15 @@
                                     <label id="Retodate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="modal-footer" style="margin-top:-40px">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
+
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
+                                    </div>
+                                    <div class="col-sm-4 final-cancel-button">
+                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1135,22 +1136,15 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Advanceds" style="display:none" data-target="#Advanced" data-toggle="modal" />
             <div id="Advanced" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                <div class="modal-dialog">
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for AdvanceWallet</h4>
                         </div>
 
-                        <div class="modal-body">
-                            <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for AdvanceWallet</h4>
-                            </div>
+                        <div class="modal-body" style="background-color:white;">
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -1165,39 +1159,94 @@
                                     <label id="Adtodate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="modal-footer" style="margin-top:-40px">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="AdvancedDownloadreport()"><b>Download Report</b></button>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                        <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="AdvancedDownloadreport()"><b>Download Report</b></button>
+                                    </div>
+                                    <div class="col-sm-4 final-cancel-button">
+                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <!--Modal For Cash Passbook Download -->
+
+
+
+
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Cashs" style="display:none" data-target="#Cash" data-toggle="modal" />
             <div id="Cash" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">
+                @*<div class="modal-dialog modal-confirm" style="width:40%;margin-top: 161px;">*@
 
-                    <div class="modal-content" style="height:303px;color:black;">
-                        @* <span  style="padding-top:20px;padding-right: 20px;" data-dismis="modal" class="close">&times;</span>*@
-                        <div class="cross" aria-label="Close" data-dismiss="modal">
-                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
 
-                        <div class="modal-body">
+                @*<div class="modal-content" style="height:303px;color:black;">
+                <div class="cross" aria-label="Close" data-dismiss="modal">
+                <button type="button" class="close design" data-dismiss="modal" aria-label="Close">
+                </button>
+                </div>
+
+                <div class="modal-body">
+                <div class="">
+                <div class="">
+                <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                </div>
+                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>
+                </div>
+                <div class="col-sm-12">
+                <div class="col-sm-6">
+                <label class="dateLbl1"><b>From Date:</b></label>
+                <p><input type="text" id="datepickerCd" placeholder="From Date" class="form-control" style="width:82%"></p>
+                <label class="dateLbl1">Transaction to be download from date</label>
+                <label id="Cdfordate"></label>
+                </div>
+                <div class="col-sm-6">
+                <label class="dateLbl1"><b>To Date:</b></label>
+                <p> <input type="text" id="datepickerCd1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                <label class="dateLbl1">Transaction to be download till date</label>
+                <label id="Cdtodate"></label>
+                </div>
+                </div>
+                <div class="col-sm-12" style="margin-top:-40px">
+                <div class="modal-footer">
+                <button type="button" class="button-21" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                </div>
+                </div>
+                </div>
+
+                </div>*@
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-recharge">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            @*<div class="cross" aria-label="Close" data-dismiss="modal">
+                            <button type="button" class="close design" data-dismiss="modal" aria-label="Close"></button>*@
+                            @*<div class="">
                             <div class="">
-                                <div class="">
-                                    <img id="DetailLogo" style="height:63px;margin-left:288px;">
-                                </div>
-                                <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>
+                            <img id="DetailLogo" style="height:63px;margin-left:288px;">
+                            </div>*@
+                            @*<h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>*@
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download report for CashWallet</h4>
+                            @*</div>*@
+                            @*</div>*@
+                        </div>
+                        <div class="modal-body" style="background-color:white;">
+                            @*<div class="">
+                            <div class="">
+                            <img id="DetailLogo" style="height:63px;margin-left:288px;">
                             </div>
+                            <h4 id="DetailTitle" class="modal-title w-100" style="margin-top:-100px;padding:34px">Download report for CashWallet</h4>
+                            </div>*@
                             <div class="col-sm-12">
                                 <div class="col-sm-6">
                                     <label class="dateLbl1"><b>From Date:</b></label>
@@ -1212,18 +1261,53 @@
                                     <label id="Cdtodate"></label>
                                 </div>
                             </div>
-                            <div class="col-sm-12" style="margin-top:-40px">
-                                <div class="modal-footer">
-                                    <button type="button" class="button-21" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="modal-footer div-pay-row">
+                            <div class="row div-pay-row">
+                                <div class="col-sm-4 final-pay-button">
+                                    @*<button type="button" class="button-21" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>*@
+                                    <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                                </div>
+                                <div class="col-sm-4 final-cancel-button">
+                                    <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
-                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--Modal for error-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="BtnNoDatafound" style="display:none" data-target="#ModalNoData" data-toggle="modal" />
+            <div id="ModalNoData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
+                    <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+                        <button type="button" class="close fist" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" onclick="okfunction()" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        <button style="display:none" type="button" class="close second third"  >
+                            <span aria-hidden="true" onclick="okfunction()" class="third" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        <div class="modal-body">
+                            <div class="" id="" style="margin-top:-45px;">
+                                <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
+                                @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
+                            </div>
+                            <h4 id="lblMsgNoData" class="modal-title w-100"></h4>
+                            <div class="modal-footer" style="margin-top:-40px">
+                                <button type="button" onclick="okfunction()" class="button-21 first" data-dismiss="modal" style="width: 194px;margin-left: 46px;">
+                                    <b>Ok</b>
+                                </button>
+                                <button type="button" onclick="okfunction()" class="button-21 second third" style="width: 194px;margin-left: 46px;display:none">
+                                    <b>Ok</b>
+                                </button>
+                            </div>
+                        </div>
 
     <!--Modal for Launch your Mall -->
     <div class="row">
@@ -1600,8 +1684,11 @@
     </div>
 </div>
 
+                            }
 
+                        }
 
+                    });
 
 
 <script>
@@ -1732,7 +1819,6 @@
     function ButtonDetail(e) {
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
-        debugger;
         $.ajax({
             url: "/Passbook/GetBalancedetail",
             data: { 'BalanceId': BalanceId },
@@ -1770,6 +1856,7 @@
                         }
 
                     }
+                    jQuery('.remove').parent().remove();
                     $("#Detail").trigger("click");
 
                 }
@@ -1778,11 +1865,10 @@
 
         });
     }
-    jQuery('.remove').parent().remove();
+    //jQuery('.remove').parent().remove();
     //For Advanced Detail
     function ButtonADDetail(e) {
 
-        debugger;
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
 
@@ -1830,7 +1916,6 @@
     function RERewards(e) {
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
-        debugger;
         $.ajax({
             url: "/Passbook/RERewardDetail",
             data: { 'BalanceId': BalanceId },
@@ -1877,7 +1962,6 @@
     function BRewards(e) {
         BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
-        debugger;
         $.ajax({
             url: "/Passbook/BRReward",
             data: { 'BalanceId': BalanceId },
@@ -1941,7 +2025,6 @@
 
     }
     function Downloadreport() {
-        debugger;
         var fromDate = $('#datepicker').val();
         $('#fordate').text("");
         var currentDate = $('#datepicker1').val();
@@ -1959,7 +2042,6 @@
             $('#todate').focus();
         }
         else {
-            debugger;
             $.ajax({
                 url: "/Passbook/DownloadReportForWallet",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -1997,7 +2079,6 @@
 
     }
     function REDownloadreport() {
-        debugger;
         var fromDate = $('#datepickerRe').val();
         $('#Refordate').text("");
         var currentDate = $('#datepickerRe1').val();
@@ -2014,7 +2095,6 @@
             $('#Retodate').focus();
         }
         else {
-            debugger;
             $.ajax({
                 url: "/Passbook/RERewardsPassbook",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -2049,7 +2129,6 @@
         $("#Advanceds").trigger("click");
     }
     function AdvancedDownloadreport() {
-        debugger;
         var fromDate = $('#datepickerAd').val();
         $('#Adfordate').text("");
         var currentDate = $('#datepickerAd1').val();
@@ -2066,7 +2145,6 @@
             $('#Adtodate').focus();
         }
         else {
-            debugger;
             $.ajax({
                 url: "/Passbook/AdvancedDownload",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
@@ -2109,7 +2187,6 @@
         $("#Cashs").trigger("click");
     }
     function CashWallet() {
-        debugger;
         var fromDate = $('#datepickerCd').val();
         $('#Cdfordate').text("");
         var currentDate = $('#datepickerCd1').val();
@@ -2125,7 +2202,7 @@
             $('#Cdtodate').focus();
         }
         else {
-            debugger;
+            
             $.ajax({
                 url: "/Passbook/CashWallet",
                 data: { 'fromDate': fromDate, 'currentDate': currentDate },
