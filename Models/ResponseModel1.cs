@@ -17,6 +17,8 @@ namespace Project_Redmil_MVC.Models
         public string? Name  {get; set;}
         
     }
+   
+
     public class ResponseOperator
     {
         public int Id { get; set; }

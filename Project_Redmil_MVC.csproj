@@ -162,6 +162,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\RequestModel\AccountRequestModel\" />
     <Folder Include="wwwroot\css\LiveImage\" />
     <Folder Include="wwwroot\css\NewFolder2\" />
   </ItemGroup>

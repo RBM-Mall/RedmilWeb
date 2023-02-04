@@ -89,10 +89,7 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string PanVerificationForSignUp = "PanVerificationForSignUp";
         public static string GetCommissionSurchargeOperatorwise = "GetCommissionSurchargeOperatorwise";
         public static string PanVerificationForSignupWithCharge = "PanVerificationForSignupWithCharge";
-
         //public static string transactions/report = "transactions/report";
-
-
         //LIC India Bil
         public static string GetLICBill = "fetchlicbill";
         public static string PayLICBill = "PayLICBill";

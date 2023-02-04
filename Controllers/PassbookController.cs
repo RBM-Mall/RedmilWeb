@@ -56,6 +56,13 @@ using static Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.Beneficia
 using Project_Redmil_MVC.Models.RequestModel.AadharVerificationRequestModel;
 using Project_Redmil_MVC.Models.RequestModel.RequestForAAdhaar;
 using Project_Redmil_MVC.Models.RequestModel.PanVerifyRequestModel;
+using Project_Redmil_MVC.Models.ResponseModel.PanVerificationResponseModel;
+using Project_Redmil_MVC.Models.ResponseModel.ElectricityBillResponseModel;
+using NuGet.Protocol.Plugins;
+using Project_Redmil_MVC.Models.RequestModel.PansurchargeRequestModel;
+using Project_Redmil_MVC.Models.ResponseModel.PansurchargeResponseModel;
+using System.Drawing.Drawing2D;
+using static Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -83,6 +90,7 @@ namespace Project_Redmil_MVC.Controllers
         public string IFSC;
         public string surcharge;
         public string code;
+        public string sur;
 
         List<CashWalletRecentResponseDetailsPassbookModel> gdata = new List<CashWalletRecentResponseDetailsPassbookModel>();
         List<GetBalanceResponseModel> balancedata = new List<GetBalanceResponseModel>();
@@ -2533,7 +2541,7 @@ namespace Project_Redmil_MVC.Controllers
             PanVerifyRequestModel requestModel = new PanVerifyRequestModel();
             requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
             requestModel.Panno = Panno;
-            requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString(); ;
+            requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
             #region Checksum (|Unique Key|UserId)
             //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
             string input = Checksum.MakeChecksumString("PanVerificationForSignUp", Checksum.checksumKey,
@@ -2541,26 +2549,140 @@ namespace Project_Redmil_MVC.Controllers
             string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
             requestModel.checksum = CheckSum;
             #endregion
-            var client = new RestClient($"{Baseurl}{ApiName.PanVerificationForSignUp}");
-            //var client = new RestClient("https://api.redmilbusinessmall.com/api/PanVerificationForSignUp");
+            //var client = new RestClient($"{Baseurl}{ApiName.PanVerificationForSignUp}");
+            var client = new RestClient("https://proapitest2.redmilbusinessmall.com/api/PanVerificationForSignUp");
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json");
             var json = JsonConvert.SerializeObject(requestModel);
             request.AddJsonBody(json);
             IRestResponse response = client.Execute(request);
             var result = response.Content;
-            //var deserialize = JsonConvert.DeserializeObject<ResponseModelAAdharVerification>(response.Content);
-            //if (deserialize.Statuscode == "TXN")
-            //{
-            //    return Json(deserialize);
-            //}
-            //else
-            //{
-            //    return Json(deserialize);
-            //}
+            var Pandata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+            if (Pandata.Statuscode == "TXN")
+            {
+                var data = Pandata.Data;
+                var datalist = JsonConvert.DeserializeObject<List<ResponseModelPanVerification>>(JsonConvert.SerializeObject(data));
+                return Json(datalist);
+            }
+            else if(Pandata.Statuscode == "MLR")
+            {
+                PanSurchargeRequestModel requestModel1 = new PanSurchargeRequestModel();
+                 requestModel1.UserId = HttpContext.Session.GetString("Id").ToString();
+                requestModel1.OpId = "431";
+                #region Checksum (|Unique Key|UserId)
+                string input1 = Checksum.MakeChecksumString("GetCommissionSurchargeOperatorwise", Checksum.checksumKey,
+                    requestModel1.UserId, requestModel1.OpId);
+                string CheckSum1 = Checksum.ConvertStringToSCH512Hash(input1);
+                requestModel1.checksum = CheckSum1;
+                #endregion
+                //var client = new RestClient($"{Baseurl}{ApiName.PanVerificationForSignUp}");
+                var client1 = new RestClient("https://proapitest2.redmilbusinessmall.com/api/GetCommissionSurchargeOperatorwise");
+                var request1 = new RestRequest(Method.POST);
+                request1.AddHeader("Content-Type", "application/json");
+                var json1 = JsonConvert.SerializeObject(requestModel1);
+                request1.AddJsonBody(json1);
+                IRestResponse response1 = client1.Execute(request1);
+                var result1 = response1.Content;
+
+                var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<PanSurchargeResponseModel>>>(response1.Content);
+                sur = datadesi.Data.FirstOrDefault().Sur.ToString();
+               HttpContext.Session.SetString("Sur", sur);
+                if (datadesi.Statuscode == "TXN")
+                {
+                    //var deserialize1 = datadesi.Data;
+                    //return Json(datadesi);
+
+                    return Json(new { Data = datadesi, Message = Pandata.Statuscode });
+
+
+
+                }
+                else
+                {
+                    return Json(datadesi);
+                }
+                
+            }
+
             return Json("");
+        }
+        public JsonResult VerifyPanConfirm(string Panno)
+        {
+            List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
+            lstdata = GetBalance();
+            var balanace = lstdata.FirstOrDefault().MainBal;
+            double surcharge=double.Parse(HttpContext.Session.GetString("Sur"));
+
+            if (balanace >= surcharge && balanace > 0)
+            {
+                PanVerifyRequestModel requestModel = new PanVerifyRequestModel();
+                requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+                requestModel.Panno = Panno;
+                requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
+                #region Checksum (|Unique Key|UserId)
+                //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+                string input = Checksum.MakeChecksumString("PanVerificationForSignupWithCharge", Checksum.checksumKey,
+                    requestModel.Userid, requestModel.Mobileno, requestModel.Panno);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                requestModel.checksum = CheckSum;
+                #endregion
+                //var client = new RestClient($"{Baseurl}{ApiName.PanVerificationForSignUp}");
+                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/PanVerificationForSignupWithCharge");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                //var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<PanSurchargeResponseModel>>>(response.Content);
+                //var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<PanResponseModel>>>(response.Content);
+                var Pandata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if (Pandata.Statuscode == "TXN")
+                {
+                    var datalist = JsonConvert.DeserializeObject<PanResponseModel>(Pandata.Data.ToString());
+                    return Json(new { Data = datalist, Message = Pandata.Statuscode });
+                }
+                else
+                {
+                    return Json(Pandata);
+
+                }
+            }
+            else
+            {
+
+                return Json(new { statusCode = "ERR", message = "Insuficient Balance" });
+            }
         }
 
         #endregion
+        public JsonResult VerifyAccount(string Account ,string Name,string Ifsc)
+        {
+            VerificationwithchargeRequestModelcs requestModel = new VerificationwithchargeRequestModelcs();
+
+
+            requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+            requestModel.BeniName = Name;
+            requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
+            requestModel.Ifsc = Ifsc;
+            requestModel.Account = Account;
+            #region Checksum (|Unique Key|UserId)
+            //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
+            string input = Checksum.MakeChecksumString("AccounVerificationForSignUp", Checksum.checksumKey,
+                requestModel.Userid, requestModel.Mobileno, requestModel.BeniName,requestModel.Account,requestModel.Ifsc);
+            string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+            requestModel.checksum = CheckSum;
+            #endregion
+            //var client = new RestClient($"{Baseurl}{ApiName.PanVerificationForSignUp}");
+            var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AccounVerificationForSignUp");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/json");
+            var json = JsonConvert.SerializeObject(requestModel);
+            request.AddJsonBody(json);
+            IRestResponse response = client.Execute(request);
+            var result = response.Content;
+
+            return Json("");
+        }
     }
 }
