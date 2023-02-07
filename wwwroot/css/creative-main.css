@@ -4192,3 +4192,25 @@ p.fnt-30 {
     background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
    
 }
+
+
+
+@media screen and (max-width:340px) and (min-width:280px){
+    .download-the-app {
+        width: 100px;
+    }
+}
+
+
+@media screen and (max-width:450px) and (min-width:341px) {
+    .download-the-app {
+        width: 120px;
+    }
+}
+
+@media screen and (max-width:768px) and (min-width:451px) {
+    .download-the-app {
+        width: 140px;
+    }
+}
+

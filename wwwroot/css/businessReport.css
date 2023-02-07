@@ -281,14 +281,51 @@
 .modal-confirm.modal-dialog {
     margin-top: 149px;
 }
-.modal_support_div_footer{
+
+.modal_support_div_footer {
     margin-top: -10px;
     margin-left: -238px;
 }
+
+.business_Repo_Table_Header {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    background: #2d385e;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+}
+
+.business_Repo_Table_td {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.ddl_sort {
+    margin-top: -35px;
+    width: 100%;
+    /*margin-left: 60px;*/
+}
+
+.btn_download_filter {
+    display: none;
+    margin-left: 60px;
+    background: cadetblue;
+    font-weight: 800;
+}
+
 @media screen and (min-width:279px) and (max-width:339px) {
     .accordion {
         margin: 105px auto;
     }
+
     .modal-confirm {
         padding: 11px;
         margin-left: -81px;
@@ -302,7 +339,7 @@
 
     .modal_top {
         width: 297px;
-        margin-left:2px;
+        margin-left: 2px;
     }
 
     .m-mfinalmodal {
@@ -319,18 +356,48 @@
         border-left: white;
         border-top: white;
     }
+
     .modal_support_div_footer {
         margin-top: -10px;
         margin-left: -335px;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 12px;
     }
-    .transRepoHead{
-        font-size:18px;
+
+    .transRepoHead {
+        font-size: 18px;
+    }
+
+    .inputDate {
+        margin-bottom: 30px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-family: Arial;
+        font-weight: 600;
+        margin-left: 35px;
+        border-top: 1px solid black;
+        width:60%;
+    }
+
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 12px;
+    }
+    .business_Repo_Table_Header{
+        font-size:10px;
+    }
+    .business_Repo_Table_td{
+        font-size:10px;
+    }
+    .buttonDownload {
+        margin-right: 100px;
     }
 }
 
@@ -338,22 +405,52 @@
     .accordion {
         margin: 105px auto;
     }
+
     .modal_top {
         width: 297px;
         margin-left: 2px;
     }
+
     .modal_support_div_footer {
         margin-top: -10px;
         margin-left: -310px;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 13px;
     }
+
     .transRepoHead {
         font-size: 18px;
+    }
+    .inputDate {
+        margin-bottom: 30px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-family: Arial;
+        font-weight: 600;
+        margin-left: 35px;
+        border-top: 1px solid black;
+        width: 60%;
+    }
+
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 13px;
+    }
+    .business_Repo_Table_Header {
+        font-size: 11px;
+    }
+    .business_Repo_Table_td {
+        font-size: 10px;
+    }
+    .buttonDownload {
+        margin-right: 80px;
     }
 }
 
@@ -361,6 +458,7 @@
     .accordion {
         margin: 105px auto;
     }
+
     modal_top {
         width: 297px;
         margin-left: 2px;
@@ -370,14 +468,42 @@
         margin-top: -10px;
         margin-left: -335px;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 13px;
     }
+
     .transRepoHead {
         font-size: 18px;
+    }
+
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 13px;
+    }
+    .business_Repo_Table_Header {
+        font-size: 12px;
+    }
+    .business_Repo_Table_td {
+        font-size: 11px;
+    }
+    .inputDate {
+        margin-bottom: 30px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-family: Arial;
+        font-weight: 600;
+        margin-left: 35px;
+        border-top: 1px solid black;
+        width: 60%;
+    }
+    .buttonDownload {
+        margin-right: 70px;
     }
 }
 
@@ -385,6 +511,7 @@
     .accordion {
         margin: 105px auto;
     }
+
     modal_top {
         width: 297px;
         margin-left: 2px;
@@ -394,14 +521,34 @@
         margin-top: -10px;
         margin-left: -335px;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 16px;
     }
+
     .transRepoHead {
         font-size: 19px;
+    }
+    .ddl_sort {
+        width: 50%;
+        margin-left: 150px;
+        font-size: 14px;
+    }
+    .business_Repo_Table_Header {
+        font-size: 13px;
+    }
+    .business_Repo_Table_td {
+        font-size: 12px;
+    }
+    .inputDate {
+        font-size: 13px;
+        width: 60%;
+    }
+    .buttonDownload {
+        margin-right: 130px;
     }
 }
 
@@ -409,6 +556,7 @@
     .accordion {
         margin: 105px auto;
     }
+
     modal_top {
         width: 297px;
         margin-left: 2px;
@@ -418,14 +566,35 @@
         margin-top: -10px;
         margin-left: -335px;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 17px;
     }
+
     .transRepoHead {
         font-size: 20px;
+    }
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 14px;
+    }
+    .business_Repo_Table_Header {
+        font-size: 14px;
+    }
+    .business_Repo_Table_td {
+        font-size: 13px;
+    }
+    .buttonDownload {
+        margin-right: 150px;
+    }
+    .inputDate {
+        font-size: 14px;
+        width: 70%;
     }
 }
 
@@ -433,14 +602,37 @@
     .accordion {
         width: 70%;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 18px;
     }
+
     .transRepoHead {
         font-size: 21px;
+    }
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 14px;
+    }
+
+    .business_Repo_Table_Header {
+        font-size: 15px;
+    }
+
+    .business_Repo_Table_td {
+        font-size: 14px;
+    }
+    .buttonDownload {
+        margin-right: 266px;
+    }
+    .inputDate {
+        font-size: 15px;
+        width: 70%;
     }
 }
 
@@ -448,14 +640,37 @@
     .accordion {
         width: 70%;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 18px;
     }
+
     .transRepoHead {
         font-size: 22px;
+    }
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 14px;
+    }
+
+    .business_Repo_Table_Header {
+        font-size: 16px;
+    }
+
+    .business_Repo_Table_td {
+        font-size: 14px;
+    }
+    .buttonDownload {
+        margin-right: 323px;
+    }
+    .inputDate {
+        font-size: 16px;
+        width: 70%;
     }
 }
 
@@ -463,13 +678,29 @@
     .accordion {
         width: 70%;
     }
+
     .tag {
         text-align: center;
         font-weight: 600;
         margin-top: 50px;
         font-size: 20px;
     }
+
     .transRepoHead {
         font-size: 23px;
+    }
+    .ddl_sort {
+        margin-top: -35px;
+        width: 65%;
+        margin-left: 60px;
+        font-size: 14px;
+    }
+
+    .business_Repo_Table_Header {
+        font-size: 17px;
+    }
+
+    .business_Repo_Table_td {
+        font-size: 15px;
     }
 }

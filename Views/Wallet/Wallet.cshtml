@@ -5,125 +5,12 @@
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/Wallet.css" rel="stylesheet" />
 @*<link href="../wwwroot/css/bootstrap.min.css" rel="stylesheet">*@
 @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">*@
 @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>*@
 
-<style>
-    /*.button-23:hover{
-        color: white;
-    }
 
-    .wallet-box .bg-wt-round{
-        background: #fff;
-        border-radius: 30px;
-        padding: 10px 0px;
-    }
-
-    .wallet_breadcumb-area {
-    position: relative;
-    padding: 140px 0;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-    background-position: 75% 10%;
-    }
-
-    .wallet_breadcumb-area:before {
-        position: absolute;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        content: "";
-        /*background: rgba(0, 0, 0, 0.5);
-        top: 0;
-        z-index: 0;
-    }
-
-    .wallet_breadcumb-area ul {
-        text-align: center;
-    }
-
-        .wallet_breadcumb-area ul li {
-            display: block;
-            font-weight: 500;
-            font-size: 16px;
-            color: #fff;
-        }
-
-            .wallet_breadcumb-area ul li:first-child {
-                font-size: 50px;
-                font-weight: 700;
-                line-height: 5rem;
-                color: #fff;
-            }
-
-            .wallet_breadcumb-area ul li a {
-                color: #ffffff;
-    }*/
-
-    /*.collapsible {
-        background-color: #777;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-    }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }*/
-
-    .accordion {
-        background-color: #eee;
-        color: #444;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-        transition: 0.4s;
-    }
-
-        .active, .accordion:hover {
-            background-color: #ccc;
-        }
-
-        .accordion:after {
-            content: '\002B';
-            color: #777;
-            font-weight: bold;
-            float: right;
-            margin-left: 5px;
-        }
-
-    .active:after {
-        content: "\2212";
-    }
-
-    .panel {
-        padding: 0 18px;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.2s ease-out;
-    }
-
-</style>
 
 <br/>
 <br/>
@@ -139,11 +26,11 @@
                 <div class="call-to-action">
                     <div class="row">
                         <div class="col-sm-7 col-xs-12">
-                            <h3 class="padding-left-right-50" style="margin-top: 20px; margin-left: -250px; font-weight: 700; cursor: pointer;"><u>HOW TO WORK</u></h3>
+                            <h3 class="padding-left-right-50 heading_how_to_work"><u>HOW TO WORK</u></h3>
                         </div>  
                         <div class="col-sm-5 col-xs-12 text-right">
                             <div class="read-more padding-top-bottom-40">
-                                <a href="#" target="_blank" class="button-23" style="cursor: auto; text-decoration: unset;">₹ @Model.FirstOrDefault().WalletAmount</a>
+                                <a href="#" target="_blank" class="button-23 heading_amount">₹ @Model.FirstOrDefault().WalletAmount</a>
                             </div>
                         </div>
                     </div>
@@ -161,8 +48,8 @@
 <div class="container">
     <div class="row">
             <div class="col-sm-12 text-center padding-bottom-30">
-                <div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);  max-width: 20%;">
-                <h1 style="padding: 10px; font-weight: 800;"><span style="color: #2d385e;">Wallet</span></h1>
+            <div class="section-title div_wallet">
+                <h1 class="heading_wallet"><span style="color: #2d385e;">Wallet</span></h1>
                 </div>
             </div>
     </div>
@@ -177,8 +64,8 @@
 <div class="section services-area padding-top-bottom-60">
     <div class="container">
         
-        <div class="row" style="margin-left:96px">            
-            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
+        <div class="row row_wallet">
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6 div_wallet_box">
                 <div class="wallet-box bg-wt-round">
                     <div class="inner">
                         <div class="advantage-images">
@@ -189,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6 div_wallet_box">
                 <div class="wallet-box bg-wt-round">
                     <div class="inner">
                         <div class="advantage-images">
@@ -201,7 +88,7 @@
                 </div>
             </div>
             
-            <div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">
+            <div class="col-md-2 col-sm-2 col-6 col-xs-6 div_wallet_box">
                 <div class="wallet-box bg-wt-round">
                     <div class="inner">
                         <div class="advantage-images">
@@ -213,8 +100,7 @@
                 </div>
             </div>
         </div>
-
-        <button class="button-21 text-center" onclick="document.location.href='/Passbook/RechargeyourCash';" style="margin-left:512px; margin-top: 50px;">Add Money</button>
+        <button class="button-21 text-center btn_AddMoney" onclick="document.location.href='/Passbook/RechargeyourCash';">Add Money</button>
 
     </div>
 </div>
