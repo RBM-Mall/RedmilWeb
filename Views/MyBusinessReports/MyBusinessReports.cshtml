@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
+<link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
 
 <br />
 
@@ -1098,6 +1101,36 @@
                 }
             });
 
+        });
+    });
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        var table = $('#tempTbl1').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+        var table1 = $('#example1').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+        var table2 = $('#BRewards').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+        var table3 = $('#RERewards').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
         });
     });
 </script>

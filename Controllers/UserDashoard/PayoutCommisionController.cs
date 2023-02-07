@@ -170,11 +170,6 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             }
         }
         #endregion
-
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }
 

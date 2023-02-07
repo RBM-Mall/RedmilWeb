@@ -1,0 +1,122 @@
+﻿.item {
+    box-shadow: 0 0 30px 0 rgb(0 0 0 / 10%);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    align-items: center;
+    padding: 62px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -74px
+}
+
+.font_heading {
+    font-size: 26px;
+}
+
+@media screen and (min-width:280px) and (max-width:340px) {
+    .item {
+        gap: 22px;
+        margin-top: 20px;
+        width: 314px;
+        margin-left: 10px;
+        margin-left: -76px;
+    }
+
+    .font_heading {
+        font-size: 14px;
+    }
+
+    .reportHeadName {
+        text-align: center;
+        font-weight: 800;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:341px) and (max-width:400px) {
+    .item {
+        gap: 22px;
+        margin-top: 20px;
+        width: 314px;
+        margin-left: 10px;
+        margin-left: -76px;
+    }
+
+    .font_heading {
+        font-size: 14px;
+    }
+
+    .reportHeadName {
+        text-align: center;
+        font-weight: 800;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:401px) and (max-width:500px) {
+    .item {
+        gap: 22px;
+        margin-top: 20px;
+        width: 314px;
+        margin-left: 10px;
+        margin-left: -76px;
+    }
+
+    .font_heading {
+        font-size: 14px;
+    }
+
+    .reportHeadName {
+        text-align: center;
+        font-weight: 800;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:501px) and (max-width:650px) {
+    .item {
+        gap: 22px;
+        margin-top: 20px;
+        width: 314px;
+        margin-left: 10px;
+        margin-left: -76px;
+    }
+
+    .font_heading {
+        font-size: 14px;
+    }
+
+    .reportHeadName {
+        text-align: center;
+        font-weight: 800;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:651px) and (max-width:768px) {
+    .item {
+        gap: 22px;
+        margin-top: 20px;
+        width: 365px;
+        margin-left: 10px;
+        margin-left: 3px;
+    }
+
+    .font_heading {
+        font-size: 18px;
+        font-weight:700;
+    }
+
+    .reportHeadName {
+        text-align: center;
+        font-weight: 800;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:769px) and (max-width:885px) {
+}
+
+@media screen and (min-width:886px) and (max-width:1000px) {
+}
