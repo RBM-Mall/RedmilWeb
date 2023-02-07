@@ -270,6 +270,7 @@ body {
 
 ._1Ll3, .btn-process-recharge3 {
     cursor: pointer;
+    padding: 13px;
 }
 
 ._IEC, .btn-process-recharge3 {
@@ -443,7 +444,7 @@ nav.navbar.fixed-top {
 }
 
 .final-pay-button {
-    margin-left: 160px;
+    margin-left: 191px;
 }
 
 .modal-header-recharge {

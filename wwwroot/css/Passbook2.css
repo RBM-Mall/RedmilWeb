@@ -1,0 +1,1275 @@
+﻿
+.ts {
+    margin-left: 226px;
+    font-size: 26px;
+}
+
+.btn-final {
+    display: block;
+    margin-left: 208px;
+    border-bottom: 42px;
+    width: 179px;
+    border-radius: 41px;
+    height: 41px;
+    font-size: 20px;
+    color: white;
+    border-color: white;
+    border-right: white;
+    border-left: white;
+    border-top: white;
+}
+
+
+.btnlft {
+    margin-left: 283px;
+    margin-top: -30px;
+    color: cornflowerblue;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.tp {
+    margin-left: 40px;
+}
+
+.modalss {
+    margin-left: 104px;
+    margin-right: 111px;
+    padding: 7px;
+    margin-top: 114px;
+}
+
+.mt {
+    margin-top: 68px;
+    margin-left: -69px;
+}
+
+.rs {
+    margin-left: 28px;
+}
+
+.modal-backdrop.innn {
+    opacity: 0 !important;
+}
+
+.img-wallet-select {
+    height: 150px;
+    width: 200px;
+}
+
+.first-wallet {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.final-modal-popup {
+    width: 650px;
+}
+
+.err {
+    margin-top: -181px;
+    margin-left: 88px;
+}
+
+.sucss {
+    margin-top: -181px;
+    margin-left: 88px;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #3EB2FD;
+}
+
+.modal-confirm .icon-box {
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -40px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    /* background: #82ce34; */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 2px rgb(0 0 0 / 10%);
+}
+
+.breadcumb-area {
+    position: relative;
+    padding: 221px 0;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    background-position: 75% 10%;
+}
+
+.Feedack {
+    margin-top: -18px;
+}
+
+.img1 {
+    display: flex;
+}
+
+    .img1 img {
+        height: 60px;
+        width: 60px;
+    }
+
+
+.passbooktabs {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    color: #f1f1f1;
+    background: #2d385e;
+    display: flex;
+    margin-top: 100px;
+}
+
+    /* Style the buttons inside the tab */
+    .passbooktabs button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+        /* Change background color of buttons on hover */
+        .passbooktabs button:hover {
+            background-color: #ddd;
+            color: #313142;
+        }
+
+        /* Create an active/current tablink class */
+        .passbooktabs button.active {
+            /*background-color: #5437b7;*/
+        }
+
+    .passbooktabs .tablinks {
+        letter-spacing: 2px;
+        margin-right: 25px;
+        /*background-color: #5437b7;*/
+    }
+
+.tablinksactive {
+    letter-spacing: 2px;
+    margin-right: 25px;
+    background-color: #5437b7;
+    transition: all 0.4s ease;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 20px 12px;
+    border: 1px solid #ccc;
+    /*width: 1200px;
+                                                                border-top: none;*/
+}
+
+    .tabcontent .title {
+        text-align: center;
+        padding-bottom: 80px;
+    }
+
+        .tabcontent .title h1 {
+            font-weight: 800;
+        }
+
+        .tabcontent .title .aval_bal, .cashBal {
+            margin-top: 20px;
+        }
+
+        .tabcontent .title .aval_bal, .AdvBal {
+            margin-top: -30px;
+        }
+
+        .tabcontent .title .advAval_bal, .AdvBal {
+            margin-top: -33px;
+        }
+
+    .tabcontent .item_info {
+        display: block;
+        margin-top: 50px;
+    }
+
+        .tabcontent .item_info button {
+            align-items: center;
+            background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+            background-size: calc(100% + 20px) calc(100% + 20px);
+            border-radius: 100px;
+            border-width: 0;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: CircularStd,sans-serif;
+            font-size: 1.5rem;
+            height: auto;
+            justify-content: center;
+            line-height: 1.5;
+            padding: 6px 25px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .2s,background-position .2s;
+            user-select: none;
+            margin-right: 24px;
+            float: none;
+            /*margin-top: 40px;*/
+            /*margin-left: 60px;*/
+            z-index: 1;
+        }
+
+    .tabcontent .title .item_info .rewbtn {
+        margin-left: 300px;
+    }
+
+    /*.tabcontent.item_info.btn2{
+                                                                                margin-left:200px;
+                                                                            }*/
+
+    .tabcontent hr {
+        margin: 93px 0 0 20px;
+        padding: 10px;
+    }
+
+    .tabcontent h3 {
+        text-align: center;
+        margin-bottom: 60px;
+        font-weight: 700;
+    }
+
+#example_wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#example1_wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#example_paginate {
+    float: right;
+    margin-right: -90px;
+}
+
+#example1_paginate {
+    float: right;
+    margin-right: -40px;
+}
+
+div.wrapper {
+    width: 500px;
+    height: 500px;
+    overflow: auto;
+}
+
+.ButtonDetail {
+    font-weight: 800;
+    /* background: #3EB2FD; */
+    /* border: 1px solid #3EB2FD; */
+    /* border: 1px solid #fff; */
+    padding: 5px 10px;
+    color: blue;
+    font-size: 13px;
+    text-align: center;
+    /* width: 300px;*/
+    border-radius: 5px;
+    /*margin-top: 20px;*/
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 7px;
+    font-weight: 700;
+    padding: -15px;
+    font-size: 21px;
+    margin-left: 82px;
+}
+
+.tabcontents {
+    display: none;
+    /* padding: 6px 12px;
+                                        border: 1px solid #ccc;
+                                        border-top: none;*/
+    font-size: 15px;
+}
+
+.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    /* border-top: 3px solid #1864ab; */
+    animation: borderline 1s linear forwards;
+}
+
+
+.tabs {
+    overflow: hidden;
+    /*  border: 1px solid #ccc;
+                                        background-color: #f1f1f1;*/
+}
+
+    /* Style the buttons inside the tab */
+    .tabs button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+        /* Change background color of buttons on hover */
+        .tabs button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tabs button.active {
+            background-color: #ccc;
+        }
+
+.cross {
+    background-color: #222;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    margin: 7px;
+    border: 3px solid;
+    border-color: var(--white);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    white-space: nowrap;
+    box-sizing: border-box;
+    top: -24px;
+    right: -33px;
+    z-index: 9;
+    cursor: pointer;
+    position: fixed;
+}
+
+.cross1 {
+    background-color: #222;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    margin: 7px;
+    border: 3px solid;
+    border-color: var(--white);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    white-space: nowrap;
+    box-sizing: border-box;
+    top: -25px;
+    right: 159px;
+    z-index: 9;
+    cursor: pointer;
+    position: fixed;
+}
+
+.progress {
+    overflow: hidden;
+    height: 24px;
+    width: 569px;
+    background-color: #ccc;
+    border-radius: 17px;
+    -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+    margin-bottom: 138px;
+    margin-top: 3px;
+}
+.progress-bar {
+    width: 0;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #1530df;
+}
+
+.progress-striped .progress-bar {
+    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-size: 40px 40px;
+}
+
+.progress.active .progress-bar {
+    -webkit-animation: progress-bar-stripes 2s linear infinite;
+    animation: progress-bar-stripes 2s linear infinite;
+    -moz-animation: progress-bar-stripes 2s linear infinite;
+}
+
+.Mall {
+    color: #1a61d0;
+    margin-left: 123px;
+    font-size: 24px;
+}
+
+/* input {
+            text-align: center
+        }*/
+input.valid {
+    background-color: white;
+    width: 440px;
+    height: 50px;
+}
+
+
+.gr {
+    position: absolute;
+    top: 23px;
+    margin-left: 391px;
+}
+
+.gre {
+    position: absolute;
+    left: 391px;
+    top: 92px;
+}
+
+.grr {
+    display: none;
+    color: green;
+}
+
+.grrAcc {
+    display: none;
+    color: green;
+}
+
+.psdt {
+    margin-left: 110px;
+    margin-top: 26px;
+}
+
+.PAa {
+    height: 45px;
+    width: 257px;
+    margin-top: 7px;
+}
+
+.pspd {
+    margin-left: 109px;
+    margin-top: 18px;
+}
+
+.psfs {
+    margin-top: 20px;
+}
+
+.pstxt {
+    margin-top: 56px;
+    margin-left: 79px;
+}
+
+.psAdd {
+    margin-top: 10px;
+}
+
+.psinput {
+    margin-left: 59px;
+    margin-top: 41px;
+    margin-bottom: 16px;
+}
+
+.validchkr {
+    position: absolute;
+    left: -226px;
+    height: 20px;
+}
+
+.trmcdn {
+    padding: 6px;
+    margin-left: 18px;
+}
+
+.op11 {
+    width: 441px;
+    height: 49px;
+    margin-top: 20px;
+}
+* {
+    box-sizing: border-box;
+}
+
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+
+button {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+    .step.active {
+        opacity: 1;
+    }
+
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #04AA6D;
+    }
+
+.img_center_moda {
+    height: 67px;
+    margin-left: 268px;
+    margin-top: 7px;
+    width: auto;
+}
+
+.img_center {
+    height: 88px;
+    margin-left: 63px;
+}
+
+.titlecenter {
+    margin-left: 28px;
+}
+
+.img-mall {
+    width: 21%;
+    margin-left: 163px;
+}
+element.style {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    padding: 23px;
+}
+
+.body-modal {
+    position: relative;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.title_data {
+}
+
+.img_center_moda {
+    height: 50px;
+    margin-left: 63px;
+    margin-bottom: 24px;
+}
+
+
+
+.prgrsbar {
+    width: 55%;
+    background-color: #2f33d9eb;
+}
+
+.btn-signup {
+    margin-left: 52px;
+}
+
+.md-button {
+    width: 146px;
+    margin-left: 165px;
+}
+
+.title-launch {
+    margin-left: 162px;
+ 
+}
+.ttle-mall {
+    margin-top: -115px;
+}
+
+@media screen and (max-width:339px) and (min-width:280px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: -207px;
+        font-size: 14px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .advance_bal {
+        margin-top: 20px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 10px;
+    }
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+
+}
+
+@media screen and (max-width:399px) and (min-width:340px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: -210px;
+        font-size: 14px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 21px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 11px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 102px;
+    }
+}
+
+@media screen and (max-width:500px) and (min-width:400px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: -210px;
+        font-size: 14px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 21px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:518px) and (min-width:501px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: -210px;
+        font-size: 14px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 21px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:550px) and (min-width:519px) {
+
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: -150px;
+        font-size: 15px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 22px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:768px) and (min-width:551px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 23px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width:880px) and (min-width:769px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 23px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:1023px) and (min-width:881px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: 5px;
+        font-size: 20px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 25px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:1150px) and (min-width:1024px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: 5px;
+        font-size: 21px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 26px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 21px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width:1279px) and (min-width:1151px) {
+    .tabcontent .title .aval_bal, .AdvBal {
+        margin-top: 5px;
+        font-size: 22px;
+        text-align: center;
+        margin-left: 0px;
+    }
+
+    .tabcontent .title h1 {
+        font-weight: 800;
+        font-size: 27px;
+    }
+
+    .tabcontent h3 {
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .tabcontent .item_info button {
+        font-size: 18px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+
+button {
+    background-color: #04AA6D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+    .step.active {
+        opacity: 1;
+    }
+
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
+        background-color: #04AA6D;
+    }
+    /*for passbook launh you mall modal*/
+@media screen and (max-width:339px) and (min-width:280px) {
+    .img-mall {
+        width: 62%;
+        margin-left: 50px;
+    }
+
+    .prgrsbar {
+        width: 58%;
+        background-color: #2f33d9eb;
+    }
+
+    .title-launch {
+        margin-left: 15px;
+    }
+
+    .progress {
+        height: 20px;
+        margin-bottom: 20px;
+        width: 104%;
+        overflow: hidden;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+    }
+    .md-button {
+        width: 140px;
+        margin-left: 72px;
+    }
+    .btn-signup {
+        margin-left: 46px;
+        margin-top: 1px;
+    }
+    .ttle-mall {
+        margin-top: 4px;
+    }
+}
+/*End bassbook css*/
+@media screen and (max-width:400px) and (min-width:340px) {
+    .modal-header-passbooK {
+        padding: 2px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+    .modal-content {
+        margin-top: 117px;
+    }
+
+    .img-mall {
+        width: 55%;
+        margin-left: 55px;
+    }
+
+   
+    .progress {
+        overflow: hidden;
+        height: 24px;
+        width: 270px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 28px;
+    }
+    .title-launch {
+        margin-left: 39px;
+    }
+    .md-button {
+        width: 146px;
+        margin-left: 59px;
+    }
+}
+@media screen and (max-width:500px) and (min-width:401px)
+{
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+    .modal-content {
+        margin-top: 117px;
+    }
+
+    .img-mall {
+        width: 54%;
+        margin-left: 95px;
+    }
+
+
+    .progress 
+    {
+        overflow: hidden;
+        height: 24px;
+        width: 270px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 28px;
+        margin-left: 74px;
+    }
+
+    .title-launch {
+        margin-left: 108px;
+    }
+    .btn-signup {
+        margin-left: 126px;
+    }
+
+    .md-button {
+        width: 146px;
+        margin-left: 133px;
+    }
+}
+@media screen and (max-width:600px) and (min-width:501px) {
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+    .modal-content {
+        margin-top: 117px;
+    }
+
+    .img-mall {
+        width: 54%;
+        margin-left: 95px;
+    }
+
+
+    .progress {
+        overflow: hidden;
+        height: 24px;
+        width: 270px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 28px;
+        margin-left: 74px;
+    }
+
+    .title-launch {
+        margin-left: 108px;
+    }
+
+    .btn-signup {
+        margin-left: 126px;
+    }
+
+    .md-button {
+        width: 146px;
+        margin-left: 133px;
+    }
+
+}
+@media screen and (max-width:700px) and (min-width:601px) {
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+    .modal-content {
+        margin-top: 117px;
+    }
+
+    .img-mall {
+        width: 54%;
+        margin-left: 146px;
+    }
+
+
+    .progress {
+        overflow: hidden;
+        height: 24px;
+        width: 492px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 28px;
+        margin-left: 74px;
+    }
+
+    .title-launch {
+        margin-left: 222px;
+    }
+
+    .btn-signup {
+        margin-left: 114px;
+    }
+
+    .md-button {
+        width: 146px;
+        margin-left: 224px;
+    
+    }
+}
+@media screen and (max-width:767px) and (min-width:701px) {
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+    .modal-content {
+        margin-top: 117px;
+    }
+
+    .img-mall {
+        width: 54%;
+        margin-left: 146px;
+    }
+
+
+    .progress {
+        overflow: hidden;
+        height: 24px;
+        width: 492px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 28px;
+        margin-left: 74px;
+    }
+
+    .title-launch {
+        margin-left: 222px;
+    }
+
+    .btn-signup {
+        margin-left: 114px;
+    }
+
+    .md-button {
+        width: 146px;
+        margin-left: 224px;
+    }
+}
+@media screen (max-width:991px) and (min-width:768px) {
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+    .modal-content {
+        margin-top: 117px;
+    }
+
+    .img-mall {
+        width: 54%;
+        margin-left: 146px;
+    }
+
+
+    .progress {
+        overflow: hidden;
+        height: 24px;
+        width: 492px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 28px;
+        margin-left: 74px;
+    }
+
+    .title-launch {
+        margin-left: 222px;
+    }
+
+    .btn-signup {
+        margin-left: 114px;
+    }
+
+    .md-button {
+        width: 146px;
+        margin-left: 224px;
+    }
+}
+/*@media screen and (max-width:900px) and (min-width:801px) {
+}*/
+/*@media screen and (max-width:988px) and (min-width:901px) {
+}*/

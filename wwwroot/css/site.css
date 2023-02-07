@@ -1695,12 +1695,12 @@ h1 {
     }
 }
 
-@media screen and (max-width: 600px) {
+/*@media screen and (max-width: 600px) {
     body {
         font-size: 14px;
         line-height: 20px;
         display: block;
-    }
+    }*/
 
     .nWhEP .GkeQS {
         padding: 50px 0 0 10px;
@@ -1730,12 +1730,12 @@ h1 {
 /*=====================================================================================================*/
 
 @media screen and (max-width: 400px) {
-    body {
+   /* body {
         font-size: 16px;
         line-height: 20px;
         display: block;
     }
-
+*/
     col-md-6 {
         font-size: 14px;
         background-color: cadetblue;

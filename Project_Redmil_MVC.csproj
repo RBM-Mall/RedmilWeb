@@ -165,6 +165,7 @@
     <Folder Include="Models\RequestModel\AccountRequestModel\" />
     <Folder Include="wwwroot\css\LiveImage\" />
     <Folder Include="wwwroot\css\NewFolder2\" />
+    <Folder Include="wwwroot\css\NewFolder\" />
   </ItemGroup>
 
 </Project>

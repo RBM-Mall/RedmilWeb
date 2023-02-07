@@ -226,6 +226,12 @@ th {
         border: 1px solid #ddd !important;
     }
 }
+.modal-header-passbooK {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #3EB2FD;
+    margin-top: 47px;
+}
 
 @font-face {
     font-family: 'Glyphicons Halflings';
@@ -7585,6 +7591,16 @@ button.close {
         display: table-cell !important;
     }
 }
+.btnpassbook-CPD {
+    width: 149px;
+    height: 43px;
+    color: white;
+    margin-bottom: 35px;
+    background-color: #3EB2FD;
+    margin-left: 228px;
+    border: none;
+    margin-top: 20px;
+}
 
 @media (max-width: 767px) {
     .visible-xs-block {
@@ -7819,4 +7835,105 @@ button.close {
     border-radius: 5px;
     margin-top: 20px;
     font-family: 'Poppins', sans-serif;
+}
+@media screen and (max-width:339px) and (min-width:280px) {
+    
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 1px;
+    }
+    .btnpassbook-CPD {
+        width: 169px;
+        height: 51px;
+        color: white;
+        margin-bottom: 32px;
+        background-color: #3EB2FD;
+        margin-left: 49px;
+    }
+    .modal-content {
+        margin-top: 112px;
+    }
+    .dateLbl1 {
+   font-size:11px;
+    }
+    .dateLbl1 {
+        font-size: 11px;
+    }
+
+
+}
+@media screen and (max-width:400px) and (min-width:340px) {
+
+    .modal-header-passbooK
+    {
+        background-color: #3EB2FD;
+        color: white;
+        height: 31px;
+        border: 1px solid black;
+        margin-top: -11px;
+        padding:4px;
+    }
+    .btnpassbook-CPD {
+        width: 169px;
+        height: 51px;
+        color: white;
+        margin-bottom: 32px;
+        background-color: #3EB2FD;
+        margin-left: 49px;
+    }
+
+    .modal-content
+    {
+        margin-top: 100px;
+    }
+}
+    /*@media screen and (max-width:260px) and (min-width:240px) {
+        .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 68px;
+    }
+}*/
+@media screen and (max-width:1399px) and (min-width:399px) {
+    .modal-content {
+        margin-top: 70px;
+    }
+    .btnpassbook-CPD {
+        width: 169px;
+        height: 51px;
+        color: white;
+        margin-bottom: 32px;
+        background-color: #3EB2FD;
+        margin-left: 49px;
+    }
+}
+@media screen and (max-width:768px) and (min-width:401px) {
+    .modal-content {
+        margin-top: 30px;
+      
+    }
+    .btnpassbook-CPD {
+        width: 169px;
+        height: 51px;
+        color: white;
+        margin-bottom: 32px;
+        background-color: #3EB2FD;
+        margin-left: 49px;
+    }
+}
+@media screen and (max-width:1300px) and (min-width:768px) {
+    .modal-content {
+        margin-top: 116px;
+    }
+    .btnpassbook-CPD {
+        width: 169px;
+        height: 51px;
+        color: white;
+        margin-bottom: 32px;
+        background-color: #3EB2FD;
+        margin-left: 49px;
+    }
 }
