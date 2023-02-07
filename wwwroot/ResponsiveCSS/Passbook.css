@@ -449,6 +449,11 @@ div.wrapper {
 .div_footer {
     margin-top: -40px;
 }
+.div_new_button {
+    margin-left: 773px;
+}
+
+
 @media screen and (max-width:339px) and (min-width:280px) {
     .tabcontent .title .aval_bal, .AdvBal {
         margin-top: -207px;
@@ -473,6 +478,9 @@ div.wrapper {
 
     .tabcontent .item_info button {
         font-size: 10px;
+    }
+    .div_new_button {
+        margin-left: 90px;
     }
 }
 
@@ -499,6 +507,9 @@ div.wrapper {
     .tabcontent .item_info button {
         font-size: 11px;
     }
+    .div_new_button {
+        margin-left: 110px;
+    }
 }
 
 @media screen and (max-width:500px) and (min-width:400px) {
@@ -522,6 +533,9 @@ div.wrapper {
     .tabcontent .item_info button {
         font-size: 12px;
     }
+    .div_new_button {
+        margin-left: 140px;
+    }
 }
 
 @media screen and (max-width:518px) and (min-width:501px) {
@@ -544,6 +558,9 @@ div.wrapper {
 
     .tabcontent .item_info button {
         font-size: 12px;
+    }
+    .div_new_button {
+        margin-left: 140px;
     }
 }
 
@@ -569,6 +586,9 @@ div.wrapper {
     .tabcontent .item_info button {
         font-size: 12px;
     }
+    .div_new_button {
+        margin-left: 155px;
+    }
 }
 
 @media screen and (max-width:768px) and (min-width:551px) {
@@ -591,6 +611,9 @@ div.wrapper {
 
     .tabcontent .item_info button {
         font-size: 14px;
+    }
+    .div_new_button {
+        margin-left: 205px;
     }
 }
 
@@ -616,6 +639,9 @@ div.wrapper {
     .tabcontent .item_info button {
         font-size: 14px;
     }
+    .div_new_button {
+        margin-left: 255px;
+    }
 }
 
 @media screen and (max-width:1023px) and (min-width:881px) {
@@ -638,6 +664,9 @@ div.wrapper {
 
     .tabcontent .item_info button {
         font-size: 16px;
+    }
+    .div_new_button {
+        margin-left: 305px;
     }
 }
 
@@ -662,6 +691,9 @@ div.wrapper {
     .tabcontent .item_info button {
         font-size: 17px;
     }
+    .div_new_button {
+        margin-left: 335px;
+    }
 }
 
 @media screen and (max-width:1279px) and (min-width:1151px) {
@@ -684,6 +716,9 @@ div.wrapper {
 
     .tabcontent .item_info button {
         font-size: 18px;
+    }
+    .div_new_button {
+        margin-left: 435px;
     }
 }
  * {

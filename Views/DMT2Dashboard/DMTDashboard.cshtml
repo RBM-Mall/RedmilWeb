@@ -1,4 +1,4 @@
-﻿x@*@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel>*@
+﻿@*@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel>*@
 @model Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel
 
 @{
@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
+<link href="~/ResponsiveCSS/Passbook.css" rel="stylesheet" />
 <style>
     .button-23:hover {
         color: white;
@@ -257,491 +258,62 @@
         </div>
         <div class="col-md-4 col-lg-4 col-sm-4" style="text-align:center;">
             <img src="~/css/Img_DMT2/ImgCheck.jpeg" class="img-width" style="height:100px;width:120px;">
-            <p>Avaialable Limit</p>
+            <p>Available Limit</p>
             <br />
             <b>₹</b><label>@Model.data.FirstOrDefault().UsedLimit</label>
         </div>
     </div>
     <br />
     <div class="row div-pay-row">
-        <div class="form-group-recharge">
-            <button type="button" id="btnAddBeneficiary" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal" style="background-color: var(--button_bg_color);background-image: var(--bg-image);">Add Beneficiary</button>
+        @*<div class="form-group-recharge div_new_button" style="margin-left: 773px;">*@
+        <div class="form-group-recharge div_new_button">
+            @*<button type="button" id="btnAddBeneficiary" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal" style="background-color: var(--button_bg_color);background-image: var(--bg-image);">Add Beneficiary</button>*@
+            <button type="button" id="btnAddBeneficiary" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal">Add Beneficiary</button>
             @*<button type="submit" id="btnProceed" class="button-21">Proceed</button>*@
         </div>
-        <!-- Modal for add beneficery-->
-        <div class="modal fade" id="modalAddBeneficiary" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h4 class="modal-title" style="text-align:center;"><b>Beneficiery Details</b></h4>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <div class="form-group-recharge" style="margin-left: -65px">
-                                    <input id="txtAccountHoldName" autocomplete="off" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Holder Name" />
-                                    <br />
-                                    <h5><span id="errtxtAccountHoldName" style="color:red" class="errorMsg"></span></h5>
-                                </div>
-                                <div class="form-group-recharge" style="margin-left: -65px">
-                                    <input id="txtAccountNum" autocomplete="off" maxlength="20" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
-                                    <br />
-                                    <h5><span id="errtxtAccountNum" style="color:red" class="errorMsg"></span></h5>
-                                </div>
-                                <div class="form-group-recharge" style="margin-left: -65px">
-                                    <input id="txtIFSCCode" autocomplete="off" maxlength="15" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter IFSC Code" />
-                                    <br />
-                                    <h5><span id="errtxtIFSCCode" style="color:red" class="errorMsg"></span></h5>
-
-                                </div>
-                                <div class="form-group-recharge" style="margin-left: -65px">
-                                    <input id="txtBankName" autocomplete="off" maxlength="20" type="text" required="required" class="txt-input txt-input-text" placeholder="Enter Bank Name" />
-                                    <br />
-                                    <h5><span id="errtxtBankName" style="color:red" class="errorMsg"></span></h5>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" id="btnAddBeneficiery" class="button-21">Add Beneficiery</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal After Succcessfuly Adding Beneficiery-->
-        <input type="button" id="btnmodalSuccessAddBeneficiery" style="display:none" data-target="#modalSuccessAddBeneficiery" data-toggle="modal" />
-        <div class="modal fade" id="modalSuccessAddBeneficiery" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h4 class="modal-title" style="text-align:center;"><b>Success</b></h4>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row div-recharge-img dmt-user-img">
-
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4 custom_img_size pay-img ">
-                                <img src="~/css/Img_DMT2/ImgAddBenefieciery.jpeg" class="img-width" style="height:100px;width:120px;">
-                            </div>
-                            <div class="col-sm-4">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <label id="lblAddBeneficiery" style="text-align:center;">
-
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Delete Beneficiery -->
-        <input type="button" id="btnmodalDeleteBeneficiery" style="display:none" data-target="#modalDeleteBeneficiery" data-toggle="modal" />
-        <div class="modal fade" id="modalDeleteBeneficiery" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close">&times;</a>
-                        <h4 class="modal-title" style="text-align:center;"><b>Delete Beneficiary</b></h4>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row div-recharge-img dmt-user-img">
-
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4 custom_img_size pay-img">
-                                <img src="~/css/Img_DMT2/ImgAddBenefieciery.jpeg" class="img-width" style="height:100px;width:120px;">
-                            </div>
-                            <div class="col-sm-4">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <h3>
-                                    <label id="lblAddBeneficiery" style="text-align:center;">
-                                        Are you sure, you want to delete beneficiary?
-                                    </label>
-                                </h3>
-                                <br />
-                                <label style="text-align:center;font-size:20px" id="lblAcName"></label>
-                                <br />
-                                <label style="text-align:center;font-size:20px" id="lblAcNum"></label>
-                                <br />
-                                <label style="text-align:center;font-size:20px" id="lblIFSC"></label>
-                                <br />
-                                <label style="text-align:center;font-size:20px" id="lblBankName"></label>
-                                <br />
-                                <input type="hidden" id="hdfId" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Delete</button>
-                            </div>
-                            <div class="col-sm-4 final-cancel-button">
-                                <button type="button" style="margin-left:110px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal After Succcessfuly Delete Beneficiery-->
-        <input type="button" id="btnmodalDeleteFinal" style="display:none" data-target="#modalDeleteFinal" data-toggle="modal" />
-        <div class="modal fade" id="modalDeleteFinal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h4 class="modal-title" style="text-align:center;"><b>Success</b></h4>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row div-recharge-img dmt-user-img">
-
-                            <div class="col-sm-4">
-                            </div>
-                            <div class="col-sm-4 custom_img_size pay-img">
-                                <img src="~/css/Img_DMT2/ImgAddBenefieciery.jpeg" class="img-width" style="height:100px;width:120px;">
-                            </div>
-                            <div class="col-sm-4">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align: center">
-                                <label id="lblFinalMsg" style="text-align:center;">
-
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal For Verify Account-->
-        <input type="button" id="btnmodalBankVerifyCharges" style="display:none" data-target="#modalBankVerifyCharges" data-toggle="modal" />
-        <div class="modal fade" id="modalBankVerifyCharges" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h3 class="modal-title" style="text-align:center;"><b>Bank Account Charges</b></h3>
-                    </div>
-                    <div class="modal-body" style="background-color:white;height:140px;">
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <h3>
-                                    <label id="lblBankAccountCharge" style="text-align:center;">
-
-                                    </label>
-                                    <label id="lblSenderID" style="display:none;"></label>
-                                </h3>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" id="btnVerifyAccount" onclick="verifyAccount()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Verify</button>
-                            </div>
-                            <div class="col-sm-4 final-cancel-button">
-                                <button type="button" style="margin-left:110px" id="btnCloseBankChargePopup" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal After Successfull Verify Account-->
-        <input type="button" id="btnmodalSuccessBankVerifyCharges" style="display:none" data-target="#modalSuccessBankVerifyCharges" data-toggle="modal" />
-        <div class="modal fade" id="modalSuccessBankVerifyCharges" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h3 class="modal-title" style="text-align:center;"><b>Verification Status: Verified</b></h3>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <h3>
-                                    Beneficiary Name :
-                                    <label id="lblBeneficiaryName" style="text-align:center;">
-
-                                    </label>
-                                </h3>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal After Error Verify Account-->
-        <input type="button" id="btnmodalErrorBankVerifyCharges" style="display:none" data-target="#modalErrorBankVerifyCharges" data-toggle="modal" />
-        <div class="modal fade" id="modalErrorBankVerifyCharges" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h3 class="modal-title" style="text-align:center;"><b>Verification Status: Not Verified</b></h3>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <label id="lblErrorName" style="text-align:center;color:red;">
-
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <!-- Table for Recepient List-->
-    <div class="tabcontent" style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;margin-top:15px;">
-        <h3 style="text-align:center;">Recepient List</h3>
-        <div style="overflow-x:auto;">
-            <form>
-                <table id="example" class="table table-striped table-bordered table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Sr No.</th>
-                            <th>A/C Holder Name</th>
-                            <th>A/C Number</th>
-                            <th>IFSC Code</th>
-                            <th>Bank Name</th>
-                            <th>Verification Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            int rowNo = 0;
-                        }
-                        @if (Model.additionalInfo != null)
-                        {
-                            @foreach (var item in Model.additionalInfo)
-                            {
-                                <tr>
-                                    <td>
-                                        @(rowNo += 1)
-                                    </td>
-                                    <td>
-                                        @item.BeneficiaryName
-                                    </td>
-                                    <td>
-                                        @item.AccountNumber
-                                    </td>
-                                    <td>
-                                        @item.IFSCCode
-                                    </td>
-                                    <td>
-                                        @item.BankName
-                                    </td>
-                                    <td>
-                                        @item.Status
-                                    </td>
-                                    <td>
-                                        <input type="hidden" id="hdnBfId" value="@item.BenificiaryId">
-                                        <button type="button" onclick="finalPay('@item.BenificiaryId')" id="btnPay" class="btn-process-recharge1 btn-process-recharge2" style="background-color:green;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalPay" data-toggle="modal"*@>Pay</button>
-                                        <button type="button" id="btnVerify" onclick="bankchargePopup('@item.BenificiaryId')" class="btn-process-recharge1 btn-process-recharge2" style="background-color:  #2d385e;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalBankVerifyCharges" data-toggle="modal"*@>Verify</button>
-                                        <button onclick="detailsPopup('@item.BenificiaryId')" type="button" id="btnDelete" class="btn btn-danger"> Delete</button>
-
-                                        @*<a class="btn btn-danger" action="GetDetails" asp-route-BenificiaryId="@item.BenificiaryId">Delete</a>*@
-                                        @* <a class="btn btn-danger" id="btnDelete" onclick="location.href='@Url.Action("GetDetailsById", "DMT2Dashboard", new {id = @item.BenificiaryId})'">Delete</a>*@
-
-                                    </td>
-                                </tr>
-                            }
-                        }
-
-                    </tbody>
-                </table>
-            </form>
-        </div>
-
-    </div>
-
-    <!-- Modal for Transfer Money-->
-    <div class="popup-modal">
-        <input type="button" id="btnmodalPay" style="display:none" data-target="#modalPay" data-toggle="modal" />
-        <div class="modal fade" id="modalPay" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                        <h4 class="modal-title" style="text-align:center;"><b>Transfer Money</b></h4>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center">
-                                <label id="lblPayId" style="display:none;"></label>
-                                <label style="text-align:center;">
-                                    Enter Amount ₹&nbsp;&nbsp;
-                                </label>
-
-                                <input id="txtTransferAmount" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Enter Transfer Amount" />
-                                <br />
-                                <span id="errTransferAmount" class="text-danger font-weight-bold"></span>
-                                <br />
-                                <br />
-                                <label style="text-align:center;">
-                                    *Limit per transaction:- Minimum Rs.100 & Maximum Rs. 5,0000
-                                </label>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row wallet-select">
-                            <div class="col-sm-4 custom_img_size" style="margin-left:50px;">
-                                <label style="text-align:center;">
-                                    <span class="first-wallet">Fast</span>
-                                    <input type="radio" class="rdbMode" name="testMode" checked value="IMPS"><!--0 For True and 1 for False-->
-                                    <img src="~/css/Img_DMT2/IMPS Icon.jpg" alt="Option 1" class="img-wallet-select">
-                                    @*<label>Available Balance is: ₹</label>*@
-                                    <label />
-                                </label>
-                            </div>
-                            <div class="col-sm-1" style="border-left: 6px solid #2d385e;height: 200px;margin-top: 50px;margin-left: 37px;"></div>
-                            <div class="col-sm-4 custom_img_size">
-                                <label style="text-align:center;">
-                                    <span class="first-wallet">Slow</span>
-                                    <input type="radio" class="rdbMode" name="testMode" value="NEFT">
-                                    <img src="~/css/Img_DMT2/NEFT-Icon.png" alt="Option 2" class="img-wallet-select">
-                                    @*<label>Available Balance is: ₹</label>*@
-                                    <label />
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="text-align:center;">
-
-                                <h3><span id="walletMode" class="text-danger font-weight-bold"></span></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" id="btnProceedNow" onclick="confirmPopup()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Proceed to Pay</button>
-                            </div>
-                            <div class="col-sm-4 final-cancel-button">
-                                <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Popup For Confirm Payment -->
-    <input type="button" id="btnmodalPopuForConfirmPayment" style="display:none" data-target="#modalPopuForConfirmPayment" data-toggle="modal" />
-    <div class="modal fade" id="modalPopuForConfirmPayment" role="dialog">
+    <!-- Modal for add beneficery-->
+    <div class="modal fade" id="modalAddBeneficiary" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header modal-header-recharge">
                     <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                    <h4 class="modal-title" style="text-align:center;"><b>Payment Confirmation</b></h4>
+                    <h4 class="modal-title" style="text-align:center;"><b>Beneficiery Details</b></h4>
                 </div>
                 <div class="modal-body" style="background-color:white;">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <h3 style="text-align:center;"><b>Are you sure, you want to confirm transfer?</b></h3>
-                            <label id="lblPayId2" style="display:none;"></label>
-                            <hr>
-                        </div>
                         <div class="col-sm-12" style="text-align:center">
-                            <h4><label id="lblTransferMode"></label></h4>
-                            <h4><label id="lblTransactionAmount"></label></h4>
-                            <h4><label id="lblBankCharges"></label></h4>
-                            <h4><label id="lblTotalDebitAmount"></label></h4>
-                            <h4><label id="lblBeneficiaryName1"></label></h4>
-                            <h4><label id="lblBeneficiaryAcc"></label></h4>
-                            <h4><label id="lblBeneficiaryIFSCCode"></label></h4>
-                            <h4><label id="lblBankName1"></label></h4>
+                            <div class="form-group-recharge" style="margin-left: -65px">
+                                <input id="txtAccountHoldName" autocomplete="off" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Holder Name" />
+                                <br />
+                                <h5><span id="errtxtAccountHoldName" style="color:red" class="errorMsg"></span></h5>
+                            </div>
+                            <div class="form-group-recharge" style="margin-left: -65px">
+                                <input id="txtAccountNum" autocomplete="off" maxlength="20" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
+                                <br />
+                                <h5><span id="errtxtAccountNum" style="color:red" class="errorMsg"></span></h5>
+                            </div>
+                            <div class="form-group-recharge" style="margin-left: -65px">
+                                <input id="txtIFSCCode" autocomplete="off" maxlength="15" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter IFSC Code" />
+                                <br />
+                                <h5><span id="errtxtIFSCCode" style="color:red" class="errorMsg"></span></h5>
+
+                            </div>
+                            <div class="form-group-recharge" style="margin-left: -65px">
+                                <input id="txtBankName" autocomplete="off" maxlength="20" type="text" required="required" class="txt-input txt-input-text" placeholder="Enter Bank Name" />
+                                <br />
+                                <h5><span id="errtxtBankName" style="color:red" class="errorMsg"></span></h5>
+
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer div-pay-row">
                     <div class="row div-pay-row">
                         <div class="col-sm-4 final-pay-button">
-                            <button type="button" id="btnConfirmNowFinal" onclick="finalGoPay()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Confirm</button>
+                            <button type="button" id="btnAddBeneficiery" class="button-21">Add Beneficiery</button>
                         </div>
                     </div>
 
@@ -750,202 +322,634 @@
         </div>
     </div>
 
-    <!-- Modal Confirm Payment -->
-    <input type="button" id="btnmodalfinalLast" style="display:none" data-target="#lastModalPay" data-toggle="modal" />
-    <div class="modal fade" id="lastModalPay" role="dialog">
+
+    <!-- Modal After Succcessfuly Adding Beneficiery-->
+    <input type="button" id="btnmodalSuccessAddBeneficiery" style="display:none" data-target="#modalSuccessAddBeneficiery" data-toggle="modal" />
+    <div class="modal fade" id="modalSuccessAddBeneficiery" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="text-align:center;"><b>Success</b></h4>
+                </div>
+                <div class="modal-body" style="background-color:white;">
+                    <div class="row div-recharge-img dmt-user-img">
+
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4 custom_img_size pay-img ">
+                            <img src="~/css/Img_DMT2/ImgAddBenefieciery.jpeg" class="img-width" style="height:100px;width:120px;">
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <label id="lblAddBeneficiery" style="text-align:center;">
+
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                            <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Delete Beneficiery -->
+    <input type="button" id="btnmodalDeleteBeneficiery" style="display:none" data-target="#modalDeleteBeneficiery" data-toggle="modal" />
+    <div class="modal fade" id="modalDeleteBeneficiery" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header modal-header-recharge">
                     <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close">&times;</a>
-                    <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
+                    <h4 class="modal-title" style="text-align:center;"><b>Delete Beneficiary</b></h4>
                 </div>
                 <div class="modal-body" style="background-color:white;">
-                    <div class="row div-recharge-img">
+                    <div class="row div-recharge-img dmt-user-img">
+
+                        <div class="col-sm-4">
+                        </div>
                         <div class="col-sm-4 custom_img_size pay-img">
-                            <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                            <img src="~/css/Img_DMT2/ImgAddBenefieciery.jpeg" class="img-width" style="height:100px;width:120px;">
                         </div>
                         <div class="col-sm-4">
                         </div>
-                        <div class="col-sm-4 custom_img_size pay-img2">
-                            <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <h3>
+                                <label id="lblAddBeneficiery" style="text-align:center;">
+                                    Are you sure, you want to delete beneficiary?
+                                </label>
+                            </h3>
+                            <br />
+                            <label style="text-align:center;font-size:20px" id="lblAcName"></label>
+                            <br />
+                            <label style="text-align:center;font-size:20px" id="lblAcNum"></label>
+                            <br />
+                            <label style="text-align:center;font-size:20px" id="lblIFSC"></label>
+                            <br />
+                            <label style="text-align:center;font-size:20px" id="lblBankName"></label>
+                            <br />
+                            <input type="hidden" id="hdfId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                            <button type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Delete</button>
+                        </div>
+                        <div class="col-sm-4 final-cancel-button">
+                            <button type="button" style="margin-left:110px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal After Succcessfuly Delete Beneficiery-->
+    <input type="button" id="btnmodalDeleteFinal" style="display:none" data-target="#modalDeleteFinal" data-toggle="modal" />
+    <div class="modal fade" id="modalDeleteFinal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="text-align:center;"><b>Success</b></h4>
+                </div>
+                <div class="modal-body" style="background-color:white;">
+                    <div class="row div-recharge-img dmt-user-img">
+
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4 custom_img_size pay-img">
+                            <img src="~/css/Img_DMT2/ImgAddBenefieciery.jpeg" class="img-width" style="height:100px;width:120px;">
+                        </div>
+                        <div class="col-sm-4">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
-                            <label id="lblPayId1" style="display:none;"></label>
-                        </div>
-                        <div class="col-sm-12" style="text-align:center">
-                            <label style="text-align:center;">
-                                Select option to pay
+                        <div class="col-sm-12" style="text-align: center">
+                            <label id="lblFinalMsg" style="text-align:center;">
+
                             </label>
-                            <label id="lblamountNewFinal"></label>
-                            <label id="result" style="display:none" />
                         </div>
                     </div>
-                    <div class="row wallet-select">
-                        <div class="col-sm-6 custom_img_size">
-                            <label style="text-align:center;">
-                                <span class="first-wallet">Cash Wallet</span>
-                                <input type="radio" class="rdbWallet" name="testWallet" value="True"><!--0 For True and 1 for False-->
-                                <img src="~/css/PaymentImages/cash wallet.png" alt="Option 1" class="img-wallet-select">
-                                <label>Available Balance is: ₹</label>
-                                <label id="lblMainbal" />
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                            <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal For Verify Account-->
+    <input type="button" id="btnmodalBankVerifyCharges" style="display:none" data-target="#modalBankVerifyCharges" data-toggle="modal" />
+    <div class="modal fade" id="modalBankVerifyCharges" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                    <h3 class="modal-title" style="text-align:center;"><b>Bank Account Charges</b></h3>
+                </div>
+                <div class="modal-body" style="background-color:white;height:140px;">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <h3>
+                                <label id="lblBankAccountCharge" style="text-align:center;">
+
+                                </label>
+                                <label id="lblSenderID" style="display:none;"></label>
+                            </h3>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                            <button type="button" id="btnVerifyAccount" onclick="verifyAccount()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Verify</button>
+                        </div>
+                        <div class="col-sm-4 final-cancel-button">
+                            <button type="button" style="margin-left:110px" id="btnCloseBankChargePopup" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal After Successfull Verify Account-->
+    <input type="button" id="btnmodalSuccessBankVerifyCharges" style="display:none" data-target="#modalSuccessBankVerifyCharges" data-toggle="modal" />
+    <div class="modal fade" id="modalSuccessBankVerifyCharges" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                    <h3 class="modal-title" style="text-align:center;"><b>Verification Status: Verified</b></h3>
+                </div>
+                <div class="modal-body" style="background-color:white;">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <h3>
+                                Beneficiary Name :
+                                <label id="lblBeneficiaryName" style="text-align:center;">
+
+                                </label>
+                            </h3>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                            <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal After Error Verify Account-->
+    <input type="button" id="btnmodalErrorBankVerifyCharges" style="display:none" data-target="#modalErrorBankVerifyCharges" data-toggle="modal" />
+    <div class="modal fade" id="modalErrorBankVerifyCharges" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                    <h3 class="modal-title" style="text-align:center;"><b>Verification Status: Not Verified</b></h3>
+                </div>
+                <div class="modal-body" style="background-color:white;">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <label id="lblErrorName" style="text-align:center;color:red;">
+
                             </label>
                         </div>
-                        <div class="col-sm-6 custom_img_size">
+                    </div>
+                </div>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                            <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Table for Recepient List-->
+<div class="tabcontent" style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;margin-top:15px;">
+    <h3 style="text-align:center;">Recepient List</h3>
+    <div style="overflow-x:auto;">
+        <form>
+            <table id="example" class="table table-striped table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>A/C Holder Name</th>
+                        <th>A/C Number</th>
+                        <th>IFSC Code</th>
+                        <th>Bank Name</th>
+                        <th>Verification Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int rowNo = 0;
+                    }
+                    @if (Model.additionalInfo != null)
+                    {
+                        @foreach (var item in Model.additionalInfo)
+                        {
+                            <tr>
+                                <td>
+                                    @(rowNo += 1)
+                                </td>
+                                <td>
+                                    @item.BeneficiaryName
+                                </td>
+                                <td>
+                                    @item.AccountNumber
+                                </td>
+                                <td>
+                                    @item.IFSCCode
+                                </td>
+                                <td>
+                                    @item.BankName
+                                </td>
+                                <td>
+                                    @item.Status
+                                </td>
+                                <td>
+                                    <input type="hidden" id="hdnBfId" value="@item.BenificiaryId">
+                                    <button type="button" onclick="finalPay('@item.BenificiaryId')" id="btnPay" class="btn-process-recharge1 btn-process-recharge2" style="background-color:green;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalPay" data-toggle="modal"*@>Pay</button>
+                                    <button type="button" id="btnVerify" onclick="bankchargePopup('@item.BenificiaryId')" class="btn-process-recharge1 btn-process-recharge2" style="background-color:  #2d385e;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalBankVerifyCharges" data-toggle="modal"*@>Verify</button>
+                                    <button onclick="detailsPopup('@item.BenificiaryId')" type="button" id="btnDelete" class="btn btn-danger"> Delete</button>
+
+                                    @*<a class="btn btn-danger" action="GetDetails" asp-route-BenificiaryId="@item.BenificiaryId">Delete</a>*@
+                                    @* <a class="btn btn-danger" id="btnDelete" onclick="location.href='@Url.Action("GetDetailsById", "DMT2Dashboard", new {id = @item.BenificiaryId})'">Delete</a>*@
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+</div>
+
+<!-- Modal for Transfer Money-->
+<div class="popup-modal">
+    <input type="button" id="btnmodalPay" style="display:none" data-target="#modalPay" data-toggle="modal" />
+    <div class="modal fade" id="modalPay" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="text-align:center;"><b>Transfer Money</b></h4>
+                </div>
+                <div class="modal-body" style="background-color:white;">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center">
+                            <label id="lblPayId" style="display:none;"></label>
                             <label style="text-align:center;">
-                                <span class="first-wallet">Advance Wallet</span>
-                                <input type="radio" class="rdbWallet" name="testWallet" value="False">
-                                <img src="~/css/PaymentImages/Advance Wallet.png" alt="Option 2" class="img-wallet-select">
-                                <label>Available Balance is: ₹</label>
-                                <label id="lblAdbal" />
+                                Enter Amount ₹&nbsp;&nbsp;
+                            </label>
+
+                            <input id="txtTransferAmount" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Enter Transfer Amount" />
+                            <br />
+                            <span id="errTransferAmount" class="text-danger font-weight-bold"></span>
+                            <br />
+                            <br />
+                            <label style="text-align:center;">
+                                *Limit per transaction:- Minimum Rs.100 & Maximum Rs. 5,0000
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row wallet-select">
+                        <div class="col-sm-4 custom_img_size" style="margin-left:50px;">
+                            <label style="text-align:center;">
+                                <span class="first-wallet">Fast</span>
+                                <input type="radio" class="rdbMode" name="testMode" checked value="IMPS"><!--0 For True and 1 for False-->
+                                <img src="~/css/Img_DMT2/IMPS Icon.jpg" alt="Option 1" class="img-wallet-select">
+                                @*<label>Available Balance is: ₹</label>*@
+                                <label />
+                            </label>
+                        </div>
+                        <div class="col-sm-1" style="border-left: 6px solid #2d385e;height: 200px;margin-top: 50px;margin-left: 37px;"></div>
+                        <div class="col-sm-4 custom_img_size">
+                            <label style="text-align:center;">
+                                <span class="first-wallet">Slow</span>
+                                <input type="radio" class="rdbMode" name="testMode" value="NEFT">
+                                <img src="~/css/Img_DMT2/NEFT-Icon.png" alt="Option 2" class="img-wallet-select">
+                                @*<label>Available Balance is: ₹</label>*@
+                                <label />
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center;">
-                            <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
+
+                            <h3><span id="walletMode" class="text-danger font-weight-bold"></span></h3>
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer div-pay-row">
                     <div class="row div-pay-row">
                         <div class="col-sm-4 final-pay-button">
-                            <button type="button" id="btnPayNowFinal" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Pay</button>
+                            <button type="button" id="btnProceedNow" onclick="confirmPopup()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Proceed to Pay</button>
                         </div>
                         <div class="col-sm-4 final-cancel-button">
-                            <a href="~/DMT2Dashboard/DMTDashboard" button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Modal Success Message-->
-    <!-- Modal -->
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <input type="button" id="btnmyModalfinal" style="display:none;" data-target="#myModalfinal" data-toggle="modal" />
-            <div id="myModalfinal" role="dialog" class="modal fade" style="margin-top:47px;" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width: 986px;max-height:100%;overflow-y:scroll !important;">
-                    <div class="modal-content" style="height: 1050px;color:black;">
-                        @* <div class="modal-header modal-header-recharge">
-                        <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close">&times;</a>
-                        <h4 class="modal-title" style="text-align:center;"><b>Receipt</b></h4>
-                        </div>*@
-                        <div class="">
-                            <div class="icon-box" style="top:4px;" id="icon">
-                                <label id="img" />
-                            </div>
-                            <h4 id="heading" class="modal-title w-100" style="padding-top:59px"></h4>
-                        </div>
-                        <div class="modal-body" style="padding-top:32px">
-                            <div class="main-table-recharge">
-                                <br />
-                                <hr />
-                                <h4><label id="lblBillData" style="display:none;text-align:center;"></label></h4>
-                                <table class="table table-bordered" id="tblData">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Request Date:</th>
-                                            <td><label id="lblRRequestDate"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Request Time:</th>
-                                            <td><label id="lblRRequestTime"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Request ID:</th>
-                                            <td><label id="lblRRequestID"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Client Unique ID:</th>
-                                            <td><label id="lblRClientUniqueID"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Sender Mobile Number:</th>
-                                            <td><label id="lblRSenderMobileNumber"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Sender Name:</th>
-                                            <td><label id="lblRSenderName"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Beneficiary Name:</th>
-                                            <td><label id="lblRBeneficieryName"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Beneficiary IFSC Code:</th>
-                                            <td><label id="lblRBeneficiaryIFSCCode"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Account Number:</th>
-                                            <td><label id="lblRAccountNumber"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Transfer Mode:</th>
-                                            <td><label id="lblRTransferMode"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Transfer Amount:</th>
-                                            <td><label id="lblRTransferAmount"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Bank Charges:</th>
-                                            <td><label id="lblRBankCharges"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Net Debit:</th>
-                                            <td><label id="lblRNetDebit"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Status:</th>
-                                            <td><label id="lblRStatus"></label></td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Display Message:</th>
-                                            <td><label id="lblRDisplayMessage"></label></td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="modal-footer div-pay-row">
-                            <div class="row div-pay-row">
-                                <div class="col-sm-4 final-pay-button">
-                                    <button type="button" id="btnShareReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Share Receipt With Customer</button>
-                                </div>
-                                <div class="col-sm-4 final-cancel-button">
-                                    <button type="button" style="margin-left:140px" id="btnPrintReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Print Receipt</button>
-                                </div>
-                            </div>
+                            <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<!-- Modal Popup For Confirm Payment -->
+<input type="button" id="btnmodalPopuForConfirmPayment" style="display:none" data-target="#modalPopuForConfirmPayment" data-toggle="modal" />
+<div class="modal fade" id="modalPopuForConfirmPayment" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-recharge">
+                <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
+                <h4 class="modal-title" style="text-align:center;"><b>Payment Confirmation</b></h4>
+            </div>
+            <div class="modal-body" style="background-color:white;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 style="text-align:center;"><b>Are you sure, you want to confirm transfer?</b></h3>
+                        <label id="lblPayId2" style="display:none;"></label>
+                        <hr>
+                    </div>
+                    <div class="col-sm-12" style="text-align:center">
+                        <h4><label id="lblTransferMode"></label></h4>
+                        <h4><label id="lblTransactionAmount"></label></h4>
+                        <h4><label id="lblBankCharges"></label></h4>
+                        <h4><label id="lblTotalDebitAmount"></label></h4>
+                        <h4><label id="lblBeneficiaryName1"></label></h4>
+                        <h4><label id="lblBeneficiaryAcc"></label></h4>
+                        <h4><label id="lblBeneficiaryIFSCCode"></label></h4>
+                        <h4><label id="lblBankName1"></label></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                    <div class="col-sm-4 final-pay-button">
+                        <button type="button" id="btnConfirmNowFinal" onclick="finalGoPay()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Confirm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Confirm Payment -->
+<input type="button" id="btnmodalfinalLast" style="display:none" data-target="#lastModalPay" data-toggle="modal" />
+<div class="modal fade" id="lastModalPay" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-recharge">
+                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close">&times;</a>
+                <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
+            </div>
+            <div class="modal-body" style="background-color:white;">
+                <div class="row div-recharge-img">
+                    <div class="col-sm-4 custom_img_size pay-img">
+                        <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4 custom_img_size pay-img2">
+                        <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
+                        <label id="lblPayId1" style="display:none;"></label>
+                    </div>
+                    <div class="col-sm-12" style="text-align:center">
+                        <label style="text-align:center;">
+                            Select option to pay
+                        </label>
+                        <label id="lblamountNewFinal"></label>
+                        <label id="result" style="display:none" />
+                    </div>
+                </div>
+                <div class="row wallet-select">
+                    <div class="col-sm-6 custom_img_size">
+                        <label style="text-align:center;">
+                            <span class="first-wallet">Cash Wallet</span>
+                            <input type="radio" class="rdbWallet" name="testWallet" value="True"><!--0 For True and 1 for False-->
+                            <img src="~/css/PaymentImages/cash wallet.png" alt="Option 1" class="img-wallet-select">
+                            <label>Available Balance is: ₹</label>
+                            <label id="lblMainbal" />
+                        </label>
+                    </div>
+                    <div class="col-sm-6 custom_img_size">
+                        <label style="text-align:center;">
+                            <span class="first-wallet">Advance Wallet</span>
+                            <input type="radio" class="rdbWallet" name="testWallet" value="False">
+                            <img src="~/css/PaymentImages/Advance Wallet.png" alt="Option 2" class="img-wallet-select">
+                            <label>Available Balance is: ₹</label>
+                            <label id="lblAdbal" />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                    <div class="col-sm-4 final-pay-button">
+                        <button type="button" id="btnPayNowFinal" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Pay</button>
+                    </div>
+                    <div class="col-sm-4 final-cancel-button">
+                        <a href="~/DMT2Dashboard/DMTDashboard" button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Success Message-->
+<!-- Modal -->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="btnmyModalfinal" style="display:none;" data-target="#myModalfinal" data-toggle="modal" />
+        <div id="myModalfinal" role="dialog" class="modal fade" style="margin-top:47px;" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm" style="width: 986px;max-height:100%;overflow-y:scroll !important;">
+                <div class="modal-content" style="height: 1050px;color:black;">
+                    @* <div class="modal-header modal-header-recharge">
+                    <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close">&times;</a>
+                    <h4 class="modal-title" style="text-align:center;"><b>Receipt</b></h4>
+                    </div>*@
+                    <div class="">
+                        <div class="icon-box" style="top:4px;" id="icon">
+                            <label id="img" />
+                        </div>
+                        <h4 id="heading" class="modal-title w-100" style="padding-top:59px"></h4>
+                    </div>
+                    <div class="modal-body" style="padding-top:32px">
+                        <div class="main-table-recharge">
+                            <br />
+                            <hr />
+                            <h4><label id="lblBillData" style="display:none;text-align:center;"></label></h4>
+                            <table class="table table-bordered" id="tblData">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Request Date:</th>
+                                        <td><label id="lblRRequestDate"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Request Time:</th>
+                                        <td><label id="lblRRequestTime"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Request ID:</th>
+                                        <td><label id="lblRRequestID"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Client Unique ID:</th>
+                                        <td><label id="lblRClientUniqueID"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sender Mobile Number:</th>
+                                        <td><label id="lblRSenderMobileNumber"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sender Name:</th>
+                                        <td><label id="lblRSenderName"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Beneficiary Name:</th>
+                                        <td><label id="lblRBeneficieryName"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Beneficiary IFSC Code:</th>
+                                        <td><label id="lblRBeneficiaryIFSCCode"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Account Number:</th>
+                                        <td><label id="lblRAccountNumber"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Transfer Mode:</th>
+                                        <td><label id="lblRTransferMode"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Transfer Amount:</th>
+                                        <td><label id="lblRTransferAmount"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bank Charges:</th>
+                                        <td><label id="lblRBankCharges"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Net Debit:</th>
+                                        <td><label id="lblRNetDebit"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Status:</th>
+                                        <td><label id="lblRStatus"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Display Message:</th>
+                                        <td><label id="lblRDisplayMessage"></label></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer div-pay-row">
+                        <div class="row div-pay-row">
+                            <div class="col-sm-4 final-pay-button">
+                                <button type="button" id="btnShareReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Share Receipt With Customer</button>
+                            </div>
+                            <div class="col-sm-4 final-cancel-button">
+                                <button type="button" style="margin-left:140px" id="btnPrintReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Print Receipt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 
@@ -1251,7 +1255,7 @@
                     }
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
-                    } 
+                    }
                     else {
                         document.getElementById("lblBeneficiaryName1").innerHTML = 'Beneficiary Name: ' + response[0].beneficiaryName;
                         document.getElementById("lblBeneficiaryAcc").innerHTML = 'Beneficiary A/C Number: ' + response[0].accountNumber;
@@ -1307,7 +1311,7 @@
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
                 //    $("#btnNoDataFoundModel").trigger("click");
                 //}
-                
+
                 document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                 document.getElementById("lblAdbal").innerHTML = response[0].adBal;
                 document.getElementById("lblamountNewFinal").innerHTML = '₹: ' + amount;

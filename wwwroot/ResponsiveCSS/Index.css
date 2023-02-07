@@ -302,8 +302,45 @@
     margin: 0 auto;
 }
 
+.rowaepsChooseTrasaction_BusinessRepo {
+    background: #2d385e;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-radius: 25px;
+    width: 120%;
+    margin-left: -95px;
+}
 
-
+.heading_choose_businessrepo {
+    font-weight: 700;
+    color: white;
+}
+.select_category_ddl {
+    width: 50%;
+}
+.select_category_ddl_1 {
+    font-weight: 600;
+}
+.div_get_info {
+    background: grey;
+    padding-top: 5px;
+    padding-bottom: 40px;
+    margin-top: 450px;
+    color: white;
+}
+.heading_chooseTransaction_1 {
+    font-weight: 800;
+    font-size: 22px;
+    color: #2d385e;
+    text-align: center;
+    margin-bottom: 50px;
+    /*margin-top: -30px;*/
+}
+.div_SortBy {
+    height: 130px;
+    background: #f3f3f3;
+    padding-top: 25px;
+}
 
 /*Media Query Starts for Small Smartphone*/
 @media screen and (max-width:339px) and (min-width:279px) {
@@ -384,6 +421,51 @@
     .heading_Balance {
         font-size: 10px;
     }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size:11px;
+    }
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 10px;
+    }
+    .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: -18px;
+        color: white;
+    }
+    .heading_chooseTransaction_1 {
+        font-weight: 800;
+        font-size: 19px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -30px;
+    }
+    .dateLbl{
+        font-size:12px;
+    }
+    .div_SortBy {
+        height: 480px;
+        background: #f3f3f3;
+        padding-top: 25px
+    }
+    
     /*Services of Index*/
 
     /*.section-title {
@@ -476,6 +558,52 @@
     .heading_Balance {
         font-size: 10px;
     }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 12px;
+        margin-left: -10px;
+    }
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 10px;
+        margin-left: 25px;
+    }
+    .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 1px;
+        color: white;
+    }
+    .heading_chooseTransaction_1 {
+        font-weight: 800;
+        font-size: 19px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -30px;
+    }
+    .dateLbl {
+        font-size: 12px;
+    }
+    .div_SortBy {
+        height: 300px;
+        background: #f3f3f3;
+        padding-top: 25px;
+        height:480px;
+    }
 }
 
 @media screen and (max-width:550px) and (min-width:400px) {
@@ -547,6 +675,52 @@
         margin-left: 150px;
         margin-top: 1px;
     }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 13px;
+    }
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 10px;
+        margin-left: 50px;
+    }
+    .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 10px;
+        color: white;
+    }
+    .heading_chooseTransaction_1 {
+        font-weight: 800;
+        font-size: 20px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -30px;
+    }
+    .dateLbl {
+        font-size: 13px;
+    }
+    .div_SortBy {
+        height: 300px;
+        background: #f3f3f3;
+        padding-top: 25px;
+        height: 500px;
+    }
 }
 
 @media screen and (max-width:768px) and (min-width:551px) {
@@ -579,9 +753,56 @@
         margin-left: 215px;
         margin-top: 1px;
     }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 13px;
+    }
+
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 50px;
+        margin-left: 70px;
+    }
+    .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 30px;
+        color: white;
+    }
+    .heading_chooseTransaction_1 {
+        font-weight: 800;
+        font-size: 21px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -30px;
+    }
+    .dateLbl {
+        font-size: 14px;
+    }
+    .div_SortBy {
+        height: 300px;
+        background: #f3f3f3;
+        padding-top: 25px;
+        height: 500px;
+    }
 }
 
-@media screen and (min-width:769px) and (max-width:1023px) {
+@media screen and (max-width:1023px) and (min-width:769px) {
     .heading_chooseTransaction {
         font-weight: bold;
         font-size: 36px;
@@ -612,6 +833,55 @@
         margin-left: 50px;
         /* background-color: #5437b7; */
     }
+
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 13px;
+    }
+
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 50px;
+        margin-left: 75px;
+    }
+    .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 50px;
+        color: white;
+    }
+    .heading_chooseTransaction_1 {
+        font-weight: 800;
+        font-size: 22px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -30px;
+    }
+    .dateLbl {
+        font-size: 16px;
+    }
+    .div_SortBy {
+        height: 300px;
+        background: #f3f3f3;
+        padding-top: 25px;
+        height: 520px;
+    }
 }
 
 @media screen and (min-width:769px) and (max-width:885px) {
@@ -623,9 +893,41 @@
         margin-left: 50px;
         /* background-color: #5437b7; */
     }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 13px;
+    }
+
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 10px;
+        margin-left: 25px;
+    }
+   /* .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 250px;
+        color: white;
+    }*/
 }
 
 @media screen and (min-width:886px) and (max-width:1023px) {
+    
     .passbooktabs .tablinks {
         letter-spacing: 2px;
         margin-right: 25px;
@@ -634,6 +936,31 @@
         margin-left: 50px;
         /* background-color: #5437b7; */
     }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 13px;
+    }
+
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 10px;
+        margin-left: 25px;
+    }
+   
 }
 @media screen and (min-width:1024px) and (max-width:1279px) {
     .passbooktabs .tablinks {
@@ -643,6 +970,37 @@
         font-size: 16px;
         margin-left: 50px;
         /* background-color: #5437b7; */
+    }
+    .rowaepsChooseTrasaction_BusinessRepo {
+        width: 100%;
+        margin-left: -2px;
+    }
+
+    .heading_choose_businessrepo {
+        font-weight: 700;
+        color: white;
+        font-size: 13px;
+    }
+
+    .select_category_ddl {
+        margin-left: 130px;
+        width: 45%;
+        margin-top: -32px;
+    }
+
+    .select_category_ddl_1 {
+        font-size: 10px;
+        height: 25px;
+        font-weight: 600;
+        padding-left: 10px;
+        margin-left: 25px;
+    }
+    .div_get_info {
+        background: grey;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 250px;
+        color: white;
     }
 }
 
@@ -651,6 +1009,17 @@
         margin-left: 500px;
         font-weight: bold;
         margin-top: -4px;
+    }
+    .heading_chooseTransaction_1 {
+        font-weight: 800;
+        font-size: 22px;
+        color: #2d385e;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -30px;
+    }
+    .dateLbl {
+        font-size: 18px;
     }
 }
 

@@ -4,68 +4,106 @@
     ViewData["Title"] = "PayoutCommision";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
-<h1>PayoutCommision</h1>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <link rel="stylesheet" href="~/css/businessReport.css" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/navbarheader.css">
 <style>
     .form-control {
         padding-left: 32px;
         height: 65px;
     }
+
+    hr {
+        border: none;
+        border-top: 1px dotted black;
+        color: #fff;
+        background-color: #fff;
+        height: 1px;
+        width: 100%;
+    }
 </style>
-
-<div class="container-fluid">
-    @*<div class="row">
-    <div class="col-12">
-    <img src="~/css/CommisionImages/payoutandcommision.png" class="img-fluid" alt="Responsive image" />
-    </div>
-    </div>*@
-    <div class="section breadcumb-area background-image" style="background-image: url('/css/CommisionImages/payoutandcommision.png') ">
-        <div class="container-fluid ">
+<br />
+<br />
+<br />
+<div class="container-fluid" style="background:white">
+    <div class="section breadcumb-area background-image" style="background-image: url('../css/Img/new_tech_11.png')">
+        <div class="container ">
             <div class="row">
-
                 <div class="col-sm-12 text-center">
                     <ul>
-                        <li><strong>Payout Commision</strong></li>
+                        <li><strong>Payout Commission</strong></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="col col-md-12 col-sm-12 col-lg-12">
+        <img src="/css/Img/help_and_support11.jpg" style="width:100%;" alt="Norway" />
+    </div>
+    <div class="div_get_info">
+        <h3 class="tag">You get "Best Assured Payouts" in industry with your "MALL"</h3>
+    </div>
+    <div class="section services-area padding-top-bottom-60">
+        <div class="container">
+            <h1 class="transaction center heading_chooseTransaction_1">Choose Category And Subcategory For Payout Commission</h1>
+            <div class="row rowaepsChooseTrasaction_BusinessRepo" id="aepsChooseTrasaction">
+                <div class="row">
+                    <div class="col col-md-6 col-sm-6">
+                        <div class="col-md-4 col-sm-4" style="margin-left: 30px;">
+                            <h4 class="heading_choose_businessrepo">Select Category</h4>
 
-            <blockquote class="blockquote text-center">
-                <strong class="mb-0">You get "Best Assured Payouts" in industry with your "Mall".</strong>
-                @*<footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>*@
-            </blockquote>
+                        </div>
+                        <div class="col-md-4 col-sm-4 select_category_ddl">
+                            @if (ViewBag.Payout != null)
+                            {
+                                @Html.DropDownListFor(m => m.Id, ViewBag.Payout as SelectList, "-- Select Services --", new { @class = "form-control select_category_ddl_1" })
+                            }
+                        </div>
+                    </div>
+                    <div class="col col-md-6 col-sm-6">
+                        <div class="col-md-4 col-sm-4" style="margin-left: 30px;">
+                            <h4 class="heading_choose_businessrepo">Select Sub Category</h4>
+                        </div>
+                        <div class="col-md-4 col-sm-4 select_category_ddl">
+                            @*<select class="form-control select_category_ddl_1" id="SId" name="Id"><option value="0">-- Select SubCategories --</option></select>*@
+                            <select class="form-control select_category_ddl_1" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
+                                <option>-- Select SubCategories -- </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
+@*<div class="row">
         <div class="col-sm-6">
-            <label class="control-label">
-                Category Name:
-            </label>
-            @if (ViewBag.Payout != null)
-            {
-                @Html.DropDownListFor(m => m.Id, ViewBag.Payout as SelectList, "-- Select Services --", new { @class = "form-control" })
+        <label class="control-label">
+        Category Name:
+        </label>
+        @if (ViewBag.Payout != null)
+        {
+        @Html.DropDownListFor(m => m.Id, ViewBag.Payout as SelectList, "-- Select Services --", new { @class = "form-control select_category_ddl_1" })
 
-            }
+        }
         </div>
         <div class="col-sm-1">
         </div>
         <div class="col-sm-5">
-            <label class="control-label">
-                Subcategory Name:
-            </label>
-            <select class="form-control" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
-                <option> -- Please Select -- </option>
-            </select>
+        <label class="control-label">
+        Subcategory Name:
+        </label>
+        <select class="form-control" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
+        <option> -- Please Select -- </option>
+        </select>
         </div>
-    </div>
-</div>
+        </div>*@
+
 <script>
     const ourItemDiv = document.getElementsByClassName("item");
     const openIcon = document.getElementsByClassName("iconOpen");

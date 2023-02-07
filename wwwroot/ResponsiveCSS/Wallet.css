@@ -1,0 +1,197 @@
+﻿
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.heading_how_to_work {
+    margin-top: 20px;
+    margin-left: -250px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.heading_amount {
+    cursor: auto;
+    text-decoration: unset;
+}
+.div_wallet {
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+    max-width: 55%;
+}
+.heading_wallet {
+    padding: 10px; font-weight: 800;
+}
+.div_wallet_box {
+    width: 350px;
+    cursor: pointer;
+    padding-right: 20px;
+}
+.row_wallet {
+    margin-left: 96px;
+}
+.btn_AddMoney {
+    margin-left: 512px;
+    margin-top: 50px;
+}
+
+@media screen and (min-width:280px) and (max-width:340px) {
+    .btn_AddMoney {
+        margin-left: 80px;
+    }
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .div_wallet_box {
+        width: 290px;
+        cursor: pointer;
+        padding-right: 20px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 18px;
+    }
+}
+@media screen and (min-width:341px) and (max-width:420px) {
+    .btn_AddMoney {
+        margin-left: 100px;
+    }
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .div_wallet_box {
+        width: 300px;
+        cursor: pointer;
+        padding-right: 20px;
+        margin-left: 40px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 18px;
+    }
+}
+@media screen and (min-width:421px) and (max-width:500px) {
+    .btn_AddMoney {
+        margin-left: 120px;
+    }
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .div_wallet_box {
+        width: 320px;
+        cursor: pointer;
+        padding-right: 20px;
+        margin-left: 60px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 19px;
+    }
+}
+@media screen and (min-width:501px) and (max-width:600px) {
+    .btn_AddMoney {
+        margin-left: 140px;
+    }
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .div_wallet_box {
+        width: 340px;
+        cursor: pointer;
+        padding-right: 20px;
+        margin-left: 70px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 19px;
+    }
+}
+@media screen and (min-width:601px) and (max-width:768px) {
+    .btn_AddMoney {
+        margin-left: 245px;
+    }
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .div_wallet_box {
+        width: 489px;
+        cursor: pointer;
+        padding-right: 20px;
+        margin-left: 80px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:769px) and (max-width:885px) {
+    .btn_AddMoney {
+        margin-left: 160px;
+    }
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .div_wallet_box {
+        width: 340px;
+        cursor: pointer;
+        padding-right: 20px;
+        margin-left: 100px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 21px;
+    }
+}
+@media screen and (min-width:885px) and (max-width:1000px) {
+    .btn_AddMoney {
+        margin-left: 180px;
+    }
+
+    .row_wallet {
+        margin-left: 0px;
+    }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 22px;
+    }
+}
