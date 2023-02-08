@@ -27,9 +27,9 @@
     overflow: hidden;
     border: 1px solid #ccc;
     color: #f1f1f1;
-    background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);
+   /* background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);*/
     display: flex;
-    margin-top: 10px;
+    margin-top: 33px;
 }
 
     /* Style the buttons inside the tab */

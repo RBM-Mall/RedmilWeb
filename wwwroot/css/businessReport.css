@@ -320,6 +320,15 @@
     background: cadetblue;
     font-weight: 800;
 }
+.responsive_table_businessRepo {
+    margin-top: -85px;
+    background: rgb(243, 243, 243);
+    margin-left: -35px;
+    /*width: 270px;*/
+    position: relative;
+    font-size: 10px;
+}
+
 
 @media screen and (min-width:279px) and (max-width:339px) {
     .accordion {
@@ -399,6 +408,9 @@
     .buttonDownload {
         margin-right: 100px;
     }
+    .responsive_table_businessRepo {
+        width: 270px;
+    }
 }
 
 @media screen and (min-width:340px) and (max-width:420px) {
@@ -451,6 +463,9 @@
     }
     .buttonDownload {
         margin-right: 80px;
+    }
+    .responsive_table_businessRepo {
+        width: 336px;
     }
 }
 
@@ -702,5 +717,12 @@
 
     .business_Repo_Table_td {
         font-size: 15px;
+    }
+}
+@media screen and (max-width:767px) {
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: center;
+        font-size: 10px;
+        margin-left: -50px;
     }
 }

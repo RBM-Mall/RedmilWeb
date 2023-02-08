@@ -7272,3 +7272,39 @@ button.close {
 }
 
 /*# sourceMappingURL=bootstrap.min.css.map */
+@media screen and (max-width:360px) and (min-width:280px) {
+    .navbar-default .navbar-nav > li > a {
+        font-size: 13px;
+        /*color: white;*/
+    }
+    .navbar-collapse.in {
+        overflow-y: auto;
+        /*background-color: #2d385e;*/
+        /*color: white;*/
+    }
+}
+@media screen and (max-width:440px) and (min-width:361px) {
+    .navbar-default .navbar-nav > li > a {
+        font-size: 14px;
+        /*color: white;*/
+    }
+}
+@media screen and (max-width:560px) and (min-width:441px) {
+    .navbar-default .navbar-nav > li > a {
+        font-size: 15px;
+        /*color: white;*/
+    }
+}
+@media screen and (max-width:768px) and (min-width:561px) {
+    .navbar-default .navbar-nav > li > a {
+        font-size: 16px;
+        /*color: white;*/
+    }
+
+}
+@media screen and (max-width:880px) and (min-width:769px) {
+    .navbar-default .navbar-nav > li > a {
+        font-size: 17px;
+        /*color:white;*/
+    }
+}
