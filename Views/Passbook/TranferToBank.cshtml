@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-
+<link href="~/css/transfertobankcss/transfertobankcss.css" rel="stylesheet" />
 <style>
     .form-control {
         display: block;
@@ -43,40 +43,7 @@
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
 
-    .button-21 {
-        align-items: center;
-        appearance: none;
-        background-color: #3EB2FD;
-        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-        background-size: calc(100% + 20px) calc(100% + 20px);
-        border-radius: 1px;
-        border-width: 0;
-        box-shadow: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: CircularStd,sans-serif;
-        font-size: 1.5rem;
-        height: auto;
-        justify-content: center;
-        line-height: 1.5;
-        padding: 6px 25px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color .2s,background-position .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: top;
-        white-space: nowrap;
-        margin-right: 50px;
-        /* float: right; */
-        margin-top: 28px;
-        z-index: 1;
-    }
-
+    
     #exTab1 .tab-content {
         color: white;
         background-color: #428bca;
@@ -323,19 +290,17 @@
         padding-top: -34px;
     }
 
-    .amount {
-        font-size: 16px
-    }
+    
 
     .modal-footer {
-        border: none;
-        text-align: center;
-        border-radius: 5px;
-        font-size: 13px;
-        /* padding-top: 250px; */
-        margin-top: 210px;
-    }
-
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+    /* padding-top: 250px; */
+    margin-top: -33px;
+    margin-left: -135px;
+}
     .modal-confirm .btn {
         color: #fff;
         border-radius: 4px;
@@ -400,11 +365,7 @@
         margin-top: -10px;
         cursor: pointer;
     }
-
-    .h3, h3 {
-        font-size: 17px;
-        margin-left: 82px;
-    }
+   
 </style>
 <br />
 <div class="container-fluid" style="background:#ebebeb">
@@ -413,10 +374,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="call-to-action">
+                        <div class="">
                             <div class="row">
-                                <div class="col-sm-7 col-xs-12 dmt">
-                                    <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:211px;text-align:center; font-weight: 700; cursor: pointer;">Transfer To Bank</h3>
+                                <div class="col-sm-7 col-xs-12 dmts">
+                                    <h3 class="padding-left-right-50 ttb" >Transfer To Bank</h3>
                                 </div>
                                 <div class="col-sm-5 col-xs-12 text-right">
                                     <div class="read-more padding-top-bottom-40">
@@ -431,21 +392,26 @@
     </div>
     <br />
     <div class="container" style="background-color:white;">
-        <div class="row formedia">
+        <div class="row">
+            <div class="bal_Right">
             <div class="col-md-3 col-lg-3 col-sm-3">
-                <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" style="height:100px;width:120px;">
+                <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" >
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                <p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance:</b></p>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
+                <div class="Static_avail">
+                <p class="aval_bal"><b>Available :</b></p>
+                </div>
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                <p class="aval_bal" style="font-size:20px; margin-top:28px; "><label id="lblBalance">₹@Accessor.HttpContext.Session.GetString("Balance")</label></></p>
+            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
+                <div class="real_available">
+                    <p class="aval_bal "><label id="lblBalance">₹@Accessor.HttpContext.Session.GetString("Balance")</label></></p>
+                    </div>                
             </div>
             @* <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
             <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
             </div>*@
         </div>
-
+        </div>
     </div>
     <br />
     <div class="container"></div>
@@ -454,13 +420,13 @@
     <div id="exTab2" class="container">
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 Ex_tab">
                 <div class="third-header">
-                    <div class="container card" style="background:white; border: 2px solid white ;padding: 11px;border-radius: 18px;width:75%;height: 171px;">
-                        <div class="card">
-                            <img src="~/img/device biometric image/imps.jpg" />
+                    <div class="Container_wdth" >
+                        <div class="card ">
+                            <img src="~/img/device biometric image/imps.jpg" class="btn-imps" />
                             <p>
-                                <button class="btn btn-info" style="width:111%;margin-left:-11px;border-bottom: 120px;" @*style="width: 109%; background-color: #007bff;color: white;border: none;margin-left: -13px;font-size: 24px;margin-bottom: -46px;"*@>
+                                <button class="btn btn-info btn_im ">
                                     IMPS
                                 </button>
                             </p>
@@ -469,30 +435,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 Ex_tab ">
                 <div class="third-header">
-                    <div class="container card" style="background:white; border: 2px solid white ;padding: 11px;border-radius: 18px;width:75%;height: 171px;">
-                        <div class="card">
-                            <img src="~/img/device biometric image/NEFT-ICON.png" style="height:127px;
-                                 margin-left:48px;" />
+                    <div class="Container_wdth">
+                        <div class="card ">
+                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG"  />
                             <p>
-                                <button class="btn btn-info" style="width:111%;margin-left:-11px;border-bottom: 120px;" @*style="width: 109%; background-color: #007bff;color: white;border: none;margin-left: -13px;font-size: 24px;margin-bottom: -46px;"*@>
+                                <button class="btn btn-info btn_im">
                                     NEFT
                                 </button>
                             </p>
 
                         </div>
-                    </div>
+                    </div>`
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 Ex_tab">
                 <div class="third-header">
-                    <div class="container card" style="background:white; border: 2px solid white ;padding: 11px;border-radius: 18px;width:75%;height: 171px;">
+                    <div class="Container_wdth" >
                         <div class="card">
-                            <img src="~/img/device biometric image/RTGS-ICON.png" style="height:127px;
-                                 margin-left:48px;" />
+                            <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
                             <p>
-                                <button class="btn btn-info" style="width:111%;margin-left:-11px;border-bottom: 120px;" @*style="width: 109%; background-color: #007bff;color: white;border: none;margin-left: -13px;font-size: 24px;margin-bottom: -46px;"*@>
+                                <button class="btn btn-info btn_im">
                                     RGS
                                 </button>
                             </p>
@@ -509,10 +473,11 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="third-header">
-                <div class="container card" style="background:white; border: 2px solid white ;padding: 54px;border-radius: 25px;width:73%;height:518px">
-                    <div class="card-body" style="font-size: 17px;text-align:center; font-weight: 700; cursor: pointer;">
+                @*<div class="container card" style="background:white; border: 2px solid white ;padding: 54px;border-radius: 25px;width:73%;height:518px">*@
+                <div class="container card" style="">
+                    <div class="card-body card-input-im" style="">
                         <div class="">
-                            <img src="~/img/device biometric image/imps-logo.png" style="width:41%; margin-top: 47px;" />
+                            <img src="~/img/device biometric image/imps-logo.png" class="imps_logo" />
                         </div>
                         @foreach (var item in Model.imps.Slab)
                         {
@@ -533,11 +498,13 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Amount </label> <input type="text" id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" /><br />
+                            <div class="Tinput">
+                            <label class="lbl_Amount">Amount </label> 
+                            <input type="text" class="form-control " id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" /><br />
                             <span id="Text_Imps"></span>
                             @* <span id="Text_Impss"></span>*@
-                            <input type="submit" class="button-21" style="margin-left:53px;" onclick="impstransfer()" value="Transfer">
-
+                            <input type="submit" class="button-Media"  onclick="impstransfer()" value="Transfer">
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -545,11 +512,10 @@
         </div>
         <div class="col-sm-4">
             <div class="third-header">
-                <div class="container card" style="background:white; border: 2px solid white ;padding: 10px;border-radius: 25px;width:73%;
-">
-                    <div class="card-body" style="font-size:17px;text-align:center; font-weight: 700; cursor: pointer;">
-                        <div class="">
-                            <img src="~/img/device biometric image/NEFT-ICON.png" style="height:207px" />
+                <div class="container card" >
+                    <div class="card-body card-input-im">
+                        <div>
+                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
                         </div>
                         @foreach (var item in Model.neft.Slab)
                         {
@@ -570,11 +536,13 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Amount </label> <input type="text" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
+                             <div class="Tinput">
+                            <label class="lbl_Amount">Amount </label> <input type="text" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
                             <span id="Text_neft"></span>
-                            <button type="button" class="button-21" style="margin-left:53px;" onclick="nefttransfer()">Transfer</button>
+                            <button type="button" class="button-Media"  onclick="nefttransfer()">Transfer</button>
 
                             @* <span id="Text_nefts"></span>*@
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -583,10 +551,10 @@
         </div>
         <div class="col-sm-4">
             <div class="third-header">
-                <div class="container card" style="background:white; border: 2px solid white ;padding: 10px;border-radius:25px;width:73%;">
-                    <div class="card-body" style="font-size:17px;text-align:center; font-weight: 700; cursor: pointer;height: 500px;">
+                <div class="container card" >
+                    <div class="card-body card-input-im">
                         <div class="">
-                            <img src="~/img/device biometric image/RTGS-ICON.png" style="height:207px" />
+                            <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
                         </div>
                         @foreach (var item in Model.rtgs.Slab)
                         {
@@ -607,10 +575,11 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Amount </label> <input type="text" id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" />
+                             <div class="Tinput">
+                            <label class="lbl_Amount">Amount </label> <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" />
                             <span id="Text_rtgs"></span>
-                            <button type="button" class="button-21" style="margin-left:53px;" onclick="rtgstransfer()">Transfer</button>
-
+                            <button type="button" class="button-Media"  onclick="rtgstransfer()">Transfer</button>
+                            </div>
                             @* <span id="Text_rtgss"></span>*@
                         </div>
                     </div>
@@ -631,7 +600,7 @@
 </div>
 @*//ModalForError*@
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-12 col-md-12 col-lg-12" style="overflow:auto">
         <input type="button" id="ModalForErrorsss" style="display:none" data-target="#ModalForErrorrr" data-toggle="modal" />
         <div id="ModalForErrorrr" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
@@ -662,57 +631,57 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="ModalForPrceed" style="display:none" data-target="#ModalForData" data-toggle="modal" />
         <div id="ModalForData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
-                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
-                    <div class="modal-body">
-                        <div class="" id="" style="margin-top:-45px;">
-                            @* <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />*@<img src="~/img/device biometric image/wallet-to-bank gif.gif" />
-                            @*  <img src="~/img/oops2.png" style="width:370px;height:245px;"/>*@
+            <div class="modal-dialog modal_dialog"  style="overflow:auto">
+                    <div class="modal-content">
+                    <div class="">
+                      <div class="modal-header ">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Transfer To Bank</h4>
+                        </div>
+                    <div class="modal-body modal_Transfer">
+                        <div  style="">
+                          <img src="~/img/device biometric image/wallet-to-bank gif.gif" class="img_Transfer" />
+                         
                         </div>
                         <div>
-                            <div class="col-12">
-                                <h3 style="font-size:19px;margin-left:47px;">Amount To be Credit :-  ₹<span id="ActualAmount"></span> </h3>
+                            <div class="Amount_Credit">
+                                <h3>Amount To be Credit :-  ₹<span id="ActualAmount"></span> </h3>
                             </div>
 
 
-                            <img src="~/img/device biometric image/down-arrow.png" style=" height: 65px;margin-left: 142px;margin-top: 13px;" />
-                            <input type="submit" class="btn btn-info" value="Procced To Transfer" data-dismiss="modal" onclick="GetMultiAccountDetail()" style="margin-top: 10px;margin-left: 109px;" />
+                            <img src="~/img/device biometric image/down-arrow.png" class="Arrow_img" />
+                                <input type="submit" class="button-21 Trannsfer_val " value="Procced To Transfer" data-dismiss="modal" onclick="GetMultiAccountDetail()" />
 
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top: -213px;">
+                            <button type="button" class="button-21 Trannsfer_val " data-dismiss="modal">
                                 <b>Do It Later</b>
                             </button>
                         </div>
                     </div>
 
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
 <!--Modal For Bank Detail-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="ModalFobandetail" style="display:none" data-target="#ModalFobandetails" data-toggle="modal" />
-        <div id="ModalFobandetails" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="margin-top:85px;margin-left:105px">
-                <div class="modal-content" style="height:740px;width:1528px;color: black;padding:31px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
-                    <div class="modal-body">
+        <div id="ModalFobandetails" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto">
+            <div class="modal-dialog" >
+                <div class="modal-content modal_table" >
+                    
+                    <div class="modal-header ">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Transfer To Bank</h4>
+                        </div>
+                    @*<div class="modal-body">
+
                         <h3>Primary Account</h3>
                         <table id="PrimaryAccount" class="table table-hover table-responsive">
                             <thead>
@@ -775,20 +744,70 @@
                                 <b>Add Bank Account </b>
                             </button>
                         </div>
+                    </div>*@
+
+                    <div class="modal-body modal_table">
+                        <div class="Heading_Table"><h3>Primary Account</h3><hr /></div><br />
+                        <table class="table table-striped" id="PrimaryAccount">
+                            <thead>
+                                <tr>
+                                    <th>Account No</th>
+                                    <th>Ifsc</th>
+                                    <th>Beni Name</th>
+                                    <th></th>
+                                  @*  <th>Action</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="primaryoutput">
+                                <tr>
+                                     <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
+                                    <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
+                                    <td>@Accessor.HttpContext.Session.GetString("Name")</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
+                                    <td data-dismiss="modal" class="button-Media forprime" style="margin-left: 145px;">Pay With This Bank</td>
+                                </tr>
+                         
+                            </tbody>
+                        </table>
+                        <div class="Heading_Table1"><h3>Additional</h3><hr /></div>
+                         <table id="bankdetail" class="table table-hover table-responsive table-striped">
+                            <thead>
+                                <tr style="white-space:nowrap;">
+                                    <th>Account No</th>
+                                    <th>Ifsc</th>
+                                    <th>Beni Name</th>
+                                    <th>Bank Name</th>
+                                    @*<th>Action</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="tbloutputs" style="text-align:center;">
+                            </tbody>
+                        </table>
                     </div>
 
+                    <!-- Modal footer -->
+                     <div class="modal-footer ">
+                            <button type="button" class="button-21 addacount" data-dismiss="modal">
+                                <b>Add Bank Account </b>
+                            </button>
+                        </div>
+                    @*<div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>*@
 
+                </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 <!--Modal For Show Bank Detail in Connfirm-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalForbankdetailConfirm" style="display:none" data-target="#ModalForbankdetailConfirms" data-toggle="modal" />
+        <input type="button" id="ModalForbankdetailConfirm" style="display:none" data-target="#ModalForbankdetailConfirms" data-toggle="modal" style="overflow:auto" />
         <div id="ModalForbankdetailConfirms" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="margin-top:89px;margin-left:582px">
 
@@ -838,7 +857,7 @@
 <!--Modal For Success Bank Detail-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalForSuccessBanks" style="display:none" data-target="#ModalForSuccessBank" data-toggle="modal" />
+        <input type="button" id="ModalForSuccessBanks" style="display:none" data-target="#ModalForSuccessBank" data-toggle="modal"  />
         <div id="ModalForSuccessBank" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="margin-top:89px;margin-left:582px">
 
@@ -1276,7 +1295,7 @@
     var OpId;
     var Amount
     function impstransfer() {
-        debugger;
+        
 
         Amount = $('#TextImps').val();
         ServiceId = $('#SID').text();
@@ -1307,7 +1326,7 @@
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
                         Mode = data.mode;
-                        debugger;
+                        
                         $('#TextImps').val("");
                         if (data.statuscode == "ERR") {
                             $("#ModalForErrorsss").trigger("click");
@@ -1326,7 +1345,7 @@
         }
     }
     function nefttransfer() {
-        debugger;
+        
         Amount = $('#Textneft').val();
         ServiceId = $('#SID').text();
         OpId = $('#OID').text();
@@ -1353,7 +1372,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        debugger;
+                        
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
                         Mode = data.mode;
@@ -1375,7 +1394,7 @@
 
     }
     function rtgstransfer() {
-        debugger;
+        
         Amount = $('#Textrtgs').val();
         ServiceId = $('#SID').text();
         OpId = $('#OID').text();
@@ -1402,7 +1421,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        debugger;
+                        
                         $('#Textrtgs').val("");
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
@@ -1426,7 +1445,7 @@
 
     //For Prim
     $("#PrimaryAccount").on('click', ".forprime", function () {
-        debugger;
+        
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var BeniName = currentRow.find('td:eq(2)').text();
@@ -1446,7 +1465,7 @@
     });
     //For add
     $("#bankdetail").on('click', ".btn_bank", function () {
-        debugger;
+        
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var Ifsc = currentRow.find('td:eq(1)').text();
@@ -1466,7 +1485,7 @@
     });
 
     function GetMultiAccountDetail() {
-        debugger;
+        
         $.ajax({
             url: "/Passbook/MultiAcountDetail",
             //data: { 'Amount': Amount },
@@ -1476,6 +1495,13 @@
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
+
+                else if (data.statuscode == "ERR") {
+              
+                    $("#ModalFobandetail").trigger("click");
+                        //$("#ErrorMessageModals").trigger("click");
+                        //$("#lblmsgErrorSc").text(data.message);
+                }
                 else if (data.result == "UnExpectedStatusCode") {
                     window.location.href = data.url;
                 }
@@ -1484,7 +1510,7 @@
                 }
                 else {
                     debugger
-                    let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td style='margin-top:3px;' id='id1' data-dismiss='modal' button class='btn-process-recharge3  btn-amount-bind2 btn_bank btn-amount-bind1'>" + 'Pay With This Bank' + "</button></td></tr>");
+                    let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' data-dismiss='modal' button class='button-Media btn_bank'>" + 'Pay With This Bank' + "</button></td></tr>");
                     $("#tbloutputs").html(output);
                     $("#ModalFobandetail").trigger("click");
                 }
@@ -1495,7 +1521,7 @@
 
     //For Confirm
     function confirm() {
-        debugger;
+        
         var ModeId = $('#Mode').text();
         var BankId = $('#BankId').text();
         //var BankName = $('#CWD').text();
@@ -1511,7 +1537,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1598,7 +1624,7 @@
         var data_uri;
         takeSnapShot = function () {
             Webcam.snap(function (data_uri) {
-                debugger;
+                
                 document.getElementById('snapShot').innerHTML =
                     '<img src="' + data_uri + '" width="737px" height="466px" id="getimage"/>';
                 //Veryfyimage(data_uri);
@@ -1674,7 +1700,7 @@
     })
 
     $('.addacount').on('click', function () {
-        debugger;
+        
 
         $("#AddAcounts").trigger("click");
 
@@ -1685,7 +1711,7 @@
 
         //function AddinBank(){
         //function foraddingAcount() {
-        debugger;
+        
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -1749,7 +1775,7 @@
                     window.location.href = data.url;
                 }
                 else {
-                    debugger;
+                    
                     message = data.message;
                     if (data.statuscode == "ERR") {
                         //$('.close').click();
@@ -1803,7 +1829,7 @@
 
     $('.ConfirmAddAccount').on('click', function () {
 
-        debugger;
+        
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -1872,7 +1898,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        debugger;
+                        
                         if (data.statuscode == "ERR") {
                             $("#ErrorMessageModals").trigger("click");
                             $("#lblmsgErrorSc").text(data.message);
@@ -1917,7 +1943,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1933,7 +1959,7 @@
 
                     }
                     else if (data.statuscode == "OSS") {
-                        debugger;
+                        
                         var timeLeft = 30;
                         var elem = document.getElementById('some_divss');
 
@@ -1969,7 +1995,7 @@
     }
     //For Validate Otp Confirm
     function ConfirmOtp() {
-        debugger;
+        
         var Otp = $('#OtpforAf').val();
         if (Otp.trim() == "") {
             ('#SpanO').text('Please Enter Otp');
@@ -1991,7 +2017,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        debugger;
+                        
                         if (data.statuscode == "TXN") {
                             $(".verify").hide();
                             $("#btnupload").hide();
@@ -2086,7 +2112,7 @@
 </script>
 <script type="text/javascript">
     function ValidateFileUpload() {
-        debugger;
+        
         var fuData = document.getElementById('file');
         var FileUploadPath = fuData.value;
 
@@ -2131,9 +2157,9 @@
 </script>
 <script>
     $(function () {
-        debugger;
+        
         $(".btPics").on('click', function () {
-            debugger;
+            
             var files = $("#file").get(0).files;
             if (files.length == "0") {
                 $('#text_File').text('Please Select Any Picture');
@@ -2219,7 +2245,7 @@
                     processData: false, // Not to process data
                     data: fileData,
                     success: function (result, status, xhr) {
-                        debugger;
+                        
                         if (result.result == "EmptyResult") {
                             window.location.href = result.url;
                         }
@@ -2414,4 +2440,18 @@
         }
         return isValid;
     }
+
+
+     
+</script>
+<script>
+    //$(document).ready(function () {
+
+    //    var table = $('#PrimaryAccount').DataTable({
+    //    rowReorder: {
+    //        selector: 'td:nth-child(2)'
+    //    },
+    //    responsive: true
+    //} )
+    //});
 </script>
