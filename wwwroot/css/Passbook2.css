@@ -595,11 +595,11 @@ button {
 }
 
 .titlecenter {
-    margin-left: 28px;
+    margin-left: -7px;
 }
 
 .img-mall {
-    width: 21%;
+    width: 19%;
     margin-left: 163px;
 }
 element.style {
@@ -620,8 +620,7 @@ element.style {
 }
 
 .img_center_moda {
-    height: 50px;
-    margin-left: 63px;
+    margin-left: 248px;
     margin-bottom: 24px;
 }
 
@@ -633,22 +632,106 @@ element.style {
 }
 
 .btn-signup {
-    margin-left: 52px;
+    margin-left: 100px;
 }
 
 .md-button {
     width: 146px;
-    margin-left: 165px;
+    margin-left: 222px;
 }
-
 .title-launch {
-    margin-left: 162px;
- 
+    margin-left: 207px;
 }
 .ttle-mall {
     margin-top: -115px;
 }
+.Passbook_content {
+    background: gainsboro;
+    border: 1px solid black;
+    padding: 7px;
+    margin: 10px;
+}
+.modal_signup {
+    width: 32%;
+    margin-top: 172px;
+    margin-left: 600px;
+}
 
+.rqst_video {
+    margin-left: 70px;
+    margin-top: 29px;
+}
+.Aov
+{
+    margin-left: 90px;
+    color: #877e7fa3
+}
+.EAN {
+    margin-left: 161px;
+}
+.input_Aadhar {
+    height: 40px;
+    width: 71%;
+    background: gainsboro;
+    border: -11px solid #bc3434;
+    border-radius: 1px solid;
+    border-radius: 53px;
+    margin-left: -41px;
+}
+.EnterOtp {
+    margin-left: 158px;
+    margin-top: 28px;
+    display: none
+}
+.eop_text {
+    margin-left: 36px;
+}
+#Otpforaadhar {
+    height: 40px;
+    width: 58%;
+    background: gainsboro;
+    border: -11px solid #bc3434;
+    border-radius: 1px solid;
+    border-radius: 53px;
+    margin-left: -56px;
+}
+.otp_text {
+    margin-left: -72px;
+    color: black;
+    font-weight: bold;
+}
+.spa_text {
+    font-size: 17px;
+    margin-left: 29px;
+}
+.ConfirmOtpforaadhar {
+    margin-top: 4px;
+    margin-left: -2px;
+}
+.enc_img {
+    width: 121px;
+}
+.sec_img {
+    width: 87px;
+    margin-left: 84px;
+    margin-top: 15px
+}
+.new_img {
+    height: 80px;
+    margin-left: 58px;
+    margin-top: 2px
+}
+.redmil_title 
+{
+    font-weight: bold;
+    color: #13223c;
+    font-size: 24px;
+}
+.sign_done {
+    width: 158px;
+    padding: 7px;
+    margin-left: 189px
+}
 @media screen and (max-width:339px) and (min-width:280px) {
     .tabcontent .title .aval_bal, .AdvBal {
         margin-top: -207px;
@@ -656,8 +739,16 @@ element.style {
         text-align: center;
         margin-left: 0px;
     }
-
-    .tabcontent .title h1 {
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 28px;
+    }
+    .img_center_moda {
+        margin-left: 113px;
+        margin-bottom: 24px;
+    }
+        .tabcontent .title h1 {
         font-weight: 800;
         font-size: 20px;
     }
@@ -1007,6 +1098,7 @@ button {
     .ttle-mall {
         margin-top: 4px;
     }
+    
 }
 /*End bassbook css*/
 @media screen and (max-width:400px) and (min-width:340px) {
@@ -1048,7 +1140,8 @@ button {
 }
 @media screen and (max-width:500px) and (min-width:401px)
 {
-    .modal-header-passbooK {
+    .modal-header-passbooK 
+    {
         padding: 15px;
         border-bottom: 1px solid #e5e5e5;
         background-color: #3EB2FD;
@@ -1195,25 +1288,23 @@ button {
 
     .img-mall {
         width: 54%;
-        margin-left: 146px;
+        margin-left: 99px;
     }
-
 
     .progress {
         overflow: hidden;
         height: 24px;
-        width: 492px;
+        width: 315px;
         background-color: #ccc;
         border-radius: 17px;
         -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
         box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
         margin-bottom: 138px;
         margin-top: 28px;
-        margin-left: 74px;
+        margin-left: 38px;
     }
-
     .title-launch {
-        margin-left: 222px;
+        margin-left: 92px;
     }
 
     .btn-signup {
@@ -1222,10 +1313,870 @@ button {
 
     .md-button {
         width: 146px;
-        margin-left: 224px;
+        margin-left: 125px;
     }
 }
-@media screen (max-width:991px) and (min-width:768px) {
+@media screen (max-width:860px) and (min-width:768px) {
+    
+}
+/*Signup bassbook css*/
+@media screen and (max-width:339px) and (min-width:280px) {
+
+    .modal_signup {
+        margin-left: 1px;
+        width: 315px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 202px;
+        margin-top: -103px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 123px;
+        margin-top: -26px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 4px;
+        margin: 10px;
+        font-size: 9px;
+    }
+
+    .rqst_video {
+        margin-left: 17px;
+        font-size: 10px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -6px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: 36px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 39px;
+        color: #877e7fa3;
+        font-size: 15px;
+    }
+
+    .EAN {
+        margin-left: 30px;
+    }
+
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+        margin-top: -26px;
+        margin-left: 52px;
+    }
+
+    .forrates {
+        margin-left: 75px;
+        margin-top: -23px;
+    }
+}
+
+    @media screen and (max-width:400px) and (min-width:340px) {
+        .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 264px;
+        margin-top: -103px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+        .new_img {
+            height: 64px;
+            margin-left: 152px;
+            margin-top: -26px;
+        }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 4px;
+        margin: 10px;
+        font-size: 9px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 10px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -6px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: -84px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 92px;
+        color: #877e7fa3;
+        font-size: 15px;
+    }
+
+    .EAN {
+        margin-left: 78px;
+    }
+
+        .modal-content {
+            width: 326px;
+            margin-left: 22px;
+        }
+        .forsize {
+            margin-left: -75px
+        }
+
+        .fondash {
+            margin-top: -27px;
+            margin-left: 84px;
+        }
+
+        .forrates {
+            margin-top: -21px;
+            margin-left: 130px;
+        }
+        .img_center_moda {
+            margin-left: 143px;
+            margin-bottom: 25px;
+        }
+        .redmil_title {
+            font-weight: bold;
+            color: #13223c;
+            font-size: 24px;
+            margin-left: 34px;
+        }
+        .sign_done {
+            width: 158px;
+            padding: 7px;
+            margin-left: 35px;
+        }
+}
+@media screen and (max-width:500px) and (min-width:401px) {
+    .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 332px;
+        margin-top: -103px;
+    }
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 181px;
+        margin-top: -26px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 4px;
+        margin: 10px;
+        font-size: 9px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 10px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -36px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: -119px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 58px;
+        color: #877e7fa3;
+        font-size: 22px;
+    }
+    .EAN {
+        margin-left: 78px;
+    }
+
+    .modal-content {
+        width: 392px;
+        margin-left: -10px;
+    }
+    .otp_text {
+        margin-left: -105px;
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+    }
+    #Otpforaadhar {
+        height: 40px;
+        width: 95%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -102px;
+    }
+    .eop_text {
+        margin-left: -43px;
+    }
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+        margin-top: -27px;
+        margin-left: 84px;
+    }
+
+    .forrates {
+        margin-top: -21px;
+        margin-left: 130px;
+    }
+
+    .img_center_moda {
+        margin-left: 143px;
+        margin-bottom: 25px;
+    }
+
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 24px;
+        margin-left: 34px;
+    }
+
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 35px;
+    }
+}
+@media screen and (max-width:600px) and (min-width:501px) {
+    .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 332px;
+        margin-top: -103px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 181px;
+        margin-top: -26px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 4px;
+        margin: 10px;
+        font-size: 9px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 10px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -36px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -15px;
+        right: -212px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 58px;
+        color: #877e7fa3;
+        font-size: 22px;
+    }
+
+    .EAN {
+        margin-left: 78px;
+    }
+
+    .modal-content {
+        width: 431px;
+        margin-left: 40px;
+    }
+
+    .otp_text {
+        margin-left: -105px;
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    #Otpforaadhar {
+        height: 40px;
+        width: 95%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -102px;
+    }
+
+    .eop_text {
+        margin-left: -43px;
+    }
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+        margin-top: -27px;
+        margin-left: 84px;
+    }
+
+    .forrates {
+        margin-top: -21px;
+        margin-left: 130px;
+    }
+
+    .img_center_moda {
+        margin-left: 143px;
+        margin-bottom: 25px;
+    }
+
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 24px;
+        margin-left: 34px;
+    }
+
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 35px;
+    }
+}
+@media screen and (max-width:700px) and (min-width:601px) {
+    .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 332px;
+        margin-top: -103px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 181px;
+        margin-top: -26px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 4px;
+        margin: 10px;
+        font-size: 9px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 10px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -36px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: -302px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 58px;
+        color: #877e7fa3;
+        font-size: 22px;
+    }
+
+    .EAN {
+        margin-left: 78px;
+    }
+
+    .modal-content {
+        width: 421px;
+        margin-left: 144px;
+    }
+
+    .otp_text {
+        margin-left: -105px;
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    #Otpforaadhar {
+        height: 40px;
+        width: 95%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -102px;
+    }
+
+    .eop_text {
+        margin-left: -43px;
+    }
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+        margin-top: -27px;
+        margin-left: 84px;
+    }
+
+    .forrates {
+        margin-top: -21px;
+        margin-left: 130px;
+    }
+
+    .img_center_moda {
+        margin-left: 143px;
+        margin-bottom: 25px;
+    }
+
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 24px;
+        margin-left: 34px;
+    }
+
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 35px;
+    }
+    }
+@media screen and (max-width:767px) and (min-width:701px) 
+{
+    .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 332px;
+        margin-top: -103px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 181px;
+        margin-top: -26px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 4px;
+        margin: 10px;
+        font-size: 9px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 10px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -36px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: -332px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 58px;
+        color: #877e7fa3;
+        font-size: 22px;
+    }
+
+    .EAN {
+        margin-left: 78px;
+    }
+
+    .modal-content {
+        width: 421px;
+        margin-left: 168px;
+    
+    }
+
+    .otp_text {
+        margin-left: -105px;
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    #Otpforaadhar {
+        height: 40px;
+        width: 95%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -102px;
+    }
+
+    .eop_text {
+        margin-left: -43px;
+    }
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+        margin-top: -27px;
+        margin-left: 84px;
+    }
+
+    .forrates {
+        margin-top: -21px;
+        margin-left: 130px;
+    }
+
+    .img_center_moda {
+        margin-left: 143px;
+        margin-bottom: 25px;
+    }
+
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 24px;
+        margin-left: 34px;
+    }
+
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 35px;
+    }
+}
+
+@media screen and (max-width:839px) and (min-width:768px)
+{
+    .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 69px;
+        margin-top: 16px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 51px;
+        margin-top: 2px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 8px;
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 14px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -36px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: -332px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 62px;
+        color: #877e7fa3;
+        font-size: 26px;
+    
+    }
+
+    .EAN {
+        margin-left: 96px;
+    }
+
+    .modal-content {
+        width: 421px;
+        margin-left: 168px;
+        margin-top: 172px;
+    }
+
+    .otp_text {
+        margin-left: -105px;
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    #Otpforaadhar {
+        height: 40px;
+        width: 95%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -102px;
+    }
+
+    .eop_text {
+        margin-left: -43px;
+    }
     .modal-header-passbooK {
         padding: 15px;
         border-bottom: 1px solid #e5e5e5;
@@ -1233,43 +2184,66 @@ button {
         margin-top: 0px;
     }
 
-    .modal-content {
-        margin-top: 117px;
-    }
+   
 
     .img-mall {
-        width: 54%;
-        margin-left: 146px;
+        width: 27%;
+        margin-left: 90px;
     }
 
 
     .progress {
         overflow: hidden;
         height: 24px;
-        width: 492px;
+        width: 377px;
         background-color: #ccc;
         border-radius: 17px;
         -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
         box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
         margin-bottom: 138px;
-        margin-top: 28px;
-        margin-left: 74px;
+        margin-top: 3px;
     }
 
     .title-launch {
-        margin-left: 222px;
+        margin-left: 113px;
     }
-
     .btn-signup {
         margin-left: 114px;
     }
 
     .md-button {
         width: 146px;
-        margin-left: 224px;
+        margin-left: 137px;
+    }
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+    /*    margin-top: 1px;*/
+        margin-left: 26px;
+    }
+
+    .forsize {
+        margin-left: -36px;
+    }
+
+    .img_center_moda {
+        margin-left: 191px;
+        margin-bottom: 25px;
+    }
+
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 20px;
+        margin-left: 3px;
+    }
+
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 138px;
     }
 }
-/*@media screen and (max-width:900px) and (min-width:801px) {
-}*/
-/*@media screen and (max-width:988px) and (min-width:901px) {
-}*/
+  

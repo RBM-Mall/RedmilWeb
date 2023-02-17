@@ -14,10 +14,11 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-@*<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">*@
+
 <link href="~/css/Passbook2.css" rel="stylesheet" />
-@*<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css"/>*@
-@*<link rel="stylesheet" href="~/css/businessReport.css" />*@
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">*@
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 @*<link rel="stylesheet" href="/resources/demos/style.css">*@
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
@@ -54,63 +55,73 @@
         <div class="item_info pull-left">
             <button class="button-21" onclick="CashWallets()">Download Wallet Statement</button>
 
-            @{
-                if ((string)TempData["Kycstatus"] == "1")
-                {
-                    <button class="button-21 tb" onclick="document.location.href='/Passbook/TranferToBank';">Transfer Cash To Bank</button>
-                }
-                else
-                {
-                    <button class="button-21 tb1" onclick="LaunchYourMall()">Transfer Cash To Bank</button>
-                }
-            }
-            <button class="button-21" onclick="document.location.href='/Passbook/RechargeyourCash';">Recharge Your Cash</button>
-        </div>
-        <div class="cashBal">
-            @*<p class="aval_bal pull-right" style="margin-left: 88rem;font-size:20px;"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>*@
-            <p class="aval_bal pull-right"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
-        </div>
-    </div>
-    <hr />
-    <div class="row" id="cashde">
-        <h3>Recent Transaction Details</h3>
-        <div style="overflow-x:auto;">
-            @*<table id="example" class="table table-striped table-bordered table-responsive">*@
-            <table id="example" class="table table-striped table-bordered table-responsive dataTable no-footer" style="display:nowrap;width:100%">
-                <thead>
-                    <tr>
-                        @*<th>Id</th>*@
-                        <th>Logo</th>
-                        <th>Title</th>
-                        <th>Client</th>
-                        <th>Credit/Debit</th>
-                        <th>Commission</th>
-                        <th>TdsAmount</th>
-                        <th>Amount</th>
-                        <th>GstAmount</th>
-                        <th>Balance(₹)</th>
-                        <th style="color:navy">Detail</th>
-                    </tr>
-                </thead>
-                <tbody id="output">
-                    @foreach (var item in Model)
+                @{
+                    if (@Accessor.HttpContext.Session.GetString("Kycstatus").Trim() == "1")
                     {
+                        <button class="button-21 tb" onclick="document.location.href='/Passbook/TranferToBank';">Transfer Cash To Bank</button>
+                    }
+                    else
+                    {
+                        <button class="button-21 tb1" onclick="LaunchYourMall()">Transfer Cash To Bank</button>
+                    }
+                }
+                <button class="button-21" onclick="document.location.href='/Passbook/RechargeyourCash';" />Recharge Your Cash</button>
+            </div>
+            <div class="cashBal">
+                
+                <p class="aval_bal pull-right"><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="txt_Ab">₹@Model.FirstOrDefault().New_bal</u></b></p>
+            </div>
+        </div>
+        <hr />
+        <div class="row" id="cashde">
+            <h3>Recent Transaction Details</h3>
+        @{
+
+            if (Model.FirstOrDefault().CreditDebit == "")
+            {
+
+            }
+            else
+            {
+                
+            <div style="overflow-x:auto;">
+                @*<table id="example" class="table table-striped table-bordered table-responsive">*@
+            <table id="example" class="table table-striped table-bordered table-responsive dataTable no-footer" class="display nowrap" style="width:100%">
+                    <thead>
                         <tr>
-                            @* <td class="ItemId">@item.Id</td>*@
-                            <td class="img1">
-                                <img src="@item.Img" style="width:62px">
-                            </td>
-                            <td>@item.Title</td>
-                            <td>@item.Client</td>
-                            <td>@item.CreditDebit</td>
-                            @if (@item.CreditDebit == "Debit")
-                            {
-                                <td> </td>
-                            }
-                            else
-                            {
-                                <td>@item.Amount</td>
-                            }
+                            @*<th>Id</th>*@
+                            <th>Logo</th>
+                            <th>Title</th>
+                            <th>Client</th>
+                            <th>Credit/Debit</th>
+                            <th>Commission</th>
+                            <th>TdsAmount</th>
+                            <th>Amount</th>
+                            <th>GstAmount</th>
+                            <th>Balance(₹)</th>
+                            <th style="color:navy">Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="output">
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                @* <td class="ItemId">@item.Id</td>*@
+                                <td class="img1">
+                                    <img src="@item.Img" style="width:62px">
+                                </td>
+                                <td>@item.Title</td>
+                                <td>@item.Client</td>
+                                <td>@item.CreditDebit</td>
+                                @if (@item.CreditDebit == "Debit")
+                                {
+                                    <td> </td>
+                                }
+                                else
+                                {
+                                    <td>@item.Amount</td>
+                                }
 
                             <td>@item.TdsAmount</td>
 
@@ -133,10 +144,12 @@
 
                 </tbody>
 
-            </table>
+                </table>
+            </div>
+            }
+        }
         </div>
     </div>
-</div>
 
 <div id="AdvancePayout" class="tabcontent">
     <div class="title">
@@ -144,97 +157,119 @@
         <div class="item_info pull-left">
             <button class="button-21" onclick="AdvancedsDetail()">Download Wallet Statement</button>
 
+            </div>
+            <div class="cashBal">
+                
+                <p class="aval_bal pull-right available_balance advance_bal"><b>AVAILABLE BALANCE :&nbsp;</b><b class="bold_balance"><u class="txt_Ab bold_balance">₹@Model.FirstOrDefault().New_bal</u></b></p>
+            </div>
         </div>
-        <div class="cashBal">
-            @*<p class="advAval_bal pull-right" style="margin-left: 88rem;font-size:20px; "><b>AVAILABLE BALANCE :&nbsp;</b><b style="float: right; color: green"><u class="text_val">₹@Model.FirstOrDefault().AdvanceWalletResponsePassbookDetailsModel.FirstOrDefault().New_bal</u></b></p>*@
-            <p class="aval_bal pull-right available_balance advance_bal"><b>AVAILABLE BALANCE :&nbsp;</b><b class="bold_balance"><u class="txt_Ab bold_balance">₹@Model.FirstOrDefault().New_bal</u></b></p>
-        </div>
-    </div>
 
     <hr />
     <div class="row" id="advcne">
 
-        <h3>Recent Transaction Details</h3>
-        <div style="overflow-x:auto;">
-            <table id="example1" class="table table-striped table-bordered table-responsive">
-                <thead>
-                    <tr>
-                        <th>Logo</th>
-                        <th>Title</th>
-                        <th>Client</th>
-                        <th>Amount(₹)</th>
-                        <th>Balance(₹)</th>
-                        <th>Detail</th>
-                    </tr>
-                </thead>
-                <tbody id="output">
-                    @foreach (var i in Model.FirstOrDefault().AdvanceWalletResponsePassbookDetailsModel)
-                    {
-                        <tr>
+            <h3>Recent Transaction Details</h3>
+        @{
+            if (Model.FirstOrDefault().CreditDebit == "")
+            {
 
-                            @if (!string.IsNullOrEmpty(@i.Title))
+            }
+            else
+            {
+                <div style="overflow-x:auto;">
+                    <table id="example1" class="table table-striped table-bordered table-responsive dataTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Logo</th>
+                                <th>Title</th>
+                                <th>Client</th>
+                                <th>Amount(₹)</th>
+                                <th>Balance(₹)</th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody id="output">
+                            @foreach (var i in Model.FirstOrDefault().AdvanceWalletResponsePassbookDetailsModel)
                             {
-                                <td class="img1">
-                                    <img src="@i.Img">
-                                </td>
-                                <td>@i.Title</td>
-                                <td>@i.Client</td>
-                                <td>@i.Amount1</td>
-                                <td><b>@i.New_bal</b></td>
-                                <td><button class="button-21" onclick="ButtonADDetail(@i.Id)" type="button" value="@i.Detail">Detail</button></td>
-                            }
-                            else
-                            {
-                                <td hidden>NA</td>
-                            }
-                        </tr>
-                    }
+                                <tr>
 
-                </tbody>
+                                    @if (!string.IsNullOrEmpty(@i.Title))
+                                    {
+                                        <td class="img1">
+                                            <img src="@i.Img">
+                                        </td>
+                                        <td>@i.Title</td>
+                                        <td>@i.Client</td>
+                                        <td>@i.Amount1</td>
+                                        <td><b>@i.New_bal</b></td>
+                                        <td><button class="button-21" onclick="ButtonADDetail(@i.Id)" type="button" value="@i.Detail">Detail</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td hidden>NA</td>
+                                    }
+                                </tr>
+                            }
 
-            </table>
+                        </tbody>
+
+                    </table>
+                </div>
+            }
+          
+            }
+           
         </div>
     </div>
-</div>
-<div id="RewardWallet" class="tabcontent">
-    <div class="title">
-        <h1>Reward Wallet Passbook</h1>
-        <div class="item_info">
-            <div class="row">
-                <div class="col-sm-6">
+    <div id="RewardWallet" class="tabcontent">
+        <div class="title">
+            <h1>Reward Wallet Passbook</h1>
+            <div class="item_info">
+                <div class="row">
+                    <div class="col-sm-6">
 
                     <button class="button-21" onclick="Rewardspont()">Download Business Passbook Statement</button><br />
                     <button class="button-21 tablinkss" onclick="openCity(event, 'London')">Business Reward Passbook</button>
 
-                </div>
-                <div class="col-sm-6">
-                    <div class="tabs">
-                        <button class="button-21 dps" onclick="RERewardspont()">Download R&E Passbook Statement </button><br />
-                        <button class="button-21 tablinkss rrp" onclick="openCity(event, 'Paris')">R&E Reward Passbook</button>
+                    </div>
+                    <div class="col-sm-6">
+                    @{
+                       if (Model.FirstOrDefault().CreditDebit == "")
+                            {
 
+                            }
+                           else
+                           {
+                           <div class="tabs">
+                                <button class="button-21 dps" onclick="RERewardspont()">Download R&E Passbook Statement </button><br />
+                                <button class="button-21 tablinkss rrp" onclick="openCity(event, 'Paris')">R&E Reward Passbook</button>
+
+                            </div>
+                            }
+                        
+                    }
+                        
                     </div>
                 </div>
-            </div>
 
-            <div class="row" id="londn">
-                <div id="London" class="tabcontents">
-                    <div style="overflow-x:auto;padding:20px;margin-top:40px;">
-                        <table id="BRewards" class="table table-striped table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Logo</th>
-                                    <th>Title</th>
-                                    <th>Client</th>
-                                    <th>Credit & Debited</th>
-                                    <th>Points</th>
-                                    <th>Balance(₹)</th>
-                                    <th>Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody id="output">
-                                @foreach (var i in Model.FirstOrDefault().BRewardDetailResponseModel)
-                                {
+                <div class="row" id="londn">
+                    <div id="London" class="tabcontents">
+                        <div style="overflow-x:auto;padding:20px;margin-top:40px;">
+                            <table id="BRewards" class="table table-striped table-bordered table-responsive" style="width:100%">
+                                <thead>
                                     <tr>
+                                        <th>Logo</th>
+                                        <th>Title</th>
+                                        <th>Client</th>
+                                        <th>Credit & Debited</th>
+                                        <th>Points</th>
+                                        <th>Balance(₹)</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="output">
+                                    @foreach (var i in Model.FirstOrDefault().BRewardDetailResponseModel)
+                                    {
+                                        <tr>
 
                                         @if (!string.IsNullOrEmpty(@i.Title))
                                         {
@@ -265,29 +300,29 @@
 
                             </tbody>
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row" id="peris">
-                <div id="Paris" class="tabcontents">
-                    <div style="overflow-x:auto; margin-top:40px;padding:20px;">
-                        <table id="RERewards" class="table table-striped table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Logo</th>
-                                    <th>Title</th>
-                                    <th>Client</th>
-                                    <th>Credit & Debited</th>
-                                    <th>Points</th>
-                                    <th>Balance(₹)</th>
-                                    <th>Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody id="output">
-                                @foreach (var i in Model.FirstOrDefault().RERewardResponseModel)
-                                {
+                <div class="row" id="peris">
+                    <div id="Paris" class="tabcontents">
+                        <div style="overflow-x:auto; margin-top:40px;padding:20px;">
+                            <table id="RERewards" class="table table-striped table-bordered table-responsive" style="width:100%">
+                                <thead>
                                     <tr>
+                                        <th>Logo</th>
+                                        <th>Title</th>
+                                        <th>Client</th>
+                                        <th>Credit & Debited</th>
+                                        <th>Points</th>
+                                        <th>Balance(₹)</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="output">
+                                    @foreach (var i in Model.FirstOrDefault().RERewardResponseModel)
+                                    {
+                                        <tr>
 
                                         @if (!string.IsNullOrEmpty(@i.Title))
                                         {
@@ -328,66 +363,71 @@
 
 </div>
 
-<input type="button" id="Detail" style="display:none" data-target="#Details" data-toggle="modal" />
-<div id="Details" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
-        <!-- Modal content-->
+    <input type="button" id="Detail" style="display:none" data-target="#Details" data-toggle="modal" />
+    <div id="Details" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-confirm modal_signup process_signup">
         <div class="modal-content">
-            <div class="modal-header modal-header-recharge">
-                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="text-align:center;"><b>Details</b></h4>
+            <div class="cross clse" aria-label="Close" data-dismiss="modal">
+                <button type="button" class="close design clse" data-dismiss="modal" aria-label="Close">
+                </button>
             </div>
-            <div class="modal-body" style="background-color:white;">
-                <div class="row div-recharge-img">
-                    <div class="col-sm-1">
-                    </div>
-                    <div class="col-sm-4 custom_img_size pay-img">
-                        <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="~/css/paymentimages/encrypted.png" class="enc_img" />
                     </div>
                     <div class="col-sm-4">
                     </div>
-                    <div class="col-sm-3 custom_img_size pay-img2">
-                        <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-
-                        <img src="~/css/paymentimages/redmillogo.jpg" class="img_center" style="width:82px;margin-left:47px;" />
+                        <img src="~/css/paymentimages/secure.png" class="sec_img" />
                     </div>
-                    <div class="col-sm-4"></div>
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+
+                            <img src="~/css/ImageLogo/redmil-new-logo2.png" class="new_img" />
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+
                 </div>
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
 
-                <div class="row">
-                    <div class="">
-
-                        <h3 id="DetailTitle" class="heading_details_modal titlecenter"></h3>
-                        <div class="title_data">
+                        <p style="" class="redmil_title">Redmil Business Mall</p>
+                    </div>
+                        <div class="col-sm-3"></div>
+                       
+                    </div>
+                    
+                    <div class="row">
+                        <div class="">
+                            
+                            <h3 id="DetailTitle" class="heading_details_modal titlecenter text-center" style="color: darkgrey" ></h3>
+                            <div class="title_data">
 
                             <img id="DetailLogo" class="img_center_moda" style="height:50px">
+                            </div>
                         </div>
-                    </div>
-                    <div class="inc inc_modal_body">
-                        <div class="controls">
+                        <div class="inc inc_modal_body">
+                            
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer div-pay-row">
-                <div class="row div-pay-row">
-                    <div class="col-sm-4 final-pay-button">
-
-                        <a href="~/Passbook/Passbook" type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton"><b>Done</b></a>
-                    </div>
-                    <div class="col-sm-4 final-cancel-button">
-                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                <div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                        <div class="col-sm-4 final-pay-button">
+                          
+                          @*  <a href="~/Passbook/Passbook" type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton"><b>Done</b></a>*@
+                          <button class="btn btn-info text-center clse sign_done" >Done</button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <!--Modal For RewardPoint Passbook-->
 <div class="row">
@@ -396,37 +436,35 @@
         <div id="RewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
 
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report Reward for Wallet</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12">
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>From Date:</b></label>
-                                <p><input type="text" id="datepicker" placeholder="From Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download from date</label>
-                                <label id="fordate"></label>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>To Date:</b></label>
-                                <p> <input type="text" id="datepicker1" placeholder="To Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download till date</label>
-                                <label id="todate"></label>
-                            </div>
+                    <div class="modal-content">
+                    <div class="modal-header modal-header-passbooK">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report Reward for Wallet</h4>
                         </div>
-                        <div class="modal-footer div-pay-row">
-                            <div class="row div-pay-row">
-                                <div class="col-sm-4 final-pay-button">
-                                    <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="Downloadreport()"><b>Download Report</b></button>
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>From Date:</b></label>
+                                    <p><input type="text" id="datepicker" placeholder="From Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download from date</label>
+                                    <label id="fordate"></label>
                                 </div>
-                                <div class="col-sm-4 final-cancel-button">
-                                    <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>To Date:</b></label>
+                                    <p> <input type="text" id="datepicker1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download till date</label>
+                                    <label id="todate"></label>
                                 </div>
                             </div>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 final-pay-button">
+                                    <button type="button" class="btnpassbook-CPD btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="Downloadreport()"><b>Download Report</b></button>
+                                </div>
+                                  
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
                 </div>
             </div>
@@ -441,38 +479,36 @@
         <div id="RERewardPoints" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
 
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for Refer & Earn Wallet</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12">
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>From Date:</b></label>
-                                <p><input type="text" id="datepickerRe" placeholder="From Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download from date</label>
-                                <label id="Refordate"></label>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>To Date:</b></label>
-                                <p> <input type="text" id="datepickerRe1" placeholder="To Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download till date</label>
-                                <label id="Retodate"></label>
-                            </div>
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-passbooK">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for Refer & Earn Wallet</h4>
                         </div>
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>From Date:</b></label>
+                                    <p><input type="text" id="datepickerRe" placeholder="From Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download from date</label>
+                                    <label id="Refordate"></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>To Date:</b></label>
+                                    <p> <input type="text" id="datepickerRe1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download till date</label>
+                                    <label id="Retodate"></label>
+                                </div>
+                            </div>
 
-                        <div class="modal-footer div-pay-row">
-                            <div class="row div-pay-row">
-                                <div class="col-sm-4 final-pay-button">
-                                    <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    
+                                  <div class="col-sm-4 final-pay-button">
+                                    <button type="button" class="btnpassbook-CPD btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="REDownloadreport()"><b>Download Report</b></button>
                                 </div>
-                                <div class="col-sm-4 final-cancel-button">
-                                    <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
             </div>
@@ -486,34 +522,34 @@
         <div id="Advanced" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
 
-                <div class="modal-content">
-                    <div class="modal-header modal-header-recharge">
-                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for AdvanceWallet</h4>
-                    </div>
-
-                    <div class="modal-body" style="background-color:white;">
-                        <div class="col-sm-12">
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>From Date:</b></label>
-                                <p><input type="text" id="datepickerAd" placeholder="From Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download from date</label>
-                                <label id="Adfordate"></label>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>To Date:</b></label>
-                                <p> <input type="text" id="datepickerAd1" placeholder="To Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download till date</label>
-                                <label id="Adtodate"></label>
-                            </div>
+                    <div class="modal-content">
+                    <div class="modal-header modal-header-passbooK">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download Report for AdvanceWallet</h4>
                         </div>
-                        <div class="modal-footer div-pay-row">
-                            <div class="row div-pay-row">
-                                <div class="col-sm-4 final-pay-button">
-                                    <button type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="AdvancedDownloadreport()"><b>Download Report</b></button>
+
+                        <div class="modal-body" style="background-color:white;">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>From Date:</b></label>
+                                    <p><input type="text" id="datepickerAd" placeholder="From Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download from date</label>
+                                    <label id="Adfordate"></label>
                                 </div>
-                                <div class="col-sm-4 final-cancel-button">
-                                    <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>To Date:</b></label>
+                                    <p> <input type="text" id="datepickerAd1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download till date</label>
+                                    <label id="Adtodate"></label>
+                                </div>
+                            </div>
+                            <div class="modal-footer div-pay-row">
+                                <div class="row div-pay-row">
+                                    
+                                     <div class="col-sm-4 final-pay-button">
+                                    <button type="button" class="btnpassbook-CPD btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="AdvancedDownloadreport()"><b>Download Report</b></button>
+                                </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -522,7 +558,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -531,46 +566,43 @@
 
 
 
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="Cashs" style="display:none" data-target="#Cash" data-toggle="modal" />
-        <div id="Cash" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header-passbooK">
-                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download report for CashWallet</h4>
-                    </div>
-                    <div class="modal-body" style="background-color:white;">
-
-                        <div class="col-sm-12">
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>From Date:</b></label>
-                                <p><input type="text" id="datepickerCd" placeholder="From Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download from date</label>
-                                <label id="Cdfordate"></label>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="dateLbl1"><b>To Date:</b></label>
-                                <p> <input type="text" id="datepickerCd1" placeholder="To Date" class="form-control" style="width:82%"></p>
-                                <label class="dateLbl1">Transaction to be download till date</label>
-                                <label id="Cdtodate"></label>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="Cashs" style="display:none" data-target="#Cash" data-toggle="modal" />
+            <div id="Cash" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+              
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header-passbooK">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Download report for CashWallet</h4>
+                           </div>
+                        <div class="modal-body" style="background-color:white;">
+                           
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>From Date:</b></label>
+                                    <p><input type="text" id="datepickerCd" placeholder="From Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download from date</label>
+                                    <label id="Cdfordate"></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="dateLbl1"><b>To Date:</b></label>
+                                    <p> <input type="text" id="datepickerCd1" placeholder="To Date" class="form-control" style="width:82%"></p>
+                                    <label class="dateLbl1">Transaction to be download till date</label>
+                                    <label id="Cdtodate"></label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br />
-                    <br />
-                    <div class="div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" class="btnpassbook-CPD btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                        <br />
+                        <br />
+                        <div class="div-pay-row">
+                            <div class="row div-pay-row">
+                                <div class="col-sm-4 final-pay-button">
+                                    <button type="button" class="btnpassbook-CPD btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" id="DetailButton" onclick="CashWallet()"><b>Download Report</b></button>
+                                </div>
+                              
                             </div>
-                            @* <div class="col-sm-4 final-cancel-button">
-                            <button type="button" style="margin-left:300px;margin-top: 30px;
-                            }" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
-                            </div>*@
-                        </div>
                     </div>
                 </div>
             </div>
@@ -620,7 +652,7 @@
             <div id="LaunchYourModal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
 
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content modal-for-lauch">
                         <div class="modal-header-passbooK">
                             <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
                             <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700"> Launch Your Mall</h4>
@@ -740,54 +772,55 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="button" id="Addharverificaions" style="display:none" data-target="#Addharverificaion" data-toggle="modal" />
             <div id="Addharverificaion" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width:32%;margin-top: 172px;margin-left: 600px;">
-                    <div class="modal-content" style="height: 600px;color:black;">
+                <div class="modal-dialog modal-confirm modal_signup process_signup" >
+                    <div class="modal-content" >
                         <div class="cross clse" aria-label="Close" data-dismiss="modal">
                             <button type="button" class="close design clse" data-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
-                        @*<span aria-hidden="true" id="refresh" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>*@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <img src="~/css/paymentimages/encrypted.png" style="width: 121px;" />
+                                    <img src="~/css/paymentimages/encrypted.png" class="enc_img" />
                                 </div>
                                 <div class="col-sm-4">
                                 </div>
                                 <div class="col-sm-4">
-                                    <img src="~/css/paymentimages/secure.png" style="width:87px; margin-left: 84px;margin-top: 15px;" />
+                                    <img src="~/css/paymentimages/secure.png"  class="sec_img" />
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4"></div>
                                     <div class="col-sm-4">
 
-                                        <img src="~/css/ImageLogo/redmil-new-logo2.png" style="height:80px;margin-left:58px;margin-top:2px" />
+                                        <img src="~/css/ImageLogo/redmil-new-logo2.png"  class="new_img" />
                                     </div>
-                                    <div class="col-sm-4" style="margin-top:20px;"></div>
+                                    <div class="col-sm-4"></div>
                                 </div>
 
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="cart" style="background: gainsboro;">
+                                    <div class="cart">
                                         <div class="cart-body">
-                                            <p>As per Hon'ble RBI guidelines,Kyc is mandatory for Business Associates to Earn Commision/Payouts.Kindly keep soft copy of PAN Card, Aadhaar Card and Bank proof ready</p>
+                                            <p class="Passbook_content">As per Hon'ble RBI guidelines,Kyc is mandatory for Business Associates to Earn Commision/Payouts.Kindly keep soft copy of PAN Card, Aadhaar Card and Bank proof ready. </p>
                                         </div>
                                     </div><br />
-                                    <b style="margin-left: 70px;margin-top: 29px;">Mobile Number Not Linked?<a>Request Video KYC</a></b>
-                                    <h2 style="margin-left:90px;color:#877e7fa3;" class="Aov">Aadhaar OTP Verification</h2>
-                                    <div class="col-sm-12 AVerfication" style="margin-left:154px;">
+                                    <b  class="rqst_video">Mobile Number Not Linked?<a>Request Video KYC</a></b>
+                                    <h2 class="Aov">Aadhaar OTP Verification</h2>
+                                    <div class="col-sm-12 AVerfication" >
+                                        <div class="EAN">
                                         <b>Enter Your Aadhaar Number</b><br>
-                                        <input type="text" style="height: 40px;width: 58%;background: gainsboro;border: -11px solid #bc3434;border-radius: 1px solid;border-radius: 53px; margin-left:-56px;" id="Txt_Aadhar" maxLength="19"><br>
+                                        <input type="text" style="" id="Txt_Aadhar" class="input_Aadhar" maxLength="19"><br>
                                         <span class="txt_Aadhars"></span>
 
                                         <h6><b>Free Verification Attemps:- 1</b></h6>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-12 EnterOtp" style="margin-left: 158px;margin-top: 28px;display:none">
-                                        <b style="margin-left: 36px;">Enter Your OTP</b><br>
-                                        <input type="text" id="Otpforaadhar" style="height: 40px;width: 58%;background: gainsboro;border: -11px solid #bc3434;border-radius: 1px solid;border-radius: 53px; margin-left:-56px;"><br>
-                                        <h5 style="margin-left: -72px;color: black;font-weight: bold;" class="otp_text">An OTP Send to your Aadhaar linked Mobile Number</h5>
-                                        <span style="font-size: 17px;margin-left:29px;"><b id="otpsend" style="color: rgb(255, 0, 0);"></b></span>
+                                    <div class="col-sm-12 EnterOtp" style="">
+                                        <b style="" class="eop_text">Enter Your OTP</b><br>
+                                        <input type="text"  id="Otpforaadhar" style="" ><br>
+                                        <h5 style="" class="otp_text">An OTP Send to your Aadhaar linked Mobile Number</h5>
+                                        <span style="" class="spa_text"><b id="otpsend" style="color: rgb(255, 0, 0);"></b></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 hidesentotp">
@@ -797,7 +830,7 @@
                                 </div>
                                 <div class="col-sm-12 opensendotp" style="display:none">
                                     <div class="modal-footer">
-                                        <input type="button" class="button-21 ConfirmOtpforaadhar" style="margin-top: 4px; margin-left: -2px;" value="ConfirmOTP">
+                                        <input type="button" class="button-21 ConfirmOtpforaadhar" style="" value="ConfirmOTP">
                                     </div>
                                 </div>
                             </div>
@@ -1228,7 +1261,7 @@
 
                         }
                         else {
-                            $(".inc").append('<div class="controls">\<div clss="row" style="margin-left:85px;"><div class="col-sm-5 forsize" style=""><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class="col-sm-6"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>');
+                            $(".inc").append('<div clss="row" style="margin-left:85px;"><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1 fondash"><label for= "fname">:</label></div><div class="col-sm-6 forrates"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>');
                         }
 
                     }
@@ -1276,7 +1309,7 @@
 
                         }
                         else {
-                            $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                            $(".inc").append('<dic class="row"><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1 fondash"><label for= "fname">:</label></div><div class= "col-sm-6 forrates"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>');
                         }
 
                     }
@@ -1320,7 +1353,7 @@
 
                         }
                         else {
-                            $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                            $(".inc").append('<div class="row"><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1 fondash"><label for= "fname">:</label></div><div class= "col-sm-6 forrates"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
                         }
 
                     }
@@ -1375,7 +1408,7 @@
 
                             }
                             else {
-                                $(".inc").append('<div class="controls">\<div class="col-sm-12" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1"><label for= "fname">:</label></div><div class= "col-sm-5"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
+                                $(".inc").append('<div class="row" ><div class="col-sm-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1 fondash"><label for= "fname">:</label></div><div class= "col-sm-6 forrates"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>\</div> ');
                             }
 
                         }
@@ -1898,26 +1931,7 @@
 </script>
 
 <script>
-    $(function () {
-        $("#datepicker").datepicker();
-        $("#datepicker1").datepicker();
-    });
-    $(function () {
-        $("#datepickerRe").datepicker();
-        $("#datepickerRe1").datepicker();
-    });
-    $(function () {
-        $("#datepickerAd").datepicker();
-        $("#datepickerAd1").datepicker();
-    });
-    $(function () {
-        $("#datepickerCd").datepicker();
-        $("#datepickerCd1").datepicker();
-    });
-    $(function () {
-        $("#datepickerDob").datepicker();
-
-    });
+  
     $(function () {
         $("#Txt_Aadhar").keypress(function (e) {
             var keyCode = e.keyCode || e.which;
@@ -2119,8 +2133,24 @@
     document.getElementById("defaultOpen").click();
 
 </script>
+<script>
+ $(document).ready(function(){
+        $("#datepicker").datepicker();
+        $("#datepicker1").datepicker();
+        $("#datepickerRe").datepicker();
+        $("#datepickerRe1").datepicker();
+        $("#datepickerAd").datepicker();
+        $("#datepickerAd1").datepicker();
+        $("#datepickerCd").datepicker();
+        $("#datepickerCd1").datepicker();
+        $("#datepickerDob").datepicker();
+    });
+  
+</script>
 
 
+
+@*<script src="~/datepicker/datepicker.js"></script>*@
 @*<script src="https://code.jquery.com/jquery-3.5.1.js" asp-append-version="true"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>

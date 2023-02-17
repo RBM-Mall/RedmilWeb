@@ -7601,6 +7601,7 @@ button.close {
     margin-left: 228px;
     border: none;
     margin-top: 20px;
+    padding:2px;
 }
 
 @media (max-width: 767px) {
