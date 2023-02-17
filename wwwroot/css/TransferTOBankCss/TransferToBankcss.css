@@ -1,4 +1,8 @@
 ﻿
+td th {
+    vertical-align: top;
+    padding: 10px 20px;
+}
 .dmts {
     margin-top: 13px;
     text-align: center;
@@ -8,10 +12,24 @@
     width: 71%;
     margin-left: 14%;
 }
-
+.modal_footers {
+    margin-left: 10rem;
+}
+.modal_top {
+    margin-top: 94px;
+}
+.img-widthl {
+    width: 45%;
+    margin-left: 46%;
+}
+.img-widthn {
+    width: 88%;
+    margin-left: -7%;
+}
 .Amount_Credit {
     margin-left: 16rem;
 }
+
 
 .Arrow_img {
     height: 111px;
@@ -21,13 +39,16 @@
     margin-top: 28px;
     margin-left: 188px;
 }
+.madal_Account {
+margin-top:10%;
+}
 .modal_Transfer {
     background: aliceblue;
     height: 521px;
 }
 .modal_table {
     margin-top: 13%;
-    width: 103%;
+   /* width: 103%;*/
 }
 .Heading_Table {
     margin-top: -17%;
@@ -121,7 +142,9 @@
         font-size: 2rem;
         margin-left: 6rem;
     }
-
+.dataTables_filter {
+    display: none;
+}
 .button-21 {
     align-items: center;
     appearance: none;
@@ -190,6 +213,40 @@
     margin-top: 2rem;
     z-index: 1;
     margin-left: 5rem;
+}
+.button-MediaACC {
+    align-items: center;
+    /* appearance: none; */
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 1px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.3rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 7px 8px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    /* margin-right: 50px; */
+    /* float: right; */
+    margin-top: 2rem;
+    /* z-index: 1; */
+    margin-left: 1rem;
 }
 .lbl_Amount {
     margin-left: 5rem;
@@ -1302,4 +1359,144 @@
     .modal_dialog {
         margin-top: 167px;
     }
+}
+@media screen and (max-width: 600px) {
+   /* table {
+        width: 100%;
+    }*/
+
+        table td {
+            width: 50%;
+        }
+
+    table td {
+        max-width: 50%;
+    }
+}
+/*@media screen and (min-width: 401px) 
+{
+    .img-widthl {
+        width: 22%;
+        margin-left: 6%;
+    }
+    .img-widthn {
+        width: 39%;
+        margin-left: 51%;
+        margin-top: -37%;
+    }
+    .modal_top {
+        margin-top: 120px;
+        margin-left: -8px;
+        width: 86%;
+    }
+    .Account_Detail h4 {
+        font-size: 14px;
+    }
+        .Account_Detail {
+        margin-left: 7%;
+    }
+    .Account_Dash {
+        margin-top: -65%;
+        margin-left: 57%;
+    }
+
+        .Account_Dash h4 {
+            font-size: 1.5rem;
+        }
+    .Account_data {
+        margin-top: -68%;
+        margin-left: 63%;
+    }
+            .Account_data h4 {
+                font-size: 1.4rem;
+            }
+    }*/
+@media screen and (max-width: 340px) and (min-width:279px) {
+    .img-widthl {
+        width: 22%;
+        margin-left: 6%;
+    }
+
+    .img-widthn {
+        width: 39%;
+        margin-left: 51%;
+        margin-top: -37%;
+    }
+
+    .modal_top {
+        margin-top: 120px;
+        margin-left: -8px;
+        width: 86%;
+    }
+
+    .Account_Detail h4 {
+        font-size: 14px;
+    }
+
+    .Account_Detail {
+        margin-left: 7%;
+    }
+
+    .Account_Dash {
+        margin-top: -65%;
+        margin-left: 57%;
+    }
+
+        .Account_Dash h4 {
+            font-size: 1.5rem;
+        }
+
+    .Account_data {
+        margin-top: -65%;
+        margin-left: 63%;
+    }
+
+        .Account_data h4 {
+            font-size: 13px;
+        }
+
+}
+@media screen and (max-width: 541px) and (min-width:441px) 
+{
+    .img-widthl {
+        width: 18%;
+        margin-left: 6%;
+    }
+
+    .img-widthn {
+        width: 34%;
+        margin-left: 58%;
+        margin-top: -27%;
+    }
+
+    .modal_top {
+        margin-top: 94px;
+        width: 82%;
+    }
+
+    .Account_Detail h4 {
+        font-size: 14px;
+    }
+
+    .Account_Detail {
+        margin-left: 2%;
+    }
+
+    .Account_Dash {
+        margin-top: -49%;
+        margin-left: 48%;
+    }
+
+        .Account_Dash h4 {
+            font-size: 1.5rem;
+        }
+
+    .Account_data {
+        margin-top: -50%;
+        margin-left: 58%;
+    }
+
+        .Account_data h4 {
+            font-size: 1.5rem;
+        }
 }

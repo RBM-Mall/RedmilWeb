@@ -10,18 +10,20 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-@*<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />*@
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/rechargejs/recharge.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<srcipt src="jquery.redirect.js"></srcipt>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/css/transfertobankcss/transfertobankcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 <style>
     .form-control {
         display: block;
@@ -43,7 +45,7 @@
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
 
-    
+
     #exTab1 .tab-content {
         color: white;
         background-color: #428bca;
@@ -163,117 +165,117 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                                                                                      border-top: none;*/
-    }
 
-        .tabcontent .title {
-            text-align: center;
-            padding-bottom: 80px;
-        }
-
-            .tabcontent .title h1 {
-                font-weight: 800;
             }
 
-            .tabcontent .title .aval_bal, .cashBal {
-                margin-top: 20px;
+                .tabcontent .title {
+                    text-align: center;
+                    padding-bottom: 80px;
+                }
+
+                    .tabcontent .title h1 {
+                        font-weight: 800;
+                    }
+
+                    .tabcontent .title .aval_bal, .cashBal {
+                        margin-top: 20px;
+                    }
+
+                    .tabcontent .title .aval_bal, .AdvBal {
+                        margin-top: -30px;
+                    }
+
+                    .tabcontent .title .advAval_bal, .AdvBal {
+                        margin-top: -33px;
+                    }
+
+                .tabcontent .item_info {
+                    display: block;
+                    margin-top: 50px;
+                }
+
+                    .tabcontent .item_info button {
+                        align-items: center;
+                        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+                        background-size: calc(100% + 20px) calc(100% + 20px);
+                        border-radius: 100px;
+                        border-width: 0;
+                        color: #FFFFFF;
+                        cursor: pointer;
+                        display: inline-flex;
+                        font-family: CircularStd,sans-serif;
+                        font-size: 1.5rem;
+                        height: auto;
+                        justify-content: center;
+                        line-height: 1.5;
+                        padding: 6px 25px;
+                        position: relative;
+                        text-align: center;
+                        text-decoration: none;
+                        transition: background-color .2s,background-position .2s;
+                        user-select: none;
+                        margin-right: 24px;
+                        float: none;
+                        z-index: 1;
+                    }
+
+                .tabcontent .title .item_info .rewbtn {
+                    margin-left: 300px;
+                }
+
+                .tabcontent hr {
+                    margin: 93px 0 0 20px;
+                    padding: 10px;
+                }
+
+            hr {
+                border: none;
+                border-top: 1px dotted black;
+                color: #fff;
+                background-color: #fff;
+                height: 1px;
+                width: 100%;
             }
 
-            .tabcontent .title .aval_bal, .AdvBal {
-                margin-top: -30px;
-            }
-
-            .tabcontent .title .advAval_bal, .AdvBal {
-                margin-top: -33px;
-            }
-
-        .tabcontent .item_info {
-            display: block;
-            margin-top: 50px;
-        }
-
-            .tabcontent .item_info button {
-                align-items: center;
-                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-                background-size: calc(100% + 20px) calc(100% + 20px);
-                border-radius: 100px;
-                border-width: 0;
-                color: #FFFFFF;
-                cursor: pointer;
-                display: inline-flex;
-                font-family: CircularStd,sans-serif;
-                font-size: 1.5rem;
-                height: auto;
-                justify-content: center;
-                line-height: 1.5;
-                padding: 6px 25px;
-                position: relative;
+            .div-browse-plan {
+                margin-top: 15px;
                 text-align: center;
-                text-decoration: none;
-                transition: background-color .2s,background-position .2s;
-                user-select: none;
-                margin-right: 24px;
-                float: none;
-                z-index: 1;
+                padding-top: 20px;
             }
 
-        .tabcontent .title .item_info .rewbtn {
-            margin-left: 300px;
-        }
+            .div-plans-table {
+                background: white;
+                border-radius: 20px;
+                display: none;
+                height: 580px;
+                overflow: auto;
+            }
 
-        .tabcontent hr {
-            margin: 93px 0 0 20px;
-            padding: 10px;
-        }
+            .main-table-recharge {
+                height: 100%;
+                overflow: auto;
+                width: 100%;
+            }
 
-    hr {
-        border: none;
-        border-top: 1px dotted black;
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-        width: 100%;
-    }
+            .div-second-plan-head1 {
+                width: 12%;
+                padding: 7px 104px;
+            }
 
-    .div-browse-plan {
-        margin-top: 15px;
-        text-align: center;
-        padding-top: 20px;
-    }
+            .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
+                margin-right: -15px;
+                margin-left: -4px;
+            }
 
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 580px;
-        overflow: auto;
-    }
-
-    .main-table-recharge {
-        height: 100%;
-        overflow: auto;
-        width: 100%;
-    }
-
-    .div-second-plan-head1 {
-        width: 12%;
-        padding: 7px 104px;
-    }
-
-    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
-        margin-right: -15px;
-        margin-left: -4px;
-    }
-
-    .txt-input1 {
-        border-radius: 0;
-        height: 41px;
-        -moz-border-radius: 0;
-        -webkit-border-radius: 0;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 10px 10px 10px 5px;
-        /* border-bottom: 1px solid #ebebeb !important; */
+            .txt-input1 {
+                border-radius: 0;
+                height: 41px;
+                -moz-border-radius: 0;
+                -webkit-border-radius: 0;
+                font-size: 15px;
+                font-weight: 500;
+                padding: 10px 10px 10px 5px;
+                /* border-bottom: 1px solid #ebebeb !important; */
         /* border: none; */
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
@@ -290,17 +292,18 @@
         padding-top: -34px;
     }
 
-    
+
 
     .modal-footer {
-    border: none;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 13px;
-    /* padding-top: 250px; */
-    margin-top: -33px;
-    margin-left: -135px;
-}
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        /* padding-top: 250px; */
+        margin-top: -33px;
+        margin-left: -135px;
+    }
+
     .modal-confirm .btn {
         color: #fff;
         border-radius: 4px;
@@ -314,12 +317,12 @@
         font-weight: 700;
     }
 
-    .table {
+    /*.table {
         width: 49%;
         max-width: 14%;
-        /* margin-bottom: -420px; */
+        
         margin-top: -55px;
-    }
+    }*/
 
     ._2pHh, .btn-process-recharge3 {
         width: 59%;
@@ -351,12 +354,12 @@
         border-top: 1px solid #ddd;
     }
 
-    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    /*.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
         padding: 6px;
         line-height: -2.571429;
         /* vertical-align: top; */
         border-top: 0px solid #ddd;
-    }
+    }*/
 
     .verify {
         margin-left: 582px;
@@ -365,7 +368,13 @@
         margin-top: -10px;
         cursor: pointer;
     }
-   
+
+    .p_Verify_Face {
+        font-weight: 900;
+        text-align: center;
+        color: #2d385e;
+        font-size: 2rem;
+    }
 </style>
 <br />
 <div class="container-fluid" style="background:#ebebeb">
@@ -377,7 +386,7 @@
                         <div class="">
                             <div class="row">
                                 <div class="col-sm-7 col-xs-12 dmts">
-                                    <h3 class="padding-left-right-50 ttb" >Transfer To Bank</h3>
+                                    <h3 class="padding-left-right-50 ttb">Transfer To Bank</h3>
                                 </div>
                                 <div class="col-sm-5 col-xs-12 text-right">
                                     <div class="read-more padding-top-bottom-40">
@@ -394,23 +403,23 @@
     <div class="container" style="background-color:white;">
         <div class="row">
             <div class="bal_Right">
-            <div class="col-md-3 col-lg-3 col-sm-3">
-                <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" >
-            </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
-                <div class="Static_avail">
-                <p class="aval_bal"><b>Available :</b></p>
+                <div class="col-md-3 col-lg-3 col-sm-3">
+                    <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width">
                 </div>
+                <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
+                    <div class="Static_avail">
+                        <p class="aval_bal"><b>Available :</b></p>
+                    </div>
+                </div>
+                <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
+                    <div class="real_available">
+                        <p class="aval_bal "><label id="lblBalance">₹@Accessor.HttpContext.Session.GetString("Balance")</label></></p>
+                    </div>
+                </div>
+                @* <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
+                </div>*@
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
-                <div class="real_available">
-                    <p class="aval_bal "><label id="lblBalance">₹@Accessor.HttpContext.Session.GetString("Balance")</label></></p>
-                    </div>                
-            </div>
-            @* <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-            <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
-            </div>*@
-        </div>
         </div>
     </div>
     <br />
@@ -422,7 +431,7 @@
         <div class="row">
             <div class="col-sm-4 Ex_tab">
                 <div class="third-header">
-                    <div class="Container_wdth" >
+                    <div class="Container_wdth">
                         <div class="card ">
                             <img src="~/img/device biometric image/imps.jpg" class="btn-imps" />
                             <p>
@@ -439,7 +448,7 @@
                 <div class="third-header">
                     <div class="Container_wdth">
                         <div class="card ">
-                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG"  />
+                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
                             <p>
                                 <button class="btn btn-info btn_im">
                                     NEFT
@@ -452,7 +461,7 @@
             </div>
             <div class="col-sm-4 Ex_tab">
                 <div class="third-header">
-                    <div class="Container_wdth" >
+                    <div class="Container_wdth">
                         <div class="card">
                             <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
                             <p>
@@ -499,12 +508,12 @@
                         </div>
                         <div class="form-group">
                             <div class="Tinput">
-                            <label class="lbl_Amount">Amount </label> 
-                            <input type="text" class="form-control " id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" /><br />
-                            <span id="Text_Imps"></span>
-                            @* <span id="Text_Impss"></span>*@
-                            <input type="submit" class="button-Media"  onclick="impstransfer()" value="Transfer">
-                             </div>
+                                <label class="lbl_Amount">Amount </label>
+                                <input type="text" class="form-control " id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" /><br />
+                                <span id="Text_Imps"></span>
+                                @* <span id="Text_Impss"></span>*@
+                                <input type="submit" class="button-Media" onclick="impstransfer()" value="Transfer">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -512,7 +521,7 @@
         </div>
         <div class="col-sm-4">
             <div class="third-header">
-                <div class="container card" >
+                <div class="container card">
                     <div class="card-body card-input-im">
                         <div>
                             <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
@@ -536,13 +545,13 @@
                             </label>
                         </div>
                         <div class="form-group">
-                             <div class="Tinput">
-                            <label class="lbl_Amount">Amount </label> <input type="text" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
-                            <span id="Text_neft"></span>
-                            <button type="button" class="button-Media"  onclick="nefttransfer()">Transfer</button>
+                            <div class="Tinput">
+                                <label class="lbl_Amount">Amount </label> <input type="text" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
+                                <span id="Text_neft"></span>
+                                <button type="button" class="button-Media" onclick="nefttransfer()">Transfer</button>
 
-                            @* <span id="Text_nefts"></span>*@
-                        </div>
+                                @* <span id="Text_nefts"></span>*@
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -551,7 +560,7 @@
         </div>
         <div class="col-sm-4">
             <div class="third-header">
-                <div class="container card" >
+                <div class="container card">
                     <div class="card-body card-input-im">
                         <div class="">
                             <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
@@ -575,10 +584,10 @@
                             </label>
                         </div>
                         <div class="form-group">
-                             <div class="Tinput">
-                            <label class="lbl_Amount">Amount </label> <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" />
-                            <span id="Text_rtgs"></span>
-                            <button type="button" class="button-Media"  onclick="rtgstransfer()">Transfer</button>
+                            <div class="Tinput">
+                                <label class="lbl_Amount">Amount </label> <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" />
+                                <span id="Text_rtgs"></span>
+                                <button type="button" class="button-Media" onclick="rtgstransfer()">Transfer</button>
                             </div>
                             @* <span id="Text_rtgss"></span>*@
                         </div>
@@ -631,35 +640,35 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="ModalForPrceed" style="display:none" data-target="#ModalForData" data-toggle="modal" />
         <div id="ModalForData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal_dialog"  style="overflow:auto">
-                    <div class="modal-content">
+            <div class="modal-dialog modal_dialog" style="overflow:auto">
+                <div class="modal-content">
                     <div class="">
-                      <div class="modal-header ">
+                        <div class="modal-header ">
                             <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
                             <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Transfer To Bank</h4>
                         </div>
-                    <div class="modal-body modal_Transfer">
-                        <div  style="">
-                          <img src="~/img/device biometric image/wallet-to-bank gif.gif" class="img_Transfer" />
-                         
-                        </div>
-                        <div>
-                            <div class="Amount_Credit">
-                                <h3>Amount To be Credit :-  ₹<span id="ActualAmount"></span> </h3>
+                        <div class="modal-body modal_Transfer">
+                            <div style="">
+                                <img src="~/img/device biometric image/wallet-to-bank gif.gif" class="img_Transfer" />
+
                             </div>
+                            <div>
+                                <div class="Amount_Credit">
+                                    <h3>Amount To be Credit :-  ₹<span id="ActualAmount"></span> </h3>
+                                </div>
 
 
-                            <img src="~/img/device biometric image/down-arrow.png" class="Arrow_img" />
+                                <img src="~/img/device biometric image/down-arrow.png" class="Arrow_img" />
                                 <input type="submit" class="button-21 Trannsfer_val " value="Procced To Transfer" data-dismiss="modal" onclick="GetMultiAccountDetail()" />
 
-                        </div>
+                            </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="button-21 Trannsfer_val " data-dismiss="modal">
-                                <b>Do It Later</b>
-                            </button>
+                            <div class="modal-footer">
+                                <button type="button" class="button-21 Trannsfer_val " data-dismiss="modal">
+                                    <b>Do It Later</b>
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                 </div>
@@ -670,180 +679,231 @@
 
 <!--Modal For Bank Detail-->
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="ModalFobandetail" style="display:none" data-target="#ModalFobandetails" data-toggle="modal" />
         <div id="ModalFobandetails" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto">
-            <div class="modal-dialog" >
-                <div class="modal-content modal_table" >
-                    
+           @* <div class="modal-dialog">
+                <div class="modal-content">
                     <div class="modal-header ">
-                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Transfer To Bank</h4>
-                        </div>
-                    @*<div class="modal-body">
-
-                        <h3>Primary Account</h3>
-                        <table id="PrimaryAccount" class="table table-hover table-responsive">
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Choose Bank</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                        <div class="col-sm-6">
+                        <div class="Heading_Table"><h3>Primary Account</h3><hr /></div><br />
+                        <table id="PrimaryAccount" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%" >
                             <thead>
-                                <tr style="white-space:nowrap;">
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Account No</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Ifsc</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Beni Name</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1" style="margin-left: 62px;"><h4 style="">Action</h4></div>
-                                    </th>
+                                <tr>
+                                    <th>Account No</th>
+                                    <th>Ifsc</th>
+                                    <th>Beni Name</th>
+                                    <th>BankID</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="primaryoutput" style="text-align:center;">
+                            <tbody>
                                 <tr>
                                     <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
                                     <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
                                     <td>@Accessor.HttpContext.Session.GetString("Name")</td>
-                                    <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
-                                    <td></td>
-                                    <td style="margin-top:3px;margin-left:120px;width:163px" data-dismiss="modal" class="btn-process-recharge3  btn-amount-bind2 btn_bank btn-amount-bind1 forprime">Pay With This Bank</td>
+                                    <td >@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
+                                    <td><button class="button-Media forprime" type="button">Transfer Now</button></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <h3>Additional</h3>
-                        <table id="bankdetail" class="table table-hover table-responsive">
-                            <thead>
-                                <tr style="white-space:nowrap;">
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Account No</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Ifsc</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Beni Name</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Bank Name </h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style=""> Action </h4></div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbloutputs" style="text-align:center;">
-                            </tbody>
-                        </table>
-
-                        <div class="modal-footer">
-                            <button type="button" class="button-21 addacount" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top: -213px;">
-                                <b>Add Bank Account </b>
-                            </button>
                         </div>
-                    </div>*@
-
-                    <div class="modal-body modal_table">
-                        <div class="Heading_Table"><h3>Primary Account</h3><hr /></div><br />
-                        <table class="table table-striped" id="PrimaryAccount">
+                            <div class="col-sm-6"></div>
+                            </div>
+                            <div class="row">
+                         <div class="col-sm-6">
+                        <div class="Heading_Table1"><h3>Additional Account</h3><hr /></div>
+                        <table id="bankdetail" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Account No</th>
-                                    <th>Ifsc</th>
-                                    <th>Beni Name</th>
-                                    <th></th>
-                                  @*  <th>Action</th>*@
-                                </tr>
-                            </thead>
-                            <tbody id="primaryoutput">
-                                <tr>
-                                     <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
-                                    <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
-                                    <td>@Accessor.HttpContext.Session.GetString("Name")</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
-                                    <td data-dismiss="modal" class="button-Media forprime" style="margin-left: 145px;">Pay With This Bank</td>
-                                </tr>
-                         
-                            </tbody>
-                        </table>
-                        <div class="Heading_Table1"><h3>Additional</h3><hr /></div>
-                         <table id="bankdetail" class="table table-hover table-responsive table-striped">
-                            <thead>
-                                <tr style="white-space:nowrap;">
                                     <th>Account No</th>
                                     <th>Ifsc</th>
                                     <th>Beni Name</th>
                                     <th>Bank Name</th>
-                                    @*<th>Action</th>*@
+                                    <th>BankId</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbloutputs" style="text-align:center;">
+                            <tbody id="tbloutputs">
                             </tbody>
                         </table>
+                        </div>
+                        <div class="col-sm-6"></div>
+                         </div>
                     </div>
 
                     <!-- Modal footer -->
-                     <div class="modal-footer ">
+                    <div class="modal-footer">
+                        <button type="button" class="button-21 addacount" data-dismiss="modal">
+                            <b>Add Bank Account </b>
+                        </button>
+                    </div>
+
+                </div>
+            </div>   *@
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content madal_Account" >
+
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <h3 class="modal-title" style="font-weight: 900; text-align: center;">Choose Bank -- </h3>
+                    <div class="col-sm-5 col-xs-12 pull-right">
+                        <div class="read-more">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>  
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="1selectDevice">
+                  
+                    <p class="p_Verify_Face">Primary Account</p>
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                        <div class="Account_Detail">
+                                <div class=""><h3></h3><hr /></div><br />
+                                <table id="PrimaryAccount" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Account No</th>
+                                            <th>Ifsc</th>
+                                            <th>Beni Name</th>
+                                            <th style="display:none">BankID</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
+                                            <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
+                                            <td>@Accessor.HttpContext.Session.GetString("Name")</td>
+                                            <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
+                                            <td><button class="button-MediaACC forprime" type="button" data-dismiss="modal">Transfer Now</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                      
+                   
+                    <p class="p_Verify_Face">ADDITATIONAL ACCOUNT</p>
+                    <hr />
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                        <table id="bankdetail" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Account No</th>
+                                    <th>Ifsc</th>
+                                    <th>Beni Name</th>
+                                    <th>Bank Name</th>
+                                    <th style="display:none">BankId</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbloutputs">
+                            </tbody>
+                        </table>
+                   </div>
+                   <div class="row">
+                       <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="modal_footers">
                             <button type="button" class="button-21 addacount" data-dismiss="modal">
                                 <b>Add Bank Account </b>
                             </button>
                         </div>
-                    @*<div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>*@
+                         </div>
+                         <div class="col-sm-6 col-md-6 col-lg-6">
 
-                </div>
+                        <div class="modal_footers">
+                        <button type="button" class="button-21" data-dismiss="modal">
+                            <b>Pending Approval </b>
+                        </button>
+                    </div>
+                        </div>
+               
+                   </div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
+
 
 
 <!--Modal For Show Bank Detail in Connfirm-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalForbankdetailConfirm" style="display:none" data-target="#ModalForbankdetailConfirms" data-toggle="modal" style="overflow:auto" />
-        <div id="ModalForbankdetailConfirms" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="margin-top:89px;margin-left:582px">
+        <input type="button" id="ModalForbankdetailConfirm"  data-target="#ModalForbankdetailConfirms" data-toggle="modal"  />
+        <div id="ModalForbankdetailConfirms" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto;">
+            <div class="modal-dialog" >
 
-                <div class="modal-content" style="height:637px;width:557px;color: black;padding:47px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;" onclick="closeconfirm()">×</span>
-                    </button>
-                    <div class="modal-body" style="margin-top: -37px;">
-                        <div class="row div-recharge-img">
-                            <div class="col-sm-4 custom_img_size pay-img">
-                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-width" style="height:100px;width:120px;">
+                <div class="modal-content modal_top">
+                    <div class="modal-header">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Confirm</h4>
+                        </div>
+                    <div class="modal-body">
+                        <div class="row ">
+                           
+                            <div class="col-sm-4 ">
+                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-widthl" >
                             </div>
                             <div class="col-sm-4">
                             </div>
-                            <div class="col-sm-4 custom_img_size pay-img2">
-                                <img src="~/img/device biometric image/npci.png" class="img-width" style="height:100px;width:100px;">
+                            <div class="col-sm-4">
+                                <img src="~/img/device biometric image/npci.png" class="img-widthn" >
                             </div>
                         </div>
-                        <div><h2 class="text-center" style="font-weight:600"> Cash-Out Confirmation </h2></div>
+                        <div><h3 class="text-center" style="font-weight:600"> Cash-Out Confirmation </h3></div>
                         <div>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-4">
+                                    <div class="Account_Detail">
                             <h3 style="display:none" id="BankId"></h3>
                             <h3 style="display:none" id="ServieId"></h3>
                             <h3 style="display:none" id="OpId"></h3>
-                            <h3>
-                                Benificiary Name :<span id="Bname"></span>
-                            </h3>
-                            <h3>Account No : <span id="Ac"></span></h3>
-                            <h3>IFSC Code: <span id="IFSC"></span></h3>
-                            <h3>Cash Wallet Debit :<label id="lblCashWalletDebit"></label></h3>
-                            <h3>Mode : <span id="Mode"></span></h3>
-                            <h3>Charges : <span id="Charges"></span></h3>
-                            <h3>Actual Account Credit : <span id="AAC"></span></h3>
-                        </div>
+                            <h4>Account No </h4>
+                            <h4>IFSC Code </h4>
+                            <h4>Cash Wallet Debit </h4>
+                            <h4>Mode  </h4>
+                            <h4>Charges</h4>
+                            <h4>Actual Account Credit</h4>
+                            <h4>Benificiary Name</h4>
+                            </div>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                    <div class="Account_Dash">
+                                <h4> : </h4>
+                                <h4> : </h4>
+                                <h4> : </h4>
+                                <h4> : </h4>
+                                <h4> : </h4>
+                                <h4> : </h4>
+                                <h4> : </h4>
+                            </div>
+                            </div>
+                           
+                                <div class="col-sm-4"> 
+                                     <div class="Account_data">
+                                    <h4 id="Ac"></h4>
+                                    <h4 id="IFSC"> </h4>
+                                    <h4 id="lblCashWalletDebit"></h4>
+                                    <h4 id="Mode"></h4>
+                                    <h4 id="Charges"></h4>
+                                    <h4 id="AAC"></h4>
+                                    <h4 id="Bname"></h4>
+                             </div>
+                             </div>
+
+                                <div class="col-sm-1"></div>
+                            </div> 
+                            </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" onclick="confirm()" style="width: 194px;margin-left: 46px;margin-top: -175px;">
+                            @*onclick="confirm()"*@
+                            <button type="button" class="button-21" data-dismiss="modal" >
                                 <b>Confirm </b>
                             </button>
                         </div>
@@ -857,8 +917,8 @@
 <!--Modal For Success Bank Detail-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalForSuccessBanks" style="display:none" data-target="#ModalForSuccessBank" data-toggle="modal"  />
-        <div id="ModalForSuccessBank" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+        <input type="button" id="ModalForSuccessBanks" style="display:none" data-target="#ModalForSuccessBank" data-toggle="modal" />
+        <div id="ModalForSuccessBank" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto;">
             <div class="modal-dialog modal-confirm" style="margin-top:89px;margin-left:582px">
 
                 <div class="modal-content" style="height:666px;width:557px;color: black;padding:19px;">
@@ -1295,7 +1355,7 @@
     var OpId;
     var Amount
     function impstransfer() {
-        
+
 
         Amount = $('#TextImps').val();
         ServiceId = $('#SID').text();
@@ -1326,7 +1386,7 @@
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
                         Mode = data.mode;
-                        
+
                         $('#TextImps').val("");
                         if (data.statuscode == "ERR") {
                             $("#ModalForErrorsss").trigger("click");
@@ -1345,7 +1405,7 @@
         }
     }
     function nefttransfer() {
-        
+
         Amount = $('#Textneft').val();
         ServiceId = $('#SID').text();
         OpId = $('#OID').text();
@@ -1372,7 +1432,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
                         Mode = data.mode;
@@ -1394,7 +1454,7 @@
 
     }
     function rtgstransfer() {
-        
+
         Amount = $('#Textrtgs').val();
         ServiceId = $('#SID').text();
         OpId = $('#OID').text();
@@ -1421,7 +1481,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         $('#Textrtgs').val("");
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
@@ -1445,7 +1505,7 @@
 
     //For Prim
     $("#PrimaryAccount").on('click', ".forprime", function () {
-        
+
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var BeniName = currentRow.find('td:eq(2)').text();
@@ -1465,7 +1525,7 @@
     });
     //For add
     $("#bankdetail").on('click', ".btn_bank", function () {
-        
+
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var Ifsc = currentRow.find('td:eq(1)').text();
@@ -1485,7 +1545,7 @@
     });
 
     function GetMultiAccountDetail() {
-        
+
         $.ajax({
             url: "/Passbook/MultiAcountDetail",
             //data: { 'Amount': Amount },
@@ -1497,10 +1557,10 @@
                 }
 
                 else if (data.statuscode == "ERR") {
-              
+
                     $("#ModalFobandetail").trigger("click");
-                        //$("#ErrorMessageModals").trigger("click");
-                        //$("#lblmsgErrorSc").text(data.message);
+                    //$("#ErrorMessageModals").trigger("click");
+                    //$("#lblmsgErrorSc").text(data.message);
                 }
                 else if (data.result == "UnExpectedStatusCode") {
                     window.location.href = data.url;
@@ -1510,7 +1570,7 @@
                 }
                 else {
                     debugger
-                    let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' data-dismiss='modal' button class='button-Media btn_bank'>" + 'Pay With This Bank' + "</button></td></tr>");
+                    let output = data.map(i => "<tr ><td>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' button class='button-Media btn_bank' data-dismiss='modal'>" + 'Transfer Now' + "</button></td></tr>");
                     $("#tbloutputs").html(output);
                     $("#ModalFobandetail").trigger("click");
                 }
@@ -1521,7 +1581,7 @@
 
     //For Confirm
     function confirm() {
-        
+
         var ModeId = $('#Mode').text();
         var BankId = $('#BankId').text();
         //var BankName = $('#CWD').text();
@@ -1537,7 +1597,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                
+
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1624,7 +1684,7 @@
         var data_uri;
         takeSnapShot = function () {
             Webcam.snap(function (data_uri) {
-                
+
                 document.getElementById('snapShot').innerHTML =
                     '<img src="' + data_uri + '" width="737px" height="466px" id="getimage"/>';
                 //Veryfyimage(data_uri);
@@ -1700,7 +1760,7 @@
     })
 
     $('.addacount').on('click', function () {
-        
+
 
         $("#AddAcounts").trigger("click");
 
@@ -1711,7 +1771,7 @@
 
         //function AddinBank(){
         //function foraddingAcount() {
-        
+
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -1775,7 +1835,7 @@
                     window.location.href = data.url;
                 }
                 else {
-                    
+
                     message = data.message;
                     if (data.statuscode == "ERR") {
                         //$('.close').click();
@@ -1829,7 +1889,7 @@
 
     $('.ConfirmAddAccount').on('click', function () {
 
-        
+
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -1898,7 +1958,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         if (data.statuscode == "ERR") {
                             $("#ErrorMessageModals").trigger("click");
                             $("#lblmsgErrorSc").text(data.message);
@@ -1943,7 +2003,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                
+
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1959,7 +2019,7 @@
 
                     }
                     else if (data.statuscode == "OSS") {
-                        
+
                         var timeLeft = 30;
                         var elem = document.getElementById('some_divss');
 
@@ -1995,7 +2055,7 @@
     }
     //For Validate Otp Confirm
     function ConfirmOtp() {
-        
+
         var Otp = $('#OtpforAf').val();
         if (Otp.trim() == "") {
             ('#SpanO').text('Please Enter Otp');
@@ -2017,7 +2077,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         if (data.statuscode == "TXN") {
                             $(".verify").hide();
                             $("#btnupload").hide();
@@ -2112,7 +2172,7 @@
 </script>
 <script type="text/javascript">
     function ValidateFileUpload() {
-        
+
         var fuData = document.getElementById('file');
         var FileUploadPath = fuData.value;
 
@@ -2157,9 +2217,9 @@
 </script>
 <script>
     $(function () {
-        
+
         $(".btPics").on('click', function () {
-            
+
             var files = $("#file").get(0).files;
             if (files.length == "0") {
                 $('#text_File').text('Please Select Any Picture');
@@ -2245,7 +2305,7 @@
                     processData: false, // Not to process data
                     data: fileData,
                     success: function (result, status, xhr) {
-                        
+
                         if (result.result == "EmptyResult") {
                             window.location.href = result.url;
                         }
@@ -2442,16 +2502,33 @@
     }
 
 
-     
+
 </script>
 <script>
-    //$(document).ready(function () {
 
+    //$(document).ready(function () {
     //    var table = $('#PrimaryAccount').DataTable({
-    //    rowReorder: {
-    //        selector: 'td:nth-child(2)'
-    //    },
-    //    responsive: true
-    //} )
+    //        rowReorder: {
+    //            selector: 'td:nth-child(2)'
+    //        },
+    //        responsive: true
+    //    });
+
+    //});
+
+
+    //$(document).ready(function () {
+    //    var table = $('#bankdetail').DataTable({
+    //        rowReorder: {
+    //            selector: 'td:nth-child(2)'
+    //        },
+
+    //        responsive: true
+    //    });
     //});
 </script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<srcipt src="jquery.redirect.js"></srcipt>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>

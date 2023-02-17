@@ -16,11 +16,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link href="~/css/Passbook2.css" rel="stylesheet" />
-@*<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">*@
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-@*<link rel="stylesheet" href="/resources/demos/style.css">*@
 <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet"/>
 <link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
@@ -1101,7 +1098,6 @@
 
 
     $('.finalConfirm').on('click', function () {
-          ;
 
         var VerifyPan = $('#txtPANNumber').val()
         var VerifyAccount = $('#Txt_Accounts').val()
@@ -1174,7 +1170,7 @@
 
     //Data Table
     $(document).ready(function () {
-
+            
         var table = $('#example').DataTable( {
         rowReorder: {
             selector: 'td:nth-child(2)'
@@ -1193,12 +1189,12 @@
         },
         responsive: true
     } );
-    var table3 = $('#RERewards').DataTable( {
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
+    //var table3 = $('#RERewards').DataTable( {
+    //    rowReorder: {
+    //        selector: 'td:nth-child(2)'
+    //    },
+    //    responsive: true
+    //} );
         //$('#example').DataTable();
         //$('#example1').DataTable();
         //$('#BRewards').DataTable();
@@ -2150,15 +2146,4 @@
     });
   
 </script>
-
-
-
-@*<script src="~/datepicker/datepicker.js"></script>*@
-@*<script src="https://code.jquery.com/jquery-3.5.1.js" asp-append-version="true"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>*@
-
-
-
 
