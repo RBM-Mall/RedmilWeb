@@ -1052,10 +1052,10 @@
                             <ul>
                                 <li><a href="">Terms &amp; Conditions</a></li>
                                 @*<li><p style="margin-left: -100px;cursor: pointer;" onclick="comingsoon()">Schedule of Charges</p></li>*@
-                                <li><p style="cursor: pointer;">Schedule of Charges</p></li>
+                                <li><a href="" style="cursor: pointer;">Schedule of Charges</a></li>
                                 <li><a href="">Privacy Policy</a></li>
                                 @*<li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>*@
-                                <li><p style="cursor: pointer;">Careers</p></li>
+                                <li style="cursor: pointer;"><a href="">Careers</a></li>
 
                             </ul>
                         </div>
@@ -1076,7 +1076,12 @@
                         <div class="widget contact-us">
                             <h3 class="widget-title">Corporate Office:</h3>
                             <ul>
-                                <li><i class="fa fa-home" aria-hidden="true"></i> Redmil Business Mall Headquarters,<br>2414, 4th floor, Tower A, The Corenthum towers, Sector 62, Noida, Uttar Pradesh-201301<br><br><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(+91) 81-91-92-93-94<br><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;info@redmil.in<br>
+                                <li>
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    Redmil Business Mall Headquarters,<br>2414, 4th floor, Tower A, The Corenthum towers, Sector 62, Noida, Uttar Pradesh-201301<br/>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(+91) 81-91-92-93-94<br/>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;info@redmil.in<br/>
+                                </li>
                             </ul>
 
                             <div class="footer-social-media">
@@ -1172,7 +1177,10 @@
                     dataType: 'json',
                     success: function (response) {
                         debugger;
-                        if (response.statuscode == "OSS") {
+                        if(response.result=="EmptyResult" || response.result=="RedirectToException"){
+                                        window.location.href = response.url;
+                                    }
+                        else if (response.statuscode == "OSS") {
                             var a = response.data;
                             var Mobile = $("#txtNumber").val();
 
@@ -1305,7 +1313,10 @@
                                 dataType: 'json',
                                 success: function (response) {
                                     debugger;
-                                    if (response.statuscode == "OSS") {
+                                    if(response.result=="EmptyResult" || response.result=="RedirectToException"){
+                                        window.location.href = response.url;
+                                    }
+                                    else if (response.statuscode == "OSS") {
                                         var a = response.data;
                                         var Mobile = $("#txtNumber").val();
 

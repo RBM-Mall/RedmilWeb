@@ -241,15 +241,13 @@ body {
     color: #999999;
 }
 
-.btn-process-recharge1 {
-    font-size: 16px;
-    padding: 15px 20px;
+/*.btn-process-recharge1 {
+    
 }
 
 .btn-process-recharge2 {
-    background: #3EB2FD;
-    color: #fff;
-}
+    
+}*/
 
 .btn-process-recharge3 {
     border-radius: 6px;
@@ -261,6 +259,12 @@ body {
     border-width: 0;
     font-weight: 600;
     height: 50px;
+    background: #3EB2FD;
+    color: #fff;
+    font-size: 16px;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
 }
 
     .btn-process-recharge3:hover {
@@ -379,7 +383,6 @@ nav.navbar.fixed-top {
 
 
 .btn-process-recharge3 {
-    cursor: pointer;
 }
 
 
@@ -450,28 +453,34 @@ nav.navbar.fixed-top {
 .modal-header-recharge {
     margin-top: 49px;
 }
+
 .inc_modal_body {
     margin-left: 13px;
     font-size: 18px;
     margin-top: 38px;
 }
+
 .img_center_modal {
     height: 98px;
     margin-left: 58px;
     margin-top: 20px
 }
+
 .img_center_modal_2 {
     height: 125px;
     margin-left: 220px;
     margin-top: 15px;
     width: auto;
 }
+
 .recharge_urchash_img {
     margin-left: 300px;
 }
+
 .recharge_urchash_img_1 {
     width: 237px;
 }
+
 .card_title_deposite {
     margin-top: 15px;
     text-align: center;
@@ -479,9 +488,11 @@ nav.navbar.fixed-top {
     font-weight: 600;
     font-size: 20px;
 }
+
 .card_title_deposite_1 {
     font-size: 22px;
 }
+
 .img_upload_image {
     width: 136px;
     margin-left: 236px
@@ -491,6 +502,7 @@ nav.navbar.fixed-top {
     width: 650px;
     margin-top: 171px;
 }
+
 .modal_deposite_transfer_header {
     height: 100%;
     width: 640px;
@@ -498,6 +510,7 @@ nav.navbar.fixed-top {
     padding: 31px;
     background-color: whitesmoke
 }
+
 .modal_deposite_transfer_close {
     padding-right: 3px;
     font-size: 25px;
@@ -517,10 +530,12 @@ nav.navbar.fixed-top {
 .modal_deposite_transfer_body {
     padding: 22px;
 }
+
 .modal_deposite_transfer_body_heading {
     font-size: 24px;
     font-weight: 600;
 }
+
 .modal_deposite_transfer_body_heading_2 {
     font-size: 14px;
 }
@@ -531,16 +546,20 @@ nav.navbar.fixed-top {
     height: 308px;
     width: 498px;
 }
-.btnLF{
-    font-size:20px;
+
+.btnLF {
+    font-size: 20px;
 }
+
 .suport_content {
     margin-left: 30px;
 }
+
 .suport_content_dropdown {
     margin-left: 30px;
-    width:50%;
+    width: 50%;
 }
+
 .support_content_modal {
     background-color: lightgray;
     border-style: double;
@@ -549,82 +568,1449 @@ nav.navbar.fixed-top {
     height: 500px;
 }
 
+.navbar1 {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
 
-    @media screen and (min-width: 900px) {
-        #navbar-toggle, #navbar-toggle[aria-expanded="true"] {
-            display: none;
+.p-new {
+    text-align: center;
+    font-size: 20px;
+}
+
+.btn-final {
+    display: block;
+    margin-left: 208px;
+    border-bottom: 42px;
+    width: 179px;
+    border-radius: 41px;
+    height: 41px;
+    font-size: 20px;
+    color: white;
+    border-color: white;
+    border-right: white;
+    border-left: white;
+    border-top: white;
+}
+
+.button_header {
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border-width: 0;
+    font-weight: 600;
+    height: 50px;
+    background: #fff;
+    color: #00baf2;
+    border: 1px solid white;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-color: white;
+    border-right: white;
+    border-left: white;
+    border-top: white;
+    border-bottom: white;
+}
+
+
+.operatori {
+    display: block;
+}
+
+.operatorspan {
+    font-size: 12px;
+    color: #00baf2;
+    text-align: right;
+    /* margin: -28px 1% 0px 0;*/
+    min-width: 35%;
+    right: 0;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: -48px;
+    margin-right: 84px;
+}
+
+
+    .operatorspan span {
+        display: block;
+        margin-top: -4px;
+    }
+
+.errorMsg {
+    font-size: 12px;
+    color: #f4605f;
+    padding-top: 1px;
+    padding-left: 60px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(#f44336, #730228);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selector {
+    width: 350px;
+}
+
+#selectField {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    background: rgb(255, 255, 255, 0.7);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+    #selectField img {
+        width: 12px;
+        transition: transform 0.5s;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+#list {
+    width: 100%;
+    background: rgb(255, 255, 255, 0.7);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.options {
+    width: 100%;
+    padding: 15px 0 15px 70px;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.my-img {
+    width: 25px;
+    position: absolute;
+    top: 12px;
+    left: 25px;
+}
+
+.options:hover {
+    background: rgb(255, 255, 255, 0.7);
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.img-li {
+    height: 40px;
+    margin-top: 15px;
+}
+
+.li-title {
+    font-size: 15px;
+}
+
+.div-browse-plan {
+    margin-top: 15px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.div-plans-table {
+    background: white;
+    border-radius: 20px;
+    display: none;
+    height: 580px;
+    overflow: auto;
+}
+
+.main-table-recharge {
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+.img-wallet-select {
+    height: 150px;
+    width: 200px;
+}
+
+.first-wallet {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.final-modal-popup {
+    width: 650px;
+}
+
+.row-fernchise-body {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1600px;
+    margin-top: 107px;
+    height: 636px;
+}
+
+.heading_page {
+    background-image: url('../css/Img/new_tech_11.png');
+    width: 100%;
+    font-weight: 700;
+    line-height: 5rem;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.heading_page_2 {
+    font-size: 36px;
+}
+
+.heading_div {
+    margin-top: 15px;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.select_franchise {
+    margin-left: 88px;
+    font-size: 18px;
+}
+
+.select_franchise_div {
+    padding-left: 34px;
+}
+
+.p_heading_franchise_1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.p_heading_franchise_2 {
+    font-size: 14px;
+}
+
+.img_Rates_And_Row {
+    width: 100%;
+    height: 475px;
+}
+
+.heading_wallet {
+    padding: 10px;
+    font-weight: 800;
+}
+
+.time_contact {
+    font-size: 22px;
+}
+
+.img_tag_bbps {
+    float: right;
+    height: 71px;
+    width: 77px;
+    margin-top: -31px;
+    margin-right: 10px;
+}
+
+.heading_tag_bbps {
+    margin-top: 15px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+
+
+@media screen and (min-width: 900px) {
+    #navbar-toggle, #navbar-toggle[aria-expanded="true"] {
+        display: none;
+    }
+
+        #navbar-menu,
+        #navbar-toggle[aria-expanded="true"] #navbar-menu {
+            visibility: visible;
+            opacity: 1;
+            position: static;
+            display: block;
+            height: 100%;
         }
 
-            #navbar-menu,
-            #navbar-toggle[aria-expanded="true"] #navbar-menu {
-                visibility: visible;
-                opacity: 1;
+            .navbar-links,
+            #navbar-toggle[aria-expanded="true"] #navbar-menu .navbar-links {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
                 position: static;
-                display: block;
+                flex-direction: row;
+                width: 100%;
                 height: 100%;
             }
-
-                .navbar-links,
-                #navbar-toggle[aria-expanded="true"] #navbar-menu .navbar-links {
-                    margin: 0;
-                    padding: 0;
-                    box-shadow: none;
-                    position: static;
-                    flex-direction: row;
-                    width: 100%;
-                    height: 100%;
-                }
+}
+/*Media Query Starts for Small Smartphone*/
+@media screen and (min-width:279px) and (max-width:339px) {
+    .main-head-recharge {
+        height: 410px;
+        width: auto;
+        background: #002970;
+        margin-top: 119px;
     }
-    /*Media Query Starts for Small Smartphone*/
-    @media screen and (min-width:279px) and (max-width:339px) {
-        .main-head-recharge {
-            height: 410px;
-            width: auto;
-            background: #002970;
-            margin-top: 119px;
+
+    .plan-description-amount {
+        margin-left: 20px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 10px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        /* margin-left: 60px;*/
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    .txt-input-text {
+        font-size: 11px;
+        width: 210px;
+    }
+
+    #operatorspan {
+        font-size: 10px;
+    }
+
+    /*.btn-process-recharge1 {
+        font-size: 14px;
+    }*/
+
+    btn-process-recharge3 {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .form-group-recharge {
+        margin-left: 13px;
+    }
+
+    .form-group-recharge-button {
+        margin-left: 40px;
+    }
+
+    .form-group-recharge .errorMsg {
+        font-size: 12px;
+        padding-top: 1px;
+        padding-left: 102px;
+        margin-left: 0px;
+    }
+
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
         }
 
-        .plan-description-amount {
-            margin-left: 20px;
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
         }
 
-        .block-recharge .p-recharge {
-            font-size: 10px;
-            padding-top: 20px;
+
+
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+    }
+
+    .img-wallet-select {
+        height: 120px;
+        width: 150px;
+    }
+
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    .pay-img2 {
+        margin-left: 68px;
+    }
+
+    .wallet-select {
+        /*display: inline-flex;*/
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 11px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 80px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: 0px;
+    }
+
+    .final-cancel-button {
+        margin-top: 9px;
+        margin-left: -105px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        /*     margin-left: 98px;
+       */
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    .final-modal-popup {
+        width: 283px;
+        margin-left: 14px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 0px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        font-weight: 500;
+        padding: 10px 10px 10px 5px;
+        border-bottom: 1px solid #ebebeb !important;
+        border: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-top: 22px;
+        margin-left: 30px;
+        height: 54px;
+        width: 225px;
+    }
+
+    .heading_customer_phone {
+        font-size: 18px;
+    }
+
+    .img_center_modal {
+        height: 80px;
+        margin-left: 112px;
+        margin-top: 20px;
+    }
+
+    .img_center_modal_2 {
+        height: 80px;
+        margin-left: 105px;
+        margin-top: 20px;
+    }
+
+    .inc_modal_body {
+        margin-left: 45px;
+        font-size: 11px;
+        margin-top: 38px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 20px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 135px;
+    }
+
+    .card_title_deposite {
+        font-size: 12px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 18px;
+    }
+
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 100px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 10px;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 50px;
+        /* float: right;*/
+        margin-top: 28px;
+        z-index: 1;
+    }
+
+    .img_upload_image {
+        width: 90px;
+        margin-left: 90px;
+    }
+
+    .modal_deposite_transfer_div {
+        background-color: gainsboro;
+        height: 657px;
+        width: 265px;
+        margin-top: -7px;
+        margin-left: 5px;
+    }
+
+    .modal_deposite_transfer_body_heading {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .modal_deposite_transfer_body_heading_2 {
+        font-size: 12px;
+    }
+
+    #DetailTitle {
+        font-size: 15px;
+    }
+
+    .btnLF {
+        font-size: 14px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url('../css/Img/new_tech_11.png');
+        width: 116%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 61px;
+        height: 119px;
+        margin-left: -20px;
+    }
+
+    .heading_page_2 {
+        font-size: 15px;
+    }
+
+    .heading_div {
+        font-size: 15px;
+    }
+
+    .select_franchise {
+        margin-left: 62px;
+        font-size: 11px;
+    }
+
+    .select_franchise_div {
+        padding-left: 156px;
+        font-size: 10px;
+    }
+
+    .p_heading_franchise_1 {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .p_heading_franchise_2 {
+        font-size: 10px;
+    }
+
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 15px;
+    }
+
+    .img-management {
+        height: 100px;
+    }
+
+    .time_contact {
+        font-size: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width:399px) and (min-width:340px) {
+    .main-head-recharge {
+        height: 411px;
+        width: auto;
+        background: #002970;
+        margin-top: 122px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 12px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-left: 60px;
+        padding-left: 0px;
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    /* .form-group-recharge {
+        margin-left: 91px;
+    }*/
+
+    .form-group-recharge .errorMsg {
+        font-size: 12px;
+        padding-top: 1px;
+        padding-left: 100px;
+        margin-left: 0px;
+    }
+
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
         }
 
-        .radiobtn-recharge-body {
-            /* margin-left: 60px;*/
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
         }
 
-        .radioRecharge {
-            display: inline-flex;
+
+
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+    }
+
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    .pay-img2 {
+        /*margin-left: 230px;*/
+        margin-left: 175px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 140px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 90px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: 5px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    .final-cancel-button {
+        /* margin-top: 9px;*/
+        margin-left: -42px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        margin-left: 65px;
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    .final-modal-popup {
+        width: 309px;
+        margin-left: 20px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 0px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+    }
+
+    .dmt-user-img {
+        margin-left: 110px;
+    }
+
+    .heading_customer_phone {
+        font-size: 19px;
+    }
+
+    .img_center_modal {
+        height: 80px;
+        margin-left: 130px;
+        margin-top: 20px;
+    }
+
+    .img_center_modal_2 {
+        height: 100px;
+        margin-left: 104px;
+        margin-top: 20px;
+    }
+
+    .inc_modal_body {
+        margin-left: 45px;
+        font-size: 14px;
+        margin-top: 38px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 20px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 135px;
+        margin-left: 39px;
+    }
+
+    .card_title_deposite {
+        font-size: 12px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 18px;
+    }
+
+    .button-21 {
+        font-size: 11px;
+    }
+
+    .img_upload_image {
+        width: 97px;
+        margin-left: 137px;
+    }
+
+    .modal_deposite_transfer_div {
+        background-color: gainsboro;
+        height: 657px;
+        width: 265px;
+        margin-top: -7px;
+        margin-left: 5px;
+    }
+
+    .modal_deposite_transfer_body_heading {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .modal_deposite_transfer_body_heading_2 {
+        font-size: 13px;
+    }
+
+    #DetailTitle {
+        font-size: 16px;
+    }
+
+    .btnLF {
+        font-size: 15px;
+    }
+
+    .img-wallet-select {
+        height: 95px;
+        width: 100px;
+    }
+
+    .heading_div {
+        font-size: 15px;
+    }
+
+    .txt-input-text {
+        font-size: 12px;
+        width: 210px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 110%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 40px 0;
+        height: 120px;
+        padding-top: 60px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 15px;
+    }
+
+    .heading_div {
+        font-size: 15px;
+    }
+
+    .select_franchise {
+        padding-left: 11px;
+        font-size: 11px;
+    }
+
+    .select_franchise_div {
+        padding-left: 156px;
+        font-size: 10px;
+    }
+
+    .p_heading_franchise_1 {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .p_heading_franchise_2 {
+        font-size: 10px;
+    }
+
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 18px;
+    }
+
+    .img-management {
+        height: 100px;
+    }
+
+    .dmt {
+        margin-top: 48px;
+        text-align: center;
+        margin-left: -117px;
+    }
+
+    .aval_bal_font {
+        font-size: 12px;
+        margin-top: 28px;
+    }
+
+    .formedia {
+        margin-left: 80px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width:419px) and (min-width:400px) {
+    .modal-header-recharge {
+        margin-top: 0px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+    }
+
+    .heading_customer_phone {
+        font-size: 19px;
+    }
+
+    .btnLF {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 549px) {
+    .pay-img2 {
+        margin-left: 285px;
+    }
+
+    .img_center_modal {
+        margin-left: 210px;
+    }
+
+    .img_center_modal_2 {
+        margin-left: 210px;
+    }
+
+    .inc_modal_body {
+        font-size: 16px;
+    }
+
+    .card_title_deposite {
+        font-size: 13px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 19px;
+    }
+
+    .button-21 {
+        font-size: 14px;
+    }
+
+    .img_upload_image {
+        width: 120px;
+        margin-left: 190px;
+    }
+
+    .modal_deposite_transfer_div {
+        background-color: gainsboro;
+        height: 657px;
+        width: 315px;
+        margin-top: -7px;
+        margin-left: 89px;
+    }
+
+    .modal_deposite_transfer_body_heading {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .modal_deposite_transfer_body_heading_2 {
+        font-size: 13px;
+    }
+
+    #DetailTitle {
+        font-size: 16px;
+    }
+
+    .btnLF {
+        font-size: 16px;
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .img-wallet-select {
+        height: 122px;
+        width: 138px;
+    }
+
+    .txt-input-text {
+        font-size: 13px;
+        width: 210px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 110%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 40px 0;
+        height: 120px;
+        padding-top: 60px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 17px;
+    }
+
+    .heading_div {
+        font-size: 16px;
+    }
+
+    .select_franchise {
+        padding-left: 46px;
+        font-size: 12px;
+    }
+
+
+    .select_franchise_div {
+        padding-left: 156px;
+        font-size: 10px;
+    }
+
+    .p_heading_franchise_1 {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .p_heading_franchise_2 {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width:630px) and (min-width:551px) {
+    .img-wallet-select {
+        height: 150px;
+        width: 160px;
+    }
+}
+
+@media screen and (max-width:450px) and (min-width:400px) {
+    .pay-img2 {
+        margin-left: 205px;
+    }
+}
+
+@media screen and (max-width:500px) and (min-width:451px) {
+    .pay-img2 {
+        margin-left: 245px;
+    }
+}
+
+@media screen and (max-width:500px) and (min-width:400px) {
+    .img_center_modal {
+        height: 80px;
+        margin-left: 172px;
+        margin-top: 20px;
+    }
+
+    .img_center_modal_2 {
+        height: 100px;
+        margin-left: 140px;
+        margin-top: 20px;
+    }
+
+    .inc_modal_body {
+        font-size: 15px;
+    }
+
+    .card_title_deposite {
+        font-size: 12px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 18px;
+    }
+
+    .button-21 {
+        font-size: 13px;
+    }
+
+    .img_upload_image {
+        width: 97px;
+        margin-left: 137px;
+    }
+
+    .modal_deposite_transfer_div {
+        background-color: gainsboro;
+        height: 657px;
+        width: 315px;
+        margin-top: -7px;
+        margin-left: 48px;
+    }
+
+    .modal_deposite_transfer_body_heading {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .modal_deposite_transfer_body_heading_2 {
+        font-size: 13px;
+    }
+
+    #DetailTitle {
+        font-size: 16px;
+    }
+
+    .btnLF {
+        font-size: 16px;
+    }
+
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .img-wallet-select {
+        height: 105px;
+        width: 120px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .txt-input-text {
+        font-size: 12px;
+        width: 210px;
+    }
+
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 110%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 40px 0;
+        height: 120px;
+        padding-top: 60px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 17px;
+    }
+
+    .heading_div {
+        font-size: 15px;
+    }
+
+    .select_franchise {
+        padding-left: 46px;
+        font-size: 12px;
+    }
+
+
+    .select_franchise_div {
+        padding-left: 156px;
+        font-size: 10px;
+    }
+
+    .p_heading_franchise_1 {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .p_heading_franchise_2 {
+        font-size: 10px;
+    }
+
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 19px;
+    }
+
+    .img-management {
+        height: 130px;
+    }
+}
+
+@media screen and (min-width:501px) and (max-width:600px) {
+
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 19px;
+    }
+
+    .img-management {
+        height: 140px;
+    }
+}
+
+@media screen and (min-width:601px) and (max-width:767px) {
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 20px;
+    }
+
+    .img-management {
+        height: 145px;
+    }
+}
+
+@media screen and (max-width:549px) and (min-width:423px) {
+    .modal-header-recharge {
+        margin-top: 0px;
+    }
+
+    .heading_customer_phone {
+        font-size: 20px;
+    }
+
+    .btnLF {
+        font-size: 16px;
+    }
+}
+/*For recharge Header*/
+@media screen and (max-width:550px) and (min-width:400px) {
+    .main-head-recharge {
+        height: 405px;
+        width: auto;
+        background: #002970;
+        margin-top: 84px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 12px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-left: 40px;
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    .form-group-recharge {
+        margin-left: 91px;
+    }
+
+        .form-group-recharge .errorMsg {
+            font-size: 12px;
+            padding-top: 1px;
+            padding-left: 146px;
+            margin-left: 0px;
         }
 
-        .txt-input-text {
-            font-size: 11px;
-            width: 210px;
+    .div-plans-table {
+        margin-top: 30px;
+    }
+
+        .div-plans-table .main-table-recharge .button_header {
+            font-size: 13px;
         }
 
-        #operatorspan {
-            font-size: 10px;
+        .div-plans-table .main-table-recharge .div-second-plan-head {
+            font-size: 13px;
         }
 
-        .btn-process-recharge1 {
-            font-size: 14px;
-        }
 
-        btn-process-recharge3 {
-            height: 40px;
-        }
 
-        .form-group-recharge {
-            margin-left: 13px;
-        }
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
+    }
 
-        .form-group-recharge-button {
-            margin-left: 40px;
-        }
+    .pay-img {
+        height: 100px;
+        width: 120px;
+    }
+
+    /*.pay-img2 {
+        margin-left: 230px;
+    }*/
+
+    .wallet-select {
+        display: inline-flex;
+    }
+
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+        /*margin-left: 91px;*/
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 150px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: 14px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        margin-left: 65px;
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    #operator-change {
+        font-size: 10px;
+    }
+
+    .dropdownDTH1 {
+        font-size: 12px;
+    }
+
+    .heading_customer_phone {
+        font-size: 21px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 96px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 135px;
+    }
+
+    .btnLF {
+        font-size: 16px;
+    }
+}
+/*Media Query End For Small Smartphones*/
+/*Media Query Starts For Large SmartPhones Here*/
+
+@media screen and (min-width:551px) and (max-width:768px) {
+    .modal-header-recharge {
+        margin-top: 0px;
+    }
+
+    .main-head-recharge {
+        height: 410px;
+        width: auto;
+        background: #002970;
+        margin-top: 84px;
+    }
+
+    .block-recharge .p-recharge {
+        font-size: 12px;
+        padding-top: 20px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-left: 60px;
+    }
+
+    .radioRecharge {
+        display: inline-flex;
+    }
+
+    .form-group-recharge {
+        margin-left: 91px;
+    }
 
         .form-group-recharge .errorMsg {
             font-size: 12px;
@@ -633,1446 +2019,933 @@ nav.navbar.fixed-top {
             margin-left: 0px;
         }
 
-        .div-plans-table {
-            margin-top: 30px;
-        }
-
-            .div-plans-table .main-table-recharge .button_header {
-                font-size: 13px;
-            }
-
-            .div-plans-table .main-table-recharge .div-second-plan-head {
-                font-size: 13px;
-            }
-
-
-
-        /*For Modal Popup*/
-        .div-recharge-img {
-            display: inline-flex;
-        }
-
-        .img-wallet-select {
-            height: 120px;
-            width: 150px;
-        }
-
-        .pay-img {
-            height: 100px;
-            width: 120px;
-        }
-
-        .pay-img2 {
-            margin-left: 68px;
-        }
-
-        .wallet-select {
-            /*display: inline-flex;*/
-        }
-
-        .first-wallet {
-            margin-left: 31px;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        /*Model Footer Button*/
-
-        .div-pay-row {
-            display: inline-flex;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 80px;
-        }
-
-        .final-pay-button {
-            width: 138px;
-            margin-left: 0px;
-        }
-
-        .final-cancel-button {
-            margin-top: 9px;
-            margin-left: -105px;
-        }
-
-        .btn-cancel-btn {
-            height: 50px;
-        }
-
-        #lblMainbal {
-            color: darkblue;
-        }
-
-        #lblAdbal {
-            color: darkblue;
-        }
-
-        #lblamount {
-            color: darkblue;
-        }
-
-        #butn-cancel {
-            /*     margin-left: 98px;
-       */
-            padding-right: 18px;
-        }
-
-        #navbar-header-button {
-            margin-right: 40px;
-        }
-
-        .final-modal-popup {
-            width: 283px;
-            margin-left: 14px;
-        }
-
-        .modal-header-recharge {
-            /*margin-top: 104px;*/
-            margin-top: 72px;
-        }
-
-        .dropdownDTH1 {
-            font-size: 12px;
-            border-radius: 0;
-            -moz-border-radius: 0;
-            -webkit-border-radius: 0;
-            font-weight: 500;
-            padding: 10px 10px 10px 5px;
-            border-bottom: 1px solid #ebebeb !important;
-            border: none;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            margin-top: 22px;
-            margin-left: 30px;
-            height: 54px;
-            width: 225px;
-        }
-
-        .heading_customer_phone {
-            font-size: 18px;
-        }
-
-        .img_center_modal {
-            height: 80px;
-            margin-left: 112px;
-            margin-top: 20px;
-        }
-
-        .img_center_modal_2 {
-            height: 80px;
-            margin-left: 105px;
-            margin-top: 20px;
-        }
-
-        .inc_modal_body {
-            margin-left: 45px;
-            font-size: 11px;
-            margin-top: 38px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 20px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 135px;
-        }
-
-        .card_title_deposite {
-            font-size: 12px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 18px;
-        }
-
-        .button-21 {
-            align-items: center;
-            appearance: none;
-            background-color: #3EB2FD;
-            background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-            background-size: calc(100% + 20px) calc(100% + 20px);
-            border-radius: 100px;
-            border-width: 0;
-            box-shadow: none;
-            box-sizing: border-box;
-            color: #FFFFFF;
-            cursor: pointer;
-            display: inline-flex;
-            font-family: CircularStd,sans-serif;
-            font-size: 10px;
-            height: auto;
-            justify-content: center;
-            line-height: 1.5;
-            padding: 6px 25px;
-            position: relative;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color .2s,background-position .2s;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: top;
-            white-space: nowrap;
-            margin-right: 50px;
-            /* float: right;*/
-            margin-top: 28px;
-            z-index: 1;
-        }
-
-        .img_upload_image {
-            width: 90px;
-            margin-left: 90px;
-        }
-
-        .modal_deposite_transfer_div {
-            background-color: gainsboro;
-            height: 657px;
-            width: 265px;
-            margin-top: -7px;
-            margin-left: 5px;
-        }
-
-        .modal_deposite_transfer_body_heading {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .modal_deposite_transfer_body_heading_2 {
-            font-size: 12px;
-        }
-
-        #DetailTitle {
-            font-size: 15px;
-        }
-
-        .btnLF {
-            font-size: 14px;
-        }
+    .div-plans-table {
+        margin-top: 30px;
     }
 
-
-
-
-
-
-
-
-    @media screen and (max-width:399px) and (min-width:340px) {
-        .main-head-recharge {
-            height: 411px;
-            width: auto;
-            background: #002970;
-            margin-top: 122px;
-        }
-
-        .block-recharge .p-recharge {
-            font-size: 12px;
-            padding-top: 20px;
-        }
-
-        .radiobtn-recharge-body {
-            margin-left: 60px;
-            padding-left: 0px;
-        }
-
-        .radioRecharge {
-            display: inline-flex;
-        }
-
-        /* .form-group-recharge {
-        margin-left: 91px;
-    }*/
-
-        .form-group-recharge .errorMsg {
-            font-size: 12px;
-            padding-top: 1px;
-            padding-left: 100px;
-            margin-left: 0px;
-        }
-
-        .div-plans-table {
-            margin-top: 30px;
-        }
-
-            .div-plans-table .main-table-recharge .button_header {
-                font-size: 13px;
-            }
-
-            .div-plans-table .main-table-recharge .div-second-plan-head {
-                font-size: 13px;
-            }
-
-
-
-        /*For Modal Popup*/
-        .div-recharge-img {
-            display: inline-flex;
-        }
-
-        .pay-img {
-            height: 100px;
-            width: 120px;
-        }
-
-        .pay-img2 {
-            /*margin-left: 230px;*/
-            margin-left: 175px;
-        }
-
-        .wallet-select {
-            display: inline-flex;
-        }
-
-        .first-wallet {
-            margin-left: 31px;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        /*Model Footer Button*/
-
-        .div-pay-row {
-            display: inline-flex;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 140px;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 90px;
-        }
-
-        .final-pay-button {
-            width: 138px;
-            margin-left: 5px;
-        }
-
-        .btn-cancel-btn {
-            height: 50px;
-        }
-
-        .final-cancel-button {
-            /* margin-top: 9px;*/
-            margin-left: -42px;
-        }
-
-        #lblMainbal {
-            color: darkblue;
-        }
-
-        #lblAdbal {
-            color: darkblue;
-        }
-
-        #lblamount {
-            color: darkblue;
-        }
-
-        #butn-cancel {
-            margin-left: 65px;
-            padding-right: 18px;
-        }
-
-        #navbar-header-button {
-            margin-right: 40px;
-        }
-
-        .final-modal-popup {
-            width: 309px;
-            margin-left: 20px;
-        }
-
-        .modal-header-recharge {
-            /*margin-top: 104px;*/
-            margin-top: 68px;
-        }
-
-        .dropdownDTH1 {
-            font-size: 12px;
-        }
-
-        .dmt-user-img {
-            margin-left: 110px;
-        }
-
-        .heading_customer_phone {
-            font-size: 19px;
-        }
-
-        .img_center_modal {
-            height: 80px;
-            margin-left: 130px;
-            margin-top: 20px;
-        }
-
-        .img_center_modal_2 {
-            height: 100px;
-            margin-left: 104px;
-            margin-top: 20px;
-        }
-
-        .inc_modal_body {
-            margin-left: 45px;
-            font-size: 14px;
-            margin-top: 38px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 20px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 135px;
-            margin-left: 39px;
-        }
-
-        .card_title_deposite {
-            font-size: 12px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 18px;
-        }
-
-        .button-21 {
-            font-size: 11px;
-        }
-
-        .img_upload_image {
-            width: 97px;
-            margin-left: 137px;
-        }
-
-        .modal_deposite_transfer_div {
-            background-color: gainsboro;
-            height: 657px;
-            width: 265px;
-            margin-top: -7px;
-            margin-left: 5px;
-        }
-
-        .modal_deposite_transfer_body_heading {
-            font-size: 17px;
-            font-weight: 600;
-        }
-
-        .modal_deposite_transfer_body_heading_2 {
+        .div-plans-table .main-table-recharge .button_header {
             font-size: 13px;
         }
 
-        #DetailTitle {
-            font-size: 16px;
-        }
-
-        .btnLF {
-            font-size: 15px;
-        }
-    }
-
-    @media screen and (max-width:419px) and (min-width:400px) {
-        .modal-header-recharge {
-            /*margin-top: 104px;*/
-            margin-top: 70px;
-        }
-
-        .dropdownDTH1 {
-            font-size: 12px;
-        }
-
-        .heading_customer_phone {
-            font-size: 19px;
-        }
-
-        .btnLF {
-            font-size: 16px;
-        }
-    }
-
-    @media screen and (min-width: 501px) and (max-width: 548px) {
-        .pay-img2 {
-            margin-left: 285px;
-        }
-
-        .img_center_modal {
-            margin-left: 210px;
-        }
-
-        .img_center_modal_2 {
-            margin-left: 210px;
-        }
-
-        .inc_modal_body {
-            font-size: 16px;
-        }
-
-        .card_title_deposite {
+        .div-plans-table .main-table-recharge .div-second-plan-head {
             font-size: 13px;
         }
 
-        .card_title_deposite_1 {
-            font-size: 19px;
-        }
 
-        .button-21 {
-            font-size: 14px;
-        }
 
-        .img_upload_image {
-            width: 120px;
-            margin-left: 190px;
-        }
-
-        .modal_deposite_transfer_div {
-            background-color: gainsboro;
-            height: 657px;
-            width: 315px;
-            margin-top: -7px;
-            margin-left: 89px;
-        }
-
-        .modal_deposite_transfer_body_heading {
-            font-size: 17px;
-            font-weight: 600;
-        }
-
-        .modal_deposite_transfer_body_heading_2 {
-            font-size: 13px;
-        }
-
-        #DetailTitle {
-            font-size: 16px;
-        }
-
-        .btnLF {
-            font-size: 16px;
-        }
+    /*For Modal Popup*/
+    .div-recharge-img {
+        display: inline-flex;
     }
 
-    @media screen and (max-width:500px) and (min-width:400px) {
-        .pay-img2 {
-            margin-left: 285px;
-        }
-
-        .img_center_modal {
-            height: 80px;
-            margin-left: 172px;
-            margin-top: 20px;
-        }
-
-        .img_center_modal_2 {
-            height: 100px;
-            margin-left: 140px;
-            margin-top: 20px;
-        }
-
-        .inc_modal_body {
-            font-size: 15px;
-        }
-
-        .card_title_deposite {
-            font-size: 12px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 18px;
-        }
-
-        .button-21 {
-            font-size: 13px;
-        }
-
-        .img_upload_image {
-            width: 97px;
-            margin-left: 137px;
-        }
-
-        .modal_deposite_transfer_div {
-            background-color: gainsboro;
-            height: 657px;
-            width: 315px;
-            margin-top: -7px;
-            margin-left: 48px;
-        }
-
-        .modal_deposite_transfer_body_heading {
-            font-size: 17px;
-            font-weight: 600;
-        }
-
-        .modal_deposite_transfer_body_heading_2 {
-            font-size: 13px;
-        }
-
-        #DetailTitle {
-            font-size: 16px;
-        }
-
-        .btnLF {
-            font-size: 16px;
-        }
+    .pay-img {
+        height: 100px;
+        width: 120px;
     }
 
-
-    @media screen and (max-width:549px) and (min-width:423px) {
-        .modal-header-recharge {
-            /*margin-top: 67px;*/
-            margin-top: 70px;
-        }
-
-        .heading_customer_phone {
-            font-size: 20px;
-        }
-
-        .btnLF {
-            font-size: 16px;
-        }
-    }
-    /*For recharge Header*/
-    @media screen and (max-width:550px) and (min-width:400px) {
-        .main-head-recharge {
-            height: 405px;
-            width: auto;
-            background: #002970;
-            margin-top: 84px;
-        }
-
-        .block-recharge .p-recharge {
-            font-size: 12px;
-            padding-top: 20px;
-        }
-
-        .radiobtn-recharge-body {
-            margin-left: 40px;
-        }
-
-        .radioRecharge {
-            display: inline-flex;
-        }
-
-        .form-group-recharge {
-            margin-left: 91px;
-        }
-
-            .form-group-recharge .errorMsg {
-                font-size: 12px;
-                padding-top: 1px;
-                padding-left: 146px;
-                margin-left: 0px;
-            }
-
-        .div-plans-table {
-            margin-top: 30px;
-        }
-
-            .div-plans-table .main-table-recharge .button_header {
-                font-size: 13px;
-            }
-
-            .div-plans-table .main-table-recharge .div-second-plan-head {
-                font-size: 13px;
-            }
-
-
-
-        /*For Modal Popup*/
-        .div-recharge-img {
-            display: inline-flex;
-        }
-
-        .pay-img {
-            height: 100px;
-            width: 120px;
-        }
-
-        /*.pay-img2 {
-        margin-left: 230px;
-    }*/
-
-        .wallet-select {
-            display: inline-flex;
-        }
-
-        .first-wallet {
-            margin-left: 31px;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        /*Model Footer Button*/
-
-        .div-pay-row {
-            display: inline-flex;
-            /*margin-left: 91px;*/
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 150px;
-        }
-
-        .final-pay-button {
-            width: 138px;
-            margin-left: 14px;
-        }
-
-        .btn-cancel-btn {
-            height: 50px;
-        }
-
-        #lblMainbal {
-            color: darkblue;
-        }
-
-        #lblAdbal {
-            color: darkblue;
-        }
-
-        #lblamount {
-            color: darkblue;
-        }
-
-        #butn-cancel {
-            margin-left: 65px;
-            padding-right: 18px;
-        }
-
-        #navbar-header-button {
-            margin-right: 40px;
-        }
-
-        #operator-change {
-            font-size: 10px;
-        }
-
-        .dropdownDTH1 {
-            font-size: 12px;
-        }
-
-        .heading_customer_phone {
-            font-size: 21px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 96px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 135px;
-        }
-
-        .btnLF {
-            font-size: 16px;
-        }
-    }
-    /*Media Query End For Small Smartphones*/
-    /*Media Query Starts For Large SmartPhones Here*/
-
-    @media screen and (min-width:551px) and (max-width:768px) {
-        .modal-header-recharge {
-            margin-top: 70px;
-        }
-
-        .main-head-recharge {
-            height: 410px;
-            width: auto;
-            background: #002970;
-            margin-top: 84px;
-        }
-
-        .block-recharge .p-recharge {
-            font-size: 12px;
-            padding-top: 20px;
-        }
-
-        .radiobtn-recharge-body {
-            margin-left: 60px;
-        }
-
-        .radioRecharge {
-            display: inline-flex;
-        }
-
-        .form-group-recharge {
-            margin-left: 91px;
-        }
-
-            .form-group-recharge .errorMsg {
-                font-size: 12px;
-                padding-top: 1px;
-                padding-left: 102px;
-                margin-left: 0px;
-            }
-
-        .div-plans-table {
-            margin-top: 30px;
-        }
-
-            .div-plans-table .main-table-recharge .button_header {
-                font-size: 13px;
-            }
-
-            .div-plans-table .main-table-recharge .div-second-plan-head {
-                font-size: 13px;
-            }
-
-
-
-        /*For Modal Popup*/
-        .div-recharge-img {
-            display: inline-flex;
-        }
-
-        .pay-img {
-            height: 100px;
-            width: 120px;
-        }
-
-        .pay-img2 {
-            margin-left: 379px;
-        }
-
-        .wallet-select {
-            display: inline-flex;
-        }
-
-        .first-wallet {
-            margin-left: 31px;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        /*Model Footer Button*/
-
-        .div-pay-row {
-            display: inline-flex;
-        }
-
-        .final-pay-button {
-            width: 138px;
-        }
-
-        .btn-cancel-btn {
-            height: 50px;
-        }
-
-        #lblMainbal {
-            color: darkblue;
-        }
-
-        #lblAdbal {
-            color: darkblue;
-        }
-
-        #lblamount {
-            color: darkblue;
-        }
-
-        #butn-cancel {
-            margin-left: 65px;
-            padding-right: 18px;
-        }
-
-        #navbar-header-button {
-            margin-right: 40px;
-        }
-
-        .heading_customer_phone {
-            font-size: 22px;
-        }
-
-        .img_center_modal {
-            margin-left: 210px;
-        }
-
-        .img_center_modal_2 {
-            margin-left: 210px;
-        }
-
-        .inc_modal_body {
-            font-size: 17px;
-        }
-
-        .button-21 {
-            font-size: 16px;
-        }
-
-        .modal_deposite_transfer_div {
-            background-color: gainsboro;
-            height: 657px;
-            width: 444px;
-            margin-top: -7px;
-            margin-left: 72px;
-        }
-
-        .modal_deposite_transfer_body_heading {
-            font-size: 17px;
-            font-weight: 600;
-        }
-
-        .modal_deposite_transfer_body_heading_2 {
-            font-size: 13px;
-        }
-
-        #DetailTitle {
-            font-size: 16px;
-        }
-
-        .btnLF {
-            font-size: 17px;
-        }
-    }
-    /*Media Query Ends For Large SmartPhones Here*/
-
-    @media screen and (max-width:450px) and (min-width:400px) {
-        .final-modal-popup {
-            width: 362px;
-            margin-left: 14px;
-        }
+    .pay-img2 {
+        margin-left: 379px;
     }
 
-    @media screen and (max-width:500px) and (min-width:451px) {
-        .final-modal-popup {
-            width: 405px;
-            margin-left: 14px;
-        }
+    .wallet-select {
+        display: inline-flex;
     }
 
-    @media screen and (max-width:768px) {
-        .img-management {
-            height: 100px;
-        }
+    .first-wallet {
+        margin-left: 31px;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    /*Model Footer Button*/
+
+    .div-pay-row {
+        display: inline-flex;
+    }
+
+    .final-pay-button {
+        width: 138px;
+    }
+
+    .btn-cancel-btn {
+        height: 50px;
+    }
+
+    #lblMainbal {
+        color: darkblue;
+    }
+
+    #lblAdbal {
+        color: darkblue;
+    }
+
+    #lblamount {
+        color: darkblue;
+    }
+
+    #butn-cancel {
+        margin-left: 65px;
+        padding-right: 18px;
+    }
+
+    #navbar-header-button {
+        margin-right: 40px;
+    }
+
+    .heading_customer_phone {
+        font-size: 22px;
+    }
+
+    .img_center_modal {
+        margin-left: 210px;
+    }
+
+    .img_center_modal_2 {
+        margin-left: 210px;
+    }
+
+    .inc_modal_body {
+        font-size: 17px;
+    }
+
+    .button-21 {
+        font-size: 16px;
+    }
+
+    .modal_deposite_transfer_div {
+        background-color: gainsboro;
+        height: 657px;
+        width: 444px;
+        margin-top: -7px;
+        margin-left: 72px;
+    }
+
+    .modal_deposite_transfer_body_heading {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .modal_deposite_transfer_body_heading_2 {
+        font-size: 13px;
+    }
+
+    #DetailTitle {
+        font-size: 16px;
+    }
+
+    .btnLF {
+        font-size: 17px;
+    }
+
+    .txt-input-text {
+        font-size: 15px;
+        width: 275px;
+        margin-left: 90px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 103%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 40px 0;
+        height: 120px;
+        padding-top: 60px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 17px;
+    }
+
+    .heading_div {
+        font-size: 17px;
+    }
+
+    .select_franchise {
+        padding-left: 108px;
+        font-size: 15px;
     }
 
 
-    @media screen and (min-width: 768px) and (max-width:899px) {
-        .col-sm-3 {
-            width: 50%;
-        }
+    .select_franchise_div {
+        padding-left: 184px;
+        font-size: 14px;
+    }
 
-        .main-head-recharge {
-            height: 223px;
-            width: auto;
-            background: #002970;
-            margin-top: 150px;
-        }
+    .p_heading_franchise_1 {
+        font-size: 16px;
+        font-weight: 700;
+    }
 
-        .div-input {
-            background: white;
-            border-radius: 25px;
-            width: 600px;
-            margin-left: 36px;
-            margin-top: 35px;
-        }
+    .p_heading_franchise_2 {
+        font-size: 12px;
+    }
+}
+/*Media Query Ends For Large SmartPhones Here*/
 
-        .txt-input {
-            margin-left: 84px;
-            width: 326px;
-        }
+@media screen and (max-width:450px) and (min-width:400px) {
+    .final-modal-popup {
+        width: 362px;
+        margin-left: 14px;
+    }
+}
 
-        .radiobtn-recharge-body {
-            margin-bottom: 10px;
-            margin-top: 20px;
-            padding-left: 122px;
-        }
+@media screen and (max-width:500px) and (min-width:451px) {
+    .final-modal-popup {
+        width: 405px;
+        margin-left: 14px;
+    }
+}
 
-        .errorMsg {
-            font-size: 14px;
-            color: red;
-            padding-top: 1px;
-            padding-left: 155px;
-        }
+@media screen and (min-width: 768px) and (max-width:899px) {
+    .col-sm-3 {
+        width: 50%;
+    }
 
-        .form-group-recharge-button {
-            margin-left: 122px;
-            margin-right: 51px;
-        }
+    .main-head-recharge {
+        height: 223px;
+        width: auto;
+        background: #002970;
+        margin-top: 150px;
+    }
 
-        .div-plans-table {
-            background: white;
-            border-radius: 20px;
-            display: none;
-            height: 580px;
-            overflow: auto;
-            width: 608px;
-            margin-left: 32px;
-            margin-top: 30px;
-        }
+    .div-input {
+        background: white;
+        border-radius: 25px;
+        width: 600px;
+        margin-left: 36px;
+        margin-top: 35px;
+    }
 
-        .plan-description-amount {
-            padding-left: 85px;
-        }
+    .txt-input {
+        margin-left: 84px;
+        width: 326px;
+    }
 
-        .modal-header-recharge {
-            margin-top: 130px;
-            /*border-radius: 30px;*/
-            padding-top: 24px;
-        }
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 122px;
+    }
 
-        .dropdownDTH {
-            margin-left: 86px;
-            width: 311px;
-        }
+    .errorMsg {
+        font-size: 14px;
+        color: red;
+        padding-top: 1px;
+        padding-left: 155px;
+    }
 
-        .btnLF {
-            font-size: 17px;
-        }
+    .form-group-recharge-button {
+        margin-left: 122px;
+        margin-right: 51px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+        width: 608px;
+        margin-left: 32px;
+        margin-top: 30px;
+    }
+
+    .plan-description-amount {
+        padding-left: 85px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 0px;
+    }
+
+    .dropdownDTH {
+        margin-left: 86px;
+        width: 311px;
+    }
+
+    .btnLF {
+        font-size: 17px;
+    }
+
+    .txt-input-text {
+        font-size: 15px;
+        width: 275px;
+        margin-left: 90px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 103%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 40px 0;
+        height: 120px;
+        margin-left: -16px;
+        padding-top: 123px;
+        padding-bottom: 77px;
+    }
+
+    .heading_page_2 {
+        font-size: 20px;
+    }
+
+    .heading_div {
+        font-size: 18px;
+    }
+
+    .select_franchise {
+        padding-left: 46px;
+        font-size: 15px;
     }
 
 
-    @media screen and (min-width: 900px) and (max-width:999px) {
-        .col-sm-3 {
-            width: 50%;
-        }
+    .select_franchise_div {
+        padding-left: 156px;
+        font-size: 14px;
+    }
 
-        .main-head-recharge {
-            height: 223px;
-            width: auto;
-            background: #002970;
-            margin-top: 85px;
-        }
+    .p_heading_franchise_1 {
+        font-size: 17px;
+        font-weight: 700;
+    }
 
-        .div-input {
-            background: white;
-            border-radius: 25px;
-            width: 800px;
-            margin-left: 36px;
-            margin-top: 35px;
-        }
+    .p_heading_franchise_2 {
+        font-size: 13px;
+    }
 
-        .txt-input {
-            margin-left: 84px;
-            width: 326px;
-        }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 21px;
+    }
 
-        .radiobtn-recharge-body {
-            margin-bottom: 10px;
-            margin-top: 20px;
-            padding-left: 122px;
-        }
+    .img-management {
+        height: 155px;
+    }
+}
 
-        .errorMsg {
-            font-size: 14px;
-            color: red;
-            padding-top: 1px;
-            padding-left: 155px;
-        }
 
-        .form-group-recharge-button {
-            margin-left: 122px;
-            margin-right: 51px;
-        }
+@media screen and (min-width: 900px) and (max-width:999px) {
+    .col-sm-3 {
+        width: 50%;
+    }
 
-        .div-plans-table {
-            background: white;
-            border-radius: 20px;
-            display: none;
-            height: 580px;
-            overflow: auto;
-            width: 800px;
-            margin-left: 32px;
-            margin-top: 30px;
-        }
+    .main-head-recharge {
+        height: 223px;
+        width: auto;
+        background: #002970;
+        margin-top: 85px;
+    }
 
-        .plan-description-amount {
-            padding-left: 85px;
-        }
+    .div-input {
+        background: white;
+        border-radius: 25px;
+        width: 800px;
+        margin-left: 36px;
+        margin-top: 35px;
+    }
 
-        /*.modal-header-recharge {
+    .txt-input {
+        margin-left: 84px;
+        width: 326px;
+    }
+
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 122px;
+    }
+
+    .errorMsg {
+        font-size: 14px;
+        color: red;
+        padding-top: 1px;
+        padding-left: 155px;
+    }
+
+    .form-group-recharge-button {
+        margin-left: 122px;
+        margin-right: 51px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+        width: 800px;
+        margin-left: 32px;
+        margin-top: 30px;
+    }
+
+    .plan-description-amount {
+        padding-left: 85px;
+    }
+
+    /*.modal-header-recharge {
         margin-top: 130px;
         border-radius: 30px;
         padding-top: 24px;
     }*/
 
-        .dropdownDTH {
-            margin-left: 86px;
-            width: 311px;
-        }
-
-        .heading_customer_phone {
-            font-size: 23px;
-        }
-
-        .btnLF {
-            font-size: 18px;
-        }
+    .dropdownDTH {
+        margin-left: 86px;
+        width: 311px;
     }
 
-    @media screen and (min-width: 959px) and (max-width: 999px) {
-        .modal-header-recharge {
-            /*margin-top: 84px;*/
-            margin-top: 90px;
-            /*border-radius: 30px;*/
-            padding-top: 24px;
-        }
+    .heading_customer_phone {
+        font-size: 23px;
     }
 
-    @media screen and (min-width: 899px) and (max-width: 959px) {
-        .modal-header-recharge {
-            margin-top: 132px;
-            /*border-radius: 30px;*/
-            padding-top: 24px;
-        }
+    .btnLF {
+        font-size: 18px;
     }
 
-    @media screen and (min-width: 1000px) and (max-width: 1100px) {
-        .main-head-recharge {
-            height: 223px;
-            width: auto;
-            background: #002970;
-            margin-top: 40px;
-        }
-
-        .form-group-recharge {
-            margin-bottom: 15px;
-            margin-left: 0px;
-        }
-
-        .form-group-recharge-button {
-            margin-left: 29px;
-            width: 318px;
-        }
-
-        .col-sm-3 {
-            width: 50%;
-        }
-
-        .radiobtn-recharge-body {
-            margin-bottom: 10px;
-            margin-top: 20px;
-            padding-left: 30px;
-        }
-
-        .operatorspan {
-            font-size: 11px;
-            margin-top: -37px;
-            margin-right: 43px;
-        }
-
-        .plan-description-amount {
-            margin-left: 40px;
-        }
-
-        #btnProcessRecharge {
-            width: 203px;
-            margin-left: 15px;
-        }
-
-        .modal-header-recharge {
-            margin-top: 84px;
-        }
-
-        .div-input {
-            background: white;
-            border-radius: 25px;
-            width: 230px;
-            margin-left: 36px;
-            margin-top: 35px;
-        }
-
-        .row-recharge-body {
-            float: left;
-            margin-left: 30px;
-        }
-
-        .div-plans-table {
-            background: white;
-            border-radius: 20px;
-            display: none;
-            height: 580px;
-            overflow: auto;
-            margin-top: 36px;
-        }
-
-        .txt-input {
-            font-size: 14px;
-        }
-
-        .heading_customer_phone {
-            font-size: 22px;
-        }
+    .txt-input-text {
+        font-size: 15px;
+        margin-left: 200px;
+        width: 340px;
     }
 
-    @media screen and (min-width: 1101px) and (max-width: 1279px) {
-        .modal-header-recharge {
-            margin-top: 90px;
-            /*border-radius: 30px;*/
-            padding-top: 24px;
-        }
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 110%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 40px 0;
+        height: 120px;
+        padding-top: 27px;
+        padding-bottom: 77px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 25px;
+    }
+
+    .heading_div {
+        font-size: 18px;
+    }
+
+    .select_franchise {
+        padding-left: 175px;
+        font-size: 15px;
     }
 
 
-    @media screen and (max-width: 1280px) {
-        .formedia {
-            margin-left: 120px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-        .heading_customer_phone {
-            font-size: 22px;
-        }
+    .select_franchise_div {
+        padding-left: 115px;
+        font-size: 15px;
     }
 
-    @media screen and (max-width: 1280px) {
-        .dmt {
-            margin-top: 88px;
-            text-align: center;
-            margin-left: 65px;
-        }
+    .p_heading_franchise_1 {
+        font-size: 18px;
+        font-weight: 700;
     }
 
-    @media screen and (max-width:339px) and (min-width:280px) {
-        .dmt {
-            margin-top: 48px;
-            text-align: center;
-            margin-left: -117px;
-        }
-
-        .aval_bal_font {
-            font-size: 12px;
-            margin-top: 28px;
-        }
-
-        .formedia {
-            margin-left: 80px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
+    .p_heading_franchise_2 {
+        font-size: 14px;
     }
 
-    @media screen and (max-width:399px) and (min-width:340px) {
-        .dmt {
-            margin-top: 39px;
-            text-align: center;
-            margin-left: -108px;
-        }
-
-        .aval_bal_font {
-            font-size: 13px;
-            margin-top: 28px;
-        }
-
-        .formedia {
-            margin-left: 90px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 22px;
     }
 
-    @media screen and (min-width: 400px) and (max-width:550px) {
-        .dmt {
-            margin-top: 52px;
-            text-align: center;
-            margin-left: -150px;
-        }
+    .img-management {
+        height: 165px;
+    }
+}
 
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 140px;
-        }
+@media screen and (min-width: 959px) and (max-width: 999px) {
+    .modal-header-recharge {
+        /*margin-top: 84px;*/
+        margin-top: 90px;
+        /*border-radius: 30px;*/
+        padding-top: 24px;
+    }
+}
 
-        .aval_bal_font {
-            font-size: 14px;
-            margin-top: 28px;
-        }
+@media screen and (min-width: 899px) and (max-width: 959px) {
+    .modal-header-recharge {
+        margin-top: 132px;
+        /*border-radius: 30px;*/
+        padding-top: 24px;
+    }
+}
 
-        .formedia {
-            margin-left: 100px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 23px;
     }
 
-    @media screen and (min-width: 551px) and (max-width:700px) {
-        .dmt {
-            margin-top: 2px;
-            text-align: center;
-            margin-left: -149px;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 180px;
-        }
-
-        .aval_bal_font {
-            font-size: 16px;
-            margin-top: 28px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 96px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 202px;
-        }
-
-        .card_title_deposite {
-            font-size: 13px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 19px;
-        }
+    .main-head-recharge {
+        height: 223px;
+        width: auto;
+        background: #002970;
+        margin-top: 40px;
     }
 
-    @media screen and (min-width: 701px) and (max-width:767px) {
-        .dmt {
-            margin-top: 70px;
-            text-align: center;
-            margin-left: -152px;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 250px;
-        }
-
-        .aval_bal_font {
-            font-size: 17px;
-            margin-top: 28px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 188px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 202px;
-        }
-
-        .card_title_deposite {
-            font-size: 14px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 20px;
-        }
+    .form-group-recharge {
+        margin-bottom: 15px;
+        margin-left: 0px;
     }
 
-    @media screen and (min-width: 768px) and (max-width:851px) {
-        .dmt {
-            margin-top: 131px;
-            text-align: center;
-            margin-left: 8px;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 250px;
-        }
-
-        .aval_bal_font {
-            font-size: 18px;
-            margin-top: 28px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 228px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 202px;
-        }
-
-        .card_title_deposite {
-            font-size: 15px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 20px;
-        }
+    .form-group-recharge-button {
+        margin-left: 29px;
+        width: 318px;
     }
 
-    @media screen and (min-width: 851px) and (max-width:900px) {
-        .dmt {
-            margin-top: 121px;
-            text-align: center;
-            margin-left: 2px;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 400px;
-        }
-
-        .aval_bal_font {
-            font-size: 19px;
-            margin-top: 28px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 228px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 202px;
-        }
-
-        .card_title_deposite {
-            font-size: 15px;
-        }
-
-        .card_title_deposite_1 {
-            font-size: 20px;
-        }
+    .col-sm-3 {
+        width: 50%;
     }
 
-    @media screen and (min-width: 901px) and (max-width:950px) {
-        .dmt {
-            margin-top: 57px;
-            text-align: center;
-            margin-left: 2px;
-        }
-
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 400px;
-        }
-
-        .aval_bal_font {
-            font-size: 19px;
-            margin-top: 28px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 228px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 202px;
-        }
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 30px;
     }
 
-    @media screen and (min-width: 951px) and (max-width:1100px) {
-        .button_addbeneficiary {
-            display: inline-flex;
-            margin-left: 550px;
-        }
-
-        .aval_bal_font {
-            font-size: 22px;
-            margin-top: 28px;
-        }
-
-        .dmt {
-            margin-top: 57px;
-            text-align: center;
-            margin-left: 2px;
-        }
-
-        .recharge_urchash_img {
-            margin-left: 228px;
-        }
-
-        .recharge_urchash_img_1 {
-            width: 202px;
-        }
+    .operatorspan {
+        font-size: 11px;
+        margin-top: -37px;
+        margin-right: 43px;
     }
+
+    .plan-description-amount {
+        margin-left: 40px;
+    }
+
+    #btnProcessRecharge {
+        width: 203px;
+        margin-left: 15px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 84px;
+    }
+
+    .div-input {
+        background: white;
+        border-radius: 25px;
+        width: 230px;
+        margin-left: 36px;
+        margin-top: 35px;
+    }
+
+    .row-recharge-body {
+        float: left;
+        margin-left: 30px;
+    }
+
+    .div-plans-table {
+        background: white;
+        border-radius: 20px;
+        display: none;
+        height: 580px;
+        overflow: auto;
+        margin-top: 36px;
+    }
+
+    .txt-input {
+        font-size: 14px;
+    }
+
+    .heading_customer_phone {
+        font-size: 22px;
+    }
+
+    .txt-input-text {
+        font-size: 15px;
+        width: 210px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 110%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        height: 120px;
+        padding-top: 30px;
+        padding-bottom: 77px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 27px;
+    }
+
+    .heading_div {
+        font-size: 18px;
+    }
+
+    .select_franchise {
+        margin-left: 44px;
+        font-size: 15px;
+    }
+
+
+    .select_franchise_div {
+        padding-left: 156px;
+        font-size: 10px;
+    }
+
+    .p_heading_franchise_1 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .p_heading_franchise_2 {
+        font-size: 14px;
+    }
+
+    .img-management {
+        height: 175px;
+    }
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1279px) {
+    .heading_wallet {
+        padding: 10px;
+        font-weight: 800;
+        font-size: 23px;
+    }
+
+    .modal-header-recharge {
+        margin-top: 90px;
+        /*border-radius: 30px;*/
+        padding-top: 24px;
+    }
+
+    .txt-input-text {
+        font-size: 15px;
+        width: 180px;
+        margin-left: -7px;
+    }
+
+    .row-fernchise-body {
+        margin: 0 auto;
+        width: 90%;
+        max-width: 1600px;
+        margin-top: 0px;
+        height: 1200px;
+    }
+
+    .heading_page {
+        background-image: url(../css/Img/new_tech_11.png);
+        width: 103%;
+        font-weight: 700;
+        line-height: 5rem;
+        color: #fff;
+        padding-top: 44px;
+        padding-bottom: 77px;
+        height: 120px;
+        margin-left: -16px;
+    }
+
+    .heading_page_2 {
+        font-size: 25px;
+    }
+
+    .heading_div {
+        font-size: 20px;
+    }
+
+    .select_franchise {
+        margin-left: 62px;
+        font-size: 15px;
+    }
+
+
+    .select_franchise_div {
+        padding-left: 41px;
+        font-size: 11px;
+    }
+
+    .p_heading_franchise_1 {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .p_heading_franchise_2 {
+        font-size: 12px;
+    }
+
+    .img-management {
+        height: 175px;
+    }
+}
+
+
+@media screen and (max-width: 1280px) {
+    .formedia {
+        margin-left: 120px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .heading_customer_phone {
+        font-size: 22px;
+    }
+
+    .dmt {
+        margin-top: 88px;
+        text-align: center;
+        margin-left: 65px;
+    }
+}
+
+
+@media screen and (min-width: 400px) and (max-width:550px) {
+    .dmt {
+        margin-top: 52px;
+        text-align: center;
+        margin-left: -150px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 140px;
+    }
+
+    .aval_bal_font {
+        font-size: 14px;
+        margin-top: 28px;
+    }
+
+    .formedia {
+        margin-left: 100px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 551px) and (max-width:700px) {
+    .dmt {
+        margin-top: 2px;
+        text-align: center;
+        margin-left: -149px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 180px;
+    }
+
+    .aval_bal_font {
+        font-size: 16px;
+        margin-top: 28px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 96px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 202px;
+    }
+
+    .card_title_deposite {
+        font-size: 13px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 19px;
+    }
+}
+
+@media screen and (min-width: 701px) and (max-width:767px) {
+    .dmt {
+        margin-top: 70px;
+        text-align: center;
+        margin-left: -152px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 250px;
+    }
+
+    .aval_bal_font {
+        font-size: 17px;
+        margin-top: 28px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 188px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 202px;
+    }
+
+    .card_title_deposite {
+        font-size: 14px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width:851px) {
+    .dmt {
+        margin-top: 131px;
+        text-align: center;
+        margin-left: 8px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 250px;
+    }
+
+    .aval_bal_font {
+        font-size: 18px;
+        margin-top: 28px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 228px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 202px;
+    }
+
+    .card_title_deposite {
+        font-size: 15px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 851px) and (max-width:900px) {
+    .dmt {
+        margin-top: 121px;
+        text-align: center;
+        margin-left: 2px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 400px;
+    }
+
+    .aval_bal_font {
+        font-size: 19px;
+        margin-top: 28px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 228px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 202px;
+    }
+
+    .card_title_deposite {
+        font-size: 15px;
+    }
+
+    .card_title_deposite_1 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 901px) and (max-width:950px) {
+    .dmt {
+        margin-top: 57px;
+        text-align: center;
+        margin-left: 2px;
+    }
+
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 400px;
+    }
+
+    .aval_bal_font {
+        font-size: 19px;
+        margin-top: 28px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 228px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 202px;
+    }
+}
+
+@media screen and (min-width: 951px) and (max-width:1100px) {
+    .button_addbeneficiary {
+        display: inline-flex;
+        margin-left: 550px;
+    }
+
+    .aval_bal_font {
+        font-size: 22px;
+        margin-top: 28px;
+    }
+
+    .dmt {
+        margin-top: 57px;
+        text-align: center;
+        margin-left: 2px;
+    }
+
+    .recharge_urchash_img {
+        margin-left: 228px;
+    }
+
+    .recharge_urchash_img_1 {
+        width: 202px;
+    }
+}

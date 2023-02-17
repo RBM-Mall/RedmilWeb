@@ -57,7 +57,7 @@ namespace Project_Redmil_MVC.Controllers
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                 }
                 else
                 {
@@ -77,7 +77,8 @@ namespace Project_Redmil_MVC.Controllers
                         {
                             obj.IpAddress = GetIp();
                             obj.MacAddress = GetMacAddress(obj.IpAddress);
-                            obj.Version = "4.1.37";
+                            //obj.Version = "4.1.37";
+                            obj.Version = "6.4.9";
                             obj.AppId = "faisal";
                             obj.Userid = "NA";
                             obj.Mobile = Mobile;
@@ -181,7 +182,7 @@ namespace Project_Redmil_MVC.Controllers
                                     var result2 = response2.Content;
                                     if (string.IsNullOrEmpty(result2))
                                     {
-                                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                                        return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                     }
                                     else
                                     {
@@ -210,7 +211,7 @@ namespace Project_Redmil_MVC.Controllers
                                     requestEx.AddJsonBody(jsonEx);
                                     IRestResponse responseEx = clientEx.Execute(requestEx);
                                     var resultEx = responseEx.Content;
-                                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                                    return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                 }
 
                             }
@@ -227,12 +228,12 @@ namespace Project_Redmil_MVC.Controllers
                             requestEx.AddJsonBody(jsonEx);
                             IRestResponse responseEx = clientEx.Execute(requestEx);
                             var resultEx = responseEx.Content;
-                            return RedirectToAction("ErrorForExceptionLog", "Error");
+                            return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                         }
                     }
                     else
                     {
-                        return RedirectToAction("ErrorForExceptionLog", "Error");
+                        return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
             }
@@ -248,7 +249,7 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
-                return RedirectToAction("ErrorForExceptionLog", "Error");
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
             return View();
         }

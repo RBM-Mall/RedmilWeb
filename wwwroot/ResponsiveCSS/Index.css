@@ -27,7 +27,7 @@
     overflow: hidden;
     border: 1px solid #ccc;
     color: #f1f1f1;
-   /* background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);*/
+    background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);
     display: flex;
     margin-top: 33px;
 }
@@ -322,10 +322,10 @@
     font-weight: 600;
 }
 .div_get_info {
-    background: grey;
+    background: #2d385e;
     padding-top: 5px;
     padding-bottom: 40px;
-    margin-top: 450px;
+    /*margin-top: 450px;*/
     color: white;
 }
 .heading_chooseTransaction_1 {
@@ -443,7 +443,7 @@
         padding-left: 10px;
     }
     .div_get_info {
-        background: grey;
+        background: #2d385e;
         padding-top: 5px;
         padding-bottom: 40px;
         margin-top: -18px;
@@ -581,7 +581,7 @@
         margin-left: 25px;
     }
     .div_get_info {
-        background: grey;
+        background: #2d385e;
         padding-top: 5px;
         padding-bottom: 40px;
         margin-top: 1px;
@@ -698,7 +698,7 @@
         margin-left: 50px;
     }
     .div_get_info {
-        background: grey;
+        background: #2d385e;
         padding-top: 5px;
         padding-bottom: 40px;
         margin-top: 10px;
@@ -777,7 +777,7 @@
         margin-left: 70px;
     }
     .div_get_info {
-        background: grey;
+        background: #2d385e;
         padding-top: 5px;
         padding-bottom: 40px;
         margin-top: 30px;
@@ -859,7 +859,7 @@
         margin-left: 75px;
     }
     .div_get_info {
-        background: grey;
+        background: #2d385e;
         padding-top: 5px;
         padding-bottom: 40px;
         margin-top: 50px;
@@ -996,7 +996,7 @@
         margin-left: 25px;
     }
     .div_get_info {
-        background: grey;
+        background: #2d385e;
         padding-top: 5px;
         padding-bottom: 40px;
         margin-top: 250px;
@@ -1020,6 +1020,13 @@
     }
     .dateLbl {
         font-size: 18px;
+    }
+    .div_get_info {
+        background: #2d385e;
+        padding-top: 5px;
+        padding-bottom: 40px;
+        margin-top: 130px;
+        color: white;
     }
 }
 

@@ -235,7 +235,8 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             List<GetRecentSenderListResponseModel> lstData = new List<GetRecentSenderListResponseModel>();
             try
             {
-                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
+                //requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
+                requestModel.UserId = "2084";
                 requestModel.PageNumber = "1";
                 #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
 

@@ -11,7 +11,12 @@
 <link rel="stylesheet" href="~/css/businessReport.css" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
+<link href="~/ResponsiveCSS/Wallet.css" rel="stylesheet" />
 <style>
     .form-control {
         padding-left: 32px;
@@ -27,30 +32,34 @@
         width: 100%;
     }
 </style>
-<br />
-<br />
-<br />
 <div class="container-fluid" style="background:white">
-    <div class="section breadcumb-area background-image" style="background-image: url('../css/Img/new_tech_11.png')">
+    <div class="section background-image heading_page">
         <div class="container ">
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <ul>
-                        <li><strong>Payout Commission</strong></li>
+                        <li><strong class="heading_page_2">Payout Commission</strong></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col col-md-12 col-sm-12 col-lg-12">
-        <img src="/css/Img/help_and_support11.jpg" style="width:100%;" alt="Norway" />
+    <br />
+    <div class="row">
+        <div class="col-sm-12 text-center padding-bottom-30">
+            <div class="section-title div_wallet">
+                <h1 class="heading_wallet"><span style="color: #2d385e;">You get "Best Assured Payouts" in industry with your "MALL"</span></h1>
+            </div>
+        </div>
     </div>
-    <div class="div_get_info">
+    @*<div class="div_get_info">
         <h3 class="tag">You get "Best Assured Payouts" in industry with your "MALL"</h3>
-    </div>
+    </div>*@
+    <hr />
+    <br />
     <div class="section services-area padding-top-bottom-60">
         <div class="container">
-            <h1 class="transaction center heading_chooseTransaction_1">Choose Category And Subcategory For Payout Commission</h1>
+            <h1 class="transaction center heading_chooseTransaction_1">Select Category And Subcategory For Payout Commission</h1>
             <div class="row rowaepsChooseTrasaction_BusinessRepo" id="aepsChooseTrasaction">
                 <div class="row">
                     <div class="col col-md-6 col-sm-6">
