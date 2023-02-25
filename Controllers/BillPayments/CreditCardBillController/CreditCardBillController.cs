@@ -17,7 +17,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.CreditCardBillController
         private readonly string Baseurl;
         private readonly IConfiguration _config;
         public CreditCardBillOperatorListResponseModel lstOperatorResponse;
-
         public CreditCardBillController(IConfiguration config)
         {
             _config = config;
@@ -359,7 +358,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.CreditCardBillController
 
 
 
-        #region GetHealthInsuranceOperatorList
+        #region GetCreditCardOperatorList
         public List<Operatornames> GetOperatorList()
         {
             var baseUrl = "https://api.redmilbusinessmall.com";
@@ -482,7 +481,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.CreditCardBillController
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXT" && deserialize != null)
                     {
                         return Json(deserialize);
                     }
@@ -639,7 +638,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.CreditCardBillController
         #endregion
 
 
-        #region GetLandLineOperatorListById
+        #region GetCreditCardOperatorListById
         public JsonResult GetOperatorListById(string OpId)
         {
             var baseUrl = "https://api.redmilbusinessmall.com";

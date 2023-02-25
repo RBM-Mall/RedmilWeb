@@ -480,7 +480,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.FastagBillController
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXT" && deserialize != null)
                     {
                         return Json(deserialize);
                     }

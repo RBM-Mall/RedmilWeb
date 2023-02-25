@@ -12,238 +12,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-<style>
-    .navbar1 {
-        position: fixed;
-        width: 100%;
-        z-index: 1000000;
-        top: 0;
-    }
-
-    .p-new {
-        text-align: center;
-        font-size: 20px;
-    }
-
-    .btn-final {
-        display: block;
-        margin-left: 208px;
-        border-bottom: 42px;
-        width: 179px;
-        border-radius: 41px;
-        height: 41px;
-        font-size: 20px;
-        color: white;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-    }
-</style>
-<style>
-    .button_header {
-        border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        border-width: 0;
-        font-weight: 600;
-        height: 50px;
-        background: #fff;
-        color: #00baf2;
-        border: 1px solid white;
-        font-size: 14px;
-        padding: 6px 10px;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-        border-bottom: white;
-    }
-
-
-    .operatori {
-        display: block;
-    }
-</style>
-<style>
-
-    .operatorspan {
-        font-size: 12px;
-        color: #00baf2;
-        text-align: right;
-        min-width: 35%;
-        right: 0;
-        font-weight: 800;
-        cursor: pointer;
-        margin-top: -48px;
-        float: left;
-        margin-left: 110px;
-    }
-
-
-        .operatorspan span {
-            display: block;
-            margin-top: -4px;
-        }
-</style>
-
-<style>
-    .errorMsg {
-        font-size: 12px;
-        color: #f4605f;
-        padding-top: 1px;
-        padding-left: 60px;
-    }
-
-</style>
-<style>
-    .img-li {
-        height: 40px;
-        margin-top: 15px;
-    }
-
-    .li-title {
-        font-size: 15px;
-    }
-</style>
-<style>
-    .div-browse-plan {
-        margin-top: 15px;
-        text-align: center;
-        padding-top: 20px;
-    }
-
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 385px;
-        overflow: auto;
-    }
-
-    .main-table-recharge {
-        height: 100%;
-        overflow: auto;
-        width: 100%;
-    }
-</style>
-<style>
-    .img-wallet-select {
-        height: 150px;
-        width: 200px;
-    }
-
-    .first-wallet {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    .final-modal-popup {
-        width: 650px;
-    }
-</style>
-<style>
-    .img-operator-logo {
-        height: 100px;
-        width: 150px;
-    }
-</style>
-<style>
-    .form-control-dropdown {
-        display: block;
-        width: 70%;
-        height: 50px;
-        padding: 0px 14px;
-        font-size: 17px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        margin-left: 26px;
-    }
-</style>
-<style>
-    .p-new-1 {
-        text-align: center;
-        font-size: 16px;
-    }
-
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        margin-top: 19px;
-    }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-    input:checked + .slider {
-        background-color: #2196F3;
-    }
-
-    input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    /* Rounded sliders */
-    .slider.round {
-        border-radius: 34px;
-    }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-    .switchCCF {
-        display: flex;
-        /*padding-left: 400px;*/
-    }
-</style>
 
 <div class="container-fluid" style="background:#ebebeb">
 
@@ -341,12 +109,16 @@
     <!--Recharge Body Starts Here-->
     <div class="row">
         <div class="row-recharge-body">
-            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px">
+            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;">
                 <!--Card for recharge starts here-->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Customer Detail</strong><img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h4>
-                        <hr />
+                        <div>
+                            <h4 class="card-title heading_tag_bbps">
+                                <strong>Customer Details</strong>
+                                <img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" class="img_tag_bbps" />
+                            </h4>
+                        </div>
                         <hr />
                         <div class="row">
                             <div class="row">
@@ -357,26 +129,23 @@
                                                 <div class="col-xs-12 col-sm-12">
                                                     <div class="form-group-recharge">
                                                         <input id="txtCANumber" autocomplete="off" type="text" maxlength="15" required="required" class="txt-input txt-input-text" placeholder="CA Number" />
+                                                        <br />
                                                         <span id="errCANumber" class="errorMsg"></span>
                                                     </div>
                                                     <div class="form-group-recharge">
                                                         <input id="txtEmail" autocomplete="off" type="text" required="required" class="txt-input txt-input-text" placeholder="Customer Email ID" />
+                                                        <br />
                                                         <span id="errEmail" class="errorMsg"></span>
                                                     </div>
                                                     <br />
-                                                    <br />
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divFetch" style="display:block">
-                                                        <button type="submit" id="btnFetchBill" disabled onclick="fetchBill1()" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Fetch Premium</button>
+                                                    <div class="form-group-recharge form-group-recharge-button">
+                                                        <button type="submit" id="btnProcessRecharge" style="display:block;" onclick="fetchBill1()" class="btn-process-recharge3">Fetch Bill</button>
                                                     </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divPay" style="display:none">
-                                                        <button type="submit" id="btnPayBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" data-target="#myModal" data-toggle="modal" onclick="bindAmountInput()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Pay Bill</button>
-                                                    </div>
-
                                                     <br />
-
 
                                                     <!-- Modal Confirm Payment -->
-                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                    <input type="button" id="btnmodalChoosePayment" style="display:none" data-target="#modalChoosePayment" data-toggle="modal" />
+                                                    <div class="modal fade" id="modalChoosePayment" role="dialog">
                                                         <div class="modal-dialog">
 
                                                             <!-- Modal content-->
@@ -433,7 +202,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="modal-footer div-pay-row">
                                                                     <div class="row div-pay-row">
                                                                         <div class="col-sm-4 final-pay-button">
@@ -443,12 +211,10 @@
                                                                             <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <!--Modal Success Message-->
                                                     <!-- Modal -->
                                                     <div class="row">
@@ -496,42 +262,65 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-1 col-md-1" style="width:4%">
                 <!--Blank Space Between Recharge and Plans Pannel-->
             </div>
             <!--Card for Plans Pannel Starts Here-->
-            <div class="col-8 col-md-8 div-plans-table" style="display:none" id="divBill">
+            <div class="col-8 col-md-8 div-plans-table" style="display:none;background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;height:430px;" id="divBill">
                 <div class="card">
-
                     <div class="card-body">
-
                         <h3 class="card-title div-browse-plans" id="heading" style="text-align:center;"><strong>Bill Details</strong><img src="~/css/ImgElectricity/BharatBill.jpeg" style="float:right;height:45px;width:100px" /></h3>
                         <div class="main-table-recharge">
-                            <p class="p-new-1"><label id="lblBillNum"></label></p>
+                            <br/>
+                            <hr />
+                            <h4><label id="lblBillData" style="display:none;text-align:center;"></label></h4>
+                            <table class="table table-bordered" id="tblData">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Bill Number:</th>
+                                        <td><label id="lblBillNum"></label></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Customer Name:</th>
+                                    <td><label id="lblCustomerName"></label></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Due Date:</th>
+                                    <td><label id="lblDueDate"></label></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Bill Period:</th>
+                                    <td><label id="lblBillPeriod"></label></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Bill Amount:</th>
+                                    <td><label id="lblTotalAmount"></label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                           @* <p class="p-new-1"><label id="lblBillNum"></label></p>
                             <p class="p-new-1"><label id="lblCustomerName"></label></p>
                             <p class="p-new-1"><label id="lblDueDate"></label></p>
                             <p class="p-new-1"><label id="lblBillPeriod"></label></p>
-                            <p class="p-new"><label id="lblTotalAmount"></label></p>
+                            <p class="p-new"><label id="lblTotalAmount"></label></p>*@
                         </div>
                     </div>
                 </div>
-
                 <!--Card for Plans Pannel Ends Here-->
-
             </div>
         </div>
         <div class="col col-md-12 col-sm-12 col-lg-12">
             <div class="div-main-oplist">
                 <div class="div-recharge-opimage">
-                    <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
+                    <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
                     <div class="row" style="text-align:center;">
                         <div class="col-md-4 col-sm-12 col-xs-12 "></div>
                         <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/LIC_Image/LIC-Logo-PNG-Transparent-HD.jpeg" alt="licIndia" class="img-width img-operator-logo">
+                            <img src="~/css/LIC_Image/LIC-Logo-PNG-Transparent-HD.jpeg" alt="licIndia" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="licIndia"></a></div>
                             <div class="leadership_name">
                                 <br />
+                                <p class="about-lead"><b>LIC India</b></p>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12 "></div>
@@ -544,6 +333,7 @@
 <script>
     function bindAmountInput() {
         $(document).ready(function () {
+            var amount = document.getElementById("lblTotalAmount").innerHTML;
             $.ajax({
                 type: "POST",
                 url: "/LICIndiaBill/GetBalance",
@@ -563,6 +353,7 @@
                     else {
                         document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                         document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        document.getElementById("lblamount").innerHTML = "₹" + amount;
                     }
                 },
                 failure: function (response) {
@@ -572,10 +363,7 @@
                     alert(response.responseText);
                 }
             });
-
-
         });
-
     }
 
 
@@ -596,48 +384,74 @@
         window.location.href = '@Url.Content("~/LICIndiaBill/LICIndiaBill")';
     });
 
-</script>
-<script>
     function fetchBill1() {
-        var CANumber = $("#txtCANumber").val();
-        var Email = $("#txtEmail").val();
 
-        $.ajax({
-            url: "/LICIndiaBill/FetchBill",
-            data: { 'caNumber': CANumber, 'email': Email },
-            type: 'POST',
-            dataType: 'json',
-            success: function (responsedata) {
-                if (responsedata.result == "EmptyResult") {
-                    window.location.href = responsedata.url;
-                }
-                else if (responsedata.result == "UnExpectedStatusCode") {
-                    window.location.href = responsedata.url;
-                }
-                else if (responsedata.result == "RedirectToException") {
-                    window.location.href = responsedata.url;
-                }
-                else {
-                    document.getElementById("divBill").style.display = "block";
-                    document.getElementById("divFetch").style.display = "none";
-                    document.getElementById("divPay").style.display = "block";
-                    document.getElementById("lblBillNum").innerHTML = 'Bill Number: ' + " " + 'NA';
-                    document.getElementById("lblCustomerName").innerHTML = 'Customer Name: ' + " " + responsedata.customerName;
-                    document.getElementById("lblDueDate").innerHTML = 'Due Date: ' + " " + responsedata.duedatefromto;
-                    document.getElementById("lblBillPeriod").innerHTML = 'Bill Period: ' + " " + 'NA';
-                    document.getElementById("lblTotalAmount").innerHTML = 'Bill Amount: ₹' + " " + responsedata.netamount;
-                    document.getElementById("lblamount").innerHTML = " ₹ " + " " + responsedata.netamount;
-                }
+        if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill"){
+            var CANumber = $("#txtCANumber").val();
+            var Email = $("#txtEmail").val();
+            if (CANumber.length === 0) {
+                document.getElementById("errCANumber").innerHTML = "Please Insert CA Number";
             }
-        })
+            else if (Email.length === 0) {
+                document.getElementById("errEmail").innerHTML = "Please Insert Email Id";
+            }
+            else{
+                document.getElementById("errCANumber").innerHTML = "";
+                document.getElementById("errEmail").innerHTML = "";
+            
+                $.ajax({
+                    url: "/LICIndiaBill/FetchBill",
+                    data: { 'caNumber': CANumber, 'email': Email },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (responsedata) {
+                        if (responsedata.result == "EmptyResult") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.result == "UnExpectedStatusCode") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.result == "RedirectToException") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.statuscode == "ERR") {
+                            document.getElementById("divBill").style.display = "block";
+                            document.getElementById("lblBillData").innerHTML = responsedata.message;
+                            document.getElementById("lblBillData").style.display = "block";
+                            document.getElementById("tblData").style.display = "none";
+                            document.getElementById("lblBillNum").innerHTML = "none";
+                            document.getElementById("lblCustomerName").style.display = "none";
+                            document.getElementById("lblDueDate").style.display = "none";
+                            document.getElementById("lblBillPeriod").style.display = "none";
+                            document.getElementById("lblTotalAmount").style.display = "none";
+                            document.getElementById("lblamount").style.display = "none";
+                        }
+                        else{
+                            document.getElementById("divBill").style.display = "block";
+                            document.getElementById("lblBillNum").innerHTML =  'NA';
+                            document.getElementById("lblCustomerName").innerHTML = responsedata.customerName;
+                            document.getElementById("lblDueDate").innerHTML = responsedata.duedatefromto;
+                            document.getElementById("lblBillPeriod").innerHTML =  'NA';
+                            document.getElementById("lblTotalAmount").innerHTML = responsedata.netamount;
+                            price = document.getElementById("lblTotalAmount").innerHTML;
+                            document.getElementById("lblamount").innerHTML = " ₹ " + responsedata.netamount;
+                            document.getElementById("btnProcessRecharge").innerHTML = "Pay Bill"
+                        }
+                    }
+                })
+            }
+        }
+        else if (document.getElementById("btnProcessRecharge").innerHTML == "Pay Bill") {
+            bindAmountInput();
+            $("#btnmodalChoosePayment").trigger("click");
+        }
     }
-</script>
-<script>
+
+
     function payNow() {
         var caNumber = $("#txtCANumber").val();
         var email = $("#txtEmail").val();
         var Payment = $('.radio1:checked').val();
-
         if (Payment != undefined && Payment != '') {
             $.ajax({
                 type: "POST",
@@ -727,11 +541,9 @@
                         document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#txtOperator").val();
                         document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
                         document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
-
                         $("#btnmyModalfinal").trigger("click");
                         $("#myModal").hide();
                     }
-
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -757,7 +569,7 @@
             if (CANumber.length < 5) {
                 $("#errCANumber").html("Please insert number between 5 to 15 digits");
             }
-            else if (MobileNum.length > 6) {
+            else if (CANumber.length > 6) {
                 $("#errCANumber").html("");
 
             }
@@ -769,14 +581,12 @@
     $(function () {
         $("#txtEmail").keyup(function (e) {
             var Email;
-            //var a = $('#txtAccountNum').attr('id');
             var Email = $("#txtEmail").val();
             if (Email.length < 5) {
                 $("#errEmail").html("Email ID Length Should not be less than 5 characters");
             }
-            else if (AccountNum.length == 5) {
+            else if (Email.length == 5) {
                 $("#errEmail").html("");
-                document.getElementById("btnFetchBill").disabled = false;
             }
         })
 

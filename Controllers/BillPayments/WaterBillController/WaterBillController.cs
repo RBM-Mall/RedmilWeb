@@ -39,7 +39,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
 
         #region GetOperatorState
         public List<GetWaterStateListResponseModel> GetOperatorState()
-        //public dynamic GetOperatorState()
         {
             List<GetWaterStateListResponseModel> lstd = new List<GetWaterStateListResponseModel>();
             try
@@ -59,7 +58,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                     if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
-                        //return RedirectToAction("Error", "Error");
                         var data = deserialize.Data;
                         var dataList = JsonConvert.DeserializeObject<List<GetWaterStateListResponseModel>>(JsonConvert.SerializeObject(data));
                         return dataList;
@@ -70,14 +68,9 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                     }
                     else
                     {
-                        //return RedirectToAction("Error", "Error");
-                        //return Json("");
+                        return null;
                     }
-
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -536,7 +529,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.WaterBillController
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXT" && deserialize != null)
                     {
                         return Json(deserialize);
                     }

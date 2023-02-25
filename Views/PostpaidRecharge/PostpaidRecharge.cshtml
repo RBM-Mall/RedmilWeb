@@ -113,12 +113,16 @@
     <!--Header Div Ends Here-->
     <div class="row">
         <div class="row-recharge-body">
-            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px">
+            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;">
                 <!--Card for recharge starts here-->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Mobile Bill</strong><img src="~/css/Icon_Logo_BBPS/iconPostpaid.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h4>
-                        <hr />
+                        <div>
+                            <h4 class="card-title heading_tag_bbps">
+                                <strong>Recharge Postpaid Bill</strong>
+                                <img src="~/css/Icon_Logo_BBPS/iconPostpaid.jpeg" class="img_tag_bbps" />
+                            </h4>
+                        </div>
                         <hr />
                         <div class="row">
                             <div class="radioRecharge">
@@ -145,43 +149,33 @@
                                         <div class="text w-100 py-0 py-md-5">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12">
-
                                                     <div class="form-group-recharge">
-                                                        <input id="txtMobile" autocomplete="off" asp-for="Mobile" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Mobile Number" />
-                                                        <br />
+                                                        <input id="txtMobile" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Mobile Number" />
+                                                       <br />
                                                         <span id="errMobile" class="errorMsg"></span>
-
                                                     </div>
                                                     <div class="form-group-recharge">
-                                                        <input id="txtOperator" autocomplete="off" asp-for="Operator" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Operator Name" />
+                                                        <input id="txtOperator" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Operator Name" />
                                                         <br />
-                                                        <span id="operator" class="text-danger font-weight-bold"></span>
-                                                        <i class="operatori"></i>
-                                                        <div class="operatorspan">
-                                                            <ul id="ul11   " class="operator-change" onclick="dropdownchange(this.id)">
-                                                                Change Operator
-                                                            </ul>
-                                                        </div>
+                                                        <span id="errOperator" class="errorMsg"></span>
                                                     </div>
                                                     <div class="form-group-recharge">
-                                                        <input id="txtCircle" autocomplete="off" asp-for="Circle" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Circle Name" />
-                                                        <span id="circle" class="errorMsg"></span>
-                                                    </div>
-                                                    <div class="form-group-recharge">
-                                                        <input type="tel" autocomplete="off" asp-for="Amount" required="required" disabled class="txt-input js-input-mobile txt-input-text" id="txtAmount" placeholder="Amount" />
+                                                        <input id="txtCircle" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Circle Name" />
                                                         <br />
-                                                        <span id="amount" class="text-danger font-weight-bold"></span>
-                                                        <div class="amount-gap"></div>
-                                                        <div class="plan-description-amount">
-                                                            <label id="lblDescription" />
-                                                        </div>
+                                                        <span id="errCircle" class="errorMsg"></span>
+                                                    </div>
+                                                    <div class="form-group-recharge">
+                                                        <input id="txtAmount" type="tel" autocomplete="off" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Amount" />
+                                                        <br />
+                                                        <span id="errAmount" class="errorMsg"></span>
                                                     </div>
                                                     <div class="form-group-recharge form-group-recharge-button">
-                                                        <button type="submit" id="btnProcessRecharge" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" disabled data-target="#myModal" data-toggle="modal" onclick="bindAmountInput()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Proceed to Recharge</button>
+                                                        <button type="submit" id="btnProcessRecharge" onclick="openModalPayment()" class="btn-process-recharge3">Proceed to Recharge</button>
                                                     </div>
 
                                                     <!-- Modal Confirm Payment -->
-                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                    <input type="button" id="btnmodalChoosePayment" style="display:none" data-target="#modalChoosePayment" data-toggle="modal" />
+                                                    <div class="modal fade" id="modalChoosePayment" role="dialog">
                                                         <div class="modal-dialog">
 
                                                             <!-- Modal content-->
@@ -249,7 +243,6 @@
                                                                             <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -281,7 +274,6 @@
                                                                             <p class="p-new"><label id="lblOperatorRefNum"></label></p>
                                                                             <p><strong>Note:</strong></p><p style="margin-left:40px"> In case of successful recharge not recieved,ask customer to call</p>
                                                                             <p style="margin-left:40px">operator's customer care and confirm with Operator reference number</p>
-
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn-final" id="finaldismissbutton" data-dismiss="modal"><b>Ok</b></button>
@@ -304,57 +296,46 @@
             </div>
         </div>
     </div>
-
-
     <!--Image of Operators Starts Here-->
-
     <div class="col col-md-12 col-sm-12 col-lg-12">
         <div class="div-main-oplist">
             <div class="div-recharge-opimage">
-                <div class="div-oprator-heading" style="text-align:center;"><h2><b>Our Recharge Partner</b></h2></div>
+                <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our Recharge Partner</b></h4></div>
                 <div class="row" style="text-align:center;">
-                    @*<div class="col-md-1 col-sm-12 col-xs-12 "></div>*@
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1644409460661.png" alt="Airtel Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1644409460661.png" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="Airtel Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
                             <p class="about-lead"><b>Airtel Bill Payment</b></p>
                         </div>
                     </div>
-
-
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1644935871928.png" alt="BSNL Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1644935871928.png" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="BSNL Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
                             <p class="about-lead"><b>BSNL Bill Payment</b></p>
                         </div>
                     </div>
-
-
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1648138982857.png" alt="Jio Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1648138982857.png" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="Jio Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
                             <p class="about-lead"><b>Jio Bill Payment</b></p>
                         </div>
                     </div>
-
-
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1652957725071.png" alt="MTNL Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1652957725071.png" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="MTNL Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
                             <p class="about-lead"><b>Tata Teleservices Bill Payment</b></p>
                         </div>
                     </div>
-
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1599763691135.png" alt="Vi Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1599763691135.png" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="" target="_blank" class="icon" title="Vi Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
@@ -362,38 +343,28 @@
                             <span></span>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-
-
     <!--Image Of Operators Ends Here-->
-
 </div>
 <!--Body Ends Here-->
 <script>
 
     function check(browser) {
-
         if (browser == "prepaid") {
             window.location.href = '@Url.Content("~/Recharge/PrepaidRecharge")';
         }
         if (browser == "postpaid") {
             window.location.href = '@Url.Content("~/PostpaidRecharge/PostpaidRecharge")';
         }
-
     }
-</script>
-<script>
-    $(function () {
 
+    $(function () {
         $("#txtMobile").keyup(function (e) {
             var MobileNum;
             var a = $('#txtMobile').attr('id');
-            document.getElementById("txtAmount").disabled = true;
             var MobileNum = $("#txtMobile").val();
             if (MobileNum.length < 10) {
                 $("#errMobile").html("Please insert 10 digits number");
@@ -404,9 +375,6 @@
                 $("#txtCircle").val("");
                 $("#txtOperator").val("");
                 $("#txtAmount").val("");
-                document.getElementById("txtAmount").disabled = false;
-
-                document.getElementById("lblDescription").innerHTML = "";
                 $.ajax({
                     url: "/PostpaidRecharge/GetMobileMNPDetails",
                     data: { 'MobileNumber': MobileNum },
@@ -428,11 +396,9 @@
                             $("#operatordropdownlist").html($('<option/>', { value: response.currentOperator, text: response.currentOperator }));
                             if (response.currentOperator == "India") {
                                 document.getElementById('divplans').style.display = "block";
-                                document.getElementById("txtAmount").disabled = true;
                                 var message = 'Sorry! No Records Found'
                                 $("#output").html(message).css({ 'color': 'red', 'font-size': '150%', 'text-align': 'center', 'font-weight': 'bold' });
                             }
-
                         }
                     },
                     failure: function (response) {
@@ -445,71 +411,11 @@
                 });
             }
         });
-
     });
 
-
-
-</script>
-
-<script>
-    function bindAmount() {
-        $(document).ready(function () {
-            $("#myTable").on('click', '#id1', function () {
-                // get the current row
-                var currentRow = $(this).closest("tr");
-                var col5 = currentRow.find("td:eq(4)").html(); // get current row 5th table cell  TD value
-                var col4 = currentRow.find("td:eq(3)").html();
-                var data = col5;
-                var description = col4;
-                $("#txtAmount").val(data);
-                document.getElementById("lblamount").innerHTML = data;
-                document.getElementById("lblDescription").innerHTML = description;
-                document.getElementById("btnProcessRecharge").disabled = false;
-                $.ajax({
-                    type: "POST",
-                    url: "/PostpaidRecharge/GetBalance",
-                    data: {},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                            window.location.href = response.url;
-                        }
-                        else {
-                            document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                            document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                        }
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-
-            });
-
-        });
-
-    }
-</script>
-<script>
     function bindAmountInput() {
         $(document).ready(function () {
-
-            var a = $("#txtAmount").val;
-            var b = document.getElementById("txtAmount");
-            var c = document.getElementById("txtAmount").value;
-
-            document.getElementById("btnProcessRecharge").disabled = false;
+            var amount = document.getElementById("txtAmount").value;
             $.ajax({
                 type: "POST",
                 url: "/PostpaidRecharge/GetBalance",
@@ -517,6 +423,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -529,6 +436,7 @@
                     else {
                         document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                         document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        document.getElementById("lblamount").innerHTML ="₹"+ amount;
                     }
                 },
                 failure: function (response) {
@@ -538,11 +446,9 @@
                     alert(response.responseText);
                 }
             });
-
-
         });
-
     }
+
     $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
@@ -558,63 +464,6 @@
     });
     $('#finaldismissbutton').click(function () {
         window.location.href = '@Url.Content("~/PostpaidRecharge/PostpaidRecharge")';
-    });
-
-</script>
-
-<script>
-    function dropdownchange() {
-        $.ajax({
-            type: "POST",
-            url: "/PostpaidRecharge/GetOperatorList",
-            data: "{}",
-            success: function (data) {
-                if (data.result == "EmptyResult") {
-                    window.location.href = data.url;
-                }
-                else if (data.result == "UnExpectedStatusCode") {
-                    window.location.href = data.url;
-                }
-                else if (data.result == "RedirectToException") {
-                    window.location.href = data.url;
-                }
-                else {
-                    $('#operatordropdownlist').html('');
-
-                    var options = '';
-
-                    options += '<option value="Select">Select</option>';
-
-                    for (var i = 0; i < data.length; i++) {
-
-                        options += '<option value="' + data[i].operatorname + '" data-left="' + data[i].img + '">' + data[i].operatorname + '</option>';
-
-                    }
-                    $('#operatordropdownlist').append(options);
-                    operatordropdownlist.classList.toggle("show");
-                }
-            }
-
-        });
-
-    }
-</script>
-<script>
-    $(function () {
-        $("#txtAmount").keyup(function () {
-            var dInput = this.value;
-            var a = $('#txtAmount').attr('id');
-            var mobile = $("#txtMobile").val();
-            var amount = $("#txtAmount").val();
-            if (amount.length == 0) {
-                $("#amount").html("Please insert some amount");
-            }
-            else {
-                $("#amount").html("");
-                document.getElementById("lblamount").innerHTML = "₹" + " " + dInput;
-                document.getElementById("btnProcessRecharge").disabled = false;
-            }
-        });
     });
 </script>
 <!--Final Amount Pay-->
@@ -679,15 +528,7 @@
                         document.getElementById("icon").style.backgroundColor = '#880808';
                         document.getElementById("lblPrice").style.color = '#880808'
                         document.getElementById("lblPrice").innerHTML = 'Amount:₹ ' + " " + response.data.amount;
-                        var datetime = response.data.reqdate;
-                        date = datetime.split('T')[0];
-                        time = datetime.split('T')[1];
-                        const timeString = time;
-
-                        const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
-                            .toLocaleTimeString('en-US',
-                                { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
-                            );
+                       
                         if (response.data.id === undefined || response.data.id === null || response.data.id === 0) {
                             document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + 'NA';
                         }
@@ -743,53 +584,32 @@
             return false;
         }
     }
-
 </script>
 <script>
-    function dropdownchange() {
-        var MobileNum = $("#txtMobile").val();
-        if (MobileNum.length < 10) {
-            $("#errMobile").html("Please insert 10 digits number");
+    function openModalPayment() {
+        var mobile = $("#txtMobile").val();
+        var operator = $("#txtOperator").val();
+        var circle = $("#txtCircle").val();
+        var amount = $("#txtAmount").val();
+        if (mobile.length === 0) {
+            document.getElementById("errMobile").innerHTML = "Please Enter Mobile Number";
+        }
+        else if (operator.length === 0) {
+            document.getElementById("errOperator").innerHTML = "Please Enter Operator";
+        }
+        else if (circle.length === 0) {
+            document.getElementById("errCircle").innerHTML = "Please Enter Circle";
+        }
+        else if (amount.length === 0) {
+            document.getElementById("errAmount").innerHTML = "Please Enter Amount";
         }
         else {
-            $.ajax({
-                type: "POST",
-                url: "/Recharge/GetOperatorList",
-                data: "{}",
-                success: function (data) {
-                    if (data.result == "EmptyResult") {
-                        window.location.href = data.url;
-                    }
-                    else if (data.result == "UnExpectedStatusCode") {
-                        window.location.href = data.url;
-                    }
-                    else if (data.result == "RedirectToException") {
-                        window.location.href = data.url;
-                    }
-                    else {
-                        $('#ul11s').html('');
-                        var li = '';
-                        li += '<li value="Select Operator" class="li-title options">Select Operator</li>';
-                        for (var i = 0; i < data.length; i++) {
-                            $('#ul11s').html('');
-                            var id = 'myPara' + i;
-                            li += "<li class='li-title options' id='myListImage' ><img class='my-img' src='" + data[i].img1 + "'><p id='" + id + "' onclick='GetListName(this.id)'>" + data[i].operatorname + "</p></img></li>";
-
-                        }
-                        $('#ul11').html(li);
-                    }
-                }
-            });
+            document.getElementById("errMobile").innerHTML = "";
+            document.getElementById("errOperator").innerHTML = "";
+            document.getElementById("errCircle").innerHTML = "";
+            document.getElementById("errAmount").innerHTML = "";
+            bindAmountInput();
+            $("#btnmodalChoosePayment").trigger("click");
         }
-    }
-</script>
-<script type="text/javascript">
-    function GetListName(clicked_id) {
-        var list = document.getElementById("ul11");
-        $("#txtOperator").val("");
-        var a = clicked_id;
-        var text = document.getElementById(clicked_id).innerHTML;
-        $("#txtOperator").val(text);
-        list.classList.toggle("hide");
     }
 </script>

@@ -224,7 +224,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 }
                 else
                 {
-
+                    return null;
                 }
 
             }
@@ -251,8 +251,9 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
 
         #region GetFirstDTHPlan For All Operator 
         [HttpPost]
-        public JsonResult GetFirstDTHPlan(string opName, string planName)
+        public JsonResult GetAllDTHPlan(string opName)
         {
+            List<GetDTHAllPlansResponseModel> lstGetAllPlans = new List<GetDTHAllPlansResponseModel>();
             GetDTHAllPlansRequestModel requestModel = new GetDTHAllPlansRequestModel();
             try
             {
@@ -284,57 +285,19 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     {
                         var data = deserialize.Data;
                         var datalist = JsonConvert.DeserializeObject<List<GetDTHAllPlansResponseModel>>(JsonConvert.SerializeObject(data));
-                        getDTHAllPlans = datalist.ToList();
-                        if (opName == "Airtel DTH")
+                        //getDTHAllPlans = datalist.ToList();
+                        foreach (var item in datalist)
                         {
-                            var a = getDTHAllPlans.Where(x => x.PlanName == "Airtel SD Pack");
-                            if (!string.IsNullOrEmpty(planName))
+                            lstGetAllPlans.Add(new GetDTHAllPlansResponseModel
                             {
-                                var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                                return Json(b);
-                            }
-                            return Json(a);
+                                //LocationName = item.LocationName,
+                                PlanName = item.PlanName,
+                                Validity = item.Validity,
+                                Description = item.Description,
+                                Amount = "₹" + item.Amount,
+                            });
                         }
-                        else if (opName == "DishTV")
-                        {
-                            var a = getDTHAllPlans.Where(x => x.PlanName == "Kannada South Combo Pack");
-                            if (!string.IsNullOrEmpty(planName))
-                            {
-                                var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                                return Json(b);
-                            }
-                            return Json(a);
-                        }
-                        else if (opName == "Videocon D2H")
-                        {
-                            var a = getDTHAllPlans.Where(x => x.PlanName == "Ala Carte Top Up");
-                            if (!string.IsNullOrEmpty(planName))
-                            {
-                                var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                                return Json(b);
-                            }
-                            return Json(a);
-                        }
-                        else if (opName == "Tata Sky DTH")
-                        {
-                            var a = getDTHAllPlans.Where(x => x.PlanName == "OTT Combo Packs");
-                            if (!string.IsNullOrEmpty(planName))
-                            {
-                                var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                                return Json(b);
-                            }
-                            return Json(a);
-                        }
-                        else if (opName == "Sun Direct DTH")
-                        {
-                            var a = getDTHAllPlans.Where(x => x.PlanName == "Malayalam Curated Pack");
-                            if (!string.IsNullOrEmpty(planName))
-                            {
-                                var b = getDTHAllPlans.Where(x => x.PlanName == planName);
-                                return Json(b);
-                            }
-                            return Json(a);
-                        }
+                        return Json(lstGetAllPlans);
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {
@@ -360,20 +323,8 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 var result = response.Content;
                 return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            return Json("");
         }
         #endregion
-
-
-        #region GetAllPlansWithPlanName
-        [HttpPost]
-        public JsonResult GetAllPlansWithPlanName(string planName)
-        {
-            var a = getDTHAllPlans.Where(x => x.PlanName == planName).ToList();
-            return Json(a);
-        }
-        #endregion
-
 
         #region GetBalance
         [HttpPost]

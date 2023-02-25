@@ -14,321 +14,6 @@
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 
-<style>
-    .navbar1 {
-        position: fixed;
-        width: 100%;
-        z-index: 1000000;
-        top: 0;
-    }
-
-    .p-new {
-        text-align: center;
-        font-size: 20px;
-    }
-
-    .btn-final {
-        display: block;
-        margin-left: 208px;
-        border-bottom: 42px;
-        width: 179px;
-        border-radius: 41px;
-        height: 41px;
-        font-size: 20px;
-        color: white;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-    }
-</style>
-<style>
-
-
-    .button_header {
-        border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        border-width: 0;
-        font-weight: 600;
-        height: 50px;
-        background: #fff;
-        color: #00baf2;
-        border: 1px solid white;
-        font-size: 14px;
-        padding: 6px 10px;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-        border-bottom: white;
-    }
-
-
-    .operatori {
-        display: block;
-    }
-</style>
-<style>
-
-    .operatorspan {
-        font-size: 12px;
-        color: #00baf2;
-        text-align: right;
-        /* margin: -28px 1% 0px 0;*/
-        min-width: 35%;
-        right: 0;
-        font-weight: 800;
-        cursor: pointer;
-        margin-top: -48px;
-        /*margin-right: 84px;*/
-        float: left;
-        margin-left: 110px;
-    }
-
-
-        .operatorspan span {
-            display: block;
-            margin-top: -4px;
-        }
-</style>
-
-<style>
-    .errorMsg {
-        font-size: 12px;
-        color: #f4605f;
-        padding-top: 1px;
-        padding-left: 60px;
-    }
-
-</style>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-    }
-
-    .hero {
-        width: 100%;
-        height: 100vh;
-        background-image: linear-gradient(#f44336, #730228);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .selector {
-        width: 350px;
-    }
-
-    #selectField {
-        width: 100%;
-        padding: 15px 20px;
-        margin-bottom: 30px;
-        box-sizing: border-box;
-        background: rgb(255, 255, 255, 0.7);
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-    }
-
-        #selectField img {
-            width: 12px;
-            transition: transform 0.5s;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-    #list {
-        width: 100%;
-        background: rgb(255, 255, 255, 0.7);
-        border-radius: 6px;
-        overflow: hidden;
-    }
-
-    .options {
-        width: 100%;
-        padding: 15px 0 15px 70px;
-        list-style: none;
-        cursor: pointer;
-        box-sizing: border-box;
-        position: relative;
-    }
-
-    .my-img {
-        width: 25px;
-        position: absolute;
-        top: 12px;
-        left: 25px;
-    }
-
-    .options:hover {
-        background: rgb(255, 255, 255, 0.7);
-    }
-
-    .hide {
-        visibility: hidden;
-    }
-
-    .rotate {
-        transform: rotate(180deg);
-    }
-</style>
-<style>
-    .img-li {
-        height: 40px;
-        margin-top: 15px;
-    }
-
-    .li-title {
-        font-size: 15px;
-    }
-</style>
-<style>
-    .div-browse-plan {
-        margin-top: 15px;
-        text-align: center;
-        padding-top: 20px;
-    }
-
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 660px;
-        overflow: auto;
-    }
-
-    .main-table-recharge {
-        height: 100%;
-        overflow: auto;
-        width: 100%;
-    }
-</style>
-<style>
-    .img-wallet-select {
-        height: 150px;
-        width: 200px;
-    }
-
-    .first-wallet {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    .final-modal-popup {
-        width: 650px;
-    }
-</style>
-<style>
-    .img-operator-logo {
-        height: 100px;
-        width: 150px;
-    }
-</style>
-<style>
-    .form-control-dropdown {
-        display: block;
-        width: 70%;
-        height: 50px;
-        padding: 0px 14px;
-        font-size: 17px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        margin-left: 26px;
-    }
-</style>
-<style>
-    .p-new-1 {
-        text-align: center;
-        font-size: 16px;
-    }
-</style>
-<style>
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        margin-top: 19px;
-    }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-    input:checked + .slider {
-        background-color: #2196F3;
-    }
-
-    input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    /* Rounded sliders */
-    .slider.round {
-        border-radius: 34px;
-    }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-</style>
-<style>
-    .switchCCF {
-        display: flex;
-        /*// padding-left: 400px;*/
-    }
-
-</style>
-
 <!--Body Start Here-->
 
 <div class="container-fluid" style="background:#ebebeb">
@@ -427,12 +112,16 @@
     <!--Recharge Body Starts Here-->
     <div class="row">
         <div class="row-recharge-body">
-            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px">
+            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;">
                 <!--Card for recharge starts here-->
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Electricity Bill</strong><img src="~/css/Icon_Logo_BBPS/iconElectric.jpeg" style="float:right;height:60px;width:100px;margin-top: -31px;margin-right: 10px;" /> </h3>
-                        <hr />
+                        <div>
+                            <h4 class="card-title heading_tag_bbps">
+                                <strong>Electricity Bill</strong>
+                                <img src="~/css/Icon_Logo_BBPS/iconElectric.jpeg" class="img_tag_bbps" />
+                            </h4>
+                        </div>
                         <hr />
                         <div class="row">
                             <div class="row">
@@ -444,49 +133,46 @@
                                                     <div class="form-group-recharge">
                                                         @if (ViewBag.State != null)
                                                         {
-                                                            @Html.DropDownListFor(m =>m.StateName , ViewBag.State as SelectList , "-- Select State --" ,  new {@class="form-control-dropdown"})
+                                                            @Html.DropDownListFor(m =>m.StateName , ViewBag.State as SelectList , "-- Select State --" , new {@class="dropdownDTH dropdownDTH1"})
                                                         }
+                                                        <br />
+                                                        <span id="errState" class="errorMsg"></span>
                                                     </div>
                                                     <div class="form-group-recharge">
                                                         <div class="inc">
                                                             <div class="controls">
-                                                                <select class="form-control-dropdown" id="OpId" name="Id" asp-for="Id"
+                                                                <select class="dropdownDTH dropdownDTH1" id="OpId" name="Id" asp-for="Id"
                                                                         asp-items="@(new SelectList(string.Empty,"Id","Title"))">
                                                                     <option value="0">--Select Operator--</option>
                                                                 </select>
+                                                                <br />
+                                                                <span id="errOperator" class="errorMsg"></span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @*<div class="form-group-recharge">
-                                                    <input id="txtAccountNum" autocomplete="off" type="tel" maxlength="15" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Account Number" />
-                                                    <span id="errAccount" class="errorMsg"></span>
-                                                    </div>*@
+
                                                     <div class="form-group-recharge">
                                                         <input id="txtMobile" autocomplete="off" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Mobile Number" />
+                                                        <br />
                                                         <span id="errMobile" class="errorMsg"></span>
                                                     </div>
                                                     <div class="form-group-recharge">
-                                                        <p>*Enter the mobile number on which recharge/bill status information needs to be sent</p>
+                                                        <p class="plan-description-amount">*Enter the mobile number on which recharge/bill status information needs to be sent</p>
                                                     </div>
                                                     <br />
                                                     <br />
-                                                    <div class="operatorspan">
+                                                    <div class="form-group-recharge form-group-recharge-button operatorspan">
                                                         <button type="button" class="operator-change" id="btnDownloadSample" onclick="downloadSample()">Download Sample Bill</button>
                                                     </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divFetch" style="display:block">
-                                                        <button type="submit" id="btnFetchBill" onclick="fetchBill1()" disabled style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Fetch Bill</button>
-                                                    </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divPay" style="display:none">
-                                                        <button type="submit" id="btnPayBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" data-target="#myModal" data-toggle="modal" onclick="bindAmountInput()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Pay Bill</button>
-                                                    </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divCancel" style="display:none">
-                                                        <button type="submit" id="btnCancelBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Go Back</button>
+                                                    <div class="form-group-recharge form-group-recharge-button">
+                                                        <button type="submit" id="btnProcessRecharge" style="display:block;" onclick="fetchBill1()" class="btn-process-recharge3">Fetch Bill</button>
                                                     </div>
                                                     <br />
 
 
                                                     <!-- Modal Confirm Payment -->
-                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                    <input type="button" id="btnmodalChoosePayment" style="display:none" data-target="#modalChoosePayment" data-toggle="modal" />
+                                                    <div class="modal fade" id="modalChoosePayment" role="dialog">
                                                         <div class="modal-dialog">
 
                                                             <!-- Modal content-->
@@ -612,7 +298,7 @@
                 <!--Blank Space Between Recharge and Plans Pannel-->
             </div>
             <!--Card for Plans Pannel Starts Here-->
-            <div class="col-8 col-md-8 div-plans-table" style="display:none" id="divBill">
+            <div class="col-8 col-md-8 div-plans-table" style="display:none;background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;" id="divBill">
                 <div class="card">
 
                     <div class="card-body">
@@ -710,95 +396,96 @@
 
         <!--Recharge Body Ends Here-->
         <!--Body Ends Here-->
-        <!--Javascript Starts here-->
-        <script>
 
-
-            $("tr").not(':first').hover(
-                function () {
-                    $(this).css("background", "grey");
-                },
-                function () {
-                    $(this).css("background", "");
-                }
-            );
-
-
-            $("#myModalfinal").on('show.bs.modal', function (e) {
-                $("#myModal").modal("hide");
-            });
-
-            $('#btnCloseModal').click(function () {
-                window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
-            });
-            $('#btnCancelBill').click(function () {
-                window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
-            });
-            $('#btnCloseTwo').click(function () {
-                window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
-            });
-            $('#btnCloseFirst').click(function () {
-                window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
-            });
-            $('#finaldismissbutton').click(function () {
-                window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
-            });
-
-        </script>
-
-        <!--New Javascript Added-->
-        <!--Javascript Ends here-->
     </div>
     <div class="col col-md-12 col-sm-12 col-lg-12">
         <div class="div-main-oplist">
             <div class="div-recharge-opimage">
-                <div class="div-oprator-heading" style="text-align:center;"><h2><b>Our Electricity Partner</b></h2></div>
+                <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our Electricity Partner</b></h4></div>
                 <div class="row" style="text-align:center;">
                     <div class="col-md-1 col-sm-12 col-xs-12 "></div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="~/css/ImgElectricity/adani.jpeg" alt="adani" class="img-width img-operator-logo">
+                        <img src="~/css/ImgElectricity/adani.jpeg" alt="adani" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="adani"></a></div>
                         <div class="leadership_name">
                             <br />
+                            <p class="about-lead"><b>Adani</b></p>
                         </div>
                     </div>
 
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="~/css/ImgElectricity/damandiu.jpeg" alt="damandiu" class="img-width img-operator-logo">
+                        <img src="~/css/ImgElectricity/damandiu.jpeg" alt="damandiu" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="damandiu"></a></div>
                         <div class="leadership_name">
                             <br />
+                            <p class="about-lead"><b>Daman And Diu</b></p>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="~/css/ImgElectricity/kesco.jpeg" alt="kesco" class="img-width img-operator-logo">
+                        <img src="~/css/ImgElectricity/kesco.jpeg" alt="kesco" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="kesco"></a></div>
                         <div class="leadership_name">
                             <br />
+                            <p class="about-lead"><b>Kesco</b></p>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="~/css/ImgElectricity/mahavitaran_logo.jpeg" alt="mahavitaran" class="img-width img-operator-logo">
+                        <img src="~/css/ImgElectricity/mahavitaran_logo.jpeg" alt="mahavitaran" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="mahavitaran"></a></div>
                         <div class="leadership_name">
                             <br />
+                            <p class="about-lead"><b>Mahavitran</b></p>
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="~/css/ImgElectricity/NPCL.jpeg" alt="npcl" class="img-width img-operator-logo">
+                        <img src="~/css/ImgElectricity/NPCL.jpeg" alt="npcl" class="img-width" style="height:100px;">
                         <div class="overlay"> <a href="" target="_blank" class="icon" title="npcl"></a></div>
                         <div class="leadership_name">
                             <br />
-                            <span></span>
+                            <p class="about-lead"><b>NPCL</b></p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--Javascript Starts here-->
 <script>
+    $("tr").not(':first').hover(
+        function () {
+            $(this).css("background", "grey");
+        },
+        function () {
+            $(this).css("background", "");
+        }
+    );
+
+
+    $("#myModalfinal").on('show.bs.modal', function (e) {
+        $("#myModal").modal("hide");
+    });
+
+    $('#btnCloseModal').click(function () {
+        window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
+    });
+    $('#btnCancelBill').click(function () {
+        window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
+    });
+    $('#btnCloseTwo').click(function () {
+        window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
+    });
+    $('#btnCloseFirst').click(function () {
+        window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
+    });
+    $('#finaldismissbutton').click(function () {
+        window.location.href = '@Url.Content("~/ElectricityBill/ElectricityBill")';
+    });
+
+</script>
+<script>
+    let price;
+
     var checkbox = document.querySelector("input[name=ccfCheckbox]");
     var chkCCF = "1";
     checkbox.addEventListener('change', function () {
@@ -823,7 +510,6 @@
             }
             else if (MobileNum.length == 10) {
                 $("#errMobile").html("");
-                document.getElementById("btnFetchBill").disabled = false;
             }
         })
 
@@ -850,6 +536,7 @@
         $("#StateName").change(function () {
             var StateID = $(this).val();
             var number = $("#txtMobile").val();
+            jQuery('.remove').parent().remove();
             $.ajax({
                 url: "/ElectricityBill/GetOperatorList",
                 data: { 'StateId': StateID, 'Number': number },
@@ -919,77 +606,92 @@
     }
 
     function fetchBill1() {
-        var MobileNum = $("#txtMobile").val();
-        var Input1 = $("#txtInput0").val();
-        var Input2 = $("#txtInput1").val();
-        var State = $("#StateName").val();
-        var Operator = $("#OpId").val();
-        if (MobileNum.length == 10 && Input1.length > 5) {
-            $.ajax({
-                url: "/ElectricityBill/FetchBill",
-                data: { 'Number': MobileNum, 'Operator': Operator, 'State': State, 'Input1': Input1, 'Input2': Input2, 'ccf': chkCCF },
-                type: 'POST',
-                dataType: 'json',
-                success: function (responsedata) {
-                    if (responsedata.result == "EmptyResult") {
-                        window.location.href = responsedata.url;
-                    }
-                    else if (responsedata.result == "UnExpectedStatusCode") {
-                        window.location.href = responsedata.url;
-                    }
-                    else if (responsedata.result == "RedirectToException") {
-                        window.location.href = responsedata.url;
-                    }
+        if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill") {
+            var stateName = $("#StateName").val();
+            var opId = $("#OpId").val();
+            var mobile = $("#txtMobile").val();
+            if (stateName.length === 0) {
+                document.getElementById("errState").innerHTML = "Please Select State";
+            }
+            else if (opId.length === 0) {
+                document.getElementById("errOperator").innerHTML = "Please Select Operator";
+            }
+            else if (mobile.length === 0) {
+                document.getElementById("errMobile").innerHTML = "Please Enter Mobile Number";
+            }
+            else {
+                document.getElementById("errMobile").innerHTML = "";
+                document.getElementById("errOperator").innerHTML = "";
+                document.getElementById("errState").innerHTML = "";
+                var MobileNum = $("#txtMobile").val();
+                var Input1 = $("#txtInput0").val();
+                var Input2 = $("#txtInput1").val();
+                var State = $("#StateName").val();
+                var Operator = $("#OpId").val();
 
-                    else if (responsedata.statuscode == "ERR") {
-                        document.getElementById("divBill").style.display = "block";
-                        document.getElementById("divCancel").style.display = "block";
-                        document.getElementById("divFetch").style.display = "none";
-                        document.getElementById("divPay").style.display = "none";
-                        document.getElementById("lblBillData").innerHTML = responsedata.message;
-                        document.getElementById("lblBillData").style.display = "block";
-                        document.getElementById("tblData").style.display = "none";
-                        document.getElementById("lblCustomerName").style.display = "none";
-                        document.getElementById("lblDueDate").style.display = "none";
-                        document.getElementById("lblBillPeriod").style.display = "none";
-                        document.getElementById("lblBillAmount").style.display = "none";
-                        document.getElementById("txtBill").style.display = "none";
-                        document.getElementById("btnEditAmount").style.display = "none";
-                        document.getElementById("divSwitch").style.display = "none";
-                        document.getElementById("divSecHeading").style.display = "none";
-                        $('#txtBill').val(responsedata.data.billamount);
-                        document.getElementById("lblCCF").style.display = "none";
-                        document.getElementById("lblCommision").style.display = "none";
-                        document.getElementById("lblTotalAmount").style.display = "none";
-                        document.getElementById("lblAdditional").style.display = "none";
+                $.ajax({
+                    url: "/ElectricityBill/FetchBill",
+                    data: { 'Number': MobileNum, 'Operator': Operator, 'State': State, 'Input1': Input1, 'Input2': Input2, 'ccf': chkCCF },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (responsedata) {
+                        if (responsedata.result == "EmptyResult") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.result == "UnExpectedStatusCode") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.result == "RedirectToException") {
+                            window.location.href = responsedata.url;
+                        }
 
-                    }
-                    else {
-                        var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
-                        document.getElementById("divFetch").style.display = "none";
-                        document.getElementById("divPay").style.display = "block";
-                        document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
-                        document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
-                        document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
-                        document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
-                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
-                        $('#txtBill').val(responsedata.data.billamount);
-                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
-                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
-                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                        document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoValue;
-                        document.getElementById("lblamount").innerHTML = $('#txtBill').val();
-                        document.getElementById("divBill").style.display = "block";
-                        ccfChange("1");
-                    }
+                        else if (responsedata.statuscode == "ERR") {
+                            document.getElementById("divBill").style.display = "block";
+                            document.getElementById("lblBillData").innerHTML = responsedata.message;
+                            document.getElementById("lblBillData").style.display = "block";
+                            document.getElementById("tblData").style.display = "none";
+                            document.getElementById("lblCustomerName").style.display = "none";
+                            document.getElementById("lblDueDate").style.display = "none";
+                            document.getElementById("lblBillPeriod").style.display = "none";
+                            document.getElementById("lblBillAmount").style.display = "none";
+                            document.getElementById("txtBill").style.display = "none";
+                            document.getElementById("btnEditAmount").style.display = "none";
+                            document.getElementById("divSwitch").style.display = "none";
+                            document.getElementById("divSecHeading").style.display = "none";
+                            $('#txtBill').val(responsedata.data.billamount);
+                            document.getElementById("lblCCF").style.display = "none";
+                            document.getElementById("lblCommision").style.display = "none";
+                            document.getElementById("lblTotalAmount").style.display = "none";
+                            document.getElementById("lblAdditional").style.display = "none";
 
-                }
-            })
+                        }
+                        else {
+                            var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
+                            document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
+                            document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
+                            document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
+                            document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
+                            document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
+                            $('#txtBill').val(responsedata.data.billamount);
+                            document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
+                            document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
+                            document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                            price = document.getElementById("lblTotalAmount").innerHTML;
+                            document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoValue;
+                            document.getElementById("lblamount").innerHTML = $('#txtBill').val();
+                            document.getElementById("divBill").style.display = "block";
+                            ccfChange("1");
+                            document.getElementById("btnProcessRecharge").innerHTML = "Pay Bill"
+                        }
+                    }
+                })
+
+            }
         }
-        else {
-            $("#errMobile").html("Please insert 10 digits number");
+        else if (document.getElementById("btnProcessRecharge").innerHTML == "Pay Bill") {
+            bindAmountInput();
+            $("#btnmodalChoosePayment").trigger("click");
         }
-
     }
 
     function editAmount() {
@@ -1106,6 +808,7 @@
 
     function bindAmountInput() {
         $(document).ready(function () {
+            var amount = document.getElementById("lblTotalAmount").innerHTML;
             $.ajax({
                 type: "POST",
                 url: "/ElectricityBill/GetBalance",
@@ -1125,6 +828,7 @@
                     else {
                         document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                         document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        document.getElementById("lblamount").innerHTML = "₹" + amount;
                     }
                 },
                 failure: function (response) {
@@ -1160,7 +864,7 @@
 
 
 
-    function payNow(){
+    function payNow() {
         var MobileNum = $("#txtMobile").val();
         var Input1 = $("#txtInput0").val();
         var Input2 = $("#txtInput1").val();
@@ -1282,8 +986,6 @@
         $("#OpId").change(function (e) {
             $("#txtMobile").val("");
             document.getElementById("divBill").style.display = "none";
-            document.getElementById("divFetch").style.display = "block";
-            document.getElementById("divPay").style.display = "none";
             jQuery('.remove').parent().remove();
             var StateId = $("#StateName").val();
             var OpId = $("#OpId").val();
@@ -1306,8 +1008,8 @@
                         for (var i = 0; i < responsedata[0].inputParam.length; i++) {
                             var id = "txtInput" + i;
                             $(".inc").append('<div class="controls">\
-                                                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                                                            </div>');
+                                                                                        <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                                                    </div>');
                         }
                     }
                 }
@@ -1322,3 +1024,4 @@
 
     });
 </script>
+<!--Javascript Ends here-->
