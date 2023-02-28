@@ -7318,7 +7318,18 @@ button.close {
         .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
             border-bottom: none;
         }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
+.dropdown-menu {
+    margin-top: 0;
+}
+
+li {
+    margin-left: 10px;
+    font-size: 10px;
+}
 
 
 /*# sourceMappingURL=bootstrap.min.css.map */
