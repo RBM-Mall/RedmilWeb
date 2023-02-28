@@ -1,4 +1,11 @@
-﻿.section_title {
+﻿.about_services_para {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2d385e;
+}
+
+
+.section_title {
     border-radius: 10px;
     box-shadow: 0 0 20px rgb(0 0 0 / 20%);
     /*max-width: %;*/
@@ -10,7 +17,7 @@
     padding: 10px;
     font-weight: 700;
     color: #2d385e;
-    background:white;
+    background: white;
 }
 
 .row_aepsChooseTrasaction {
@@ -19,7 +26,7 @@
 }
 
 .row_cashWithdrawal {
-    width: 350px;
+    width: 285px;
     cursor: pointer;
     padding-right: 20px;
     margin-top: 20px;
@@ -36,6 +43,10 @@
 .button-23:hover {
     color: white;
 }
+
+/*.row_heading_start {
+    min-height: 1800px;
+}*/
 
 .wallet-box .bg-wt-round {
     background: #fff;
@@ -87,69 +98,343 @@
 /*Media Query Starts for Small Smartphone*/
 @media screen and (max-width:339px) and (min-width:279px) {
     .row_cashWithdrawal {
-        width: 225px;
-        margin-left: -70px;
+        width: 115px;
+        margin-left: 23px;
     }
+
+    .heading_services {
+        font-size: 15px;
+        font-weight: 800;
+    }
+
+    .wallet_box_border {
+        border: 3px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: -70px;
+    }
+    .section_title {
+        margin-top: -55px;
+    }
+}
+
+@media screen and (max-width:380px) and (min-width:340px) {
+    .row_cashWithdrawal {
+        width: 156px;
+        margin-left: 20px;
+    }
+
     .heading_services {
         font-size: 16px;
         font-weight: 800;
     }
-}
-@media screen and (max-width:380px) and (min-width:340px) {
-    .row_cashWithdrawal {
-        width: 255px;
-        margin-left: -60px;
+
+    .wallet_box_border {
+        border: 3px solid #2d385e;
     }
 
-    .heading_services {
-        font-size: 17px;
-        font-weight: 800;
+    .about_services_para {
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: -50px;
     }
 }
+
 @media screen and (max-width:450px) and (min-width:381px) {
     .row_cashWithdrawal {
-        width: 285px;
-        margin-left: -40px;
+        width: 165px;
+        margin-left: 30px;
     }
 
     .heading_services {
         font-size: 18px;
         font-weight: 800;
     }
-}
-@media screen and (max-width:550px) and (min-width:451px) {
-    .heading_services {
-        font-size: 19px;
-        font-weight: 800;
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: -50px;
     }
 }
-@media screen and (max-width:768px) and (min-width:551px) {
+
+@media screen and (max-width:539px) and (min-width:451px) {
+    .row_cashWithdrawal {
+        width: 165px;
+        margin-left: 125px;
+    }
+
     .heading_services {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 800;
     }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: -30px;
+    }
 }
-@media screen and (max-width:885px) and (min-width:769px) {
+
+@media screen and (max-width:767px) and (min-width:540px) {
+    .row_cashWithdrawal {
+        width: 165px;
+        margin-left: 85px;
+    }
+
+    .heading_services {
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+
+    .section_title {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width:885px) and (min-width:768px) {
+    .row_cashWithdrawal {
+        width: 210px;
+        margin-left: 130px;
+    }
+
+    .heading_services {
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: -40px;
+    }
+    .section_title {
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width:950px) and (min-width:886px) {
+    .heading_services {
+        font-size: 21px;
+        font-weight: 800;
+    }
+
+    .row_cashWithdrawal {
+        width: 165px;
+        margin-left: 125px;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+    .section_title{
+        margin-top:50px;
+    }
+}
+
+
+@media screen and (max-width: 995px) and (min-width: 951px) {
+
+    .row_cashWithdrawal {
+        width: 165px;
+        margin-left: 21px;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+
+    .section_title {
+        margin-top: 50px;
+    }
     .heading_services {
         font-size: 21px;
         font-weight: 800;
     }
 }
-@media screen and (max-width:950px) and (min-width:886px) {
-    .heading_services {
-        font-size: 22px;
-        font-weight: 800;
-    }
-}
-@media screen and (max-width:1100px) and (min-width:951px) {
+
+@media screen and (max-width:1050px) and (min-width:996px) {
     .heading_services {
         font-size: 23px;
         font-weight: 800;
     }
+    .row_cashWithdrawal {
+        width: 172px;
+        margin-left: 70px;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+
+    .section_title {
+        margin-top: 60px;
+    }
 }
-@media screen and (max-width:1279px) and (min-width:1101px) {
+
+@media screen and (max-width:1151px) and (min-width:1051px) {
     .heading_services {
-        font-size: 24px;
+        font-size: 23px;
         font-weight: 800;
+    }
+
+    .row_cashWithdrawal {
+        width: 172px;
+        margin-left: 70px;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+
+    .section_title {
+        margin-top: 60px;
+    }
+}
+@media screen and (max-width:1200px) and (min-width:1152px) {
+    .heading_services {
+        font-size: 23px;
+        font-weight: 800;
+    }
+
+    .row_cashWithdrawal {
+        width: 172px;
+        margin-left: 70px;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+
+    .section_title {
+        margin-top: 60px;
+    }
+}
+@media screen and (max-width:1279px) and (min-width:1201px) {
+    .heading_services {
+        font-size: 23px;
+        font-weight: 800;
+    }
+
+    .row_cashWithdrawal {
+        width: 191px;
+        margin-left: 100px;
+    }
+
+    .wallet_box_border {
+        border: 4px solid #2d385e;
+    }
+
+    .about_services_para {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .row_heading_start {
+        /*min-height: 1800px;*/
+        margin-top: 0px;
+    }
+
+    .section_title {
+        margin-top: 60px;
     }
 }
