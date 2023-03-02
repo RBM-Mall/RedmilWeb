@@ -33,7 +33,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
 
             }
             ViewBag.OpName = new SelectList(GetOperatorList(), "Id", "Operatorname");
-            //ViewBag.msg = "Something Went Wrong";
             return View();
         }
 
@@ -168,8 +167,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                                 string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
                                 #endregion
                                 requestmodel.checksum = CheckSumN;
-                                var clientN = new RestClient("https://proapitest4.redmilbusinessmall.com/api/GetBBPSBillsTmp");//
-                                                                                                                               //var client = new RestClient($"{Baseurl}{ApiName.BbpsBillerByState}");
+                                var clientN = new RestClient("https://proapitest4.redmilbusinessmall.com/api/GetBBPSBillsTmp");
                                 var requestN = new RestRequest(Method.POST);
                                 requestN.AddHeader("Content-Type", "application/json");
                                 var jsonN = JsonConvert.SerializeObject(requestmodel);
@@ -228,9 +226,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                                                 {
                                                     requestPayModel.InputParam2 = Input;
                                                 }
-
-                                                //requestmodel.InputParam1 = dataBillerInfo.FirstOrDefault().inputParam.FirstOrDefault().Name;
-                                                //requestmodel.InputParam2 = Input;
                                                 requestPayModel.type = "Pay";
                                                 requestPayModel.billValidationStatus = lstOperator.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().BillValidation;
                                                 requestPayModel.Wallet = Payment;
@@ -249,7 +244,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                                                 requestPayModel.Mode = "App";
                                                 requestPayModel.Userid = "2084";
                                                 string UseridCheck = "2084";
-                                                //requestPayModel.Token = "";
 
                                                 #region Checksum (PayBBPSBillsTmp|Unique Key|UseridCheck|Mobileno|Mode|Amount|RequestID|BillerId|InputParam1|InputParam2)
                                                 string inputN1 = Checksum.MakeChecksumString("PayBBPSBillsTmp", Checksum.checksumKey, requestPayModel.Userid,
@@ -261,7 +255,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                                                 requestPayModel.checksum = CheckSumN1;
 
                                                 var clientN1 = new RestClient("https://proapitest5.redmilbusinessmall.com/api/PayBBPSBillsTmp");
-                                                // var clientN = new RestClient($"{Baseurl}{ApiName.PayBill}");
                                                 var requestN1 = new RestRequest(Method.POST);
                                                 requestN1.AddHeader("Content-Type", "application/json");
                                                 var jsonN1 = JsonConvert.SerializeObject(requestPayModel);
@@ -311,7 +304,6 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                                                 var resultEx = responseEx.Content;
                                                 return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                                             }
-                                            return Json(deserialize);
 
                                         }
                                         else
@@ -408,7 +400,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
                 {
-                    //return Json(new { Result = "Redirect", url = Url.Action("ErrorHandle", "Error") });
+                    return null;
                     
                 }
                 else
@@ -500,7 +492,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LoanRepaymentBillControlle
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if(deserialize.Statuscode=="TXN" && deserialize != null)
+                    if(deserialize.Statuscode=="TXT" && deserialize != null)
                     {
                         return Json(deserialize);
                     }

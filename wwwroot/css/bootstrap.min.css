@@ -1368,7 +1368,7 @@ button, input, select, textarea {
 a {
     color: #337ab7;
     text-decoration: none;
-    cursor:pointer;
+    cursor: pointer;
 }
 
     a:focus, a:hover {
@@ -3653,7 +3653,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-danger {
     color: #fff;
     background-color: #d9534f;
-    border-color: #d43f3a
+    border-color: #d43f3a;
+    border-radius: 100px;
+    font-weight: 900;
+    padding: 6px 25px;
 }
 
     .btn-danger.focus, .btn-danger:focus {
@@ -4501,7 +4504,6 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
     position: relative;
     min-height: 68px;
     margin-bottom: -5px;
-    
 }
 
 @media (min-width:768px) {
@@ -4874,7 +4876,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 
     .navbar-default .navbar-brand {
         color: black;
-        margin-top:10px;
+        margin-top: 10px;
     }
 
         .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
@@ -6346,6 +6348,7 @@ button.close {
     border-bottom: 1px solid #e5e5e5;
     background-color: #2d385e;
 }
+
     .modal-header .close {
         margin-top: -12px;
         font-size: 50px;
@@ -6355,7 +6358,7 @@ button.close {
 .modal-title {
     margin: 0;
     line-height: 1.42857143;
-    color:white;
+    color: white;
 }
 
 .modal-body {
@@ -6396,7 +6399,7 @@ button.close {
         margin: 30px auto
     }
 
-   /* .modal-content {
+    /* .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
         box-shadow: 0 5px 15px rgba(0,0,0,.5)
     }
@@ -7219,8 +7222,9 @@ button.close {
 }
 
 .Sub-menu-1 {
-    display: none 
+    display: none
 }
+
 .hover-me:hover .Sub-menu-1 {
     position: absolute;
     display: block;
@@ -7241,7 +7245,6 @@ button.close {
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
     box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-
     /* border-left:1px solid #000 !important;
    */
 }
@@ -7272,40 +7275,312 @@ button.close {
     float: right;
 }
 
+
+
+.dropdown ul li {
+    width: 200px;
+    padding: 5px;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    border-radius: 0px;
+    text-align: left;
+    text-decoration: none;
+}
+
+    .dropdown ul li:last-child {
+        border-bottom: none;
+    }
+
+.dropdown ul li {
+    /* margin-left: 10px;*/
+    font-size: 13px;
+    text-decoration: none;
+    color: black;
+}
+
+    .dropdown ul li a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .dropdown ul li:hover .Sub-menu-1 ul li {
+        width: 200px;
+        padding: 10px;
+        border-bottom: 1px solid #000;
+        /* border-left: 1px solid #000;*/
+        background: transparent;
+        border-radius: 0px;
+        /* text-align: left;*/
+        text-decoration: none;
+    }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+            color: darkblue;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+            border-bottom: none;
+        }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}
+
+li {
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+    
+
 /*# sourceMappingURL=bootstrap.min.css.map */
 @media screen and (max-width:360px) and (min-width:280px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 13px;
-        /*color: white;*/
     }
+
     .navbar-collapse.in {
         overflow-y: auto;
-        /*background-color: #2d385e;*/
-        /*color: white;*/
+    }
+
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li:hover .Sub-menu-1 ul li {
+        font-size: 13px;
+        font-family:sans-serif;
+    }
+        .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+            color: darkblue;
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+            border-bottom: none;
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+    .div_readMore {
+        text-align: center;
     }
 }
+
 @media screen and (max-width:440px) and (min-width:361px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 14px;
-        /*color: white;*/
+    }
+
+    .navbar-default .navbar-nav > li > ul > a {
+        font-size: 14px;
+    }
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 13px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 13px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
     }
 }
+
 @media screen and (max-width:560px) and (min-width:441px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 15px;
         /*color: white;*/
     }
+
+    .navbar-default .navbar-nav > li > ul > a {
+        font-size: 15px;
+    }
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 14px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 14px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 14px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
+    }
 }
+
 @media screen and (max-width:768px) and (min-width:561px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 16px;
         /*color: white;*/
     }
 
+    .navbar-default .navbar-nav > li > ul > a {
+        font-size: 16px;
+    }
+    .dropdown ul li {
+        font-size: 15px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 15px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 15px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 15px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
+    }
 }
+
 @media screen and (max-width:880px) and (min-width:769px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 17px;
         /*color:white;*/
+    }
+    .dropdown ul li {
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 16px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 16px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
     }
 }

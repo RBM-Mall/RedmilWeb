@@ -336,11 +336,11 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 }
                 else if (deserializeBbpsStates.Statuscode == "ERR")
                 {
-
+                    return null;
                 }
                 else
                 {
-
+                    return null;
                 }
             }
             catch (Exception ex)
@@ -484,7 +484,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
-                    if (deserialize.Statuscode == "TXN" && deserialize != null)
+                    if (deserialize.Statuscode == "TXT" && deserialize != null)
                     {
                         return Json(deserialize);
                     }

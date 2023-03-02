@@ -201,6 +201,11 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                         }
                         //return Json("");
                     }
+
+                    else if (deserializ.Statuscode == "SNR")
+                    {
+                        return Json(new BaseResponseModel() { Statuscode = deserializ.Statuscode, Message = deserializ.Message });
+                    }
                     else
                     {
                         return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });

@@ -13,238 +13,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-<style>
-    .navbar1 {
-        position: fixed;
-        width: 100%;
-        z-index: 1000000;
-        top: 0;
-    }
-
-    .p-new {
-        text-align: center;
-        font-size: 20px;
-    }
-
-    .btn-final {
-        display: block;
-        margin-left: 208px;
-        border-bottom: 42px;
-        width: 179px;
-        border-radius: 41px;
-        height: 41px;
-        font-size: 20px;
-        color: white;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-    }
-</style>
-<style>
-    .button_header {
-        border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        border-width: 0;
-        font-weight: 600;
-        height: 50px;
-        background: #fff;
-        color: #00baf2;
-        border: 1px solid white;
-        font-size: 14px;
-        padding: 6px 10px;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-        border-bottom: white;
-    }
-
-
-    .operatori {
-        display: block;
-    }
-</style>
-<style>
-
-    .operatorspan {
-        font-size: 12px;
-        color: #00baf2;
-        text-align: right;
-        min-width: 35%;
-        right: 0;
-        font-weight: 800;
-        cursor: pointer;
-        margin-top: -48px;
-        float: left;
-        margin-left: 110px;
-    }
-
-
-        .operatorspan span {
-            display: block;
-            margin-top: -4px;
-        }
-</style>
-
-<style>
-    .errorMsg {
-        font-size: 12px;
-        color: #f4605f;
-        padding-top: 1px;
-        padding-left: 60px;
-    }
-
-</style>
-<style>
-    .img-li {
-        height: 40px;
-        margin-top: 15px;
-    }
-
-    .li-title {
-        font-size: 15px;
-    }
-</style>
-<style>
-    .div-browse-plan {
-        margin-top: 15px;
-        text-align: center;
-        padding-top: 20px;
-    }
-
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 735px;
-        overflow: auto;
-    }
-
-    .main-table-recharge {
-        height: 100%;
-        overflow: auto;
-        width: 100%;
-    }
-</style>
-<style>
-    .img-wallet-select {
-        height: 150px;
-        width: 200px;
-    }
-
-    .first-wallet {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    .final-modal-popup {
-        width: 650px;
-    }
-</style>
-<style>
-    .img-operator-logo {
-        height: 100px;
-        width: 150px;
-    }
-</style>
-<style>
-    .form-control-dropdown {
-        display: block;
-        width: 70%;
-        height: 50px;
-        padding: 0px 14px;
-        font-size: 17px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        margin-left: 26px;
-    }
-</style>
-<style>
-    .p-new-1 {
-        text-align: center;
-        font-size: 16px;
-    }
-
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        margin-top: 19px;
-    }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-    input:checked + .slider {
-        background-color: #2196F3;
-    }
-
-    input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    /* Rounded sliders */
-    .slider.round {
-        border-radius: 34px;
-    }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-    .switchCCF {
-        display: flex;
-        /*padding-left: 400px;*/
-    }
-</style>
 
 <div class="container-fluid" style="background:#ebebeb">
     <div class="main-head-recharge">
@@ -341,12 +109,17 @@
     <!--Recharge Body Starts Here-->
     <div class="row">
         <div class="row-recharge-body">
-            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px">
+            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;">
+
                 <!--Card for recharge starts here-->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>LPG Gas</strong><img src="~/css/Icon_Logo_BBPS/iconLPG.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h4>
-                        <hr />
+                        <div>
+                            <h4 class="card-title heading_tag_bbps">
+                                <strong>Pay LPG Gas</strong>
+                                <img src="~/css/Icon_Logo_BBPS/iconLPG.jpeg" class="img_tag_bbps" />
+                            </h4>
+                        </div>
                         <hr />
                         <div class="row">
                             <div class="row">
@@ -355,55 +128,49 @@
                                         <div class="text w-100 py-0 py-md-5">
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12">
-
                                                     @*LPG Operator State Binding*@
                                                     <div class="form-group-recharge">
                                                         @if (ViewBag.State != null)
                                                         {
-                                                            @Html.DropDownListFor(m =>m.StateName , ViewBag.State as SelectList , "-- Select State --" ,  new {@class="form-control-dropdown"})
+                                                            @Html.DropDownListFor(m =>m.StateName , ViewBag.State as SelectList , "-- Select State --" ,  new {@class="dropdownDTH dropdownDTH1"})
                                                         }
+                                                        <br />
+                                                        <span id="errState" class="errorMsg"></span>
                                                     </div>
-
                                                     @*LPG Operator List Binding*@
                                                     <div class="form-group-recharge">
                                                         <div class="inc">
                                                             <div class="controls">
-                                                                <select class="form-control-dropdown" id="OpId" name="Id" asp-for="Id"
+                                                                <select class="dropdownDTH dropdownDTH1" id="OpId" name="Id" asp-for="Id"
                                                                         asp-items="@(new SelectList(string.Empty,"Id","Title"))">
                                                                     <option value="0">--Select Operator--</option>
                                                                 </select>
+                                                                <br />
+                                                                <span id="errOperator" class="errorMsg"></span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group-recharge">
                                                         <input id="txtMobileNumber" autocomplete="off" type="text" maxlength="10" required="required" class="txt-input txt-input-text" placeholder="Customer Mobile Number" />
+                                                        <br />
                                                         <span id="errMobileNumber" class="errorMsg"></span>
                                                     </div>
-
-
                                                     <div class="form-group-recharge">
-                                                        <p>*Enter the mobile number on which recharge/bill status information needs to be sent</p>
+                                                        <p class="plan-description-amount">*Enter the mobile number on which recharge/bill status information needs to be sent</p>
                                                     </div>
                                                     <br />
-                                                    <br />
-                                                    <div class="operatorspan">
+                                                    <div class="form-group-recharge form-group-recharge-button operatorspan">
                                                         <button type="button" class="operator-change" id="btnDownloadSample" onclick="downloadSample()">Download Sample Bill</button>
                                                     </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divFetch" style="display:block">
-                                                        <button type="submit" id="btnFetchBill" disabled onclick="fetchBill1()" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Fetch Bill</button>
+                                                    <div class="form-group-recharge form-group-recharge-button">
+                                                        <button type="submit" id="btnProcessRecharge" style="display:block;" onclick="fetchBill1()" class="btn-process-recharge3">Fetch Bill</button>
                                                     </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divPay" style="display:none">
-                                                        <button type="submit" id="btnPayBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" data-target="#myModal" data-toggle="modal" onclick="bindAmountInput()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Pay Bill</button>
-                                                    </div>
-                                                    <div class="form-group-recharge form-group-recharge-button" id="divCancel" style="display:none">
-                                                        <button type="submit" id="btnCancelBill" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Go Back</button>
-                                                    </div>
-
                                                     <br />
 
 
                                                     <!-- Modal Confirm Payment -->
-                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                    <input type="button" id="btnmodalChoosePayment" style="display:none" data-target="#modalChoosePayment" data-toggle="modal" />
+                                                    <div class="modal fade" id="modalChoosePayment" role="dialog">
                                                         <div class="modal-dialog">
 
                                                             <!-- Modal content-->
@@ -460,17 +227,17 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="modal-footer div-pay-row">
-                                                                    <div class="row div-pay-row">
-                                                                        <div class="col-sm-4 final-pay-button">
-                                                                            <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" onclick="payNow()">Pay</button>
+                                                                <div class="modal-footer">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12" style="display: inline-flex;">
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <button type="button" id="btnPayNow" onclick="payNow()" class="button-27">Pay</button>
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                                                         </div>
-                                                                        <div class="col-sm-4 final-cancel-button">
-                                                                            <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -528,11 +295,9 @@
                 <!--Blank Space Between Recharge and Plans Pannel-->
             </div>
             <!--Card for Plans Pannel Starts Here-->
-            <div class="col-8 col-md-8 div-plans-table" style="display:none" id="divBill">
+            <div class="col-8 col-md-8 div-plans-table" style="display:none;background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;" id="divBill">
                 <div class="card">
-
                     <div class="card-body">
-
                         <h3 class="card-title div-browse-plans" id="heading" style="text-align:center;"><strong>Bill Details</strong><img src="~/css/ImgElectricity/BharatBill.jpeg" style="float:right;height:45px;width:100px" /></h3>
                         <div class="main-table-recharge">
                             <br />
@@ -570,7 +335,6 @@
                                                 <button type="button" style="display:none;margin-left: 242px;margin-top: -34px;" id="btnEdit" onclick="bindEditAmount()" class="btn btn-danger butn-cancel">Ok</button>
                                             </div>
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <th scope="row">CCF:</th>
@@ -619,38 +383,39 @@
                         </div>
                     </div>
                 </div>
-
                 <!--Card for Plans Pannel Ends Here-->
-
             </div>
         </div>
         <div class="col col-md-12 col-sm-12 col-lg-12">
             <div class="div-main-oplist">
                 <div class="div-recharge-opimage">
-                    <div class="div-oprator-heading" style="text-align:center;"><h2><b>LPG Gas Partner</b></h2></div>
+                    <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our LPG Gas Partner</b></h4></div>
                     <div class="row" style="text-align:center;">
                         <div class="col-md-3 col-sm-12 col-xs-12 "></div>
                         <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLPGGas/Bharat-Petroleum-Logo.jpeg" alt="Bharat-Petroleum-Logo" class="img-width img-operator-logo">
+                            <img src="~/css/ImgLPGGas/Bharat-Petroleum-Logo.jpeg" alt="Bharat-Petroleum-Logo" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Bharat-Petroleum-Logo"></a></div>
                             <div class="leadership_name">
                                 <br />
+                                <p class="about-lead"><b>Bharat Petroleum</b></p>
                             </div>
                         </div>
 
                         <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLPGGas/Hindustan_Petroleum_Logo.jpeg" alt="Hindustan_Petroleum_Logo" class="img-width img-operator-logo">
+                            <img src="~/css/ImgLPGGas/Hindustan_Petroleum_Logo.jpeg" alt="Hindustan_Petroleum_Logo" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Hindustan_Petroleum_Logo"></a></div>
                             <div class="leadership_name">
                                 <br />
+                                <p class="about-lead"><b>Hindustan Petroleum</b></p>
                             </div>
                         </div>
 
                         <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLPGGas/indane-gas.jpeg" alt="indane-gas" class="img-width img-operator-logo">
+                            <img src="~/css/ImgLPGGas/indane-gas.jpeg" alt="indane-gas" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="indane-gas"></a></div>
                             <div class="leadership_name">
                                 <br />
+                                <p class="about-lead"><b>Indane Gas</b></p>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-12 col-xs-12 "></div>
@@ -660,17 +425,24 @@
         </div>
     </div>
 </div>
-<script>
 
-</script>
 <script>
+    let price;
+
     function payNow() {
+        var State = $("#StateName").val();
+        var Operator = $("#OpId").val();
+        var input1 = $("#txtInput0").val();
+        var input2 = $("#txtInput1").val();
+        var input3 = $("#txtInput2").val();
+        var input4 = $("#txtInput3").val();
+        var customerMobile = $("#txtMobileNumber").val();
+        var Amount = $('#txtBill').val();
         var Payment = $('.radio1:checked').val();
         if (Payment != undefined && Payment != '') {
             $.ajax({
-                type: "POST",
                 url: "/LPGGasBill/FetchBill",
-                data: { 'caNumber': caNumber, 'email': email, 'Payment': Payment },
+                data: { 'input1': input1, 'input2': input2, 'input3': input3, 'input4': input4, 'customerMobile': customerMobile, 'State': State, 'Operator': Operator, 'ccf': chkCCF ,'Amount': Amount, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
@@ -774,10 +546,8 @@
         }
     }
 
-</script>
-<script>
-    $(document).ready(function () {
 
+    $(document).ready(function () {
         $("#StateName").change(function () {
             var StateID = $(this).val();
             var number = $("#txtMobileNumber").val();
@@ -802,25 +572,18 @@
 
                         var options = '<option value="' + 0 + '">' + "--Choose Operator--" + '</option>';
 
-                        for (var i = 0; i < response.data.billerInfo.length; i++) {
+                        for (var i = 0; i < response.billerInfo.length; i++) {
 
-                            options += '<option value="' + response.data.billerInfo[i].id + '">' + response.data.billerInfo[i].operatorname + '</option>';
+                            options += '<option value="' + response.billerInfo[i].id + '">' + response.billerInfo[i].operatorname + '</option>';
 
                         }
                         $('#OpId').append(options);
-                        //document.getElementById("divLPGId").style.display = "block";
-                        //document.getElementById("divLPGRegisteredNumber").style.display = "block";
-                        //document.getElementById("divLPGCustomerMobile").style.display = "block";
                     }
-
-
                 }
             });
-
         });
     });
-</script>
-<script>
+
     var checkbox = document.querySelector("input[name=ccfCheckbox]");
     var chkCCF = "1";
     checkbox.addEventListener('change', function () {
@@ -840,14 +603,11 @@
             var MobileNum = $("#txtMobileNumber").val();
             if (MobileNum.length < 10) {
                 $("#errMobileNumber").html("Please insert 10 digits number");
-
             }
             else if (MobileNum.length == 10) {
                 $("#errMobileNumber").html("");
-                document.getElementById("btnFetchBill").disabled = false;
             }
         })
-
     });
 
     function downloadSample() {
@@ -883,71 +643,89 @@
     }
 
     function fetchBill1() {
-        var State = $("#StateName").val();
-        var Operator = $("#OpId").val();
 
-        var input1 = $("#txtInput0").val();
-        var input2 = $("#txtInput1").val();
-        var input3 = $("#txtInput2").val();
-        var input4 = $("#txtInput3").val();
-        var customerMobile = $("#txtMobileNumber").val();
-
-        $.ajax({
-            url: "/LPGGasBill/FetchBill",
-            data: { 'input1': input1, 'input2': input2, 'input3': input3, 'input4': input4, 'customerMobile': customerMobile, 'State': State, 'Operator': Operator, 'ccf': chkCCF },
-            type: 'POST',
-            dataType: 'json',
-            success: function (responsedata) {
-                if (responsedata.result == "EmptyResult") {
-                    window.location.href = responsedata.url;
-                }
-                else if (responsedata.result == "UnExpectedStatusCode") {
-                    window.location.href = responsedata.url;
-                }
-                else if (responsedata.result == "RedirectToException") {
-                    window.location.href = responsedata.url;
-                }
-                else if (responsedata.statuscode == 'ERR') {
-                    document.getElementById("divBill").style.display = "block";
-                    document.getElementById("divCancel").style.display = "block";
-                    document.getElementById("divFetch").style.display = "none";
-                    document.getElementById("divPay").style.display = "none";
-                    document.getElementById("lblBillData").innerHTML = responsedata.message;
-                    document.getElementById("lblBillData").style.display = "block";
-                    document.getElementById("tblData").style.display = "none";
-                    document.getElementById("lblCustomerName").style.display = "none";
-                    document.getElementById("lblDueDate").style.display = "none";
-                    document.getElementById("lblBillPeriod").style.display = "none";
-                    document.getElementById("lblBillAmount").style.display = "none";
-                    document.getElementById("txtBill").style.display = "none";
-                    document.getElementById("btnEditAmount").style.display = "none";
-                    document.getElementById("divSwitch").style.display = "none";
-                    document.getElementById("divSecHeading").style.display = "none";
-                    document.getElementById("lblCCF").style.display = "none";
-                    document.getElementById("lblCommision").style.display = "none";
-                    document.getElementById("lblTotalAmount").style.display = "none";
-                    document.getElementById("lblAdditional").style.display = "none";
-                }
-                else {
-                    var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
-                    document.getElementById("divFetch").style.display = "none";
-                    document.getElementById("divPay").style.display = "block";
-                    document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
-                    document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
-                    document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
-                    document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
-                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
-                    $('#txtBill').val(responsedata.data.billamount);
-                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
-                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
-                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                    document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoName + " : " + responsedata.additionalInfo.info[0].infoValue;
-                    document.getElementById("lblamount").innerHTML = '₹' + " " + responsedata.data.billamount;
-                    document.getElementById("divBill").style.display = "block";
-                    ccfChange("1");
-                }
+        if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill") {
+            var stateName = $("#StateName").val();
+            var opId = $("#OpId").val();
+            var customerMobile = $("#txtMobileNumber").val();
+            if (stateName.length === 0) {
+                document.getElementById("errState").innerHTML = "Please Select State";
             }
-        })
+            else if (opId.length === 0) {
+                document.getElementById("errOperator").innerHTML = "Please Select Operator";
+            }
+            else if (customerMobile.length === 0) {
+                document.getElementById("errMobileNumber").innerHTML = "Please Enter Mobile Number";
+            }
+            else {
+                document.getElementById("errOperator").innerHTML = "";
+                document.getElementById("errState").innerHTML = "";
+                document.getElementById("errMobileNumber").innerHTML = "";
+                var State = $("#StateName").val();
+                var Operator = $("#OpId").val();
+                var input1 = $("#txtInput0").val();
+                var input2 = $("#txtInput1").val();
+                var input3 = $("#txtInput2").val();
+                var input4 = $("#txtInput3").val();
+                var customerMobile = $("#txtMobileNumber").val();
+                $.ajax({
+                    url: "/LPGGasBill/FetchBill",
+                    data: { 'input1': input1, 'input2': input2, 'input3': input3, 'input4': input4, 'customerMobile': customerMobile, 'State': State, 'Operator': Operator, 'ccf': chkCCF },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (responsedata) {
+                        if (responsedata.result == "EmptyResult") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.result == "UnExpectedStatusCode") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.result == "RedirectToException") {
+                            window.location.href = responsedata.url;
+                        }
+                        else if (responsedata.statuscode == 'ERR') {
+                            document.getElementById("divBill").style.display = "block";
+                            document.getElementById("lblBillData").innerHTML = responsedata.message;
+                            document.getElementById("lblBillData").style.display = "block";
+                            document.getElementById("tblData").style.display = "none";
+                            document.getElementById("lblCustomerName").style.display = "none";
+                            document.getElementById("lblDueDate").style.display = "none";
+                            document.getElementById("lblBillPeriod").style.display = "none";
+                            document.getElementById("lblBillAmount").style.display = "none";
+                            document.getElementById("txtBill").style.display = "none";
+                            document.getElementById("btnEditAmount").style.display = "none";
+                            document.getElementById("divSwitch").style.display = "none";
+                            document.getElementById("divSecHeading").style.display = "none";
+                            document.getElementById("lblCCF").style.display = "none";
+                            document.getElementById("lblCommision").style.display = "none";
+                            document.getElementById("lblTotalAmount").style.display = "none";
+                            document.getElementById("lblAdditional").style.display = "none";
+                        }
+                        else {
+                            var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
+                            document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
+                            document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
+                            document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
+                            document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
+                            document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
+                            $('#txtBill').val(responsedata.data.billamount);
+                            document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
+                            document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
+                            document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                            price = document.getElementById("lblTotalAmount").innerHTML;
+                            document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoName + " : " + responsedata.additionalInfo.info[0].infoValue;
+                            document.getElementById("lblamount").innerHTML = '₹' + " " + responsedata.data.billamount;
+                            document.getElementById("divBill").style.display = "block";
+                            ccfChange("1");
+                        }
+                    }
+                })
+            }
+        }
+        else if (document.getElementById("btnProcessRecharge").innerHTML == "Pay Bill") {
+            bindAmountInput();
+            $("#btnmodalChoosePayment").trigger("click");
+        }
     }
 
 
@@ -1067,6 +845,7 @@
 
     function bindAmountInput() {
         $(document).ready(function () {
+            var amount = document.getElementById("lblTotalAmount").innerHTML;
             $.ajax({
                 type: "POST",
                 url: "/LPGGasBill/GetBalance",
@@ -1086,6 +865,7 @@
                     else {
                         document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                         document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        document.getElementById("lblamount").innerHTML = "₹" + amount;
                     }
                 },
                 failure: function (response) {
@@ -1095,10 +875,7 @@
                     alert(response.responseText);
                 }
             });
-
-
         });
-
     }
 
     $("#myModalfinal").on('show.bs.modal', function (e) {
@@ -1123,8 +900,6 @@
         $("#OpId").change(function (e) {
             $("#txtMobileNumber").val("");
             document.getElementById("divBill").style.display = "none";
-            document.getElementById("divPay").style.display = "none";
-            document.getElementById("divFetch").style.display = "block";
             jQuery('.remove').parent().remove();
 
             var Operator = $("#OpId").val();
@@ -1149,13 +924,12 @@
                         for (var i = 0; i < responsedata[0].inputParam.length; i++) {
                             var id = "txtInput" + i;
                             $(".inc").append('<div class="controls">\
-                                                                    <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                                                </div>');
+                                                                        <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                                    </div>');
                         }
                     }
 
                 }
-
             });
             return false;
         });

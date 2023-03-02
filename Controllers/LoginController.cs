@@ -96,6 +96,10 @@ namespace Project_Redmil_MVC.Controllers
                             request1.AddJsonBody(json1);
                             IRestResponse response1 = client1.Execute(request1);
                             var result1 = response1.Content;
+                            if (string.IsNullOrEmpty(result1))
+                            {
+                                return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                            }
                             var des1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
                                 if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
                             {

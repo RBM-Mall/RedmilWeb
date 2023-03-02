@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel>*@
-@model Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel
+﻿@model Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel
 
 @{
     ViewData["Title"] = "DMT 2.0 - Direct Money Transfer DashBoard";
@@ -8,216 +7,39 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<srcipt src="jquery.redirect.js"></srcipt>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
-<link href="~/ResponsiveCSS/Passbook.css" rel="stylesheet" />
-<style>
-    .button-23:hover {
-        color: white;
-    }
+<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/dataTables.bootstrap4.min.css" asp-append-version="true" />
+<script src="/lib/jquery/dist/jquery.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="~/css/navbarheader.css">
 
-    .wallet-box .bg-wt-round {
-        background: #fff;
-        border-radius: 30px;
-        padding: 10px 0px;
-    }
-
-    .wallet_breadcumb-area {
-        position: relative;
-        padding: 140px 0;
-        background-size: cover;
-        background-position: center center;
-        position: relative;
-        background-position: 75% 10%;
-    }
-
-        .wallet_breadcumb-area:before {
-            position: absolute;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            content: "";
-            top: 0;
-            z-index: 0;
-        }
-
-        .wallet_breadcumb-area ul {
-            text-align: center;
-        }
-
-            .wallet_breadcumb-area ul li {
-                display: block;
-                font-weight: 500;
-                font-size: 16px;
-                color: #fff;
-            }
-
-                .wallet_breadcumb-area ul li:first-child {
-                    font-size: 50px;
-                    font-weight: 700;
-                    line-height: 5rem;
-                    color: #fff;
-                }
-
-                .wallet_breadcumb-area ul li a {
-                    color: #ffffff;
-                }
-
-    .box-button {
-        background: dodgerblue;
-        padding: 16px 24px;
-        border-radius: 25px;
-        position: relative;
-        display: flex;
-        font-size: 17px;
-        color: #fff;
-        font-weight: 500;
-        line-height: 18px;
-        text-align: center;
-        margin-left: 80px;
-        overflow-x: scroll;
-        height: 150px;
-        margin-right: 11px;
-        text-align: center;
-    }
-
-    .font {
-        text-align: center;
-        margin-left: 20px;
-        padding-left: 70px;
-        padding-top: 20px;
-        font-size: 20px;
-        font-weight: 700;
-    }
-    /* Style the tab content */
-    .tabcontent {
-        padding: 20px 12px;
-        border: 1px solid #ccc;
-    }
-
-        .tabcontent .title {
-            text-align: center;
-            padding-bottom: 80px;
-        }
-
-            .tabcontent .title h1 {
-                font-weight: 800;
-            }
-
-            .tabcontent .title .aval_bal, .cashBal {
-                margin-top: 20px;
-            }
-
-            .tabcontent .title .aval_bal, .AdvBal {
-                margin-top: -30px;
-            }
-
-            .tabcontent .title .advAval_bal, .AdvBal {
-                margin-top: -33px;
-            }
-
-        .tabcontent .item_info {
-            display: block;
-            margin-top: 50px;
-        }
-
-            .tabcontent .item_info button {
-                align-items: center;
-                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-                background-size: calc(100% + 20px) calc(100% + 20px);
-                border-radius: 100px;
-                border-width: 0;
-                color: #FFFFFF;
-                cursor: pointer;
-                display: inline-flex;
-                font-family: CircularStd,sans-serif;
-                font-size: 1.5rem;
-                height: auto;
-                justify-content: center;
-                line-height: 1.5;
-                padding: 6px 25px;
-                position: relative;
-                text-align: center;
-                text-decoration: none;
-                transition: background-color .2s,background-position .2s;
-                user-select: none;
-                margin-right: 24px;
-                float: none;
-                /*margin-top: 40px;*/
-                /*margin-left: 60px;*/
-                z-index: 1;
-            }
-
-        .tabcontent .title .item_info .rewbtn {
-            margin-left: 300px;
-        }
-
-        .tabcontent hr {
-            margin: 93px 0 0 20px;
-            padding: 10px;
-        }
-
-    hr {
-        border: none;
-        border-top: 1px dotted black;
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-        width: 100%;
-    }
-
-    .img-wallet-select {
-        height: 150px;
-        width: 200px;
-    }
-
-    .first-wallet {
-        font-size: 20px;
-        font-weight: 700;
-    }
-
-    .final-modal-popup {
-        width: 650px;
-    }
-
-    .close_cross {
-        float: right;
-        font-size: 41px;
-        font-weight: 700;
-        line-height: 1;
-        text-shadow: 0 1px 0 #fff;
-        filter: alpha(opacity=20);
-        opacity: .2;
-        color: white solid imp;
-        color: lightyellow;
-    }
-</style>
+<link href="~/ResponsiveCSS/jQueryTable.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 
 <br />
 <div class="container-fluid" style="background:#ebebeb">
     <div class="first-header">
-        <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
-            <div class="container">
+        <div class="section background-image heading_page">
+            <div class="container ">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="call-to-action">
-                            <div class="row">
-                                <div class="col-sm-7 col-xs-12 dmt">
-                                    <h3 class="padding-left-right-50" style="margin-left:199px;text-align:center; font-weight: 700; cursor: pointer;"><u>DMT 2.0 Dashboard</u></h3>
-                                </div>
-                                <div class="col-sm-5 col-xs-12 text-right">
-                                    <div class="read-more padding-top-bottom-40">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-sm-12 text-center">
+                        <ul>
+                            <li><strong class="heading_page_2">DMT 2.0 Dashboard</strong></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -227,16 +49,16 @@
     <br />
     <div class="container" style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;">
         <div class="col-md-12 col-lg-12 col-sm-12" style="text-align:center;color: cornflowerblue;">
-            <h3><b>Domestic Money Transfer</b></h3>
+            <h3 class="heading_page_2"><b>Domestic Money Transfer</b></h3>
         </div>
         <hr>
         <br />
         <div class="col-md-12 col-lg-12 col-sm-12" style="text-align:center;">
-            <p class="aval_bal" style="font-size:20px; margin-top:28px;"><h3 style="color:skyblue"><b>₹&nbsp;  @ViewBag.balance</b></h3> <img src="~/css/Img_DMT2/ImgLogo.jpeg" class="img-width" style="height:100px;width:120px;"></p>
+            <p class="aval_bal" style="margin-top:28px;"><h3 class="heading_page_2" style="color:skyblue"><b>₹&nbsp;  @ViewBag.balance</b></h3> <img src="~/css/Img_DMT2/ImgLogo.jpeg" class="img-width" style="height:100px;width:120px;"></p>
         </div>
         <hr>
         <div class="col-md-12 col-lg-12 col-sm-12" style="text-align:center;">
-            <p class="aval_bal" style="font-size:20px; "><b>REDMIL Cash Wallet</b></p>
+            <p class="aval_bal"><b>REDMIL Cash Wallet</b></p>
         </div>
         <br />
         <br />
@@ -264,12 +86,9 @@
         </div>
     </div>
     <br />
-    <div class="row div-pay-row">
-        @*<div class="form-group-recharge div_new_button" style="margin-left: 773px;">*@
-        <div class="form-group-recharge div_new_button">
-            @*<button type="button" id="btnAddBeneficiary" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal" style="background-color: var(--button_bg_color);background-image: var(--bg-image);">Add Beneficiary</button>*@
-            <button type="button" id="btnAddBeneficiary" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal">Add Beneficiary</button>
-            @*<button type="submit" id="btnProceed" class="button-21">Proceed</button>*@
+    <div class="row">
+        <div class="form-group-recharge" style="text-align: center;">
+            <button type="button" id="btnAddBeneficiary" style="font-weight:900;" class="button-21" data-target="#modalAddBeneficiary" data-toggle="modal">Add Beneficiary</button>
         </div>
     </div>
     <!-- Modal for add beneficery-->
@@ -285,23 +104,31 @@
                 <div class="modal-body" style="background-color:white;">
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center">
-                            <div class="form-group-recharge" style="margin-left: -65px">
+                            @*<div class="form-group-recharge" style="margin-left: -65px">
+                            <input id="txtAccountHoldName" autocomplete="off" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Holder Name" />
+                            <br />
+                            <h5><span id="errtxtAccountHoldName" style="color:red" class="errorMsg"></span></h5>
+                            </div>*@
+
+                            <div class="form-group-recharge" style="margin-left:-20px;">
                                 <input id="txtAccountHoldName" autocomplete="off" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Holder Name" />
                                 <br />
                                 <h5><span id="errtxtAccountHoldName" style="color:red" class="errorMsg"></span></h5>
                             </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
+
+
+                            <div class="form-group-recharge" style="margin-left: -20px">
                                 <input id="txtAccountNum" autocomplete="off" maxlength="20" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
                                 <br />
                                 <h5><span id="errtxtAccountNum" style="color:red" class="errorMsg"></span></h5>
                             </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
+                            <div class="form-group-recharge" style="margin-left: -20px">
                                 <input id="txtIFSCCode" autocomplete="off" maxlength="15" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter IFSC Code" />
                                 <br />
                                 <h5><span id="errtxtIFSCCode" style="color:red" class="errorMsg"></span></h5>
 
                             </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
+                            <div class="form-group-recharge" style="margin-left: -20px">
                                 <input id="txtBankName" autocomplete="off" maxlength="20" type="text" required="required" class="txt-input txt-input-text" placeholder="Enter Bank Name" />
                                 <br />
                                 <h5><span id="errtxtBankName" style="color:red" class="errorMsg"></span></h5>
@@ -310,14 +137,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <button type="button" id="btnAddBeneficiery" class="button-21">Add Beneficiery</button>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnAddBeneficiery" class="button-27">Add Beneficiery</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Not Now</button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
+
+                @* <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <button type="button" id="btnAddBeneficiery" class="button-21">Add Beneficiery</button>
+                </div>
+                </div>
+
+                </div>*@
             </div>
         </div>
     </div>
@@ -347,20 +187,27 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center">
-                            <label id="lblAddBeneficiery" style="text-align:center;">
+                            <label class="heading_customer_phone" id="lblAddBeneficiery" style="text-align:center;">
 
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center;">
+                            <a href="/DMT2Dashboard/DMTDashboard" type="button" id="btnAddBeneficiery" class="button-27">Ok</a>
                         </div>
                     </div>
-
                 </div>
+                @*<div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                </div>
+                </div>
+
+                </div>*@
             </div>
         </div>
     </div>
@@ -390,34 +237,46 @@
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center">
                             <h3>
-                                <label id="lblAddBeneficiery" style="text-align:center;">
+                                <label class="heading_customer_phone" id="lblAddBeneficiery" style="text-align:center;">
                                     Are you sure, you want to delete beneficiary?
                                 </label>
                             </h3>
                             <br />
-                            <label style="text-align:center;font-size:20px" id="lblAcName"></label>
+                            <label style="text-align:center;" class="heading_customer_phone" id="lblAcName"></label>
                             <br />
-                            <label style="text-align:center;font-size:20px" id="lblAcNum"></label>
+                            <label style="text-align:center;" class="heading_customer_phone" id="lblAcNum"></label>
                             <br />
-                            <label style="text-align:center;font-size:20px" id="lblIFSC"></label>
+                            <label style="text-align:center;" class="heading_customer_phone" id="lblIFSC"></label>
                             <br />
-                            <label style="text-align:center;font-size:20px" id="lblBankName"></label>
+                            <label style="text-align:center;" class="heading_customer_phone" id="lblBankName"></label>
                             <br />
                             <input type="hidden" id="hdfId" />
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <button type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Delete</button>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="button-27">Delete</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Not Now</button>
+                            </div>
                         </div>
-                        <div class="col-sm-4 final-cancel-button">
-                            <button type="button" style="margin-left:110px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
-                        </div>
-
                     </div>
                 </div>
+                @*<div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <button type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Delete</button>
+                </div>
+                <div class="col-sm-4 final-cancel-button">
+                <button type="button" style="margin-left:110px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
+                </div>
+
+                </div>
+                </div>*@
             </div>
         </div>
     </div>
@@ -446,20 +305,29 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="text-align: center">
-                            <label id="lblFinalMsg" style="text-align:center;">
+                            <label class="heading_customer_phone" id="lblFinalMsg" style="text-align:center;">
 
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="button-27">Ok</a>
                         </div>
                     </div>
-
                 </div>
+
+
+                @* <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                </div>
+                </div>
+
+                </div>*@
             </div>
         </div>
     </div>
@@ -479,7 +347,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center">
                             <h3>
-                                <label id="lblBankAccountCharge" style="text-align:center;">
+                                <label class="heading_customer_phone" id="lblBankAccountCharge" style="text-align:center;">
 
                                 </label>
                                 <label id="lblSenderID" style="display:none;"></label>
@@ -488,18 +356,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <button type="button" id="btnVerifyAccount" onclick="verifyAccount()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Verify</button>
-                        </div>
-                        <div class="col-sm-4 final-cancel-button">
-                            <button type="button" style="margin-left:110px" id="btnCloseBankChargePopup" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
-                        </div>
 
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnVerifyAccount" onclick="verifyAccount()" class="button-27">Verify</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnCloseBankChargePopup" class="btn btn-danger" data-dismiss="modal">Not Now</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+
+                @* <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <button type="button" id="btnVerifyAccount" onclick="verifyAccount()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Verify</button>
+                </div>
+                <div class="col-sm-4 final-cancel-button">
+                <button type="button" style="margin-left:110px" id="btnCloseBankChargePopup" class="btn btn-danger butn-cancel" data-dismiss="modal">Not Now</button>
+                </div>
 
                 </div>
+
+                </div>*@
             </div>
         </div>
     </div>
@@ -521,7 +404,7 @@
                         <div class="col-sm-12" style="text-align:center">
                             <h3>
                                 Beneficiary Name :
-                                <label id="lblBeneficiaryName" style="text-align:center;">
+                                <label id="lblBeneficiaryName" class="heading_customer_phone" style="text-align:center;">
 
                                 </label>
                             </h3>
@@ -529,14 +412,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" id="btnDeletBeneficiary" class="button-27">Ok</a>
                         </div>
                     </div>
-
                 </div>
+
+
+                @*
+                <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                </div>
+                </div>
+
+                </div>*@
             </div>
         </div>
     </div>
@@ -556,30 +449,40 @@
                 <div class="modal-body" style="background-color:white;">
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center">
-                            <label id="lblErrorName" style="text-align:center;color:red;">
+                            <label id="lblErrorName" class="heading_customer_phone" style="text-align:center;color:red;">
 
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" class="button-27">Ok</a>
                         </div>
                     </div>
-
                 </div>
+
+
+                @* <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                </div>
+                </div>
+                </div>*@
             </div>
         </div>
     </div>
-</div>
+
 
 <!-- Table for Recepient List-->
-<div class="tabcontent" style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;margin-top:15px;">
-    <h3 style="text-align:center;">Recepient List</h3>
+@*<div class="tabcontent" style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;margin-top:15px;">*@
+<div style="background-color:white;border: 2px solid ;padding: 10px;border-radius: 25px;margin-top:15px;">
+    <h3 style="text-align:center;" class="transRepoHead text-center">Recepient List</h3>
     <div style="overflow-x:auto;">
-        <form>
+        <form>  
             <table id="example" class="table table-striped table-bordered table-responsive">
                 <thead>
                     <tr>
@@ -621,18 +524,13 @@
                                 </td>
                                 <td>
                                     <input type="hidden" id="hdnBfId" value="@item.BenificiaryId">
-                                    <button type="button" onclick="finalPay('@item.BenificiaryId')" id="btnPay" class="btn-process-recharge1 btn-process-recharge2" style="background-color:green;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalPay" data-toggle="modal"*@>Pay</button>
-                                    <button type="button" id="btnVerify" onclick="bankchargePopup('@item.BenificiaryId')" class="btn-process-recharge1 btn-process-recharge2" style="background-color:  #2d385e;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalBankVerifyCharges" data-toggle="modal"*@>Verify</button>
-                                    <button onclick="detailsPopup('@item.BenificiaryId')" type="button" id="btnDelete" class="btn btn-danger"> Delete</button>
-
-                                    @*<a class="btn btn-danger" action="GetDetails" asp-route-BenificiaryId="@item.BenificiaryId">Delete</a>*@
-                                    @* <a class="btn btn-danger" id="btnDelete" onclick="location.href='@Url.Action("GetDetailsById", "DMT2Dashboard", new {id = @item.BenificiaryId})'">Delete</a>*@
-
+                                    <button type="button" onclick="finalPay('@item.BenificiaryId')" id="btnPay" class="button-27" style="background-color:green;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalPay" data-toggle="modal"*@>Pay</button>
+                                        <button type="button" id="btnVerify" onclick="bankchargePopup('@item.BenificiaryId')" class="button-27" style="background-color:  #2d385e;border-color: aliceblue;padding: 3px 16px;" @*data-target="#modalBankVerifyCharges" data-toggle="modal"*@>Verify</button>
+                                    <button onclick="detailsPopup('@item.BenificiaryId')" type="button" id="btnDelete" class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         }
                     }
-
                 </tbody>
             </table>
         </form>
@@ -676,7 +574,6 @@
                                 <span class="first-wallet">Fast</span>
                                 <input type="radio" class="rdbMode" name="testMode" checked value="IMPS"><!--0 For True and 1 for False-->
                                 <img src="~/css/Img_DMT2/IMPS Icon.jpg" alt="Option 1" class="img-wallet-select">
-                                @*<label>Available Balance is: ₹</label>*@
                                 <label />
                             </label>
                         </div>
@@ -686,7 +583,6 @@
                                 <span class="first-wallet">Slow</span>
                                 <input type="radio" class="rdbMode" name="testMode" value="NEFT">
                                 <img src="~/css/Img_DMT2/NEFT-Icon.png" alt="Option 2" class="img-wallet-select">
-                                @*<label>Available Balance is: ₹</label>*@
                                 <label />
                             </label>
                         </div>
@@ -698,16 +594,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <button type="button" id="btnProceedNow" onclick="confirmPopup()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Proceed to Pay</button>
-                        </div>
-                        <div class="col-sm-4 final-cancel-button">
-                            <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnProceedNow" onclick="confirmPopup()" class="button-27">Proceed to Pay</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnCloseBankChargePopup" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                @* <div class="modal-footer div-pay-row">
+                <div class="row div-pay-row">
+                <div class="col-sm-4 final-pay-button">
+                <button type="button" id="btnProceedNow" onclick="confirmPopup()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Proceed to Pay</button>
+                </div>
+                <div class="col-sm-4 final-cancel-button">
+                <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+                </div>
+                </div>*@
             </div>
         </div>
     </div>
@@ -742,14 +650,21 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer div-pay-row">
-                <div class="row div-pay-row">
-                    <div class="col-sm-4 final-pay-button">
-                        <button type="button" id="btnConfirmNowFinal" onclick="finalGoPay()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Confirm</button>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12" style="display: inline-flex;">
+                        <button type="button" id="btnConfirmNowFinal" onclick="finalGoPay()" class="button-27">Confirm</button>
                     </div>
                 </div>
-
             </div>
+            @* <div class="modal-footer div-pay-row">
+            <div class="row div-pay-row">
+            <div class="col-sm-4 final-pay-button">
+            <button type="button" id="btnConfirmNowFinal" onclick="finalGoPay()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Confirm</button>
+            </div>
+            </div>
+
+            </div>*@
         </div>
     </div>
 </div>
@@ -785,8 +700,8 @@
                         <label style="text-align:center;">
                             Select option to pay
                         </label>
-                        <label id="lblamountNewFinal"></label>
-                        <label id="result" style="display:none" />
+                            <label id="lblamountNewFinal" class="heading_customer_phone"></label>
+                            <label id="result" class="heading_customer_phone" style="display:none" />
                     </div>
                 </div>
                 <div class="row wallet-select">
@@ -815,18 +730,29 @@
                     </div>
                 </div>
             </div>
-
-            <div class="modal-footer div-pay-row">
-                <div class="row div-pay-row">
-                    <div class="col-sm-4 final-pay-button">
-                        <button type="button" id="btnPayNowFinal" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Pay</button>
-                    </div>
-                    <div class="col-sm-4 final-cancel-button">
-                        <a href="~/DMT2Dashboard/DMTDashboard" button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</a>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12" style="display: inline-flex;">
+                        <div class="col-sm-6 col-md-6">
+                            <button type="button" id="btnPayNowFinal" onclick="confirmPopup()" class="button-27" data-dismiss="modal">Pay</button>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <a href="~/DMT2Dashboard/DMTDashboard" type="button" id="btnCloseBankChargePopup" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                        </div>
                     </div>
                 </div>
-
             </div>
+
+            @*<div class="modal-footer div-pay-row">
+            <div class="row div-pay-row">
+            <div class="col-sm-4 final-pay-button">
+            <button type="button" id="btnPayNowFinal" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Pay</button>
+            </div>
+            <div class="col-sm-4 final-cancel-button">
+            <a href="~/DMT2Dashboard/DMTDashboard" button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</a>
+            </div>
+            </div>
+            </div>*@
         </div>
     </div>
 </div>
@@ -839,10 +765,6 @@
         <div id="myModalfinal" role="dialog" class="modal fade" style="margin-top:47px;" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-confirm" style="width: 986px;max-height:100%;overflow-y:scroll !important;">
                 <div class="modal-content" style="height: 1050px;color:black;">
-                    @* <div class="modal-header modal-header-recharge">
-                    <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close">&times;</a>
-                    <h4 class="modal-title" style="text-align:center;"><b>Receipt</b></h4>
-                    </div>*@
                     <div class="">
                         <div class="icon-box" style="top:4px;" id="icon">
                             <label id="img" />
@@ -935,24 +857,35 @@
                             </table>
                         </div>
                     </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" id="btnShareReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Share Receipt With Customer</button>
-                            </div>
-                            <div class="col-sm-4 final-cancel-button">
-                                <button type="button" style="margin-left:140px" id="btnPrintReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Print Receipt</button>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12" style="display: inline-flex;">
+                                <div class="col-sm-6 col-md-6">
+                                    <button type="button" id="btnShareReciept" onclick="confirmPopup()" class="button-27">Share Receipt With Customer</button>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <button type="button" id="btnPrintReciept" onclick="confirmPopup()" class="button-27">Print Receipt</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @*<div class="modal-footer div-pay-row">
+                    <div class="row div-pay-row">
+                    <div class="col-sm-4 final-pay-button">
+                    <button type="button" id="btnShareReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Share Receipt With Customer</button>
+                    </div>
+                    <div class="col-sm-4 final-cancel-button">
+                    <button type="button" style="margin-left:140px" id="btnPrintReciept" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Print Receipt</button>
+                    </div>
+                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </div>
-
 <script>
     $("#btnAddBeneficiery").click(function () {
         var accName = $("#txtAccountHoldName").val();
@@ -979,11 +912,6 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    //if (response == null || response.data == null || response.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1022,11 +950,6 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1064,11 +987,6 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1102,11 +1020,6 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1120,7 +1033,6 @@
                     document.getElementById("lblBankAccountCharge").innerHTML = response.message + " is ₹ " + response.data.totalDebitAmount;
                     document.getElementById("lblSenderID").innerHTML = id;
                     $("#btnmodalBankVerifyCharges").trigger("click");
-                    //$("#modalDeleteBeneficiery").hide();
                 }
             },
             failure: function (response) {
@@ -1141,11 +1053,6 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1205,11 +1112,6 @@
                 type: 'POST',
                 datatype: 'json',
                 success: function (response) {
-                    //if (response == null || response.data == null || response.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1242,11 +1144,6 @@
                 type: 'POST',
                 datatype: 'json',
                 success: function (response) {
-                    //if (response == null || response.data == null || response.data == "") {
-                    //    //document.getElementById("walletTblborder11").style.display = "none";
-                    //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                    //    $("#btnNoDataFoundModel").trigger("click");
-                    //}
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1301,17 +1198,11 @@
         var amount = $("#txtTransferAmount").val();
         $.ajax({
             type: "POST",
-            url: "/Recharge/GetBalance",
+            url: "/DMT2Dashboard/GetBalance",
             data: {},
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                //if (response == null || response.data == null || response.data == "") {
-                //    //document.getElementById("walletTblborder11").style.display = "none";
-                //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-                //    $("#btnNoDataFoundModel").trigger("click");
-                //}
-
                 document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                 document.getElementById("lblAdbal").innerHTML = response[0].adBal;
                 document.getElementById("lblamountNewFinal").innerHTML = '₹: ' + amount;
@@ -1410,6 +1301,19 @@
             document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
             return false;
         }
+    });
+
+</script>
+<script>
+
+    $(document).ready(function () {
+        var table = $('#example').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+
     });
 
 </script>

@@ -11,7 +11,7 @@
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
 <script src="jquery.redirect.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
@@ -216,7 +216,6 @@
             $.ajax({
                 type: "POST",
                 url: "/MyBusinessReports/SubCategoryReports?Id=" + CatId,
-
                 contentType: "html",
                 success: function (response) {
                     if (response.result == "EmptyResult") {
@@ -239,11 +238,9 @@
 
                         }
                         $('#SId').append(options);
-
                     }
                 }
             });
-
         });
     });
 
@@ -251,8 +248,7 @@
     //Method for first subcategory select without any filter
 
     $("#SId").change(function () {
-        //$("#tempTbl1").dataTable().fnDestroy();
-        debugger;
+        
         document.getElementById("errfromDate").innerHTML = "";
         document.getElementById("errtoDate").innerHTML = "";
         document.getElementById("fromDate").value = '';
@@ -334,25 +330,16 @@
                     document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                     document.getElementById('walletTblborder11').style.display = "block";
                     $("#temptableid").append(tr);
-                    debugger;
-
-
                     var table = $('#tempTbl1').DataTable({
                         rowReorder: {
                             selector: 'td:nth-child(2)'
                         },
                         responsive: true
                     });
-
-
                 }
             }
-
         });
-
     });
-
-
 </script>
 
 <script>
@@ -399,7 +386,6 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    debugger;
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -451,7 +437,6 @@
                         }
                         tr += '</tbody>';
                         $("#tempTbl1").append(tr);
-                        debugger;
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         document.getElementById('walletTblborder11').style.display = "block";
                         $("#tempTbl1").dataTable().fnDestroy();
@@ -641,9 +626,7 @@
 
 <script>
     $(document).ready(function () {
-        //$("#tempTbl1").on('click', ".btnViewReceipt", function () {
         $("#temptableid").on('click', ".btnViewReceipt", function () {
-            debugger;
             var table = $('#tempTbl1').DataTable();
             var d = table.row(this).data();
             var currentRow = $(this).closest('tr');
@@ -1018,7 +1001,6 @@
                 data: { result, subCat },
                 dataType: 'json',
                 success: function (msgdeserialize) {
-                    debugger;
                     if (msgdeserialize.result == "EmptyResult") {
                         window.location.href = msgdeserialize.url;
                     }
@@ -1047,15 +1029,4 @@
 
         });
     });
-
 </script>
-@*<script>
-    $(document).ready(function () {
-        var table = $('#tempTbl1').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
-            responsive: true
-        });
-    });
-</script>*@

@@ -18,9 +18,11 @@
 }
 
 .plan-description-amount {
-    font-size: 11px;
+    font-size: 10px;
     padding-top: 1px;
     color: #6fcf97;
+    padding-right: 30px;
+    padding-bottom: 20px;
 }
 
 .aval_bal_font {
@@ -217,7 +219,7 @@ body {
     padding-left: 45px;
 }
 
-._12Jd label.radio_lable {
+._12Jd label{
     color: #222222;
 }
 
@@ -240,15 +242,6 @@ body {
     user-select: none;
     color: #999999;
 }
-
-/*.btn-process-recharge1 {
-    
-}
-
-.btn-process-recharge2 {
-    
-}*/
-
 .btn-process-recharge3 {
     border-radius: 6px;
     -moz-border-radius: 6px;
@@ -265,6 +258,10 @@ body {
     padding: 15px 20px;
     cursor: pointer;
     background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    width: 85%;
+    display: inline-block;
+    cursor: pointer;
+    padding: 13px;
 }
 
     .btn-process-recharge3:hover {
@@ -272,16 +269,16 @@ body {
         color: white;
     }
 
-._1Ll3, .btn-process-recharge3 {
+._1Ll3 {
     cursor: pointer;
     padding: 13px;
 }
 
-._IEC, .btn-process-recharge3 {
+._IEC {
     display: inline-block;
 }
 
-._2pHh, .btn-process-recharge3 {
+._2pHh {
     width: 85%;
 }
 
@@ -630,8 +627,8 @@ nav.navbar.fixed-top {
     right: 0;
     font-weight: 800;
     cursor: pointer;
-    margin-top: -48px;
-    margin-right: 84px;
+    margin-top: -39px;
+    margin-right: 130px;
 }
 
 
@@ -741,7 +738,7 @@ nav.navbar.fixed-top {
     background: white;
     border-radius: 20px;
     display: none;
-    height: 580px;
+     height: 638px;
     overflow: auto;
 }
 
@@ -826,20 +823,166 @@ nav.navbar.fixed-top {
 }
 
 .img_tag_bbps {
+    border-top: 77px;
     float: right;
     height: 71px;
-    width: 77px;
-    margin-top: -31px;
-    margin-right: 10px;
+    width: 80px;
+    margin-top: -32px;
+    margin-right: 2px;
+    border-top-right-radius: 25px;
 }
 
 .heading_tag_bbps {
     margin-top: 15px;
     text-align: center;
     padding-top: 20px;
+    /*font-size:27px;*/
+}
+.radio_lable {
+    color: #222222;
 }
 
+.td-recharge{
+    font-size:16px;
+}
+.dropdownDTH {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 10px 10px 10px 5px;
+    border-bottom: 1px solid #ebebeb !important;
+    border: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 22px;
+    margin-left: 30px;
+    height: 54px;
+    width: 225px;
+}
+.p-new-1 {
+    text-align: center;
+    font-size: 16px;
+}
+.form-control-dropdown {
+    display: block;
+    width: 70%;
+    height: 50px;
+    padding: 0px 14px;
+    font-size: 17px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    margin-left: 26px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-top: 19px;
+}
 
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+.switchCCF {
+    display: flex;
+    /*// padding-left: 400px;*/
+}
+.p_bottom_disclaimer {
+    font-size: 15px;
+}
+.button-27 {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    /*vertical-align: top;*/
+    white-space: nowrap;
+    margin-right: 50px;
+    z-index: 1;
+    font-weight:700;
+}
 
 
 @media screen and (min-width: 900px) {
@@ -873,11 +1016,16 @@ nav.navbar.fixed-top {
         height: 410px;
         width: auto;
         background: #002970;
-        margin-top: 119px;
+        margin-top: 65px;
     }
 
     .plan-description-amount {
-        margin-left: 20px;
+        font-size: 10px;
+        padding-top: 1px;
+        color: #6fcf97;
+        padding-right: 30px;
+        padding-bottom: 20px;
+        margin-left:20px;
     }
 
     .block-recharge .p-recharge {
@@ -897,6 +1045,13 @@ nav.navbar.fixed-top {
         font-size: 11px;
         width: 210px;
     }
+    .form-control-dropdown {
+        display: block;
+        width: 60%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 11px;
+    }
 
     #operatorspan {
         font-size: 10px;
@@ -912,7 +1067,7 @@ nav.navbar.fixed-top {
     }
 
     .form-group-recharge {
-        margin-left: 13px;
+        margin-left: 35px;
     }
 
     .form-group-recharge-button {
@@ -1043,7 +1198,7 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .img_center_modal {
@@ -1080,38 +1235,13 @@ nav.navbar.fixed-top {
         font-size: 18px;
     }
 
-    .button-21 {
-        align-items: center;
-        appearance: none;
-        background-color: #3EB2FD;
-        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-        background-size: calc(100% + 20px) calc(100% + 20px);
-        border-radius: 100px;
-        border-width: 0;
-        box-shadow: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: CircularStd,sans-serif;
+    .button-27 {
         font-size: 10px;
-        height: auto;
-        justify-content: center;
-        line-height: 1.5;
-        padding: 6px 25px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color .2s,background-position .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: top;
-        white-space: nowrap;
-        margin-right: 50px;
-        /* float: right;*/
-        margin-top: 28px;
-        z-index: 1;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
+        font-size: 10px;
     }
 
     .img_upload_image {
@@ -1154,7 +1284,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url('../css/Img/new_tech_11.png');
-        width: 116%;
+        width: 114%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1203,6 +1333,31 @@ nav.navbar.fixed-top {
     .time_contact {
         font-size: 10px;
     }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 52px;
+        width: 50px;
+        margin-top: -18px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+    .heading_tag_bbps {
+        font-size:14px;
+    }
+    .radio_lable {
+     font-size:12px;
+    }
+    .btn-process-recharge3 {
+        font-size: 13px;
+        width: 85%;
+    }
+    .td-recharge {
+        font-size: 12px;
+    }
+    .p_bottom_disclaimer {
+        font-size: 9px;
+    }
 }
 
 
@@ -1217,9 +1372,15 @@ nav.navbar.fixed-top {
         height: 411px;
         width: auto;
         background: #002970;
-        margin-top: 122px;
+        margin-top: 64px;
     }
-
+    .form-control-dropdown {
+        display: block;
+        width: 60%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 12px;
+    }
     .block-recharge .p-recharge {
         font-size: 12px;
         padding-top: 20px;
@@ -1353,7 +1514,7 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 19px;
+        font-size: 15px;
     }
 
     .img_center_modal {
@@ -1391,7 +1552,12 @@ nav.navbar.fixed-top {
         font-size: 18px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 11px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 11px;
     }
 
@@ -1449,7 +1615,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 108%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1512,6 +1678,35 @@ nav.navbar.fixed-top {
         margin-top: 10px;
         margin-bottom: 20px;
     }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 52px;
+        width: 50px;
+        margin-top: -18px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 14px;
+    }
+
+    .radio_lable {
+        font-size: 13px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 14px;
+        width: 85%;
+    }
+
+    .td-recharge {
+        font-size: 12px;
+    }
+    .p_bottom_disclaimer {
+        font-size: 9px;
+    }
 }
 
 @media screen and (max-width:419px) and (min-width:400px) {
@@ -1524,7 +1719,7 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 19px;
+        font-size: 16px;
     }
 
     .btnLF {
@@ -1557,7 +1752,12 @@ nav.navbar.fixed-top {
         font-size: 19px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 14px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 14px;
     }
 
@@ -1604,7 +1804,7 @@ nav.navbar.fixed-top {
 
     .txt-input-text {
         font-size: 13px;
-        width: 210px;
+        width: 305px;
     }
 
     .row-fernchise-body {
@@ -1617,7 +1817,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 106%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1654,6 +1854,9 @@ nav.navbar.fixed-top {
     .p_heading_franchise_2 {
         font-size: 10px;
     }
+    .p_bottom_disclaimer{
+        font-size:11px;
+    }
 }
 
 @media screen and (max-width:630px) and (min-width:551px) {
@@ -1681,6 +1884,13 @@ nav.navbar.fixed-top {
         margin-left: 172px;
         margin-top: 20px;
     }
+    .form-control-dropdown {
+        display: block;
+        width: 60%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 13px;
+    }
 
     .img_center_modal_2 {
         height: 100px;
@@ -1700,7 +1910,12 @@ nav.navbar.fixed-top {
         font-size: 18px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 13px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 13px;
     }
 
@@ -1761,7 +1976,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 109%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1808,6 +2023,8 @@ nav.navbar.fixed-top {
     .img-management {
         height: 130px;
     }
+
+    
 }
 
 @media screen and (min-width:501px) and (max-width:600px) {
@@ -1841,11 +2058,18 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .btnLF {
         font-size: 16px;
+    }
+    .form-control-dropdown {
+        display: block;
+        width: 60%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 13px;
     }
 }
 /*For recharge Header*/
@@ -1854,7 +2078,7 @@ nav.navbar.fixed-top {
         height: 405px;
         width: auto;
         background: #002970;
-        margin-top: 84px;
+        margin-top: 65px;
     }
 
     .block-recharge .p-recharge {
@@ -1965,7 +2189,7 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 21px;
+        font-size: 18px;
     }
 
     .recharge_urchash_img {
@@ -1978,6 +2202,31 @@ nav.navbar.fixed-top {
 
     .btnLF {
         font-size: 16px;
+    }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 54px;
+        width: 67px;
+        margin-top: -18px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 15px;
+    }
+
+    .radio_lable {
+        font-size: 14px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 15px;
+        width: 85%;
+    }
+    .td-recharge {
+        font-size: 13px;
     }
 }
 /*Media Query End For Small Smartphones*/
@@ -1992,7 +2241,7 @@ nav.navbar.fixed-top {
         height: 410px;
         width: auto;
         background: #002970;
-        margin-top: 84px;
+        margin-top: 65px;
     }
 
     .block-recharge .p-recharge {
@@ -2006,6 +2255,7 @@ nav.navbar.fixed-top {
 
     .radioRecharge {
         display: inline-flex;
+        margin-left:55px;
     }
 
     .form-group-recharge {
@@ -2093,7 +2343,7 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 22px;
+        font-size: 19px;
     }
 
     .img_center_modal {
@@ -2108,7 +2358,12 @@ nav.navbar.fixed-top {
         font-size: 17px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 16px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 16px;
     }
 
@@ -2141,6 +2396,13 @@ nav.navbar.fixed-top {
         font-size: 15px;
         width: 275px;
         margin-left: 90px;
+    }
+    .form-control-dropdown {
+        display: block;
+        width: 70%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 15px;
     }
 
     .row-fernchise-body {
@@ -2188,6 +2450,34 @@ nav.navbar.fixed-top {
     }
 
     .p_heading_franchise_2 {
+        font-size: 12px;
+    }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 61px;
+        width: 70px;
+        margin-top: -18px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 19px;
+    }
+
+    .radio_lable {
+        font-size: 15px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 16px;
+        width: 85%;
+    }
+    .td-recharge {
+        font-size: 14px;
+    }
+    .p_bottom_disclaimer {
         font-size: 12px;
     }
 }
@@ -2342,6 +2632,46 @@ nav.navbar.fixed-top {
     .img-management {
         height: 155px;
     }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 61px;
+        width: 70px;
+        margin-top: -18px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 21px;
+    }
+
+    .radio_lable {
+        font-size: 16px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 18px;
+        width: 85%;
+    }
+    .form-control-dropdown {
+        display: block;
+        width: 70%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 15px;
+    }
+    .p_bottom_disclaimer {
+        font-size: 13px;
+    }
+    .button-27 {
+        font-size: 17px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
+        font-size: 17px;
+    }
 }
 
 
@@ -2373,7 +2703,7 @@ nav.navbar.fixed-top {
     .radiobtn-recharge-body {
         margin-bottom: 10px;
         margin-top: 20px;
-        padding-left: 122px;
+        padding-left: 188px;
     }
 
     .errorMsg {
@@ -2415,7 +2745,7 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 23px;
+        font-size: 20px;
     }
 
     .btnLF {
@@ -2438,7 +2768,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 104%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -2486,6 +2816,44 @@ nav.navbar.fixed-top {
     .img-management {
         height: 165px;
     }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 61px;
+        width: 70px;
+        margin-top: -18px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 22px;
+    }
+
+    .radio_lable {
+        font-size: 17px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 20px;
+        width: 85%;
+    }
+    .form-control-dropdown {
+        display: block;
+        width: 70%;
+        height: 50px;
+        padding: 0px 14px;
+        font-size: 15px;
+    }
+    .button-27 {
+        font-size: 17px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+
+    .btn-danger {
+        font-size: 17px;
+    }
 }
 
 @media screen and (min-width: 959px) and (max-width: 999px) {
@@ -2521,7 +2889,7 @@ nav.navbar.fixed-top {
 
     .form-group-recharge {
         margin-bottom: 15px;
-        margin-left: 0px;
+        margin-left: 20px;
     }
 
     .form-group-recharge-button {
@@ -2585,12 +2953,12 @@ nav.navbar.fixed-top {
     }
 
     .heading_customer_phone {
-        font-size: 22px;
+        font-size: 21px;
     }
 
     .txt-input-text {
-        font-size: 15px;
-        width: 210px;
+        font-size: 13px;
+        width: 180px;
     }
 
     .row-fernchise-body {
@@ -2603,7 +2971,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 103%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -2644,15 +3012,55 @@ nav.navbar.fixed-top {
     .img-management {
         height: 175px;
     }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 69px;
+        width: 63px;
+        margin-top: -33px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 15px;
+    }
+
+    .radio_lable {
+        font-size: 13px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 15px;
+        width: 85%;
+    }
+    .button-27 {
+        font-size: 18px;
+        margin-top: 0px;
+        font-weight:900;
+    }
+
+    .btn-danger {
+        font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 1101px) and (max-width: 1279px) {
+    .p-recharge {
+        color: white;
+        white-space: nowrap;
+        font-size: 10px;
+        padding-top: 20px;
+    }
     .heading_wallet {
         padding: 10px;
         font-weight: 800;
         font-size: 23px;
     }
-
+    .form-group-recharge {
+        margin-bottom: 14px;
+        margin-left: 60px;
+    }
     .modal-header-recharge {
         margin-top: 90px;
         /*border-radius: 30px;*/
@@ -2660,8 +3068,8 @@ nav.navbar.fixed-top {
     }
 
     .txt-input-text {
-        font-size: 15px;
-        width: 180px;
+        font-size: 13px;
+        width: 220px;
         margin-left: -7px;
     }
 
@@ -2675,7 +3083,7 @@ nav.navbar.fixed-top {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 103%;
+        width: 101%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -2716,6 +3124,33 @@ nav.navbar.fixed-top {
     .img-management {
         height: 175px;
     }
+    .img_tag_bbps {
+        border-top: 41px;
+        float: right;
+        height: 69px;
+        width: 63px;
+        margin-top: -33px;
+        margin-right: 2px;
+        border-top-right-radius: 25px;
+    }
+
+    .heading_tag_bbps {
+        font-size: 15px;
+    }
+
+    .radio_lable {
+        font-size: 13px;
+    }
+
+    .btn-process-recharge3 {
+        font-size: 15px;
+        width: 85%;
+    }
+    .radiobtn-recharge-body {
+        margin-bottom: 10px;
+        margin-top: 20px;
+        padding-left: 35px;
+    }
 }
 
 
@@ -2726,9 +3161,9 @@ nav.navbar.fixed-top {
         margin-bottom: 20px;
     }
 
-    .heading_customer_phone {
+    /*.heading_customer_phone {
         font-size: 22px;
-    }
+    }*/
 
     .dmt {
         margin-top: 88px;

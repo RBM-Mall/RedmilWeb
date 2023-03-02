@@ -8,60 +8,6 @@
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-@*<style>
-    .button-23:hover {
-        color: white;
-    }
-
-    .wallet-box .bg-wt-round {
-        background: #fff;
-        border-radius: 30px;
-        padding: 10px 0px;
-    }
-
-    .wallet_breadcumb-area {
-        position: relative;
-        padding: 140px 0;
-        background-size: cover;
-        background-position: center center;
-        position: relative;
-        background-position: 75% 10%;
-    }
-
-        .wallet_breadcumb-area:before {
-            position: absolute;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            content: "";
-            /*background: rgba(0, 0, 0, 0.5);*/
-            top: 0;
-            z-index: 0;
-        }
-
-        .wallet_breadcumb-area ul {
-            text-align: center;
-        }
-
-            .wallet_breadcumb-area ul li {
-                display: block;
-                font-weight: 500;
-                font-size: 16px;
-                color: #fff;
-            }
-
-                .wallet_breadcumb-area ul li:first-child {
-                    font-size: 50px;
-                    font-weight: 700;
-                    line-height: 5rem;
-                    color: #fff;
-                }
-
-                .wallet_breadcumb-area ul li a {
-                    color: #ffffff;
-                }
-</style>*@
 <br />
 <br />
 <br />
@@ -72,9 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center padding-bottom-30">
-            @*<div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;>*@
             <div class="section-title section_title">
-                @*<h1 class="heading_services" style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>*@
                 <h1 class="heading_services"><span>Bill Payments Services</span></h1>
             </div>
         </div>
@@ -87,278 +31,261 @@
 <br />
 
 
-<div class="section services-area padding-top-bottom-60">
+<div class="section services-area padding-top-bottom-60 row_heading_start">
     <div class="container">
-        <section class="customer-logos slider" data-arrows="true">
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
+        <section class="customer-logos Bill-Payement-Top" data-arrows="true">
+            <div class="row" id="row1">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/ElectricityBill/ElectricityBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Electricity-Bill.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/Electricity-Bill.png" class="img-responsive" alt="Electricity Bill" title="Electricity Bill">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Electricity Bill</b>
+                                    <b class="about_services_para">Electricity Bill</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="balanceEnquiry">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/GasBill/GasBill" class="radio1 radio1_center">
-                            <div class="wallet-box bg-wt-round wallet_box_border" style="border: 5px solid #2d385e;">
+                           
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Gas-Bill.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                        <img src="/css/Img_IconForNavigation/Gas-Bill.png" class="img-responsive" alt="Gas Bill" title="Gas Bill">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Gas Bill</b>
+                                    <b class="about_services_para">Gas Bill</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/WaterBill/WaterBill" class="radio1 radio1_center">
-                            <div class="wallet-box bg-wt-round wallet_box_border" style="border: 5px solid #2d385e;">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Water-Bill.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                        <img src="/css/Img_IconForNavigation/Water-Bill.png" class="img-responsive" alt="Water Bill" title="Water Bill">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Water Bill</b>
+                                    <b class="about_services_para">Water Bill</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                </div>
-            </div>
-
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
-                <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/LPGGasBill/LPGGasBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/LPG.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/LPG.png" class="img-responsive" alt="LPG" title="LPG">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">LPG</b>
+                                    <b class="about_services_para">LPG</b>
                                 </div>
                             </div>
                         </a>
                     </div>
+                </div>
+            </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+            <div class="row" id="row2">
+                <div class="col-md-12">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/LandlineBill/LandlineBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Land-Line.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                        <img src="/css/Img_IconForNavigation/Land-Line.png" class="img-responsive" alt="Landline" title="Landline">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Landline</b>
+                                    <b class="about_services_para">Landline</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/CableTVBill/CableTVBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Cable-TV.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                        <img src="/css/Img_IconForNavigation/Cable-TV.png" class="img-responsive" alt="Cable TV" title="Cable TV">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Cable TV</b>
+                                    <b class="about_services_para">Cable TV</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                </div>
-            </div>
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
-                <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/BroadbandBill/BroadbandBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Broadband.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/Broadband.png" class="img-responsive" alt="Broadband" title="Broadband">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Broadband</b>
+                                    <b class="about_services_para">Broadband</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="/LifeInsuranceBill/LifeInsuranceBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Life-Insurance.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                        <img src="/css/Img_IconForNavigation/Life-Insurance.png" class="img-responsive" alt="Life Insurance" title="Life Insurance">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Life Insurance</b>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
-                        <a href="~/HealthBill/HealthBill" class="radio1 radio1_center">
-                            <div class="wallet-box bg-wt-round wallet_box_border">
-                                <div class="inner">
-                                    <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Health-Insurance.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
-                                    </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Health</b>
+                                    <b class="about_services_para">Life Insurance</b>
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
+            <div class="row" id="row3">
                 <div class="col-md-12">
-                   <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/LoanRepaymentBill/LoanRepaymentBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Digital-Business-Loan.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/Digital-Business-Loan.png" class="img-responsive" alt="Loan Repayment" title="Loan Repayment">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Loan Repayment</b>
+                                    <b class="about_services_para">Loan Repayment</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/CreditCardBill/CreditCardBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Credit-Card.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                        <img src="/css/Img_IconForNavigation/Credit-Card.png" class="img-responsive" alt="Credit Card" title="Credit Card">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Credit Card</b>
+                                    <b class="about_services_para">Credit Card</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/HospitalBill/HospitalBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Hospital.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                        <img src="/css/Img_IconForNavigation/Hospital.png" class="img-responsive" alt="Hospital" title="Hospital">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Hospital</b>
+                                    <b class="about_services_para">Hospital</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
+                        <a href="~/HealthBill/HealthBill" class="radio1 radio1_center">
+                            <div class="wallet-box bg-wt-round wallet_box_border">
+                                <div class="inner">
+                                    <div class="advantage-images">
+                                        <img src="/css/Img_IconForNavigation/Health-Insurance.png" class="img-responsive" alt="Health" title="Health">
+                                    </div>
+                                    <b class="about_services_para">Health</b>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
+            <div class="row" id="row4">
                 <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/HousingSocietyBill/HousingSocietyBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Housign-&-Society.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/Housign-&-Society.png" class="img-responsive" alt="Housing Society" title="Housing Society">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Housing Society</b>
+                                    <b class="about_services_para">Housing Society</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/InsuranceBill/InsuranceBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Insurance-2.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                        <img src="/css/Img_IconForNavigation/Insurance-2.png" class="img-responsive" alt="Insurance" title="Insurance">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Insurance</b>
+                                    <b class="about_services_para">Insurance</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/MunicipialServicesBill/MunicipialServicesBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Municipal-Services.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                        <img src="/css/Img_IconForNavigation/Municipal-Services.png" class="img-responsive" alt="Municipal Services" title="Municipal Services">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Municipal Services</b>
+                                    <b class="about_services_para">Municipal Services</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div>
-            </div>
-
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
-                <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/MunicipialTaxesBill/MunicipialTaxesBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Municipal-Taxes.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/Municipal-Taxes.png" class="img-responsive" alt="Municipal Taxes" title="Municipal Taxes">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Municipal Taxes</b>
+                                    <b class="about_services_para">Municipal Taxes</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                </div>
+            </div>
+
+            <div class="row" id="row5">
+                <div class="col-md-12">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/SubscriptionsBill/SubscriptionsBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Subscriptions.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
+                                        <img src="/css/Img_IconForNavigation/Subscriptions.png" class="img-responsive" alt="Subscriptions" title="Subscriptions">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Subscriptions</b>
+                                    <b class="about_services_para">Subscriptions</b>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                   <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="/ClubAndAssociationBill/ClubAndAssociationBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/Clubs-&-Assoiciations.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
+                                        <img src="/css/Img_IconForNavigation/Clubs-&-Assoiciations.png" class="Club & Association" alt="Club & Association" title="Club & Association">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">Club & Association</b>
+                                    <b class="about_services_para">Club & Association</b>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div>
-            </div>
-
-            <div class="row row_aepsChooseTrasaction" id="aepsChooseTrasaction">
-                <div class="col-md-12">
-                    <div class="col-md-2 col-sm-2 col-6 col-xs-6 col-custom text-center col-centered row_cashWithdrawal" id="cashWithdrawal">
+                    <div class="col-md-3 col-sm-3 col-3 col-xs-3 col-custom text-center col-centered row_cashWithdrawal">
                         <a href="~/LICIndiaBill/LICIndiaBill" class="radio1 radio1_center">
                             <div class="wallet-box bg-wt-round wallet_box_border">
                                 <div class="inner">
                                     <div class="advantage-images">
-                                        <img src="/css/Img_IconForNavigation/LIC.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
+                                        <img src="/css/Img_IconForNavigation/LIC.png" class="img-responsive" alt="LIC India" title="LIC India">
                                     </div>
-                                    <b style="font-weight: 900; font-size: 20px; color: #2d385e;">LIC India</b>
+                                    <b class="about_services_para">LIC India</b>
                                 </div>
                             </div>
                         </a>

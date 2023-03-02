@@ -729,6 +729,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         #endregion
 
 
+        #region GetSenderID
         public string SenderId()
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SenderId")))
@@ -749,6 +750,10 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             return "";
 
         }
+
+        #endregion
+
+        #region GetSenderMobile
         public string SenderMobile()
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SenderMobile")))
@@ -770,6 +775,9 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
 
         }
 
+        #endregion
+
+        #region GetSenderName
         public string SenderName()
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SenderName")))
@@ -790,5 +798,6 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             return "";
 
         }
+        #endregion
     }
 }

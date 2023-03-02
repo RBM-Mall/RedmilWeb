@@ -209,6 +209,7 @@
     font-weight: 900;
     text-align: center;
     color: #2d385e;
+    font-size:20px;
 }
 
 .heading_chooseTransaction {
@@ -341,6 +342,80 @@
     background: #f3f3f3;
     padding-top: 25px;
 }
+.carousel-showmanymoveone .carousel-control {
+    width: 4%;
+    background-image: none;
+}
+
+    .carousel-showmanymoveone .carousel-control.left {
+        margin-left: 5px;
+    }
+
+    .carousel-showmanymoveone .carousel-control.right {
+        margin-right: 5px;
+    }
+
+.carousel-showmanymoveone .cloneditem-1,
+.carousel-showmanymoveone .cloneditem-2,
+.carousel-showmanymoveone .cloneditem-3,
+.carousel-showmanymoveone .cloneditem-4,
+.carousel-showmanymoveone .cloneditem-5 {
+    display: none;
+}
+
+.box_choose_bank {
+    border: 1px #2d385e solid;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    margin-right: 26px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.box_choose_bank_image {
+    border: 1px solid #ddd;
+    border-radius: 49px;
+    width: 51px;
+    background: linear-gradient(#f69d3c, #3f87a6);
+}
+.box_choose_bank_label {
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #2d385e;
+}
+.box_choose_bank_input_para {
+    font-weight: 900;
+    font-size: 20px;
+    color: #2d385e;
+}
+.modal_choose_bank {
+    margin-top: 140px;
+}
+.choose_device_div {
+    border: 1px #2d385e solid;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    margin-right: 26px;
+    margin-left: 10px;
+}
+.choose_device_image {
+    border: 1px solid #ddd;
+    border-radius: 49px;
+    width: 30px;
+    background: linear-gradient(#f69d3c, #3f87a6);
+}
+.choose_device_label {
+    font-size: 14px;
+    font-weight: 800;
+    color: #2d385e;
+    cursor: pointer;
+}
+
+
+
+
 
 /*Media Query Starts for Small Smartphone*/
 @media screen and (max-width:339px) and (min-width:279px) {
@@ -490,7 +565,24 @@
         background: #f3f3f3;
         padding-top: 25px
     }
-    
+    .box_choose_bank_image {
+        width: 30px;
+    }
+    .box_choose_bank_label{
+        font-size:10px;
+    }
+    .modal_choose_bank {
+        margin-top: 1px;
+    }
+    .p_Verify_Face {
+        font-weight: 900;
+        text-align: center;
+        color: #2d385e;
+        font-size: 14px;
+    }
+    .choose_device_label {
+        font-size: 10px;
+    }
     /*Services of Index*/
 
     /*.section-title {
@@ -655,6 +747,22 @@
         padding-top: 25px;
         height:480px;
     }
+    .box_choose_bank_image {
+        width: 40px;
+    }
+
+    .box_choose_bank_label {
+        font-size: 11px;
+    }
+    .modal_choose_bank {
+        margin-top: 1px;
+    }
+    .p_Verify_Face {
+        font-size: 14px;
+    }
+    .choose_device_label {
+        font-size: 11px;
+    }
 }
 
 @media screen and (max-width:550px) and (min-width:400px) {
@@ -797,6 +905,22 @@
         padding-top: 25px;
         height: 500px;
     }
+    .box_choose_bank_image {
+        width: 40px;
+    }
+
+    .box_choose_bank_label {
+        font-size: 11px;
+    }
+    .modal_choose_bank {
+        margin-top: 1px;
+    }
+    .p_Verify_Face {
+        font-size: 15px;
+    }
+    .choose_device_label {
+        font-size: 11px;
+    }
 }
 
 @media screen and (max-width:768px) and (min-width:551px) {
@@ -863,7 +987,14 @@
         color: white;
         font-size: 13px;
     }
-
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 335px;
+        margin-bottom: 36px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18px;
+    }
     .select_category_ddl {
         margin-left: 130px;
         width: 45%;
@@ -901,6 +1032,19 @@
         padding-top: 25px;
         height: 500px;
     }
+    .box_choose_bank_image {
+        width: 45px;
+    }
+
+    .box_choose_bank_label {
+        font-size: 13px;
+    }
+    .modal_choose_bank {
+        margin-top: 1px;
+    }
+    .p_Verify_Face {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width:1023px) and (min-width:769px) {
@@ -919,7 +1063,14 @@
         margin-left: 5px;
         display: inherit;
     }
-
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 300px;
+        margin-bottom: 36px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 18px;
+    }
     .btn_Proceed {
         margin-left: 316px;
         font-weight: bold;
@@ -1009,10 +1160,36 @@
         padding-top: 25px;
         height: 520px;
     }
+    .p_Verify_Face {
+        font-size: 17px;
+    }
 }
 
-@media screen and (min-width:769px) and (max-width:885px) {
-    .passbooktabs .tablinks {
+@media screen and (min-width:768px) and (max-width:885px) {
+    .nWhEP .GkeQS .dashImg .DashImg {
+        width: 528px;
+        position: absolute;
+        top: 125px;
+        right: 0;
+    }
+    .nWhEP .GkeQS ._3OoXW h1 {
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 60px;
+        margin-left: -25px;
+    }
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 250px;
+        margin-bottom: 36px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+    .download_button {
+        margin-left: -43px;
+    }
+        .passbooktabs .tablinks {
         letter-spacing: 2px;
         margin-right: 25px;
         margin-left: 2px;
@@ -1068,6 +1245,13 @@
         font-weight: 600;
         padding-left: 10px;
         margin-left: 25px;
+    }
+    .box_choose_bank_image {
+        width: 45px;
+    }
+
+    .box_choose_bank_label {
+        font-size: 15px;
     }
    /* .div_get_info {
         background: grey;
@@ -1079,7 +1263,34 @@
 }
 
 @media screen and (min-width:886px) and (max-width:1023px) {
-    
+
+    .nWhEP .GkeQS .dashImg .DashImg {
+        width: 528px;
+        position: absolute;
+        top: 125px;
+        right: 0;
+    }
+
+    .nWhEP .GkeQS ._3OoXW h1 {
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 60px;
+        margin-left: -25px;
+    }
+
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 250px;
+        margin-bottom: 36px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
+    .download_button {
+        margin-left: -43px;
+    }
+
     .passbooktabs .tablinks {
         letter-spacing: 2px;
         margin-right: 25px;
@@ -1137,9 +1348,48 @@
         padding-left: 10px;
         margin-left: 25px;
     }
+    .box_choose_bank_image {
+        width: 45px;
+    }
+
+    .box_choose_bank_label {
+        font-size: 16px;
+    }
+    .modal_choose_bank {
+        margin-top: 30px;
+    }
    
 }
 @media screen and (min-width:1024px) and (max-width:1279px) {
+
+    .nWhEP .GkeQS .dashImg .DashImg {
+        width: 528px;
+        position: absolute;
+        top: 125px;
+        right: 0;
+    }
+
+    .nWhEP .GkeQS ._3OoXW h1 {
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 60px;
+        margin-left: -25px;
+    }
+
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 250px;
+        margin-bottom: 36px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
+    .download_button {
+        margin-left: -43px;
+    }
+
+
     .passbooktabs .tablinks {
         letter-spacing: 2px;
         margin-right: 25px;
@@ -1203,6 +1453,24 @@
         padding-bottom: 40px;
         margin-top: 250px;
         color: white;
+    }
+    .nWhEP .GkeQS ._3OoXW ._3De77 {
+        padding-top: 10px;
+        width: 300px;
+        margin-bottom: 36px;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .box_choose_bank_image {
+        width: 48px;
+    }
+
+    .box_choose_bank_label {
+        font-size: 17px;
+    }
+    .p_Verify_Face {
+        font-size: 18px;
     }
 }
 
@@ -1269,26 +1537,7 @@
     }
 }
 
-.carousel-showmanymoveone .carousel-control {
-    width: 4%;
-    background-image: none;
-}
 
-    .carousel-showmanymoveone .carousel-control.left {
-        margin-left: 5px;
-    }
-
-    .carousel-showmanymoveone .carousel-control.right {
-        margin-right: 5px;
-    }
-
-.carousel-showmanymoveone .cloneditem-1,
-.carousel-showmanymoveone .cloneditem-2,
-.carousel-showmanymoveone .cloneditem-3,
-.carousel-showmanymoveone .cloneditem-4,
-.carousel-showmanymoveone .cloneditem-5 {
-    display: none;
-}
 
 @media all and (min-width: 768px) {
 

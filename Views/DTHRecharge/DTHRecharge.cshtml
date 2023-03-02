@@ -9,148 +9,40 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/dataTables.bootstrap4.min.css" asp-append-version="true" />
+<script src="/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="jquery.redirect.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-
-
+<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
 <style>
-    .navbar1 {
-        position: fixed;
-        width: 100%;
-        z-index: 1000000;
-        top: 0;
-    }
-
-    .p-new {
-        text-align: center;
-        font-size: 20px;
-    }
-
-    .btn-final {
-        display: block;
-        margin-left: 208px;
-        border-bottom: 42px;
-        width: 179px;
-        border-radius: 41px;
-        height: 41px;
-        font-size: 20px;
-        color: white;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-    }
-</style>
-<style>
-
-
-    .button_header {
-        border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        border-width: 0;
+    .highlight:hover, .highlight:active, .highlight:focus {
+        color: #222;
         font-weight: 600;
-        height: 50px;
-        background: #fff;
-        color: #00baf2;
-        border: 1px solid white;
-        font-size: 14px;
-        padding: 6px 10px;
-        border-color: white;
-        border-right: white;
-        border-left: white;
-        border-top: white;
-        border-bottom: white;
-    }
-
-
-    .operatori {
-        display: block;
-    }
-</style>
-<style>
-
-    .operatorspan {
-        font-size: 12px;
-        color: #00baf2;
-        text-align: right;
-        margin: -28px 1% 0px 0;
-        min-width: 35%;
-        right: 0;
-        font-weight: 800;
+        border-bottom: 3px solid #00b9f5;
+        background: #f3f7f8;
         cursor: pointer;
-        margin-top: -48px;
-        margin-right: 84px;
-    }
-
-
-        .operatorspan span {
-            display: block;
-            margin-top: -4px;
-        }
-</style>
-
-<style>
-    .errorMsg {
-        font-size: 12px;
-        color: #f4605f;
-        padding-top: 1px;
-        padding-left: 30px;
-    }
-
-</style>
-<style>
-    .dropdownDTH {
-        border-radius: 0;
-        -moz-border-radius: 0;
-        -webkit-border-radius: 0;
-        font-size: 17px;
-        font-weight: 500;
-        padding: 10px 10px 10px 5px;
-        border-bottom: 1px solid #ebebeb !important;
-        border: none;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        margin-top: 22px;
-        margin-left: 30px;
-        height: 54px;
-        width: 225px;
-    }
-</style>
-<style>
-    .card-recharge-header {
-        margin-top: 15px;
-        text-align: center;
-        padding-top: 20px;
-    }
-</style>
-<style>
-    .img-wallet-select {
-        height: 150px;
-        width: 200px;
-    }
-
-    .first-wallet {
-        font-size: 20px;
-        font-weight: 700;
     }
 </style>
 
 <!--Body Start Here-->
 
 <div class="container-fluid" style="background:#ebebeb">
-
     <div class="main-head-recharge">
         <div class="row-recharge ">
-
             <div class="col-md-3 col-sm-3 col-lg-3">
                 <div class="block-recharge" style="width:33%;">
                     <a href="~/Recharge/PrepaidRecharge">
@@ -171,9 +63,7 @@
                     </a>
                 </div>
             </div>
-
             <div class="col-md-3 col-sm-3 col-lg-3">
-
                 <div class="block-recharge" style="width:33%;">
                     <a href="~/DTHRecharge/DTHRecharge">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAA4CAYAAABez76GAAAAAXNSR0IArs4c6QAABpZJREFUaAXtmwuIFWUUx2d3fbWRaeRW2sPSFO0Fva0MEqOXEdIDpUQrIilCDDG1N0FFRdGbJLRaetELMjVDr2aRYg9FEMMSUgukMm2faur0O5c513Onu3dn5n537m3dA3+/853vnPOdc/abb76ZuXpeN3VXoLsC3RU4RCrg+34teBvsAtMOkbSjp0lRZgBLk6Jbd3FNqjIc7LbVgd8LxnTx1KOlRyEWhIqjXbncTo/mpYtqUYDRWg3a/WAc2GZkW+EHdtH0O0+L5O3qmScWyM4AfwOldTBHdO6ti2mQ9BBwIKiCrJ5TNUX4sUD2IaUlMD10vKR2Rdsob3nLLV6m9ZyS/JTbmIQf1OxpF4TnQzbZjAubXWFhvcj97/x6b1nTIuDnkGl+hyVbF9mHUaw1fLnYm4zjNwyfZWtqat6EecjIb6VID5t+PLapZQYGV+UZ+f5Eb0XL1DxZxE5ZC0SiDcShd6g98IsLxUWRHkNuV84j2E4ppNu5zL+2oI7vFZYXVD4oLGuBmObCg1N5X1OINtMPs3ciWGKEcynS5abfKYt+/z61tX4Hirs7kBcVl7tAI83sawz/H5bi7UN4I1gXDPak/Yikzwz6RRv0hqCwavoJvXZ1oNjYgbxyYoKeB5QmRIkE5YFgixrR/gqOL2bL+MXgDyC3y/3j1rcv9JY178tu0pnmNi/TNLuYfcXGiHehBB3QqKiBoH8akBO20nqYvoXskU8A9hGmjf713srmAV6m5SxvdWG7Qr5SlxHoaqA0NE4AGF0G9qgx7VIgl12O6N8P9IwF628H5+cUqp0h2O8l6oBiP0pgdzOwBZAjgZzCe4L5wNIGOoOrvSZ58RGwLdCJeYMRO/iYY6sA/wzIhGSyuo6M6LJ61Aj6S5PIiKSR4eM14yfMvo4g79JLOk/qdgT+sclmbNIA8FEH7IYvbuXSm5XUZ1S7cp+DtppA5JySiDgj7cdQHlnWGgft8PZgaYbcseUu0CYT6tmGj81SpFaMrga/BMb1tLKqEu1tgY/KNgR/EVDa4CIanI0Af6lTWrl79XPhO3UfBN4btAMlJ39tnF0K7OFwOf1eqSfoYkIC/wwozXThU3zgUE7Q9owkn5NqXPlPzQ9BTwJKG2GcJYGvmeo4aJ9ILTFXExH44WCnSWScK9/iB78vG9/CJnox5jKm2L4I+imThJyuXa4iOSN9avzvg78mdpCVNCDgY0GLSeI2l/Hgtx6sMf5lrnNdzlF2XwT8qElALrlBLifFXwPYbOaQJ/vBLudw5ovAeoDZ4BUNkvYwsAkorYBx84kniBx/w8AOnYBWbgpHOUvMlSOCmmiC/BY+e2KnvQTItzGlV13NqX5wLG8X7dlrJf3eOl4VLQEtBpbu0sAQhm/Nj+uYq5Y5bgD2jPQ+fWc3hpLiJBDZkOVOYilvz2Gg0Q7CvwicPhfi797QHE+XlJgrY4KaHgpMu9/AZN/b0Moe9YEOBK2suqNdxSF+8PdCaI67XfpP5IuAfjBBzYXfa/ovqVNk8tr0XTMm7G9gvOqU2uJLftH2CVCS/e+6Uv0mtmdy+RqhJBtlXzBNBUGb9wkG2QPA7hei9jko6fWIJoEfuXuuAkqtMEU/I6mt85aJn9QoaN/TCYQ3cmHz3gTSvxJsk4EQLaMvG24f9RWnxa4fmArklYgl+UCZLjG7LGebZO64j1xeeywFlmRjzp2D4GW1yXPVPyBMzQjkUpHVOBoU3KuQDwJjwBzwBbCXN90sNfHvKelWh9mYVAJT+h0ml7wEQ18eWsNF+gpZ3oma/lDwFgjfCRHlkXwz2w7ky6vMV6iwiHMkRX4WDEi9OEEB5udC8f3nCwXBeC8Qvtx2Irs9rI9sIJgFfgSlkDyj3QMq99aRyWUjlKWrVPRBEaX7QHiFPBcukvbRPRncAeYD2XClqIVIHjNkXD4TTQaxP1bqnE5bArGPFhujOMdGHgl+Ako7otipDkY1oA7ImUra6jgpa4C2JbhFQGmOHSvGY1AP5Lar1L+Y/v9yjMyOAXq5yHnmpDiJoL8eKJ0XxzYNXRfPPxMJtC4IdiXfr7bEDPxno5/446Lx4ZR1USD7/y0aE0RnCzQ0gX1ZTUoqENfFSKLTRwL5DeCHCaLdbGyqbgXlHeZMoB2yFEXe0F0B5CWU/bmtJDqecZpYNNxoX4D9lKD/J+0iLtkDZrz6WRKQrxJpkexvFaUkl9hxKUZc8dt+7MMVS6eBAg0DSYobp7Z7UF7LJbY3jlG3bsoV+BcNziekNehdhAAAAABJRU5ErkJggg==" style="width:28px;padding-top:20px;" alt="image" />
@@ -194,7 +84,6 @@
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-lg-3">
-
                 <div class="block-recharge" style="width:33%;">
                     <a href="~/FastagBill/FastagBill">
                         <img src="https://assetscdn1.paytm.com/images/catalog/view_item/659690/1602740990416.png" style="width:28px;padding-top:20px;" alt="image" />
@@ -207,8 +96,6 @@
                         <p class="p-recharge"><strong>Credit Card</strong></p>
                     </a>
                 </div>
-
-
                 <div class="block-recharge" style="width:30%;">
                     <a href="~/LoanRepaymentBill/LoanRepaymentBill">
                         <img src="https://assetscdn1.paytm.com/images/catalog/view_item/659691/1602741233182.png" style="width:28px;padding-top:20px;" alt="image" />
@@ -238,19 +125,20 @@
             </div>
         </div>
     </div>
-
-
-
     <!--Header Div Ends Here-->
     <!--Recharge Body Starts Here-->
     <div class="row">
         <div class="row-recharge-body">
-            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px">
+            <div class="col-3 col-md-3 cr1 div-input" style="background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;">
                 <!--Card for recharge starts here-->
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title card-recharge-header"><strong>DTH Recharge</strong><img src="~/css/Icon_Logo_BBPS/iconDTH.jpeg" style="float:right;height:60px;width:100px;margin-top: -18px;margin-right: 10px;" /></h3>
-                        <hr />
+                        <div>
+                            <h4 class="card-title heading_tag_bbps">
+                                <strong>DTH Recharge</strong>
+                                <img src="~/css/Icon_Logo_BBPS/iconDTH.jpeg" class="img_tag_bbps" />
+                            </h4>
+                        </div>
                         <hr />
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -259,29 +147,31 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12">
                                                 <div class="form-group-recharge">
-
                                                     @if (ViewBag.Operator != null)
                                                     {
                                                         @Html.DropDownListFor(m =>m.Operatorname , ViewBag.Operator as SelectList , "-- Select Operators --" ,  new {@class="dropdownDTH dropdownDTH1"})
                                                     }
+                                                    <br />
+                                                    <span id="errOperator" class="errorMsg"></span>
                                                 </div>
                                                 <div class="form-group-recharge">
                                                     <input id="txtCustomerId" autocomplete="off" asp-for="Circle" type="tel" maxlength="15" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Customer Id" />
-                                                    <span id="errId" class="errorMsg"></span>
-
+                                                    <br />
+                                                    <span id="errCustomerId" class="errorMsg"></span>
                                                 </div>
                                                 <div class="form-group-recharge">
                                                     <input id="txtAmount" autocomplete="off" asp-for="Circle" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Amount" />
+                                                    <br />
                                                     <span id="errAmount" class="errorMsg"></span>
 
                                                 </div>
-
                                                 <div class="form-group-recharge form-group-recharge-button">
-                                                    <button type="submit" id="btnProcessRecharge" disabled data-target="#myModal" data-toggle="modal" onclick="bindAmountInput()" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Proceed to Recharge</button>
+                                                    <button type="submit" id="btnProcessRecharge" onclick="openModalPayment()" class="btn-process-recharge3">Proceed to Recharge</button>
                                                 </div>
 
                                                 <!-- Modal Confirm Payment -->
-                                                <div class="modal fade" id="myModal" role="dialog">
+                                                <input type="button" id="btnmodalChoosePayment" style="display:none" data-target="#modalChoosePayment" data-toggle="modal" />
+                                                <div class="modal fade" id="modalChoosePayment" role="dialog">
                                                     <div class="modal-dialog">
 
                                                         <!-- Modal content-->
@@ -338,23 +228,21 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            <div class="modal-footer div-pay-row">
-                                                                <div class="row div-pay-row">
-                                                                    <div class="col-sm-4 final-pay-button">
-                                                                        @*<button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal" data-target="#myModalfinal" data-toggle="modal">Pay</button>*@
-                                                                        <button type="button" id="btnPayNow" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" onclick="payNow()">Pay</button>
-                                                                    </div>
-                                                                    <div class="col-sm-4 final-cancel-button">
-                                                                        <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                                            <div class="modal-footer">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12" style="display: inline-flex;">
+                                                                        <div class="col-sm-6 col-md-6">
+                                                                            <button type="button" id="btnPayNow" onclick="payNow()" class="button-27">Pay</button>
+                                                                        </div>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                            <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                        </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <!--Modal Success Message-->
                                                 <!-- Modal -->
                                                 <div class="row">
@@ -406,254 +294,37 @@
                 <!--Blank Space Between Recharge and Plans Pannel-->
             </div>
             <!--Card for Plans Pannel Starts Here-->
-            <div class="col-8 col-md-8 div-plans-table" style="background:white;border-radius:20px;display:none;height:580px;overflow: auto;" id="divplans">
+            <div class="col-8 col-md-8 div-plans-table" style="display:none;height:580px;overflow: auto;background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;" id="divplans">
                 <div class="card">
 
                     <div class="card-body">
-
-                        <h3 class="card-title div-browse-plans" style="text-align:center;" id="heading"><strong>Browse Plans</strong></h3>
+                        <div>
+                            <h4 class="card-title div-browse-plans" id="heading" style="text-align:center;margin-top: 30px;margin-bottom: 30px;"><strong>Browse Plans</strong></h4>
+                        </div>
+                        <hr />
                         <div class="main-table-recharge">
-                            <div style="overflow-x: auto;">
-                                <table style="height:0px;" id="myTable1" class="table table-hover table-responsive">
-                                    <thead>
-                                        <tr style="display:flex;width:100px;height: 135px;">
-                                            <!--Airtel DTH Pack Heading Starts Here-->
-
-                                            <th style="display:none" id="thAirtelSDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnAirtelSDPack">Airtel SD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thSunBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnSunBroadcasterPack">Sun Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thAirtelHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnAirtelHDPack">Airtel HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thSonyBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnSonyBroadcasterPack">Sony Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thAirtelRegionalPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnAirtelRegionalPack">Airtel Regional Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thZeeBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnZeeBroadcasterPack">Zee Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thStarBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnStarBroadcasterPack">Star Broadcaster Pack</button>
-                                            </th>
-                                            <!--Airtel DTH Pack Heading Ends Here-->
-                                            <!--Dish TV Pack Heading Starts Here-->
-                                            <th style="display:none" id="thKannadaSouthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtKannadaSouthComboPack">Kannada South Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thSouthIndiaSonyBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtSouthIndiaSonyBroadcasterPack">South India Sony Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thSouthIndiaZeeEntertainmentBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtSouthIndiaZeeEntertainmentBroadcasterPack">South India Zee Entertainment Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thRestOfIndiaAddOnPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtRestOfIndiaAddOnPack">Rest Of India Add On Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thTamilSouthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtTamilSouthComboPack">Tamil South Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thMarathiNorthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtMarathiNorthComboPack">Marathi North Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thSouthIndiaAddOnPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtSouthIndiaAddOnPack">South India Add On Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thRestOfIndiaZeeEntertainmentBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtRestOfIndiaZeeEntertainmentBroadcasterPack">Rest Of India Zee Entertainment Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thRestOfIndiaStarBroadcastPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtRestOfIndiaStarBroadcastPack">Rest Of India Star Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thTeluguSouthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtTeluguSouthComboPack">Telugu South Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thOdiaNorthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtOdiaNorthComboPack">Odia North Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thHindiNorthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtHindiNorthComboPack">Hindi North Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thGujaratiNorthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtGujaratiNorthComboPack">Gujarati North Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thMalyalamSouthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtMalyalamSouthComboPack">Malayalam South Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thSouthIndiaStarBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtSouthIndiaStarBroadcasterPack">South India Star Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thBanglaNorthComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtBanglaNorthComboPack">Bangla North Combo Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thRestOfIndiaSonyBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btndtRestOfIndiaSonyBroadcasterPack">Rest Of India Sony Broadcaster Pack</button>
-                                            </th>
-                                            <!--Dish TV Pack Heading Ends Here-->
-                                            <!--Sun Direct DTH Heading Starts Here-->
-
-
-                                            <th style="display:none" id="thMalyalamCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdMalyalamCuratedPack">Malayalam Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thTamilCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdTamilCuratedPack">Tamil Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thMarathiCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdMarathiCuratedPack">Marathi Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thBengaliCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdBengaliCuratedPack">Bengali Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thKannadaCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdKannadaCuratedPack">Kannada Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thROICuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdROICuratedPack">ROI Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thOdiaCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdOdiaCuratedPack">Odia Cuarted Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thAlaCarteDenominaion">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdAlaCarteDenominaion">Ala carte Denominaion</button>
-                                            </th>
-                                            <th style="display:none" id="thMalyalamCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdMalyalamCuratedHDPack">Malayalam Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thMarathiCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdMarathiCuratedHDPack">Marathi Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thTeluguCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdTeluguCuratedHDPack">Telugu Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thBengaliCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdBengaliCuratedHDPack">Bengali Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thTamilCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdTamilCuratedHDPack">Tamil Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thROICuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdROICuratedHDPack">ROI Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thKannadaCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdKannadaCuratedHDPack">Kannada Curated HD Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thTeluguCuratedPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdTeluguCuratedPack">Telugu Curated Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thOdiaCuratedHDPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnsdOdiaCuratedHDPack">Odia Cuarted HD Pack</button>
-                                            </th>
-
-
-                                            <!--Sun Direct DTH Heading Ends Here-->
-                                            <!--Tata Sky DTH Heading Starts Here-->
-
-
-                                            <th style="display:none" id="thtsOTTComboPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsOTTComboPack">OTT Combo Packs</button>
-                                            </th>
-                                            <th style="display:none" id="thtsSonyBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsSonyBroadcasterPack">Sony Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thtsSunTVBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsSunTVBroadcasterPack">Sun TV Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thtsRegionalPacks">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsRegionalPacks">Regional Packs</button>
-                                            </th>
-                                            <th style="display:none" id="thtsZeeBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsZeeBroadcasterPack">Zee Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thtsStarBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsStarBroadcasterPack">Star Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thtsAddOnPacks">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsAddOnPacks">Add On Packs</button>
-                                            </th>
-                                            <th style="display:none" id="thtsCuratedPacks">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btntsCuratedPacks">Curated Packs</button>
-                                            </th>
-
-                                            <!--Tata Sky DTH Heading Ends Here-->
-                                            <!--Videocon D2H Heading Starts Here-->
-
-                                            <th style="display:none" id="thvcAlaCarteTopUp">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnvcAlaCarteTopUp">Ala Carte Top Up</button>
-                                            </th>
-                                            <th style="display:none" id="thvcVideoconD2HComboPacks">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnvcVideoconD2HComboPacks">Videocon D2H Combo Packs</button>
-                                            </th>
-                                            <th style="display:none" id="thvcStarBroadcasterPack">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnvcStarBroadcasterPack">Star Broadcaster Pack</button>
-                                            </th>
-                                            <th style="display:none" id="thvcVideoconD2HSDAddOn">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnvcVideoconD2HSDAddOn">Videocon D2H SD Add on</button>
-                                            </th>
-                                            <th style="display:none" id="thvcVideoconD2HHDAddOn">
-                                                <button class="button_header" onclick="GetAllPlansWithPlanName(this.id)" id="btnvcVideoconD2HHDAddOn">Videocon D2H HD Add on</button>
-                                            </th>
-                                            <!--Videocon D2H Heading Starts Here-->
-                                </table>
+                            <div style="width:99%">
+                                <div style="overflow:auto;">
+                                    <div id="plan_header" style="display: inline-flex; padding: 12px 20px 12px 19px;white-space: nowrap;">
+                                    </div>
+                                </div>
+                                <div id="temptableid"></div>
                             </div>
-                            <div style="height: 100%; overflow: auto;width: 100%;margin-top: -20px;">
-
-                                <table style="" id="myTable" class="table table-hover table-responsive">
-                                    <thead>
-                                        <tr style="white-space: nowrap;">
-                                            <th>
-                                                <div class="div-second-plan-head">
-                                                    Plan Type
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div class="div-second-plan-head">
-                                                    Validity
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div class="div-second-plan-head">
-                                                    Description
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div class="div-second-plan-head">
-                                                    Price
-                                                </div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="output">
-                                </table>
-
-                            </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
-
             <!--Card for Plans Pannel Ends Here-->
-
         </div>
     </div>
-
-
     <div class="col col-md-12 col-sm-12 col-lg-12">
         <div class="div-main-oplist">
             <div class="div-recharge-opimage">
-                <div class="div-oprator-heading" style="text-align:center;"><h2><b>Our DTH Partners</b></h2></div>
+                <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our DTH Partner</b></h4></div>
                 <div class="row" style="text-align:center;">
                     <div class="col-md-1 col-sm-12 col-xs-12 "></div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1642177514124.png" alt="Airtel Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1642177514124.png" style="height:100px;" alt="Airtel Recharge" class="img-width">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="Airtel Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
@@ -662,7 +333,7 @@
                     </div>
 
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1647864549939.jpg" alt="DishTV Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1647864549939.jpg" style="height:100px;" alt="DishTV Recharge" class="img-width">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="BSNL Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
@@ -670,7 +341,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1644420357192.png" alt="Tata Sky Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1644420357192.png" style="height:100px;" alt="Tata Sky Recharge" class="img-width">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="Jio Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
@@ -678,7 +349,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1642177421402.png" alt="d2h Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1642177421402.png" style="height:100px;" alt="d2h Recharge" class="img-width">
                         <div class="overlay"> <a href="#" target="_blank" class="icon" title="MTNL Recharge"></a></div>
                         <div class="leadership_name">
                             <br />
@@ -686,7 +357,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1642177750172.png" alt="Vi Recharge" class="img-width">
+                        <img src="https://assetscdn1.paytm.com/images/catalog/operators/84x84/1642177750172.png" style="height:100px;" alt="Vi Recharge" class="img-width">
                         <div class="overlay"> <a href="" target="_blank" class="icon" title="Sun Direct"></a></div>
                         <div class="leadership_name">
                             <br />
@@ -702,6 +373,7 @@
     <!--Recharge Body Ends Here-->
 </div>
 <script>
+    let AllPlansResponse;
     $(document).ready(function () {
 
         $("#Operatorname").change(function () {
@@ -709,11 +381,12 @@
             $("#txtAmount").val("");
             $("#txtCustomerId").val("");
             $.ajax({
-                url: "/DTHRecharge/GetFirstDTHPlan",
+                url: "/DTHRecharge/GetAllDTHPlan",
                 data: { 'opName': operatorName },
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
+                    debugger;
                     if (data.result == "EmptyResult") {
                         window.location.href = data.url;
                     }
@@ -724,141 +397,30 @@
                         window.location.href = data.url;
                     }
                     else {
+
+                        AllPlansResponse = data;
                         document.getElementById('divplans').style.display = "block";
                         document.getElementById("txtAmount").disabled = false;
-                        document.getElementById('thAirtelSDPack').style.display = "none";
-                        document.getElementById('thSunBroadcasterPack').style.display = "none";
-                        document.getElementById('thAirtelHDPack').style.display = "none";
-                        document.getElementById('thSonyBroadcasterPack').style.display = "none";
-                        document.getElementById('thAirtelRegionalPack').style.display = "none";
-                        document.getElementById('thZeeBroadcasterPack').style.display = "none";
-                        document.getElementById('thStarBroadcasterPack').style.display = "none";
-
-
-                        document.getElementById('thKannadaSouthComboPack').style.display = "none";
-                        document.getElementById('thSouthIndiaSonyBroadcasterPack').style.display = "none";
-                        document.getElementById('thSouthIndiaZeeEntertainmentBroadcasterPack').style.display = "none";
-                        document.getElementById('thRestOfIndiaAddOnPack').style.display = "none";
-                        document.getElementById('thTamilSouthComboPack').style.display = "none";
-                        document.getElementById('thMarathiNorthComboPack').style.display = "none";
-                        document.getElementById('thSouthIndiaAddOnPack').style.display = "none";
-                        document.getElementById('thRestOfIndiaZeeEntertainmentBroadcasterPack').style.display = "none";
-                        document.getElementById('thRestOfIndiaStarBroadcastPack').style.display = "none";
-                        document.getElementById('thTeluguSouthComboPack').style.display = "none";
-                        document.getElementById('thOdiaNorthComboPack').style.display = "none";
-                        document.getElementById('thHindiNorthComboPack').style.display = "none";
-                        document.getElementById('thGujaratiNorthComboPack').style.display = "none";
-                        document.getElementById('thMalyalamSouthComboPack').style.display = "none";
-                        document.getElementById('thSouthIndiaStarBroadcasterPack').style.display = "none";
-                        document.getElementById('thBanglaNorthComboPack').style.display = "none";
-                        document.getElementById('thRestOfIndiaSonyBroadcasterPack').style.display = "none";
-
-
-                        document.getElementById('thMalyalamCuratedPack').style.display = "none";
-                        document.getElementById('thTamilCuratedPack').style.display = "none";
-                        document.getElementById('thMarathiCuratedPack').style.display = "none";
-                        document.getElementById('thBengaliCuratedPack').style.display = "none";
-                        document.getElementById('thKannadaCuratedPack').style.display = "none";
-                        document.getElementById('thROICuratedPack').style.display = "none";
-                        document.getElementById('thOdiaCuratedPack').style.display = "none";
-                        document.getElementById('thAlaCarteDenominaion').style.display = "none";
-                        document.getElementById('thMalyalamCuratedHDPack').style.display = "none";
-                        document.getElementById('thMarathiCuratedHDPack').style.display = "none";
-                        document.getElementById('thTeluguCuratedHDPack').style.display = "none";
-                        document.getElementById('thBengaliCuratedHDPack').style.display = "none";
-                        document.getElementById('thTamilCuratedHDPack').style.display = "none";
-                        document.getElementById('thROICuratedHDPack').style.display = "none";
-                        document.getElementById('thKannadaCuratedHDPack').style.display = "none";
-                        document.getElementById('thTeluguCuratedPack').style.display = "none";
-                        document.getElementById('thOdiaCuratedHDPack').style.display = "none";
-
-                        document.getElementById('thtsOTTComboPack').style.display = "none";
-                        document.getElementById('thtsSonyBroadcasterPack').style.display = "none";
-                        document.getElementById('thtsSunTVBroadcasterPack').style.display = "none";
-                        document.getElementById('thtsRegionalPacks').style.display = "none";
-                        document.getElementById('thtsZeeBroadcasterPack').style.display = "none";
-                        document.getElementById('thtsStarBroadcasterPack').style.display = "none";
-                        document.getElementById('thtsAddOnPacks').style.display = "none";
-                        document.getElementById('thtsCuratedPacks').style.display = "none";
-
-                        document.getElementById('thvcAlaCarteTopUp').style.display = "none";
-                        document.getElementById('thvcVideoconD2HComboPacks').style.display = "none";
-                        document.getElementById('thvcStarBroadcasterPack').style.display = "none";
-                        document.getElementById('thvcVideoconD2HSDAddOn').style.display = "none";
-                        document.getElementById('thvcVideoconD2HHDAddOn').style.display = "none";
-                        if (operatorName == "Airtel DTH") {
-
-                            document.getElementById('thAirtelSDPack').style.display = "block";
-                            document.getElementById('thSunBroadcasterPack').style.display = "block";
-                            document.getElementById('thAirtelHDPack').style.display = "block";
-                            document.getElementById('thSonyBroadcasterPack').style.display = "block";
-                            document.getElementById('thAirtelRegionalPack').style.display = "block";
-                            document.getElementById('thZeeBroadcasterPack').style.display = "block";
-                            document.getElementById('thStarBroadcasterPack').style.display = "block";
+                        let arr = new Array();
+                        for (let i = 0; i < data.length; i++) {
+                            arr.push(data[i].planName);
                         }
-                        if (operatorName == "DishTV") {
-                            document.getElementById('thKannadaSouthComboPack').style.display = "block";
-                            document.getElementById('thSouthIndiaSonyBroadcasterPack').style.display = "block";
-                            document.getElementById('thSouthIndiaZeeEntertainmentBroadcasterPack').style.display = "block";
-                            document.getElementById('thRestOfIndiaAddOnPack').style.display = "block";
-                            document.getElementById('thTamilSouthComboPack').style.display = "block";
-                            document.getElementById('thMarathiNorthComboPack').style.display = "block";
-                            document.getElementById('thSouthIndiaAddOnPack').style.display = "block";
-                            document.getElementById('thRestOfIndiaZeeEntertainmentBroadcasterPack').style.display = "block";
-                            document.getElementById('thRestOfIndiaStarBroadcastPack').style.display = "block";
-                            document.getElementById('thTeluguSouthComboPack').style.display = "block";
-                            document.getElementById('thOdiaNorthComboPack').style.display = "block";
-                            document.getElementById('thHindiNorthComboPack').style.display = "block";
-                            document.getElementById('thGujaratiNorthComboPack').style.display = "block";
-                            document.getElementById('thMalyalamSouthComboPack').style.display = "block";
-                            document.getElementById('thSouthIndiaStarBroadcasterPack').style.display = "block";
-                            document.getElementById('thBanglaNorthComboPack').style.display = "block";
-                            document.getElementById('thRestOfIndiaSonyBroadcasterPack').style.display = "block";
-
+                        let unique = arr.filter(function (itm, i, arr) {
+                            return i == arr.indexOf(itm);
+                        });
+                        $("#plan_header").find("div").remove();
+                        for (var i = 0; i < unique.length; i++) {
+                            var id = unique[i];
+                            $("#plan_header").append('<div id="' + id + '" onclick="getParticularPlan(this.id)" class="planeCol highlight" style="padding:12px 20px 12px 19px;font-weight: 600;">' + unique[i] + '</div>');
                         }
-                        if (operatorName == "Sun Direct DTH") {
-                            document.getElementById('thMalyalamCuratedPack').style.display = "block";
-                            document.getElementById('thTamilCuratedPack').style.display = "block";
-                            document.getElementById('thMarathiCuratedPack').style.display = "block";
-                            document.getElementById('thBengaliCuratedPack').style.display = "block";
-                            document.getElementById('thKannadaCuratedPack').style.display = "block";
-                            document.getElementById('thROICuratedPack').style.display = "block";
-                            document.getElementById('thOdiaCuratedPack').style.display = "block";
-                            document.getElementById('thAlaCarteDenominaion').style.display = "block";
-                            document.getElementById('thMalyalamCuratedHDPack').style.display = "block";
-                            document.getElementById('thMarathiCuratedHDPack').style.display = "block";
-                            document.getElementById('thTeluguCuratedHDPack').style.display = "block";
-                            document.getElementById('thBengaliCuratedHDPack').style.display = "block";
-                            document.getElementById('thTamilCuratedHDPack').style.display = "block";
-                            document.getElementById('thROICuratedHDPack').style.display = "block";
-                            document.getElementById('thKannadaCuratedHDPack').style.display = "block";
-                            document.getElementById('thTeluguCuratedPack').style.display = "block";
-                            document.getElementById('thOdiaCuratedHDPack').style.display = "block";
-                        }
-                        if (operatorName == "Tata Sky DTH") {
-                            document.getElementById('thtsOTTComboPack').style.display = "block";
-                            document.getElementById('thtsSonyBroadcasterPack').style.display = "block";
-                            document.getElementById('thtsSunTVBroadcasterPack').style.display = "block";
-                            document.getElementById('thtsRegionalPacks').style.display = "block";
-                            document.getElementById('thtsZeeBroadcasterPack').style.display = "block";
-                            document.getElementById('thtsStarBroadcasterPack').style.display = "block";
-                            document.getElementById('thtsAddOnPacks').style.display = "block";
-                            document.getElementById('thtsCuratedPacks').style.display = "block";
-                        }
-                        if (operatorName == "Videocon D2H") {
-                            document.getElementById('thvcAlaCarteTopUp').style.display = "block";
-                            document.getElementById('thvcVideoconD2HComboPacks').style.display = "block";
-                            document.getElementById('thvcStarBroadcasterPack').style.display = "block";
-                            document.getElementById('thvcVideoconD2HSDAddOn').style.display = "block";
-                            document.getElementById('thvcVideoconD2HHDAddOn').style.display = "block";
-                        }
+                        jQuery(document).on('click', '.remove_this', function () {
+                            jQuery(this).parent().remove();
+                            return false;
+                        });
+                        getParticularPlan(unique[0]);
 
-
-                        let output = data.map(i => "<tr><td>" + i.planName + "</td><td>" + i.validity + "</td><td>" + i.description + "</td><td id='id1'onclick='bindAmount()' button class='btn-process-recharge3  btn-amount-bind2 btn-amount-bind1'>" + "₹" + i.amount + "</button></td></tr>");
-
-
-                        $("#output").html(output);
                     }
+
                 },
                 failure: function (data) {
                     alert(data.responseText);
@@ -872,293 +434,57 @@
 
         });
     });
-</script>
 
-<script type="text/javascript">
-    function GetAllPlansWithPlanName(clicked_id) {
-        var a = clicked_id;
-        var button_text = document.getElementById(clicked_id).innerHTML;
-        var OpName = $("#Operatorname").val();
 
-        $.ajax({
-            url: "/DTHRecharge/GetFirstDTHPlan",
-            data: { 'opName': OpName, 'planName': button_text },
-            type: 'POST',
-            dataType: 'json',
-            success: function (data) {
-                if (data.result == "EmptyResult") {
-                    window.location.href = data.url;
+    function getParticularPlan(id) {
+        
+        var planName = document.getElementById(id).innerText
+
+        var table = $('#tempTbl1').DataTable();
+        table.destroy();
+        $("#temptableid").find("table").remove();
+        var tr = '<table id="tempTbl1" mode="static" class="table table-bordered table-responsive wrapper dataTable no-footer" style="margin-left:7px" border="1" cellspacing="3" cellpadding="3"><thead><tr>';
+        tr += '<tr id="tr_head"><th style="text-align: center;">Plan Type</th><th style="text-align: center;">Validity</th><th style="text-align: center;">Description</th><th style="text-align: center;">Price</th></tr>';
+
+        tr += '</tr></thead>';
+        tr += '<tbody id="output">';
+        for (var i = 0; i < AllPlansResponse.length; i++) {
+            if (AllPlansResponse[i].planName == id) {
+                tr += '<tr>'
+
+                var columnValue = Object.values(AllPlansResponse[i]);
+                for (var j = 0; j < columnValue.length; j++) {
+                    if (j == columnValue.length - 1) {
+                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button type="button" id="' + j + '" class="remove remove btnrecharge btn-process-recharge3  btn-amount-bind2 btn-amount-bind1 btnrecharge">' + columnValue[j] + '</button></td>'
+                    }
+                    else {
+                        tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;text-align:center;">' + columnValue[j] + '</td>'
+                    }
                 }
-                else if (data.result == "UnExpectedStatusCode") {
-                    window.location.href = data.url;
-                }
-                else if (data.result == "RedirectToException") {
-                    window.location.href = data.url;
-                }
-                else {
-                    document.getElementById('thAirtelSDPack').style.display = "none";
-                    document.getElementById('thSunBroadcasterPack').style.display = "none";
-                    document.getElementById('thAirtelHDPack').style.display = "none";
-                    document.getElementById('thSonyBroadcasterPack').style.display = "none";
-                    document.getElementById('thAirtelRegionalPack').style.display = "none";
-                    document.getElementById('thZeeBroadcasterPack').style.display = "none";
-                    document.getElementById('thStarBroadcasterPack').style.display = "none";
-
-
-                    document.getElementById('thKannadaSouthComboPack').style.display = "none";
-                    document.getElementById('thSouthIndiaSonyBroadcasterPack').style.display = "none";
-                    document.getElementById('thSouthIndiaZeeEntertainmentBroadcasterPack').style.display = "none";
-                    document.getElementById('thRestOfIndiaAddOnPack').style.display = "none";
-                    document.getElementById('thTamilSouthComboPack').style.display = "none";
-                    document.getElementById('thMarathiNorthComboPack').style.display = "none";
-                    document.getElementById('thSouthIndiaAddOnPack').style.display = "none";
-                    document.getElementById('thRestOfIndiaZeeEntertainmentBroadcasterPack').style.display = "none";
-                    document.getElementById('thRestOfIndiaStarBroadcastPack').style.display = "none";
-                    document.getElementById('thTeluguSouthComboPack').style.display = "none";
-                    document.getElementById('thOdiaNorthComboPack').style.display = "none";
-                    document.getElementById('thHindiNorthComboPack').style.display = "none";
-                    document.getElementById('thGujaratiNorthComboPack').style.display = "none";
-                    document.getElementById('thMalyalamSouthComboPack').style.display = "none";
-                    document.getElementById('thSouthIndiaStarBroadcasterPack').style.display = "none";
-                    document.getElementById('thBanglaNorthComboPack').style.display = "none";
-                    document.getElementById('thRestOfIndiaSonyBroadcasterPack').style.display = "none";
-
-
-                    document.getElementById('thMalyalamCuratedPack').style.display = "none";
-                    document.getElementById('thTamilCuratedPack').style.display = "none";
-                    document.getElementById('thMarathiCuratedPack').style.display = "none";
-                    document.getElementById('thBengaliCuratedPack').style.display = "none";
-                    document.getElementById('thKannadaCuratedPack').style.display = "none";
-                    document.getElementById('thROICuratedPack').style.display = "none";
-                    document.getElementById('thOdiaCuratedPack').style.display = "none";
-                    document.getElementById('thAlaCarteDenominaion').style.display = "none";
-                    document.getElementById('thMalyalamCuratedHDPack').style.display = "none";
-                    document.getElementById('thMarathiCuratedHDPack').style.display = "none";
-                    document.getElementById('thTeluguCuratedHDPack').style.display = "none";
-                    document.getElementById('thBengaliCuratedHDPack').style.display = "none";
-                    document.getElementById('thTamilCuratedHDPack').style.display = "none";
-                    document.getElementById('thROICuratedHDPack').style.display = "none";
-                    document.getElementById('thKannadaCuratedHDPack').style.display = "none";
-                    document.getElementById('thTeluguCuratedPack').style.display = "none";
-                    document.getElementById('thOdiaCuratedHDPack').style.display = "none";
-
-                    document.getElementById('thtsOTTComboPack').style.display = "none";
-                    document.getElementById('thtsSonyBroadcasterPack').style.display = "none";
-                    document.getElementById('thtsSunTVBroadcasterPack').style.display = "none";
-                    document.getElementById('thtsRegionalPacks').style.display = "none";
-                    document.getElementById('thtsZeeBroadcasterPack').style.display = "none";
-                    document.getElementById('thtsStarBroadcasterPack').style.display = "none";
-                    document.getElementById('thtsAddOnPacks').style.display = "none";
-                    document.getElementById('thtsCuratedPacks').style.display = "none";
-
-                    document.getElementById('thvcAlaCarteTopUp').style.display = "none";
-                    document.getElementById('thvcVideoconD2HComboPacks').style.display = "none";
-                    document.getElementById('thvcStarBroadcasterPack').style.display = "none";
-                    document.getElementById('thvcVideoconD2HSDAddOn').style.display = "none";
-                    document.getElementById('thvcVideoconD2HHDAddOn').style.display = "none";
-
-                    if (OpName == "Airtel DTH") {
-
-                        document.getElementById('thAirtelSDPack').style.display = "block";
-                        document.getElementById('thSunBroadcasterPack').style.display = "block";
-                        document.getElementById('thAirtelHDPack').style.display = "block";
-                        document.getElementById('thSonyBroadcasterPack').style.display = "block";
-                        document.getElementById('thAirtelRegionalPack').style.display = "block";
-                        document.getElementById('thZeeBroadcasterPack').style.display = "block";
-                        document.getElementById('thStarBroadcasterPack').style.display = "block";
-                    }
-                    if (OpName == "DishTV") {
-                        document.getElementById('thKannadaSouthComboPack').style.display = "block";
-                        document.getElementById('thSouthIndiaSonyBroadcasterPack').style.display = "block";
-                        document.getElementById('thSouthIndiaZeeEntertainmentBroadcasterPack').style.display = "block";
-                        document.getElementById('thRestOfIndiaAddOnPack').style.display = "block";
-                        document.getElementById('thTamilSouthComboPack').style.display = "block";
-                        document.getElementById('thMarathiNorthComboPack').style.display = "block";
-                        document.getElementById('thSouthIndiaAddOnPack').style.display = "block";
-                        document.getElementById('thRestOfIndiaZeeEntertainmentBroadcasterPack').style.display = "block";
-                        document.getElementById('thRestOfIndiaStarBroadcastPack').style.display = "block";
-                        document.getElementById('thTeluguSouthComboPack').style.display = "block";
-                        document.getElementById('thOdiaNorthComboPack').style.display = "block";
-                        document.getElementById('thHindiNorthComboPack').style.display = "block";
-                        document.getElementById('thGujaratiNorthComboPack').style.display = "block";
-                        document.getElementById('thMalyalamSouthComboPack').style.display = "block";
-                        document.getElementById('thSouthIndiaStarBroadcasterPack').style.display = "block";
-                        document.getElementById('thBanglaNorthComboPack').style.display = "block";
-                        document.getElementById('thRestOfIndiaSonyBroadcasterPack').style.display = "block";
-
-                    }
-                    if (OpName == "Sun Direct DTH") {
-                        document.getElementById('thMalyalamCuratedPack').style.display = "block";
-                        document.getElementById('thTamilCuratedPack').style.display = "block";
-                        document.getElementById('thMarathiCuratedPack').style.display = "block";
-                        document.getElementById('thBengaliCuratedPack').style.display = "block";
-                        document.getElementById('thKannadaCuratedPack').style.display = "block";
-                        document.getElementById('thROICuratedPack').style.display = "block";
-                        document.getElementById('thOdiaCuratedPack').style.display = "block";
-                        document.getElementById('thAlaCarteDenominaion').style.display = "block";
-                        document.getElementById('thMalyalamCuratedHDPack').style.display = "block";
-                        document.getElementById('thMarathiCuratedHDPack').style.display = "block";
-                        document.getElementById('thTeluguCuratedHDPack').style.display = "block";
-                        document.getElementById('thBengaliCuratedHDPack').style.display = "block";
-                        document.getElementById('thTamilCuratedHDPack').style.display = "block";
-                        document.getElementById('thROICuratedHDPack').style.display = "block";
-                        document.getElementById('thKannadaCuratedHDPack').style.display = "block";
-                        document.getElementById('thTeluguCuratedPack').style.display = "block";
-                        document.getElementById('thOdiaCuratedHDPack').style.display = "block";
-                    }
-                    if (OpName == "Tata Sky DTH") {
-                        document.getElementById('thtsOTTComboPack').style.display = "block";
-                        document.getElementById('thtsSonyBroadcasterPack').style.display = "block";
-                        document.getElementById('thtsSunTVBroadcasterPack').style.display = "block";
-                        document.getElementById('thtsRegionalPacks').style.display = "block";
-                        document.getElementById('thtsZeeBroadcasterPack').style.display = "block";
-                        document.getElementById('thtsStarBroadcasterPack').style.display = "block";
-                        document.getElementById('thtsAddOnPacks').style.display = "block";
-                        document.getElementById('thtsCuratedPacks').style.display = "block";
-                    }
-                    if (OpName == "Videocon D2H") {
-                        document.getElementById('thvcAlaCarteTopUp').style.display = "block";
-                        document.getElementById('thvcVideoconD2HComboPacks').style.display = "block";
-                        document.getElementById('thvcStarBroadcasterPack').style.display = "block";
-                        document.getElementById('thvcVideoconD2HSDAddOn').style.display = "block";
-                        document.getElementById('thvcVideoconD2HHDAddOn').style.display = "block";
-                    }
-                    let output = data.map(i => "<tr><td>" + i.planName + "</td><td>" + i.validity + "</td><td>" + i.description + "</td><td id='id1'onclick='bindAmount()' button class='btn-process-recharge3 btn-amount-bind2 btn-amount-bind1'>" + "₹" + i.amount + "</button></td></tr>");
-
-
-                    $("#output").html(output);
-
-                }
-
-                //}
-
-
-
+                tr += '</tr>';
+            }
+        }
+        tr += '</tbody>';
+        $("#temptableid").append(tr);
+        var table = $('#tempTbl1').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
             },
-            failure: function (data) {
-                alert(data.responseText);
-            },
-            error: function (data) {
-                alert(data.responseText);
-            }
-
-
-        });
-
-    }
-</script>
-<script>
-    function bindAmount() {
-        $(document).ready(function () {
-            $("#myTable").on('click', '#id1', function () {
-                // get the current row
-                var currentRow = $(this).closest("tr");
-                var col4 = currentRow.find("td:eq(3)").html(); // get current row 5th table cell  TD value
-                var col3 = currentRow.find("td:eq(2)").html();
-                var data = col4;
-                var description = col3;
-                var operator = $("#Operatorname").val();
-                var ID = $("#txtCustomerId").val();
-                var amount = $("#txtAmount").val();
-
-                $("#txtAmount").val(data);
-                document.getElementById("lblamount").innerHTML = data;
-                document.getElementById("btnProcessRecharge").disabled = true;
-                if (ID === null || ID === undefined || ID === "") {
-                    document.getElementById("btnProcessRecharge").disabled = true;
-                }
-                else if (operator === null || operator === undefined || operator === "") {
-                    document.getElementById("btnProcessRecharge").disabled = true;
-                }
-                else {
-                    document.getElementById("btnProcessRecharge").disabled = false;
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/Recharge/GetBalance",
-                        data: {},
-                        type: 'POST',
-                        dataType: 'json',
-                        success: function (response) {
-                            if (response.result == "EmptyResult") {
-                                window.location.href = response.url;
-                            }
-                            else if (response.result == "UnExpectedStatusCode") {
-                                window.location.href = response.url;
-                            }
-                            else if (response.result == "RedirectToException") {
-                                window.location.href = response.url;
-                            }
-                            else {
-                                document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                                document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                            }
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                }
-            });
+            responsive: true,
+            "bFilter": false, //Disable search function
+            "bJQueryUI": true, //Enable smooth theme
+            "sPaginationType": "full_numbers", //Enable smooth theme
+            "bFilter": false,
+            "bInfo": false,
+            "bSortable": false,
+            "bSearchable": false,
+            paging: false,
+            ordering: false,
+            info: false,
         });
     }
 
-</script>
-<script>
-    function bindAmountInput() {
-        $(document).ready(function () {
-            var operator = $("#Operatorname").val();
-            var ID = $("#txtCustomerId").val();
-            var amount = $("#txtAmount").val();
-            if (operator === null || operator === undefined || operator === "") {
-                $("#myModal").modal("hide");
-            }
-            else if (ID === null || ID === undefined || ID === "") {
-                $("#errID").html("Please Insert Some Amount");
-                alert("Please Insert Cutomer ID;")
-            }
-            else if (amount === null || amount === undefined || amount === "") {
-                $("#errAmount").html("Please Insert Some Amount");
-                $("#myModal").modal("hide");
-                alert("Please Insert Amount;")
-            }
-            else {
-                document.getElementById("btnProcessRecharge").disabled = false;
-                $.ajax({
-                    type: "POST",
-                    url: "/Recharge/GetBalance",
-                    data: {},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                            window.location.href = response.url;
-                        }
-                        else {
-                            document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
-                            document.getElementById("lblAdbal").innerHTML = response[0].adBal;
-                        }
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-        });
 
-    }
     $("#myModalfinal").on('show.bs.modal', function (e) {
         $("#myModal").modal("hide");
     });
@@ -1176,7 +502,9 @@
         window.location.href = '@Url.Content("~/DTHRecharge/DTHRecharge")';
     });
 
+
 </script>
+
 <script>
     function payNow() {
         var Operator = $("#Operatorname").val();
@@ -1294,13 +622,115 @@
         $("#txtCustomerId").keyup(function (e) {
             var CustomerID = $("#txtCustomerId").val();
             if (CustomerID.length < 5) {
-                $("#errId").html("Please insert customer id between 5 to 15 number");
-                document.getElementById("btnProcessRecharge").disabled = true;
+                $("#errCustomerId").html("Please insert customer id between 5 to 15 number");
             }
             else if (CustomerID.length > 8) {
-                $("#errId").html("");
-                document.getElementById("btnProcessRecharge").disabled = false;
+                $("#errCustomerId").html("");
             }
         });
     });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#temptableid").on('click', ".btnrecharge", function () {
+            var table = $('#tempTbl1').DataTable();
+            var d = $(this).closest("td").find('button').text();
+            $("#txtAmount").val(d);
+            debugger;
+            var currentRow = $(this).closest("tr");
+            var col4 = currentRow.find("td:eq(3)").html();
+            document.getElementById("lblamount").innerHTML = d;
+            $.ajax({
+                type: "POST",
+                url: "/DTHRecharge/GetBalance",
+                data: {},
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        });
+    });
+</script>
+<script>
+    function openModalPayment() {
+        debugger;
+        var customerId = $("#txtCustomerId").val();
+        var operator = $("#Operatorname").val();
+        var amount = $("#txtAmount").val();
+        if (operator == 0 || operator == "") {
+            document.getElementById("errOperator").innerHTML = "Please Select Operator";
+        }
+        else if (customerId.length === 0) {
+            document.getElementById("errCustomerId").innerHTML = "Please Enter Customer ID";
+        }
+        else if (amount.length === 0) {
+            document.getElementById("errAmount").innerHTML = "Please Enter Amount";
+        }
+        
+        else {
+            document.getElementById("errOperator").innerHTML = "";
+            document.getElementById("errCustomerId").innerHTML = "";
+            document.getElementById("errAmount").innerHTML = "";
+            bindAmountInput();
+            $("#btnmodalChoosePayment").trigger("click");
+        }
+    }
+
+
+    function bindAmountInput() {
+        $(document).ready(function () {
+            var amount = document.getElementById("txtAmount").value;
+            $.ajax({
+                type: "POST",
+                url: "/DTHRecharge/GetBalance",
+                data: {},
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    debugger;
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
+                        document.getElementById("lblAdbal").innerHTML = response[0].adBal;
+                        document.getElementById("lblamount").innerHTML = amount;
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    }
 </script>
