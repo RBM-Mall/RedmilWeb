@@ -4399,6 +4399,9 @@ p.fnt-30 {
         font-weight: 700;
         margin-left: 10px;
     }
+    .section-title {
+        margin-top:150px;
+    }
 }
 
 
@@ -4436,5 +4439,8 @@ p.fnt-30 {
         font-size: 21px;
         font-weight: 700;
         margin-left: 10px;
+    }
+    .section-title {
+        margin-top: 180px;
     }
 }

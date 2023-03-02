@@ -16,7 +16,7 @@
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script src="jquery.redirect.js"></script>
+@*<script src="jquery.redirect.js"></script>*@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
@@ -179,31 +179,47 @@
                                                         <span id="errMobile" class="errorMsg"></span>
 
                                                     </div>
-                                                    <div class="form-group-recharge">
-                                                        <input id="txtOperator" autocomplete="off" asp-for="Operator" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Operator Name" />
-                                                        <br />
-                                                        <span id="errOperator" class="errorMsg"></span>
-                                                    </div>
-                                                    @*<div class="form-group-recharge">
-                                                    <select class="dropdownDTH dropdownDTH1" id="OpId" name="Id" asp-for="Id"
-                                                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                                                    <option value="0">--Select Operator--</option>
-                                                    </select>
+                                                    @*  <div class="form-group-recharge">
+                                                    <input id="txtOperator" autocomplete="off" asp-for="Operator" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Operator Name" />
                                                     <br />
                                                     <span id="errOperator" class="errorMsg"></span>
-                                                    <span id="operator" class="text-danger font-weight-bold"></span>
-                                                    <i class="operatori"></i>
-                                                    <div class="operatorspan">
-                                                    <ul id="ul11" class="operator-change" onclick="changeOperator()">
-                                                    Change Operator
-                                                    </ul>
-                                                    </div>
                                                     </div>*@
-                                                    <div class="form-group-recharge">
-                                                        <input id="txtCircle" autocomplete="off" asp-for="Circle" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Circle Name" />
+                                                    <div class="form-group-recharge" style="display:none;" id="divOperator">
+                                                        <select class="dropdownDTH dropdownDTH1" onchange="changeOperatorPlan()" id="OpId" name="Id"
+                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                            @*<option value="0">--Select Operator--</option>
+                                                            <option value="0">--Select Operator--</option>*@
+                                                        </select>
                                                         <br />
-                                                        <span id="errCircle" class="errorMsg"></span>
+                                                        <span id="errOperator" class="errorMsg"></span>
+                                                        <span id="operator" class="text-danger font-weight-bold"></span>
+                                                        <i class="operatori"></i>
+                                                        <div class="operatorspan">
+                                                            <ul id="ul11" class="operator-change" onclick="changeOperator()">
+                                                                Change Operator
+                                                            </ul>
+                                                        </div>
                                                     </div>
+                                                    
+                                                        @*<input id="txtCircle" autocomplete="off" asp-for="Circle" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Circle Name" />
+                                                        <br />
+                                                        <span id="errCircle" class="errorMsg"></span>*@
+                                                    <div class="form-group-recharge" style="display:none;" id="divCircle">
+                                                        <select class="dropdownDTH dropdownDTH1" onchange="changeCirclePlan()" id="CirId" name="CirId"
+                                                                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                                @*<option value="0">--Select Operator--</option>
+                                                                <option value="0">--Select Operator--</option>*@
+                                                            </select>
+                                                            <br />
+                                                            <span id="errCircle" class="errorMsg"></span>
+                                                            <span id="operator" class="text-danger font-weight-bold"></span>
+                                                            <i class="operatori"></i>
+                                                            <div class="operatorspan">
+                                                                <ul id="ul12" class="operator-change" onclick="changeCircle()">
+                                                                    Change Circle
+                                                                </ul>
+                                                            </div>
+                                                        </div>
 
                                                     <div class="form-group-recharge">
                                                         <input id="txtAmount" type="tel" autocomplete="off" asp-for="Amount" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Amount" />
@@ -277,17 +293,17 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="modal-footer div-pay-row">
-                                                                    <div class="row div-pay-row">
-                                                                        <div class="col-sm-4 final-pay-button">
-                                                                            <button type="button" id="btnPayNow" onclick="payNow()" class="btn-process-recharge3">Pay</button>
-                                                                        </div>
-                                                                        <div class="col-sm-4 final-cancel-button">
-                                                                            <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                                                                <div class="modal-footer">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12" style="display: inline-flex;">
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <button type="button" id="btnPayNow" onclick="payNow()" class="button-27">Pay</button>
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -499,10 +515,12 @@
                         else {
 
                             //$("#OpId").append($("<option></option>").val(response.currentOperator).html(response.currentOperator));
-
-
-                            $("#txtCircle").val(response.currentLocation);
-                            $("#txtOperator").val(response.currentOperator);
+                            $("#OpId").append($("<option></option>").val(response.currentOperator).html(response.currentOperator));
+                            document.getElementById("divOperator").style.display="block";
+                            $("#CirId").append($("<option></option>").val(response.currentLocation).html(response.currentLocation));
+                            document.getElementById("divCircle").style.display="block";
+                            //$("#txtCircle").val(response.currentLocation);
+                            //$("#txtOperator").val(response.currentOperator);
                             if (response.currentOperator == "India" || response.currentOperator == "" || response.currentOperator == undefined) {
                                 window.location.href = '@Url.Content("~/Error/ErrorForExceptionLog")';
                                 //document.getElementById('divplans').style.display = "block";
@@ -744,9 +762,6 @@
         window.location.href = '@Url.Content("~/Recharge/PrepaidRecharge")';
     });
 
-</script>
-
-<script>
     $(document).ready(function () {
         $("#temptableid").on('click', ".btnrecharge", function () {
             var table = $('#tempTbl1').DataTable();
@@ -790,8 +805,8 @@
 
     function openModalPayment() {
         var mobile = $("#txtMobile").val();
-        var operator = $("#txtOperator").val();
-        var circle = $("#txtCircle").val();
+        var operator = document.getElementById("OpId").value;
+        var circle = document.getElementById("CirId").value;
         var amount = $("#txtAmount").val();
         if (mobile.length === 0) {
             document.getElementById("errMobile").innerHTML = "Please Enter Mobile Number";
@@ -819,38 +834,131 @@
         window.location.href = '@Url.Content("~/Recharge/PrepaidRecharge")';
     });
 
-        //function changeOperator(){
-        //    $.ajax({
-        //        url: "/Recharge/GetOperatorList",
-        //        data: { },
-        //        type: 'POST',
-        //        dataType: 'json',
-        //        success: function (response) {
-        //            debugger;
-        //            if (response.result == "EmptyResult") {
-        //                window.location.href = response.url;
-        //            }
-        //            else if (response.result == "UnExpectedStatusCode") {
-        //                window.location.href = response.url;
-        //            }
-        //            else if (response.result == "RedirectToException") {
-        //                window.location.href = response.url;
-        //            }
-        //            else {
-        //                $('#OpId').html('');
+    function changeOperator() {
+        $.ajax({
+            url: "/Recharge/GetOperatorList",
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    $('#OpId').html('');
 
-        //                var options = '<option value="' + 0 + '">' + "--Select Operator--" + '</option>';
+                    var options = '<option value="' + 0 + '">' + "--Select Operator--" + '</option>';
 
-        //                for (var i = 0; i < response.length; i++) {
+                    for (var i = 0; i < response.length; i++) {
 
-        //                    options += '<option value="' + response[i].id + '">' + response[i].operatorname + '</option>';
+                        options += '<option value="' +response[i].operatorname + '" text="'+response[i].operatorname+'">' + response[i].operatorname + '</option>';
 
-        //                }
-        //                $('#OpId').append(options);
-        //            }
-        //        }
-        //    });
-        //}
+                    }
+                    $('#OpId').append(options);
+                }
+            }
+        });
+    }
 
 
+
+    function changeCircle() {
+        $.ajax({
+            url: "/Recharge/GetCircleList",
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    $('#CirId').html('');
+
+                    var options = '<option value="' + 0 + '">' + "--Select Circle--" + '</option>';
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        options += '<option value="' + response[i].circlename + '" text="' + response[i].circlename + '">' + response[i].circlename + '</option>';
+
+                    }
+                    $('#CirId').append(options);
+                }
+            }
+        });
+    }
+
+
+     function changeOperatorPlan(){
+         document.getElementById("divplans").style.display="none";
+        $('#CirId').html('');
+        var options = '<option value="' + 0 + '">' + "--Select Circle--" + '</option>';
+        $('#CirId').append(options);
+    }
+
+    function changeCirclePlan(){
+        debugger;
+        let circle = document.getElementById("CirId").value;
+        let operator = document.getElementById("OpId").value;
+        $.ajax({
+            url: "/Recharge/GetAllPlans",
+            data: { 'Circle': circle, 'OpName': operator },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else {
+                    AllPlansResponse = data;
+                    document.getElementById('divplans').style.display = "block";
+                    document.getElementById("txtAmount").disabled = false;
+                    let arr = new Array();
+                    for (let i = 0; i < data.length; i++) {
+                        arr.push(data[i].planName);
+                    }
+                    let unique = arr.filter(function (itm, i, arr) {
+                        return i == arr.indexOf(itm);
+                    });
+                    $("#plan_header").find("div").remove();
+                    for (var i = 0; i < unique.length; i++) {
+                        var id = unique[i];
+                        $("#plan_header").append('<div id="' + id + '" onclick="getParticularPlan(this.id)" class="planeCol highlight" style="padding:12px 20px 12px 19px;font-weight: 600;">' + unique[i] + '</div>');
+                    }
+                    jQuery(document).on('click', '.remove_this', function () {
+                        jQuery(this).parent().remove();
+                        return false;
+                    });
+                    getParticularPlan(unique[0]);
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
 </script>

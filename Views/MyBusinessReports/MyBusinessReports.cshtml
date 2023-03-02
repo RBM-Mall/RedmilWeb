@@ -216,7 +216,6 @@
             $.ajax({
                 type: "POST",
                 url: "/MyBusinessReports/SubCategoryReports?Id=" + CatId,
-
                 contentType: "html",
                 success: function (response) {
                     if (response.result == "EmptyResult") {
@@ -239,11 +238,9 @@
 
                         }
                         $('#SId').append(options);
-
                     }
                 }
             });
-
         });
     });
 
@@ -339,16 +336,10 @@
                         },
                         responsive: true
                     });
-
-
                 }
             }
-
         });
-
     });
-
-
 </script>
 
 <script>

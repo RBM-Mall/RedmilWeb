@@ -3653,7 +3653,10 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-danger {
     color: #fff;
     background-color: #d9534f;
-    border-color: #d43f3a
+    border-color: #d43f3a;
+    border-radius: 100px;
+    font-weight: 900;
+    padding: 6px 25px;
 }
 
     .btn-danger.focus, .btn-danger:focus {
@@ -7331,6 +7334,7 @@ li {
     font-size: 10px;
 }
 
+    
 
 /*# sourceMappingURL=bootstrap.min.css.map */
 @media screen and (max-width:360px) and (min-width:280px) {
@@ -7377,6 +7381,9 @@ li {
             font-size: 13px;
             font-family: sans-serif;
         }
+    .div_readMore {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width:440px) and (min-width:361px) {
@@ -7386,6 +7393,46 @@ li {
 
     .navbar-default .navbar-nav > li > ul > a {
         font-size: 14px;
+    }
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 13px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 13px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 13px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
     }
 }
 
@@ -7398,6 +7445,46 @@ li {
     .navbar-default .navbar-nav > li > ul > a {
         font-size: 15px;
     }
+    .dropdown ul li {
+        font-size: 13px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 14px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 14px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 14px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width:768px) and (min-width:561px) {
@@ -7409,11 +7496,91 @@ li {
     .navbar-default .navbar-nav > li > ul > a {
         font-size: 16px;
     }
+    .dropdown ul li {
+        font-size: 15px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 15px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 15px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 15px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width:880px) and (min-width:769px) {
     .navbar-default .navbar-nav > li > a {
         font-size: 17px;
         /*color:white;*/
+    }
+    .dropdown ul li {
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li:last-child {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+    .dropdown ul li {
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+        .dropdown ul li a {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+        .dropdown ul li:hover .Sub-menu-1 ul li {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:hover {
+                color: darkblue;
+                font-size: 16px;
+                font-family: sans-serif;
+            }
+
+            .dropdown ul li:hover .Sub-menu-1 ul li:last-child {
+                border-bottom: none;
+                font-size: 16px;
+                font-family: sans-serif;
+            }
+
+    .div_readMore {
+        text-align: center;
     }
 }

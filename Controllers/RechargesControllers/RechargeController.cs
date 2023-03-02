@@ -119,6 +119,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             RequestModel1 requestModel = new RequestModel1();
             try
             {
+                GetOperatorList();
                 requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 requestModel.MobileNo = MobileNumber;
                 #region Checksum (GetMobileMNPDetails|Unique Key|UserId)
@@ -400,6 +401,18 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             }
         }
 
+        #endregion
+
+
+
+        #region GetCircleList
+
+        public JsonResult GetCircleList()
+        {
+            var circleList = "[{\"id\":\"AP\",\"circlename\":\"Andhra Pradesh\"},{\"id\":\"ASM\",\"circlename\":\"Assam\"},{\"id\":\"BIH\",\"circlename\":\"Bihar & Jharkhand\"},{\"id\":\"CHE\",\"circlename\":\"Chennai\"},{\"id\":\"DEL\",\"circlename\":\"Delhi\"},{\"id\":\"GUJ\",\"circlename\":\"Gujrat\"},{\"id\":\"HAR\",\"circlename\":\"Haryana\"},{\"id\":\"HP\",\"circlename\":\"Himachal Pradesh\"},{\"id\":\"JK\",\"circlename\":\"J&K\"},{\"id\":\"KK\",\"circlename\":\"Karnataka\"},{\"id\":\"MP\",\"circlename\":\"Madhya Pradesh\"},{\"id\":\"MAH\",\"circlename\":\"Maharashtra\"},{\"id\":\"MAH\",\"circlename\":\"Mumbai\"},{\"id\":\"NE\",\"circlename\":\"NorthEast\"},{\"id\":\"ORI\",\"circlename\":\"Orissa\"},{\"id\":\"PUN\",\"circlename\":\"Punjab\"},{\"id\":\"RAJ\",\"circlename\":\"Rajasthan\"},{\"id\":\"TN\",\"circlename\":\"Tamilnadu\"},{\"id\":\"UPE\",\"circlename\":\"Uttar Pradesh (East)\"},{\"id\":\"UPW\",\"circlename\":\"Uttar Pradesh (West)\"},{\"id\":\"UPW\",\"circlename\":\"Uttaranchal\"},{\"id\":\"WB\",\"circlename\":\"WestBengal & AN Island\"}]";
+            var deseserialize = JsonConvert.DeserializeObject<List<GetAllCircleListResponseModel>>(circleList);
+            return Json(deseserialize);
+        }
         #endregion
 
         #region Replace Circle Name

@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.AepsKycDetailsNewResponseModel>
-@*@model List<Project_Redmil_MVC.Models.ResponseModel.AepsKycDetailsNewResponseModel>*@
 
 @using Project_Redmil_MVC
 @{
     ViewData["Title"] = "Aadhaar ATM";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 @*<link href="~/ResponsiveCSS/Aeps.css" rel="stylesheet" />*@
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
@@ -16,383 +19,16 @@
         margin-right: 10px;
     }
 </style>
-@*<style>
-
-    .button-23:hover {
-        color: white;
-    }
-
-    .wallet-box .bg-wt-round {
-        background: #fff;
-        border-radius: 30px;
-        padding: 10px 0px;
-    }
-
-    .wallet_breadcumb-area {
-        position: relative;
-        padding: 140px 0;
-        background-size: cover;
-        background-position: center center;
-        position: relative;
-        background-position: 75% 10%;
-    }
-
-        .wallet_breadcumb-area:before {
-            position: absolute;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            content: "";
-            /*background: rgba(0, 0, 0, 0.5);*/
-            top: 0;
-            z-index: 0;
-        }
-
-        .wallet_breadcumb-area ul {
-            text-align: center;
-        }
-
-            .wallet_breadcumb-area ul li {
-                display: block;
-                font-weight: 500;
-                font-size: 16px;
-                color: #fff;
-            }
-
-                .wallet_breadcumb-area ul li:first-child {
-                    font-size: 50px;
-                    font-weight: 700;
-                    line-height: 5rem;
-                    color: #fff;
-                }
-
-                .wallet_breadcumb-area ul li a {
-                    color: #ffffff;
-                }
-
-    .accordion {
-        background-color: #eee;
-        color: #444;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-        transition: 0.4s;
-    }
-
-        .active, .accordion:hover {
-            background-color: #ccc;
-        }
-
-        .accordion:after {
-            content: '\002B';
-            color: #777;
-            font-weight: bold;
-            float: right;
-            margin-left: 5px;
-        }
-
-    .active:after {
-        content: "\2212";
-    }
-
-    .panel {
-        padding: 0 18px;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.2s ease-out;
-    }
-</style>*@
-@*<style>
-
-    .img1 {
-        display: flex;
-    }
-
-        .img1 img {
-            height: 60px;
-            width: 60px;
-        }
-
-
-    .passbooktabs {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        color: #f1f1f1;
-        background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);
-        display: flex;
-        margin-top: 10px;
-    }
-
-        /* Style the buttons inside the tab */
-        .passbooktabs button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
-            /* Change background color of buttons on hover */
-            .passbooktabs button:hover {
-                background-color: #ddd;
-                color: #313142;
-            }
-
-            /* Create an active/current tablink class */
-            .passbooktabs button.active {
-                /*background-color: #5437b7;*/
-            }
-
-        .passbooktabs .tablinks {
-            letter-spacing: 2px;
-            margin-right: 25px;
-            /*background-color: #5437b7;*/
-        }
-
-    .tablinksactive {
-        letter-spacing: 2px;
-        margin-right: 25px;
-        background-color: #5437b7;
-        transition: all 0.4s ease;
-    }
-
-    /* Style the tab content */
-    .tabcontent {
-        display: none;
-        padding: 20px 12px;
-        border: 1px solid #ccc;
-        /*width: 1200px;
-                                                                                                            border-top: none;*/
-    }
-
-        .tabcontent .title {
-            text-align: center;
-            padding-bottom: 80px;
-        }
-
-            .tabcontent .title h1 {
-                font-weight: 800;
-            }
-
-            .tabcontent .title .aval_bal, .cashBal {
-                margin-top: 20px;
-            }
-
-            .tabcontent .title .aval_bal, .AdvBal {
-                margin-top: -30px;
-            }
-
-            .tabcontent .title .advAval_bal, .AdvBal {
-                margin-top: -33px;
-            }
-
-        .tabcontent .item_info {
-            display: block;
-            margin-top: 50px;
-        }
-
-            .tabcontent .item_info button {
-                align-items: center;
-                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-                background-size: calc(100% + 20px) calc(100% + 20px);
-                border-radius: 100px;
-                border-width: 0;
-                color: #FFFFFF;
-                cursor: pointer;
-                display: inline-flex;
-                font-family: CircularStd,sans-serif;
-                font-size: 1.5rem;
-                height: auto;
-                justify-content: center;
-                line-height: 1.5;
-                padding: 6px 25px;
-                position: relative;
-                text-align: center;
-                text-decoration: none;
-                transition: background-color .2s,background-position .2s;
-                user-select: none;
-                margin-right: 24px;
-                float: none;
-                /*margin-top: 40px;*/
-                /*margin-left: 60px;*/
-                z-index: 1;
-            }
-
-        .tabcontent .title .item_info .rewbtn {
-            margin-left: 300px;
-        }
-
-        /*.tabcontent.item_info.btn2{
-                                                                                                                            margin-left:200px;
-                                                                                                                        }*/
-
-        .tabcontent hr {
-            margin: 93px 0 0 20px;
-            padding: 10px;
-        }
-
-        .tabcontent h3 {
-            text-align: center;
-            margin-bottom: 60px;
-            font-weight: 700;
-        }
-
-    #example_wrapper {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
-    #example1_wrapper {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
-    #example_paginate {
-        float: right;
-        margin-right: -90px;
-    }
-
-    #example1_paginate {
-        float: right;
-        margin-right: -40px;
-    }
-
-    div.wrapper {
-        width: 500px;
-        height: 500px;
-        overflow: auto;
-    }
-
-    .ButtonDetail {
-        font-weight: 800;
-        /* background: #3EB2FD; */
-        /* border: 1px solid #3EB2FD; */
-        /* border: 1px solid #fff; */
-        padding: 5px 10px;
-        color: blue;
-        font-size: 13px;
-        text-align: center;
-        /* width: 300px;*/
-        border-radius: 5px;
-        /*margin-top: 20px;*/
-        font-family: 'Poppins', sans-serif;
-    }
-
-
-    .label {
-        display: inline-block;
-        max-width: 100%;
-        margin-bottom: 7px;
-        font-weight: 700;
-        padding: -15px;
-        font-size: 21px;
-        margin-left: 82px;
-    }
-
-    .tabcontents {
-        display: none;
-        /* padding: 6px 12px;
-                                                                                    border: 1px solid #ccc;
-                                                                                    border-top: none;*/
-        font-size: 15px;
-    }
-
-    .active::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0%;
-        /* border-top: 3px solid #1864ab; */
-        animation: borderline 1s linear forwards;
-    }
-
-
-    .tabs {
-        overflow: hidden;
-        /*  border: 1px solid #ccc;
-                                                                                    background-color: #f1f1f1;*/
-    }
-
-        /* Style the buttons inside the tab */
-        .tabs button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-        }
-
-            /* Change background color of buttons on hover */
-            .tabs button:hover {
-                background-color: #ddd;
-            }
-
-            /* Create an active/current tablink class */
-            .tabs button.active {
-                background-color: #ccc;
-            }
-
-    hr {
-        border: none;
-        border-top: 1px dotted black;
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-        width: 100%;
-    }
-
-    .close_cross {
-        float: right;
-        font-size: 41px;
-        font-weight: 700;
-        line-height: 1;
-        text-shadow: 0 1px 0 #fff;
-        filter: alpha(opacity=20);
-        opacity: .2;
-        color: white solid imp;
-        color: lightyellow;
-    }
-
-</style>*@
-@*<br />
-<br />
-<br />
-<br />
-<br />
-<br />*@
-<br />
-<br />
 <br />
 <div class="container-fluid" style="background:#ebebeb">
     <div class="first-header">
-        <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
-            <div class="container">
+        <div class="section background-image heading_page">
+            <div class="container ">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="call-to-action">
-                            <div class="row">
-                                <div class="col-sm-7 col-xs-12 dmt">
-                                    <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:300px;text-align:center; font-weight: 700; cursor: pointer;"><u>AADHAAR  ATM</u></h3>
-                                </div>
-                                <div class="col-sm-5 col-xs-12 text-right">
-                                    <div class="read-more padding-top-bottom-40">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-sm-12 text-center">
+                        <ul>
+                            <li><strong class="heading_page_2">Aadhar ATM</strong></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -562,7 +198,9 @@
                 <h3><span id="walletMode" class="text-danger font-weight-bold"></span></h3>
             </div>
         </div>
-        <button class="button-21 text-center btn_Proceed" id="btnTransaction">Proceed</button>
+        <div style="text-align:center">
+            <button class="button-21" style="font-weight: 900;" id="btnTransaction">Proceed</button>
+        </div>
         @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>VerifyFaceBiometricModal*@
 
     </div>
@@ -572,13 +210,12 @@
 @*--------------------------------------------------------- Choose Bank modal pop-up -------------------------------------------------------------------*@
 
 <input type="button" id="btnChooseBankModal" data-target="#chooseBankModal" data-toggle="modal" style="display:none;" />
-<div class="modal fade" id="chooseBankModal" role="dialog" style="margin-top: 100px;">
+<div class="modal fade modal_choose_bank" id="chooseBankModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #2d385e;">
                 <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
                 <h4 class="modal-title" style="font-weight: 900; text-align: center;">Choose Bank</h4>
-
             </div>
             <div class="modal-body">
                 <p style="font-weight: 900; text-align: center; color:#2d385e;">CHOOSE BANK</p>
@@ -586,21 +223,27 @@
                 <div class="chooseBank">
                     <div class="selectBank" style="border-radius: 1px">
                         @*@Model.FirstOrDefault().BankLogo*@ @*@Model.FirstOrDefault().BankName*@
-                        <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
-                            <img src="https://api.redmilbusinessmall.com/Docs/yesbank_aeps.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />
+                        <div class="col-md-3 box_choose_bank">
+                            <img src="https://api.redmilbusinessmall.com/Docs/yesbank_aeps.png" class="box_choose_bank_image" />
                             @*<img src="@Model.FirstOrDefault().BankLogo1" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);"/>*@
-                            <label class="ybl" id="lblybl" style="font-size: 20px; font-weight: 800; color: #2d385e; cursor: pointer;"> </label>
-                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;"></b>
+                            <label class="ybl box_choose_bank_label" id="lblybl"> </label>
+                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES" style="text-align: center;" />
+                            <b class="box_choose_bank_input_para"></b>
                         </div>
-                        <div class="col-md-5" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 21px;">
-                            <img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                            <label class="ppb" id="lblppb" style="font-size: 20px; font-weight: 800; cursor: pointer; color: #2d385e;">  </label>
-                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbPAYTMBank" value="Paytm" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;"></b>
+                        @*<div class="col-md-4" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 21px;margin-bottom:10px;">*@
+                        <div class="col-md-4 box_choose_bank">
+                            @*<img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                            <img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" class="box_choose_bank_image" />
+                            @*<label class="ppb" id="lblppb" style="font-size: 20px; font-weight: 800; cursor: pointer; color: #2d385e;">  </label>*@
+                            <label class="ppb box_choose_bank_label" id="lblppb">  </label>
+                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbPAYTMBank" value="Paytm" style="text-align: center;" />
+                            <b class="box_choose_bank_input_para"></b>
                         </div>
-                        <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px;">
-                            <img src="https://api.redmilbusinessmall.com/OPImg/IciciNew.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                            <label class="icici" id="lblicici" style="font-size: 20px; font-weight: 800; cursor: pointer; color: #2d385e;"> </label>
-                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbICICIBank" value="ICICI" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;"></b>
+                        <div class="col-md-3 box_choose_bank">
+                            <img src="https://api.redmilbusinessmall.com/OPImg/IciciNew.png" class="box_choose_bank_image" />
+                            <label class="icici box_choose_bank_label" id="lblicici"> </label>
+                            <input type="radio" class="rdbBank" name="rdbBankName" id="rdbICICIBank" value="ICICI" style="text-align: center;" />
+                            <b class="box_choose_bank_input_para"></b>
                         </div>
                     </div>
                 </div>
@@ -612,12 +255,12 @@
                 <div class="col col-md-12 col-sm-12 col-lg-12">
                     <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
                         <div class="div-recharge-opimage">
-                            <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
+                            <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
                             <hr />
                             <div class="row" style="text-align:center;">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                                    <img src="~/img/img_devices/Aeps.png" alt="Aeps" class="img-width img-operator-logo">
+                                    <img src="~/img/img_devices/Aeps.png" alt="Aeps" class="img-width" style="height:100px;">
                                     <div class="overlay"> <a href="#" target="_blank" class="icon" title="Aeps"></a></div>
                                     <div class="leadership_name">
                                         <br />
@@ -629,15 +272,40 @@
                     </div>
                 </div>
                 @*<button class="button-21 pull-center" id="btnbankModal" onclick="chooseBank()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
-                <button class="button-21 pull-center btn_Proceed" id="btnbankModal" onclick="chooseBank()">Continue</button>
+
                 @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
                 @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
             </div>
+
+
+
             <div class="modal-footer">
-                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">
-                    Close
-                </a>
+                <div class="row">
+                    <div class="col-md-12" style="display: inline-flex;">
+                        <div class="col-sm-6 col-md-6">
+                            <button type="button" id="btnbankModal" onclick="chooseBank()" class="button-27">Continue</button>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Close</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            @*
+            <div class="modal-footer">
+            <div class="row">
+            <div class="col-md-6" style="text-align:center">
+            <button class="button-21" id="btnbankModal" style="font-weight: 900;" onclick="chooseBank()">Continue</button>
+
+            </div>
+            <div class="col-md-6" style="text-align:center">
+            <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">
+            Close
+            </a>
+            </div>
+            </div>
+            </div>*@
         </div>
     </div>
 </div>
@@ -647,7 +315,8 @@
 @*-------------------------------------------------------- Choose Device modal pop-up ------------------------------------------------------------------*@
 
 <input type="button" id="btndeviceModal" data-target="#deviceModal" data-toggle="modal" style="display:none" />
-<div class="modal fade" id="deviceModal" role="dialog" style="margin-top: 100px;">
+@*<div class="modal fade modal_choose_bank" id="deviceModal" role="dialog" style="margin-top: 100px;">*@
+<div class="modal fade modal_choose_bank" id="deviceModal" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #2d385e;">
@@ -655,8 +324,8 @@
                 <h4 class="modal-title" style="font-weight: 900; text-align: center;">SELECT DEVICE</h4>
                 <div class="col-sm-5 col-xs-12 pull-right">
                     <div class="read-more padding-top-bottom-40">
-                        <h3 class="heading_Balance" style="color: #fff; display: inline-flex;">Cash Wallet -- </h3>
-                        <a href="#" target="_blank" class="button-23" style="cursor: auto; text-decoration: unset;">₹ @ViewBag.Balance </a>
+                        <h3 class="heading_Balance" style="color: #fff; display: inline-flex;font-size: 16px;">Cash Wallet -- </h3>
+                        <a href="#" target="_blank" class="button-22" style="cursor: auto; text-decoration: unset;">₹ @ViewBag.Balance </a>
                     </div>
                 </div>
             </div>
@@ -678,45 +347,64 @@
                 <p class="p_Verify_Face">CHOOSE DEVICE</p>
                 <hr />
                 <div class="col-md-12">
-                    <div class="col-md-3 morpho radio2" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3 morpho radio2 choose_device_div" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 morpho radio2 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" asp-for="Morpho" value="MORPHO">
-                        <img src="~/img/img_devices/Morpho.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                        <label style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> MORPHO </label>
+                        @*<img src="~/img/img_devices/Morpho.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                        <img src="~/img/img_devices/Morpho.png" class="choose_device_image" />
+                        @*<label style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> MORPHO </label>*@
+                        <label class="choose_device_label"> MORPHO </label>
                     </div>
-                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" value="STARTEK">
-                        <img src="~/img/img_devices/Startek.png" style="border: 1px solid #ddd; border-radius: 49px; width: 21px; background: linear-gradient(#f69d3c, #3f87a6);" />
-
-                        <label class="ybl" id="startek" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> STARTEK </label>
+                        <img src="~/img/img_devices/Startek.png" class="choose_device_image" />
+                        @*<label class="ybl choose_device_label" id="startek" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> STARTEK </label>*@
+                        <label class="ybl choose_device_label" id="startek"> STARTEK </label>
                     </div>
-                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3 choose_device_div" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" value="MANTRA">
-                        <img src="~/img/img_devices/Mantra.png" style="border: 1px solid #ddd; border-radius: 49px; width: 42px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                        <label class="ybl" id="mantra" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> MANTRA </label>
+                        @*<img src="~/img/img_devices/Mantra.png" style="border: 1px solid #ddd; border-radius: 49px; width: 42px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                        <img src="~/img/img_devices/Mantra.png" class="choose_device_image" />
+                        @*<label class="ybl" id="mantra" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> MANTRA </label>*@
+                        <label class="ybl choose_device_label"> MANTRA </label>
                     </div>
                 </div>
                 <div class="col-md-12" style="display: block; margin-top: 20px;">
-                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" value="NEXT">
-                        <img src="~/img/img_devices/Next.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                        <label class="ybl" id="nextNb" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> NEXT NB-3023 </label>
+                        @*<img src="~/img/img_devices/Next.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                        <img src="~/img/img_devices/Next.png" class="choose_device_image" />
+                        @*<label class="ybl" id="nextNb" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> NEXT NB-3023 </label>*@
+                        <label class="ybl choose_device_label" id="nextNb"> NEXT NB-3023 </label>
                     </div>
-                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" value="SECUGEN">
-                        <img src="~/img/img_devices/Secugen.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                        <label class="ybl" id="secugen" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> SECUGEN PRO 20 </label>
+                        @*<img src="~/img/img_devices/Secugen.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                        <img src="~/img/img_devices/Secugen.png" class="choose_device_image" />
+                        @*<label class="ybl" id="secugen" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> SECUGEN PRO 20 </labe*@l>
+                        <label class="ybl choose_device_label" id="secugen"> SECUGEN PRO 20 </label>
                     </div>
-                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" value="TATVIK">
-                        <img src="~/img/img_devices/Tatvik-TMF20.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                        <label class="ybl" id="tatvik" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> TATVIK TMF20 </label>
+                        @*<img src="~/img/img_devices/Tatvik-TMF20.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                        <img src="~/img/img_devices/Tatvik-TMF20.png" class="choose_device_image" />
+                        @*<label class="ybl" id="tatvik" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> TATVIK TMF20 </label>*@
+                        <label class="ybl choose_device_label" id="tatvik"> TATVIK TMF20 </label>
                     </div>
                 </div>
                 <div class="col-md-12" style="display: block; margin-top: 20px;">
-                    <div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">
+                    @*<div class="col-md-3" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 26px; margin-left: 10px;">*@
+                    <div class="col-md-3 choose_device_div">
                         <input type="radio" class="morpho" name="radioDevice" value="PRECISION">
-                        <img src="~/img/img_devices/Precision.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />
-                        <label class="ybl" id="precision" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> PRECISION PB510 </label>
+                        @*<img src="~/img/img_devices/Precision.png" style="border: 1px solid #ddd; border-radius: 49px; width: 30px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
+                        <img src="~/img/img_devices/Precision.png" class="choose_device_image" />
+                        @*<label class="ybl" id="precision" style="font-size: 14px; font-weight: 800; color: #2d385e; cursor: pointer;"> PRECISION PB510 </label>*@
+                        <label class="ybl choose_device_label" id="precision"> PRECISION PB510 </label>
                     </div>
                 </div>
                 <div class="row">
@@ -726,28 +414,41 @@
                 </div>
                 @*<button class="button-21 pull-center" id="selectDeviceProceed" onclick="faceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
                 @*<button class="button-21 pull-center btn_Proceed_Center" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: -5px;">Proceed</button>*@
-                <button class="button-21 pull-center btn_Proceed" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="margin-left:376px; font-weight: 900; margin-top: -5px;">Proceed</button>
+
+
+                @*<div style="text-align:center">
+                <button class="button-21" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" style="font-weight: 900;">Proceed</button>
+                </div>*@
+
+
             </div>
             <div class="modal-footer">
-                <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
-                    Close
-                </a>
-                <div class="col col-md-12 col-sm-12 col-lg-12">
-                    <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
-                        <div class="div-recharge-opimage">
-                            <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
-                            <hr />
-                            <div class="row" style="text-align:center;">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                                    <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width img-operator-logo">
-                                    <div class="overlay"> <a href="#" target="_blank" class="icon" title="NPCI"></a></div>
-                                    <div class="leadership_name">
-                                        <br />
-                                    </div>
+                <div class="row">
+                    <div class="col-md-12" style="display: inline-flex;">
+                        <div class="col-sm-6 col-md-6">
+                            <button type="button" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" class="button-27">Proceed</button>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-12 col-sm-12 col-lg-12">
+                <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
+                    <div class="div-recharge-opimage">
+                        <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
+                        <hr />
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                                <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width" style="height:100px;">
+                                <div class="overlay"> <a href="#" target="_blank" class="icon" title="NPCI"></a></div>
+                                <div class="leadership_name">
+                                    <br />
                                 </div>
-                                <div class="col-md-4"></div>
                             </div>
+                            <div class="col-md-4"></div>
                         </div>
                     </div>
                 </div>
@@ -755,6 +456,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -771,57 +473,73 @@
                 <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
             </div>
             <div class="modal-body">
-                @*<p style="font-weight: 900; text-align: center; color:#2d385e;">Verify your face OR fingerprint biometric</p>*@
                 <p class="p_Verify_Face">Verify your face OR fingerprint biometric</p>
                 <hr />
                 <div>
 
                     <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @*<div class="col-md-6">*@
-                                @*<img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />*@
-                                <img src="../img/device biometric image/fingerprint.jpg" class="img_fingurprint"/>
-                                @*</div>*@
+                        @*<div class="row">
+                        <div class="col-md-8" style="text-align:center;">
+                        <img src="../img/device biometric image/fingerprint.jpg"/>
+                        </div>
+                        </div>*@
+                        <div class="row" style="text-align:center;">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                                <img src="../img/device biometric image/fingerprint.jpg" alt="Aeps" class="img-width" style="height:100px;">
+                                <div class="overlay"> <a href="#" target="_blank" class="icon" title="Aeps"></a></div>
+                                <div class="leadership_name">
+                                    <br />
+                                </div>
                             </div>
+                            <div class="col-md-4"></div>
                         </div>
                     </div>
-                    @*<p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Your Security matters the most to us!</p>*@
                     <p class="p_Security">Your Security matters the most to us!</p>
-                    @*<p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>*@
                     <p class="p_Verify">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>
                     <input type="hidden" name="long" id="hdnLong" />
                     <input type="hidden" name="lat" id="hdnLat" />
-                    <div class="col-md-12">
-
-                        @*<div class="col-md-4" style="margin-top: 60px;">*@
-                        <div class="col-md-4 col_Verify">
-                            @*<button class="button-21" id="deviceModal" data-toggle="modal" data-target="#deviceModal" style="margin-left:100px; font-weight: 900; margin-top: 50px;">*@
-                            <button class="button-21 btn_Proceed_Final" id="deviceModal" data-toggle="modal" data-target="#deviceModal">
-                                Verify Face
-                            </button>
-                        </div>
-
-                        @*<div class="col-sm-2 vl vertical_align" style="border-left: 6px solid #2d385e; height: 150px; margin-top: 50px; margin-left: 140px;"></div>*@
-                        <div class="col-sm-2 vl vertical_align"></div>
-
-                        @*<div class="col-md-4" style="margin-top: 60px;">*@
-                        <div class="col-md-4 col_Verify">
-                            @*<button class="button-21" id="deviceModal" onclick="CaptureFinger(65, 10)" style="font-weight: 900; margin-top: 50px;">*@
-                            <button class="button-21" id="deviceModal" onclick="getLocation()" style="font-weight: 900; margin-top: 50px;">
-                                Verify Using Biometric
-                            </button>
-                        </div>
+                    @*<div class="col-md-12">
+                    <div class="col-md-4 col_Verify">
+                    <button class="button-21 btn_Proceed_Final" id="deviceModal" data-toggle="modal" data-target="#deviceModal">
+                    Verify Face
+                    </button>
                     </div>
+                    <div class="col-sm-2 vl vertical_align"></div>
+                    <div class="col-md-4 col_Verify">
+                    <button class="button-21" id="deviceModal" onclick="getLocation()" style="font-weight: 900; margin-top: 50px;">
+                    Verify Using Biometric
+                    </button>
+                    </div>
+                    </div>*@
                 </div>
 
             </div>
             <div class="modal-footer">
-                @*<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-top: 50px;">Later</button>*@
-                <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
-                    Later
-                </a>
 
+                <div class="col-md-12">
+                    @*<div class="col-md-6 col_Verify">*@
+                    <div class="col-md-6">
+                        @*<button class="button-21 btn_Proceed_Final" id="deviceModal" data-toggle="modal" data-target="#deviceModal">*@
+                        <button class="button-27" id="deviceModal" data-toggle="modal" data-target="#deviceModal">
+                            Verify Face
+                        </button>
+                    </div>
+                    <br />
+                    @*<div class="col-sm-2 vl vertical_align"></div>*@
+                    @*<div class="col-md-6 col_Verify">*@
+                    <div class="col-md-6">
+                        @*<button class="button-21" id="deviceModal" onclick="getLocation()" style="font-weight: 900; margin-top: 50px;">*@
+                        <button class="button-27" id="deviceModal" onclick="getLocation()" style="font-weight: 900;">
+                            Verify Using Biometric
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
+                        Later
+                    </a>
+                </div>
                 @*<button class="button-21 pull-center" id="deviceModal" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
                 @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
                 @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
@@ -934,50 +652,46 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #2d385e;">
                 <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                <h4 class="modal-title" style="font-weight: 900; text-align: center;">Device Not Connected</h4>
             </div>
             <div class="modal-body">
-                <p style="font-weight: 900; text-align: center; color:#2d385e;">Device not connected</p>
-                <hr />
                 <div>
-
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
-                                @*<div class="col-md-6">*@
-                                <img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />
-                                @*</div>*@
+                            <div class="col-md-8" style="text-align:center;">
+                                @*<img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />*@
+                                <img src="../img/device biometric image/fingerprint.jpg" />
                             </div>
                         </div>
                     </div>
                     <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Device not connected!</p>
                     <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Pls connect your Mantra</p>
-                    <div class="col-md-12">
-
-                        <div class="col-md-4" style="margin-top: 60px;">
-                            <button class="button-21" id="btn" data-toggle="modal" data-dismiss="modal" style="margin-left:100px; font-weight: 900; margin-top: 50px;">
-                                Done
-                            </button>
+                    @*<div class="col-md-12" style="text-align:center;">
+                    <a href="/Aeps/AEPS" type="button" id="btnClose" class="button-21" style="font-weight:900;">
+                    Ok
+                    </a>
+                    </div>*@
+                </div>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-12" style="display: inline-flex;">
+                        <div class="col-sm-6 col-md-6">
+                            <a href="/Aeps/AEPS" button type="button" id="btnClose" onclick="VerifyFaceBiometricModal()" class="button-27">Ok</a>
                         </div>
-                        <div class="col-md-4" style="margin-top: 60px;">
-                            @*<button class="button-21" id="deviceModal" onclick="CaptureFinger(65, 10)" style="font-weight: 900; margin-top: 50px;">*@
-                            <button class="button-21" id="deviceModal" onclick="fingurprintBiometric()" style="font-weight: 900; margin-top: 50px;">
-                                SKIP
-                            </button>
+                        <div class="col-sm-6 col-md-6">
+                            <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger" data-dismiss="modal">Close</a>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="modal-footer">
-                @*<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-top: 50px;">Later</button>*@
-                <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
-                    Later
-                </a>
+            @*<div class="modal-footer">
+            <a href="/Aeps/AEPS" type="button" id="btnClose1" class="btn btn-danger">
+            Later
+            </a>
+            </div>*@
 
-                @*<button class="button-21 pull-center" id="deviceModal" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
-                @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
-                @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
-            </div>
         </div>
     </div>
 </div>
@@ -992,12 +706,12 @@
         <div class="col col-md-12 col-sm-12 col-lg-12">
             <div class="div-main-oplist">
                 <div class="div-recharge-opimage">
-                    <div class="div-oprator-heading" style="text-align:center;"><h2><b>Powered By</b></h2></div>
+                    <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
                     <hr />
                     <div class="row" style="text-align:center;">
                         <div class="col-md-4"></div>
                         <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="NPCI"></a></div>
                             <div class="leadership_name">
                                 <br />
@@ -1014,11 +728,11 @@
         <div class="col col-md-12 col-sm-12 col-lg-12">
             <div class="div-main-oplist">
                 <div class="div-recharge-opimage">
-                    <div class="div-oprator-heading" style="text-align:center;"><h2><b>Accepted Devices</b></h2></div>
+                    <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
                     <hr />
                     <div class="row" style="text-align:center;">
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Morpho.png" alt="Morpho" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Morpho.png" alt="Morpho" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Morpho"></a></div>
                             <div class="leade rship_name">
                                 <br />
@@ -1026,7 +740,7 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Startek.png" alt="Startek" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Startek.png" alt="Startek" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Startek"></a></div>
                             <div class="leadership_name">
                                 <br />
@@ -1034,7 +748,7 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Mantra.png" alt="Mantra" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Mantra.png" alt="Mantra" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Mantra"></a></div>
                             <div class="leadership_name">
                                 <br />
@@ -1042,7 +756,7 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Precision.png" alt="Precision" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Precision.png" alt="Precision" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Precision"></a></div>
                             <div class="leadership_name">
                                 <br />
@@ -1050,7 +764,7 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Secugen.png" alt="Secugen" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Secugen.png" alt="Secugen" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Secugen"></a></div>
                             <div class="leadership_name">
                                 <br />
@@ -1058,14 +772,14 @@
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Tatvik-TMF20.png" alt="Tatvik" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Tatvik-TMF20.png" alt="Tatvik" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Tatvik"></a></div>
                             <div class="leadership_name">
                                 <br />
                             </div>
                         </div>
                         <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/img/img_devices/Next.png" alt="Next" class="img-width img-operator-logo">
+                            <img src="~/img/img_devices/Next.png" alt="Next" class="img-width" style="height:100px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Next"></a></div>
                             <div class="leadership_name">
                                 <br />
@@ -1691,9 +1405,9 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                if(response.result=="NotConnected"){
+                if (response.result == "NotConnected") {
                     $("#btndeviceNotConnected").trigger("click");
-                    $("#btnVerifyPopup").hide();
+                    $("#VerifyFaceBiometricModal").hide();
                 }
                 debugger;
             }

@@ -627,8 +627,8 @@ nav.navbar.fixed-top {
     right: 0;
     font-weight: 800;
     cursor: pointer;
-    margin-top: -48px;
-    margin-right: 84px;
+    margin-top: -39px;
+    margin-right: 130px;
 }
 
 
@@ -951,7 +951,38 @@ input:checked + .slider:before {
 .p_bottom_disclaimer {
     font-size: 15px;
 }
-
+.button-27 {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    /*vertical-align: top;*/
+    white-space: nowrap;
+    margin-right: 50px;
+    z-index: 1;
+    font-weight:700;
+}
 
 
 @media screen and (min-width: 900px) {
@@ -1167,7 +1198,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .img_center_modal {
@@ -1204,38 +1235,13 @@ input:checked + .slider:before {
         font-size: 18px;
     }
 
-    .button-21 {
-        align-items: center;
-        appearance: none;
-        background-color: #3EB2FD;
-        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-        background-size: calc(100% + 20px) calc(100% + 20px);
-        border-radius: 100px;
-        border-width: 0;
-        box-shadow: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: CircularStd,sans-serif;
+    .button-27 {
         font-size: 10px;
-        height: auto;
-        justify-content: center;
-        line-height: 1.5;
-        padding: 6px 25px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color .2s,background-position .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: top;
-        white-space: nowrap;
-        margin-right: 50px;
-        /* float: right;*/
-        margin-top: 28px;
-        z-index: 1;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
+        font-size: 10px;
     }
 
     .img_upload_image {
@@ -1278,7 +1284,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url('../css/Img/new_tech_11.png');
-        width: 116%;
+        width: 114%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1508,7 +1514,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 19px;
+        font-size: 15px;
     }
 
     .img_center_modal {
@@ -1546,7 +1552,12 @@ input:checked + .slider:before {
         font-size: 18px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 11px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 11px;
     }
 
@@ -1604,7 +1615,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 108%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1708,7 +1719,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 19px;
+        font-size: 16px;
     }
 
     .btnLF {
@@ -1741,7 +1752,12 @@ input:checked + .slider:before {
         font-size: 19px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 14px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 14px;
     }
 
@@ -1801,7 +1817,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 106%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -1894,7 +1910,12 @@ input:checked + .slider:before {
         font-size: 18px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 13px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 13px;
     }
 
@@ -1955,7 +1976,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 109%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -2037,7 +2058,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .btnLF {
@@ -2168,7 +2189,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 21px;
+        font-size: 18px;
     }
 
     .recharge_urchash_img {
@@ -2322,7 +2343,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 22px;
+        font-size: 19px;
     }
 
     .img_center_modal {
@@ -2337,7 +2358,12 @@ input:checked + .slider:before {
         font-size: 17px;
     }
 
-    .button-21 {
+    .button-27 {
+        font-size: 16px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
         font-size: 16px;
     }
 
@@ -2638,6 +2664,14 @@ input:checked + .slider:before {
     .p_bottom_disclaimer {
         font-size: 13px;
     }
+    .button-27 {
+        font-size: 17px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+    .btn-danger {
+        font-size: 17px;
+    }
 }
 
 
@@ -2711,7 +2745,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 23px;
+        font-size: 20px;
     }
 
     .btnLF {
@@ -2734,7 +2768,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 104%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -2810,6 +2844,15 @@ input:checked + .slider:before {
         height: 50px;
         padding: 0px 14px;
         font-size: 15px;
+    }
+    .button-27 {
+        font-size: 17px;
+        margin-top: 0px;
+        font-weight: 700;
+    }
+
+    .btn-danger {
+        font-size: 17px;
     }
 }
 
@@ -2910,7 +2953,7 @@ input:checked + .slider:before {
     }
 
     .heading_customer_phone {
-        font-size: 22px;
+        font-size: 21px;
     }
 
     .txt-input-text {
@@ -2928,7 +2971,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 110%;
+        width: 103%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -2991,6 +3034,15 @@ input:checked + .slider:before {
         font-size: 15px;
         width: 85%;
     }
+    .button-27 {
+        font-size: 18px;
+        margin-top: 0px;
+        font-weight:900;
+    }
+
+    .btn-danger {
+        font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 1101px) and (max-width: 1279px) {
@@ -3031,7 +3083,7 @@ input:checked + .slider:before {
 
     .heading_page {
         background-image: url(../css/Img/new_tech_11.png);
-        width: 103%;
+        width: 101%;
         font-weight: 700;
         line-height: 5rem;
         color: #fff;
@@ -3109,9 +3161,9 @@ input:checked + .slider:before {
         margin-bottom: 20px;
     }
 
-    .heading_customer_phone {
+    /*.heading_customer_phone {
         font-size: 22px;
-    }
+    }*/
 
     .dmt {
         margin-top: 88px;
