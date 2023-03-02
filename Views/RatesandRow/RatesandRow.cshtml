@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.RatesandRoi.RatesandRoiResponseModel>
 
 @using Project_Redmil_MVC
-@*@using Project_Redmil_MVC.Models*@
-
-@{ ViewData["Title"] = "RatesandRow";
+@{
+    ViewData["Title"] = "RatesandRow";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 
@@ -13,7 +12,15 @@
 <link rel="stylesheet" href="~/css/businessReport.css" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/RatesAndRow.css" rel="stylesheet" />
-<div class="section breadcumb-area background-image" style="background-image: url('/css/Ratesandroi/ratesandrow.jpg')">
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/servicesCSS/postpaidrecharge.css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/navbarheader.css">
+@*<link href="~/ResponsiveCSS/Wallet.css" rel="stylesheet" />*@
+@*<div class="section breadcumb-area background-image" style="background-image: url('/css/Ratesandroi/ratesandrow.jpg')">
     <div class="container ">
         <div class="row">
             <div class="col-sm-12 text-center">
@@ -27,34 +34,34 @@
 
 <h1 class="reportHeadName">Rates and ROI</h1>
 <h4 class="tag">Having satisfied Customers is the "Best Business Strategy" of all Time Give your Clients best deal.</h4>
-
-<!--<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <label class="control-label">
-                Category Name:
-            </label>
-            if (ViewBag.RatesandRow != null)
-            {
-                Html.DropDownListFor(x => x.Id, ViewBag.RatesandRow as SelectList, "-- Select Services --", new { class = "form-control" })
-
-
-            }
+*@
+<div class="container-fluid">
+    <div class="section background-image heading_page">
+        <div class="container ">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <ul>
+                        <li><strong class="heading_page_2">Rates and ROI</strong></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-1">
-
-        </div>
-        <div class="col-sm-5">
-            <label class="control-label">
-                Subcategory Name:
-            </label>-->
-@*<select class="form-control" id="SId" asp-items="@(new SelectList(string.Empty,"Id","Title" ))">
-        <option> -- Please Select -- </option>
-    </select>*@
-<!--</div>
     </div>
-</div>-->
-<div class="container-fluid" style="margin-top: -120px; margin-bottom: -300px">
+    <br />
+     <div class="row">
+        <div class="col-sm-12 text-center padding-bottom-30">
+            <div class="section-title div_wallet">
+                <h1 class="heading_wallet"><span style="color: #2d385e;">Having satisfied Customers is the "Best Business Strategy" of all Time Give your Clients best deal.</span></h1>
+            </div>
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="col col-md-12 col-sm-12 col-lg-12 img_Rates_And_Row">
+            <img src="/css/Img_RatesAndROI/RatesAndROI_Image.jpg" class="img_Rates_And_Row" />
+        </div>
+    </div>
+    <br />
+    <hr />*@
     <div class="row">
         <div class="accordion">
             @foreach (var i in Model)
@@ -67,8 +74,8 @@
                     </div>
                     @*<div class="fa fa-share">
 
-                    </div>*@
-                   
+                </div>*@
+
                 </div>
             }
         </div>
@@ -94,11 +101,11 @@
                 else if (response.result == "RedirectToException") {
                     window.location.href = response.url;
                 }
-                else{
+                else {
                     var ar = response;
                     window.open(ar);
                 }
-                
+
             }
         });
     }

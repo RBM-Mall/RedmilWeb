@@ -229,7 +229,7 @@ th {
 .modal-header-passbooK {
     padding: 15px;
     border-bottom: 1px solid #e5e5e5;
-    background-color: #3EB2FD;
+    background-color: #2d385e;
     margin-top: 47px;
 }
 
@@ -6868,6 +6868,7 @@ button.close {
 .modal-header {
     padding: 15px;
     border-bottom: 1px solid #e5e5e5;
+    background: #2d385e;
 }
 
     .modal-header:before, .modal-header:after {
@@ -7596,11 +7597,11 @@ button.close {
     height: 43px;
     color: white;
     margin-bottom: 35px;
-    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
     margin-left: 228px;
     border: none;
     margin-top: 20px;
-    padding:2px;
+    padding: 2px;
 }
 
 @media (max-width: 767px) {
@@ -7862,7 +7863,24 @@ button.close {
     .dateLbl1 {
         font-size: 11px;
     }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
 
+        .table > thead > tr > th,
+        .table > thead > tr > td,
+        .table > tbody > tr > th,
+        .table > tbody > tr > td,
+        .table > tfoot > tr > th,
+        .table > tfoot > tr > td {
+            padding: 10px;
+            font-size: 11px;
+            line-height: 1.428571429;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
 
 }
 @media screen and (max-width:400px) and (min-width:340px) {
@@ -7889,6 +7907,25 @@ button.close {
     {
         margin-top: 100px;
     }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+        .table > thead > tr > th,
+        .table > thead > tr > td,
+        .table > tbody > tr > th,
+        .table > tbody > tr > td,
+        .table > tfoot > tr > th,
+        .table > tfoot > tr > td {
+            padding: 10px;
+            font-size: 12px;
+            line-height: 1.428571429;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+
 }
     /*@media screen and (max-width:260px) and (min-width:240px) {
         .modal-header-passbooK {
@@ -7899,9 +7936,9 @@ button.close {
     }
 }*/
 @media screen and (max-width:1399px) and (min-width:399px) {
-    .modal-content {
+    /*.modal-content {
         margin-top: 70px;
-    }
+    }*/
     .btnpassbook-CPD {
         width: 169px;
         height: 51px;
@@ -7913,7 +7950,7 @@ button.close {
 }
 @media screen and (max-width:768px) and (min-width:401px) {
     .modal-content {
-        margin-top: 30px;
+        margin-top: 95px;
       
     }
     .btnpassbook-CPD {
@@ -7926,9 +7963,6 @@ button.close {
     }
 }
 @media screen and (max-width:1300px) and (min-width:768px) {
-    .modal-content {
-        margin-top: 116px;
-    }
     .btnpassbook-CPD {
         width: 169px;
         height: 51px;
@@ -7936,5 +7970,10 @@ button.close {
         margin-bottom: 32px;
         background-color: #3EB2FD;
         margin-left: 49px;
+    }
+}
+@media screen and (max-width:880px) and (min-width:768px) {
+    .modal-content {
+        margin-top: 140px;
     }
 }

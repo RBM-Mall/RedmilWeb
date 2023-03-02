@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/navbarheader.css">
 <body>
     <!-- slider area start here -->
     <div class="section breadcumb-area background-image" data-src="background-image: url(~/css/Img/contact-us.jpg);" style="background-image: url('../css/Img/contact-us.jpg')">
@@ -22,9 +24,9 @@
         </div>
     </div>
     <div class="section price-area padding-top-bottom-70">
-        <div class="container">
+        <div class="container" style="background: #fafafa;border-radius: 25px;">
             <div class="row utility-bill">
-                <h3 style="text-align:center;" ><span>We are here to help</span> </h3>
+                <h3 style="text-align:center;"><span>We are here to help</span> </h3>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="price-table">
@@ -45,48 +47,70 @@
                                 </div>
                                 <br />
                                 <div class="col-sm-6">
-                                        <div class="contact_info text_center">
-                                            <p class="p-write-to-us"><strong>For Any Query Please Click Here</strong></p>
-                                            <br />
-                                            <div class="center" style="margin-left:37px;">
-                                                <button type="button" class="button-21" margin-right:20px" data-toggle="modal" data-target="#myModal1">Write to us</button>
-                                            </div>
+                                    <div class="contact_info text_center" style="text-align: center;">
+                                        <p class="p-write-to-us"><strong>For Any Query Please Click Here</strong></p>
+                                        <br />
+                                        <div style="text-align:center;justify-content:center;align-items:center;">
+                                            <button type="button" class="button-21" style="font-weight:700;" data-toggle="modal" data-target="#myModal1">Write to us</button>
+                                        </div>
 
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal1" role="dialog">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header modal-header-recharge">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title"><strong>Fill the form to Connect with us</strong></h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form>
-                                                                <div class="row">
-                                                                    <div class="col-sm-12">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal1" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header modal-header-recharge">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title" style="text-align: center;"><strong>Fill the form to Connect with us</strong></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="row">
+                                                                <div class="col col-lg-12 col-sm-12">
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <label>Name:</label>
+                                                                    </div>
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <input type="text" class="form-control" name="name" id="name" placeholder="Full Name">
                                                                     </div>
-                                                                    <div class="col-sm-12">
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                                <div class="col col-lg-12 col-sm-12">
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <label>Email:</label>
+                                                                    </div>
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
                                                                     </div>
-
-                                                                    <div class="col-sm-12">
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                                <div class="col col-lg-12 col-sm-12">
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <label>Mobile Number:</label>
+                                                                    </div>
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <input type="text" class="form-control" name="number" id="number" placeholder="Mobile Number">
                                                                     </div>
-                                                                    <div class="col-sm-12">
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                                <div class="col col-lg-12 col-sm-12">
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <label>Message:</label>
+                                                                    </div>
+                                                                    <div class="col col-lg-6 col-sm-6">
                                                                         <textarea class="form-control" name="message" id="message" rows="3" placeholder="Type Your Message"></textarea>
                                                                     </div>
-                                                                     <div class="col-sm-12 padding-top-20">
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                                <div class="col col-lg-12 col-sm-12 padding-top-20">
                                                                     <button type="submit" name="submit-contact" class="button-21"><strong>Submit</strong></button>
                                                                 </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,33 +123,36 @@
                 </div>
             </div>
         </div>
+    </div>
     <div class="section contact-form-area  padding-bottom-50" style="background:#fafafa;">
         <div class="container">
             <div class="row">
 
                 <div class="col-sm-6 padding-top-50 contact-us-page">
 
-                    <h2 style="color: #051cb2!important;">Redmil Business Mall Headquarters <strong>Corporate Office</strong></h2>
+                    @*<h2 style="color: #051cb2!important;">Redmil Business Mall Headquarters <strong>Corporate Office</strong></h2>*@
+                    <h2 class="contact_us_last_heading">Redmil Business Mall Headquarters <strong>Corporate Office</strong></h2>
                     <ul>
-                        <li >
+                        <li>
                             <strong>Address:</strong> 2414, 4th floor, Tower A, The Corenthum towers, Sector 62,<br />
                             Noida, Uttar Pradesh-201301
                         </li>
-                        <li ><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
-                        <li ><strong>Email ID:</strong> info@redmil.in</li>
+                        <li><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
+                        <li><strong>Email ID:</strong> info@redmil.in</li>
                     </ul>
                     <hr>
                     <br />
                     <br />
                     <br />
-                    <h2 style="color: #051cb2!important;">Redmil Group<strong>Regd Office</strong></h2>
+                    @*<h2 style="color: #051cb2!important;">Redmil Group<strong>Regd Office</strong></h2>*@
+                    <h2 class="contact_us_last_heading">Redmil Group<strong>Regd Office</strong></h2>
                     <ul>
                         <li>
                             <strong>Address:</strong>1st floor, STFC Club, 86/245,Eldeco Garden Estate, Raipurwa<br />
                             Kanpur, Uttar Pradesh-208003
                         </li>
-                        <li ><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
-                        <li ><strong>Email ID:</strong> info@redmil.in</li>
+                        <li class="time_contact"><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
+                        <li><strong>Email ID:</strong> info@redmil.in</li>
 
 
                     </ul>

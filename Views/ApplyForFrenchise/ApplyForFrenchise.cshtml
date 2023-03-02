@@ -1,128 +1,202 @@
 ﻿@model Project_Redmil_MVC.Models.RequestModel.Applyforfrenchise.ApplyForFrenchiseRequest
 @{
-    ViewData["Title"] = "ApplyForFrenchise";
+    ViewData["Title"] = "ApplyForFranchise";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 
-<br />
-<br />
-<br />
-<br />
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
+@*<link rel="stylesheet" href="~/css/businessReport.css" />*@
+<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/postpaidrecharge.css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
-<link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/Wallet.css" rel="stylesheet" />
+
 <style>
-    .row-fernchise-body {
+    /*.row-fernchise-body {
         margin: 0 auto;
         width: 90%;
         max-width: 1600px;
         margin-top: 107px;
         height: 636px;
-    }
-    .hr {
-        background-color: black;
-        margin: 20px
-    }
+    }*/
+
+    /*.hr {
+                        background-color: black;
+                        margin: 20px
+                    }*/
+
     .forbenefit {
         margin-left: 20px
     }
 </style>
 <!--Body Start Here-->
-<div class="container-fluid" style="background: #ebebeb; margin-top: -116px;">
-  
-    <!--Header Div Ends Here-->
+<div class="container-fluid">
+    <div class="section background-image heading_page">
+    @*<div class="section background-image" style="background-image: url('../css/Img/new_tech_11.png');width:100%;font-weight: 700;line-height: 5rem;color: #fff;padding: 40px 0;">*@
+        <div class="container ">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <ul>
+                        @*<li><strong style="font-size: 36px;">Apply For Franchise</strong></li>*@
+                        <li><strong class="heading_page_2">Apply For Franchise</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    @*<br />
+    <br />
+    <br />*@
     <div class="row">
-        <div class="row-fernchise-body">
-            <div class="col-3 col-md-3 cr1 div-input" style="background: white; border-radius: 20px; ">
-                <!--Card for recharge starts here-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;"><strong>Apply For Frenchise</strong></h4>
+        <div class="col-sm-12 text-center padding-bottom-30">
+            <div class="section-title div_wallet">
+                <h1 class="heading_wallet"><span style="color: #2d385e;">WELCOME TO REDMIL FAMILY</span></h1>
+            </div>
+        </div>
+    </div>
 
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-12">
-                                <div class="modal-body p-5 img align-items-center color-2">
-                                    <div class="text w-100 py-0 py-md-5">
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-12">
+    <hr />
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover">
+                    <!-- Indicators -->
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="carousel-content">
+                                <div style="margin: 0 auto">
+                                    <p>
+                                        <img src="/css/Img_Frenchise/MF-Banner.png" style="width:100%;" alt="Chania" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="carousel-content">
+                                <div style="margin: 0 auto">
+                                    <p>
+                                        <img src="/css/Img_Frenchise/Franchise-Banner.png" style="width:100%;" alt="Chania" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                                <div class="form-group-recharge">
+    </div>
+    @*<div class="row">
 
-                                                    <input id="TxtCity"
-                                                           autocomplete="off" required="required" class="txt-input  txt-input-text" placeholder="Enter City" />
-                                                    <span id="" style="color: red"></span>
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <img src="/css/Img_Frenchise/MF-Banner.png" style="width:100%;" alt="Norway" />
+        </div>
+    </div>*@
+    <br />
+    @*<br />
+    <br />*@
+    <!--Header Div Ends Here-->
+    <div class="row" style="background: #ebebeb;">
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <div class="row-fernchise-body">
+                <div class="col-3 col-md-3 cr1 div-input" style="background: white; border-radius: 20px; ">
+                    <!--Card for recharge starts here-->
+                    <div class="card">
+                        <div class="card-body">
+                            @*<h3 class="card-title" style="margin-top:15px;text-align:center;padding-top: 20px;font-weight:bold;"><strong>Apply For Franchise</strong></h3><hr class="hr" />*@
+                            <h3 class="card-title heading_div"><strong>Apply For Franchise</strong></h3><hr class="hr" />
 
-                                                </div>
-                                                <div class="form-group-recharge">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="modal-body p-5 img align-items-center color-2">
+                                        <div class="text w-100 py-0 py-md-5">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12">
 
-                                                    <input id="TxtArea" autocomplete="off" class="txt-input  txt-input-text" required="required" placeholder="Enter Area">
-                                                    <span id="" style="color: red"></span>
+                                                    <div class="form-group-recharge">
 
-                                                </div>
-                                                <br />
-                                                <div class="row">
-                                                    <h4 style="margin-left: 88px;">Select your preference</h4><br />
-                                                    <div class="col-sm-6">
-                                                        <div class="form-check form-check-inline" style="padding-left: 72px" ;>
-                                                            <input class="form-check-input" id="TxtPreference1" type="radio" name="inlineRadioOptions" style=" display: inline-block; width: 50px; height: 11px;" value="Frenchise">
-                                                            <label class="form-check-label" for="inlineRadio1" style="
-    margin-left: -16px">Frenchise</label>
-                                                        </div>
+                                                        <input id="TxtCity"
+                                                               autocomplete="off" required="required" class="txt-input  txt-input-text" placeholder="Enter City" />
+                                                        <span id="" style="color: red"></span>
+
                                                     </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-check form-check-inline" style="padding-left: -2px" ;>
-                                                            <input class="form-check-input" id="TxtPreference2" type="radio" name="inlineRadioOptions" value="MasterFrenchise" style=" display: inline-block; width: 50px; height: 11px;">
-                                                            <label class="form-check-label" for="inlineRadio2" style="
-    margin-left: -16px">Master Frenchise</label>
+                                                    <div class="form-group-recharge">
+
+                                                        <input id="TxtArea" autocomplete="off" class="txt-input  txt-input-text" required="required" placeholder="Enter Area">
+                                                        <span id="" style="color: red"></span>
+
+                                                    </div>
+                                                    <br />
+                                                    <div class="row">
+                                                        <h4 class="select_franchise">Select your preference</h4><br />
+                                                        <div class="col-sm-6">
+                                                            <div class="form-check form-check-inline select_franchise_div">
+                                                                <input class="form-check-input" id="TxtPreference1" type="radio" name="inlineRadioOptions" style=" display: inline-block; width: 50px; height: 11px;" value="Frenchise">
+                                                                <label class="form-check-label" for="inlineRadio1" style="margin-left: -16px">Franchise</label>
+                                                            </div>
                                                         </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-check form-check-inline select_franchise_div">
+                                                                <input class="form-check-input" id="TxtPreference2" type="radio" name="inlineRadioOptions" value="MasterFrenchise" style=" display: inline-block; width: 50px; height: 11px;">
+                                                                <label class="form-check-label" for="inlineRadio2" style="margin-left: -16px">Master Franchise</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <br /><br />
+                                                    <div class="form-group-recharge form-group-recharge-button">
+                                                        @*<button type="submit" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" onclick="forfrenchise()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Submit</button>*@
+                                                        <button type="submit" onclick="forfrenchise()" class="btn-process-recharge3">Submit</button>
                                                     </div>
 
                                                 </div>
-                                                <br /><br />
-                                                <div class="form-group-recharge form-group-recharge-button">
-                                                    <button type="submit" style="background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);" onclick="forfrenchise()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Submit</button>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--Card for recharge ends here-->
                     </div>
-                    <!--Card for recharge ends here-->
                 </div>
-            </div>
-          
-            <div class="col-9 col-md-9">
-                <div class="row mt-50">
-                    <div class="forbenefit">
-                        <h1 class="text-center">Benefits</h1><hr class="hr"/>
-                        <h2>35+ Services in one platform</h2>
-                        <span>Earn monthly Rs.50000 - 200000 by providing A to Z banking services and earn respect.</span>
+                <div class="col-1 col-md-1" style="width:4%">
+                    <!--Blank Space Between Recharge and Plans Pannel-->
+                </div>
+                <div class="col-8 col-md-8 div-plans-table" style="background: white;border-radius: 20px;height: 508px;display:block;">
+                    <div class="row mt-50">
+                        <div class="forbenefit">
+                            @*<h3 class="text-center" style="margin-top:15px;text-align:center;padding-top: 20px;font-weight:bold;">Benefits</h3><hr class="hr" />*@
+                            <h3 class="text-center heading_div">Benefits</h3><hr class="hr" />
+                            <h4 class="p_heading_franchise_1">35+ Services in one platform</h4>
+                            <span class="p_heading_franchise_2">Earn monthly Rs.50000 - 200000 by</span>
+                            <span class="p_heading_franchise_2">providing A to Z banking services and earn respect.</span>
+                        </div>
+                        <div class="forbenefit">
+                            <h4 class="p_heading_franchise_1">Become a banking point </h4>
+                            <span class="p_heading_franchise_2">Partnered with 50+ Banks and 100+ </span>
+                            <span class="p_heading_franchise_2">international companies to become a complete banking point of your area and neighbourhood .</span>
+                        </div>
+
+
                     </div>
-                    <div class="forbenefit">
-                        <h2>Become a banking point </h2>
-                        <span>Partnered with 50+ Bankns and 100+ international companies to become a complete banking point of your area and neighbourhood .</span>
-                    </div>
-                   
-                    
+
                 </div>
 
             </div>
- 
-        </div>
         </div>
     </div>
-   
+</div>
 
 <!--Body Ends Here-->
 <script>
@@ -193,3 +267,19 @@
 </script>
 
 
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>

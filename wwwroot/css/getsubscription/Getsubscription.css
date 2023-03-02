@@ -1,0 +1,364 @@
+﻿
+.button-21 {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 2px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 7px 39px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    margin-right: 73px;
+    float: right;
+    margin-top: -10px;
+    z-index: 1;
+    /* margin-left: 64px; */
+}
+.btn-final {
+    display: block;
+    margin-left: 208px;
+    border-bottom: 42px;
+    width: 179px;
+    border-radius: 41px;
+    height: 41px;
+    font-size: 20px;
+    color: white;
+    border-color: white;
+    border-right: white;
+    border-left: white;
+    border-top: white;
+}
+
+.swal2-popup {
+    width: 42em !important;
+    padding: 2.25em !important;
+    font-size: 14px !important;
+    height: 318px !important;
+}
+
+
+span {
+    cursor: pointer;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 277px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.price {
+    color: grey;
+    font-size: 22px;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: blue;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+    .card button:hover {
+        opacity: 0.7;
+    }
+
+.for-left {
+    padding: 11px;
+    margin-left: 41px;
+    width: 231px;
+}
+
+.btnlft {
+    margin-left: 283px;
+    margin-top: -30px;
+    color: cornflowerblue;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cartbutton {
+    border: none;
+    outline: 0;
+    padding: 3px;
+    color: white;
+    background-color: blue;
+    text-align: center;
+    cursor: pointer;
+    width: 50%;
+    font-size: 15px;
+}
+
+.tp {
+    margin-left: 40px;
+}
+
+span {
+    cursor: pointer;
+}
+
+.number {
+    margin: 100px;
+}
+
+.plus {
+    width: 20px;
+    height: 32px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 5px 16px 21px 10px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: -57px;
+    margin-left: 104px;
+}
+
+.minus {
+    width: 20px;
+    height: 32px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 5px 16px 21px 10px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: -57px;
+    margin-left: 104px;
+}
+
+
+input {
+    height: 34px;
+    width: 100px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.modalss {
+    margin-left: 3px;
+    margin-right: 111px;
+    padding: 7px;
+    margin-top: 114px;
+    width:100%;
+}
+
+.mt {
+    margin-top: 68px;
+    margin-left: -69px;
+}
+
+.rs {
+    margin-left: 28px;
+}
+
+.modal-backdrop.innn {
+    opacity: 0 !important;
+}
+
+.img-wallet-select {
+    height: 150px;
+    width: 200px;
+}
+
+.first-wallet {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.final-modal-popup {
+    width: 650px;
+}
+
+.modal_top_EMMs {
+    margin-top: 14%;
+    min-height: 700px;
+}
+@media screen and (max-width:339px) and (min-width:280px) {
+    .modal_top_EMMs {
+        margin-top: 29%;
+        min-height: 20px;
+    }
+
+    .Dash_colon {
+        MARGIN-LEFT: 145PX;
+        MARGIN-TOP: -46PX;
+    }
+    .Data_coupan {
+        MARGIN-LEFT: 164PX;
+        MARGIN-TOP: -44PX;
+    }
+    
+}
+@media screen and (max-width:439px) and (min-width:339px)
+{
+    .modal_top_EMMs {
+        margin-top: 29%;
+        min-height: 20px;
+    }
+    .Dash_colon {
+        MARGIN-LEFT: 145PX;
+        MARGIN-TOP: -46PX;
+    }
+
+    .Data_coupan {
+        MARGIN-LEFT: 216PX;
+        MARGIN-TOP: -44PX;
+    }
+
+}
+@media screen and (max-width:539px) and (min-width:439px)
+{
+    .modalss {
+        margin-left: 29px;
+        margin-right: 111px;
+        padding: 7px;
+        margin-top: 114px;
+        width: 91%;
+    }
+    .modal_top_EMMs {
+        margin-top: 29%;
+        min-height: 20px;
+    }
+    .Dash_colon {
+        MARGIN-LEFT: 145PX;
+        MARGIN-TOP: -46PX;
+    }
+
+    .Data_coupan {
+        MARGIN-LEFT: 216PX;
+        MARGIN-TOP: -44PX;
+    }
+}
+@media screen and (max-width:639px) and (min-width:539px)
+{
+    .modalss {
+        margin-left: 29px;
+        margin-right: 111px;
+        padding: 7px;
+        margin-top: 114px;
+        width: 91%;
+    }
+
+    .modal_top_EMMs {
+        margin-top: 29%;
+        min-height: 20px;
+    }
+
+    .Dash_colon {
+        MARGIN-LEFT: 145PX;
+        MARGIN-TOP: -46PX;
+    }
+
+    .Data_coupan {
+        MARGIN-LEFT: 216PX;
+        MARGIN-TOP: -44PX;
+    }
+}
+    @media screen and (max-width:739px) and (min-width:639px) {
+        .modalss {
+            margin-left: 108px;
+            margin-right: 111px;
+            padding: 7px;
+            margin-top: 114px;
+            width: 69%;
+        }
+
+        .modal_top_EMMs {
+            margin-top: 29%;
+            min-height: 20px;
+        }
+
+        .Dash_colon {
+            MARGIN-LEFT: 145PX;
+            MARGIN-TOP: -46PX;
+        }
+
+        .Data_coupan {
+            MARGIN-LEFT: 216PX;
+            MARGIN-TOP: -44PX;
+        }
+    }
+
+    @media screen and (max-width:769px) and (min-width:739px) {
+
+        .modalss {
+            margin-left: 108px;
+            margin-right: 111px;
+            padding: 7px;
+            margin-top: 114px;
+            width: 69%;
+        }
+        .modal_top_EMMs {
+            margin-top: 29%;
+            min-height: 20px;
+        }
+
+        .Dash_colon {
+            MARGIN-LEFT: 145PX;
+            MARGIN-TOP: -46PX;
+        }
+
+        .Data_coupan {
+            MARGIN-LEFT: 216PX;
+            MARGIN-TOP: -44PX;
+        }
+    }
+@media screen and (max-width:969px) and (min-width:769px) 
+{
+
+    .modalss {
+        margin-left: 108px;
+        margin-right: 111px;
+        padding: 7px;
+        margin-top: 114px;
+        width: 69%;
+    }
+
+    .modal_top_EMMs {
+        margin-top: 29%;
+        min-height: 20px;
+    }
+
+    .Dash_colon {
+        MARGIN-LEFT: 145PX;
+        MARGIN-TOP: 2PX;
+    }
+
+    .Data_coupan {
+        MARGIN-LEFT: 216PX;
+        MARGIN-TOP: -44PX;
+    }
+}

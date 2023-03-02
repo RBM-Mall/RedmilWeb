@@ -28,14 +28,13 @@
     <link rel="stylesheet" href="~/css/login3-style.css" asp-append-version="true">
     <link rel="stylesheet" href="~/Slick/slick.woff" asp-append-version="true">
     <script src="~/js/inspect.js" asp-append-version="true"></script>
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" asp-append-version="true"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="~/js/wow.min.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
-   
+
 
     <link rel="stylesheet" href="~/css/constants.css" asp-append-version="true">
     @if (IsSectionDefined("AddToHead"))
@@ -384,15 +383,13 @@
                                 <input type="button" id="ReopenLogin" style="display:none" data-target="#modalLoginForm" data-toggle="modal" />
                                 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                      aria-hidden="true">
-
-
                                     <div class="modal-dialog  " role="document">
                                         <div class="modal-body">
                                             <div class="container loginview">
                                                 <div class="row forleft" style="margin-top:-47px;">
                                                     <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
 
-                                                        <div class="col-sm-5 col-md-5 col-lg-5 col authfy-panel-left hidediv" style="height:480px;background-size:100% 100%;width:30%;">
+                                                        <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5 col authfy-panel-left hidediv" style="height:480px;background-size:100% 100%;width:30%;">
 
                                                             <!-- slider start -->
                                                             <div class="fnc-slider example-slider">
@@ -442,7 +439,7 @@
                                                             <!-- slider end -->
                                                         </div>
 
-                                                        <div class="col-sm-7 col-md-7 col-lg-7 authfy-panel-right ">
+                                                        <div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 authfy-panel-right">
                                                             <!-- authfy-login start -->
 
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -457,7 +454,7 @@
                                                                         <p>Don’t have an account? <a href="https://play.google.com/store/search?q=redmill+business+mall+app&amp;c=apps" target="_blank">Sign Up Free!</a></p>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-xs-12 col-sm-12">
+                                                                        <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
 
                                                                             <form class="loginForm" name="myForm" id="myform2">
 
@@ -487,11 +484,16 @@
                                                                                             <a data-toggle="modal" data-target="#modalRecoverMpin" data-dismiss="modal">Forgot Mpin?</a>
                                                                                         </p>
                                                                                     </div>
-                                                                                </div> <!--/remember-row -->
-                                                                                <div class="form-group">
-                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px" onclick="verifiedLogin()" id="btnlogin"><b>Login</b></button>
-
                                                                                 </div>
+                                                                                <!--/remember-row -->
+                                                                               @* <div class="form-group">
+                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px" onclick="verifiedLogin()" id="btnlogin"><i class="fa fa-spinner fa-spin spin-Load"></i> <b>Login</b></button>
+
+                                                                                </div> *@ 
+                                                                                <div class="form-group">
+                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px"  id="Logni_button"><i class="fa fa-spinner fa-spin spin-Load"></i> <b>Login</b></button>
+
+                                                                                </div>  
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -517,10 +519,10 @@
                 <div class="modal fade " id="modalRecoverMpin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="container recoverloginview">
-                        <div class="row" style="margin-top:-17px;">
-                            <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
-                                <div class="col-sm-512">
-                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;">
+                        <div class="row btn_Recover" style="margin-top:-17px;">
+                            <div class="authfy-container a col-xs-9 col-xl-9 col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
+                                <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5">
+                                    <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 76%;margin-left: 87px;">
                                         <!-- slider start -->
                                         <div class="fnc-slider example-slider">
                                             <div class="fnc-slider__slides">
@@ -576,7 +578,7 @@
                                                 <p>Please enter your Mobile number to change your Mpin</p>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-12 col-sm-12">
+                                                <div class="col-xs-12 col-xm-12 col-md-12 col-xl-12 col-sm-12">
                                                     <form class="loginForm" name="myForm" id="myform3">
                                                         <div class="form-group">
                                                             <input type="text" name="Number" minlength="10" maxlength="10"
@@ -607,13 +609,13 @@
                 <!--End Modal For Mpin-->
                 <!-- Open  Pop For Not Login Modal-->
                 <input type="button" id="Notregister" style="display:none" data-target="#exampleModalCenter2" data-toggle="modal" />
-                <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="overflow:auto">
 
                     <div class="container notloginmobileview">
                         <div class="row" style="margin-top:-3px;">
                             <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
                                 <div class="col-sm-512">
-                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;margin-left: 53px;">
+                                    <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;margin-left: 53px;">
 
 
                                         <!-- slider start -->
@@ -673,7 +675,7 @@
                                                 <h3 class="auth-title">Yor are not Register Redmil App </h3>
                                             </div>
                                             <div class="row">
-                                                <div class="col-xs-12 col-sm-12">
+                                                <div class="col-xs-12 col-xm-12 col-md-12 col-xl-12 col-sm-12">
                                                     <form class="loginForm" name="myForm" id="myform1">
                                                         <div class="form-group">
 
@@ -694,12 +696,11 @@
                 <!--Open Pop For New User Send Otp-->
                 <input type="button" id="Sendotp" style="display:none" data-target="#sendotp" data-toggle="modal" />
                 <div class="modal fade" id="sendotp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-
                     <div class="container otherdeviceloginview">
-                        <div class="row" style="margin-top: -1px; margin-right: -79px;">
+                        <div class="row btn_sendOtp">
                             <div class="authfy-container a col-xs-9  col-sm-9 col-md-9 col-lg-9 col-sm-offset-1 col-md-offset-2 col-lg-offset-2">
-                                <div class="col-sm-512">
-                                    <div class="col-sm-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 30%;">
+                                <div class="col-sm-5 col-md-5 col-xl-5 col-xs-5 col-lg-5">
+                                    <div class="col-sm-5 col-md-5 col-xl-5 col-lg-5 col-xs-5 col authfy-panel-left" style="height: 480px; background-size: 100% 100%; width: 71%;margin-left: 111px">
                                         <!-- slider start -->
                                         <div class="fnc-slider example-slider">
                                             <div class="fnc-slider__slides">
@@ -741,7 +742,7 @@
                                         <!-- slider end -->
                                     </div>
                                 </div>
-                                <div class="col-sm-7 authfy-panel-right ">
+                                <div class="col-sm-7 col-md-7 col-xs-7 col-lg-7 col-xl-7  authfy-panel-right ">
                                     <!-- authfy-login start -->
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true" style="padding-right: 14px;">&times;</span>
@@ -763,13 +764,13 @@
                                                         </div>
                                                         <form action="" class="mt-5">
                                                             <label id="lblBindMobile"></label>
-                                                             <input class="otp" id="ot1" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 />
+                                                            <input class="otp" id="ot1" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 />
                                                             @*<input class="otp" id="ot1" type="text" maxlength=1 />*@
-                                                             <input id="ot2" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 />
+                                                            <input id="ot2" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 />
                                                             @*<input id="ot2" class="otp" type="text" maxlength=1 />*@
-                                                            <input id="ot3" class="otp" type="text"  oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 />
-                                                         @*   <input id="ot3" class="otp" type="text" maxlength=1 />*@
-                                                            <input id="ot4" class="otp" type="text"  oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 />
+                                                            <input id="ot3" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 />
+                                                            @*   <input id="ot3" class="otp" type="text" maxlength=1 />*@
+                                                            <input id="ot4" class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 />
                                                             @*<input id="ot4" class="otp" type="text" maxlength=1 />*@
                                                             <hr class="mt-4">
                                                             <span id="Err" style="color:red"></span>
@@ -1051,10 +1052,10 @@
                             <ul>
                                 <li><a href="">Terms &amp; Conditions</a></li>
                                 @*<li><p style="margin-left: -100px;cursor: pointer;" onclick="comingsoon()">Schedule of Charges</p></li>*@
-                                <li><p style="cursor: pointer;">Schedule of Charges</p></li>
+                                <li><a href="" style="cursor: pointer;">Schedule of Charges</a></li>
                                 <li><a href="">Privacy Policy</a></li>
                                 @*<li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>*@
-                                <li><p style="cursor: pointer;">Careers</p></li>
+                                <li style="cursor: pointer;"><a href="">Careers</a></li>
 
                             </ul>
                         </div>
@@ -1075,7 +1076,12 @@
                         <div class="widget contact-us">
                             <h3 class="widget-title">Corporate Office:</h3>
                             <ul>
-                                <li><i class="fa fa-home" aria-hidden="true"></i> Redmil Business Mall Headquarters,<br>2414, 4th floor, Tower A, The Corenthum towers, Sector 62, Noida, Uttar Pradesh-201301<br><br><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(+91) 81-91-92-93-94<br><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;info@redmil.in<br>
+                                <li>
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    Redmil Business Mall Headquarters,<br>2414, 4th floor, Tower A, The Corenthum towers, Sector 62, Noida, Uttar Pradesh-201301<br />
+                                    <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(+91) 81-91-92-93-94<br />
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;info@redmil.in<br />
+                                </li>
                             </ul>
 
                             <div class="footer-social-media">
@@ -1147,31 +1153,42 @@
         var Name;
         var MobileNo;
 
-        function verifiedLogin() {
-            
-
+        //function verifiedLogin() {
+        $('#Logni_button').click(function() {
+           
+            debugger;
+             $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+              setTimeout(() => {
+     $(this).html('Login');
+              }, 2000);
             var MobileNum = $('[Id*=txtNumber]').val();
             $('#lblMobile').text(MobileNum);
             document.getElementById('lblMobile').innerHTML = MobileNum;
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum.trim() == "") {
-
+                    
                 document.getElementById("mobile").innerHTML = "Please Enter Mobile Number";
                 $('[Id*=txtNumber]').focus();
-            } else if (pinNum.trim() == "") {
+            }
+            else if (pinNum.trim() == "") {
                 document.getElementById("mpin").innerHTML = "Please Enter Mpin ";
                 $.notify("Please Enter Mpin ? ", "warn");
                 $('[Id*=txtMpin]').focus();
             }
+           
             else {
                 $.ajax({
+                    
                     url: "/Login/Index",
                     data: { Mobile: MobileNum, Mpin: pinNum },
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        
-                        if (response.statuscode == "OSS") {
+                        debugger;
+                        if(response.result=="EmptyResult" || response.result=="RedirectToException"){
+                                        window.location.href = response.url;
+                                    }
+                        else if (response.statuscode == "OSS") {
                             var a = response.data;
                             var Mobile = $("#txtNumber").val();
 
@@ -1179,7 +1196,7 @@
                             $("#Notregister").trigger("click");
                         }
                         else if (response.statuscode == "TXN") {
-                            
+
                             var Name = response.data[0].name;
                             var Mobileno = response.data[0].mobileno;
                             $('#UserName').text(Name);
@@ -1210,13 +1227,15 @@
                                     document.getElementById("some_divs").innerHTML = "OTP Expired. Please click on Resend Button";
                                     document.getElementById("some_divs").style.color = "red";
 
-                                } else {
+                                } 
+                                else {
                                     elem.innerHTML = timeLeft + ' seconds remaining';
                                     timeLeft--;
                                 }
                             }
 
                             $("#Sendotp").trigger("click");
+                               $('#ReopenLogin').hide();
                             $.notify(
                                 response.message,
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
@@ -1263,11 +1282,13 @@
                 });
 
             }
-        }
+        })
 
     </script>
 
     <script>
+
+
         function verifyOTP() {
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
@@ -1289,9 +1310,8 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        
-                        if (response.statuscode == "TXN")   
-                      {
+
+                        if (response.statuscode == "TXN") {
                             $.notify(
                                 response.message,
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
@@ -1303,8 +1323,11 @@
                                 type: 'POST',
                                 dataType: 'json',
                                 success: function (response) {
-                                    
-                                    if (response.statuscode == "OSS") {
+                                    debugger;
+                                    if (response.result == "EmptyResult" || response.result == "RedirectToException") {
+                                        window.location.href = response.url;
+                                    }
+                                    else if (response.statuscode == "OSS") {
                                         var a = response.data;
                                         var Mobile = $("#txtNumber").val();
 
@@ -1312,7 +1335,7 @@
                                         $("#Notregister").trigger("click");
                                     }
                                     else if (response.statuscode == "TXN") {
-                                        
+
                                         var Name = response.data[0].name;
                                         var Mobileno = response.data[0].mobileno;
                                         $('#UserName').text(Name);
@@ -1348,7 +1371,7 @@
 
     <script>
         function ResendOtp() {
-            
+
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum.trim() == "") {
@@ -1369,14 +1392,14 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                         
+
                         if (response.statuscode == "OSS") {
                             $.notify(
                                 response.message,
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
 
                             );
-                           
+
 
                         }
                         else {
@@ -1400,7 +1423,7 @@
     <script>
 
         function forgototp() {
-            
+
             var MobileNum = $('[Id*=txtNumber1]').val();
 
             if (MobileNum == "") {
@@ -1416,9 +1439,9 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        
-                        var OtpReccover=response.data;
-                      
+
+                        var OtpReccover = response.data;
+
                         if (response.statuscode == "OSS") {
                             $("#Changepin").trigger("click");
                             $("#modalRecoverMpin").hide();
@@ -1433,7 +1456,7 @@
 
                         }
                         else if (response.statuscode == "ERR") {
-                            
+
                             //$("#modalRecoverMpin").hide();
                             //$("#Changepin").trigger("click");
                             $.notify(
@@ -1600,21 +1623,21 @@
 
     </script>
 
-     <script>
+    <script>
 
-let digitValidate = function(ele){
- console.log(ele.value);
-ele.value = ele.value.replace(/[^0-9]/g,'');
-}
-let tabChange = function(val){
-    //let ele = document.querySelectorAll('input');
-    let ele = document.getElementsByClassName('otp');
-    if(ele[val-1].value != ''){
-      ele[val].focus()
-    }else if(ele[val-1].value == ''){
-      ele[val-2].focus()
-    }   
- }
+        let digitValidate = function (ele) {
+            console.log(ele.value);
+            ele.value = ele.value.replace(/[^0-9]/g, '');
+        }
+        let tabChange = function (val) {
+            //let ele = document.querySelectorAll('input');
+            let ele = document.getElementsByClassName('otp');
+            if (ele[val - 1].value != '') {
+                ele[val].focus()
+            } else if (ele[val - 1].value == '') {
+                ele[val - 2].focus()
+            }
+        }
 
     </script>
 
@@ -1701,38 +1724,36 @@ let tabChange = function(val){
     <script>
 
         function CookiesHandle() {
-            
+
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum == "" && pinNum == "") {
 
-                
-                $.notify(
-                                "Please Enter Mobile Number? ",
-                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
 
-                            );
+                $.notify(
+                    "Please Enter Mobile Number? ",
+                    { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
+
+                );
                 chkRemember.checked = false;
             }
-            else if (pinNum == "")
-            {
+            else if (pinNum == "") {
 
-                
+
                 $.notify(
-                                "Please Enter Password ? ",
-                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
+                    "Please Enter Password ? ",
+                    { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000, arrowSize: 5 }
 
-                            );
+                );
                 chkRemember.checked = false;
             }
 
-            else
-            {
-            document.cookie = "mymobile=" + MobileNum + ";path=http://https://localhost:7102/";
-            document.cookie = "myMpin=" + pinNum + ";path=http://https://localhost:7102/";
-        
+            else {
+                document.cookie = "mymobile=" + MobileNum + ";path=http://https://localhost:7102/";
+                document.cookie = "myMpin=" + pinNum + ";path=http://https://localhost:7102/";
+
             }
-            }
+        }
         function getcookiedata() {
             console.log(document.cookie);
             var cookisMobile = getCookie('mymobile');
@@ -1785,11 +1806,10 @@ let tabChange = function(val){
         });
 
     </script>
-    
-@*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
-<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
     <script src="~/js/custom.js" asp-append-version="true"></script>
     <script src="~/js/progressslider.js"></script>
     <script src="~/js/notify.js"></script>

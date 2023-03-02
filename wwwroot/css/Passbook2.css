@@ -18,7 +18,9 @@
     border-left: white;
     border-top: white;
 }
-
+.inc_data {
+    margin-left: 85px;
+}
 
 .btnlft {
     margin-left: 283px;
@@ -80,7 +82,7 @@
 .modal-header {
     padding: 15px;
     border-bottom: 1px solid #e5e5e5;
-    background-color: #3EB2FD;
+    background-color: #2d385e;
 }
 
 .modal-confirm .icon-box {
@@ -121,7 +123,32 @@
         height: 60px;
         width: 60px;
     }
-
+.tabcontent .item_info button {
+    align-items: center;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 100px;
+    border-width: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    margin-right: 24px;
+    float: none;
+    /* margin-top: 40px; */
+    /* margin-left: 60px; */
+    z-index: 1;
+}
 
 .passbooktabs {
     overflow: hidden;
@@ -595,6 +622,7 @@ button {
 }
 
 .titlecenter {
+    color: darkgrey ;
     margin-left: -7px;
 }
 
@@ -771,7 +799,12 @@ element.style {
         background-color: #3EB2FD;
         margin-top: 0px;
     }
-
+    .redmil_title {
+        margin-left: 46px;
+        font-weight: bold;
+        color: #13223c;
+        font-size: 20px;
+    }
 
 }
 
@@ -1156,7 +1189,12 @@ button {
         width: 54%;
         margin-left: 95px;
     }
-
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 24px;
+        margin-left: 74px;
+    }
 
     .progress 
     {
@@ -1329,7 +1367,7 @@ button {
 
     .sec_img {
         width: 57px;
-        margin-left: 202px;
+        margin-left: 227px;
         margin-top: -103px;
     }
 
@@ -1342,7 +1380,11 @@ button {
         margin-left: 123px;
         margin-top: -26px;
     }
-
+    .titlecenter {
+        margin-left: -7px;
+        color: darkgrey;
+        font-size: 19px;
+    }
     .Passbook_content {
         background: gainsboro;
         border: 1px solid black;
@@ -1380,7 +1422,7 @@ button {
         white-space: nowrap;
         box-sizing: border-box;
         top: -9px;
-        right: 36px;
+        right: 0px;
         z-index: 9;
         cursor: pointer;
         position: fixed;
@@ -1397,17 +1439,19 @@ button {
     }
 
     .forsize {
-        margin-left: -75px
+        margin-left: -62px;
+        font-size: 11px;
     }
 
     .fondash {
         margin-top: -26px;
-        margin-left: 52px;
+        margin-left: 70px;
     }
 
     .forrates {
-        margin-left: 75px;
-        margin-top: -23px;
+        margin-left: 86px;
+        margin-top: -22px;
+        font-size: 12px;
     }
 }
 
@@ -1420,7 +1464,7 @@ button {
     .process_signup {
         margin-left: 15px;
     }
-
+       
     .sec_img {
         width: 57px;
         margin-left: 264px;
@@ -1474,7 +1518,7 @@ button {
         white-space: nowrap;
         box-sizing: border-box;
         top: -9px;
-        right: -84px;
+        right: -65px;
         z-index: 9;
         cursor: pointer;
         position: fixed;
@@ -1492,20 +1536,27 @@ button {
 
         .modal-content {
             width: 326px;
-            margin-left: 22px;
+            margin-left: -4px;
+        }
+        .titlecenter {
+            color: darkgrey;
+            margin-left: -7px;
+            font-size: 14px;
         }
         .forsize {
-            margin-left: -75px
+            margin-left: -56px;
+            font-size: 13px;
         }
 
         .fondash {
             margin-top: -27px;
-            margin-left: 84px;
+            margin-left: 105px;
         }
 
         .forrates {
             margin-top: -21px;
-            margin-left: 130px;
+            margin-left: 122px;
+            font-size: 13px;
         }
         .img_center_moda {
             margin-left: 143px;
@@ -1624,17 +1675,17 @@ button {
         margin-left: -43px;
     }
     .forsize {
-        margin-left: -75px
+        margin-left: -55px
     }
 
     .fondash {
         margin-top: -27px;
-        margin-left: 84px;
+        margin-left: 119px;
     }
 
     .forrates {
         margin-top: -21px;
-        margin-left: 130px;
+        margin-left: 149px;
     }
 
     .img_center_moda {
@@ -1646,7 +1697,7 @@ button {
         font-weight: bold;
         color: #13223c;
         font-size: 24px;
-        margin-left: 34px;
+        margin-left: 66px;
     }
 
     .sign_done {
@@ -1761,21 +1812,21 @@ button {
         margin-left: -43px;
     }
     .forsize {
-        margin-left: -75px
+        margin-left: -41px
     }
 
     .fondash {
         margin-top: -27px;
-        margin-left: 84px;
+        margin-left: 127px;
     }
 
     .forrates {
         margin-top: -21px;
-        margin-left: 130px;
+        margin-left: 174px;
     }
 
     .img_center_moda {
-        margin-left: 143px;
+        margin-left: 181px;
         margin-bottom: 25px;
     }
 
@@ -1789,7 +1840,7 @@ button {
     .sign_done {
         width: 158px;
         padding: 7px;
-        margin-left: 35px;
+        margin-left: 84px;
     }
 }
 @media screen and (max-width:700px) and (min-width:601px) {
@@ -1802,20 +1853,27 @@ button {
     .process_signup {
         margin-left: 15px;
     }
+    .titlecenter {
+        color: darkgrey;
+        margin-left: -7px;
+    }
 
     .sec_img {
         width: 57px;
-        margin-left: 332px;
+        margin-left: 218px;
         margin-top: -103px;
     }
 
     .enc_img {
         width: 82px;
     }
-
+    .modal-content {
+        width: 457px;
+        margin-left: 107px;
+    }
     .new_img {
         height: 64px;
-        margin-left: 181px;
+        margin-left: 281px;
         margin-top: -26px;
     }
 
@@ -1872,10 +1930,10 @@ button {
         margin-left: 78px;
     }
 
-    .modal-content {
+   /* .modal-content {
         width: 421px;
         margin-left: 144px;
-    }
+    }*/
 
     .otp_text {
         margin-left: -105px;
@@ -1898,21 +1956,21 @@ button {
         margin-left: -43px;
     }
     .forsize {
-        margin-left: -75px
+        margin-left: 13px;
     }
 
     .fondash {
         margin-top: -27px;
-        margin-left: 84px;
+        margin-left: 179px;
     }
 
     .forrates {
         margin-top: -21px;
-        margin-left: 130px;
+        margin-left: 202px;
     }
 
     .img_center_moda {
-        margin-left: 143px;
+        margin-left: 232px;
         margin-bottom: 25px;
     }
 
@@ -1920,7 +1978,7 @@ button {
         font-weight: bold;
         color: #13223c;
         font-size: 24px;
-        margin-left: 34px;
+        margin-left: 118px;
     }
 
     .sign_done {
@@ -1943,7 +2001,7 @@ button {
 
     .sec_img {
         width: 57px;
-        margin-left: 332px;
+        margin-left: 369px;
         margin-top: -103px;
     }
 
@@ -1953,7 +2011,7 @@ button {
 
     .new_img {
         height: 64px;
-        margin-left: 181px;
+        margin-left: 225px;
         margin-top: -26px;
     }
 
@@ -2011,9 +2069,8 @@ button {
     }
 
     .modal-content {
-        width: 421px;
-        margin-left: 168px;
-    
+        width: 476px;
+        margin-left: 122px;
     }
 
     .otp_text {
@@ -2037,21 +2094,21 @@ button {
         margin-left: -43px;
     }
     .forsize {
-        margin-left: -75px
+        margin-left: 2px
     }
 
     .fondash {
         margin-top: -27px;
-        margin-left: 84px;
+        margin-left: 169px;
     }
 
     .forrates {
         margin-top: -21px;
-        margin-left: 130px;
+        margin-left: 201px;
     }
 
     .img_center_moda {
-        margin-left: 143px;
+        margin-left: 222px;
         margin-bottom: 25px;
     }
 
@@ -2059,7 +2116,7 @@ button {
         font-weight: bold;
         color: #13223c;
         font-size: 24px;
-        margin-left: 34px;
+        margin-left: 120px;
     }
 
     .sign_done {
@@ -2246,4 +2303,183 @@ button {
         margin-left: 138px;
     }
 }
-  
+@media screen and (max-width:840px) and (min-width:1400px) 
+{
+    .modal_signup {
+        margin-left: 1px;
+        width: 272px;
+        padding: -40px;
+    }
+
+    .process_signup {
+        margin-left: 15px;
+    }
+
+    .sec_img {
+        width: 57px;
+        margin-left: 69px;
+        margin-top: 16px;
+    }
+
+    .enc_img {
+        width: 82px;
+    }
+
+    .new_img {
+        height: 64px;
+        margin-left: 51px;
+        margin-top: 2px;
+    }
+
+    .Passbook_content {
+        background: gainsboro;
+        border: 1px solid black;
+        padding: 8px;
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .rqst_video {
+        margin-left: 62px;
+        font-size: 14px;
+    }
+
+    .input_Aadhar {
+        height: 40px;
+        width: 83%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -36px;
+    }
+
+    .cross {
+        background-color: #222;
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        margin: 7px;
+        border: 3px solid;
+        border-color: var(--white);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOAgMAAABiJsVCAAAADFBMVEUAAAD///////////84wDuoAAAAA3RSTlMAgGJiSVzhAAAAOElEQVQI12PQYGBqYNjLwP6AYb+D/AMG+Qv1DgzsX/8yMDD+/8LAwFB/AUxAuGAJsBKwYrA2sAEADzMWbZHdzhcAAAAASUVORK5CYII=) !important;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        white-space: nowrap;
+        box-sizing: border-box;
+        top: -9px;
+        right: -332px;
+        z-index: 9;
+        cursor: pointer;
+        position: fixed;
+    }
+
+    .Aov {
+        margin-left: 62px;
+        color: #877e7fa3;
+        font-size: 26px;
+    }
+
+    .EAN {
+        margin-left: 96px;
+    }
+
+    .modal-content {
+        width: 421px;
+        margin-left: 168px;
+        margin-top: 172px;
+    }
+
+    .otp_text {
+        margin-left: -105px;
+        color: black;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    #Otpforaadhar {
+        height: 40px;
+        width: 95%;
+        background: gainsboro;
+        border: -11px solid #bc3434;
+        border-radius: 1px solid;
+        border-radius: 53px;
+        margin-left: -102px;
+    }
+
+    .eop_text {
+        margin-left: -43px;
+    }
+
+    .modal-header-passbooK {
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+        background-color: #3EB2FD;
+        margin-top: 0px;
+    }
+
+
+
+    .img-mall {
+        width: 27%;
+        margin-left: 90px;
+    }
+
+
+    .progress {
+        overflow: hidden;
+        height: 24px;
+        width: 377px;
+        background-color: #ccc;
+        border-radius: 17px;
+        -webkit-box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+        margin-bottom: 138px;
+        margin-top: 3px;
+    }
+
+    .title-launch {
+        margin-left: 113px;
+    }
+
+    .btn-signup {
+        margin-left: 114px;
+    }
+
+    .md-button {
+        width: 146px;
+        margin-left: 137px;
+    }
+
+    .forsize {
+        margin-left: -75px
+    }
+
+    .fondash {
+        /*    margin-top: 1px;*/
+        margin-left: 26px;
+    }
+
+    .forsize {
+        margin-left: -36px;
+    }
+
+    .img_center_moda {
+        margin-left: 191px;
+        margin-bottom: 25px;
+    }
+
+    .redmil_title {
+        font-weight: bold;
+        color: #13223c;
+        font-size: 20px;
+        margin-left: 3px;
+    }
+
+    .sign_done {
+        width: 158px;
+        padding: 7px;
+        margin-left: 138px;
+    }
+
+}

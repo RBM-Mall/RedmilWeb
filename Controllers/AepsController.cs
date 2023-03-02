@@ -548,24 +548,24 @@ namespace Project_Redmil_MVC.Controllers
                         //var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(result));
                         //adharPicFaceBioResponse = adharPicFaceBioData.ToList();
 
-                        if (adharPicFaceBioStatusCode == "TXN")
-                        {
+                        //if (adharPicFaceBioStatusCode == "TXN")
+                        //{
                             if (!string.IsNullOrEmpty(radioValDevice))
                             {
                                 return Json(new { Result = "Connected" });
 
                             }
                             return Json("aepsKycStatus");
-                        }
+                        //}
 
-                        else if (adharPicFaceBioStatusCode == "ERR")
-                        {
-                            return Json(new { Result = "Connected" });
-                        }
-                        else
-                        {
-                            return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
-                        }
+                        //else if (adharPicFaceBioStatusCode == "ERR")
+                        //{
+                        //    return Json(new { Result = "Connected" });
+                        //}
+                        //else
+                        //{
+                        //    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                        //}
                     }
                 }
                 return Json("");
@@ -600,197 +600,205 @@ namespace Project_Redmil_MVC.Controllers
             //string biometricData = JsonConvert.SerializeObject(Result);
             //string Dataaaaa = "" + biometricData;
             var biometricData = TriggerMachine();
-            fingurprintDataRequestModel fingurprintDataRequest = new fingurprintDataRequestModel();
-
-            UserVerificationWithPaytmRequestModel userVerificationWithPaytmRequest = new UserVerificationWithPaytmRequestModel();
-            //userVerificationWithPaytmRequest.userId = int.Parse(HttpContext.Session.GetString("Id"));
-            //userVerificationWithPaytmRequest.userId = "599851"; //Prashant Yadav
-            userVerificationWithPaytmRequest.userId = "2180";//Rahul Sir
-            var unixTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
-            //string retailerTxnId = userVerificationWithPaytmRequest.userId + " " + DateTime.Now.ToString();
-            string retailerTxnId = unixTimestamp + "" + userVerificationWithPaytmRequest.userId;
-            char ss = Convert.ToChar(34);
-            Dictionary<string, string> userVerificationWithPaytmData = new Dictionary<string, string>()
+            if (biometricData != null && biometricData != "")
             {
-                ["RetailerTxnId"] = retailerTxnId,
-                //["RetailerTxnId"] = "7986158232599851",
-                //["AadharNumber"] = "275687902863",//Prashant Yadav
-                ["AadharNumber"] = "289234714252",//Rahul Sir 
-                ["IIN"] = string.Empty,
-                ["Amount"] = "0",
-                ["BiometricData"] = ss.ToString() + ss.ToString() + biometricData,
-                ["RetailerId"] = string.Empty,
-                //["Latitude"] = "28.5966336",
-                ["Latitude"] = lat,
-                //["Longitude"] = "77.3914624",
-                ["Longitude"] = longt,
-                ["Param1"] = "10.0.0.1",
-                //["Param2"] = "8527698920",//Prahsant Mobile
-                ["Param2"] = "7355558471",//Rahul Sir Mobile
-                ["AcquirerInstitutationId"] = "1",
-                ["TxnTypeCode"] = "31",
-                ["AppId"] = "1",
-                ["AppVersion"] = "2.0.0",
-                ["CustomerConsent"] = "1",
-                ["IsVID"] = "False",
-                ["Param3"] = string.Empty,
-                ["Param4"] = string.Empty,
-                ["Param5"] = string.Empty,
-                ["Param6"] = string.Empty,
-                ["Param7"] = string.Empty,
-                ["Param8"] = string.Empty,
-                ["Param9"] = string.Empty,
-                ["Param10"] = string.Empty
-            };
+                fingurprintDataRequestModel fingurprintDataRequest = new fingurprintDataRequestModel();
 
-
-            string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
-
-            //Dictionary<string, string> userVerificationWithPaytmData2 = new Dictionary<string, string>()
-            //{
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.RetailerTxnId, "retailerTxnId");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AadharNumber, dd);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.IIN, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Amount, dd);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.RetailerId, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param1, "10.0.0.1");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param2, "8527698920");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AcquirerInstitutationId, "1");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AppId, "1");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AppVersion, "2.0.0");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.CustomerConsent, "1");
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param3, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param4, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param5, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param6, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param7, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param8, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param9, String.Empty);
-            //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param10, String.Empty);
-            //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.BiometricData, "");
-            //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.Latitude, "");
-            //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.Longitude, "");
-            //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.TxnTypeCode, "Balance Enquiry");
-            //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.IsVID, "False");
-            //};
-
-            //List<AaadharPicVerificationResponseModal> adharPicFaceBioResponse = new List<AaadharPicVerificationResponseModal>();
-
-
-            //adharPicFaceBioRequest.Userid = "599851"; // 2114, 2180
-
-
-
-            #region Checksum (AaadharPicVerification|Unique Key|UserId|)
-            //string input = Checksum.MakeChecksumString("ViewPayOutCategory", obj.UserId, obj.Token);
-            //string input = Checksum.MakeChecksumString("AaadharPicVerification", Checksum.checksumKey, adharPicFaceBioRequest.Userid);
-            //string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-            #endregion
-
-            //adharPicFaceBioRequest.checksum = CheckSum;
-
-            if (radioValDevice != null)
-            {
-                var dictionaryData1 = JsonConvert.DeserializeObject(dictionaryData);
-                AepsCypherTextEncryptionDecryption crypto = AepsCypherTextEncryptionDecryption.Instance;
-                string encryptedText = crypto.YBLEncrypt(dictionaryData1.ToString(), "Ef6d2GRq98");
-                //string decryptText = crypto.YBLDecrypt(dictionaryData1.ToString(), "Ef6d2GRq98");
-
-                UserVerificationWithPaytmRequestModel1 requestModel = new UserVerificationWithPaytmRequestModel1();
-                try
+                UserVerificationWithPaytmRequestModel userVerificationWithPaytmRequest = new UserVerificationWithPaytmRequestModel();
+                //userVerificationWithPaytmRequest.userId = int.Parse(HttpContext.Session.GetString("Id"));
+                //userVerificationWithPaytmRequest.userId = "599851"; //Prashant Yadav
+                userVerificationWithPaytmRequest.userId = "2180";//Rahul Sir
+                var unixTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
+                //string retailerTxnId = userVerificationWithPaytmRequest.userId + " " + DateTime.Now.ToString();
+                string retailerTxnId = unixTimestamp + "" + userVerificationWithPaytmRequest.userId;
+                char ss = Convert.ToChar(34);
+                Dictionary<string, string> userVerificationWithPaytmData = new Dictionary<string, string>()
                 {
-                    requestModel.Userid = "2180";//Rahul SIr
-                                                 //requestModel.Userid = "599851";//Prashant
-                    requestModel.Amount = "0";
-                    requestModel.TxnType = "31";
-                    //requestModel.CustomerMobileno = "8527698920";//Prashant
-                    requestModel.CustomerMobileno = "7355558471";//Rahul Sir
-                    requestModel.Mode = "App";
-                    //requestModel.CustomerName = "PRASHANT YADAV";//Prashant
-                    requestModel.CustomerName = "RAHUL KUSHWAHA";//Rahul Sir
-                                                                 //requestModel.CustomerAadhaarNo = "275687902863";////Prashant
-                    requestModel.CustomerAadhaarNo = "289234714251";//Rahul Sir
-                                                                    //requestModel.BCName = "PRASHANT YADAV";////Prashant
-                    requestModel.BCName = "RAHUL KUSHWAHA";//Rahul Sir
-                    RootObject rootObject = getAddress(lat, longt);
-                    requestModel.BCLocation = rootObject.display_name;
-                    requestModel.Device = "Mantra";
-                    //requestModel.RetailerTxnId = "7986158232599851";
-                    requestModel.RetailerTxnId = retailerTxnId;
-                    requestModel.EncData = encryptedText;
-                    requestModel.fingureData = finalResponse2;
-                    //requestModel.fingureData = XMLRemoveData();
-                    requestModel.PidData = biometricData;
-                    requestModel.AgentID = "";
-                    requestModel.EncAadhaar = crypto.EncryptionAadharNumber(requestModel.CustomerAadhaarNo);
-                    requestModel.Token = "";
+                    ["RetailerTxnId"] = retailerTxnId,
+                    //["RetailerTxnId"] = "7986158232599851",
+                    //["AadharNumber"] = "275687902863",//Prashant Yadav
+                    ["AadharNumber"] = "289234714252",//Rahul Sir 
+                    ["IIN"] = string.Empty,
+                    ["Amount"] = "0",
+                    ["BiometricData"] = ss.ToString() + ss.ToString() + biometricData,
+                    ["RetailerId"] = string.Empty,
+                    //["Latitude"] = "28.5966336",
+                    ["Latitude"] = lat,
+                    //["Longitude"] = "77.3914624",
+                    ["Longitude"] = longt,
+                    ["Param1"] = "10.0.0.1",
+                    //["Param2"] = "8527698920",//Prahsant Mobile
+                    ["Param2"] = "7355558471",//Rahul Sir Mobile
+                    ["AcquirerInstitutationId"] = "1",
+                    ["TxnTypeCode"] = "31",
+                    ["AppId"] = "1",
+                    ["AppVersion"] = "2.0.0",
+                    ["CustomerConsent"] = "1",
+                    ["IsVID"] = "False",
+                    ["Param3"] = string.Empty,
+                    ["Param4"] = string.Empty,
+                    ["Param5"] = string.Empty,
+                    ["Param6"] = string.Empty,
+                    ["Param7"] = string.Empty,
+                    ["Param8"] = string.Empty,
+                    ["Param9"] = string.Empty,
+                    ["Param10"] = string.Empty
+                };
 
-                    #region Checksum (Recharge|Unique Key|UserId)
-                    string input = Checksum.MakeChecksumString("UserVerificationWithPaytm", Checksum.checksumKey, requestModel.Userid.Trim(),
-                        requestModel.CustomerAadhaarNo.Trim(), requestModel.BCName.Trim());
-                    string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                    #endregion
-                    requestModel.checksum = CheckSum;
-                    var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/UserVerificationWithPaytm");
-                    //var client = new RestClient($"{Baseurl}{ApiName.GetAgentKycId}");
-                    var request = new RestRequest(Method.POST);
-                    request.AddHeader("Content-Type", "application/json");
 
-                    //string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
-                    //var json = JsonConvert.SerializeObject(encryptedText);
-                    var json = JsonConvert.SerializeObject(requestModel);
-                    request.AddJsonBody(json);
-                    IRestResponse response = client.Execute(request);
-                    var result = response.Content;
-                    if (string.IsNullOrEmpty(result))
+                string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
+
+                //Dictionary<string, string> userVerificationWithPaytmData2 = new Dictionary<string, string>()
+                //{
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.RetailerTxnId, "retailerTxnId");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AadharNumber, dd);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.IIN, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Amount, dd);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.RetailerId, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param1, "10.0.0.1");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param2, "8527698920");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AcquirerInstitutationId, "1");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AppId, "1");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.AppVersion, "2.0.0");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.CustomerConsent, "1");
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param3, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param4, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param5, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param6, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param7, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param8, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param9, String.Empty);
+                //userVerificationWithPaytmData.Add(userVerificationWithPaytmRequest.Param10, String.Empty);
+                //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.BiometricData, "");
+                //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.Latitude, "");
+                //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.Longitude, "");
+                //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.TxnTypeCode, "Balance Enquiry");
+                //userVerificationWithPaytmData2.Add(userVerificationWithPaytmRequest.IsVID, "False");
+                //};
+
+                //List<AaadharPicVerificationResponseModal> adharPicFaceBioResponse = new List<AaadharPicVerificationResponseModal>();
+
+
+                //adharPicFaceBioRequest.Userid = "599851"; // 2114, 2180
+
+
+
+                #region Checksum (AaadharPicVerification|Unique Key|UserId|)
+                //string input = Checksum.MakeChecksumString("ViewPayOutCategory", obj.UserId, obj.Token);
+                //string input = Checksum.MakeChecksumString("AaadharPicVerification", Checksum.checksumKey, adharPicFaceBioRequest.Userid);
+                //string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+
+                //adharPicFaceBioRequest.checksum = CheckSum;
+
+                if (radioValDevice != null)
+                {
+                    var dictionaryData1 = JsonConvert.DeserializeObject(dictionaryData);
+                    AepsCypherTextEncryptionDecryption crypto = AepsCypherTextEncryptionDecryption.Instance;
+                    string encryptedText = crypto.YBLEncrypt(dictionaryData1.ToString(), "Ef6d2GRq98");
+                    //string decryptText = crypto.YBLDecrypt(dictionaryData1.ToString(), "Ef6d2GRq98");
+
+                    UserVerificationWithPaytmRequestModel1 requestModel = new UserVerificationWithPaytmRequestModel1();
+                    try
                     {
-                        return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
-                    }
-                    else
-                    {
-                        var adharPicFaceBioData = JsonConvert.DeserializeObject<AaadharPicVerificationResponseModal>(response.Content);
-                        var adharPicFaceBioStatusCode = adharPicFaceBioData.Statuscode;
-                        //var aepsStatusCode = aepsKycData.Statuscode;
-                        //var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(result));
-                        //adharPicFaceBioResponse = adharPicFaceBioData.ToList();
+                        requestModel.Userid = "2180";//Rahul SIr
+                                                     //requestModel.Userid = "599851";//Prashant
+                        requestModel.Amount = "0";
+                        requestModel.TxnType = "31";
+                        //requestModel.CustomerMobileno = "8527698920";//Prashant
+                        requestModel.CustomerMobileno = "7355558471";//Rahul Sir
+                        requestModel.Mode = "App";
+                        //requestModel.CustomerName = "PRASHANT YADAV";//Prashant
+                        requestModel.CustomerName = "RAHUL KUSHWAHA";//Rahul Sir
+                                                                     //requestModel.CustomerAadhaarNo = "275687902863";////Prashant
+                        requestModel.CustomerAadhaarNo = "289234714251";//Rahul Sir
+                                                                        //requestModel.BCName = "PRASHANT YADAV";////Prashant
+                        requestModel.BCName = "RAHUL KUSHWAHA";//Rahul Sir
+                        RootObject rootObject = getAddress(lat, longt);
+                        requestModel.BCLocation = rootObject.display_name;
+                        requestModel.Device = "Mantra";
+                        //requestModel.RetailerTxnId = "7986158232599851";
+                        requestModel.RetailerTxnId = retailerTxnId;
+                        requestModel.EncData = encryptedText;
+                        requestModel.fingureData = finalResponse2;
+                        //requestModel.fingureData = XMLRemoveData();
+                        requestModel.PidData = biometricData;
+                        requestModel.AgentID = "";
+                        requestModel.EncAadhaar = crypto.EncryptionAadharNumber(requestModel.CustomerAadhaarNo);
+                        requestModel.Token = "";
 
+                        #region Checksum (Recharge|Unique Key|UserId)
+                        string input = Checksum.MakeChecksumString("UserVerificationWithPaytm", Checksum.checksumKey, requestModel.Userid.Trim(),
+                            requestModel.CustomerAadhaarNo.Trim(), requestModel.BCName.Trim());
+                        string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                        #endregion
+                        requestModel.checksum = CheckSum;
+                        var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/UserVerificationWithPaytm");
+                        //var client = new RestClient($"{Baseurl}{ApiName.GetAgentKycId}");
+                        var request = new RestRequest(Method.POST);
+                        request.AddHeader("Content-Type", "application/json");
 
-                        if (adharPicFaceBioStatusCode == "TXN")
+                        //string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
+                        //var json = JsonConvert.SerializeObject(encryptedText);
+                        var json = JsonConvert.SerializeObject(requestModel);
+                        request.AddJsonBody(json);
+                        IRestResponse response = client.Execute(request);
+                        var result = response.Content;
+                        if (string.IsNullOrEmpty(result))
                         {
-                            if (!string.IsNullOrEmpty(radioValDevice))
-                            {
-                                return Json(new { Result = "Connected" });
-
-                            }
-                            // return View("aepsKycStatus");
-                        }
-                        else if (adharPicFaceBioStatusCode == "ERR")
-                        {
-
+                            return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                         }
                         else
                         {
-                            return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                            var adharPicFaceBioData = JsonConvert.DeserializeObject<AaadharPicVerificationResponseModal>(response.Content);
+                            var adharPicFaceBioStatusCode = adharPicFaceBioData.Statuscode;
+                            //var aepsStatusCode = aepsKycData.Statuscode;
+                            //var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(result));
+                            //adharPicFaceBioResponse = adharPicFaceBioData.ToList();
+
+
+                            if (adharPicFaceBioStatusCode == "TXN")
+                            {
+                                if (!string.IsNullOrEmpty(radioValDevice))
+                                {
+                                    return Json(new { Result = "Connected" });
+
+                                }
+                                // return View("aepsKycStatus");
+                            }
+                            else if (adharPicFaceBioStatusCode == "ERR")
+                            {
+
+                            }
+                            else
+                            {
+                                return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                    requestModelEx.ExceptionMessage = ex;
-                    requestModelEx.Data = requestModel;
-                    var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                    var requestEx = new RestRequest(Method.POST);
-                    requestEx.AddHeader("Content-Type", "application/json");
-                    var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                    requestEx.AddJsonBody(jsonEx);
-                    IRestResponse responseEx = clientEx.Execute(requestEx);
-                    var resultEx = responseEx.Content;
-                    return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
-                }
+                    catch (Exception ex)
+                    {
+                        ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                        requestModelEx.ExceptionMessage = ex;
+                        requestModelEx.Data = requestModel;
+                        var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                        var requestEx = new RestRequest(Method.POST);
+                        requestEx.AddHeader("Content-Type", "application/json");
+                        var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                        requestEx.AddJsonBody(jsonEx);
+                        IRestResponse responseEx = clientEx.Execute(requestEx);
+                        var resultEx = responseEx.Content;
+                        return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
 
-                //return View("");
+                    //return View("");
+                }
             }
+            else
+            {
+                return Json(new { Result = "NotConnected", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+            
             //return View();
             return Json("");
         }

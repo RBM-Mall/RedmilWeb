@@ -36,8 +36,6 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string GetAepsRoutingDetails = "GetAepsRoutingDetails";
         public static string GetAgentKycId = "GetAgentKycId";
 
-
-
         //MyTeamDashboard
         public static string GetMyTeamMemberCountNew = "GetMyTeamMemberCountNew";
         //Login

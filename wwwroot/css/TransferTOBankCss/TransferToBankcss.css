@@ -3,63 +3,93 @@ td th {
     vertical-align: top;
     padding: 10px 20px;
 }
+
 .dmts {
     margin-top: 13px;
     text-align: center;
     margin-left: 72px;
 }
+
 .img_Transfer {
     width: 71%;
     margin-left: 14%;
 }
+
 .modal_footers {
     margin-left: 10rem;
 }
+
 .modal_top {
     margin-top: 94px;
 }
+.modal_top_EMM {
+    margin-top: 20%;
+    min-height: 520px;
+    padding: 0%;
+    width: 70%;
+    margin-left: 20%;
+}
+
 .img-widthl {
     width: 45%;
     margin-left: 46%;
 }
+
 .img-widthn {
     width: 88%;
     margin-left: -7%;
 }
+
 .Amount_Credit {
     margin-left: 16rem;
 }
 
+.Take_snap {
+    margin-top: 6%;
+    margin-left: 10%;
+}
 
 .Arrow_img {
     height: 111px;
     margin-left: 22rem;
 }
+
 .Trannsfer_val {
     margin-top: 28px;
     margin-left: 188px;
 }
-.madal_Account {
-margin-top:10%;
+
+.Video_Camera {
+    width: 200%;
+    margin-top: -6%;
 }
+
+.madal_Account {
+    margin-top: 10%;
+}
+
 .modal_Transfer {
     background: aliceblue;
     height: 521px;
 }
+
 .modal_table {
     margin-top: 13%;
-   /* width: 103%;*/
+    /* width: 103%;*/
 }
+
 .Heading_Table {
     margin-top: -17%;
     text-align: center;
     padding: 14px 0px 42px 12px;
 }
+
 .Heading_Table1 {
     margin-top: -2%;
     text-align: center;
     padding: 14px 32px 75px 20px;
 }
+
 .ttb {
     color: white;
     margin-top: -5px;
@@ -67,23 +97,67 @@ margin-top:10%;
     text-align: center;
     font-weight: 700;
     cursor: pointer;
+    line-height: 54px;
 }
+
 .amount {
     font-size: 16px
+}
+
+.button-Err {
+    width: 41%;
+    margin-left: 42%;
+}
+
+.modal-confirm-err {
+    width: 100%;
+}
+
+.img-Err {
+    width: 65%;
+    padding: 2%;
+    margin-left: 21%;
+}
+
+.Pending_Approval {
+    width: 100%;
+    margin-left: -76%;
+}
+
+.verify {
+    margin-left: 508px;
+    color: mediumturquoise;
+    font-size: 18px;
+    margin-top: -10px;
+    cursor: pointer;
+}
+.Error_Verify 
+{
+    width: 32%;
+    margin-left: 42%;
+}
+.modal_top_ModalForSurcharge {
+    margin-top: 20%;
+    width: 71%;
+    padding: 1%;
+    min-height: 177px;
 }
 
 .Static_avail p {
     font-size: 3rem;
     margin-top: 3rem;
 }
+
 .real_available p {
     font-size: 3rem;
     margin-top: 3rem;
 }
+
 .img-width {
     height: 100px;
     width: 120px
 }
+
 .Container_wdth {
     background: white;
     border: 2px solid white;
@@ -91,34 +165,42 @@ margin-top:10%;
     border-radius: 18px;
     width: 75%;
     height: 171px;
-  
 }
+
 .modal_dialog {
     margin-top: 86px;
 }
+
 .btn_im {
-    /* width: 117%; */
+  
     margin-left: -13px;
     border-bottom: 113px;
-    margin-top: 0rem;
+    margin-top: 4rem;
     min-width: 25rem;
 }
-.btn_imps {
-    width: 39rem;
-    padding: 0rem;
+
+.btn-imps {
+    width: 71%;
+    margin-left: 10%;
 }
+
 .NEFT_IMG {
-    height: 127px;
-    margin-left: 29px;
+    height: 88px;
+    margin-left: 38px;
 }
-.rtgs_img {
-    height: 127px;
-    margin-left: 17px;
+ .rtgs_img
+
+{
+    height: 92px;
+    margin-left: 31px;
+
 }
+
 .imps_logo {
     width: 41%;
     margin-top: 47px;
 }
+
 .card-input-im {
     background: white;
     border: 2px solid white;
@@ -132,19 +214,24 @@ margin-top:10%;
     cursor: pointer;
     margin-left: 56px;
 }
+
 .modal_footer {
     margin-left: 171px;
 }
+
 .Tinput {
     margin-left: -6rem;
 }
+
     .Tinput lbl_Amount {
         font-size: 2rem;
         margin-left: 6rem;
     }
+
 .dataTables_filter {
     display: none;
 }
+
 .button-21 {
     align-items: center;
     appearance: none;
@@ -163,7 +250,7 @@ margin-top:10%;
     height: auto;
     justify-content: center;
     line-height: 1.5;
-    padding: 6px 25px;
+    padding: 6px 57px;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -173,7 +260,7 @@ margin-top:10%;
     touch-action: manipulation;
     vertical-align: top;
     white-space: nowrap;
-    margin-right: 50px;
+    margin-right: -42px;
     /* float: right; */
     margin-top: 28px;
     z-index: 1;
@@ -214,6 +301,7 @@ margin-top:10%;
     z-index: 1;
     margin-left: 5rem;
 }
+
 .button-MediaACC {
     align-items: center;
     /* appearance: none; */
@@ -248,28 +336,180 @@ margin-top:10%;
     /* z-index: 1; */
     margin-left: 1rem;
 }
+
 .lbl_Amount {
     margin-left: 5rem;
     margin-top: -0.5rem;
     font-size: 1.5rem;
 }
 
-@media screen and (max-width:339px) and (min-width:280px) {
+.Account_Detail h4 {
+    margin-left: 55px;
+}
 
+.Account_data h4 {
+    margin-left: -69px;
+}
+
+
+.modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+    /* padding-top: 250px; */
+    margin-top: -29px;
+    margin-left: -132px;
+}
+
+.button-21_VideoCamera {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 1px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    margin-right: -42px;
+    margin-top: 154%;
+    margin-left: -20%;
+    z-index: 1;
+}
+
+.button-21_VideoCameras {
+    align-items: center;
+    appearance: none;
+    background-color: #3EB2FD;
+    background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+    background-size: calc(100% + 20px) calc(100% + 20px);
+    border-radius: 1px;
+    border-width: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: CircularStd,sans-serif;
+    font-size: 1.5rem;
+    height: auto;
+    justify-content: center;
+    line-height: 1.5;
+    padding: 6px 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s,background-position .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+    margin-right: -42px;
+    margin-top: 15%;
+    margin-left: -20%;
+    z-index: 1;
+}
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.nonverified_buton {
+    width: 20%;
+}
+.oops2_new {
+    width:100%;
+}
+.final-pay-buttons {
+    margin-left: 45%;
+}
+.final-cancel-button {
+    margin-left: 45%;
+    padding-top: 1%;
+}
+.finger_image {
+    width: 47%;
+    margin-left: 20%;
+}
+.vf_md {
+    margin-top: 60px;
+}
+.vfc_modal {
+    margin-left: 100px;
+    font-weight: 900;
+    margin-top: 50px;
+}
+.vl_md {
+    border-left: 6px solid #2d385e;
+    height: 150px;
+    margin-top: 50px;
+    margin-left: 140px;
+}
+.modal_letter
+{
+text-decoration: none;
+margin-left: 20%;
+padding: 1%;
+margin-top: 1%;
+}
+.VUB {
+    font-weight: 900;
+    margin-top: 50px;
+}
+.sign_image 
+{
+    width: 8%;
+    margin-left: 38%;
+}
+.Success_text {
+    margin-left: 20%;
+    color: green;
+}
+.img-widthn_SUCCESS {
+    width: 88%;
+    margin-left: -7%;
+}
+@media screen and (max-width:339px) and (min-width:280px) {
     .navbar-default .navbar-brand {
         color: black;
         margin-top: 65px;
     }
+
     .header-area .navbar-brand img {
         margin-top: -65px;
         width: 190px;
     }
+
     .navbar-toggle {
         position: relative;
         float: right;
         padding: 9px 8px;
         margin-top: 6px;
-        margin-right: 82px;
+        margin-right: 2px;
         margin-bottom: 8px;
         background-color: #2d385e;
         background-image: none;
@@ -281,22 +521,27 @@ margin-top:10%;
         background: aliceblue;
         height: 372px;
     }
+
     .ttb {
-        margin-top: 89px;
-        margin-left: -140px;
-        text-align: center;
-        font-weight: 700;
+        margin-top: 83px;
+        margin-left: 78px;
+        /* text-align: center; */
+        /* font-weight: 700; */
         cursor: pointer;
         color: white;
-        font-size: 2rem;
+        font-size: 13px;
+        padding: 5px;
+        line-height: 15px;
     }
 
-    .real_available p {
-    font-size: 2.5rem;
-    margin-left: 16.5rem;
-    margin-top: -2.5rem;
-}
 
+   
+.real_available p
+{
+    font-size: 24px;
+    margin-left: 16.5rem;
+    margin-top: -31px;
+}
     .Static_avail p {
         margin-top: 1rem;
         font-size: 2rem;
@@ -313,29 +558,29 @@ margin-top:10%;
         margin-bottom: 20px;
     }
 
-    .NEFT_IMG {
-        height: 88px;
-        margin-left: 15px;
-    }
+.NEFT_IMG {
+    height: 88px;
+    margin-left: 58px;
+}
 
     .btn_im {
-        /* width: 117%; */
         margin-left: -12px;
         border-bottom: 113px;
         margin-top: 51px;
         min-width: 119%;
     }
-    .rtgs_img {
-        height: 92px;
-        margin-left: 18px;
-    }
+
+.rtgs_img {
+    height: 92px;
+    margin-left: 41px;
+}
 
     .Container_wdth {
         background: white;
         border: 2px solid white;
         padding: 11px;
         border-radius: 18px;
-        width: 65%;
+        width: 73%;
         height: 169px;
         margin-left: 33px;
     }
@@ -354,6 +599,7 @@ margin-top:10%;
         margin-left: -6px;
         margin-top: 14px;
     }
+
     .button-Media {
         align-items: center;
         appearance: none;
@@ -382,12 +628,11 @@ margin-top:10%;
         touch-action: manipulation;
         vertical-align: top;
         white-space: nowrap;
-        /* margin-right: 50px; */
-        /* float: right; */
         margin-top: 2rem;
         z-index: 1;
         margin-left: 5rem;
     }
+
     .button-21 {
         align-items: center;
         appearance: none;
@@ -416,45 +661,12 @@ margin-top:10%;
         touch-action: manipulation;
         vertical-align: top;
         white-space: nowrap;
-        margin-right: 54px;
+        margin-right: 69px;
         float: right;
         margin-top: 19px;
         z-index: 1;
     }
- /*   .button-Media {
-        align-items: center;
-        appearance: none;
-        background-color: #3EB2FD;
-        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-        background-size: calc(100% + 20px) calc(100% + 20px);
-        border-radius: 1px;
-        border-width: 0;
-        box-shadow: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-flex;
-        font-family: CircularStd,sans-serif;
-        font-size: -11.5rem;
-        height: auto;
-        justify-content: center;
-        line-height: 1.5;
-        padding: 2px 25px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color .2s,background-position .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: top;
-        white-space: nowrap;
-        margin-right: 42px;
-        float: right;
-        margin-top: 6px;
-        z-index: 1;
-    }
-*/
+
     .amount {
         font-size: 11px
     }
@@ -471,45 +683,54 @@ margin-top:10%;
     }
 
     #lblBalance {
-        margin-left: -57%;
-       
+        margin-left: -35%;
+        font-size: 21px;
     }
-    .Amount_Credit h3{
+
+    .Amount_Credit h3 {
         margin-left: -13rem;
-        font-size: 12px;
+        font-size: 16px;
     }
+
     .Arrow_img {
-        height: 81px;
-        margin-left: 10rem;
+        height: 48px;
+        margin-left: 11rem;
     }
+    
+
     .modal-footer {
-    border: none;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 13px;
-    /* padding-top: 250px; */
-    margin-top: -38px;
-    margin-left: -141px;
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        margin-top: -38px;
+        margin-left: -141px;
+    }
+
 }
-}
+
 @media screen and (max-width:439px) and (min-width:339px) {
 
 
-    .ttb {
-        margin-top: 89px;
-        margin-left: -140px;
-        text-align: center;
-        font-weight: 700;
-        cursor: pointer;
-        color: white;
-        font-size: 2rem;
-    }
+.ttb 
+{
+    margin-top: 42px;
+    margin-left: 122px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    padding: 0px 0px 0px 166px;
+}
+
 
     .real_available p {
-        font-size: 2.5rem;
-        margin-left: 16.5rem;
-        margin-top: -2.5rem;
+        font-size: 19px;
+        margin-left: 172px;
+        margin-top: -31px;
     }
+
 
     .Static_avail p {
         margin-top: 1rem;
@@ -526,10 +747,12 @@ margin-top:10%;
     .Ex_tab {
         margin-bottom: 20px;
     }
+
     .Arrow_img {
         height: 90px;
         margin-left: 11rem;
     }
+
     .NEFT_IMG {
         height: 88px;
         margin-left: 15px;
@@ -542,6 +765,7 @@ margin-top:10%;
         min-width: 123%;
         padding: -4%;
     }
+
     .rtgs_img {
         height: 92px;
         margin-left: 18px;
@@ -605,6 +829,7 @@ margin-top:10%;
         margin-top: 1rem;
         z-index: 1;
     }
+
     .button-21 {
         align-items: center;
         appearance: none;
@@ -638,6 +863,7 @@ margin-top:10%;
         margin-top: 28px;
         z-index: 1;
     }
+
     .amount {
         font-size: 11px
     }
@@ -652,39 +878,43 @@ margin-top:10%;
         margin-left: 10rem;
         margin-top: -0.5rem;
     }
+
     .Amount_Credit {
         margin-left: 2rem;
     }
 }
+
 @media screen and (max-width:539px) and (min-width:439px) {
 
 
     .ttb {
-        margin-top: 89px;
-        margin-left: -140px;
+        margin-top: 42px;
+        margin-left: 127px;
         text-align: center;
         font-weight: 700;
         cursor: pointer;
         color: white;
-        font-size: 2rem;
+        font-size: 14px;
+        
     }
 
     .real_available p {
-        font-size: 2.5rem;
-        margin-left: 10.5rem;
-        margin-top: -2.5rem;
+        font-size: 18px;
+        margin-left: 236px;
+        margin-top: -28px;
+    
     }
 
     .Static_avail p {
         margin-top: 1rem;
         font-size: 2rem;
-        margin-left: 1rem;
+        margin-left: 13rem;
     }
 
     .img-width {
         height: 100px;
         width: 133px;
-        margin-left: 5rem;
+        margin-left: 18rem;
     }
 
     .Ex_tab {
@@ -783,14 +1013,17 @@ margin-top:10%;
         margin-left: 10rem;
         margin-top: -0.5rem;
     }
+
     .Amount_Credit {
         margin-left: 7rem;
     }
+
     .Arrow_img {
         height: 85px;
         margin-left: 12rem;
         margin-left: 14rem;
     }
+
     .button-21 {
         align-items: center;
         appearance: none;
@@ -819,9 +1052,9 @@ margin-top:10%;
         touch-action: manipulation;
         vertical-align: top;
         white-space: nowrap;
-        margin-right: 208px;
+        margin-right: 142px;
         float: right;
-        margin-top: 28px;
+        margin-top: 15px;
         z-index: 1;
     }
 }
@@ -832,31 +1065,31 @@ margin-top:10%;
 
 
     .ttb {
-        margin-top: 89px;
-        margin-left: -140px;
+        margin-top: 49px;
+        margin-left: 157px;
         text-align: center;
         font-weight: 700;
         cursor: pointer;
         color: white;
-        font-size: 2rem;
+        font-size: 14px;
     }
 
     .real_available p {
-        font-size: 2.5rem;
-        margin-left: 10.5rem;
-        margin-top: -2.5rem;
+        font-size: 18px;
+        margin-left: 263px;
+        margin-top: -28px;
     }
 
     .Static_avail p {
         margin-top: 1rem;
         font-size: 2rem;
-        margin-left: 1rem;
+        margin-left: 15rem;
     }
 
     .img-width {
         height: 100px;
         width: 133px;
-        margin-left: 5rem;
+        margin-left: 15em;
     }
 
     .Ex_tab {
@@ -956,14 +1189,17 @@ margin-top:10%;
         margin-left: 10rem;
         margin-top: -0.5rem;
     }
+
     .Amount_Credit {
         margin-left: 10rem;
     }
+
     .Arrow_img {
         height: 83px;
         /* margin-left: 1rem; */
         margin-left: 19rem;
     }
+
     .button-21 {
         align-items: center;
         appearance: none;
@@ -997,17 +1233,19 @@ margin-top:10%;
         margin-top: 28px;
         z-index: 1;
     }
+
     .Trannsfer_val {
         margin-top: 28px;
         margin-left: 164px;
     }
 }
+
 @media screen and (max-width:739px) and (min-width:640px) {
 
 
     .ttb {
-        margin-top: 89px;
-        margin-left: -140px;
+        margin-top: 55px;
+        margin-left: 202px;
         text-align: center;
         font-weight: 700;
         cursor: pointer;
@@ -1016,21 +1254,20 @@ margin-top:10%;
     }
 
     .real_available p {
-        font-size: 2.5rem;
-        margin-left: 10.5rem;
-        margin-top: -2.5rem;
+        font-size: 18px;
+        margin-left: 316px;
+        margin-top: -28px;
     }
-
     .Static_avail p {
         margin-top: 1rem;
         font-size: 2rem;
-        margin-left: 1rem;
+        margin-left: 21rem;
     }
 
     .img-width {
         height: 100px;
         width: 133px;
-        margin-left: 5rem;
+        margin-left: 25rem;
     }
 
     .Ex_tab {
@@ -1066,6 +1303,7 @@ margin-top:10%;
         margin-bottom: 52px;
         margin-left: 121px;
     }
+
     .card-input-im {
         background: white;
         border: 2px solid white;
@@ -1109,7 +1347,7 @@ margin-top:10%;
         touch-action: manipulation;
         vertical-align: top;
         white-space: nowrap;
-        margin-right: 32%;
+        margin-right: 114px;
         float: right;
         margin-top: 1rem;
         z-index: 1;
@@ -1129,6 +1367,7 @@ margin-top:10%;
         margin-left: 10rem;
         margin-top: -0.5rem;
     }
+
     .Amount_Credit {
         margin-left: 10rem;
     }
@@ -1177,14 +1416,14 @@ margin-top:10%;
         margin-top: 28px;
         margin-left: 164px;
     }
-    
 }
-@media screen and (max-width:800px) and (min-width:740px) {
+
+@media screen and (max-width:769px) and (min-width:740px) {
 
 
     .ttb {
         margin-top: 89px;
-        margin-left: -140px;
+        margin-left: 278px;
         text-align: center;
         font-weight: 700;
         cursor: pointer;
@@ -1193,15 +1432,15 @@ margin-top:10%;
     }
 
     .real_available p {
-        font-size: 2.5rem;
-        margin-left: 10.5rem;
-        margin-top: -2.5rem;
+        font-size: 18px;
+        margin-left: 355px;
+        margin-top: -28px;
     }
 
     .Static_avail p {
         margin-top: 1rem;
         font-size: 2rem;
-        margin-left: 1rem;
+        margin-left: 25rem;
     }
 
     .img-width {
@@ -1223,8 +1462,8 @@ margin-top:10%;
         margin-left: -19px;
         /* border-bottom: 75px; */
         margin-top: 10%;
-        min-width: 143%;
-        margin-left: -22%;
+        min-width: 155%;
+        margin-left: -27%;
         padding: -4%;
     }
 
@@ -1243,6 +1482,7 @@ margin-top:10%;
         margin-bottom: 52px;
         margin-left: 175px;
     }
+
     .card-input-im {
         background: white;
         border: 2px solid white;
@@ -1286,7 +1526,7 @@ margin-top:10%;
         touch-action: manipulation;
         vertical-align: top;
         white-space: nowrap;
-        margin-right: 245px;
+        margin-right: 125px;
         float: right;
         margin-top: 1rem;
         z-index: 1;
@@ -1306,6 +1546,7 @@ margin-top:10%;
         margin-left: 10rem;
         margin-top: -0.5rem;
     }
+
     .Amount_Credit {
         margin-left: 10rem;
     }
@@ -1360,19 +1601,19 @@ margin-top:10%;
         margin-top: 167px;
     }
 }
-@media screen and (max-width: 600px) {
-   /* table {
+/*@media screen and (max-width: 600px) {*/
+/* table {
         width: 100%;
     }*/
 
-        table td {
+/*table td {
             width: 50%;
         }
 
     table td {
         max-width: 50%;
     }
-}
+}*/
 /*@media screen and (min-width: 401px) 
 {
     .img-widthl {
@@ -1410,6 +1651,9 @@ margin-top:10%;
             .Account_data h4 {
                 font-size: 1.4rem;
             }
+    .final-pay-buttons {
+        margin-left: 45%;
+    }
     }*/
 @media screen and (max-width: 340px) and (min-width:279px) {
     .img-widthl {
@@ -1418,85 +1662,1393 @@ margin-top:10%;
     }
 
     .img-widthn {
-        width: 39%;
-        margin-left: 51%;
-        margin-top: -37%;
+        margin-top: 116px;
+        margin-left: -2px;
+        min-width: 100%;
     }
-
+    .img-widthn_SUCCESS {
+        margin-top: -34%;
+        margin-left: 50%;
+        width: 40%;
+    }
+    .Success_text {
+        margin-left: 7%;
+        color: green;
+    }
     .modal_top {
-        margin-top: 120px;
-        margin-left: -8px;
-        width: 86%;
+        margin-top: 68%;
+        margin-left: 1px;
+        min-width: 100%;
+        min-height: 455px;
     }
 
     .Account_Detail h4 {
-        font-size: 14px;
+        font-size: 15px;
+        margin-left: 22px;
+        margin-top: 6%;
     }
 
-    .Account_Detail {
-        margin-left: 7%;
+
+    .Account_Dash h4 {
+        margin-left: 52%;
+        margin-top: -9%;
     }
 
-    .Account_Dash {
-        margin-top: -65%;
-        margin-left: 57%;
+    .Account_data h4 {
+        margin-top: -8%;
+        margin-left: 56%;
     }
 
-        .Account_Dash h4 {
-            font-size: 1.5rem;
-        }
-
-    .Account_data {
-        margin-top: -65%;
-        margin-left: 63%;
+    .button-21_VideoCamera {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 104px;
+        float: right;
+        margin-top: 34px;
+        z-index: 1;
     }
 
-        .Account_data h4 {
-            font-size: 13px;
-        }
+    .button-21_VideoCameras {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1.5rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 4%;
+        margin-left: 32%;
+        width: 40%;
+        z-index: 1;
+    }
 
+    .Video_Camera {
+        width: 100%;
+        margin-top: -6%;
+    }
+
+    .button-MediaACC {
+        align-items: center;
+        /* appearance: none; */
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 9px;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 5px 4px 6px 4px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 3px;
+        z-index: 1;
+    }
+
+    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+        padding: 4px;
+        font-size: 8px;
+        line-height: 1.428571429;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+
+    .button-Err {
+        width: 41%;
+        margin-left: 42%;
+    }
+
+    .modal-footer {
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        padding-top: 71%;
+        margin-top: -75%;
+        margin-left: -214px;
+    }
+
+    .form-control {
+        display: block;
+        width: 67%;
+        height: 49px;
+        padding: 10px 21px;
+        font-size: 15px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 54px;
+        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    .modal_body_account {
+        width: 87%;
+    }
+
+    .verify {
+        margin-left: 83%;
+        color: mediumturquoise;
+        font-size: 18px;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+
+    .Pending_Approval {
+        width: 20%;
+        margin-left: 38%;
+    }
+    .modal_top_ModalForSurcharge {
+        margin-top: 38%;
+        width: 100%;
+        min-height: 258px;
+    }
+    .modal_surcharge_no {
+        margin-top: -14%;
+        margin-left: 40%;
+    }
+    .modal_top_EMM {
+        margin-top: 37%;
+        min-height: 349px;
+        padding: 0%;
+        width: 100%;
+        margin-left: 0%;
+    }
+    .final-pay-buttons {
+        margin-left: 41%;
+    }
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
+    }
+    .vl_md
+    {
+    display:none;
+    }
+    .vf_md {
+        margin-top: 0px;
+    }
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 42%;
+        
+        margin-top: 2%;
+        
+    }
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 107px;
+        float: right;
+        margin-top: 40px;
+        z-index: 1;
+    }
 }
-@media screen and (max-width: 541px) and (min-width:441px) 
-{
+
+@media screen and (max-width: 441px) and (min-width:341px) {
     .img-widthl {
-        width: 18%;
+        width: 22%;
         margin-left: 6%;
     }
 
     .img-widthn {
-        width: 34%;
-        margin-left: 58%;
-        margin-top: -27%;
+        width: 38%;
+        margin-left: 51%;
+        margin-top: -32%;
     }
-
+    .img-widthn_SUCCESS {
+        margin-top: -34%;
+        margin-left: 50%;
+        width: 40%;
+    }
     .modal_top {
-        margin-top: 94px;
-        width: 82%;
+        margin-top: 123px;
+        margin-left: 1px;
+        min-width: 100%;
     }
 
     .Account_Detail h4 {
-        font-size: 14px;
+        font-size: 17px;
+        margin-left: 22px;
     }
 
-    .Account_Detail {
-        margin-left: 2%;
+
+    .Account_Dash h4 {
+        margin-left: 52%;
+        margin-top: -8%;
     }
 
-    .Account_Dash {
-        margin-top: -49%;
+    .Account_data h4 {
+        margin-top: -8%;
+        margin-left: 57%;
+    }
+
+    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+        padding: 4px;
+        font-size: 9px;
+        line-height: 1.428571429;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+
+    .button-21_VideoCamera {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        z-index: 1;
+        margin-top: 9%;
+        margin-left: 38%;
+    }
+
+    .button-21_VideoCameras {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1.5rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 4%;
+        margin-left: 32%;
+        width: 40%;
+    }
+
+    .Video_Camera {
+        width: 100%;
+        margin-top: -6%;
+    }
+
+    .modal_body_account {
+        width: 98%;
+    }
+
+    .verify {
+        margin-left: 83%;
+        color: mediumturquoise;
+        font-size: 18px;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+
+    .Pending_Approval {
+        width: 20%;
+        margin-left: 38%;
+    }
+    .modal_top_ModalForSurcharge {
+        margin-top: 22%;
+        width: 94%;
+        padding: 1%;
+        min-height: 177px;
+        margin-left: 4%;
+    }
+    .modal_top_EMM {
+        margin-top: 37%;
+        min-height: 349px;
+        padding: 0%;
+        width: 100%;
+        margin-left: 0%;
+    }
+    .final-pay-buttons {
+        margin-left: 41%;
+    }
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
+    }
+    .vl_md {
+        display: none;
+    }
+    .vf_md {
+        margin-top: 0px;
+    }
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 47%;
+        margin-top: 3%;
+    
+    }
+    /*.button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 127px;
+        float: right;
+        margin-top: 40px;
+        z-index: 1;
+    }*/
+}
+
+
+
+@media screen and (max-width: 542px) and (min-width:444px) {
+    .img-widthl {
+        width: 16%;
+        margin-left: 11%;
+    }
+
+    .img-widthn {
+        width: 29%;
+        margin-left: 59%;
+        margin-top: -22%;
+    }
+    .img-widthn_SUCCESS {
+        margin-top: -22%;
+        margin-left: 52%;
+        width: 30%;
+    }
+    .modal_top {
+        margin-top: 123px;
+        margin-left: 1px;
+        width: 100%;
+    }
+
+    .Account_Detail h4 {
+        font-size: 21px;
+        margin-left: 36px;
+        margin-top: 2%;
+    }
+
+
+    .Account_Dash h4 {
+        margin-left: 46%;
+        margin-top: -6%;
+    }
+
+    .Account_data h4 {
+        margin-top: -6%;
+        margin-left: 57%;
+    }
+
+    .button-21_VideoCamera {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        z-index: 1;
+        margin-top: 9%;
+        margin-left: 38%;
+    }
+
+    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+        padding: 4px;
+        font-size: 9px;
+        line-height: 1.428571429;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+
+    .Video_Camera {
+        width: 100%;
+        margin-top: -6%;
+    }
+
+    .button-21_VideoCameras {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1.5rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 4%;
+        margin-left: 32%;
+        width: 40%;
+        z-index: 1;
+    }
+
+    .modal_body_account {
+        width: 98%;
+    }
+
+    .verify {
+        margin-left: 83%;
+        color: mediumturquoise;
+        font-size: 18px;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+
+    .Pending_Approval {
+        width: 20%;
         margin-left: 48%;
+        margin-top: 2%;
+    }
+    .modal_top_ModalForSurcharge {
+        margin-top: 22%;
+        width: 74%;
+        padding: 0%;
+        min-height: 222px;
+        margin-left: 11%;
+    }
+    .modal_surcharge_no {
+        margin-left: 12%;
+        display: flex;
+    }
+    .modal_top_EMM {
+        margin-top: 37%;
+        min-height: 349px;
+        padding: 0%;
+        width: 100%;
+        margin-left: 0%;
+    }
+    .final-pay-buttons {
+        margin-left: 41%;
+    }
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
     }
 
-        .Account_Dash h4 {
-            font-size: 1.5rem;
-        }
+    .vl_md {
+        display: none;
+    }
 
-    .Account_data {
-        margin-top: -50%;
+    .vf_md {
+        margin-top: 0px;
+       
+    }
+
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 52%;
+        margin-top: 2%;
+    }
+   /* .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 197px;
+        float: right;
+        margin-top: 40px;
+        z-index: 1;
+    }*/
+}
+
+@media screen and (max-width: 641px) and (min-width:543px) {
+    .img-widthl {
+        width: 16%;
+        margin-left: 11%;
+    }
+
+    .img-widthn {
+        width: 29%;
+        margin-left: 59%;
+        margin-top: -22%;
+    }
+
+    .img-widthn_SUCCESS {
+        margin-top: -25%;
+        margin-left: 59%;
+        width: 28%;
+    }
+
+    .modal_top {
+        margin-top: 123px;
+        margin-left: 1px;
+        width: 100%;
+    }
+
+    .Account_Detail h4 {
+        font-size: 21px;
+        margin-left: 36px;
+    }
+
+
+    .Account_Dash h4 {
+        margin-left: 46%;
+        margin-top: -6%;
+    }
+
+    .Account_data h4 {
+        margin-top: -4%;
+        margin-left: 57%;
+    }
+
+    .button-21_VideoCamera {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        z-index: 1;
+        margin-top: 9%;
+        margin-left: 38%;
+    }
+
+    .Video_Camera {
+        width: 100%;
+        margin-top: -6%;
+    }
+
+    .button-21_VideoCameras {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1.5rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 4%;
+        margin-left: 32%;
+        width: 40%;
+        z-index: 1;
+    }
+
+    .modal_body_account {
+        width: 98%;
+    }
+
+    .verify {
+        margin-left: 83%;
+        color: mediumturquoise;
+        font-size: 18px;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+
+
+    .Pending_Approval {
+        width: 20%;
+        margin-left: 48%;
+        margin-top: -3%;
+    }
+
+    .modal_top_ModalForSurcharge {
+        margin-top: 22%;
+        width: 74%;
+        padding: 0%;
+        min-height: 222px;
+        margin-left: 11%;
+    }
+
+    .modal_surcharge_no {
+        margin-left: 12%;
+        display: flex;
+    }
+
+    .modal_top_EMM {
+        margin-top: 37%;
+        min-height: 349px;
+        padding: 0%;
+        width: 100%;
+        margin-left: 0%;
+    }
+
+    .final-pay-buttons {
+        margin-left: 41%;
+    }
+
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
+    }
+
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 49%;
+        margin-top: 2%;
+    }
+
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
+    }
+
+    .vl_md {
+        display: none;
+    }
+
+    .vf_md {
+        margin-top: 0%;
+        margin-left: 21%;
+    }
+
+    .VUB {
+        font-weight: 900;
+        margin-left: 14%;
+    }
+
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 29%;
+        margin-top: 2%;
+    }
+
+    /*.button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: -192px;*/
+        /* float: right;*/
+        /*margin-top: 40px;
+        z-index: 1;
+    }*/
+}
+
+@media screen and (max-width: 740px) and (min-width:641px) {
+    .img-widthl {
+        width: 16%;
+        margin-left: 11%;
+    }
+
+    .img-widthn {
+        width: 29%;
+        margin-left: 59%;
+        margin-top: -22%;
+    }
+    .img-widthn_SUCCESS {
+        margin-top: -22%;
         margin-left: 58%;
+        width: 26%;
+    }
+    .modal_top {
+        margin-top: 20%;
+        margin-left: 1%;
+        width: 100%;
     }
 
-        .Account_data h4 {
-            font-size: 1.5rem;
-        }
+    .Account_Detail h4 {
+        font-size: 21px;
+        margin-left: 39px;
+        margin-top: 4%;
+    
+    }
+
+
+    .Account_Dash h4 {
+        margin-left: 46%;
+        margin-top: -6%;
+    }
+
+    .Account_data h4 {
+        margin-top: -5%;
+        margin-left: 57%;
+    }
+
+    .button-21_VideoCamera {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        z-index: 1;
+        margin-top: 9%;
+        margin-left: 38%;
+    }
+
+    .button-21_VideoCameras {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1.5rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 4%;
+        margin-left: 32%;
+        width: 40%;
+        z-index: 1;
+    }
+
+    .Video_Camera {
+        width: 200%;
+        margin-top: -6%;
+    }
+
+    .modal_body_account {
+        width: 98%;
+    }
+
+    .verify {
+        margin-left: 83%;
+        color: mediumturquoise;
+        font-size: 18px;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+
+    .Pending_Approval {
+        width: 20%;
+        margin-left: 55%;
+        margin-top: -3%;
+    }
+    .modal_top_ModalForSurcharge {
+        margin-top: 22%;
+        width: 74%;
+        padding: 0%;
+        min-height: 222px;
+        margin-left: 11%;
+    }
+
+    .modal_surcharge_no {
+        margin-left: 12%;
+        display: flex;
+    }
+    .modal_top_EMM {
+        margin-top: 37%;
+        min-height: 349px;
+        padding: 0%;
+        width: 100%;
+        margin-left: 0%;
+    }
+    .final-pay-buttons {
+        margin-left: 41%;
+    }
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
+    }
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 42%;
+        margin-top: 2%;
+    }
+    .finger_image {
+    width: 50%;
+    margin-left: 18%;
+}
+
+    .vl_md {
+        display: none;
+    }
+
+    .vf_md {
+        margin-top: 0%;
+        margin-left: 21%;
+    }
+
+    .VUB {
+        font-weight: 900;
+        margin-left: 14%;
+    }
+
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 29%;
+        margin-top: 2%;
+    }
+
+    /*.button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: -184px;*/
+        /* float: right;*/
+        /*margin-top: 40px;
+        z-index: 1;
+    }*/
+
+
+}
+
+@media screen and (max-width:800px) and (min-width:741px) 
+{
+    .img-widthl {
+        width: 16%;
+        margin-left: 11%;
+    }
+
+    .img-widthn {
+        width: 29%;
+        margin-left: 59%;
+        margin-top: -22%;
+    }
+    .img-widthn_SUCCESS {
+        margin-top: -22%;
+        margin-left: 57%;
+        width: 27%;
+    }
+
+    .modal_top {
+        margin-top: 20%;
+        margin-left: 1%;
+        width: 100%;
+    }
+
+    .Account_Detail h4 {
+        font-size: 21px;
+        margin-left: 39px;
+        margin-top: 4%;
+    }
+        .Account_Dash h4 {
+        margin-left: 46%;
+        margin-top: -6%;
+    }
+
+    .Account_data h4 {
+        margin-top: -4%;
+        margin-left: 57%;
+    }
+    /*.button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: -5px;*/
+        /* float: right; */
+        /*margin-top: 28px;
+        z-index: 1;
+    }*/
+
+    .button-21_VideoCamera {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        z-index: 1;
+        margin-top: 9%;
+        margin-left: 38%;
+    }
+
+    .button-21_VideoCameras {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1.5rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-top: 4%;
+        margin-left: 32%;
+        width: 40%;
+        z-index: 1;
+    }
+
+    .Video_Camera {
+        width: 200%;
+        margin-top: -6%;
+    }
+
+    .modal_body_account {
+        width: 98%;
+    }
+
+    .verify {
+        margin-left: 83%;
+        color: mediumturquoise;
+        font-size: 18px;
+        margin-top: -10px;
+        cursor: pointer;
+    }
+
+    .Pending_Approval {
+        width: 98%;
+        margin-left: -102%;
+        margin-top: 24%;
+    }
+    .modal_top_ModalForSurcharge {
+        margin-top: 22%;
+        width: 74%;
+        padding: 0%;
+        min-height: 222px;
+        margin-left: 11%;
+    }
+
+    .modal_surcharge_no {
+        margin-left: 12%;
+        display: flex;
+    }
+    .modal_top_EMM {
+        margin-top: 37%;
+        min-height: 349px;
+        padding: 0%;
+        width: 100%;
+        margin-left: 0%;
+    }
+    .final-pay-buttons {
+        margin-left: 41%;
+    }
+    .finger_image {
+        width: 100%;
+        margin-left: 1%;
+    }
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 42%;
+       
+        margin-top: 2%;
+      
+    }
+    .finger_image {
+        width: 70%;
+        margin-left: 1%;
+    }
+
+    .vl_md {
+        display: none;
+    }
+
+    .vf_md {
+        margin-top: 0%;
+        margin-left: 21%;
+    }
+
+    .VUB {
+        font-weight: 900;
+        margin-left: 14%;
+    }
+
+    .modal_letter {
+        text-decoration: none;
+        margin-left: 29%;
+        margin-top: 2%;
+    }
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 1px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 6px 25px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: -184px;
+        /* float: right;*/
+        margin-top: 40px;
+        z-index: 1;
+    }
+
+
 }

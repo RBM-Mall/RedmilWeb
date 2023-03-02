@@ -441,10 +441,12 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LPGGasBillController
                 }
                 else
                 {
-                    var deserialize = JsonConvert.DeserializeObject<GetCCFResponseModel>(response.Content);
+                    var deserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    
                     if (deserialize.Statuscode == "TXN" && deserialize != null)
                     {
-                        return Json(deserialize);
+                        var deserializeN = JsonConvert.DeserializeObject<GetElectricityOperatorListResponseModel>(deserialize.Data.ToString());
+                        return Json(deserializeN);
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {

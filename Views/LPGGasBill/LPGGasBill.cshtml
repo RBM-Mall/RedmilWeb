@@ -787,6 +787,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -801,9 +802,9 @@
 
                         var options = '<option value="' + 0 + '">' + "--Choose Operator--" + '</option>';
 
-                        for (var i = 0; i < response.billerInfo.length; i++) {
+                        for (var i = 0; i < response.data.billerInfo.length; i++) {
 
-                            options += '<option value="' + response.billerInfo[i].id + '">' + response.billerInfo[i].operatorname + '</option>';
+                            options += '<option value="' + response.data.billerInfo[i].id + '">' + response.data.billerInfo[i].operatorname + '</option>';
 
                         }
                         $('#OpId').append(options);
@@ -1134,6 +1135,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (responsedata) {
+                    debugger;
                     if (responsedata.result == "EmptyResult") {
                         window.location.href = responsedata.url;
                     }

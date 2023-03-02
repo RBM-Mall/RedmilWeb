@@ -7,63 +7,72 @@
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 <link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" asp-append-version="true">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" asp-append-version="true">
-<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/dataTables.bootstrap4.min.css" asp-append-version="true" />
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<srcipt src="jquery.redirect.js"></srcipt>
+<script src="jquery.redirect.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
+<link href="~/ResponsiveCSS/jQueryTable.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
-<link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+<link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 
 <br />
 
 <div class="container-fluid" style="background:white">
-    <div class="first-header">
-        <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;height:150px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="call-to-action">
-                            <div class="row">
-                                <div class="col-sm-7 col-xs-12 dmt">
-                                    <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:300px;text-align:center; font-weight: 700; cursor: pointer;"><u>Business Reports</u></h3>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr />
-    <div>
-        <div class="col col-md-12 col-sm-12 col-lg-12">
-            <img src="/css/Img_BusinessReport/report11N.jpg" style="width: 100%;" alt="Norway" />
-        </div>
-    </div>
-    <hr />
+    @*<div class="first-header">
+    <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;height:150px;">
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="call-to-action">
+    <div class="row">
+    <div class="col-sm-7 col-xs-12 dmt">
+    <h3 class="padding-left-right-50 " style="margin-top: 20px; margin-left:300px;text-align:center; font-weight: 700; cursor: pointer;"><u>Business Reports</u></h3>
     <br />
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>*@
+    @*<hr />
+    <div>
+    <div class="col col-md-12 col-sm-12 col-lg-12">
+    <img src="/css/Img_BusinessReport/report11N.jpg" style="width: 100%;" alt="Norway" />
+    </div>
+    </div>
+    <hr />
+    <br />*@
     <div class="div_get_info">
-        <h3 class="tag">Get Complete Transparency & Keep Good Track Of Your Business Transactions With Business Reports</h3>
+        <h2 class="tag">Get Complete Transparency & Keep Good Track Of Your Business Transactions With Business Reports</h2>
     </div>
     <hr />
     <div class="section services-area padding-top-bottom-60">
         <div class="container">
-            <h1 class="transaction center heading_chooseTransaction_1">Choose Category And Subcategory For Business Report</h1>
+            <div class="row">
+                <div class="col-sm-12 text-center padding-bottom-30">
+                    <div>
+                        <h2 class="heading_businessRepo">Choose Category And Subcategory For Business Report</span></h2>
+                    </div>
+                </div>
+            </div>
             <div class="row rowaepsChooseTrasaction_BusinessRepo" id="aepsChooseTrasaction">
                 <div class="row">
                     <div class="col col-md-6 col-sm-6">
                         <div class="col-md-4 col-sm-4" style="margin-left: 30px;">
-                            <h4 class="heading_choose_businessrepo">Select Category</h4>
+                            <h4 class="heading_choose_businessrepo">Category</h4>
 
                         </div>
                         <div class="col-md-4 col-sm-4 select_category_ddl">
@@ -78,7 +87,7 @@
                     </div>
                     <div class="col col-md-6 col-sm-6">
                         <div class="col-md-4 col-sm-4" style="margin-left: 30px;">
-                            <h4 class="heading_choose_businessrepo">Select Sub Category</h4>
+                            <h4 class="heading_choose_businessrepo">Sub Category</h4>
                         </div>
                         <div class="col-md-4 col-sm-4 select_category_ddl">
                             <select class="form-control select_category_ddl_1" id="SId" name="Id" asp-for="Id"
@@ -95,13 +104,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="walletTblborder11" style="display:none;" id="walletTblborder11">
-                <div id="transRepoTbl11" style="margin-top:20px;height: 100%; overflow: auto;width: 100%;display:block; padding-left: 50px;padding-right: 50px; border-radius: 2px">
+                <div id="transRepoTbl11" style="margin-top: 20px;height: 100%; overflow: auto;width: 100%;display:block; padding-left: 50px;padding-right: 50px; border-radius: 2px">
                     @*<h2 id="headingReport" class="transRepoHead text-center" style="margin-bottom: 80px;text-decoration: underline;color: #2d385e;">*@
                     <h2 id="headingReport" class="transRepoHead text-center">
                     </h2>
                     <div class="row" id="divHeading" style="display:block">
-                        <table id="tempTbl" border="0" cellspacing="5" cellpadding="5" class="table table-striped align-middle table-bordered table-responsive caption-top" style="margin-top: 200px; ">
-                            <caption style="margin-top: -142px;"><u> List Of Transaction Details</u></caption>
+                        <table id="tempTbl" border="0" cellspacing="5" cellpadding="5" class="table table-striped align-middle table-bordered table-responsive caption-top" style="margin-top: 40px; ">
+                            <caption style="margin-top: 10px;"><u> List Of Transaction Details</u></caption>
                             <tbody class="filterDate pull-right">
                                 <div class="row div_SortBy">
                                     <div class="col col-md-3">
@@ -127,36 +136,35 @@
                                     <div class="col col-md-2">
                                         <button type="button" class="buttonDownload" style="display:none;margin-left:60px;background: cadetblue;font-weight: 800;" id="btnFilterByDate">Filter By Date</button>
                                     </div>
-                                    <div class="col col-md-2">
-                                        @*<div class="form-group-recharge">*@
-                                        <div class="form-group-recharge">
-                                            <label class="dateLbl"><b>Sort:</b></label>
-                                            @*<select class="busiRepo_status" id="ddlStatusName" onclick="ddlStatusName()">*@
-                                            @*<select class="busiRepo_status" id="ddlStatusName">
-                                            Sort By Status
-                                            <i class="fa fa-angle-down">@*--Select--</i>
-                                            @*<option value="0">--Sort By Status--</option>*@
-                                            @*<option value="0">--Sort By Status--</option>*@
-                                            @*<option value="2">Failure</option>
-                                            <option value="3">NA</option>
-                                            <option value="4">Pending</option>
-                                            <option value="5">Success</option>
-                                            </select>*@
+                                    @*<div class="col col-md-2">*@
+                                    @*<div class="form-group-recharge">
+                                    <label class="dateLbl"><b>Sort:</b></label>*@
+                                    @*<select class="busiRepo_status" id="ddlStatusName" onclick="ddlStatusName()">*@
+                                    @*<select class="busiRepo_status" id="ddlStatusName">
+                                    Sort By Status
+                                    <i class="fa fa-angle-down">@*--Select--</i>
+                                    @*<option value="0">--Sort By Status--</option>*@
+                                    @*<option value="0">--Sort By Status--</option>*@
+                                    @*<option value="2">Failure</option>
+                                    <option value="3">NA</option>
+                                    <option value="4">Pending</option>
+                                    <option value="5">Success</option>
+                                    </select>*@
 
-                                            @*<div class="form-group-recharge">*@
-                                            <div class="">
-                                                <div class="">
-                                                    <div class="">
-                                                        <select class="inputDate form-control ddlStatusName" id="ddlStatus" name="Id" asp-for="Id"
-                                                                                            asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                                                            <option value="0">--Select Status--</option>
-                                                            <option value="1">--Hello Status--</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    @*<div class="form-group-recharge">*@
+                                    @* <div class="">
+                                    <div class="">
+                                    <div class="">
+                                    <select class="inputDate form-control ddlStatusName" id="ddlStatus" name="Id" asp-for="Id"
+                                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                    <option value="0">--Select Status--</option>
+                                    <option value="1">--Hello Status--</option>
+                                    </select>
                                     </div>
+                                    </div>
+                                    </div>*@
+                                    @*</div>
+                                    </div>*@
                                     <div class="col col-md-2">
                                         <div class="form-group-recharge">
                                             <button type="button" class="buttonDownload pull-right" onclick="documentDownload()" id="transactionReportDownload">Download</button>
@@ -167,8 +175,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <table id="tempTbl1" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer" border="1" cellspacing="3" cellpadding="3" style="margin-top:-85px;background:#f3f3f3;margin-left: -61px;">
-                    </table>
+                    @*<table id="tempTbl1" mode="static" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer responsive_table_businessRepo" border="1" cellspacing="3" cellpadding="3" style="margin-top:-85px;background:#f3f3f3;margin-left: 15px;">*@
+                    <div id="temptableid"></div>
                 </div>
             </div>
         </div>
@@ -243,13 +251,12 @@
     //Method for first subcategory select without any filter
 
     $("#SId").change(function () {
+        //$("#tempTbl1").dataTable().fnDestroy();
+        debugger;
         document.getElementById("errfromDate").innerHTML = "";
         document.getElementById("errtoDate").innerHTML = "";
         document.getElementById("fromDate").value = '';
         document.getElementById("toDate").value = '';
-        //$('#fromDate').val()="";
-        //$('#toDate').val()="";
-
         var e = $('#SId').val();
         var f = $('#Id').val();
 
@@ -279,22 +286,24 @@
                     window.location.href = response.url;
                 }
                 else {
-                    $("#tempTbl1").find("tr").remove();
-                    var tr = '<tr>';
+                    
+                    var table = $('#tempTbl1').DataTable();
+                    table.destroy();
+                    $("#temptableid").find("table").remove();
+                    var tr = '<table id="tempTbl1" mode="static" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer responsive_table_businessRepo" border="1" cellspacing="3" cellpadding="3"><thead><tr>';
                     var columnName = Object.keys(response[0]);
                     for (var i = 0; i <= columnName.length; i++) {
 
                         if (i == columnName.length && f != 7 && f != 3) {
-                            //tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
                             tr += '<th class="business_Repo_Table_Header">Action</th>'
                         }
                         else if (i == columnName.length && (f == "7" || f == "3")) { }
                         else {
-                            //tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
                             tr += '<th class="business_Repo_Table_Header">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
                         }
                     }
-                    tr += '</tr>';
+                    tr += '</tr></thead>';
+                    tr += '<tbody id="output">';
 
 
                     for (var i = 0; i < response.length; i++) {
@@ -302,7 +311,6 @@
                         var columnValue = Object.values(response[i]);
                         for (var j = 0; j <= columnValue.length; j++) {
                             if (j == 0) {
-                                //tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
                                 tr += '<td class="business_Repo_Table_td">' + (i + 1) + '</td>'
                             }
 
@@ -321,9 +329,22 @@
                         }
                         tr += '</tr>';
                     }
-                    $("#tempTbl1").append(tr);
+                    tr += '</tbody></table>';
+
                     document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                     document.getElementById('walletTblborder11').style.display = "block";
+                    $("#temptableid").append(tr);
+                    debugger;
+
+
+                    var table = $('#tempTbl1').DataTable({
+                        rowReorder: {
+                            selector: 'td:nth-child(2)'
+                        },
+                        responsive: true
+                    });
+
+
                 }
             }
 
@@ -359,34 +380,6 @@
     });
 
 </script>
-
-<script>
-
-    /* Custom filtering function which will search data in column four between two values */
-    //$.fn.dataTable.ext.search.push(
-    // function(settings, data, dataIndex) {
-    //var min = parseInt($('#fromDate').val(), 10);
-    //var max = parseInt($('#toDate').val(), 10);
-    //var age = parseFloat(data[3]) || 0; // use data for the age column
-
-    //if ((isNaN(min) && isNaN(max)) || (isNaN(min) && age <= max) || (min <= age && isNaN(max)) || (min <= age && age <= max)) {
-    //    //return true;
-    //}
-    //return false;
-    // }
-    //);
-
-    //$(document).ready(function () {
-    //    var table = $('#tempTbl').DataTable();
-
-    //    // Event listener to the two range filtering inputs to redraw on input
-    //    $('#toDate, #fromDate').keyup(function () {
-    //        table.draw();
-    //    });
-    //});
-
-</script>
-
 <script>
     $(document).ready(function () {
         $(".ddlStatusName").change(function () {
@@ -419,7 +412,7 @@
                     }
                     else {
                         $("#tempTbl1").find("tr").remove();
-                        var tr = '<tr>';
+                        var tr = '<thead><tr>';
                         var columnName = Object.keys(response[0]);
                         for (var i = 0; i <= columnName.length; i++) {
 
@@ -431,7 +424,8 @@
                                 tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
                             }
                         }
-                        tr += '</tr>';
+                        tr += '</tr></thead>';
+                        tr += '<tbody id="output">';
                         for (var i = 0; i < response.length; i++) {
                             tr += '<tr>'
                             var columnValue = Object.values(response[i]);
@@ -455,90 +449,25 @@
                             }
                             tr += '</tr>';
                         }
+                        tr += '</tbody>';
                         $("#tempTbl1").append(tr);
+                        debugger;
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         document.getElementById('walletTblborder11').style.display = "block";
+                        $("#tempTbl1").dataTable().fnDestroy();
+                        var table = $('#tempTbl1').DataTable({
+                            rowReorder: {
+                                selector: 'td:nth-child(2)'
+                            },
+                            responsive: true
+                        });
+
                     }
                 }
             });
         });
     });
 </script>
-
-@*<script>
-    $(document).ready(function () {
-    $("#ddlStatus").change(function () {
-    document.getElementById("errfromDate").innerHTML = "";
-    document.getElementById("errtoDate").innerHTML = "";
-    var from = $('#fromDate').val();
-    var to = $('#toDate').val();
-    var e = $('#ddlStatus').val();
-    var subCat = $('#SId').val();
-    var f = $('#Id').val();
-    var d = $('#transactionReportDownload').val();
-
-    $.ajax({
-    type: "POST",
-    url: "/MyBusinessReports/GetTransactionReports",
-    data: { 'sort': e, 'fromdate': from, 'todate': to, 'subCat': subCat },
-    type: 'POST',
-    dataType: 'json',
-    success: function (response) {
-    if (response == null || response == "") {
-    document.getElementById("walletTblborder11").style.display = "none";
-    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
-    $("#btnNoDataFoundModel").trigger("click");
-    }
-    else {
-    $("#tempTbl1").find("tr").remove();
-    var tr = '<tr>';
-    var columnName = Object.keys(response[0]);
-    debugger;
-    for (var i = 0; i <= columnName.length; i++) {
-
-    if (i == columnName.length && (f != 7 && f != 3)) {
-    tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">Action</th>'
-    }
-    else if (i == columnName.length && (f == 7 || f == 3)) { }
-    else {
-    tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
-    }
-    }
-    tr += '</tr>';
-    for (var i = 0; i < response.length; i++) {
-    tr += '<tr>'
-    var columnValue = Object.values(response[i]);
-    for (var j = 0; j <= columnValue.length; j++) {
-    if (j == 0) {
-    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + (i + 1) + '</td>'
-    }
-
-    else if (j == columnValue.length && (f != 7 && f != 3)) {
-    if (f == 2) {
-    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">Button1</button><button style="background:#4CC713;color:white" id=2' + i + ' class="btnViewReceipt">Button2</button><button style="background:#4CC713;color:white" id=3' + i + ' class="btnViewReceipt">Button3</button></td>'
-    }
-    else {
-    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;"><button style="background:#4CC713;color:white" id=1' + i + ' class="btnViewReceipt">View Receipt</button></td>'
-    }
-    }
-    else if (j == columnValue.length && (f == 7 || f == 3)) { }
-    else {
-    tr += '<td style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;font-weight:700;text-align:center;">' + columnValue[j] + '</td>'
-    }
-    }
-    tr += '</tr>';
-    }
-    debugger;
-    $("#tempTbl1").append(tr);
-    document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
-    document.getElementById('walletTblborder11').style.display = "block";
-    }
-    }
-    });
-    });
-    });
-    </script>*@
-
 
 <!--Sorting Method-->
 <script>
@@ -572,7 +501,7 @@
                     }
                     else {
                         $("#tempTbl1").find("tr").remove();
-                        var tr = '<tr>';
+                        var tr = '<thead><tr>';
                         var columnName = Object.keys(response[0]);
                         for (var i = 0; i <= columnName.length; i++) {
                             if (i == columnName.length) {
@@ -582,7 +511,8 @@
                                 tr += '<th style="padding-left:20px;padding-top:20px;padding-right:25px;padding-bottom:25px;background: #2d385e;color:white;font-weight:700;font-size:18px;text-align:center;">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
                             }
                         }
-                        tr += '</tr>';
+                        tr += '</tr></thead>';
+                        tr += '<tbody id="output">';
 
                         for (var i = 0; i < response.length; i++) {
                             tr += '<tr>'
@@ -601,8 +531,17 @@
                             }
                             tr += '</tr>';
                         }
+                        tr += '</tbody>';
                         document.getElementById("headingReport").innerHTML = $('#SId :selected').text() + " " + "Report";
                         $("#tempTbl1").append(tr);
+                        $("#tempTbl1").dataTable().fnDestroy();
+
+                        var table = $('#tempTbl1').DataTable({
+                            rowReorder: {
+                                selector: 'td:nth-child(2)'
+                            },
+                            responsive: true
+                        });
                     }
                 },
             });
@@ -656,22 +595,6 @@
         }
     };
 
-    //function ddlStatusName(){
-    //    var from = $('#fromDate').val();
-    //    var to = $('#toDate').val();
-    //    var subCat = $('#SId').val();
-    //    debugger;
-    //    $.ajax({            
-    //        type: "POST",
-    //        url: "/MyBusinessReports/DDLStatus",
-    //        data: { 'fromDate': from, 'toDate': to, 'subCat': subCat },
-    //        dataType: 'json',
-    //        success: function(response){
-    //            $("#ddlStatusName").append("<option>");
-    //        }
-    //    });
-    //}
-
     $(document).ready(function () {
 
         $("#ddlStatus").change(function () {
@@ -718,7 +641,11 @@
 
 <script>
     $(document).ready(function () {
-        $("#tempTbl1").on('click', ".btnViewReceipt", function () {
+        //$("#tempTbl1").on('click', ".btnViewReceipt", function () {
+        $("#temptableid").on('click', ".btnViewReceipt", function () {
+            debugger;
+            var table = $('#tempTbl1').DataTable();
+            var d = table.row(this).data();
             var currentRow = $(this).closest('tr');
             var subCat = $('#SId').val();
             // 15
@@ -757,45 +684,64 @@
             if (subCat == "15" || subCat == "16" || subCat == "17") {
 
                 var aePSCashWithdrawalModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CustomerName: currentRow.find('td:eq(3)').text(),
-                    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
-                    CustomerAadhaarNo: currentRow.find('td:eq(5)').text(),
-                    Status: currentRow.find('td:eq(6)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    BalanceAmount: currentRow.find('td:eq(8)').text(),
-                    CommissionAmount: currentRow.find('td:eq(9)').text(),
-                    BankName: currentRow.find('td:eq(12)').text(),
-                    IIN: currentRow.find('td:eq(13)').text(),
-                    BankRRNNumber: currentRow.find('td:eq(14)').text(),
-                    NPCITransactionId: currentRow.find('td:eq(15)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(16)').text(),
-                    FailureReason: currentRow.find('td:eq(17)').text(),
-                    DEName: currentRow.find('td:eq(18)').text(),
-                    DEMobile: currentRow.find('td:eq(19)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CustomerName: d[3],
+                    CustomerMobileNumber: d[4],
+                    CustomerAadhaarNo: d[5],
+                    Status: d[6],
+                    TransactionAmount: d[7],
+                    BalanceAmount: d[8],
+                    CommissionAmount: d[9],
+                    BankName: d[12],
+                    IIN: d[13],
+                    BankRRNNumber: d[14],
+                    NPCITransactionId: d[15],
+                    RedmilTransactionId: d[16],
+                    FailureReason: d[17],
+                    DEName: d[18],
+                    DEMobile: d[19],
                 }
+                //var aePSCashWithdrawalModel = {
+                //    RequestDate: currentRow.find('td:eq(1)').text(),
+                //    RequestTime: currentRow.find('td:eq(2)').text(),
+                //    CustomerName: currentRow.find('td:eq(3)').text(),
+                //    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
+                //    CustomerAadhaarNo: currentRow.find('td:eq(5)').text(),
+                //    Status: currentRow.find('td:eq(6)').text(),
+                //    TransactionAmount: currentRow.find('td:eq(7)').text(),
+                //    BalanceAmount: currentRow.find('td:eq(8)').text(),
+                //    CommissionAmount: currentRow.find('td:eq(9)').text(),
+                //    BankName: currentRow.find('td:eq(12)').text(),
+                //    IIN: currentRow.find('td:eq(13)').text(),
+                //    BankRRNNumber: currentRow.find('td:eq(14)').text(),
+                //    NPCITransactionId: currentRow.find('td:eq(15)').text(),
+                //    RedmilTransactionId: currentRow.find('td:eq(16)').text(),
+                //    FailureReason: currentRow.find('td:eq(17)').text(),
+                //    DEName: currentRow.find('td:eq(18)').text(),
+                //    DEMobile: currentRow.find('td:eq(19)').text(),
+                //}
             }
 
 
 
             else if (subCat == "30" || subCat == "29" || subCat == "18" || subCat == "9") {
                 var microATMCashWithdrawalModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CardHolderName: currentRow.find('td:eq(3)').text(),
-                    CardHolderMobileNumber: currentRow.find('td:eq(4)').text(),
-                    CardType: currentRow.find('td:eq(5)').text(),
-                    CardNumber: currentRow.find('td:eq(6)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    BalanceAmount: currentRow.find('td:eq(8)').text(),
-                    BankRRNNumber: currentRow.find('td:eq(11)').text(),
-                    NPCITransactionId: currentRow.find('td:eq(12)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(13)').text(),
-                    FailureReason: currentRow.find('td:eq(14)').text(),
-                    DEName: currentRow.find('td:eq(15)').text(),
-                    DEMobile: currentRow.find('td:eq(16)').text(),
-                    Status: currentRow.find('td:eq(10)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CardHolderName: d[3],
+                    CardHolderMobileNumber: d[4],
+                    CardType: d[5],
+                    CardNumber: d[6],
+                    TransactionAmount: d[7],
+                    BalanceAmount: d[8],
+                    BankRRNNumber: d[11],
+                    NPCITransactionId: d[12],
+                    RedmilTransactionId: d[13],
+                    FailureReason: d[14],
+                    DEName: d[15],
+                    DEMobile: d[16],
+                    Status: d[10],
 
                     /*Status: $('#@Html.(m=> m.microATMCashWithdrawalModel.Status)').val()*/
                 }
@@ -804,21 +750,21 @@
             else if (subCat == "19") {
 
                 var microATMBalanceEnquiryModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CardHolderName: currentRow.find('td:eq(3)').text(),
-                    CardHolderMobileNumber: currentRow.find('td:eq(4)').text(),
-                    CardType: currentRow.find('td:eq(5)').text(),
-                    CardNumber: currentRow.find('td:eq(6)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    BalanceAmount: currentRow.find('td:eq(8)').text(),
-                    BankRRNNumber: currentRow.find('td:eq(10)').text(),
-                    NPCITransactionId: currentRow.find('td:eq(11)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(12)').text(),
-                    FailureReason: currentRow.find('td:eq(15)').text(),
-                    DEName: currentRow.find('td:eq(13)').text(),
-                    DEMobile: currentRow.find('td:eq(14)').text(),
-                    Status: currentRow.find('td:eq(9)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CardHolderName: d[3],
+                    CardHolderMobileNumber: d[4],
+                    CardType: d[5],
+                    CardNumber: d[6],
+                    TransactionAmount: d[7],
+                    BalanceAmount: d[8],
+                    BankRRNNumber: d[10],
+                    NPCITransactionId: d[11],
+                    RedmilTransactionId: d[12],
+                    FailureReason: d[15],
+                    DEName: d[13],
+                    DEMobile: d[14],
+                    Status: d[9],
 
 
                 }
@@ -830,26 +776,24 @@
             else if (subCat == "21") {
 
                 var yBLDomesticMoneyTransferModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    SenderName: currentRow.find('td:eq(3)').text(),
-                    SenderMobileNumber: currentRow.find('td:eq(4)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    Surcharge: currentRow.find('td:eq(8)').text(),
-                    BankRRNNumber: currentRow.find('td:eq(16)').text(),
-                    RedmilReferenceId: currentRow.find('td:eq(15)').text(),
-                    ReceiverName: currentRow.find('td:eq(5)').text(),
-                    ReceiverMobileNumber: currentRow.find('td:eq(6)').text(),
-                    BankName: currentRow.find('td:eq(12)').text(),
-                    ReceiverAccountNo: currentRow.find('td:eq(11)').text(),
-                    IFSCCode: currentRow.find('td:eq(13)').text(),
-                    TransactionType: currentRow.find('td:eq(14)').text(),
-                    Reason: currentRow.find('td:eq(18)').text(),
-                    DEName: currentRow.find('td:eq(19)').text(),
-                    DEMobile: currentRow.find('td:eq(20)').text(),
-                    Status: currentRow.find('td:eq(9)').text(),
-
-
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    SenderName: d[3],
+                    SenderMobileNumber: d[4],
+                    TransactionAmount: d[7],
+                    Surcharge: d[8],
+                    BankRRNNumber: d[16],
+                    RedmilReferenceId: d[15],
+                    ReceiverName: d[5],
+                    ReceiverMobileNumber: d[6],
+                    BankName: d[12],
+                    ReceiverAccountNo: d[11],
+                    IFSCCode: d[13],
+                    TransactionType: d[14],
+                    Reason: d[18],
+                    DEName: d[19],
+                    DEMobile: d[20],
+                    Status: d[9],
                 }
 
                 //var result = requestDate + '\n' + requestTime + '\n' + cardHolderName + '\n' + cardHolderMobileNumber + '\n' + cardType + '\n' + cardNumber + '\n' + balanceAmount + '\n' + bankRRNNumber + '\n' + npciTransactionId + '\n' + redmilTransactionId + '\n' + failureReason + '\n' + status;
@@ -860,18 +804,18 @@
             else if (subCat == "23") {
 
                 var creditScoreModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CustomerName: currentRow.find('td:eq(3)').text(),
-                    CustomerMobileNo: currentRow.find('td:eq(4)').text(),
-                    Status: currentRow.find('td:eq(5)').text(),
-                    AmountPaid: currentRow.find('td:eq(6)').text(),
-                    CommissionAmount: currentRow.find('td:eq(7)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(8)').text(),
-                    WalletType: currentRow.find('td:eq(9)').text(),
-                    DEName: currentRow.find('td:eq(10)').text(),
-                    DEMobile: currentRow.find('td:eq(11)').text(),
-                    CIBILScorePDFLink: currentRow.find('td:eq(12)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CustomerName: d[3],
+                    CustomerMobileNo: d[4],
+                    Status: d[5],
+                    AmountPaid: d[6],
+                    CommissionAmount: d[7],
+                    RedmilTransactionId: d[8],
+                    WalletType: d[9],
+                    DEName: d[10],
+                    DEMobile: d[11],
+                    CIBILScorePDFLink: d[12],
 
                 }
 
@@ -881,26 +825,26 @@
             else if (subCat == "26") {
 
                 var goldInvestmentBuyModel1 = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CustomerName: currentRow.find('td:eq(3)').text(),
-                    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
-                    GoldRatePerGram: currentRow.find('td:eq(6)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    NetAmount: currentRow.find('td:eq(7)').text(),
-                    CustomerID: currentRow.find('td:eq(16)').text(),
-                    OldGoldBalance: currentRow.find('td:eq(8)').text(),
-                    NewGoldBalance: currentRow.find('td:eq(9)').text(),
-                    cusInvoice: currentRow.find('td:eq(16)').text(),
-                    Quantity: currentRow.find('td:eq(5)').text(),
-                    InvoiceId: currentRow.find('td:eq(18)').text(),
-                    RedmilTransactionID: currentRow.find('td:eq(17)').text(),
-                    pan: currentRow.find('td:eq(12)').text(),
-                    BankName: currentRow.find('td:eq(15)').text(),
-                    BankAccountNumber: currentRow.find('td:eq(13)').text(),
-                    IFSC: currentRow.find('td:eq(14)').text(),
-                    DEName: currentRow.find('td:eq(20)').text(),
-                    DEMobile: currentRow.find('td:eq(21)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CustomerName: d[3],
+                    CustomerMobileNumber: d[4],
+                    GoldRatePerGram: d[6],
+                    TransactionAmount: d[7],
+                    NetAmount: d[7],
+                    CustomerID: d[16],
+                    OldGoldBalance: d[8],
+                    NewGoldBalance: d[9],
+                    cusInvoice: d[16],
+                    Quantity: d[5],
+                    InvoiceId: d[18],
+                    RedmilTransactionID: d[17],
+                    pan: d[12],
+                    BankName: d[15],
+                    BankAccountNumber: d[13],
+                    IFSC: d[14],
+                    DEName: d[20],
+                    DEMobile: d[21],
                 }
 
 
@@ -909,28 +853,28 @@
             else if (subCat == "27") {
 
                 var goldInvestmentSellModel1 = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CustomerName: currentRow.find('td:eq(3)').text(),
-                    CustomerMobileNumber: currentRow.find('td:eq(4)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    RedmilTransactionID: currentRow.find('td:eq(17)').text(),
-                    InvoiceId: currentRow.find('td:eq(18)').text(),
-                    GoldRatePerGram: currentRow.find('td:eq(5)').text(),
-                    Quantity: currentRow.find('td:eq(6)').text(),
-                    InvoiceId: currentRow.find('td:eq(18)').text(),
-                    CustomerID: currentRow.find('td:eq(19)').text(),
-                    OldGoldBalance: currentRow.find('td:eq(8)').text(),
-                    NewGoldBalance: currentRow.find('td:eq(9)').text(),
-                    cusInvoice: currentRow.find('td:eq(19)').text(),
-                    pan: currentRow.find('td:eq(13)').text(),
-                    BankName: currentRow.find('td:eq(16)').text(),
-                    BankAccountNumber: currentRow.find('td:eq(14)').text(),
-                    IFSC: currentRow.find('td:eq(15)').text(),
-                    BankCharge: currentRow.find('td:eq(10)').text(),
-                    NetAmount: currentRow.find('td:eq(11)').text(),
-                    DEName: currentRow.find('td:eq(20)').text(),
-                    DEMobile: currentRow.find('td:eq(21)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CustomerName: d[3],
+                    CustomerMobileNumber: d[4],
+                    TransactionAmount: d[7],
+                    RedmilTransactionID: d[17],
+                    InvoiceId: d[18],
+                    GoldRatePerGram: d[5],
+                    Quantity: d[6],
+                    InvoiceId: d[18],
+                    CustomerID: d[19],
+                    OldGoldBalance: d[8],
+                    NewGoldBalance: d[9],
+                    cusInvoice: d[19],
+                    pan: d[13],
+                    BankName: d[16],
+                    BankAccountNumber: d[14],
+                    IFSC: d[15],
+                    BankCharge: d[10],
+                    NetAmount: d[11],
+                    DEName: d[20],
+                    DEMobile: d[21],
                 }
 
             }
@@ -938,31 +882,31 @@
 
             else if (subCat == "31") {
                 var finoDMTModel = {
-                    BankCharges: currentRow.find('td:eq(14)').text(),
-                    BankName: currentRow.find('td:eq(11)').text(),
-                    BankRRNNumber: currentRow.find('td:eq(24)').text(),
-                    ClientUniqueId: currentRow.find('td:eq(8)').text(),
-                    CommissionAmount: currentRow.find('td:eq(15)').text(),
-                    DeMobile: currentRow.find('td:eq(21)').text(),
-                    DeName: currentRow.find('td:eq(20)').text(),
-                    IfscCode: currentRow.find('td:eq(12)').text(),
-                    Reason: currentRow.find('td:eq(19)').text(),
-                    ReceiverAccountNo: currentRow.find('td:eq(10)').text(),
-                    ReceiverMobileNumber: currentRow.find('td:eq(22)').text(),
-                    ReceiverName: currentRow.find('td:eq(9)').text(),
-                    RedmilReferenceId: currentRow.find('td:eq(16)').text(),
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestId: currentRow.find('td:eq(7)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    SenderMobileNumber: currentRow.find('td:eq(4)').text(),
-                    SenderName: currentRow.find('td:eq(3)').text(),
-                    SrNo: currentRow.find('td:eq(0)').text(),
-                    Status: currentRow.find('td:eq(6)').text(),
-                    Surcharge: currentRow.find('td:eq(23)').text(),
-                    TransactionAmount: currentRow.find('td:eq(5)').text(),
-                    TransactionID: currentRow.find('td:eq(18)').text(),
-                    TransactionType: currentRow.find('td:eq(13)').text(),
-                    WalletType: currentRow.find('td:eq(17)').text(),
+                    BankCharges: d[14],
+                    BankName: d[11],
+                    BankRRNNumber: d[24],
+                    ClientUniqueId: d[8],
+                    CommissionAmount: d[15],
+                    DeMobile: d[21],
+                    DeName: d[20],
+                    IfscCode: d[12],
+                    Reason: d[19],
+                    ReceiverAccountNo: d[10],
+                    ReceiverMobileNumber: d[22],
+                    ReceiverName: d[9],
+                    RedmilReferenceId: d[16],
+                    RequestDate: d[1],
+                    RequestId: d[7],
+                    RequestTime: d[2],
+                    SenderMobileNumber: d[4],
+                    SenderName: d[3],
+                    SrNo: d[0],
+                    Status: d[6],
+                    Surcharge: d[23],
+                    TransactionAmount: d[5],
+                    TransactionID: d[18],
+                    TransactionType: d[13],
+                    WalletType: d[17],
                 }
 
                 // var result = requestDate + '\n' + requestTime + '\n' + caNumber + '\n' + billPayAmount + '\n' + billReferenceId + '\n' + redmilTransactionId + '\n' + walletType + '\n' + commissionAmount + '\n' + status;
@@ -970,82 +914,82 @@
 
             else if (subCat == "32") {
                 var amazonPayGiftCardModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    ReceiverName: currentRow.find('td:eq(3)').text(),
-                    ReceiverMobileNumber: currentRow.find('td:eq(4)').text(),
-                    ReceiverEmailID: currentRow.find('td:eq(5)').text(),
-                    SenderName: currentRow.find('td:eq(8)').text(),
-                    SenderMobile: currentRow.find('td:eq(9)').text(),
-                    Status: currentRow.find('td:eq(6)').text(),
-                    GST: currentRow.find('td:eq(21)').text(),
-                    TDS: currentRow.find('td:eq(20)').text(),
-                    TransactionAmount: currentRow.find('td:eq(7)').text(),
-                    CommissionAmount: currentRow.find('td:eq(22)').text(),
-                    Quantity: currentRow.find('td:eq(10)').text(),
-                    TotalAmount: currentRow.find('td:eq(11)').text(),
-                    CardNumber: currentRow.find('td:eq(12)').text(),
-                    CardPin: currentRow.find('td:eq(13)').text(),
-                    AmazonReferenceNumber: currentRow.find('td:eq(14)').text(),
-                    GiftMessage: currentRow.find('td:eq(15)').text(),
-                    ResponseCode: currentRow.find('td:eq(16)').text(),
-                    CardDesigncategoryName: currentRow.find('td:eq(17)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(23)').text(),
-                    CardDesignname: currentRow.find('td:eq(18)').text(),
-                    OrderId: currentRow.find('td:eq(19)').text(),
-                    DEName: currentRow.find('td:eq(24)').text(),
-                    DEMobile: currentRow.find('td:eq(25)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    ReceiverName: d[3],
+                    ReceiverMobileNumber: d[4],
+                    ReceiverEmailID: d[5],
+                    SenderName: d[8],
+                    SenderMobile: d[9],
+                    Status: d[6],
+                    GST: d[21],
+                    TDS: d[20],
+                    TransactionAmount: d[7],
+                    CommissionAmount: d[22],
+                    Quantity: d[10],
+                    TotalAmount: d[11],
+                    CardNumber: d[12],
+                    CardPin: d[13],
+                    AmazonReferenceNumber: d[14],
+                    GiftMessage: d[15],
+                    ResponseCode: d[16],
+                    CardDesigncategoryName: d[17],
+                    RedmilTransactionId: d[23],
+                    CardDesignname: d[18],
+                    OrderId: d[19],
+                    DEName: d[24],
+                    DEMobile: d[25],
                 }
 
                 // var result = requestDate + '\n' + requestTime + '\n' + caNumber + '\n' + billPayAmount + '\n' + billReferenceId + '\n' + redmilTransactionId + '\n' + walletType + '\n' + commissionAmount + '\n' + status;
             }
             else if (subCat == "1") {
                 var billPaymentsModel = {
-                    RequestDate: currentRow.find('td:eq(10)').text(),
-                    RequestTime: currentRow.find('td:eq(11)').text(),
-                    CustomerMobileNumber: currentRow.find('td:eq(6)').text(),
-                    BillerCategory: currentRow.find('td:eq(1)').text(),
-                    BillerName: currentRow.find('td:eq(2)').text(),
-                    BillAmount: currentRow.find('td:eq(7)').text(),
-                    Status: currentRow.find('td:eq(12)').text(),
-                    BillerReferenceId: currentRow.find('td:eq(9)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(14)').text(),
-                    CCF: currentRow.find('td:eq(3)').text(),
-                    CustomerInputField: currentRow.find('td:eq(4)').text(),
-                    CustomerInputFieldValue: currentRow.find('td:eq(5)').text(),
-                    DEName: currentRow.find('td:eq(15)').text(),
-                    DEMobile: currentRow.find('td:eq(16)').text(),
+                    RequestDate: d[10],
+                    RequestTime: d[11],
+                    CustomerMobileNumber: d[6],
+                    BillerCategory: d[1],
+                    BillerName: d[2],
+                    BillAmount: d[7],
+                    Status: d[12],
+                    BillerReferenceId: d[9],
+                    RedmilTransactionId: d[14],
+                    CCF: d[3],
+                    CustomerInputField: d[4],
+                    CustomerInputFieldValue: d[5],
+                    DEName: d[15],
+                    DEMobile: d[16],
                 }
 
                 // var result = requestDate + '\n' + requestTime + '\n' + caNumber + '\n' + billPayAmount + '\n' + billReferenceId + '\n' + redmilTransactionId + '\n' + walletType + '\n' + commissionAmount + '\n' + status;
             }
             else if (subCat == "3" || subCat == "4" || subCat == "2") {
                 var mobilePrepaidPostpaid = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    CustomerMobile: currentRow.find('td:eq(3)').text(),
-                    OperatorName: currentRow.find('td:eq(4)').text(),
-                    CustomerID: currentRow.find('td:eq(11)').text(),
-                    Status: currentRow.find('td:eq(6)').text(),
-                    Amount: currentRow.find('td:eq(5)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(9)').text(),
-                    OperatorTransactionId: currentRow.find('td:eq(10)').text(),
-                    DEMobile: currentRow.find('td:eq(12)').text(),
-                    DEName: currentRow.find('td:eq(13)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    CustomerMobile: d[3],
+                    OperatorName: d[4],
+                    CustomerID: d[11],
+                    Status: d[6],
+                    Amount: d[5],
+                    RedmilTransactionId: d[9],
+                    OperatorTransactionId: d[10],
+                    DEMobile: d[11],
+                    DEName: d[12],
 
                 }
             }
             else if (subCat == "5") {
                 var licPremiumPaymentsModel = {
-                    RequestDate: currentRow.find('td:eq(1)').text(),
-                    RequestTime: currentRow.find('td:eq(2)').text(),
-                    caNumber: currentRow.find('td:eq(3)').text(),
-                    Status: currentRow.find('td:eq(4)').text(),
-                    BillPayAmount: currentRow.find('td:eq(6)').text(),
-                    BillReferenceId: currentRow.find('td:eq(8)').text(),
-                    RedmilTransactionId: currentRow.find('td:eq(9)').text(),
-                    DEMobile: currentRow.find('td:eq(11)').text(),
-                    DEName: currentRow.find('td:eq(12)').text(),
+                    RequestDate: d[1],
+                    RequestTime: d[2],
+                    caNumber: d[3],
+                    Status: d[4],
+                    BillPayAmount: d[6],
+                    BillReferenceId: d[8],
+                    RedmilTransactionId: d[9],
+                    DEMobile: d[11],
+                    DEName: d[12],
                 }
             }
 
@@ -1074,7 +1018,7 @@
                 data: { result, subCat },
                 dataType: 'json',
                 success: function (msgdeserialize) {
-
+                    debugger;
                     if (msgdeserialize.result == "EmptyResult") {
                         window.location.href = msgdeserialize.url;
                     }
@@ -1105,32 +1049,13 @@
     });
 
 </script>
-<script>
+@*<script>
     $(document).ready(function () {
-
         var table = $('#tempTbl1').DataTable({
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },
             responsive: true
         });
-        var table1 = $('#example1').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
-            responsive: true
-        });
-        var table2 = $('#BRewards').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
-            responsive: true
-        });
-        var table3 = $('#RERewards').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(2)'
-            },
-            responsive: true
-        });
     });
-</script>
+</script>*@

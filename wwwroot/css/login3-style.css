@@ -4,16 +4,28 @@
         background-color: #486ff2;
         border-color: #486ff2
     }
-
+.spin-Load
+{
+    display:none;
+}
 .authfy-login .btn.btn-lg {
     border-radius: 3px;
     box-shadow: 0 2px 3px #9c9c9c
+}
+.btn_sendOtp {
+    margin-top: -1px;
+    margin-right: -79px;
+}
+.otherdeviceloginview {
+    margin-left: 177px;
 }
 
 .a {
     padding-top: 25px;
 }
-
+.btn_Login {
+    padding-right: 14px;
+}
 .brand-logo {
     margin-top: 0;
     margin-bottom: 0px;
@@ -362,7 +374,7 @@ header .myaccount a.login i {
     }
 }
 
-@media(max-width:320px) {
+/*@media(max-width:320px) {
     .authfy-login {
         height: 480px
     }
@@ -379,7 +391,7 @@ header .myaccount a.login i {
         text-align: left;
         margin-top: 0
     }
-}
+}*/
 .loginview {
     margin-left: -247px;    
 }
@@ -387,7 +399,41 @@ header .myaccount a.login i {
     position: unset !important;
 }*/
 
-@media only screen and (min-width: 200px) and (max-width: 358px) {
+@media only screen and (min-width: 280px) and (max-width: 339px) {
+
+    .forleft {
+        margin-left: 212px;
+        width: 82%;
+        padding: 0px;
+    }
+    .btn_sendOtp {
+        margin-top: -35px;
+        margin-left: -279px;
+        width: 192%;
+    }
+    .authfy-login {
+        height: 480px
+    }
+
+    .authfy-heading p {
+        font-size: 14px
+    }
+
+    .remember-row .col-sm-6 {
+        width: 100%
+    }
+
+    .authfy-login .forgotPwd {
+        text-align: left;
+        margin-top: 0
+    }
+
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: -161px;
+    }
+    
     .forleft {
         margin-left: 209px;
         width: 86%;
@@ -406,8 +452,152 @@ header .myaccount a.login i {
     }
 
     .authfy-login .forgotPwd {
-        margin-top: -30px;
-        margin-left: 154px;
+        margin-top: -31px;
+        margin-left: 164px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }
+
+
+    .notloginmobileview {
+        width: 360px;
+    }
+    .btn_Recover {
+        margin-left: -25px;
+        width: 177%;
+    }
+}
+@media only screen and (min-width: 339px) and (max-width: 439px) {
+
+
+
+
+
+    .authfy-login {
+        height: 480px
+    }
+
+    .authfy-heading p {
+        font-size: 14px
+    }
+    .btn_sendOtp {
+        margin-top: -6px;
+        margin-left: -279px;
+        width: 196%;
+    }
+    .remember-row .col-sm-6 {
+        width: 100%
+    }
+
+    .authfy-login .forgotPwd {
+        text-align: left;
+        margin-top: 0
+    }
+
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: -56px;
+    }
+
+    .forleft {
+        margin-left: 219px;
+        width: 86%;
+    }
+
+    .authfy-login .authfy-panel {
+        padding: 37px;
+    }
+    /* .recoverloginview {
+        margin-left: 0px;
+        width: 366px;
+    }*/
+
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .authfy-login .forgotPwd {
+        margin-top: -31px;
+        margin-left: 198px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }
+
+    
+
+    .notloginmobileview {
+        width: 360px;
+    }
+    .btn_Recover {
+        margin-left: -25px;
+        width: 177%;
+    }
+}
+@media only screen and (min-width: 439px) and (max-width: 539px) 
+{
+
+    .authfy-login {
+        height: 480px
+    }
+
+    .authfy-heading p {
+        font-size: 14px
+    }
+    .btn_sendOtp {
+        margin-top: -37px;
+        margin-left: -270px;
+        width: 211%;
+    }
+   
+
+    .remember-row .col-sm-6 {
+        width: 100%
+    }
+
+    .authfy-login .forgotPwd {
+        text-align: left;
+        margin-top: 0
+    }
+
+    /*.panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: 45px;
+    }*/
+
+    .forleft {
+        margin-left: 230px;
+        width: 86%;
+    }
+
+    .authfy-login .authfy-panel {
+        padding: 37px;
+    }
+    /* .recoverloginview {
+        margin-left: 0px;
+        width: 366px;
+    }*/
+
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .authfy-login .forgotPwd {
+        margin-top: -31px;
+        margin-left: 288px;
     }
 
     .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
@@ -420,20 +610,171 @@ header .myaccount a.login i {
     .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
         top: 15px;
         right: 15px;
-        margin-left: -188px;
+        margin-left: 7px;
     }
 
     .notloginmobileview {
         width: 360px;
     }
+    .btn_Recover {
+        margin-left: 5px;
+        width: 142%;
+    
+    }
 }
-   
 
-@media only screen and  (max-width: 600px) {
+@media only screen and (min-width: 539px) and (max-width: 639px) {
+
+    .authfy-login {
+        height: 480px
+    }
+    .btn_sendOtp {
+        margin-top: -37px;
+        margin-left: -194px;
+        width: 211%;
+    }
+
+    .authfy-heading p {
+        font-size: 14px
+    }
+
+    .remember-row .col-sm-6 {
+        width: 100%
+    }
+
+    .authfy-login .forgotPwd {
+        text-align: left;
+        margin-top: 0
+    }
+
+    /*.panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: 45px;
+    }*/
+
     .forleft {
+        margin-left: 230px;
+        width: 86%;
+    }
+
+    .authfy-login .authfy-panel {
+        padding: 37px;
+    }
+    /* .recoverloginview {
+        margin-left: 0px;
+        width: 366px;
+    }*/
+
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .authfy-login .forgotPwd {
+        margin-top: -31px;
+        margin-left: 288px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }
+
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: 7px;
+    }
+
+    .notloginmobileview {
+        width: 360px;
+    }
+    .btn_Recover {
+        margin-left: 68px;
+    width: 99%;
+    }
+}
+@media only screen and (min-width: 639px) and (max-width: 768px) {
+
+    .authfy-login {
+        height: 480px
+    }
+
+    .authfy-heading p {
+        font-size: 14px
+    }
+    .btn_sendOtp {
+        margin-top: -37px;
+        margin-left: -118px;
+        width: 211%;
+    }
+    .remember-row .col-sm-6 {
+        width: 100%
+    }
+
+    .authfy-login .forgotPwd {
+        text-align: left;
+        margin-top: 0
+    }
+
+    /*.panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: 45px;
+    }*/
+
+    .forleft {
+        margin-left: 230px;
+        width: 86%;
+    }
+
+    .authfy-login .authfy-panel {
+        padding: 37px;
+    }
+    /* .recoverloginview {
+        margin-left: 0px;
+        width: 366px;
+    }*/
+
+    .otherdeviceloginview {
+        margin-left: 40px;
+        width: 415px;
+    }
+
+    .authfy-login .forgotPwd {
+        margin-top: -31px;
+        margin-left: 288px;
+    }
+
+    .checkbox input[type=checkbox] + .label-text:before, .checkbox input[type=checkbox] + .label-text:after {
+        margin-left: 3px;
+        position: absolute;
+        top: 2px;
+        left: 0;
+    }
+
+    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+        top: 15px;
+        right: 15px;
+        margin-left: 7px;
+    }
+
+    .notloginmobileview {
+        width: 360px;
+    }
+    .btn_Recover {
+        margin-left: 68px;
+        width: 99%;
+    }
+}
+@media only screen and  (max-width: 600px) {
+    /*.forleft {
         margin-left: 211px;
         width: 92%;
-    }
+    }*/
 
 
     .authfy-login .authfy-panel {
@@ -462,9 +803,9 @@ header .myaccount a.login i {
     margin-left:17px;
     
     }
-    .authfy-login .forgotPwd {
+   /* .authfy-login .forgotPwd {
         margin-left: 171px;
-    }
+    }*/
         /*  .authfy-login .forgotPwd {
         margin-top: -30px;
         margin-left: 154px;
@@ -476,11 +817,11 @@ header .myaccount a.login i {
         top: 2px;
         left: 0;
     }*/
-        .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+      /*  .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
         top: 15px;
         right: 15px;
         margin-left: -43px;
-    }
+    }*/
 
     .notloginmobileview {
         width: 360px;
@@ -490,14 +831,14 @@ header .myaccount a.login i {
 }
 @media only screen and (max-width: 600px) {
 
-    .forleft {
+   /* .forleft {
         margin-left: 213px;
-        width: 93%;
+        width: 80%;
         padding: 0px;
     }
-
+*/
     .authfy-login .authfy-panel {
-        padding: 33px;
+        padding: 28px;
     }
 
     .panel-login {
@@ -534,32 +875,33 @@ header .myaccount a.login i {
         top: 2px;
         left: 0;
     }*/
-    .panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
+    /*.panel-login .pwdMask .pwd-toggle, .panel-signup .pwdMask .pwd-toggle {
         top: 15px;
         right: 15px;
-        margin-left: -43px;
-    }
+        margin-left: -108px;
+    }*/
 
     .notloginmobileview {
         width: 360px;
     }
 
 }
-
-    
-
-    @media only screen and (min-width: 0px) and (max-width: 541px) {
+    @media only screen and (min-width: 280px) and (max-width: 768px) {
         .authfy-panel-left {
             display: none;
         }
     }
-@media only screen and (min-width: 541px) and (max-width: 990px) 
+@media only screen and (min-width: 768px) and (max-width: 990px) 
 {
     .forleft {
-        margin-left: 211px;
-        width: 102%;
+        margin-left: 67px;
+        width: 150%;
     }
-
+    .btn_sendOtp {
+        margin-top: -2px;
+        margin-left: -289px;
+        width: 287%;
+    }
     .authfy-login .authfy-panel {
         padding: 33px;
     }
@@ -577,7 +919,7 @@ header .myaccount a.login i {
         width: 100%;
     }*/
     .otherdeviceloginview {
-        margin-left: 40px;
+        margin-left: 125px;
         width: 415px;
     }
 

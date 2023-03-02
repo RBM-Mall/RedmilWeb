@@ -1691,6 +1691,10 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
+                if(response.result=="NotConnected"){
+                    $("#btndeviceNotConnected").trigger("click");
+                    $("#btnVerifyPopup").hide();
+                }
                 debugger;
             }
         });
