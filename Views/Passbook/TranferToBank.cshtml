@@ -9,19 +9,21 @@
 @inject IWebHostEnvironment env
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-@*<link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />*@
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/rechargejs/recharge.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<srcipt src="jquery.redirect.js"></srcipt>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" asp-append-version="true" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/css/transfertobankcss/transfertobankcss.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 <style>
     .form-control {
         display: block;
@@ -43,7 +45,7 @@
         transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     }
 
-    
+
     #exTab1 .tab-content {
         color: white;
         background-color: #428bca;
@@ -163,117 +165,117 @@
         padding: 20px 12px;
         border: 1px solid #ccc;
         /*width: 1200px;
-                                                                                                                      border-top: none;*/
-    }
 
-        .tabcontent .title {
-            text-align: center;
-            padding-bottom: 80px;
-        }
+                    }
 
-            .tabcontent .title h1 {
-                font-weight: 800;
-            }
+                        .tabcontent .title {
+                            text-align: center;
+                            padding-bottom: 80px;
+                        }
 
-            .tabcontent .title .aval_bal, .cashBal {
-                margin-top: 20px;
-            }
+                            .tabcontent .title h1 {
+                                font-weight: 800;
+                            }
 
-            .tabcontent .title .aval_bal, .AdvBal {
-                margin-top: -30px;
-            }
+                            .tabcontent .title .aval_bal, .cashBal {
+                                margin-top: 20px;
+                            }
 
-            .tabcontent .title .advAval_bal, .AdvBal {
-                margin-top: -33px;
-            }
+                            .tabcontent .title .aval_bal, .AdvBal {
+                                margin-top: -30px;
+                            }
 
-        .tabcontent .item_info {
-            display: block;
-            margin-top: 50px;
-        }
+                            .tabcontent .title .advAval_bal, .AdvBal {
+                                margin-top: -33px;
+                            }
 
-            .tabcontent .item_info button {
-                align-items: center;
-                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
-                background-size: calc(100% + 20px) calc(100% + 20px);
-                border-radius: 100px;
-                border-width: 0;
-                color: #FFFFFF;
-                cursor: pointer;
-                display: inline-flex;
-                font-family: CircularStd,sans-serif;
-                font-size: 1.5rem;
-                height: auto;
-                justify-content: center;
-                line-height: 1.5;
-                padding: 6px 25px;
-                position: relative;
-                text-align: center;
-                text-decoration: none;
-                transition: background-color .2s,background-position .2s;
-                user-select: none;
-                margin-right: 24px;
-                float: none;
-                z-index: 1;
-            }
+                        .tabcontent .item_info {
+                            display: block;
+                            margin-top: 50px;
+                        }
 
-        .tabcontent .title .item_info .rewbtn {
-            margin-left: 300px;
-        }
+                            .tabcontent .item_info button {
+                                align-items: center;
+                                background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+                                background-size: calc(100% + 20px) calc(100% + 20px);
+                                border-radius: 100px;
+                                border-width: 0;
+                                color: #FFFFFF;
+                                cursor: pointer;
+                                display: inline-flex;
+                                font-family: CircularStd,sans-serif;
+                                font-size: 1.5rem;
+                                height: auto;
+                                justify-content: center;
+                                line-height: 1.5;
+                                padding: 6px 25px;
+                                position: relative;
+                                text-align: center;
+                                text-decoration: none;
+                                transition: background-color .2s,background-position .2s;
+                                user-select: none;
+                                margin-right: 24px;
+                                float: none;
+                                z-index: 1;
+                            }
 
-        .tabcontent hr {
-            margin: 93px 0 0 20px;
-            padding: 10px;
-        }
+                        .tabcontent .title .item_info .rewbtn {
+                            margin-left: 300px;
+                        }
 
-    hr {
-        border: none;
-        border-top: 1px dotted black;
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-        width: 100%;
-    }
+                        .tabcontent hr {
+                            margin: 93px 0 0 20px;
+                            padding: 10px;
+                        }
 
-    .div-browse-plan {
-        margin-top: 15px;
-        text-align: center;
-        padding-top: 20px;
-    }
+                    hr {
+                        border: none;
+                        border-top: 1px dotted black;
+                        color: #fff;
+                        background-color: #fff;
+                        height: 1px;
+                        width: 100%;
+                    }
 
-    .div-plans-table {
-        background: white;
-        border-radius: 20px;
-        display: none;
-        height: 580px;
-        overflow: auto;
-    }
+                    .div-browse-plan {
+                        margin-top: 15px;
+                        text-align: center;
+                        padding-top: 20px;
+                    }
 
-    .main-table-recharge {
-        height: 100%;
-        overflow: auto;
-        width: 100%;
-    }
+                    .div-plans-table {
+                        background: white;
+                        border-radius: 20px;
+                        display: none;
+                        height: 580px;
+                        overflow: auto;
+                    }
 
-    .div-second-plan-head1 {
-        width: 12%;
-        padding: 7px 104px;
-    }
+                    .main-table-recharge {
+                        height: 100%;
+                        overflow: auto;
+                        width: 100%;
+                    }
 
-    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
-        margin-right: -15px;
-        margin-left: -4px;
-    }
+                    .div-second-plan-head1 {
+                        width: 12%;
+                        padding: 7px 104px;
+                    }
 
-    .txt-input1 {
-        border-radius: 0;
-        height: 41px;
-        -moz-border-radius: 0;
-        -webkit-border-radius: 0;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 10px 10px 10px 5px;
-        /* border-bottom: 1px solid #ebebeb !important; */
+                    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
+                        margin-right: -15px;
+                        margin-left: -4px;
+                    }
+
+                    .txt-input1 {
+                        border-radius: 0;
+                        height: 41px;
+                        -moz-border-radius: 0;
+                        -webkit-border-radius: 0;
+                        font-size: 15px;
+                        font-weight: 500;
+                        padding: 10px 10px 10px 5px;
+                        /* border-bottom: 1px solid #ebebeb !important; */
         /* border: none; */
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
@@ -290,17 +292,18 @@
         padding-top: -34px;
     }
 
-    
 
-    .modal-footer {
-    border: none;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 13px;
-    /* padding-top: 250px; */
-    margin-top: -33px;
-    margin-left: -135px;
-}
+
+    /*.modal-footer {
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+        /* padding-top: 250px; */
+       /* margin-top: -33px;
+        margin-left: -135px;
+    }**/
+
     .modal-confirm .btn {
         color: #fff;
         border-radius: 4px;
@@ -314,12 +317,12 @@
         font-weight: 700;
     }
 
-    .table {
-        width: 49%;
-        max-width: 14%;
-        /* margin-bottom: -420px; */
-        margin-top: -55px;
-    }
+    /*.table {
+                width: 49%;
+                max-width: 14%;
+
+                margin-top: -55px;
+            }*/
 
     ._2pHh, .btn-process-recharge3 {
         width: 59%;
@@ -343,27 +346,30 @@
         border: 9px solid #00baf2;
     }
 
-    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+   /* .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
         padding: 10px;
         font-size: 14px;
         line-height: 1.428571429;
         vertical-align: top;
         border-top: 1px solid #ddd;
+    }*/
+
+    /*.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+                padding: 6px;
+                line-height: -2.571429;
+                /* vertical-align: top; */
+    /*border-top: 0px solid #ddd;
     }
 
-    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-        padding: 6px;
-        line-height: -2.571429;
-        /* vertical-align: top; */
-        border-top: 0px solid #ddd;
-    }
+    */
 
-    .verify {
-        margin-left: 582px;
-        color: mediumturquoise;
-        font-size: 18px;
-        margin-top: -10px;
-        cursor: pointer;
+   
+
+    .p_Verify_Face {
+        font-weight: 900;
+        text-align: center;
+        color: #2d385e;
+        font-size: 2rem;
     }
    
 </style>
@@ -373,13 +379,13 @@
         <div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-xl-12 col-md-12 col-xl-12 col-lg-12">
                         <div class="">
                             <div class="row">
-                                <div class="col-sm-7 col-xs-12 dmts">
-                                    <h3 class="padding-left-right-50 ttb" >Transfer To Bank</h3>
+                                <div class="col-sm-7 col-xl-7 col-xs-7 col-md-7 col-lg-7">
+                                    <h3 class="padding-left-right-50 ttb">Transfer To Bank</h3>
                                 </div>
-                                <div class="col-sm-5 col-xs-12 text-right">
+                                <div class="col-sm-5 col-xl-5 col-xs-5 col-lg-5 col-md-5 text-right">
                                     <div class="read-more padding-top-bottom-40">
                                     </div>
                                 </div>
@@ -394,23 +400,23 @@
     <div class="container" style="background-color:white;">
         <div class="row">
             <div class="bal_Right">
-            <div class="col-md-3 col-lg-3 col-sm-3">
-                <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" >
-            </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
-                <div class="Static_avail">
-                <p class="aval_bal"><b>Available :</b></p>
+                <div class="col-md-3 col-lg-3 col-sm-3 col-xl-3">
+                    <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width">
                 </div>
+                <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 col-xl-3">
+                    <div class="Static_avail">
+                        <p class="aval_bal"><b>Available :</b></p>
+                    </div>
+                </div>
+                <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 col-xl-3">
+                    <div class="real_available">
+                        <p class="aval_bal "><label id="lblBalance">₹@Accessor.HttpContext.Session.GetString("Balance")</label></></p>
+                    </div>
+                </div>
+                @* <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
+                <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
+                </div>*@
             </div>
-            <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3 ">
-                <div class="real_available">
-                    <p class="aval_bal "><label id="lblBalance">₹@Accessor.HttpContext.Session.GetString("Balance")</label></></p>
-                    </div>                
-            </div>
-            @* <div class=" col-sm-3 col-md-3 col-lg-3 col-sm-3">
-            <p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>
-            </div>*@
-        </div>
         </div>
     </div>
     <br />
@@ -420,11 +426,11 @@
     <div id="exTab2" class="container">
 
         <div class="row">
-            <div class="col-sm-4 Ex_tab">
+            <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 Ex_tab">
                 <div class="third-header">
-                    <div class="Container_wdth" >
-                        <div class="card ">
-                            <img src="~/img/device biometric image/imps.jpg" class="btn-imps" />
+                    <div class="Container_wdth">
+                        <div class="card">
+                            <img src="~/img/device biometric image/imps.jpg" class="btn-imps"/>
                             <p>
                                 <button class="btn btn-info btn_im ">
                                     IMPS
@@ -435,11 +441,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 Ex_tab ">
+            <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 Ex_tab ">
                 <div class="third-header">
                     <div class="Container_wdth">
                         <div class="card ">
-                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG"  />
+                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
                             <p>
                                 <button class="btn btn-info btn_im">
                                     NEFT
@@ -450,9 +456,9 @@
                     </div>`
                 </div>
             </div>
-            <div class="col-sm-4 Ex_tab">
+            <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 Ex_tab">
                 <div class="third-header">
-                    <div class="Container_wdth" >
+                    <div class="Container_wdth">
                         <div class="card">
                             <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
                             <p>
@@ -471,11 +477,11 @@
     <hr>
     <br />
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-sm-4 col-lg-4 col-xl-4 col-md-4">
             <div class="third-header">
                 @*<div class="container card" style="background:white; border: 2px solid white ;padding: 54px;border-radius: 25px;width:73%;height:518px">*@
                 <div class="container card" style="">
-                    <div class="card-body card-input-im" style="">
+                    <div class="card-body card-input-im">
                         <div class="">
                             <img src="~/img/device biometric image/imps-logo.png" class="imps_logo" />
                         </div>
@@ -499,20 +505,20 @@
                         </div>
                         <div class="form-group">
                             <div class="Tinput">
-                            <label class="lbl_Amount">Amount </label> 
-                            <input type="text" class="form-control " id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" /><br />
-                            <span id="Text_Imps"></span>
-                            @* <span id="Text_Impss"></span>*@
-                            <input type="submit" class="button-Media"  onclick="impstransfer()" value="Transfer">
-                             </div>
+                                <label class="lbl_Amount">Amount </label>
+                                <input type="text" class="form-control " id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" maxlength="6"/><br />
+                                <span id="Text_Imps"></span>
+                                @* <span id="Text_Impss"></span>*@
+                                <input type="submit" class="button-Media" onclick="impstransfer()" value="Transfer">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-sm-4 col-lg-4 col-xl-4 col-md-4">
             <div class="third-header">
-                <div class="container card" >
+                <div class="container card">
                     <div class="card-body card-input-im">
                         <div>
                             <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
@@ -536,22 +542,22 @@
                             </label>
                         </div>
                         <div class="form-group">
-                             <div class="Tinput">
-                            <label class="lbl_Amount">Amount </label> <input type="text" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
-                            <span id="Text_neft"></span>
-                            <button type="button" class="button-Media"  onclick="nefttransfer()">Transfer</button>
+                            <div class="Tinput">
+                                <label class="lbl_Amount">Amount </label> <input type="text" maxlength="6" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
+                                <span id="Text_neft"></span>
+                                <button type="button" class="button-Media" onclick="nefttransfer()">Transfer</button>
 
-                            @* <span id="Text_nefts"></span>*@
-                        </div>
+                                @* <span id="Text_nefts"></span>*@
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-sm-4 col-lg-4 col-xl-4 col-md-4">
             <div class="third-header">
-                <div class="container card" >
+                <div class="container card">
                     <div class="card-body card-input-im">
                         <div class="">
                             <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
@@ -575,52 +581,46 @@
                             </label>
                         </div>
                         <div class="form-group">
-                             <div class="Tinput">
-                            <label class="lbl_Amount">Amount </label> <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" />
-                            <span id="Text_rtgs"></span>
-                            <button type="button" class="button-Media"  onclick="rtgstransfer()">Transfer</button>
+                            <div class="Tinput">
+                                <label class="lbl_Amount">Amount </label> <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" maxlength="9" />
+                                <span id="Text_rtgs"></span>
+                                <button type="button" class="button-Media" onclick="rtgstransfer()">Transfer</button>
                             </div>
-                            @* <span id="Text_rtgss"></span>*@
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
     <hr />
     <div>
-        <div class="col col-md-12 col-sm-12 col-lg-12">
+        <div class="col col-md-12 col-sm-12 col-lg-12 col-xl-12">
             <img src="/css/ImageSlide/REDMIL-BUSINESS-MALL-01.png" style="width:100%;" alt="Norway" />
         </div>
     </div>
     <hr>
 
 </div>
-@*//ModalForError*@
+
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12" style="overflow:auto">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
         <input type="button" id="ModalForErrorsss" style="display:none" data-target="#ModalForErrorrr" data-toggle="modal" />
         <div id="ModalForErrorrr" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
-                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+            <div class="modal-dialog " >
+                <div class="modal-content modal_top" >
                     <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                     </button>
                     <div class="modal-body forhide">
-                        <div style="margin-top:-45px;">
-                            <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
-                            @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
-                        </div>
+                            <img src="~/img/device biometric image/oops2_new.png" class="img-responsive img-Err" />
                         <h4 id="lblMsgERRData" class="modal-title w-100"></h4>
                         <div class="modal-footer">
-                            <button type="button" class="button-21 theclose" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top:-180px;">
+                            <button type="button" class="button-Err theclose" data-dismiss="modal" >
                                 <b>Ok</b>
                             </button>
                         </div>
                     </div>
-
+                
                 </div>
             </div>
         </div>
@@ -628,38 +628,38 @@
 </div>
 <!--Modal For Data-->
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <input type="button" id="ModalForPrceed" style="display:none" data-target="#ModalForData" data-toggle="modal" />
-        <div id="ModalForData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal_dialog"  style="overflow:auto">
-                    <div class="modal-content">
+        <div id="ModalForData" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto">
+            <div class="modal-dialog modal_dialog" style="overflow:auto">
+                <div class="modal-content">
                     <div class="">
-                      <div class="modal-header ">
+                        <div class="modal-header ">
                             <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
                             <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Transfer To Bank</h4>
                         </div>
-                    <div class="modal-body modal_Transfer">
-                        <div  style="">
-                          <img src="~/img/device biometric image/wallet-to-bank gif.gif" class="img_Transfer" />
-                         
-                        </div>
-                        <div>
-                            <div class="Amount_Credit">
-                                <h3>Amount To be Credit :-  ₹<span id="ActualAmount"></span> </h3>
+                        <div class="modal-body modal_Transfer">
+                            <div style="">
+                                <img src="~/img/device biometric image/wallet-to-bank gif.gif" class="img_Transfer" />
+
                             </div>
+                            <div>
+                                <div class="Amount_Credit">
+                                    <h3>Amount To be Credit :-  ₹<span id="ActualAmount"></span> </h3>
+                                </div>
 
 
-                            <img src="~/img/device biometric image/down-arrow.png" class="Arrow_img" />
+                                <img src="~/img/device biometric image/down-arrow.png" class="Arrow_img" />
                                 <input type="submit" class="button-21 Trannsfer_val " value="Procced To Transfer" data-dismiss="modal" onclick="GetMultiAccountDetail()" />
 
-                        </div>
+                            </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="button-21 Trannsfer_val " data-dismiss="modal">
-                                <b>Do It Later</b>
-                            </button>
+                            <div class="modal-footer" style="margin-left:-174PX">
+                                <button type="button" class="button-21 Trannsfer_val " data-dismiss="modal">
+                                    <b>Do It Later</b>
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                 </div>
@@ -670,180 +670,209 @@
 
 <!--Modal For Bank Detail-->
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalFobandetail" style="display:none" data-target="#ModalFobandetails" data-toggle="modal" />
-        <div id="ModalFobandetails" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto">
-            <div class="modal-dialog" >
-                <div class="modal-content modal_table" >
-                    
-                    <div class="modal-header ">
+    <input type="button" id="ModalFobandetail" style="display:none" data-target="#ModalFobandetails" data-toggle="modal" />
+    <div id="ModalFobandetails" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto">
+       
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal_top">
+
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <h3 class="modal-title" style="font-weight: 900; text-align: center;">Choose Bank -- </h3>
+                    <div class="col-sm-5 col-xs-12 pull-right">
+                        <div class="read-more">
                             <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                            <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Transfer To Bank</h4>
                         </div>
-                    @*<div class="modal-body">
-
-                        <h3>Primary Account</h3>
-                        <table id="PrimaryAccount" class="table table-hover table-responsive">
-                            <thead>
-                                <tr style="white-space:nowrap;">
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Account No</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Ifsc</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Beni Name</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1" style="margin-left: 62px;"><h4 style="">Action</h4></div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="primaryoutput" style="text-align:center;">
-                                <tr>
-                                    <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
-                                    <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
-                                    <td>@Accessor.HttpContext.Session.GetString("Name")</td>
-                                    <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
-                                    <td></td>
-                                    <td style="margin-top:3px;margin-left:120px;width:163px" data-dismiss="modal" class="btn-process-recharge3  btn-amount-bind2 btn_bank btn-amount-bind1 forprime">Pay With This Bank</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h3>Additional</h3>
-                        <table id="bankdetail" class="table table-hover table-responsive">
-                            <thead>
-                                <tr style="white-space:nowrap;">
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Account No</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Ifsc</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Beni Name</h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style="">Bank Name </h4></div>
-                                    </th>
-                                    <th>
-                                        <div class="div-second-plan-head1"><h4 style=""> Action </h4></div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbloutputs" style="text-align:center;">
-                            </tbody>
-                        </table>
-
-                        <div class="modal-footer">
-                            <button type="button" class="button-21 addacount" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top: -213px;">
-                                <b>Add Bank Account </b>
-                            </button>
+                    </div>
+                </div>
+                <div class="modal-body" id="1selectDevice">
+                    <p class="p_Verify_Face">Primary Account</p>
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-lg">
+                        <div class="Account_Detail">
+                            <div class=""><h3></h3><hr /></div><br />
+                            <table id="PrimaryAccount" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Account No</th>
+                                        <th>Ifsc</th>
+                                        <th>Beni Name</th>
+                                        <th style="display:none">BankID</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
+                                        <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
+                                        <td>@Accessor.HttpContext.Session.GetString("Name")</td>
+                                        <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
+                                        <td><button class="button-MediaACC forprime" type="button" data-dismiss="modal">Transfer Now</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>*@
+                    </div>
 
-                    <div class="modal-body modal_table">
-                        <div class="Heading_Table"><h3>Primary Account</h3><hr /></div><br />
-                        <table class="table table-striped" id="PrimaryAccount">
+                    <p class="p_Verify_Face">ADDITATIONAL ACCOUNT</p>
+                    <hr />
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
+                       
+                        <table id="bankdetail" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Account No</th>
-                                    <th>Ifsc</th>
-                                    <th>Beni Name</th>
-                                    <th></th>
-                                  @*  <th>Action</th>*@
-                                </tr>
-                            </thead>
-                            <tbody id="primaryoutput">
-                                <tr>
-                                     <td>@Accessor.HttpContext.Session.GetString("Account").ToString()</td>
-                                    <td>@Accessor.HttpContext.Session.GetString("Ifsc").ToString()</td>
-                                    <td>@Accessor.HttpContext.Session.GetString("Name")</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td style="display:none">@Accessor.HttpContext.Session.GetString("BankId").ToString()</td>
-                                    <td data-dismiss="modal" class="button-Media forprime" style="margin-left: 145px;">Pay With This Bank</td>
-                                </tr>
-                         
-                            </tbody>
-                        </table>
-                        <div class="Heading_Table1"><h3>Additional</h3><hr /></div>
-                         <table id="bankdetail" class="table table-hover table-responsive table-striped">
-                            <thead>
-                                <tr style="white-space:nowrap;">
                                     <th>Account No</th>
                                     <th>Ifsc</th>
                                     <th>Beni Name</th>
                                     <th>Bank Name</th>
-                                    @*<th>Action</th>*@
+                                    <th style="display:none">BankId</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbloutputs" style="text-align:center;">
+                            <tbody id="tbloutputs">
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Modal footer -->
-                     <div class="modal-footer ">
-                            <button type="button" class="button-21 addacount" data-dismiss="modal">
-                                <b>Add Bank Account </b>
-                            </button>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="modal_footers">
+                                <button type="button" class="button-21 addacount" data-dismiss="modal">
+                                    <b>Add Bank Account </b>
+                                </button>
+                            </div>
                         </div>
-                    @*<div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>*@
+                        <div class="col-sm-6 col-md-6 col-lg-6">
 
-                </div>
+                            <div class="modal_footers">
+                                <button type="button" class="button-21" data-dismiss="modal">
+                                    <b>Pending Approval </b>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 
 
 <!--Modal For Show Bank Detail in Connfirm-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalForbankdetailConfirm" style="display:none" data-target="#ModalForbankdetailConfirms" data-toggle="modal" style="overflow:auto" />
-        <div id="ModalForbankdetailConfirms" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="margin-top:89px;margin-left:582px">
+        <input type="button" id="ModalForbankdetailConfirm" data-target="#ModalForbankdetailConfirms" data-toggle="modal" />
+        <div id="ModalForbankdetailConfirms" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto;">
+            <div class="modal-dialog">
 
-                <div class="modal-content" style="height:637px;width:557px;color: black;padding:47px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;" onclick="closeconfirm()">×</span>
-                    </button>
-                    <div class="modal-body" style="margin-top: -37px;">
-                        <div class="row div-recharge-img">
-                            <div class="col-sm-4 custom_img_size pay-img">
-                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-width" style="height:100px;width:120px;">
+                <div class="modal-content modal_top">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Confirm</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-4 ">
+                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-widthl">
                             </div>
                             <div class="col-sm-4">
                             </div>
-                            <div class="col-sm-4 custom_img_size pay-img2">
-                                <img src="~/img/device biometric image/npci.png" class="img-width" style="height:100px;width:100px;">
+                            <div class="col-sm-4">
+                                <img src="~/img/device biometric image/npci.png" class="img-widthn_SUCCESS">
                             </div>
                         </div>
-                        <div><h2 class="text-center" style="font-weight:600"> Cash-Out Confirmation </h2></div>
+                        <div><h3 class="text-center" style="font-weight:600"> Cash-Out Confirmation </h3></div>
                         <div>
-                            <h3 style="display:none" id="BankId"></h3>
-                            <h3 style="display:none" id="ServieId"></h3>
-                            <h3 style="display:none" id="OpId"></h3>
-                            <h3>
-                                Benificiary Name :<span id="Bname"></span>
-                            </h3>
-                            <h3>Account No : <span id="Ac"></span></h3>
-                            <h3>IFSC Code: <span id="IFSC"></span></h3>
-                            <h3>Cash Wallet Debit :<label id="lblCashWalletDebit"></label></h3>
-                            <h3>Mode : <span id="Mode"></span></h3>
-                            <h3>Charges : <span id="Charges"></span></h3>
-                            <h3>Actual Account Credit : <span id="AAC"></span></h3>
+                            <div class="row">
+                                <div class="Confirm_Detail">
+                                <div class="col col-md-12">
+                                    <h3 style="display:none" id="BankId"></h3>
+                                 <h3 style="display:none" id="ServieId"></h3>
+                                  <h3 style="display:none" id="OpId"></h3>
+                                    </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Account No </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data ">
+                                        <h4 id="Ac"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>IFSC Code  </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                        <h4 id="IFSC"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Cash Wallet Debit </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                       <h4 id="lblCashWalletDebit"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Mode </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                        <h4 id="Mode"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Charges </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data" >
+                                      <h4 id="Charges"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Actual Account Credit </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                        <h4 id="AAC"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Benificiary Name </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                      <h4 id="Bname"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" onclick="confirm()" style="width: 194px;margin-left: 46px;margin-top: -175px;">
+                           
+                            <button type="button"   class="button-21 Btn_Confirm" data-dismiss="modal">
                                 <b>Confirm </b>
                             </button>
                         </div>
@@ -857,46 +886,133 @@
 <!--Modal For Success Bank Detail-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="ModalForSuccessBanks" style="display:none" data-target="#ModalForSuccessBank" data-toggle="modal"  />
-        <div id="ModalForSuccessBank" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="margin-top:89px;margin-left:582px">
+        <input type="button" id="ModalForSuccessBanks" style="display:none" data-target="#ModalForSuccessBank" data-toggle="modal" />
+        <div id="ModalForSuccessBank" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto;">
+           
+             <div class="modal-dialog">
 
-                <div class="modal-content" style="height:666px;width:557px;color: black;padding:19px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
-                    <div class="modal-body" style="margin-top: -51px;">
-                        <div class="row div-recharge-img">
-                            <div class="col-sm-4 custom_img_size pay-img">
-                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-width" style="height:100px;width:120px;">
+                <div class="modal-content modal_top">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                        <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Confirm</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class="col-sm-4 ">
+                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="img-widthl">
                             </div>
                             <div class="col-sm-4">
                             </div>
-                            <div class="col-sm-4 custom_img_size pay-img2">
-                                <img src="~/img/device biometric image/npci.png" class="img-width" style="height:100px;width:100px;">
+                            <div class="col-sm-4">
+                                <img src="~/img/device biometric image/npci.png" class="img-widthn_SUCCESS">
                             </div>
                         </div>
+                        <div >
+                         <h3 class="text-center" style="font-weight:600"> Cash-Out Transaction </h3>
+                        <img src="~/img/device biometric image/sign.jpg" class="sign_image"  />
+                            <h5 class="Success_text">Congratulation your transaction was successful</h5>    
+                        </div>
                         <div>
-                            <h2 class="text-center" style="font-weight:600"> Cash-Out Confirmation </h2>
-                            <img src="~/img/device biometric image/sign.jpg" style="height: 53px;margin-left: 184px;" />
-                            <h5 style="margin-left: 75px;color:green">Congratulation your transaction was successful</h5>
+                            <div class="row">
+                                <div class="Confirm_Detail">
+                                
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Account No </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data ">
+                                            <h4 id="Acn"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>IFSC Code  </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                        <h4 id="Ic"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Cash Wallet Debit </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                            <h4 id="Cwde"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Mode </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                            <h4 id="Modes"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Charges </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data" >
+                                      <h4 id="Chrge"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Bank Account Credit </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                            <h4 id="Bac"></h4>
+                                    </div>
+                                </div>
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                        <h4>Benificiary Name </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                            <h4 id="B"></h4>
+                                    </div>
+                                </div> 
+                                <div class="col col-md-12">
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_Detail">
+                                            <h4>Date & Time </h4>
+                                    </div>
+                                    <div class="col col-md-2 col-sm-2 col-lg-2 Account_Dash">
+                                        <h4> : </h4>
+                                    </div>
+                                    <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
+                                            <h4 id="DT"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
 
-                        </div>
-                        <div>
-                            <h3>
-                                Benificiary Name :<span id="B"></span>
-                            </h3>
-                            <h3>Account Number : <span id="Acn"></span></h3>
-                            <h3>IFSC Code: <span id="Ic"></span></h3>
-                            <h3>Cash Wallet Debit :<span id="Cwde"></span></h3>
-                            <h3>Mode : <span id="Modes"></span></h3>
-                            <h3>Charges : <span id="Chrge"></span></h3>
-                            <h3>Bank Account Credit : <span id="Bac"></span></h3>
-                            <h3>Date & Time : <span id="DT"></span></h3>
-                        </div>
                         <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top: -186px;">
-                                <b>OK </b>
+                           
+                            <button type="button"  class="button-21" data-dismiss="modal">
+                                 <b>OK </b>
                             </button>
                         </div>
                     </div>
@@ -909,25 +1025,22 @@
 
 <!--Modal For Non Verified-->
 <input type="button" id="btnVerify" data-target="#btnVerifys" data-toggle="modal" style="display:none" />
-<div class="modal fade" id="btnVerifys" role="dialog" style="margin-top: 100px;">
-    @*chooseToVerifyFaceBiometric*@
+<div class="modal fade" id="btnVerifys" role="dialog" style="overflow:auto">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
+        <div class="modal-content modal_top">
+            <div class="modal-header">
+                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                <h4 id="DetailTitle" class="modal-title text-center">Verify your face OR fingerprint biometric</h4>
+            </div>
             <div class="modal-body">
-                <p style="font-weight: 900; text-align: center; color:#2d385e;">Verify your face OR fingerprint biometric</p>
-                <hr />
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-67px;">
-                    <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                </button>
+                
                 <div>
 
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                @*<div class="col-md-6">*@
-                                <img src="../img/device biometric image/fingerprint.jpg" style="margin: 0 0 0 250px;" />
-                                @*</div>*@
+                               
+                                <img src="../img/device biometric image/fingerprint.jpg"  class="finger_image" />
                             </div>
                         </div>
                     </div>
@@ -935,34 +1048,27 @@
                     <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center; margin-top: 20px;">Your Security matters the most to us!</p>
                     <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center;">Verify your face as per your KYC records and transact seemlessly for next 24 hours.</p>
                     <div class="col-md-12">
-                        <div class="col-md-4" style="margin-top: 60px;">
-
-
-                            @* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-left:100px; font-weight: 900; margin-top: 50px;" >
-
-                            </button>*@
-
-
-                            <button class="button-21" id="facedeviceModal" data-dismiss="modal" data-target="#FacedeviceModal" style="margin-left:100px; font-weight: 900; margin-top: 50px;" onclick="FaceLiveliness()">
+                        <div class="col-md-4 vf_md">
+                            <button class="button-21 vfc_modal" id="facedeviceModal" data-dismiss="modal" data-target="#FacedeviceModal" style="" onclick="FaceLiveliness()">
                                 Verify Face
                             </button>
                         </div>
 
-                        <div class="col-sm-2 vl" style="border-left: 6px solid #2d385e; height: 150px; margin-top: 50px; margin-left: 140px;"></div>
-                        <div class="col-md-4" style="margin-top: 60px;">
-                            <button class="button-21" id="deviceModal" onclick="CaptureFinger(60, 10)" style="font-weight: 900; margin-top: 50px;">
+                        <div class="col-sm-2 vl vl_md"></div>
+                        <div class="col-md-4 vf_md" >
+                            <button class="button-21 VUB" id="deviceModal" onclick="CaptureFinger(60, 10)" >
                                 Verify Using Biometric
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="modal-footer">
-                @*<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-top: 50px;">Later</button>*@
-                <button type="button" class="btn btn-default" style="margin-top: 50px;"><a data-dismiss="modal" style="text-decoration: none;">Later</a></button>
-                @*<button class="button-21 pull-center" id="deviceModal" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
-                @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
-                @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
+                <div class="col-sm-12 col-md-12 col-xl-12 col-xl-12">
+                <button type="button" class="btn btn-default modal_letter" data-dismiss="modal" style="">Later</button>
+            
+            </div>
             </div>
         </div>
     </div>
@@ -970,72 +1076,86 @@
 <!--FaceCapture-->
 <!-- Button trigger modal -->
 <!-- Modal -->
+
 <input type="button" id="staticBackdrops" data-target="#staticBackdrop" onclick="openCamera()" data-toggle="modal" style="display:none" />
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" style="margin-top:116px;">
-        <div class="modal-content" style="width: 120%;height:547px;">
+<div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto;">
+    <div class="modal-dialog">
+        <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+        <div class="modal-content modal_top">
             <div class="modal-header">
-                @*  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>*@
-                @*
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-                <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close" style="margin-top:-14px;">
-                    <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                </button>
+                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                <h4 id="DetailTitle" class="modal-title text-center" >Confirm</h4>
             </div>
-            <div class="modal-body">
-                <div id="camera" style="height:auto;width:auto; text-align:left;"></div>
+              <div class="modal-body">
+                <div class="row">
+              <div class="col-sm-6 col-md-6 col-xl-6 col-lg-6">
+                 
+                <video id="videoElement" class="Video_Camera" autoplay></video>
+                </div>
+             <div class="col-sm-6 col-md-6 col-xl-6 col-lg-6">
+             <div class="">
+                   <!--FOR THE SNAPSHOT-->
+                                    <button id="snapBtn" class="button-21_VideoCamera  Take_Snap">Snap Photo</button>
             </div>
-            <div class="modal-footer">
-                <!--FOR THE SNAPSHOT-->
-                <input type="button" class="button-21" value="Take a Snap" id="btPic" onclick="takeSnapShot()" style="margin-top: -232px;" />
+            </div>
+            </div>
+            </div>
             </div>
         </div>
+        </div>
     </div>
-</div>
+    </div>
 <!--For Image-->
 <input type="button" id="staticimages" data-target="#staticimage" data-toggle="modal" style="display:none" />
-<div class="modal fade" id="staticimage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" style="margin-top:116px;">
-        <div class="modal-content" style="height: 87px;width: 128%;height:565px;">
+<div class="modal fade" id="staticimage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto;">
+    <div class="modal-dialog">
+        <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+        <div class="modal-content modal_top ">
             <div class="modal-header">
-                @* <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
 
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
-                <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close" style="margin-top:-14px;">
-                    <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                </button>
+                 <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" >&times;</button>
+                
+                <h4 id="DetailTitle" class="modal-title text-center" >Verify</h4>
             </div>
             <div class="modal-body">
-                @*<div id="camera" style="height:auto;width:auto; text-align:left;"></div>
-                <!--FOR THE SNAPSHOT-->
-                <input type="button" value="Take a Snap" id="btPic" onclick="takeSnapShot()" />*@
-                <p id="snapShot"></p>
 
-            </div>
-            <div class="modal-footer" style="margin-top: -39px;">
-                <button type="button" class="button-21" data-bs-dismiss="modal" onclick="Veryfyimage()">Verify </button>
-                <button type="button" class="button-21" data-dismiss="modal">Descard</button>
-            </div>
+                    <div class="row">
+                    <!--FOR THE SNAPSHOT-->
+                 <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <canvas id="canvasElement" class="Video_Camera"></canvas>
+                   </div>
+                <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        </div>
+                    <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <div class="img_ver">
+                             <button type="button"class="button-21_VideoCameras" data-bs-dismiss="modal" onclick="Veryfyimage()">Verify </button>
+                     </div>
+                     </div>
+                     <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                       <div class="img_veri">
+                          <button type="button" class="button-21_VideoCameras" data-dismiss="modal">Descard</button>
+                     </div>
+                     </div>
+                     </div>
+                     </div>
+           </div>
         </div>
     </div>
-
-
-
-</div>
-
+    </div>
+    </div>
 
 <!-- Modal For Add Account -->
 <input type="button" id="AddAcounts" data-target="#AddAcount" data-toggle="modal" style="display:none" />
-<div class="modal fade" id="AddAcount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" style="margin-top:82px;">
-        <div class="modal-content" style="width: 120%;height:661px;">
+<div class="modal fade" id="AddAcount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto">
+    <div class="modal-dialog">
+        <div class="modal-content modal_top">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Add Account</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-14px;">
-                    <span aria-hidden="true" style="padding-right:14px;padding-right:14px; font-size: 25px; font-weight: bolder;">×</span>
-                </button>
+                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                <h4  class="modal-title text-center" id="staticBackdropLabel" >Add Account</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal_body_account">
                 <div class="row">
                     <form action="/Passbook/uploadimages" method="post" enctype="multipart/form-data" id="formupload">
                         <div class="form-group">
@@ -1084,20 +1204,27 @@
                         <div class="form-group" style="display:none" id="upan">
                             <label class="control-label"></label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input form-control" name="file" id="file" onchange="return ValidateFileUpload()" style="width:588px">
+                                <input type="file" class="custom-file-input form-control" name="file" id="file" onchange="return ValidateFileUpload()" style="width:82%">
                                 <span id="text_File"></span>
-                                @*  <label class="custom-file-label" id="errupload">Choose file</label>*@
+                                
                             </div>
-                            @*<input type="file" id="fileChooser" onchange="return ValidateFileUpload()" style="width:200px" />*@
-                            @* <input  value="upload"  asp-for="" />*@
+                          
                         </div>
                         <div class="modal-footer">
+                            <div class="row">
+                              <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 ">
+                                   <div class="col-sm-10 col-md-10 col-xl-10 col-lg-10">
+                             <input type="button" class="button-21 ConfirmAddAccount nonverified_buton" value="Add Account" id="hidefornonverify" style="display:none">
+                            <input type="button" class="button-21 veryfiaccount nonverified_buton" value="Add Account" id="verify" />
+                            <input type="button" class="button-21 btPics nonverified_buton" value="Add Account" style="display:none" />
+                                       </div>
+                                  <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2">
+                            <input type="button" class="button-21 Pending_Approval" value="Pending Approval" />
+                            </div>
+                            </div>
                             <!--FOR THE SNAPSHOT-->
-                            <input type="button" class="button-21 ConfirmAddAccount " value="Add Account" id="hidefornonverify" style="margin-top:-188px;margin-left:-20px;width: 150px;display:none" />
-                            <input type="button" class="button-21 veryfiaccount  " value="Add Account" id="verify" style="margin-top:-188px;margin-left:-20px;width: 150px" />
-                            @*<input type="submit" class="button-21 " value="Add Account" id="btnupload" style="margin-top:-188px;margin-left:-20px;width: 150px;display:none" />*@
-                            <input type="button" class="button-21 btPics" value="Add Account" style="margin-top: -188px;width: 150px;display:none" />
-                            <input type="button" class="button-21" value="Pending Approval" style="margin-top: -188px;width: 150px;" />
+                           
+                        </div>
                         </div>
                     </form>
                 </div>
@@ -1106,25 +1233,26 @@
     </div>
 
 </div>
-
-@*//ModalForErrorcharges*@
+<!--ModalForErrorcharges-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="ModalForErrorrrverifys" style="display:none" data-target="#ModalForErrorrrverify" data-toggle="modal" />
         <div id="ModalForErrorrrverify" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
-                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
+           @* <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">*@
+            <div class="modal-dialog modal-confirm" >
+             @*   <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">*@
+                <div class="modal-content modal_top">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                     </button>
                     <div class="modal-body forhide">
-                        <div style="margin-top:-45px;">
+                        <div>
                             <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
                             @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
                         </div>
                         <h4 id="lblMsgERRDataforcharges" class="modal-title w-100"></h4>
                         <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top:-180px;">
+                            <button type="button" class="button-21 Error_Verify" data-dismiss="modal" >
                                 <b>Ok</b>
                             </button>
                         </div>
@@ -1136,47 +1264,48 @@
     </div>
 </div>
 <!-- Modal For Surcharge Detail-->
-<input type="button" id="AddAcounts" data-target="#AddAcount" data-toggle="modal" style="display:none" />
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
+
         <input type="button" id="ModalForSurcharge" style="display:none" data-target="#ModalForSurcharges" data-toggle="modal" />
         <div id="ModalForSurcharges" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:266px;margin-left:680px">
-                <div class="modal-content" style="height:255px;width:464px;color: black;padding:4px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
-                    <div class="modal-body forhides">
-                        @* <h4> <span id="lblMsgSurcharge"></span></h4>*@
+         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-lg" >
+            <div class="modal-dialog">
+            <div class="modal-content modal_top_ModalForSurcharge">
+                    <div class="modal-header">
+                    <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" >&times;</button>
+                     <h5 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Verification Charges</h5>
                     </div>
-                    <h4 id="fornull">Bank Account Detail Verification Charges: Rs. <span id="lblMsgSurcharge"></span></h4>
-                    <div class="modal-footer">
-                        <button type="button" class="button-21" data-dismiss="modal" onclick="verified()" id="okay" style="width: 135px;margin-right: 201px;margin-top:-149px;">
+                    <div class="modal-body">
+                        <h4 id="fornull" class="text-center">Bank Account Detail Verification Charges: Rs. <span id="lblMsgSurcharge"></span></h4>
+                    </div>
+                        <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <button type="button" class="button-Media" data-dismiss="modal" onclick="verified()" id="okay" >
                             <b>Yes</b>
                         </button>
-                        <button type="button" class="button-21" data-dismiss="modal" onclick="nonverified()" id="nonokay" style="width: 135px;margin-right: 201px;margin-top:-149px;">
+                      
+                        <button type="button" class="button-Media" data-dismiss="modal" onclick="nonverified()" id="nonokay" style="display:none">
                             <b>Yes</b>
                         </button>
-                        <button type="button" class="button-21" data-dismiss="modal" onclick="SendOtp()" id="Otp" style="width: 135px;margin-right: 201px;margin-top:-149px;">
+                        
+                            <button type="button" class="button-Media" data-dismiss="modal" onclick="SendOtp()" id="Otp" style="display:none">
                             <b>Yes</b>
                         </button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 modal_surcharge_no">
 
-                        <button type="button" class="button-21" data-dismiss="modal" style="width: 135px;margin-left: 227px;margin-top:-167px;">
-                            <b>No</b>
-                        </button>
-                    </div>
-                    @*<div class="modal-footer" id="showoccur">
-                    <button type="button" class="button-21" data-dismiss="modal" style="width: 135px;margin-right: 201px;margin-top:-149px;">
-                    <b>Ok</b>
-                    </button>
 
+                            <button type="button" class="button-Media theclose" data-dismiss="modal">
+                     <b>No</b>
+                    </button>
+                  
                     </div>
-                    *@
                 </div>
 
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Modal For verified Detail or not -->
@@ -1184,22 +1313,17 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="Modalforverifieddetails" style="display:none" data-target="#Modalforverifieddetail" data-toggle="modal" />
         <div id="Modalforverifieddetail" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:266px;margin-left:680px">
-                <div class="modal-content" style="height:255px;width:464px;color: black;padding:4px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
-                    <div class="modal-body forhide">
-                        @* <img src="~/css/imageslide/yes-icon-14.jpg" style="width: 148px;height: 141px;margin-left: 112px;margin-top: -55px;"/>*@
-                        @*<div style="margin-top:-45px;">
-                        <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
-                        <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
+            <div class="modal-dialog" >
+                <div class="modal-content modal_top">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                        <h5 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Not Match Record</h5>
                     </div>
-
-
-                    <h4>We Apologies ! your Name as per banks record is not matching with your name as per your Pan Card.  <span id=""></span></h4>
+                    <div class="modal-body forhide">
+                        <h4>We Apologies ! your Name as per banks record is not matching with your name as per your Pan Card.  <span id=""></span></h4>
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top:-167px;">
+                        <button type="button" class="button-21" data-dismiss="modal">
                             <b>Ok</b>
                         </button>
                     </div>
@@ -1214,29 +1338,30 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <input type="button" id="ErrorMessageModals" style="display:none" data-target="#ErrorMessageModal" data-toggle="modal" />
         <div id="ErrorMessageModal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-confirm" style="width:650px;margin-top:171px;margin-left:680px">
-                <div class="modal-content" style="height:438px;width:464px;color: black;padding:31px;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
+            <div class="modal-dialog">
+                <div class="modal-content modal_top_EMM">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                        <h5 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Data Not Found</h5>
+                    </div>
+                   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="modal-body forhide">
-                        <div style="margin-top:-45px;">
-                            <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
-                            @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
-                        </div>
+                            <img src="~/img/device biometric image/oops2_new.png" class="oops2_new img-responsive" />
+                       
                         <h4 id="lblmsgErrorSc" class="modal-title w-100"></h4>
+                        </div>
                         <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" style="width: 194px;margin-left: 46px;margin-top:-180px;">
+                            <button type="button" class="button-21" data-dismiss="modal" >
                                 <b>Ok</b>
                             </button>
                         </div>
+                    
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 <!-- Modal For Submit OTP-->
 <input type="button" id="Accountveriotpmodals" style="display:none" data-target="#Accountveriotpmodal" data-toggle="modal" />
@@ -1247,7 +1372,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header modal-header-recharge">
-                <a href="#" style="padding-top:12px;" class="close">&times;</a>
+                <a href="#" style="padding-top:12px;" class="close theclose ">&times;</a>
                 <h4 class="modal-title" style="text-align:center;"><b>OTP Verification</b></h4>
             </div>
             <div class="modal-body" style="background-color:white;">
@@ -1271,21 +1396,21 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer div-pay-row">
-                <div class="row div-pay-row">
-                    <div class="col-sm-4 final-pay-button">
+            <div class="modal-footer">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">        
+                    <div class="row">
+                    <div class="col-sm-4 final-pay-buttons">
                         <button type="button" onclick="ConfirmOtp()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Verifiy OTP</button>
                     </div>
                     <div class="col-sm-4 final-cancel-button">
                         <button type="button" id="btnResendOTPforAc" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" style="display:none">Resend OTP</button>
                     </div>
                 </div>
-
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <script>
     var ActualAmount;
@@ -1295,7 +1420,7 @@
     var OpId;
     var Amount
     function impstransfer() {
-        
+  
 
         Amount = $('#TextImps').val();
         ServiceId = $('#SID').text();
@@ -1326,10 +1451,11 @@
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
                         Mode = data.mode;
-                        
+
                         $('#TextImps').val("");
                         if (data.statuscode == "ERR") {
                             $("#ModalForErrorsss").trigger("click");
+                           
                             $("#lblMsgERRData").text(data.message)
 
                         }
@@ -1345,7 +1471,7 @@
         }
     }
     function nefttransfer() {
-        
+
         Amount = $('#Textneft').val();
         ServiceId = $('#SID').text();
         OpId = $('#OID').text();
@@ -1372,7 +1498,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
                         Mode = data.mode;
@@ -1394,7 +1520,7 @@
 
     }
     function rtgstransfer() {
-        
+
         Amount = $('#Textrtgs').val();
         ServiceId = $('#SID').text();
         OpId = $('#OID').text();
@@ -1421,7 +1547,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         $('#Textrtgs').val("");
                         ActualAmount = data.actualAmount;
                         Charge = data.charge;
@@ -1445,7 +1571,7 @@
 
     //For Prim
     $("#PrimaryAccount").on('click', ".forprime", function () {
-        
+
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var BeniName = currentRow.find('td:eq(2)').text();
@@ -1462,10 +1588,12 @@
         //$('#CashWalletDebit').text(Amount);
         document.getElementById("lblCashWalletDebit").innerHTML = Amount;
         $("#ModalForbankdetailConfirm").trigger("click");
+       
+
     });
     //For add
     $("#bankdetail").on('click', ".btn_bank", function () {
-        
+
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var Ifsc = currentRow.find('td:eq(1)').text();
@@ -1485,7 +1613,7 @@
     });
 
     function GetMultiAccountDetail() {
-        
+
         $.ajax({
             url: "/Passbook/MultiAcountDetail",
             //data: { 'Amount': Amount },
@@ -1497,10 +1625,10 @@
                 }
 
                 else if (data.statuscode == "ERR") {
-              
+
                     $("#ModalFobandetail").trigger("click");
-                        //$("#ErrorMessageModals").trigger("click");
-                        //$("#lblmsgErrorSc").text(data.message);
+                    //$("#ErrorMessageModals").trigger("click");
+                    //$("#lblmsgErrorSc").text(data.message);
                 }
                 else if (data.result == "UnExpectedStatusCode") {
                     window.location.href = data.url;
@@ -1510,7 +1638,7 @@
                 }
                 else {
                     debugger
-                    let output = data.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' data-dismiss='modal' button class='button-Media btn_bank'>" + 'Pay With This Bank' + "</button></td></tr>");
+                    let output = data.map(i => "<tr ><td>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' button class='button-MediaACC btn_bank' data-dismiss='modal'>" + 'Transfer Now' + "</button></td></tr>");
                     $("#tbloutputs").html(output);
                     $("#ModalFobandetail").trigger("click");
                 }
@@ -1520,8 +1648,10 @@
 
 
     //For Confirm
-    function confirm() {
-        
+    //function confirm() {
+         $('.Btn_Confirm').on('click', function () {
+             $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+           
         var ModeId = $('#Mode').text();
         var BankId = $('#BankId').text();
         //var BankName = $('#CWD').text();
@@ -1537,7 +1667,9 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                
+                   setTimeout(() => {
+     $(this).html('Confirm');
+  }, 2000);
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1605,40 +1737,64 @@
             }
         })
 
-    }
+    })
     function FaceLiveliness() {
         $("#staticBackdrops").trigger("click");
 
     }
+        
 
-    function openCamera() {
-        //CAMERA SETTINGS.
-        Webcam.set({
-            width: 699,
-            height: 406,
-            image_format: 'jpeg',
-            jpeg_quality: 100
-        });
-        Webcam.attach('#camera');
-        // SHOW THE SNAPSHOT.
-        var data_uri;
-        takeSnapShot = function () {
-            Webcam.snap(function (data_uri) {
+    function openCamera() 
+    {
+      // get the video element from the HTML document
+      var video = document.getElementById("videoElement");
+
+      // check if the browser supports webRTC
+      if (navigator.mediaDevices.getUserMedia) {
+        // request access to the user's camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+            // set the video element's source to the camera stream
+            video.srcObject = stream;
+          })
+          .catch(function (err) {
+            console.log("Error: " + err);
+          });
+      }
+
+      // get the snap button and canvas element from the HTML document
+      var snapBtn = document.getElementById("snapBtn");
+      var canvas = document.getElementById("canvasElement");
+      var context = canvas.getContext("2d");
+
+      // add an event listener to the snap button
+      snapBtn.addEventListener("click", function () {
+          debugger;
+        // set the canvas element's dimensions to match the video element's
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        // draw the current video frame onto the canvas
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // get the image data as a base64-encoded string
+        var imageData = canvas.toDataURL("image/png");
+
+        // log the image data to the console
+            document.getElementById('canvasElement').innerHTML =
+                '<img src="' + imageData + '" width="737px" height="466px" id="getimage"/>';
                 
-                document.getElementById('snapShot').innerHTML =
-                    '<img src="' + data_uri + '" width="737px" height="466px" id="getimage"/>';
-                //Veryfyimage(data_uri);
                 $("#staticimages").trigger("click");
+      });
 
-            });
-        }
+       
     }
 
 
 
     function Veryfyimage() {
-
-        var data_uri = document.getElementById('snapShot').innerHTML;
+        debugger;
+        var data_uri = document.getElementById('canvasElement').innerHTML;
         var result = data_uri.indexOf(",");
         var legth = data_uri.length;
         var showimage = data_uri.slice(result + 1, legth);
@@ -1700,7 +1856,7 @@
     })
 
     $('.addacount').on('click', function () {
-        
+
 
         $("#AddAcounts").trigger("click");
 
@@ -1711,7 +1867,7 @@
 
         //function AddinBank(){
         //function foraddingAcount() {
-        
+
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -1775,7 +1931,7 @@
                     window.location.href = data.url;
                 }
                 else {
-                    
+
                     message = data.message;
                     if (data.statuscode == "ERR") {
                         //$('.close').click();
@@ -1829,7 +1985,7 @@
 
     $('.ConfirmAddAccount').on('click', function () {
 
-        
+
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -1898,7 +2054,7 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         if (data.statuscode == "ERR") {
                             $("#ErrorMessageModals").trigger("click");
                             $("#lblmsgErrorSc").text(data.message);
@@ -1943,7 +2099,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                
+
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1959,7 +2115,7 @@
 
                     }
                     else if (data.statuscode == "OSS") {
-                        
+
                         var timeLeft = 30;
                         var elem = document.getElementById('some_divss');
 
@@ -1995,7 +2151,7 @@
     }
     //For Validate Otp Confirm
     function ConfirmOtp() {
-        
+
         var Otp = $('#OtpforAf').val();
         if (Otp.trim() == "") {
             ('#SpanO').text('Please Enter Otp');
@@ -2017,14 +2173,14 @@
                         window.location.href = data.url;
                     }
                     else {
-                        
+
                         if (data.statuscode == "TXN") {
                             $(".verify").hide();
                             $("#btnupload").hide();
 
                             $("#showerror").text("verified");
                             $("#showerror").css("color", "#0b8000");
-                            $("#showerror").css("margin-left", "591px");
+                            $("#showerror").css("margin-left", "83%");
                             $.notify(
                                 data.message,
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
@@ -2112,7 +2268,7 @@
 </script>
 <script type="text/javascript">
     function ValidateFileUpload() {
-        
+
         var fuData = document.getElementById('file');
         var FileUploadPath = fuData.value;
 
@@ -2157,9 +2313,9 @@
 </script>
 <script>
     $(function () {
-        
+
         $(".btPics").on('click', function () {
-            
+
             var files = $("#file").get(0).files;
             if (files.length == "0") {
                 $('#text_File').text('Please Select Any Picture');
@@ -2245,7 +2401,7 @@
                     processData: false, // Not to process data
                     data: fileData,
                     success: function (result, status, xhr) {
-                        
+
                         if (result.result == "EmptyResult") {
                             window.location.href = result.url;
                         }
@@ -2442,16 +2598,11 @@
     }
 
 
-     
-</script>
-<script>
-    //$(document).ready(function () {
 
-    //    var table = $('#PrimaryAccount').DataTable({
-    //    rowReorder: {
-    //        selector: 'td:nth-child(2)'
-    //    },
-    //    responsive: true
-    //} )
-    //});
 </script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/rechargejs/recharge.js"></script>
+<srcipt src="jquery.redirect.js"></srcipt>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>

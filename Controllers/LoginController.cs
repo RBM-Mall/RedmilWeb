@@ -101,7 +101,7 @@ namespace Project_Redmil_MVC.Controllers
                                 return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
                             var des1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
-                            if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
+                                if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
                             {
                                 return Json(des1);
                             }

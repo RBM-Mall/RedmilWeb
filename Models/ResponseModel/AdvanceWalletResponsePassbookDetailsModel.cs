@@ -44,11 +44,10 @@ namespace Project_Redmil_MVC.Models.ResponseModel
     public class RERewardResponseModel
     {
         public int Id { get; set; }
-        public string Detail { get; set; }
-        public string baseUrl { get; set; }
         public string Title { get; set; }
+        public string Detail { get; set; }
         public double Point { get; set; }
-
+        
         [JsonProperty("Credit/Debit")]
         public string CreditDebit { get; set; }
         public string Client { get; set; }
@@ -57,6 +56,7 @@ namespace Project_Redmil_MVC.Models.ResponseModel
         public double? Old_bal { get; set; }
         public double? New_bal { get; set; }
         public int? OpId { get; set; }
+        public string baseUrl { get; set; }
 
 
     }
