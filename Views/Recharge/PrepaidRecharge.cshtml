@@ -125,6 +125,7 @@
                 </div>
                 <div class="block-recharge" style="width:30%;">
                     <a>
+
                         <p class="p-recharge"><strong>More...</strong></p>
                     </a>
                 </div>
@@ -200,26 +201,26 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    
-                                                        @*<input id="txtCircle" autocomplete="off" asp-for="Circle" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Circle Name" />
-                                                        <br />
-                                                        <span id="errCircle" class="errorMsg"></span>*@
+
+                                                    @*<input id="txtCircle" autocomplete="off" asp-for="Circle" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Circle Name" />
+                                                    <br />
+                                                    <span id="errCircle" class="errorMsg"></span>*@
                                                     <div class="form-group-recharge" style="display:none;" id="divCircle">
                                                         <select class="dropdownDTH dropdownDTH1" onchange="changeCirclePlan()" id="CirId" name="CirId"
-                                                                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                                                                @*<option value="0">--Select Operator--</option>
-                                                                <option value="0">--Select Operator--</option>*@
-                                                            </select>
-                                                            <br />
-                                                            <span id="errCircle" class="errorMsg"></span>
-                                                            <span id="operator" class="text-danger font-weight-bold"></span>
-                                                            <i class="operatori"></i>
-                                                            <div class="operatorspan">
-                                                                <ul id="ul12" class="operator-change" onclick="changeCircle()">
-                                                                    Change Circle
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                            @*<option value="0">--Select Operator--</option>
+                                                            <option value="0">--Select Operator--</option>*@
+                                                        </select>
+                                                        <br />
+                                                        <span id="errCircle" class="errorMsg"></span>
+                                                        <span id="operator" class="text-danger font-weight-bold"></span>
+                                                        <i class="operatori"></i>
+                                                        @*<div class="operatorspan">
+                                                        <ul id="ul12" class="operator-change">
+                                                        Change Circle
+                                                        </ul>
+                                                        </div>*@
+                                                    </div>
 
                                                     <div class="form-group-recharge">
                                                         <input id="txtAmount" type="tel" autocomplete="off" asp-for="Amount" required="required" class="txt-input js-input-mobile txt-input-text" placeholder="Amount" />
@@ -516,9 +517,9 @@
 
                             //$("#OpId").append($("<option></option>").val(response.currentOperator).html(response.currentOperator));
                             $("#OpId").append($("<option></option>").val(response.currentOperator).html(response.currentOperator));
-                            document.getElementById("divOperator").style.display="block";
+                            document.getElementById("divOperator").style.display = "block";
                             $("#CirId").append($("<option></option>").val(response.currentLocation).html(response.currentLocation));
-                            document.getElementById("divCircle").style.display="block";
+                            document.getElementById("divCircle").style.display = "block";
                             //$("#txtCircle").val(response.currentLocation);
                             //$("#txtOperator").val(response.currentOperator);
                             if (response.currentOperator == "India" || response.currentOperator == "" || response.currentOperator == undefined) {
@@ -858,10 +859,13 @@
 
                     for (var i = 0; i < response.length; i++) {
 
-                        options += '<option value="' +response[i].operatorname + '" text="'+response[i].operatorname+'">' + response[i].operatorname + '</option>';
+                        options += '<option value="' + response[i].operatorname + '" text="' + response[i].operatorname + '">' + response[i].operatorname + '</option>';
 
                     }
                     $('#OpId').append(options);
+                    
+
+
                 }
             }
         });
@@ -876,41 +880,40 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
-                if (response.result == "EmptyResult") {
-                    window.location.href = response.url;
-                }
-                else if (response.result == "UnExpectedStatusCode") {
-                    window.location.href = response.url;
-                }
-                else if (response.result == "RedirectToException") {
-                    window.location.href = response.url;
-                }
-                else {
-                    $('#CirId').html('');
+                //if (response.result == "EmptyResult") {
+                //    window.location.href = response.url;
+                //}
+                //else if (response.result == "UnExpectedStatusCode") {
+                //    window.location.href = response.url;
+                //}
+                //else if (response.result == "RedirectToException") {
+                //    window.location.href = response.url;
+                //}
 
-                    var options = '<option value="' + 0 + '">' + "--Select Circle--" + '</option>';
+                $('#CirId').html('');
 
-                    for (var i = 0; i < response.length; i++) {
+                var options = '<option value="' + 0 + '">' + "--Select Circle--" + '</option>';
 
-                        options += '<option value="' + response[i].circlename + '" text="' + response[i].circlename + '">' + response[i].circlename + '</option>';
+                for (var i = 0; i < response.length; i++) {
 
-                    }
-                    $('#CirId').append(options);
+                    options += '<option value="' + response[i].circlename + '" text="' + response[i].circlename + '">' + response[i].circlename + '</option>';
+
                 }
+                $('#CirId').append(options);
             }
         });
     }
 
 
-     function changeOperatorPlan(){
-         document.getElementById("divplans").style.display="none";
+    function changeOperatorPlan() {
+        document.getElementById("divplans").style.display = "none";
         $('#CirId').html('');
         var options = '<option value="' + 0 + '">' + "--Select Circle--" + '</option>';
         $('#CirId').append(options);
+        changeCircle();
     }
 
-    function changeCirclePlan(){
+    function changeCirclePlan() {
         debugger;
         let circle = document.getElementById("CirId").value;
         let operator = document.getElementById("OpId").value;

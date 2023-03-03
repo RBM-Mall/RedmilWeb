@@ -4202,6 +4202,7 @@ p.fnt-30 {
 .linkcontact {
     color: blue;
 }
+
 .contact_us_last_heading {
     color: #051cb2 !important;
     font-size: 28px;
@@ -4211,6 +4212,13 @@ p.fnt-30 {
 
 
 @media screen and (max-width:340px) and (min-width:280px) {
+
+
+
+    .background-image {
+        width: 106%;
+    }
+
     .download-the-app {
         width: 100px;
     }
@@ -4233,6 +4241,7 @@ p.fnt-30 {
         color: blue;
         font-size: 10px;
     }
+
     .contact-us-page ul li {
         font-size: 11px;
         display: block;
@@ -4242,6 +4251,7 @@ p.fnt-30 {
         color: black;
         position: relative;
     }
+
     .contact_us_last_heading {
         color: #051cb2 !important;
         font-size: 15px;
@@ -4251,6 +4261,11 @@ p.fnt-30 {
 }
 
 @media screen and (max-width:450px) and (min-width:341px) {
+
+    .background-image {
+        width: 106%;
+    }
+
     .download-the-app {
         width: 120px;
     }
@@ -4268,6 +4283,7 @@ p.fnt-30 {
         color: blue;
         font-size: 11px;
     }
+
     .contact-us-page ul li {
         font-size: 12px;
         display: block;
@@ -4277,6 +4293,7 @@ p.fnt-30 {
         color: black;
         position: relative;
     }
+
     .contact_us_last_heading {
         color: #051cb2 !important;
         font-size: 16px;
@@ -4286,7 +4303,12 @@ p.fnt-30 {
 }
 
 @media screen and (max-width:768px) and (min-width:451px) {
+    .background-image {
+        width: 106%;
+    }
+
     .download-the-app {
+
         width: 140px;
     }
 
@@ -4318,6 +4340,7 @@ p.fnt-30 {
         color: black;
         position: relative;
     }
+
     .contact_us_last_heading {
         color: #051cb2 !important;
         font-size: 18px;
@@ -4328,6 +4351,10 @@ p.fnt-30 {
 
 
 @media screen and (max-width:885px) and (min-width:769px) {
+    .background-image {
+        width: 106%;
+    }
+
     .contact-us ul li {
         font-size: 13px;
         margin-left: 7px;
@@ -4356,6 +4383,7 @@ p.fnt-30 {
         color: black;
         position: relative;
     }
+
     .contact_us_last_heading {
         color: #051cb2 !important;
         font-size: 19px;
@@ -4365,6 +4393,11 @@ p.fnt-30 {
 }
 
 @media screen and (max-width:999px) and (min-width:886px) {
+
+    .background-image {
+        width: 106%;
+    }
+
     .contact-us ul li {
         font-size: 13px;
         margin-left: 7px;
@@ -4383,6 +4416,7 @@ p.fnt-30 {
         color: blue;
         font-size: 14px;
     }
+
     .contact-us-page ul li {
         font-size: 16px;
         display: block;
@@ -4399,13 +4433,18 @@ p.fnt-30 {
         font-weight: 700;
         margin-left: 10px;
     }
+
     .section-title {
-        margin-top:150px;
+        margin-top: 150px;
     }
 }
 
 
 @media screen and (max-width:1279px) and (min-width:1000px) {
+    .background-image {
+        width: 106%;
+    }
+
     .contact-us ul li {
         font-size: 15px;
         margin-left: 7px;
@@ -4424,6 +4463,7 @@ p.fnt-30 {
         color: blue;
         font-size: 15px;
     }
+
     .contact-us-page ul li {
         font-size: 17px;
         display: block;
@@ -4440,6 +4480,7 @@ p.fnt-30 {
         font-weight: 700;
         margin-left: 10px;
     }
+
     .section-title {
         margin-top: 180px;
     }
