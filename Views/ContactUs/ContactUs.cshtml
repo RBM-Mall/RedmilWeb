@@ -10,123 +10,111 @@
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/css/navbarheader.css">
-<body>
-    <!-- slider area start here -->
-    <div class="section breadcumb-area background-image" data-src="background-image: url(~/css/Img/contact-us.jpg);" style="background-image: url('../css/Img/contact-us.jpg')">
-        <div class="container ">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <ul>
-                        <li>Contact Us</li>
-                    </ul>
-                </div>
+<!-- slider area start here -->
+<div class="section breadcumb-area background-image about_page_heading_image about_page_heading" data-src="background-image: url(~/css/Img/contact-us.jpg);" style="background-image: url('../css/Img/contact-us.jpg')">
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <ul>
+                    <li class="about_page_heading">Contact Us</li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="section price-area padding-top-bottom-70">
-        <div class="container" style="background: #fafafa;border-radius: 25px;">
-            <div class="row utility-bill">
-                <h3 style="text-align:center;"><span>We are here to help</span> </h3>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="price-table">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="contact_info text-center">
-                                        <p><i class="fa fa-phone" aria-hidden="true"></i></p>
-                                        <p><a class="linkcontact" href="tel:918191929394">(+91) 81-91-92-93-94</a>
-                                        <p>(10:00 AM to 06:30 PM, All days)</p>
-                                    </div>
-
-                                    <br />
-                                    <div class="contact_info text-center">
-                                        <p><i class="fa fa-envelope-o" aria-hidden="true"></i></p>
-                                        <p><a class="linkcontact" href="info@redmil.in">info@redmil.in</a></p>
-
-                                    </div>
+</div>
+<div class="section price-area padding-top-bottom-70">
+    <div class="container" style="background: #fafafa;border-radius: 25px;">
+        <div class="row utility-bill">
+            <h3 style="text-align:center;"><span>We are here to help</span> </h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="price-table">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="contact_info text-center">
+                                    <p><i class="fa fa-phone" aria-hidden="true"></i></p>
+                                    <p><a class="linkcontact" href="tel:918191929394">(+91) 81-91-92-93-94</a>
+                                    <p>(10:00 AM to 06:30 PM, All days)</p>
                                 </div>
+
                                 <br />
-                                <div class="col-sm-6">
-                                    <div class="contact_info text_center" style="text-align: center;">
-                                        <p class="p-write-to-us"><strong>For Any Query Please Click Here</strong></p>
-                                        <br />
-                                        <div style="text-align:center;justify-content:center;align-items:center;">
-                                            <button type="button" class="button-21" style="font-weight:700;" data-toggle="modal" data-target="#myModal1">Write to us</button>
-                                        </div>
+                                <div class="contact_info text-center">
+                                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i></p>
+                                    <p><a class="linkcontact" href="info@redmil.in">info@redmil.in</a></p>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-sm-6">
+                                <div class="contact_info text_center" style="text-align: center;">
+                                    <p class="p-write-to-us"><strong>For Any Query Please Click Here</strong></p>
+                                    <br />
+                                    <div style="text-align:center;justify-content:center;align-items:center;">
+                                        <button type="button" class="button-27" style="font-weight:700;" data-toggle="modal" data-target="#myModal1">Write to us</button>
+                                    </div>
 
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="myModal1" role="dialog">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header modal-header-recharge">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title" style="text-align: center;"><strong>Fill the form to Connect with us</strong></h4>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal1" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header modal-header-recharge">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title" style="text-align: center;"><strong>Fill the form to Connect with us</strong></h4>
+                                                </div>
+                                                <div class="modal-body" style="background-color:white;">
+                                                    <div class="row">
+                                                        <div class="col col-lg-12 col-sm-12">
+                                                            <div class="col col-lg-4 col-md-4 col-sm-4">
+                                                                <label>Name:</label>
+                                                            </div>
+                                                            <div class="col col-lg-6 col-md-6 col-sm-6">
+                                                                <input type="text" class="form-control" name="name" maxlength="30" id="txtname" placeholder="Full Name">
+                                                                <span id="errTxtName" class="errorMsg"></span>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="col col-lg-12 col-sm-12">
+                                                            <div class="col col-lg-4 col-md-4 col-sm-4">
+                                                                <label>Email:</label>
+                                                            </div>
+                                                            <div class="col col-lg-6 col-md-6 col-sm-6">
+                                                                <input type="email" class="form-control" name="email" maxlength="30" id="txtemail" placeholder="Your Email">
+                                                                <span id="errTxtEmail" class="errorMsg"></span>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="col col-lg-12 col-sm-12">
+                                                            <div class="col col-lg-4 col-md-4 col-sm-4">
+                                                                <label>Mobile Number:</label>
+                                                            </div>
+                                                            <div class="col col-lg-6 col-md-6 col-sm-6">
+                                                                <input type="text" class="form-control" name="number" maxlength="10" id="txtnumber" placeholder="Mobile Number">
+                                                                <span id="errTxtNumber" class="errorMsg"></span>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="col col-lg-12 col-sm-12">
+                                                            <div class="col col-lg-4 col-md-4 col-sm-4">
+                                                                <label>Message:</label>
+                                                            </div>
+                                                            <div class="col col-lg-6 col-md-6 col-sm-6">
+                                                                <textarea class="form-control" name="message" id="txtmessage" rows="3" placeholder="Type Your Message"></textarea>
+                                                                <span id="errTxtMessage" class="errorMsg"></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="row">
-                                                                <div class="col col-lg-12 col-sm-12">
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <label>Name:</label>
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <input type="text" class="form-control" name="name" id="name" placeholder="Full Name">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="display: inline-flex;">
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    <button type="button" id="btnSubmit" onclick="submitComplaint()" class="button-27">Submit</button>
                                                                 </div>
-                                                                <br />
-                                                                <br />
-                                                                <div class="col col-lg-12 col-sm-12">
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <label>Email:</label>
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-                                                                <br />
-                                                                <div class="col col-lg-12 col-sm-12">
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <label>Mobile Number:</label>
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <input type="text" class="form-control" name="number" id="number" placeholder="Mobile Number">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-                                                                <br />
-                                                                <div class="col col-lg-12 col-sm-12">
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <label>Message:</label>
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                        <textarea class="form-control" name="message" id="message" rows="3" placeholder="Type Your Message"></textarea>
-                                                                    </div>
-                                                                    <div class="col col-lg-3 col-sm-3">
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-                                                                <br />
-                                                                <div class="col col-lg-12 col-sm-12 padding-top-20">
-                                                                    <button type="submit" name="submit-contact" class="button-21"><strong>Submit</strong></button>
+                                                                <div class="col-sm-6 col-md-6">
+                                                                    <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,53 +128,99 @@
             </div>
         </div>
     </div>
-    <div class="section contact-form-area  padding-bottom-50" style="background:#fafafa;">
-        <div class="container">
-            <div class="row">
+</div>
+<div class="section contact-form-area  padding-bottom-50" style="background:#fafafa;">
+    <div class="container">
+        <div class="row">
 
-                <div class="col-sm-6 padding-top-50 contact-us-page">
-
-                    @*<h2 style="color: #051cb2!important;">Redmil Business Mall Headquarters <strong>Corporate Office</strong></h2>*@
-                    <h2 class="contact_us_last_heading">Redmil Business Mall Headquarters <strong>Corporate Office</strong></h2>
-                    <ul>
-                        <li>
-                            <strong>Address:</strong> 2414, 4th floor, Tower A, The Corenthum towers, Sector 62,<br />
-                            Noida, Uttar Pradesh-201301
-                        </li>
-                        <li><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
-                        <li><strong>Email ID:</strong> info@redmil.in</li>
-                    </ul>
-                    <hr>
-                    <br />
-                    <br />
-                    <br />
-                    @*<h2 style="color: #051cb2!important;">Redmil Group<strong>Regd Office</strong></h2>*@
-                    <h2 class="contact_us_last_heading">Redmil Group<strong>Regd Office</strong></h2>
-                    <ul>
-                        <li>
-                            <strong>Address:</strong>1st floor, STFC Club, 86/245,Eldeco Garden Estate, Raipurwa<br />
-                            Kanpur, Uttar Pradesh-208003
-                        </li>
-                        <li class="time_contact"><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
-                        <li><strong>Email ID:</strong> info@redmil.in</li>
-
-
-                    </ul>
-                    <hr>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="bg-border">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0900091679537!2d77.36936982398315!3d28.627064326190037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce559fabd5969%3A0x48a08667edff0402!2sThe%20Corenthum!5e0!3m2!1sen!2sin!4v1657522823456!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                    </div>
-                </div>
-
+            <div class="col-sm-6 padding-top-50 contact-us-page">
+                <h2 class="contact_us_last_heading">Redmil Business Mall Headquarters <strong>Corporate Office</strong></h2>
+                <ul>
+                    <li>
+                        <strong>Address:</strong> 2414, 4th floor, Tower A, The Corenthum towers, Sector 62,<br />
+                        Noida, Uttar Pradesh-201301
+                    </li>
+                    <li><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
+                    <li><strong>Email ID:</strong> info@redmil.in</li>
+                </ul>
+                <hr>
+                <br />
+                <br />
+                <br />
+                <h2 class="contact_us_last_heading">Redmil Group<strong>Regd Office</strong></h2>
+                <ul>
+                    <li>
+                        <strong>Address:</strong>1st floor, STFC Club, 86/245,Eldeco Garden Estate, Raipurwa<br />
+                        Kanpur, Uttar Pradesh-208003
+                    </li>
+                    <li class="time_contact"><strong>Contact No:</strong> (+91) 81-91-92-93-94 (Monday to Saturday, 10:00 AM to 6:30 PM)</li>
+                    <li><strong>Email ID:</strong> info@redmil.in</li>
+                </ul>
+                <hr>
             </div>
-
-
+            <div class="col-sm-6">
+                <div class="bg-border">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0900091679537!2d77.36936982398315!3d28.627064326190037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce559fabd5969%3A0x48a08667edff0402!2sThe%20Corenthum!5e0!3m2!1sen!2sin!4v1657522823456!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+<a id="scrollUp" href="#top" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>
+<script>
+    function submitComplaint() {
+        let name, email, mobile, msg;
+        name = $("#txtname").val();
+        email = $("#txtemail").val();
+        mobile = $("#txtnumber").val();
+        msg = $("#txtmessage").val();
+
+        if (name.length === 0) {
+            document.getElementById("errTxtName").innerHTML = "Please Enter Name";
+        }
+        else if (email.length === 0) {
+            document.getElementById("errTxtEmail").innerHTML = "Please Enter Email Id";
+        }
+        else if (mobile.length === 0) {
+            document.getElementById("errTxtNumber").innerHTML = "Please Enter Mobile Number";
+        }
+        else if (msg.length === 0) {
+            document.getElementById("errTxtMessage").innerHTML = "Please Enter Message";
+        }
+        else {
+
+        }
+
+    }
 
 
-    <a id="scrollUp" href="#top" style="display: none; position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>
-</body>
+    $("#txtnumber").keyup(function (e) {
+        debugger;
+        var phoneno = /^(0|91)?[6-9][0-9]{9}$/;
+        var MobileNum = $("#txtnumber").val();
+        if (!phoneno.test(MobileNum)) {
+            document.getElementById("errTxtNumber").style.color = "red";
+            $("#errTxtNumber").html("Please insert Valid Mobile Number");
+        }
+        else {
+            $("#errTxtNumber").html("");
+        }
+    });
+
+
+    $("#txtemail").keyup(function (e) {
+        debugger;
+
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var Email = $("#txtemail").val();
+        if (Email.match(validRegex)) {
+            document.getElementById("errTxtEmail").style.color = "red";
+            $("#errTxtEmail").html("Please insert Valid Email Id");
+        }
+        else {
+            $("#errTxtEmail").html("");
+        }
+    });
+
+
+</script>

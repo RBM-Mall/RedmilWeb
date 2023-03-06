@@ -49,7 +49,7 @@ namespace Project_Redmil_MVC.Controllers
             {
                 //selfHelp.ServiceId = ReplaceServiceID(serviceID); // 2114
                 selfHelp.ServiceId = "26"; // 2114
-                #region Checksum (viewfql|Unique Key|ServiceId|)
+                #region Checksum (GetAepsKycDetailsNew|Unique Key|ServiceId|)
                 //string input = Checksum.MakeChecksumString("ViewPayOutCategory", obj.UserId, obj.Token);
                 string input = Checksum.MakeChecksumString("GetAepsKycDetailsNew", Checksum.checksumKey, selfHelp.ServiceId);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);

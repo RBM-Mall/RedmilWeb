@@ -109,12 +109,9 @@
             <button type="button" class="buttonDownload" onclick="documentDownload()" id="transactionReportDownload">Download</button>
         </div>
     </div>
-    @*<div style="overflow-x:auto;">*@
     <div>
         <div class="col-md-12">
-            @*<div style="overflow-x: auto; overflow-y: auto; white-space: nowrap;">*@
             <div>
-                @*<table id="example" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer" style="margin-left:27px !important;">*@
                 <table id="example" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer">
                     <thead style="color: #fff; background-color: #2d385e;">
                         <tr>
@@ -313,10 +310,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" onclick="takeshot()" id="btnShareWithCustomer" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Share With Customer</button>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center;">
+
+                                <button type="button" id="btnShareWithCustomer" onclick="takeshot()" class="button-27">Share With Customer</button>
+
                             </div>
                         </div>
                     </div>
@@ -342,14 +341,6 @@
                         <div class="row">
                             <label style="display:none" id="lblTin"></label><br />
                             <label style="display:none" id="lblSeat"></label><br />
-                            @*<div class="col-sm-12">
-                            <div style="background-color: #3EB2FD;background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);color: white;padding-top: 10px;padding-bottom: 10px;width: 80%;margin-left: 60px;">
-                            <h4 style="text-align: center;">
-                            <label id="lblBoardingHeading">Boarding Pass</label>
-                            </h4>
-                            </div>
-                            <hr />
-                            </div>*@
                             <div class="col-sm-12" style="text-align:center">
                                 <img src="~/img/Bus_image.jpg" style="height: 100px;width: 200px;" /><br />
                                 <b>
@@ -385,10 +376,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" data-dismiss="modalforCancelTickets" data-target="#modalCancelBookingConfirm" data-toggle="modal" id="btnCancelTicket" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Cancel Ticket</button>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center;">
+
+                                <button type="button" id="btnShareWithCustomer" data-dismiss="modalforCancelTickets" data-target="#modalCancelBookingConfirm" data-toggle="modal" class="btn btn-danger">Cancel Ticket</button>
+
                             </div>
                         </div>
                     </div>
@@ -479,15 +472,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <button type="button" onclick="cancelTicket()" id="btnFinalCancelButton" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Yes</button>
-                            </div>
-                            <div class="col-sm-4 final-cancel-button">
-                                <a href="/MyBusinessReports/TravelServices" type="button" style="margin-left:110px" id="btnCloseFirst" class="btn btn-danger butn-cancel">No</a>
-                            </div>
 
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12" style="display: inline-flex;">
+                                <div class="col-sm-6 col-md-6">
+                                    <button type="button" onclick="cancelTicket()" id="btnFinalCancelButton" class="button-27">Yes</button>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <a href="/MyBusinessReports/TravelServices" type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">No</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -520,10 +515,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer div-pay-row">
-                        <div class="row div-pay-row">
-                            <div class="col-sm-4 final-pay-button">
-                                <a style="padding-top: 13px;" href="/MyBusinessReports/TravelServices" type="button" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3">Ok</a>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center;">
+                                <a href="/MyBusinessReports/TravelServices" type="button" class="button-27">Ok</a>
                             </div>
                         </div>
                     </div>
@@ -533,21 +528,7 @@
 
     </div>
 </div>
-@*<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" asp-append-version="true"></script>
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "scrollX": true,
-            "scrollY": false,
-            "animate": true,
-            "bLengthChange": true,
-            "bFilter": true,
-            "bInfo": true,
-            "paging": true,
-            "searching": true
-        });
-    });
-</script>*@
+
 <script>
     function getBookingDetails(id, value) {
         var bookingID = id;
@@ -562,14 +543,14 @@
             success: function (response) {
                 debugger;
                 if (response.result == "EmptyResult") {
-                        window.location.href = response.url;
-                    }
-                    else if (response.result == "UnExpectedStatusCode") {
-                        window.location.href = response.url;
-                    }
-                    else if (response.result == "RedirectToException") {
-                        window.location.href = response.url;
-                    }
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
                 else {
                     document.getElementById("lblHeadingPickup").innerHTML = response[0].sourcePickupCity + " - ";
                     document.getElementById("lblHeadingPickup1").innerHTML = response[0].sourcePickupCity + " To ";
