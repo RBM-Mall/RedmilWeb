@@ -1063,8 +1063,6 @@
             $("#ComingSoons").trigger("click");
         }
 
-
-
         $("#txtNumber").keyup(function (e) {
             var phoneno = /^(0|91)?[6-9][0-9]{9}$/;
             var MobileNum = $("#txtNumber").val();
@@ -1090,19 +1088,14 @@
                 document.getElementById("forgotPwdBtn").style.display = "block";
             }
         });
-
-
         var Name;
         var MobileNo;
-
         //function verifiedLogin() {
         $('#Logni_button').click(function() {
-           
-            debugger;
              $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
-              setTimeout(() => {
-     $(this).html('Login');
-              }, 2000);
+            setTimeout(() => {
+                $(this).html('Login');
+            }, 2000);
             var MobileNum = $('[Id*=txtNumber]').val();
             $('#lblMobile').text(MobileNum);
             document.getElementById('lblMobile').innerHTML = MobileNum;
@@ -1127,6 +1120,8 @@
                     dataType: 'json',
                     success: function (response) {
                         debugger;
+                         setTimeout(() => {
+                             $(this).html('Login');}, 2000);
                         if(response.result=="EmptyResult" || response.result=="RedirectToException"){
                                         window.location.href = response.url;
                                     }
