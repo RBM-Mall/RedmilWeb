@@ -7240,8 +7240,8 @@ button.close {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
+    /*border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);*/
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
     box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
@@ -7265,8 +7265,8 @@ button.close {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     /*border: 1px solid #ccc;*/
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
+    /*border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;*/
     -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
     box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 }
@@ -7280,7 +7280,7 @@ button.close {
 .dropdown ul li {
     width: 200px;
     padding: 5px;
-    border-bottom: 1px solid #000;
+    /*border-bottom: 1px solid #000;*/
     background: transparent;
     border-radius: 0px;
     text-align: left;
@@ -7306,7 +7306,7 @@ button.close {
     .dropdown ul li:hover .Sub-menu-1 ul li {
         width: 200px;
         padding: 10px;
-        border-bottom: 1px solid #000;
+        /*border-bottom: 1px solid #000;*/
         /* border-left: 1px solid #000;*/
         background: transparent;
         border-radius: 0px;
