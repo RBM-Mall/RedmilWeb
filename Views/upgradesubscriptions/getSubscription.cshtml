@@ -14,12 +14,18 @@
     <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="~/ResponsiveCSS/Index.css" rel="stylesheet"/>
+    <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
     <link href="~/css/getsubscription/getsubscription.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" />
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css' />
+    <link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
     <style>
-   
+
     </style>
 </head>
 <body>
@@ -38,47 +44,47 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-lg-12 col-xs-12 col-md-12 col-xl-12">
-            @{
-                @foreach (var item in Model.DataumModel)
-                {
-                    var a = @item.Subscribed;
-                    
-                    <div class="col-md-3 col-xl-3 col-9">
-                        <h2 style="text-align:center" class="mt-5"></h2>
-                        <div class="card">
+                @{
+                    @foreach (var item in Model.DataumModel)
+                    {
+                        var a = @item.Subscribed;
 
-                            <p class="PlanId" style="display:none">@item.Id</p>
-                            <p class="PlanType" id="PlanType" style="display:none">@item.PlanType</p>
-                            <img src="@item.Img" alt="" style="width:100%">
-                            <h3 class="pdfopen">@item.PlanName</h3>
-                            <h6 onclick='OpenPdf("@item.PlanName")' class="vPlan" style="font-weight:bold;cursor:pointer;">View Plan Branding</h6>
-                            @if (a != "")
-                            {
-                                <p>
-                                    <button disabled class="forrate" id="forprice" data-target="#onlinepayment" data-toggle="modal"><span style="font-size: 29px;">@item.Subscribed </span></button>
-                                </p>
+                        <div class="col-md-3 col-xl-3 col-9">
+                            <h2 style="text-align:center" class="mt-5"></h2>
+                            <div class="card">
 
-                            }
-                            else
-                            {
-                                <p>
-                                    <button class="forrate" id="forprice" onclick='openonlinepay("@item.PlanName,@item.Total", "@item.Id", "@item.Price", "@item.PlanName","@item.PlanType")' data-target="#onlinepayment" data-toggle="modal">  Pay Amount Rs.@item.Price +  GST: Rs.@item.GST Total: Rs.@item.Total</button>
-                                </p>
+                                <p class="PlanId" style="display:none">@item.Id</p>
+                                <p class="PlanType" id="PlanType" style="display:none">@item.PlanType</p>
+                                <img src="@item.Img" alt="" style="width:100%">
+                                <h3 class="pdfopen">@item.PlanName</h3>
+                                <h6 onclick='OpenPdf("@item.PlanName")' class="vPlan" style="font-weight:bold;cursor:pointer;">View Plan Branding</h6>
+                                @if (a != "")
+                                {
+                                    <p>
+                                        <button disabled class="forrate" id="forprice" data-target="#onlinepayment" data-toggle="modal"><span style="font-size: 29px;">@item.Subscribed </span></button>
+                                    </p>
 
-                            }
+                                }
+                                else
+                                {
+                                    <p>
+                                        <button class="forrate" id="forprice" onclick='openonlinepay("@item.PlanName,@item.Total", "@item.Id", "@item.Price", "@item.PlanName","@item.PlanType")' data-target="#onlinepayment" data-toggle="modal">  Pay Amount Rs.@item.Price +  GST: Rs.@item.GST Total: Rs.@item.Total</button>
+                                    </p>
+
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
-        </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
-            <div class="modal fade" id="onlinepayment" >
+            <div class="modal fade" id="onlinepayment">
                 <div class="modal-dialog">
                     <!-- Modal content-->
-                    <div class="modal-content">
+                    <div class="modal-content Choose_Content">
                         <div class="modal-header modal-header-recharge">
                             <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
@@ -86,12 +92,12 @@
                         <div class="modal-body" style="background-color:white;">
                             <div class="row div-recharge-img">
                                 <div class="col-sm-4 custom_img_size pay-img">
-                                    <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                                    <img src="~/css/PaymentImages/Encrypted.png" class="img-width Encrypted_img" style="height:100px;width:120px;">
                                 </div>
                                 <div class="col-sm-4">
                                 </div>
                                 <div class="col-sm-4 custom_img_size pay-img2">
-                                    <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
+                                    <img src="~/css/PaymentImages/Secure.png" class="img-width secure_image">
                                 </div>
                             </div>
                             <div class="row">
@@ -109,7 +115,7 @@
                                     <div class="col-6">
                                         <form id="basic-form">
                                             <div class="form-group">
-                                                <input type="text" id="Coupon" placeholder="Enter Coupon Code" class="form-control for-left" required onkeypress="return ValidateAlphanumeric(event);"><p class="btnlft bbtn" @*data-target="#ApplyCoupan" data-toggle="modal"*@>Apply</p>
+                                                <input type="text" id="Coupon" placeholder="Enter Coupon Code" class="form-control for-left" required onkeypress="return ValidateAlphanumeric(event);"><p class="btnlft bbtn">Apply</p>
 
                                                 <span id="foralert" style="color: red"></span>
 
@@ -120,39 +126,35 @@
                                     <label id="lblamount" />
                                 </div>
                             </div>
-                            <div class="row">
-                                <table border="1" class="table table-bordered table-condensed" id="tbl_data">
-
-                                    <tbody id="tbody">
+                            <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 col-xs-12">
+                                <div class="row">
+                                   <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 col-xs-12">
+                                       <div class="Tab_data">
+                                    <table border="1" class="table table-bordered table-condensed" id="tbl_data">
+                                     <tbody id="tbody">
                                     </tbody>
-                                </table>
-                                <div id="output"></div>
-
+                                    </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                             <div class="row wallet-select">
                                 <div class="col-sm-6 col-md-6 col-xl-6 col-lg-6 custom_img_size">
-                                    <butto class="PayonlineMode button-21" >Pay Online <strng> </strng></butto>
+                                    <butto class="PayonlineMode button-21">Pay Online <strng> </strng></butto>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-xl-6 col-lg-6 custom_img_size">
                                     <button type="button" class="button-21" id="btnGetBalance" data-dismiss="modal" onclick="getBalance()">
-                                        <strong>Pay with Wallet </strong></button>
+                                        <strong>Pay with Wallet </strong>
+                                    </button>
                                 </div>
                             </div>
-                            @*  <div class="row">
-                            <div class="col-sm-12" style="text-align:center;">
-                            <h3><span id="wallet" class="text-danger font-weight-bold"></span></h3>
-                            </div>
-                            </div>*@
+                          
                         </div>
 
                         <div class="modal-footer div-pay-row">
                             <div class="row div-pay-row">
                                 <div class="col-sm-4 col-md-4 col-xl-4 col-xs-4 col-lg-4 final-pay-button">
                                     <span class="button-21">Rs.<strng id="btnTest"> </strng></span>
-                                </div>
-                                <div class="col-sm-4 col-md-4 col-xl-4 col-xs-4 col-lg-4 final-cancel-button">
-                                    <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -162,196 +164,196 @@
             <div id="divResult"></div>
         </div>
     </div>
-  
+
     <!-- Modal For Suucess Coupan Applied -->
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
-    <input type="button" id="btnApplyCoupan" style="display:none" data-target="#ModalForApplyCopans" data-toggle="modal" />
+        <input type="button" id="btnApplyCoupan" style="display:none" data-target="#ModalForApplyCopans" data-toggle="modal" />
         <div role="dialog" class="modal" id="ModalForApplyCopans" aria-modal="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content modalss">
-                <div class="modal-header modal-header-applycoupan">
-                    <h4 class="modal-title" style="text-align:center;"><b class="fp"></b></h4>
-                </div>
-                <div class="modal-body" style="background-color:white;">
-                    <div class="row rs">
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <div class="row">
-                                <div class="col-sm-1 col-xl-1 col-lg-1 col-md-1"></div>
-                                <div class="col-sm-4 col-xl-4 col-lg-4 col-md-4">
-                                    <P><strong>Base Amount</strong></P> 
-                                    <P><strong>Discount Amount</strong></P>
-                                </div>
-                                <div class="col-sm2 col-xl-2 col-lg-2 col-md-2 Dash_colon">
-                                    <P><strong>:</strong></P> 
-                                    <P><strong>:</strong></P>
-                                </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 Data_coupan">
-                                    RS.<span class="BA">/-</span> <br />
-                                    RS.<span class="DA">/-</span>
-                                </div>
-                                <div class="col-sm-1 col-xl-1 col-lg-1 col-md-1"></div>
-                                <div class="text-center mt">
-                                    <h4><strong>Total Amount Payable</strong></h4>
-                                    <h5><strong>Rs.<span class="Total"></span>+ GST/-</strong></h5>
-                                    <h6><strong>Note: Pay Now with your wallet or Online</strong></h6>
-                                </div>
-
-                            </div>
-                            <div class="row div-pay-row">
-                                <div class="col-sm-4 col-xl-4 col-lg-4 col-md-4 final-cancel-button text-center">
-                                    <input type="button" style="margin-left:230px" id="btnCloseFirst" class="btn btn-danger btnclose" data-dismiss="modal">OK</input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
-    <input type="button" id="btnFinalModal" data-target="#ForWallet" data-toggle="modal" style="display:none" />
-    <!--For Wallet Payement Confirm -->
-        <div class="modal fade" id="ForWallet" role="dialog" style="overflow:auto">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header modal-header-recharge">
-                    <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
-                </div>
-                <div class="modal-body" style="background-color:white;">
-                    <div class="row div-recharge-img">
-                        <div class="col-sm-4 custom_img_size pay-img">
-                            <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
-                        </div>
-                        <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-4 custom_img_size pay-img2">
-                            <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h3 style="text-align:center;"><b>@ViewBag.Mallname</b></h3>
-                        </div>
-                        <div class="col-sm-12" style="text-align:center">
-                            <label style="text-align:center;">
-                                Select option to pay
-                            </label>
-                            <label id="lblamount" />
-                        </div>
-                    </div>
-                    <div class="row wallet-select">
-                        <div class="col-sm-6 custom_img_size">
-                            <label style="text-align:center;">
-                                <span class="first-wallet" @*style="font-weight: 700;font-size: 20px;"*@>Cash Wallet</span>
-                                <input type="radio" asp-for="Payment" class="radio1" name="test" value="True"><!--0 For True and 1 for False-->
-                                <img src="~/css/PaymentImages/cash wallet.png" alt="Option 1" class="img-wallet-select">
-                                <label>Available Balance is: ₹</label>
-                                <label id="lblMainbal" />
-                            </label>
-                        </div>
-                        <div class="col-sm-6 custom_img_size">
-                            <label style="text-align:center;">
-                                <span class="first-wallet" @*style="font-weight: 700;font-size: 20px;"*@>Advance Wallet</span>
-                                <input type="radio" asp-for="Payment" class="radio1" name="test" value="False">
-                                <img src="~/css/PaymentImages/Advance Wallet.png" alt="Option 2" class="img-wallet-select">
-                                <label>Available Balance is: ₹</label>
-                                <label id="lblAdbal" />
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12" style="text-align:center;">
-                            <h3><span id="walletts" class="text-danger font-weight-bold"></span></h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer div-pay-row">
-                    <div class="row div-pay-row">
-                        <div class="col-sm-4 final-pay-button">
-                            <button type="button" id="PayWithWallet " onclick="PayWithWallet()" class="PayWithWallet btn-process-recharge1 btn-process-recharge2 btn-process-recharge3"   data-toggle="modal">Pay</button>
-                        </div>
-                        <div class="col-sm-4 final-cancel-button">
-                            <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-                <input type="button" id="Success_Models" data-target="#Success_Model" data-toggle="modal" style="display:none" />
-            <div id="Success_Model" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-confirm" style="width: 650px;">
-                    <div class="modal-content" style="height: 550px;color:black;">
-                        <div class="">
-                            <div class="icon-box" id="icon" style="margin-top:30px;">
-                                <label id="img" />
-                            </div>
-                            <h4 id="heading" class="modal-title w-100" style="padding-top:36px"></h4>
-                        </div>
-                        <div class="modal-body" style="padding-top:32px">
-                            <h3 class="p-new text-center"><label id="lblMsg"></label></h3>
-                            <p class="p-new"><label id="lblPrice"></label></p>
-                            <p class="p-new"><label id="lblTxnId"></label></p>
-                            <p class="p-new"><label id="lblMobile"></label></p>
-                            <p class="p-new"><label id="lblDate"></label></p>
-                            <p class="p-new"><label id="lblTime"></label></p>
-                            <p class="p-new"><label id="lblOperatorName"></label></p>
-                            <p class="p-new"><label id="lblOperatorRefNum"></label></p>
-                           @* <p><strong>Note:</strong></p><p style="margin-left:40px"> </p>*@
-                            <p style="margin-left:40px"></p>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-final" id="finaldismissbutton" data-dismiss="modal"><b>Ok</b></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
-    @*//ModalForError*@
-    <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="Error_MsgDetail" style="display:none" data-target="#Error_Message_Modal" data-toggle="modal" />
-                <div id="Error_Message_Modal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
-                <div class="modal-content modal_top_EMMs">
-                    <div class="modal-header">
-                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
-                        <h5 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Data Not Found</h5>
+                <!-- Modal content-->
+                <div class="modal-content modalss">
+                    <div class="modal-header modal-header-applycoupan">
+                        <h4 class="modal-title" style="text-align:center;"><b class="fp"></b></h4>
                     </div>
-                   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div class="modal-body forhide">
-                            <img src="~/img/device biometric image/oops2_new.png" class="oops2_new img-responsive" />
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row rs">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="row">
+                                    <div class="col-sm-1 col-xl-1 col-lg-1 col-md-1"></div>
+                                    <div class="col-sm-4 col-xl-4 col-lg-4 col-md-4">
+                                        <P><strong>Base Amount</strong></P>
+                                        <P><strong>Discount Amount</strong></P>
+                                    </div>
+                                    <div class="col-sm2 col-xl-2 col-lg-2 col-md-2 Dash_colon">
+                                        <P><strong>:</strong></P>
+                                        <P><strong>:</strong></P>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 Data_coupan">
+                                        RS.<span class="BA">/-</span> <br />
+                                        RS.<span class="DA">/-</span>
+                                    </div>
+                                    <div class="col-sm-1 col-xl-1 col-lg-1 col-md-1"></div>
+                                    <div class="text-center mt">
+                                        <h4><strong>Total Amount Payable</strong></h4>
+                                        <h5><strong>Rs.<span class="Total"></span>+ GST/-</strong></h5>
+                                        <h6><strong>Note: Pay Now with your wallet or Online</strong></h6>
+                                    </div>
+
+                                </div>
+                                <div class="row div-pay-row">
+                                    <div class="col-sm-4 col-xl-4 col-lg-4 col-md-4 final-cancel-button text-center">
+                                        <input type="button" style="margin-left:230px" id="btnCloseFirst" class="btn btn-danger btnclose" data-dismiss="modal">OK</input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <input type="button" id="btnFinalModal" data-target="#ForWallet" data-toggle="modal" style="display:none" />
+        <!--For Wallet Payement Confirm -->
+        <div class="modal fade" id="ForWallet" role="dialog" style="overflow:auto">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-recharge">
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align:center;"><b>Choose Payment Type</b></h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;">
+                        <div class="row div-recharge-img">
+                            <div class="col-sm-4 custom_img_size pay-img">
+                                <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-4 custom_img_size pay-img2">
+                                <img src="~/css/PaymentImages/Secure.png" class="img-width" style="height:100px;width:100px;">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3 style="text-align:center;"><b>@ViewBag.Mallname</b></h3>
+                            </div>
+                            <div class="col-sm-12" style="text-align:center">
+                                <label style="text-align:center;">
+                                    Select option to pay
+                                </label>
+                                <label id="lblamount" />
+                            </div>
+                        </div>
+                        <div class="row wallet-select">
+                            <div class="col-sm-6 custom_img_size">
+                                <label style="text-align:center;">
+                                    <span class="first-wallet" @*style="font-weight: 700;font-size: 20px;"*@>Cash Wallet</span>
+                                    <input type="radio" asp-for="Payment" class="radio1" name="test" value="True"><!--0 For True and 1 for False-->
+                                    <img src="~/css/PaymentImages/cash wallet.png" alt="Option 1" class="img-wallet-select">
+                                    <label>Available Balance is: ₹</label>
+                                    <label id="lblMainbal" />
+                                </label>
+                            </div>
+                            <div class="col-sm-6 custom_img_size">
+                                <label style="text-align:center;">
+                                    <span class="first-wallet" @*style="font-weight: 700;font-size: 20px;"*@>Advance Wallet</span>
+                                    <input type="radio" asp-for="Payment" class="radio1" name="test" value="False">
+                                    <img src="~/css/PaymentImages/Advance Wallet.png" alt="Option 2" class="img-wallet-select">
+                                    <label>Available Balance is: ₹</label>
+                                    <label id="lblAdbal" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align:center;">
+                                <h3><span id="walletts" class="text-danger font-weight-bold"></span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer div-pay-row">
+                        <div class="row div-pay-row">
+                            <div class="col-sm-4 col-md-4">
+                                <button type="button" id="PayWithWallet" class="PayWithWallet button-21 Btn_Choose_Pay" data-toggle="modal">Pay</button>
+                            </div>
+                            <div class="col-sm-4 col-md-4 final-cancel-button">
+                                <button type="button" style="margin-left:140px" id="btnCloseFirst" class="btn btn-danger butn-cancel" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="Success_Models" data-target="#Success_Model" data-toggle="modal" style="display:none" />
+                <div id="Success_Model" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-confirm" style="width: 650px;">
+                        <div class="modal-content" style="height: 550px;color:black;">
+                            <div class="">
+                                <div class="icon-box" id="icon" style="margin-top:30px;">
+                                    <label id="img" />
+                                </div>
+                                <h4 id="heading" class="modal-title w-100" style="padding-top:36px"></h4>
+                            </div>
+                            <div class="modal-body" style="padding-top:32px">
+                                <h3 class="p-new text-center"><label id="lblMsg"></label></h3>
+                                <p class="p-new"><label id="lblPrice"></label></p>
+                                <p class="p-new"><label id="lblTxnId"></label></p>
+                                <p class="p-new"><label id="lblMobile"></label></p>
+                                <p class="p-new"><label id="lblDate"></label></p>
+                                <p class="p-new"><label id="lblTime"></label></p>
+                                <p class="p-new"><label id="lblOperatorName"></label></p>
+                                <p class="p-new"><label id="lblOperatorRefNum"></label></p>
+                                @* <p><strong>Note:</strong></p><p style="margin-left:40px"> </p>*@
+                                <p style="margin-left:40px"></p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-final" id="finaldismissbutton" data-dismiss="modal"><b>Ok</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
+        @*//ModalForError*@
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <input type="button" id="Error_MsgDetail" style="display:none" data-target="#Error_Message_Modal" data-toggle="modal" />
+                <div id="Error_Message_Modal" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content modal_top_EMMs">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                                <h5 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Data Not Found</h5>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="modal-body forhide">
+                                    <img src="~/img/device biometric image/oops2_new.png" class="oops2_new img-responsive" />
 
                                     <h4 id="lblMsgcoupans" class="text-center"></h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="button-21" data-dismiss="modal">
+                                        <b>Ok</b>
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="button-21" data-dismiss="modal" >
-                                <b>Ok</b>
-                            </button>
-                        </div>
-                    
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <script>
 
@@ -410,6 +412,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
+                    debugger;
                     if (data.result == "EmptyResult") {
                         window.location.href = data.url;
                     }
@@ -424,15 +427,16 @@
                         var st = "";
                         let i = 0;
                         $.each(datas, function (index) {
-                            st += "<tr class='hidetd'><td><img src='" + datas[index].icon + "' class='mg - width' style='height: 103px;width: 487px;'></td>";
-                            st += "<td style='font-size:14px;padding: 8px;'>" + datas[index].desc + "</td>";
-                            st += "<td class='b'>" + "<div class='numbers'><input type='text' class='txtchange' id='txtchange" + (i + 1) + "' value='Add' readonly/><span class='plus' id='plus" + (i + 1) + "' onclick='foradd(this)'>+</span><input type='text' class='txtchange' id='txtchanges" + (i + 1) + "' value='Added' readonly/ style='display:none'><span class='minus' id='minus" + (i + 1) + "' style='display:none;' onclick='forminus(this)'> - </span></div>" + "</td>";
-                            st += "<td><span id='price" + (i + 1) + "'>" + 'Rs.' + datas[index].price + "</span></td>";
-                            st += "<td id='itemName" + (i + 1) + "'>" + datas[index].itemName + "</td>";
+                            st += "<tr class='hidetd'><td><img src='" + datas[index].icon + "' class='mg-width img-respoonsive img_data'></td>";
+                            st += "<td class='td_size'>" + datas[index].desc + "</td>";
+                            st += "<td class='b'>" + "<div class='numbers'><div class='col-md-6 col-sm-6 plus_size'><input type='text' class='txtchange' id='txtchange" + (i + 1) + "' value='Add' readonly/><span class='plus' id='plus" + (i + 1) + "'onclick='foradd(this)'>+</span></div><div class='col-md-6 col-sm-6 minus_size'><input type='text' class='txtchange' id='txtchanges" + (i + 1) + "' value='Added' readonly/ style='display:none'><span class='minus' id='minus" + (i + 1) + "' style='display:none;' onclick='forminus(this)'> - </span></div></div>" + "</td>";
+                            st += "<td><span class='price_s' id='price" + (i + 1) + "'>" + 'Rs.' + datas[index].price + "</span></td>";
+                            st += "<td class='item_name' id='itemName" + (i + 1) + "'>" + datas[index].itemName + "</td>";
                             st += "<td style='display:none'>" + datas[index].Id + "</td></tr>";
                             i++;
                         });
                         $("#tbl_data").html(st);
+                        
                     }
 
 
@@ -460,21 +464,19 @@
                     data: { 'PlanId': PlanId, 'CouponCode': CouponCode },
                     type: 'POST',
                     dataType: 'json',
-                    success: function (data) 
-                    {
+                    success: function (data) {
                         $('#Coupon').val("");
-                        
-                        if (data.result == "EmptyResult")
-                        {
-                        window.location.href = data.url;
-                    }
-                    else if (data.result == "UnExpectedStatusCode") {
-                        window.location.href = data.url;
-                    }
-                    else if (data.result == "RedirectToException") {
-                        window.location.href = data.url;
-                    }
-                    else{
+
+                        if (data.result == "EmptyResult") {
+                            window.location.href = data.url;
+                        }
+                        else if (data.result == "UnExpectedStatusCode") {
+                            window.location.href = data.url;
+                        }
+                        else if (data.result == "RedirectToException") {
+                            window.location.href = data.url;
+                        }
+                        else {
                             debugger;
                             var counter;
                             if (data.statuscode == "ERR") {
@@ -512,11 +514,11 @@
                                 //$('.btn2').show();
                                 $('#showprice').text(Total);
                                 $('#btnTest').text(Total);
-                                
+
                             }
 
-                    }
-                        
+                        }
+
 
                     }
                 });
@@ -620,14 +622,20 @@
 
 
         //Pay with Wallet data
-        function PayWithWallet() {
+        //function PayWithWallet() {
+        $('.Btn_Choose_Pay').click(function () {
             debugger;
+            $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+            setTimeout(() => {
+                $(this).html('Pay');
+            }, 2000);
             Itemname = Itemname.substring(0, Itemname.length - 1);
             var Amount = $('#btnTest').text();
             var PlanType = $('#PlanType').text();
             var CouponCode = $('#Coupon').val();
             var DiscountedAmount = $('.DA').text();
-            if (DiscountedAmount == null || DiscountedAmount == "/-") {
+            if (DiscountedAmount == null || DiscountedAmount == "/-") 
+            {
                 var DiscountedAmount = 0;
             }
             var Wallet = $('.radio1:checked').val();
@@ -637,8 +645,8 @@
                     data: { 'PlanId': PlanId, 'Amount': Amount, 'PlanType': PlanType, 'Itemname': Itemname, 'CouponCode': CouponCode, 'DiscountedAmount': DiscountedAmount, 'Wallet': Wallet },
                     type: 'POST',
                     dataType: 'json',
-                    success: function (data) { 
-                        debugger;
+                    success: function (data) {
+                        $('#walletts').text('');
                         //if (response == null || response.data == null || response.data == "") {
                         //document.getElementById("walletTblborder11").style.display = "none";
                         //document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
@@ -653,8 +661,7 @@
                             $("#Success_Models").trigger("click");
 
                         }
-                        if (data.statuscode == "ERR")
-                        {
+                        if (data.statuscode == "ERR") {
                             $('#lblMsgcoupans').text(data.message);
                             $("#Error_MsgDetail").trigger("click");
                         }
@@ -666,8 +673,8 @@
                             document.getElementById("icon").style.backgroundColor = '#880808';
                             document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
                             $("#Success_Models").trigger("click");
-                            
-                            
+
+
                         }
 
                     }
@@ -678,7 +685,7 @@
                 //document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
                 return false;
             }
-        }
+        });
         //});
 
 
@@ -706,12 +713,6 @@
 
 
     </script>
-    <script>
-
-
-
-    </script>
-
     <script type="text/javascript">
 
         function ValidateAlphanumeric(e) {

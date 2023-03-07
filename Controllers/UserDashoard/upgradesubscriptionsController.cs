@@ -41,8 +41,6 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             }
             return View();
         }
-
-
         #region getSubscription
         public IActionResult getSubscription(string foropenpdf, string showplan, string showprice)
         {

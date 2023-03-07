@@ -54,7 +54,15 @@
     font-size: 14px !important;
     height: 318px !important;
 }
-
+.Choose_Content {
+    width: 140%;
+    margin-left: -21%;
+}
+.img_data {
+    width: 100%;
+    margin-left: 1px;
+    height: 128px;
+}
 
 span {
     cursor: pointer;
@@ -67,7 +75,10 @@ span {
     text-align: center;
     font-family: arial;
 }
-
+.td_size {
+    font-size: 14px;
+    padding: 8px;
+}
 .price {
     color: grey;
     font-size: 22px;
@@ -90,13 +101,15 @@ span {
     }
 
 .for-left {
+    
     padding: 11px;
     margin-left: 41px;
-    width: 231px;
+    width: 49%;
+
 }
 
 .btnlft {
-    margin-left: 283px;
+    margin-left: 165px;
     margin-top: -30px;
     color: cornflowerblue;
     font-size: 20px;
@@ -122,50 +135,59 @@ span {
 span {
     cursor: pointer;
 }
-
+.plus_size input {
+    height: 34px;
+    width: 90%;
+    text-align: center;
+    /* font-size: 18px; */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+.plus_size span {
+    width: 20px;
+    height: 32px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 5px 16px 21px 10px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: -57px;
+    margin-left: 104px;
+}
+.minus_size input {
+    height: 35px;
+    width: 90%;
+    text-align: center;
+    /* font-size: 18px; */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -103px;
+}
+.minus_size span 
+{
+    width: 20px;
+    height: 32px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 5px 16px 21px 10px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: -34px;
+    margin-left: 0px;
+}
 .number {
     margin: 100px;
 }
 
-.plus {
-    width: 20px;
-    height: 32px;
-    background: #f2f2f2;
-    border-radius: 4px;
-    padding: 5px 16px 21px 10px;
-    border: 1px solid #ddd;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    margin-top: -57px;
-    margin-left: 104px;
-}
-
-.minus {
-    width: 20px;
-    height: 32px;
-    background: #f2f2f2;
-    border-radius: 4px;
-    padding: 5px 16px 21px 10px;
-    border: 1px solid #ddd;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    margin-top: -57px;
-    margin-left: 104px;
-}
-
-
-input {
-    height: 34px;
-    width: 100px;
-    text-align: center;
-    font-size: 18px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: inline-block;
-    vertical-align: middle;
-}
 
 .modalss {
     margin-left: 3px;
@@ -197,7 +219,13 @@ input {
     font-size: 20px;
     font-weight: 700;
 }
-
+.div-pay-row {
+    margin-left: 90px;
+}
+.secure_image {
+    width: 33%;
+    margin-left: 37%;
+}
 .final-modal-popup {
     width: 650px;
 }
@@ -206,21 +234,144 @@ input {
     margin-top: 14%;
     min-height: 700px;
 }
-@media screen and (max-width:339px) and (min-width:280px) {
+@media screen and (max-width:339px) and (min-width:280px) 
+{
     .modal_top_EMMs {
         margin-top: 29%;
         min-height: 20px;
+    }
+
+    .for-left {
+        padding: 11px;
+        margin-left: 41px;
+        width: 150px;
+    }
+
+    .td_size {
+        font-size: 10px;
+        padding: 8px;
     }
 
     .Dash_colon {
         MARGIN-LEFT: 145PX;
         MARGIN-TOP: -46PX;
     }
+
     .Data_coupan {
         MARGIN-LEFT: 164PX;
         MARGIN-TOP: -44PX;
     }
-    
+
+    .Tab_Data, .col-sm-12, .col-md-12, .col-xl-12, .col-lg-12, .col-xs-12 {
+        width: 99%;
+        margin-left: 3px;
+    }
+
+    .Choose_Content {
+        width: 100%;
+        margin-left: 0%;
+    }
+
+    .plus_size span {
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 5px 16px 21px 10px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -57px;
+        margin-left: 42px;
+        width: 10%;
+        font-size: 16px;
+    }
+
+    .plus_size input {
+        height: 34px;
+        width: 44%;
+        text-align: center;
+        font-size: 11px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        margin-left: 2px;
+        vertical-align: middle;
+    }
+
+    .minus_size input {
+        height: 31px;
+        width: 52%;
+        text-align: center;
+        /* font-size: 18px; */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0px;
+    }
+
+    .minus_size span {
+        width: 20px;
+        height: 26px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 5px 16px 21px 10px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -31px;
+        margin-left: 50px;
+    }
+
+    .price_s {
+        font-size: 10px;
+    }
+
+    .item_name {
+        font-size: 10px;
+    }
+
+    .secure_image {
+        width: 46%;
+        margin-left: 34%;
+        margin-top: 12%;
+    }
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 2px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: table-caption;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 7px 18px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 35px;
+        float: right;
+        margin-top: 7px;
+        z-index: 1;
+        /* margin-left: 64px; */
+    }
 }
 @media screen and (max-width:439px) and (min-width:339px)
 {
@@ -237,7 +388,120 @@ input {
         MARGIN-LEFT: 216PX;
         MARGIN-TOP: -44PX;
     }
+    .plus_size span {
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 3px 18px 26px 11px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -57px;
+        margin-left: 57px;
+        width: 10%;
+        font-size: 16px;
+    }
+    .plus_size input {
+        height: 34px;
+        width: 44%;
+        text-align: center;
+        font-size: 11px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        margin-left: 2px;
+        vertical-align: middle;
+    }
+    .minus_size input {
+        height: 35px;
+        width: 51%;
+        text-align: center;
+        font-size: 13px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 11px;
+    }
+    .minus_size span {
+        width: 20px;
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 5px 16px 21px 10px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -34px;
+        margin-left: 83px;
+    }
+    
+    .Choose_Content {
+        width: 100%;
+        margin-left: -1%;
+    }
+    .price_s {
+        font-size: 10px;
+    }
+    .wallet-select {
+        display: inline-flex;
+        margin-left: 37px;
+    }
 
+    .item_name {
+        font-size: 10px;
+    }
+    .td_size {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .secure_image {
+        width: 46%;
+        margin-left: 34%;
+        margin-top: 12%;
+    }
+
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 2px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: table-caption;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 7px 18px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 35px;
+        float: right;
+        margin-top: 7px;
+        z-index: 1;
+        /* margin-left: 64px; */
+    }
+    .final-pay-button {
+        width: 138px;
+        margin-left: 25px;
+    }
 }
 @media screen and (max-width:539px) and (min-width:439px)
 {
@@ -260,6 +524,129 @@ input {
     .Data_coupan {
         MARGIN-LEFT: 216PX;
         MARGIN-TOP: -44PX;
+    }
+    .plus_size span {
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 3px 18px 26px 11px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -57px;
+        margin-left: 57px;
+        width: 10%;
+        font-size: 16px;
+    }
+
+    .plus_size input {
+        height: 34px;
+        width: 44%;
+        text-align: center;
+        font-size: 11px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        margin-left: 2px;
+        vertical-align: middle;
+    }
+
+    .minus_size input {
+        height: 35px;
+        width: 51%;
+        text-align: center;
+        font-size: 13px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 11px;
+    }
+    .div-pay-row {
+        margin-left: 110px;
+    }
+    .minus_size span {
+        width: 20px;
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 5px 16px 21px 10px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -34px;
+        margin-left: 83px;
+    }
+
+    .Choose_Content {
+        width: 100%;
+        margin-left: -1%;
+    }
+
+    .price_s {
+        font-size: 10px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+        margin-left: 88px;
+    }
+
+    .item_name {
+        font-size: 10px;
+    }
+
+    .td_size {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .secure_image {
+        width: 46%;
+        margin-left: 34%;
+        margin-top: 12%;
+    }
+
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 2px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: table-caption;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 7px 18px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 35px;
+        float: right;
+        margin-top: 7px;
+        z-index: 1;
+        /* margin-left: 64px; */
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: -95px;
     }
 }
 @media screen and (max-width:639px) and (min-width:539px)
@@ -286,8 +673,134 @@ input {
         MARGIN-LEFT: 216PX;
         MARGIN-TOP: -44PX;
     }
+    .plus_size span {
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 3px 18px 26px 11px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -57px;
+        margin-left: 57px;
+        width: 10%;
+        font-size: 16px;
+    }
+
+    .plus_size input {
+        height: 34px;
+        width: 44%;
+        text-align: center;
+        font-size: 11px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        margin-left: 2px;
+        vertical-align: middle;
+    }
+
+    .minus_size input {
+        height: 35px;
+        width: 51%;
+        text-align: center;
+        font-size: 13px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 11px;
+    }
+
+    .div-pay-row {
+        margin-left: 161px;
+    }
+
+    .minus_size span {
+        width: 20px;
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 5px 16px 21px 10px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -34px;
+        margin-left: 83px;
+    }
+
+    .Choose_Content {
+        width: 100%;
+        margin-left: -1%;
+    }
+
+    .price_s {
+        font-size: 10px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+        margin-left: 88px;
+    }
+
+    .item_name {
+        font-size: 10px;
+    }
+
+    .td_size {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .secure_image {
+        width: 46%;
+        margin-left: 34%;
+        margin-top: 12%;
+    }
+
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 2px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: table-caption;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 7px 18px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 35px;
+        float: right;
+        margin-top: 7px;
+        z-index: 1;
+        /* margin-left: 64px; */
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: -95px;
+    }
 }
-    @media screen and (max-width:739px) and (min-width:639px) {
+    @media screen and (max-width:739px) and (min-width:639px) 
+    {
         .modalss {
             margin-left: 108px;
             margin-right: 111px;
@@ -309,8 +822,137 @@ input {
         .Data_coupan {
             MARGIN-LEFT: 216PX;
             MARGIN-TOP: -44PX;
+    
+            }
+        .plus_size span {
+            height: 32px;
+            background: #f2f2f2;
+            border-radius: 4px;
+            padding: 3px 18px 26px 11px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin-top: -57px;
+            margin-left: 57px;
+            width: 10%;
+            font-size: 16px;
+        }
+
+        .plus_size input {
+            height: 34px;
+            width: 44%;
+            text-align: center;
+            font-size: 11px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 2px;
+            vertical-align: middle;
+        }
+
+        .minus_size input {
+            height: 35px;
+            width: 51%;
+            text-align: center;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 11px;
+        }
+
+        .div-pay-row {
+            margin-left: 180px;
+        }
+
+        .minus_size span {
+            width: 20px;
+            height: 32px;
+            background: #f2f2f2;
+            border-radius: 4px;
+            padding: 5px 16px 21px 10px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin-top: -34px;
+            margin-left: 83px;
+        }
+
+        .Choose_Content {
+            width: 100%;
+            margin-left: -1%;
+        }
+
+        .price_s {
+            font-size: 10px;
+        }
+
+        .wallet-select {
+            display: inline-flex;
+            margin-left: 228px;
+        }
+       
+       
+
+        .item_name {
+            font-size: 10px;
+        }
+
+        .td_size {
+            font-size: 10px;
+            padding: 2px;
+        }
+
+        .secure_image {
+            width: 46%;
+            margin-left: 34%;
+            margin-top: 12%;
+        }
+
+        .button-21 {
+            align-items: center;
+            appearance: none;
+            background-color: #3EB2FD;
+            background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+            background-size: calc(100% + 20px) calc(100% + 20px);
+            border-radius: 2px;
+            border-width: 0;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: table-caption;
+            font-family: CircularStd,sans-serif;
+            font-size: 1rem;
+            height: auto;
+            justify-content: center;
+            line-height: 1.5;
+            padding: 7px 18px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .2s,background-position .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            white-space: nowrap;
+            margin-right: 35px;
+            float: right;
+            margin-top: 7px;
+            z-index: 1;
+            /* margin-left: 64px; */
+        }
+
+        .final-pay-button {
+            width: 138px;
+            margin-left: -95px;
         }
     }
+
 
     @media screen and (max-width:769px) and (min-width:739px) {
 
@@ -334,6 +976,130 @@ input {
         .Data_coupan {
             MARGIN-LEFT: 216PX;
             MARGIN-TOP: -44PX;
+        }
+        .plus_size span {
+            height: 32px;
+            background: #f2f2f2;
+            border-radius: 4px;
+            padding: 3px 18px 26px 11px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin-top: -5px;
+            margin-left: 9px;
+            width: 10%;
+            font-size: 16px;
+        }
+        .plus_size input {
+            height: 34px;
+            width: 44%;
+            text-align: center;
+            font-size: 11px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 2px;
+            vertical-align: middle;
+        }
+
+        .minus_size input {
+            height: 35px;
+            width: 51%;
+            text-align: center;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 11px;
+        }
+
+        .div-pay-row {
+          margin-left: 166px;
+        }
+
+        .minus_size span {
+            width: 20px;
+            height: 32px;
+            background: #f2f2f2;
+            border-radius: 4px;
+            padding: 5px 16px 21px 10px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin-top: -34px;
+            margin-left: 83px;
+        }
+
+        .Choose_Content {
+            width: 100%;
+            margin-left: -1%;
+        }
+
+        .price_s {
+            font-size: 10px;
+        }
+
+        .wallet-select {
+            display: inline-flex;
+            margin-left: 88px;
+        }
+
+        .item_name {
+            font-size: 10px;
+        }
+
+        .td_size {
+            font-size: 10px;
+            padding: 2px;
+        }
+
+        .secure_image {
+            width: 46%;
+            margin-left: 34%;
+            margin-top: 12%;
+        }
+
+        .button-21 {
+            align-items: center;
+            appearance: none;
+            background-color: #3EB2FD;
+            background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+            background-size: calc(100% + 20px) calc(100% + 2 0px);
+            border-radius: 2px;
+            border-width: 0;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: table-caption;
+            font-family: CircularStd,sans-serif;
+            font-size: 1rem;
+            height: auto;
+            justify-content: center;
+            line-height: 1.5;
+            padding: 7px 18px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .2s,background-position .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: top;
+            white-space: nowrap;
+            margin-right: 35px;
+            float: right;
+            margin-top: 7px;
+            z-index: 1;
+            margin-left: 94px;
+        }
+
+        .final-pay-button {
+            width: 138px;
+            margin-left: -95px;
         }
     }
 @media screen and (max-width:969px) and (min-width:769px) 
@@ -360,5 +1126,130 @@ input {
     .Data_coupan {
         MARGIN-LEFT: 216PX;
         MARGIN-TOP: -44PX;
+    }
+    .plus_size span {
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 3px 18px 26px 11px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -54px;
+        margin-left: 103px;
+        width: 10%;
+        font-size: 16px;
+    }
+
+    .plus_size input {
+        height: 34px;
+        width: 100%;
+        text-align: center;
+        font-size: 11px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        margin-left: 2px;
+        vertical-align: middle;
+    }
+
+    .minus_size input {
+        height: 35px;
+        width: 66%;
+        text-align: center;
+        font-size: 13px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: -53px;
+    }
+
+    .div-pay-row {
+        margin-left: 166px;
+    }
+
+    .minus_size span {
+        width: 20px;
+        height: 32px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 5px 16px 21px 10px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-top: -34px;
+        margin-left: 23px;
+    }
+
+    .Choose_Content {
+        width: 100%;
+        margin-left: -1%;
+    }
+
+    .price_s {
+        font-size: 10px;
+    }
+
+    .wallet-select {
+        display: inline-flex;
+        margin-left: 88px;
+    }
+
+    .item_name {
+        font-size: 10px;
+    }
+
+    .td_size {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .secure_image {
+        width: 46%;
+        margin-left: 34%;
+        margin-top: 12%;
+    }
+
+    .button-21 {
+        align-items: center;
+        appearance: none;
+        background-color: #3EB2FD;
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        background-size: calc(100% + 20px) calc(100% + 20px);
+        border-radius: 2px;
+        border-width: 0;
+        box-shadow: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: table-caption;
+        font-family: CircularStd,sans-serif;
+        font-size: 1rem;
+        height: auto;
+        justify-content: center;
+        line-height: 1.5;
+        padding: 7px 18px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color .2s,background-position .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: top;
+        white-space: nowrap;
+        margin-right: 35px;
+        float: right;
+        margin-top: 7px;
+        z-index: 1;
+        margin-left: 94px;
+    }
+
+    .final-pay-button {
+        width: 138px;
+        margin-left: -95px;
     }
 }
