@@ -188,10 +188,12 @@ namespace Project_Redmil_MVC.Controllers
             var Data1 = new List<Bank>();
 
             List<AepsKycDetailsNewResponseModel> aepsResponses = new List<AepsKycDetailsNewResponseModel>();
+            List<AepsKycDetailsStatusPendingResponseModel> aepsKycDetailsStatusPendingResponses = new List<AepsKycDetailsStatusPendingResponseModel>();
 
             try
             {
-                obj.UserId = "599851"; // 2114
+                //obj.UserId = "599851"; //prahsant Yadav
+                obj.UserId = "2084";
 
 
 
@@ -235,10 +237,11 @@ namespace Project_Redmil_MVC.Controllers
                             {
                                 if (aepsKycStatus != null)
                                 {
-                                    var aepsKycStatusData = aepsKycStatus.Where(x => x.Status == "Completed");
-                                    if (aepsKycStatusData.FirstOrDefault().Status == "Completed")
+                                    //var aepsKycStatusData = aepsKycStatus.Where(x => x.Status == "Completed");
+                                    if (aepsKycStatus.FirstOrDefault().Status == "Completed")
                                     {
-                                        aepsRoutingDetailsReq.UserId = "599851";
+                                        //aepsRoutingDetailsReq.UserId = "599851";
+                                        aepsRoutingDetailsReq.UserId = "2084";
                                         aepsRoutingDetailsReq.Token = "";
                                         if (radioVal == "Cash Withdraw")
                                         {
@@ -274,6 +277,10 @@ namespace Project_Redmil_MVC.Controllers
                                         else
                                         {
                                             var aepsKycData1 = JsonConvert.DeserializeObject<BaseAepsRoutingDetailsResponseModel>(response1.Content);
+
+
+
+
                                             var aepsKyc0 = aepsKycData1.Statuscode;
                                             var status = aepsKycData1.Status;
                                             var aepsKyc1 = aepsKycData1.Kyc;
@@ -445,14 +452,41 @@ namespace Project_Redmil_MVC.Controllers
                                         }
 
                                     }
+                                    else if (aepsKycStatus.FirstOrDefault().Status == "Pending")
+                                    {
+                                        foreach (var item in aepsKycStatus)
+                                        {
+                                            aepsKycDetailsStatusPendingResponses.Add(new AepsKycDetailsStatusPendingResponseModel
+                                            {
+                                                Status = item.Status,
+                                                BankLogo = baseUrl + item.BankLogo,
+                                                BankName = item.BankName,
+                                                //getBankResponseModels = GetBankRe,
+                                                //getBalanceResponseModels=  lstdata,
+                                            });
+                                        }
+                                        return Json(aepsKycDetailsStatusPendingResponses);
 
 
+
+                                        //return Json(aepsKycStatus);
+                                    }
                                 }
                             }
+
+
+                            else if (aepsStatusCode == "ERR")
+                            {
+                               
+                            }
+                            else
+                            {
+                                return RedirectToAction("ErrorForExceptionLog", "Error");
+                            }
+
                         }
                         catch (Exception ex)
                         {
-                            //throw ex;
                             ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
                             requestModel1.ExceptionMessage = ex;
                             requestModel1.Data = aepsRoutingDetailsReq;
@@ -465,16 +499,8 @@ namespace Project_Redmil_MVC.Controllers
                             var resultEx1 = responseEx1.Content;
                             return RedirectToAction("ErrorForExceptionLog", "Error");
                         }
-
                     }
-                    else if (aepsStatusCode == "ERR")
-                    {
-                        throw new Exception(aepsStatusCode);
-                    }
-                    else
-                    {
-                        return RedirectToAction("ErrorForExceptionLog", "Error");
-                    }
+                    
                     return View(); //aepsResponses
                 }
             }
@@ -548,24 +574,30 @@ namespace Project_Redmil_MVC.Controllers
                         //var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(result));
                         //adharPicFaceBioResponse = adharPicFaceBioData.ToList();
 
-                        //if (adharPicFaceBioStatusCode == "TXN")
-                        //{
-                            if (!string.IsNullOrEmpty(radioValDevice))
-                            {
-                                return Json(new { Result = "Connected" });
+                        if (adharPicFaceBioStatusCode == "TXN")
+                        {
+                            return Json(adharPicFaceBioData);
+                            //if (!string.IsNullOrEmpty(radioValDevice))
+                            //{
+                            //    return Json(new { Result = "Connected" });
 
-                            }
-                            return Json("aepsKycStatus");
-                        //}
+                            //}
+                            //return Json("aepsKycStatus");
+                        }
 
-                        //else if (adharPicFaceBioStatusCode == "ERR")
-                        //{
-                        //    return Json(new { Result = "Connected" });
-                        //}
-                        //else
-                        //{
-                        //    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
-                        //}
+                        else if (adharPicFaceBioStatusCode == "SKP")
+                        {
+                            return Json(adharPicFaceBioData);
+                        }
+
+                        else if (adharPicFaceBioStatusCode == "ERR")
+                        {
+                            return Json(adharPicFaceBioData);
+                        }
+                        else
+                        {
+                            return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                        }
                     }
                 }
                 return Json("");
@@ -768,7 +800,8 @@ namespace Project_Redmil_MVC.Controllers
                             }
                             else if (adharPicFaceBioStatusCode == "ERR")
                             {
-
+                                var error = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                                return Json(error);
                             }
                             else
                             {

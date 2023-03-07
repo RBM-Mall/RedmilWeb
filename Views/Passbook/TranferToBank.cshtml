@@ -1,6 +1,6 @@
 ﻿@model Project_Redmil_MVC.Models.ResponseModel.PassbookGetCashOutSurchargeNewResponseModel.PassbookGetCashsurchargeRespnseModel
 @{
-    ViewData["Title"] = "Passbook - Tranfer To Bank";
+    ViewData["Title"] = "Passbook anfer To Bank";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 @using Microsoft.AspNetCore.Http
@@ -1570,6 +1570,7 @@
     //For Prim
     $("#PrimaryAccount").on('click', ".forprime", function () {
 
+        debugger;
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var BeniName = currentRow.find('td:eq(2)').text();
