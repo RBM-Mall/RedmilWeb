@@ -1092,6 +1092,7 @@
         var MobileNo;
         //function verifiedLogin() {
         $('#Logni_button').click(function() {
+            debugger;
              $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
@@ -1199,7 +1200,6 @@
                             $.notify(
                                 response.message,
                                 { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
-
 
                             );
 
