@@ -171,7 +171,7 @@
     </style>
 </head>
 
-<body>
+<body onload="getcookiedata()">
 
     @* <div class="image-loader">
     <div class="rect">
@@ -1093,6 +1093,7 @@
         //function verifiedLogin() {
         $('#Logni_button').click(function() {
             debugger;
+            getcookiedata();
              $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
@@ -1620,7 +1621,8 @@
     </script>
 
     <script>
-        function clearSession() {
+        function clearSession() 
+        {
             $.ajax({
                 url: "/Login/ClearSession",
                 data: {},
@@ -1629,12 +1631,11 @@
                 success: function (response) {
                     LoginClear();
                     $.notify(response.message, "success");
-                    window.location.href = '@Url.Content("~/Home/Index")'
+                    window.location.href = '@Url.Content("~/Home/Index")';
                 }
             });
         }
     </script>
-
     <script>
         //function sessionHandle() {
         //    getcookiedata();
@@ -1659,9 +1660,9 @@
     </script>
 
     <script>
-
+       
         function CookiesHandle() {
-
+            debugger;
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum == "" && pinNum == "") {
@@ -1692,6 +1693,7 @@
             }
         }
         function getcookiedata() {
+            debugger
             console.log(document.cookie);
             var cookisMobile = getCookie('mymobile');
             var cookisMpin = getCookie('myMpin');
@@ -1700,6 +1702,7 @@
 
         }
         function getCookie(cname) {
+            debugger
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');

@@ -1,6 +1,6 @@
 ﻿@model Project_Redmil_MVC.Models.ResponseModel.PassbookGetCashOutSurchargeNewResponseModel.PassbookGetCashsurchargeRespnseModel
 @{
-    ViewData["Title"] = "Passbook anfer To Bank";
+    ViewData["Title"] = "Passbook Transfer To Bank";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 @using Microsoft.AspNetCore.Http
@@ -1219,7 +1219,7 @@
                                         <input type="button" class="button-21 btPics nonverified_buton" value="Add Account" style="display:none" />
                                     </div>
                                     <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2">
-                                        <input type="button" class="button-21 Pending_Approval" value="Pending Approval" style="margin-left: -191px;" />
+                                        <input type="button" class="button-21 Pending_Approval" value="Pending Approval" style="margin-left:-191px;" />
                                     </div>
                                 </div>
                                 
@@ -1887,7 +1887,7 @@
     var message;
     var BeneficaryName
     $('.foraddingAcount').on('click', function () {
-
+        debugger;
         //function AddinBank(){
         //function foraddingAcount() {
 
@@ -1944,6 +1944,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+              debugger;
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1957,6 +1958,7 @@
 
                     message = data.message;
                     if (data.statuscode == "ERR") {
+                        
                         //$('.close').click();
                         $("#ModalForSurcharge").trigger("click");
                         $("#lblMsgSurcharge").text(data.data[0].surcharge);
@@ -1966,7 +1968,7 @@
 
                     }
                     else if (data.statuscode == null) {
-
+                       AddAccount();
                         $("#ErrorMessageModals").trigger("click");
                         $("#lblmsgErrorSc").text(data.message);
 
@@ -2079,8 +2081,10 @@
                     else {
 
                         if (data.statuscode == "ERR") {
+                            AddAccount();
                             $("#ErrorMessageModals").trigger("click");
                             $("#lblmsgErrorSc").text(data.message);
+
                         }
                         else if (data.statuscode == "TXN") {
                             $.notify(
@@ -2088,7 +2092,7 @@
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
                             );
 
-
+                            AddAccount();
                             $("#AddAcount").hide();
                             $("#ModalFobandetail").trigger("click");
 
@@ -2138,7 +2142,7 @@
 
                     }
                     else if (data.statuscode == "OSS") {
-
+                        AddAccount();
                         var timeLeft = 30;
                         var elem = document.getElementById('some_divss');
 
@@ -2163,7 +2167,8 @@
                         $("#Accountveriotpmodals").trigger("click");
 
                     }
-                    else if (data.statuscode == "ERR") {
+                    else if (data.statuscode == "ERR") 
+                    {
 
                     }
 
@@ -2198,6 +2203,7 @@
                     else {
 
                         if (data.statuscode == "TXN") {
+                           
                             $(".verify").hide();
                             $("#btnupload").hide();
 
@@ -2212,6 +2218,7 @@
                             );
                         }
                         else if (data.statuscode == "ERR") {
+                           
                             $.notify(
                                 data.message,
                                 { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
@@ -2287,8 +2294,24 @@
         $("#ModalFobandetail").trigger("click");
 
     }
+    
+   
+
 
 </script>
+<script>
+    //For Data Account Refresh Page
+    function AddAccount()
+    {
+     $('#text_Account').val("");
+    $('#text_ConfirmAccount').val("");
+    $('#text_Ifsc').val("");
+    $('#Id').val("");
+    $('#rl').val("");
+    $('#file').val("");
+    }
+
+    </script>
 <script type="text/javascript">
     function ValidateFileUpload() {
 

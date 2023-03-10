@@ -1915,6 +1915,11 @@ namespace Project_Redmil_MVC.Controllers
             request.AddJsonBody(json);
             IRestResponse response = client.Execute(request);
             var result = response.Content;
+            var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            //if (deserialize1.Statuscode == "ERR" && deserialize1.Message== "Insufficient Balance")
+            //{
+            //    return Json(deserialize1);
+            //}
             var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<AccountSignWithChargeResponseModel>>>(response.Content);
             if (deserialize.Statuscode == "TXN" && deserialize != null)
             {
