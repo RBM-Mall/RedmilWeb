@@ -1639,13 +1639,20 @@ namespace Project_Redmil_MVC.Controllers
                             {
                                 return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
+                            
                             else
                             {
-                                var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<SuccessResponseModel>>>(response1.Content);
-                                var deserialize1 = datadesi.Data;
-                                //var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+
+                                //var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<SuccessResponseModel>>>(response1.Content);
+                                //var deserialize1 = datadesi.Data;
+                                var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+                                if (deserialize1.Statuscode == "ERR" )
+                                {
+                                    return Json(deserialize1);
+                                }
+                              
                                 //SuccessResponseModel
-                                return Json(datadesi);
+                                return Json(deserialize1);
                             }
                         }
                         catch (Exception ex)
@@ -1916,10 +1923,10 @@ namespace Project_Redmil_MVC.Controllers
             IRestResponse response = client.Execute(request);
             var result = response.Content;
             var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-            //if (deserialize1.Statuscode == "ERR" && deserialize1.Message== "Insufficient Balance")
-            //{
-            //    return Json(deserialize1);
-            //}
+            if (deserialize1.Statuscode == "ERR")
+            {
+                return Json(deserialize1);
+            }
             var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<AccountSignWithChargeResponseModel>>>(response.Content);
             if (deserialize.Statuscode == "TXN" && deserialize != null)
             {
