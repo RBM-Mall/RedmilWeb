@@ -77,8 +77,10 @@ namespace Project_Redmil_MVC.Controllers
                         {
                             obj.IpAddress = GetIp();
                             obj.MacAddress = GetMacAddress(obj.IpAddress);
-                            //obj.Version = "4.1.37";
+
                             obj.Version = "7.1.3";
+
+           
                             obj.AppId = "faisal";
                             obj.Userid = "NA";
                             obj.Mobile = Mobile;
@@ -101,7 +103,7 @@ namespace Project_Redmil_MVC.Controllers
                                 return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
                             var des1 = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
-                                if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
+                            if (!string.IsNullOrEmpty(des1.Statuscode) && des1.Statuscode == "ERR")
                             {
                                 return Json(des1);
                             }
@@ -389,7 +391,7 @@ namespace Project_Redmil_MVC.Controllers
                     BaseResponseModel des5 = JsonConvert.DeserializeObject<BaseResponseModel>(response5.Content);
                     return Json(des5);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -509,8 +511,8 @@ namespace Project_Redmil_MVC.Controllers
             //var u = HttpContext.Session.GetString("Name");
 
         }
-       
-        
+
+
         #region ClearSession
         [HttpPost]
 
