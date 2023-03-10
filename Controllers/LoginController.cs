@@ -79,6 +79,8 @@ namespace Project_Redmil_MVC.Controllers
                             obj.MacAddress = GetMacAddress(obj.IpAddress);
                             //obj.Version = "4.1.37";
                             obj.Version = "7.1.3";
+                            //obj.Version = "6.4.9";
+                            obj.Version = "7.1.3";
                             obj.AppId = "faisal";
                             obj.Userid = "NA";
                             obj.Mobile = Mobile;

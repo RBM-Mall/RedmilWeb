@@ -22,8 +22,13 @@
         public string Message { get; set; }
         public string Data { get; set; }
     }
+    public class AepsKycDetailsStatusPendingResponseModel
+    {
+        public string Status { get; set; }
+        public string BankName { get; set; }
+        public string BankLogo { get; set; }
 
-    
-}
+    }
+    }
 
 
