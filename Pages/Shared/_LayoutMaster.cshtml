@@ -220,8 +220,8 @@
                                     </li>
                                     <li class="hover-me">
                                         <a href="#"><b>Bill Payment </b><i class="fa fa-angle-right"></i> </a>
-                                        <div class="Sub-menu-1"">
-                                            <ul class="services-angle" >
+                                        <div class="Sub-menu-1 btn_scorll_nav" >
+                                            <ul class="services-angle">
                                                 <li><a href="~/ElectricityBill/ElectricityBill"><b>Electricity Bill</b></a></li>
                                                 <li><a href="~/GasBill/GasBill"><b>Gas Bill</b></a></li>
                                                 <li><a href="~/WaterBill/WaterBill"><b>Water Bill</b></a></li>
@@ -1069,16 +1069,20 @@
         });
         var Name;
         var MobileNo;
+        var MobileNum;
+        var pinNum;
+
+
         $('#Logni_button').click(function() {
             debugger;
              $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
             }, 2000);
-            var MobileNum = $('[Id*=txtNumber]').val();
+             MobileNum = $('[Id*=txtNumber]').val();
             $('#lblMobile').text(MobileNum);
             document.getElementById('lblMobile').innerHTML = MobileNum;
-            var pinNum = $('[Id*=txtMpin]').val();
+             pinNum = $('[Id*=txtMpin]').val();
             getcookiedata()
             if (MobileNum.trim() == "") {
                     
@@ -1200,14 +1204,13 @@
             }
         })
 
-    </script>
 
-    <script>
 
 
         function verifyOTP() {
-            var MobileNum = $('[Id*=txtNumber]').val();
-            var pinNum = $('[Id*=txtMpin]').val();
+            debugger;
+            var MobileNumber = MobileNum;
+   
             document.getElementById("lblMobile").innerHTML = MobileNum;
             var Otp = $("#ot1").val();
             var Otp1 = $("#ot2").val();
@@ -1222,11 +1225,11 @@
 
                 $.ajax({
                     url: "/Login/OtpVerfication",
-                    data: { 'Mobile': MobileNum, 'Otp': finalotp },
+                    data: { 'Mobile': MobileNumber, 'Otp': finalotp },
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-
+                        debugger;
                         if (response.statuscode == "TXN") {
                             $.notify(
                                 response.message,

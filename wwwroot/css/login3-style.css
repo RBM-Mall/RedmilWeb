@@ -8,6 +8,10 @@
 {
     display:none;
 }
+.btn_scorll_nav {
+    height: 603px;
+    overflow-y: auto;
+}
 .authfy-login .btn.btn-lg {
     border-radius: 3px;
     box-shadow: 0 2px 3px #9c9c9c
