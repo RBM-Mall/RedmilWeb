@@ -7,5 +7,7 @@
         public string Amount { get; set; }
         public string checksum { get; set; }
         public string Userid { get; set; }
+        public string Type { get; set; }
+
     }
 }

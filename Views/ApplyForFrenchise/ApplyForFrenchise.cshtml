@@ -32,7 +32,28 @@
                         background-color: black;
                         margin: 20px
                     }*/
+                    .success_frenchise
+                    {
+                    height: 315px;
+                    margin-top: 137px;
+                    }
+    .confirm_dash {
+        background-color: rgb(136, 8, 8);
+        width: 33%;
+        height: 36px;
+        color: white;
+        font-size: 20px;
+    }
 
+    .confirm_dash_succes {
+        background-color: rgb(0,128,0);
+        width: 33%;
+        height: 36px;
+        color: white;
+        font-size: 20px;
+    }
+
+    
     .forbenefit {
         margin-left: 20px
     }
@@ -127,26 +148,26 @@
                                                     <div class="form-group-recharge">
 
                                                         <input id="TxtCity"
-                                                               autocomplete="off" required="required" class="txt-input  txt-input-text" placeholder="Enter City" />
-                                                        <span id="" style="color: red"></span>
+                                                               autocomplete="off" required="required" class="txt-input  txt-input-text" placeholder="Enter City" /><br />
+                                                        <span id="Txt_city" style="color: red"></span>
 
                                                     </div>
                                                     <div class="form-group-recharge">
 
-                                                        <input id="TxtArea" autocomplete="off" class="txt-input  txt-input-text" required="required" placeholder="Enter Area">
-                                                        <span id="" style="color: red"></span>
+                                                        <input id="TxtArea" autocomplete="off" class="txt-input  txt-input-text" required="required" placeholder="Enter Area"><br />
+                                                        <span id="Txt_area" style="color: red"></span>
 
                                                     </div>
                                                     <br />
                                                     <div class="row">
                                                         <h4 class="select_franchise">Select your preference</h4><br />
                                                         <div class="col-sm-6">
-                                                            <div class="form-check form-check-inline select_franchise_div">
+                                                            <div class="form-check form-check-inline select_franchise_div" style="padding-left: 68px;">
                                                                 <input class="form-check-input" id="TxtPreference1" type="radio" name="inlineRadioOptions" style=" display: inline-block; width: 50px; height: 11px;" value="Frenchise">
                                                                 <label class="form-check-label" for="inlineRadio1" style="margin-left: -16px">Franchise</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-6" style="margin-left:-87px">
                                                             <div class="form-check form-check-inline select_franchise_div">
                                                                 <input class="form-check-input" id="TxtPreference2" type="radio" name="inlineRadioOptions" value="MasterFrenchise" style=" display: inline-block; width: 50px; height: 11px;">
                                                                 <label class="form-check-label" for="inlineRadio2" style="margin-left: -16px">Master Franchise</label>
@@ -197,22 +218,89 @@
         </div>
     </div>
 </div>
+<!--Modal for Error-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal_Frenchise" style="display:none" data-target="#Error_modal_Frenchises" data-toggle="modal">
+        <div id="Error_modal_Frenchises" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content modal_error_content">
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(136, 8, 8);">
+                            <label id="img"><i class="fa fa-times" aria-hidden="true"></i></label>
+                        </div>
+                        <h4 id="heding" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg_Confirm_SuuceessError"></label></h3>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclos confirm_dash" data-dismiss="modal"><b>Ok</b></button>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal for Success-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal_Frenchise_Success" style="display:none" data-target="#Error_modal_Frenchisess" data-toggle="modal">
+        <div id="Error_modal_Frenchisess" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content modal_error_content success_frenchise" >
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(124,252,0);">
+                            <label id="img"><i class="fa-solid fa-check" aria-hidden="true"></i></label>
+                        </div>
+                        <h4 id="heding" class="modal-title w-100" style="padding-top:54px">Success</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg_Confirm_Suuceess"></label></h3>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclos confirm_dash_succes" data-dismiss="modal" style="background-color: rgb(124,252,0);"><b>Ok</b></button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--Body Ends Here-->
 <script>
 
     function forfrenchise() {
+        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Submit');
+        }, 2000);
         debugger;
         var city = $('#TxtCity').val();
         var area = $('#TxtArea').val();
         var frenchise = $('[name="inlineRadioOptions"]:radio:checked').val();
         if (city.trim() == "") {
-            $.notify("Please Enter City ? ", "warn");
+            $('#Txt_city').text("Please Enter City");
+            $('#Txt_city').css("margin-left", "29px");
             $('#TxtCity').focus();
         }
         else if (area.trim() == "") {
-
-            $.notify("Please Enter Area ? ", "warn");
+            $('#Txt_area').text("Please Enter Area");
+            $('#Txt_city').css("margin-left", "29px");
+            //$.notify("Please Enter Area ? ", "warn");
             $('[#TxtArea]').focus();
 
         }
@@ -228,27 +316,37 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
+                    setTimeout(() => {
+                        $(this).html('Submit');
+                    }, 2000);
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
                     else if (response.result == "UnExpectedStatusCode") {
                         window.location.href = response.url;
                     }
-                    else if (response.result == "RedirectToException") {
+                    else if (response.result == "RedirectToException") 
+                    {
                         window.location.href = response.url;
                     }
                     else if (response.statuscode == "TXN") {
                         frenchiseclear();
-                        $.notify(response.message, { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 });
+                        $("#Error_modal_Frenchise_Success").trigger("click");
+                        $("#lblMsg_Confirm_Suuceess").text(response.message);
+                        //$.notify(response.message, { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 });
                     }
 
                     else {
-                        $.notify(
-                            response.message,
-                            { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+                        frenchiseclear();
+                        $("#Error_modal_Frenchise").trigger("click");
+                        $("#lblMsg_Confirm_SuuceessError").text(response.message);
+                        //$.notify(
+                        //    response.message,
+                        //    { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
 
 
-                        );
+                     
                     }
                 }
             })

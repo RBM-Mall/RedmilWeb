@@ -173,12 +173,6 @@
 
 <body onload="getcookiedata()">
 
-    
-
-
-
-
-
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <header>
         <div class="header-area sticky">
@@ -264,14 +258,14 @@
                                     <li><a href="~/ApplyForFrenchise/ApplyForFrenchise"><b>Apply For Franchise</b></a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><b>Media Center</b></a></li>
+                            @*<li><a href="#"><b>Media Center</b></a></li>*@
                             <li><a href="~/ContactUs/ContactUs"><b>Contact Us</b></a></li>
-                            <li class="dropdown">
+                            @*<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Miscellaneous</b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><b>Audited financials</b> </a></li>
                                 </ul>
-                            </li>
+                            </li>*@
                             @{
                                 if (@Accessor.HttpContext.Session.GetString("Id") == null)
                                 {
@@ -977,10 +971,10 @@
                         <div class="widget contact-us">
 
                             <ul>
-                                <li><a href="">Terms &amp; Conditions</a></li>
+                            
                                 @*<li><p style="margin-left: -100px;cursor: pointer;" onclick="comingsoon()">Schedule of Charges</p></li>*@
                                 <li><a href="" style="cursor: pointer;">Schedule of Charges</a></li>
-                                <li><a href="">Privacy Policy</a></li>
+                               
                                 @*<li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>*@
                                 <li style="cursor: pointer;"><a href="">Careers</a></li>
 
@@ -1565,14 +1559,14 @@
     </script>
 
     <script>
-        function LoginClear() {
+        function LoginClear() 
+        {
             $('[Id*=txtNumber]').val("");
             $('[Id*=txtMpin]').val("");
             $('[Id*=txtNewMpin]').val("");
             $('[Id*=txtConfirmNewMpin]').val("")
             $('[Id*=txtOtp]').val("");
         }
-
     </script>
 
     <script type="text/javascript">
@@ -1670,10 +1664,10 @@
                 );
                 chkRemember.checked = false;
             }
-
+            
             else {
-                document.cookie = "mymobile=" + MobileNum + ";path=http://https://localhost:7102/";
-                document.cookie = "myMpin=" + pinNum + ";path=http://https://localhost:7102/";
+                document.cookie = "mymobile=" + MobileNum + ";path=https://uatweb1.redmilbusinessmall.com/";
+                document.cookie = "myMpin=" + pinNum + ";path=https://uatweb1.redmilbusinessmall.com/";
 
             }
         }

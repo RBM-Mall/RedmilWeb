@@ -26,7 +26,16 @@
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-
+<style>
+    .confirm_dash
+    {
+     background-color: rgb(136, 8, 8);
+    width: 33%;
+    height: 36px;
+    color: white;
+    font-size: 20px;
+    }
+</style>
 <br />
 <div class="container-fluid" style="background:#ebebeb">
     <div class="first-header">
@@ -115,7 +124,7 @@
 
 
                             <div class="form-group-recharge" style="margin-left: -20px">
-                                <input id="txtAccountNum" autocomplete="off" maxlength="20" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
+                                <input id="txtAccountNum" autocomplete="off" maxlength="20" onkeypress="return ValidateAlphanumericsrAccount(event);" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
                                 <br />
                                 <h5><span id="errtxtAccountNum" style="color:red" class="errorMsg"></span></h5>
                             </div>
@@ -193,14 +202,14 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-12" style="text-align:center;">
-                            <a href="/DMT2Dashboard/DMTDashboard" type="button" id="btnAddBeneficiery" class="button-27">Ok</a>
+                            <a href="/DMT2Dashboard/DMTDashboard" type="button" id="btnAddBeneficiery" class="button-27">Okay</a>
                         </div>
                     </div>
                 </div>
                 @*<div class="modal-footer div-pay-row">
                 <div class="row div-pay-row">
                 <div class="col-sm-4 final-pay-button">
-                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Okay</a></buton>
                 </div>
                 </div>
 
@@ -311,7 +320,7 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-12" style="display: inline-flex;">
-                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="button-27">Ok</a>
+                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" onclick="deletePopUp()" id="btnDeletBeneficiary" class="button-27">Okay</a>
                         </div>
                     </div>
                 </div>
@@ -320,7 +329,7 @@
                 @* <div class="modal-footer div-pay-row">
                 <div class="row div-pay-row">
                 <div class="col-sm-4 final-pay-button">
-                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a></buton>
+                <buton><a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Okay</a></buton>
                 </div>
                 </div>
 
@@ -394,7 +403,7 @@
             <div class="modal-content">
                 <div class="modal-header modal-header-recharge">
                     <a href="/DMT2Dashboard/DMTDashboard" class="close close_cross">&times;</a>
-                    <h3 class="modal-title" style="text-align:center;"><b>Verification Status: Verified</b></h3>
+                    <h3 class="modal-title" style="text-align:center;"><b>Verification Status:<span style="color:green">Verified</span> </b></h3>
                 </div>
                 <div class="modal-body" style="background-color:white;">
                     <div class="row">
@@ -412,7 +421,7 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-12" style="display: inline-flex;">
-                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" id="btnDeletBeneficiary" class="button-27">Ok</a>
+                            <a href="/DMT2Dashboard/DMTDashboard" type="button" id="btnDeletBeneficiary" class="button-27" style="margin-left: 41%;">Okay</a>
                         </div>
                     </div>
                 </div>
@@ -422,7 +431,7 @@
                 <div class="modal-footer div-pay-row">
                 <div class="row div-pay-row">
                 <div class="col-sm-4 final-pay-button">
-                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Okay</a>
                 </div>
                 </div>
 
@@ -447,7 +456,6 @@
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center">
                             <label id="lblErrorName" class="heading_customer_phone" style="text-align:center;color:red;">
-
                             </label>
                         </div>
                     </div>
@@ -456,7 +464,7 @@
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-12" style="display: inline-flex;">
-                            <<a href="/DMT2Dashboard/DMTDashboard" type="button" class="button-27">Ok</a>
+                            <a href="/DMT2Dashboard/DMTDashboard" type="button" class="button-27" style="margin-left: 41%;">Okay</a>
                         </div>
                     </div>
                 </div>
@@ -465,7 +473,7 @@
                 @* <div class="modal-footer div-pay-row">
                 <div class="row div-pay-row">
                 <div class="col-sm-4 final-pay-button">
-                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Ok</a>
+                <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" type="button">Okay</a>
                 </div>
                 </div>
                 </div>*@
@@ -649,7 +657,7 @@
             </div>
             <div class="modal-footer">
                 <div class="row">
-                    <div class="col-md-12" style="display: inline-flex;">
+                    <div class="col-md-12" style="display: inline-flex;margin-left: 41%;">
                         <button type="button" id="btnConfirmNowFinal" onclick="finalGoPay()" class="button-27">Confirm</button>
                     </div>
                 </div>
@@ -883,8 +891,45 @@
     </div>
 </div>
 </div>
+<!--Modal for Error-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal_confirm" style="display:none" data-target="#Error_modal_confirms" data-toggle="modal">
+        <div id="Error_modal_confirms" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content modal_error_content">
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    
+
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(136, 8, 8);">
+                            <label id="img"><i class="fa fa-times" aria-hidden="true"></i></label>
+
+                        </div>
+                        <h4 id="heding" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg_Confirm"></label></h3>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclos confirm_dash" data-dismiss="modal"><b>Ok</b></button>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $("#btnAddBeneficiery").click(function () {
+        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Add Beneficiery');
+        }, 2000);
         var accName = $("#txtAccountHoldName").val();
         var accountNum = $("#txtAccountNum").val();
         var IFSC = $("#txtIFSCCode").val();
@@ -909,6 +954,9 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    setTimeout(() => {
+                        $(this).html('Add Beneficiery');
+                    }, 2000);
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -939,6 +987,10 @@
     });
 
     function detailsPopup(Id) {
+        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Delete');
+        }, 2000);
         var id = Id;
         $.ajax({
             type: "POST",
@@ -947,6 +999,9 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
+                setTimeout(() => {
+                    $(this).html('Delete');
+                }, 2000);
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1042,6 +1097,11 @@
     }
 
     function verifyAccount() {
+        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Verify');
+        }, 2000);
+       
         var id = document.getElementById("lblSenderID").innerHTML;
         $.ajax({
             type: "POST",
@@ -1050,6 +1110,9 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
+                setTimeout(() => {
+                    $(this).html('Verify');
+                }, 2000);
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1090,6 +1153,12 @@
     }
 
     function confirmPopup() {
+        debugger;
+         $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Proceed to Pay');
+        }, 2000);
+        
         var amount = $("#txtTransferAmount").val();
         var mode = $('.rdbMode:checked').val();
         var id = document.getElementById("lblPayId").innerHTML;
@@ -1109,6 +1178,10 @@
                 type: 'POST',
                 datatype: 'json',
                 success: function (response) {
+                    debugger;
+                    setTimeout(() => {
+            $(this).html('Proceed to Pay');
+        }, 2000);  
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1117,6 +1190,14 @@
                     }
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
+                    }
+                    else if(response.statuscode=="ERR")
+                    {
+                       
+                        $("#Error_modal_confirm").trigger("click");
+                        $("#lblMsg_Confirm").text(response.message);
+                         $("#modalPopuForConfirmPayment").hide();
+                       
                     }
                     else {
                         document.getElementById("lblTransferMode").innerHTML = 'Transfer Mode : ' + mode;
@@ -1141,6 +1222,7 @@
                 type: 'POST',
                 datatype: 'json',
                 success: function (response) {
+                    debugger
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1149,6 +1231,14 @@
                     }
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
+                    }
+                     else if(response.statuscode=="ERR")
+                    {
+                       
+                        $("#Error_modal_confirm").trigger("click");
+                        $("#lblMsg_Confirm").text(response.message);
+                         $("#modalPopuForConfirmPayment").hide();
+                       
                     }
                     else {
                         document.getElementById("lblBeneficiaryName1").innerHTML = 'Beneficiary Name: ' + response[0].beneficiaryName;
@@ -1192,6 +1282,12 @@
 
 
     function finalGoPay() {
+        debugger;
+         $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Confirm');
+        }, 2000);
+        
         var amount = $("#txtTransferAmount").val();
         $.ajax({
             type: "POST",
@@ -1200,6 +1296,9 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
+                 setTimeout(() => {
+            $(this).html('Confirm');
+        }, 2000);
                 document.getElementById("lblMainbal").innerHTML = response[0].mainBal;
                 document.getElementById("lblAdbal").innerHTML = response[0].adBal;
                 document.getElementById("lblamountNewFinal").innerHTML = '₹: ' + amount;
@@ -1218,6 +1317,10 @@
 
 
     $("#btnPayNowFinal").click(function () {
+         $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Pay');
+        }, 2000);
         var id = document.getElementById("lblPayId1").innerHTML
         var amount = $("#txtTransferAmount").val();
         var mode = $('.rdbMode:checked').val();
@@ -1230,6 +1333,9 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    setTimeout(() => {
+            $(this).html('Pay');
+        }, 2000);
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1312,5 +1418,23 @@
         });
 
     });
+    function ValidateAlphanumericsrAccount(e) {
+        var keyCode = e.keyCode || e.which;
 
+        var Amount = document.getElementById("txtAccountNum");
+        errtxtAccountNum.innerHTML = "";
+        var regex = /^[0-9]+$/;
+        var isValid = regex.test(String.fromCharCode(keyCode));
+        if (!isValid) {
+
+            errtxtAccountNum.innerHTML = "Only Numbers allowed.";
+            $('#errtxtAccountNum').css('margin-left', '-109px');
+            $('#errtxtAccountNum').css('color', 'red');
+
+        }
+        else {
+            Text_rtgs.innerHTML = "";
+        }
+        return isValid;
+    }
 </script>

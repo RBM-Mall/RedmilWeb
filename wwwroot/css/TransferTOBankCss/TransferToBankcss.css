@@ -14,10 +14,22 @@ td th {
 .img_forImage {
     margin-top: 62px;
 }
+.do_data 
+{
+    margin-left: 166px;
+}
 .dmts {
     margin-top: 13px;
     text-align: center;
     margin-left: 72px;
+}
+.foraddAccount 
+{
+    margin-left: -67px;
+}
+.data_modal {
+    margin-left: 157px;
+    margin-top: 8px;
 }
 
 .img_Transfer {
@@ -28,7 +40,30 @@ td th {
 .modal_footers {
     margin-left: 10rem;
 }
-
+.modal_error_content {
+    width: 100%;
+    margin-top: 171px;
+    margin-left: 55px;
+    border-radius: 16px
+}
+.modal_footers-pending
+{
+    margin-left: 41%;
+}
+.btn-final-Error {
+    display: block;
+    margin-left: 112px;
+    margin-top: 20%;
+    width: 43%;
+    border-radius: 41px;
+    height: 44px;
+    font-size: 20px;
+    color: white;
+    border-color: white;
+    border-right: white;
+    border-left: white;
+    border-top: white;
+}
 .modal_top {
     margin-top: 94px;
 }
@@ -274,7 +309,7 @@ td th {
     height: auto;
     justify-content: center;
     line-height: 1.5;
-    padding: 6px 57px;
+    padding: 7px 63px;
     position: relative;
     text-align: center;
     text-decoration: none;

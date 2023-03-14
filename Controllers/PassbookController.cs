@@ -1476,9 +1476,9 @@ namespace Project_Redmil_MVC.Controllers
             }
         }
         #endregion
-
+            
         #region MultiAcountDetails
-        public JsonResult MultiAcountDetail()
+        public JsonResult MultiAcountDetail(string Type)
         {
             var baseUrl = "https://api.redmilbusinessmall.com";
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
@@ -1486,6 +1486,8 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+
+                requestModel.Type = Type;
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetMultiAccountDetailsForUsers", Checksum.checksumKey,
@@ -1522,7 +1524,6 @@ namespace Project_Redmil_MVC.Controllers
                         //    //        Bankdetail.AccountNo=item.AccountNo,
                         //    //        Bankdetail.Ifsc=item.Ifsc,
                         //    //        Bankdetail.BeniName
-
                         //    //    })
                         //    //}
                         //}
@@ -1856,7 +1857,7 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddHeader("Content-Type", "application/json");
                 var json = JsonConvert.SerializeObject(requestModel);
                 request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request); 
                 var result = response.Content;
                 var Bankdetail = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                 if (Bankdetail.Statuscode == "TXN" && Bankdetail != null)
