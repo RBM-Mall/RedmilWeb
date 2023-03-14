@@ -1642,18 +1642,32 @@ namespace Project_Redmil_MVC.Controllers
                             }
                             
                             else
-                            {
+                            { 
+                                
+                                var firstdesi = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
 
-                                //var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<SuccessResponseModel>>>(response1.Content);
-                                //var deserialize1 = datadesi.Data;
-                                var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
-                                if (deserialize1.Statuscode == "ERR" )
+                                if (firstdesi.Statuscode == "TXN")
                                 {
+                                    var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<SuccessResponseModel>>>(response1.Content);
+                                    return Json(datadesi);
+                                }
+
+
+
+
+
+                              
+
+                                //var deserialize1 = datadesi.Data;
+                                //var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+                                else if (firstdesi.Statuscode == "ERR" )
+                                {
+                                    var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
                                     return Json(deserialize1);
                                 }
                               
                                 //SuccessResponseModel
-                                return Json(deserialize1);
+                                return Json(firstdesi);
                             }
                         }
                         catch (Exception ex)

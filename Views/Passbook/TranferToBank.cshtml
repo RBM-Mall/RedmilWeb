@@ -948,7 +948,7 @@
                                             <h4> : </h4>
                                         </div>
                                         <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
-                                            <h4 id="Chrge"></h4>
+                                            <h4 id="Success_Chrge"></h4>
                                         </div>
                                     </div>
                                     <div class="col col-md-12">
@@ -1863,7 +1863,7 @@
                     $("#Acn").text(data.data[0].account);
                     $("#Ic").text(data.data[0].ifsc);
                     $("#Cwde").text(Amount);
-                    $("#Charge").text(data.data[0].surcharge);
+                    $("#Success_Chrge").text(data.data[0].surcharge);
                     $("#Bac").text(ActualAmount);
                     $("#DT").text(data.data[0].editDate);
                     if (data.data[0].modeId == "1")
@@ -1880,8 +1880,6 @@
                         $("#Modes").text("RTGS");
 
                     }
-                    
-
                 }
                 else if (data.statscode == "ERR" && data.message == "Transaction Failure") 
                 {
@@ -1893,7 +1891,7 @@
                     $("#Acn").text(data.data[0].account);
                     $("#Ic").text(data.data[0].ifsc);
                     $("#Cwde").text(Amount);
-                    $("#Chrge").text(data.data[0].surcharge);
+                    $("#Success_Chrge").text(data.data[0].surcharge);
                     $("#Bac").text(ActualAmount);
                     $("#DT").text(data.data[0].editDate);
                     if (data.data[0].modeId == "1") 

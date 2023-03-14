@@ -220,8 +220,8 @@
                                     </li>
                                     <li class="hover-me">
                                         <a href="#"><b>Bill Payment </b><i class="fa fa-angle-right"></i> </a>
-                                        <div class="Sub-menu-1">
-                                            <ul class="services-angle">
+                                        <div class="Sub-menu-1"">
+                                            <ul class="services-angle" >
                                                 <li><a href="~/ElectricityBill/ElectricityBill"><b>Electricity Bill</b></a></li>
                                                 <li><a href="~/GasBill/GasBill"><b>Gas Bill</b></a></li>
                                                 <li><a href="~/WaterBill/WaterBill"><b>Water Bill</b></a></li>
@@ -964,7 +964,7 @@
 
                             <a href="https://play.google.com/store/apps" target="_blank"><img src="#" class="download-the-app" alt=""></a>
 
-                            <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>
+                           @* <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>*@
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -1069,10 +1069,8 @@
         });
         var Name;
         var MobileNo;
-        //function verifiedLogin() {
         $('#Logni_button').click(function() {
             debugger;
-            getcookiedata();
              $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
@@ -1081,6 +1079,7 @@
             $('#lblMobile').text(MobileNum);
             document.getElementById('lblMobile').innerHTML = MobileNum;
             var pinNum = $('[Id*=txtMpin]').val();
+            getcookiedata()
             if (MobileNum.trim() == "") {
                     
                 document.getElementById("mobile").innerHTML = "Please Enter Mobile Number";
@@ -1672,7 +1671,7 @@
             }
         }
         function getcookiedata() {
-            debugger
+        
             console.log(document.cookie);
             var cookisMobile = getCookie('mymobile');
             var cookisMpin = getCookie('myMpin');
@@ -1681,7 +1680,7 @@
 
         }
         function getCookie(cname) {
-            debugger
+            
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
