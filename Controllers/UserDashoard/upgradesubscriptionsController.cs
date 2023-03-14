@@ -42,7 +42,7 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             return View();
         }
         #region getSubscription
-        public IActionResult getSubscription(string foropenpdf, string showplan, string showprice)
+        public IActionResult getSubscription(string foropenpdf, string showplan, string showprice,string TermCondition)
         {
             if (Convert.ToInt32(HttpContext.Session.GetString("Id")) <= 0)
             {
@@ -135,6 +135,14 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
                                 var a = baseUrl + lstResponse.Where(x => x.PlanName == foropenpdf).FirstOrDefault().SampleImg;
                                 //baseUrl + item.ImgLink
                                 return Json(a);
+                            }
+                           if(!string.IsNullOrEmpty(TermCondition))
+                            {
+                                //var a2 = baseUrl + dataAddOn.Where(x => x.PlanName == TermCondition).;
+                                //baseUrl + item.ImgLink
+                                var a2 = baseUrl+dataAddOn.Pdfurl;
+                                return Json(a2);
+
                             }
                             //double GS,TotaL;
                             if (lstResponse != null)

@@ -12,10 +12,28 @@
     height: 603px;
     overflow-y: auto;
 }
-.authfy-login .btn.btn-lg {
-    border-radius: 3px;
-    box-shadow: 0 2px 3px #9c9c9c
-}
+    .btn_scorll_nav::-webkit-scrollbar {
+        width: 12px;
+    }
+    .btn_scorll_nav::-webkit-scrollbar-track {
+        background: #f1f1f1;
+
+
+    }
+    .btn_scorll_nav::-webkit-scrollbar-thumb {
+      /*  background: #888;*/
+        background-image: linear-gradient(1deg, #4F58FD, #2d385e 99%);
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+        .btn_scorll_nav::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    .authfy-login .btn.btn-lg {
+        border-radius: 3px;
+        box-shadow: 0 2px 3px #9c9c9c
+    }
 .btn_sendOtp {
     margin-top: -1px;
     margin-right: -79px;
