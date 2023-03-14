@@ -1121,6 +1121,11 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
                 if (string.IsNullOrEmpty(result))
                 {
                     return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });

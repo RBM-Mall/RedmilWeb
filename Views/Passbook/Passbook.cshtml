@@ -470,7 +470,75 @@
                         <div class="modal-footer div-pay-row">
                             <div class="row div-pay-row">
                                 <div class="col-sm-4 final-pay-button">
-                                    <button class="btn btn-info text-center clse sign_done">Done</button>
+                                    <button class="button-21 text-center clse sign_done">Done</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal For Detail ButtonDetail Passbook-->
+<input type="button" id="Detail_ButtonDetail" style="display:none" data-target="#Details_ButtonDetail" data-toggle="modal" />
+<div id="Details_ButtonDetail" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-confirm modal_signup process_signup">
+        <div class="modal-content">
+            <div class="cross clse" aria-label="Close" data-dismiss="modal">
+                <button type="button" class="close design clse" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                            <img src="~/css/paymentimages/encrypted.png" class="enc_img" />
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                            <img src="~/css/paymentimages/secure.png" class="sec_img" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+                            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+                                <img src="~/css/ImageLogo/redmil-new-logo2.png" class="new_img" />
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3  col-md-3 col-lg-3 col-xl-3"></div>
+                            <div class="col-sm-6  col-md-6 col-lg-6 col-xl-6">
+
+                                <p style="" class="redmil_title">Redmil Business Mall</p>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                                <h3 id="DetailTitle_ButtonDetail" class="heading_details_modal titlecenter text-center"></h3>
+                                <div class="title_data">
+
+                                    <img id="DetailLogo_ButtonDetail" class="img_center_moda" style="height:50px">
+                                </div>
+
+                                <div class="inc inc_modal_body">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer div-pay-row">
+                            <div class="row div-pay-row">
+                                <div class="col-sm-4 final-pay-button">
+                                    <button class="button-21 text-center clse sign_done">Done</button>
                                 </div>
 
                             </div>
@@ -1094,7 +1162,39 @@
         </div>
     </div>
 </div>
+<!--Modal Detail Error-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal_Detail" style="display:none" data-target="#Error_modal_Details" data-toggle="modal">
+        <div id="Error_modal_Details" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false" >
+            <div class="modal-dialog modal-confirm" >
+                <div class="modal-content modal_error_content">
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button> 
+                    
+                    
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(136, 8, 8);font-size:40px;">
+                            <label id="img"><i class="fa fa-times" aria-hidden="true"></i></label>
+                            
+                        </div>
+                        <h4 id="heding_detail" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg_detail"></label></h3>
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclose"  data-dismiss="modal" style="background-color: rgb(136, 8, 8);"><b>Ok</b></button>
+                          
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 
@@ -1301,8 +1401,8 @@
                     var response = JSON.parse(data);
                     var length = Object.keys(response.Data).length;
                     var data1 = response.Data;
-                    $("#DetailLogo").attr("src", baseurl + response.Data.Logo);
-                    $("#DetailTitle").text(response.Data.Title);
+                    $("#DetailLogo_ButtonDetail").attr("src", baseurl + response.Data.Logo);
+                    $("#DetailTitle_ButtonDetail").text(response.Data.Title);
                     var result = Object.entries(data1);
                     for (var i = 0; i < length; i++) {
                         if (result[i][0] == "Logo" || result[i][0] == "Title") {
@@ -1310,11 +1410,11 @@
 
                         }
                         else {
-                            $(".inc").append('<dic class="row inc_data" ><div class="col-sm-5 col-md-5 col-xl-5 col-lg-5 forsize" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1 col-md-1 col-lg-1 co-xl-1 fondash"><label for= "fname">:</label></div><div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 forrates"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>');
+                            $(".inc").append('<dic class="row inc_data" ><div class="col-sm-5 col-md-5 col-xl-5 col-lg-5 forsize_2" ><label for="fname">' + result[i][0] + '</label></div><div class= "col-sm-1 col-md-1 col-lg-1 co-xl-1 fondash_2"><label for= "fname">:</label></div><div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 forrates_2"> <label for= "fname"> ' + result[i][1] + ' </label></div></div>');
                         }
 
                     }
-                    $("#Detail").trigger("click");
+                    $("#Detail_ButtonDetail").trigger("click");
                 }
             }
 
@@ -1324,6 +1424,7 @@
 
     //For  R&E Rewards Points Passbok Detail.
     function RERewards(e) {
+        debugger;
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
         $.ajax({
@@ -1332,6 +1433,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+                       debugger;
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1340,6 +1442,12 @@
                 }
                 else if (data.result == "RedirectToException") {
                     window.location.href = data.url;
+                }
+                else if(data.statuscode=="ERR")
+                {
+                    $("#Error_modal_Detail").trigger("click");
+                        $("#lblMsg_detail").text(data.message);
+                
                 }
                 else {
                     var response = JSON.parse(data);
@@ -1370,6 +1478,7 @@
     jQuery('.remove').parent().remove();
     //For Business RewardPassbook Detail
     function BRewards(e) {
+        debugger;
         BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
         $.ajax({
@@ -1390,8 +1499,8 @@
                 else {
                     var response = JSON.parse(data);
                     if (response.Statuscode == "ERR") {
-                        $("#BtnNoDatafound").trigger("click");
-                        $("#lblMsgNoData").text(response.Message);
+                        $("#Error_modal_Detail").trigger("click");
+                        $("#lblMsg_detail").text(response.Message);
 
 
                     }
