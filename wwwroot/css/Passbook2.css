@@ -1,4 +1,40 @@
 ﻿
+
+.forsize {
+    margin-left: 71px;
+    font-size: 14px;
+}
+
+.fondash {
+    margin-top: 1px;
+    margin-left: -92px;
+
+
+}
+.modal_error_content {
+    width: 60%;
+    margin-top: 170px;
+    margin-left: 55px;
+    border-radius: 19px;
+
+}
+.forrates {
+    margin-left: 259px;
+    margin-top: -28px;
+    font-size: 13px;
+}
+.forsize_2 {
+    margin-left: 127px;
+}
+.fondash_2 {
+    margin-left: -81px;
+}
+.forrates_2 {
+    margin-left: 367px;
+    margin-top: -27px;
+
+}
+
 .ts {
     margin-left: 226px;
     font-size: 26px;
@@ -648,7 +684,7 @@ element.style {
 }
 
 .img_center_moda {
-    margin-left: 248px;
+    margin-left: 291px;
     margin-bottom: 24px;
 }
 
@@ -749,11 +785,11 @@ element.style {
     margin-left: 58px;
     margin-top: 2px
 }
-.redmil_title 
-{
+.redmil_title {
     font-weight: bold;
     color: #13223c;
     font-size: 24px;
+    margin-left: 20px;
 }
 .sign_done {
     width: 158px;

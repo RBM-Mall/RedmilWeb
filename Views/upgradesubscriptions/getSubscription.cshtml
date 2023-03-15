@@ -58,6 +58,7 @@
                                 <img src="@item.Img" alt="" style="width:100%">
                                 <h3 class="pdfopen">@item.PlanName</h3>
                                 <h6 onclick='OpenPdf("@item.PlanName")' class="vPlan" style="font-weight:bold;cursor:pointer;">View Plan Branding</h6>
+                                <h4 style="font-weight:bold;cursor:pointer;color:skyblue" onclick='OpenPdfinTerm("@item.PlanName")'>Refund Terms and Condition</h4>
                                 @if (a != "")
                                 {
                                     <p>
@@ -117,7 +118,7 @@
                                             <div class="form-group">
                                                 <input type="text" id="Coupon" placeholder="Enter Coupon Code" class="form-control for-left" required onkeypress="return ValidateAlphanumeric(event);"><p class="btnlft bbtn">Apply</p>
 
-                                                <span id="foralert" style="color: red"></span>
+                                                <span id="foralert" style="color: red;margin-left: -148px;"></span>
 
                                             </div>
                                         </form>
@@ -357,8 +358,33 @@
     </div>
     <script>
 
+        //For Refund Term and Condition
+        function OpenPdfinTerm(itemname) {
+            debugger;
+            $.ajax({
+                url: "/upgradesubscriptions/getSubscription",
+                data: { 'TermCondition': itemname.trim() },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
 
+                }
+            });
 
+        }
         //For Function open
         function OpenPdf(itemname) {
             $.ajax({
@@ -385,6 +411,7 @@
             });
 
         }
+
         //For View Open Branding.
         var PlanId;
         var Rates;

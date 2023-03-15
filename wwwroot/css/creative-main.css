@@ -562,7 +562,9 @@ nav ul li:hover {
 .widget-title {
     color: #fff;
     margin-bottom: 0px;
-    margin-top: 0px;
+    margin-top: -12px;
+    margin-left: 39px;
+    padding: 4px;
 }
 
 .contact-us ul li {

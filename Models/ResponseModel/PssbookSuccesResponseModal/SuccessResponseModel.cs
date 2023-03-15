@@ -22,5 +22,8 @@
         public double Amount { get; set; }
         public string bankReferenceNo { get; set; }
         public string Remark { get; set; }
+        public bool VoiceStatus { get; set; }
+        public int LanguageId { get; set; }
+        public string VoiceMessage { get; set; }
     }
 }

@@ -171,28 +171,7 @@
     </style>
 </head>
 
-<body>
-
-    @* <div class="image-loader">
-    <div class="rect">
-    <div class="dot d_i"></div>
-    <div class="dot d_ii"></div>
-    </div>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-    <defs>
-    <filter id="goo">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -5" result="goo" />
-    <feBlend in="SourceGraphic" in2="goo" />
-    </filter>
-    </defs>
-    </svg>*@
-
-
-
-
-
+<body onload="getcookiedata()">
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <header>
@@ -209,7 +188,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand brand-res-img" href="~/Home/Index">
-                            <img src="~/css/Img/23px-logo.png" width="100" alt="Logo">
+                           <img src="~/css/img/logo-redmil.jpeg" width="100" alt="Logo"/>
                         </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -241,7 +220,7 @@
                                     </li>
                                     <li class="hover-me">
                                         <a href="#"><b>Bill Payment </b><i class="fa fa-angle-right"></i> </a>
-                                        <div class="Sub-menu-1">
+                                        <div class="Sub-menu-1 btn_scorll_nav" >
                                             <ul class="services-angle">
                                                 <li><a href="~/ElectricityBill/ElectricityBill"><b>Electricity Bill</b></a></li>
                                                 <li><a href="~/GasBill/GasBill"><b>Gas Bill</b></a></li>
@@ -279,14 +258,14 @@
                                     <li><a href="~/ApplyForFrenchise/ApplyForFrenchise"><b>Apply For Franchise</b></a></li>
                                 </ul>
                             </li>
-                            <li><a href="#"><b>Media Center</b></a></li>
+                            @*<li><a href="#"><b>Media Center</b></a></li>*@
                             <li><a href="~/ContactUs/ContactUs"><b>Contact Us</b></a></li>
-                            <li class="dropdown">
+                            @*<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Miscellaneous</b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><b>Audited financials</b> </a></li>
                                 </ul>
-                            </li>
+                            </li>*@
                             @{
                                 if (@Accessor.HttpContext.Session.GetString("Id") == null)
                                 {
@@ -985,25 +964,25 @@
 
                             <a href="https://play.google.com/store/apps" target="_blank"><img src="#" class="download-the-app" alt=""></a>
 
-                            <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>
+                           @* <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>*@
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="widget contact-us">
 
                             <ul>
-                                <li><a href="">Terms &amp; Conditions</a></li>
+                            
                                 @*<li><p style="margin-left: -100px;cursor: pointer;" onclick="comingsoon()">Schedule of Charges</p></li>*@
-                                <li><a href="" style="cursor: pointer;">Schedule of Charges</a></li>
-                                <li><a href="">Privacy Policy</a></li>
+                                <li><a href="" style="cursor: pointer;">Privacy Policy</a></li>
+                               
                                 @*<li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>*@
-                                <li style="cursor: pointer;"><a href="">Careers</a></li>
+                                <li style="cursor: pointer;"><a href="">Terms and Condition</a></li>
 
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="widget contact-us">
+                    <div class="col-sm-4">
+                        @*<div class="widget contact-us">
 
                             <ul>
                                 <li><a href="#">Customer Grievance</a></li>
@@ -1012,9 +991,9 @@
                                 <li><a href="#" target="_blank">Ombudsman Scheme</a></li>
                                 <li><a href="#">E-Waste Management</a></li>
                             </ul>
-                        </div>
+                        </div>*@
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="widget contact-us">
                             <h3 class="widget-title">Corporate Office:</h3>
                             <ul>
@@ -1090,17 +1069,21 @@
         });
         var Name;
         var MobileNo;
-        //function verifiedLogin() {
+        var MobileNum;
+        var pinNum;
+
+
         $('#Logni_button').click(function() {
             debugger;
              $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
             }, 2000);
-            var MobileNum = $('[Id*=txtNumber]').val();
+             MobileNum = $('[Id*=txtNumber]').val();
             $('#lblMobile').text(MobileNum);
             document.getElementById('lblMobile').innerHTML = MobileNum;
-            var pinNum = $('[Id*=txtMpin]').val();
+             pinNum = $('[Id*=txtMpin]').val();
+            getcookiedata()
             if (MobileNum.trim() == "") {
                     
                 document.getElementById("mobile").innerHTML = "Please Enter Mobile Number";
@@ -1221,14 +1204,13 @@
             }
         })
 
-    </script>
 
-    <script>
 
 
         function verifyOTP() {
-            var MobileNum = $('[Id*=txtNumber]').val();
-            var pinNum = $('[Id*=txtMpin]').val();
+            debugger;
+            var MobileNumber = MobileNum;
+   
             document.getElementById("lblMobile").innerHTML = MobileNum;
             var Otp = $("#ot1").val();
             var Otp1 = $("#ot2").val();
@@ -1243,11 +1225,11 @@
 
                 $.ajax({
                     url: "/Login/OtpVerfication",
-                    data: { 'Mobile': MobileNum, 'Otp': finalotp },
+                    data: { 'Mobile': MobileNumber, 'Otp': finalotp },
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-
+                        debugger;
                         if (response.statuscode == "TXN") {
                             $.notify(
                                 response.message,
@@ -1579,14 +1561,14 @@
     </script>
 
     <script>
-        function LoginClear() {
+        function LoginClear() 
+        {
             $('[Id*=txtNumber]').val("");
             $('[Id*=txtMpin]').val("");
             $('[Id*=txtNewMpin]').val("");
             $('[Id*=txtConfirmNewMpin]').val("")
             $('[Id*=txtOtp]').val("");
         }
-
     </script>
 
     <script type="text/javascript">
@@ -1620,7 +1602,8 @@
     </script>
 
     <script>
-        function clearSession() {
+        function clearSession() 
+        {
             $.ajax({
                 url: "/Login/ClearSession",
                 data: {},
@@ -1629,12 +1612,11 @@
                 success: function (response) {
                     LoginClear();
                     $.notify(response.message, "success");
-                    window.location.href = '@Url.Content("~/Home/Index")'
+                    window.location.href = '@Url.Content("~/Home/Index")';
                 }
             });
         }
     </script>
-
     <script>
         //function sessionHandle() {
         //    getcookiedata();
@@ -1659,9 +1641,9 @@
     </script>
 
     <script>
-
+       
         function CookiesHandle() {
-
+            debugger;
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum == "" && pinNum == "") {
@@ -1684,14 +1666,15 @@
                 );
                 chkRemember.checked = false;
             }
-
+            
             else {
-                document.cookie = "mymobile=" + MobileNum + ";path=http://https://localhost:7102/";
-                document.cookie = "myMpin=" + pinNum + ";path=http://https://localhost:7102/";
+                document.cookie = "mymobile=" + MobileNum + ";path=https://uatweb1.redmilbusinessmall.com/";
+                document.cookie = "myMpin=" + pinNum + ";path=https://uatweb1.redmilbusinessmall.com/";
 
             }
         }
         function getcookiedata() {
+        
             console.log(document.cookie);
             var cookisMobile = getCookie('mymobile');
             var cookisMpin = getCookie('myMpin');
@@ -1700,6 +1683,7 @@
 
         }
         function getCookie(cname) {
+            
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');

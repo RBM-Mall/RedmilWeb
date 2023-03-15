@@ -1,7 +1,7 @@
 ﻿namespace Project_Redmil_MVC.Models.ResponseModel.UpgradeSubscriptionResponseModel
 {
 
-    public class UpgradeSubscriptionAddOnResponseModel
+    public class UpgradeSubscriptionAddOnResponseModel:GetSubscriptionPlanBaseResponseModel
     {
         public int Id { get; set; }
         public string? ItemName { get; set; }

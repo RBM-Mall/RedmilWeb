@@ -63,6 +63,7 @@ using Project_Redmil_MVC.Models.RequestModel.PansurchargeRequestModel;
 using Project_Redmil_MVC.Models.ResponseModel.PansurchargeResponseModel;
 using System.Drawing.Drawing2D;
 using static Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel;
+using Project_Redmil_MVC.Models.RequestModel.SelfHelp;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -1121,6 +1122,11 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddJsonBody(json);
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
+                var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                if (deserialize.Statuscode == "ERR")
+                {
+                    return Json(deserialize);
+                }
                 if (string.IsNullOrEmpty(result))
                 {
                     return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
@@ -1476,9 +1482,9 @@ namespace Project_Redmil_MVC.Controllers
             }
         }
         #endregion
-
+            
         #region MultiAcountDetails
-        public JsonResult MultiAcountDetail()
+        public JsonResult MultiAcountDetail(string Type)
         {
             var baseUrl = "https://api.redmilbusinessmall.com";
             GetCashoutAcutalAmountCreditRequestModel requestModel = new GetCashoutAcutalAmountCreditRequestModel();
@@ -1486,6 +1492,8 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 requestModel.Userid = HttpContext.Session.GetString("Id").ToString();
+
+                requestModel.Type = Type;
                 #region Checksum (GetUserBalanceSummaryWithPaging|Unique Key|UserId)
                 //GetUserBalanceSummaryWithPaging|Unique Key|Userid|WalletType|FilterBy|PageNumber
                 string input = Checksum.MakeChecksumString("GetMultiAccountDetailsForUsers", Checksum.checksumKey,
@@ -1522,7 +1530,6 @@ namespace Project_Redmil_MVC.Controllers
                         //    //        Bankdetail.AccountNo=item.AccountNo,
                         //    //        Bankdetail.Ifsc=item.Ifsc,
                         //    //        Bankdetail.BeniName
-
                         //    //    })
                         //    //}
                         //}
@@ -1601,7 +1608,7 @@ namespace Project_Redmil_MVC.Controllers
                     {
                         return Json(deserialize);
                     }
-                    else if (deserialize.Statuscode == "SKP" || deserialize.Data == "Exempted")
+                    else if (deserialize.Statuscode.Equals("SKP") && deserialize.Data.Equals("Exempted") || deserialize.Statuscode.Equals("ERR") && deserialize.Data.Equals("Verified"))
                     {
                         try
                         {
@@ -1639,13 +1646,34 @@ namespace Project_Redmil_MVC.Controllers
                             {
                                 return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
                             }
+                            
                             else
-                            {
-                                var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<SuccessResponseModel>>>(response1.Content);
-                                var deserialize1 = datadesi.Data;
+                            { 
+                                
+                                var firstdesi = JsonConvert.DeserializeObject<BaseResponseModel>(response1.Content);
+
+                                if (firstdesi.Statuscode == "TXN")
+                                {
+                                    var datadesi = JsonConvert.DeserializeObject<BaseResponseModelT<List<SuccessResponseModel>>>(response1.Content);
+                                    return Json(datadesi);
+                                }
+
+
+
+
+
+                              
+
+                                //var deserialize1 = datadesi.Data;
                                 //var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+                                else if (firstdesi.Statuscode == "ERR" )
+                                {
+                                    var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response1.Content);
+                                    return Json(deserialize1);
+                                }
+                              
                                 //SuccessResponseModel
-                                return Json(datadesi);
+                                return Json(firstdesi);
                             }
                         }
                         catch (Exception ex)
@@ -1663,8 +1691,9 @@ namespace Project_Redmil_MVC.Controllers
                             return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                         }
                     }
+                    
                     else
-                    {
+                     {
                         return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
                 }
@@ -1849,7 +1878,7 @@ namespace Project_Redmil_MVC.Controllers
                 request.AddHeader("Content-Type", "application/json");
                 var json = JsonConvert.SerializeObject(requestModel);
                 request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
+                IRestResponse response = client.Execute(request); 
                 var result = response.Content;
                 var Bankdetail = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
                 if (Bankdetail.Statuscode == "TXN" && Bankdetail != null)
@@ -1915,6 +1944,11 @@ namespace Project_Redmil_MVC.Controllers
             request.AddJsonBody(json);
             IRestResponse response = client.Execute(request);
             var result = response.Content;
+            var deserialize1 = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+            if (deserialize1.Statuscode == "ERR")
+            {
+                return Json(deserialize1);
+            }
             var deserialize = JsonConvert.DeserializeObject<BaseResponseModelT<List<AccountSignWithChargeResponseModel>>>(response.Content);
             if (deserialize.Statuscode == "TXN" && deserialize != null)
             {
@@ -1964,7 +1998,6 @@ namespace Project_Redmil_MVC.Controllers
 
 
         #endregion
-
 
         #region SendOTP
         public JsonResult SendOtp()
@@ -2025,7 +2058,6 @@ namespace Project_Redmil_MVC.Controllers
         }
         #endregion
 
-
         #region ConfirmValidateOtpForUserAccount
 
         public JsonResult ConfirmValidateOtpForUserAccount(string Otp)
@@ -2085,8 +2117,6 @@ namespace Project_Redmil_MVC.Controllers
             }
         }
         #endregion
-
-
 
         #region Uploadimages
         [HttpPost]
@@ -2204,7 +2234,6 @@ namespace Project_Redmil_MVC.Controllers
             return View();
         }
         #endregion
-
 
         #region AddAccount
         [HttpPost]
@@ -2700,5 +2729,56 @@ namespace Project_Redmil_MVC.Controllers
 
             return Json("");
         }
+        #region SelfHelp
+        public JsonResult SelfHelp(string ServiceId)
+        {
+
+            try
+            {
+                SelfHelpRequestModel SelfRequest = new SelfHelpRequestModel();
+                SelfRequest.Userid = "NA";
+                SelfRequest.ServiceId = ServiceId;
+                string input = Checksum.MakeChecksumString("transactionsreport", Checksum.checksumKey,
+                    SelfRequest.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                SelfRequest.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.transactionsreport}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(SelfRequest);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<List<GetcashdepositeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    //var datadeserialize = deserialize.Data;
+                    //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+                    return Json(data);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = "";
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+        }
+       #endregion
     }
 }

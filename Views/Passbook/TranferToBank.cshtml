@@ -1,6 +1,6 @@
 ﻿@model Project_Redmil_MVC.Models.ResponseModel.PassbookGetCashOutSurchargeNewResponseModel.PassbookGetCashsurchargeRespnseModel
 @{
-    ViewData["Title"] = "Passbook anfer To Bank";
+    ViewData["Title"] = "Passbook Transfer To Bank";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
 @using Microsoft.AspNetCore.Http
@@ -424,7 +424,7 @@
 
     <div id="exTab2" class="container">
 
-        <div class="row" class="">
+        <div class="row" >
             <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 Ex_tab">
                 <div class="third-header">
                     <div class="Container_wdth">
@@ -604,30 +604,7 @@
 
 </div>
 
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
-        <input type="button" id="ModalForErrorsss" style="display:none" data-target="#ModalForErrorrr" data-toggle="modal" />
-        <div id="ModalForErrorrr" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog ">
-                <div class="modal-content modal_top">
-                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
-                    </button>
-                    <div class="modal-body forhide">
-                        <img src="~/img/device biometric image/oops2_new.png" class="img-responsive img-Err" />
-                        <h4 id="lblMsgERRData" class="modal-title w-100"></h4>
-                        <div class="modal-footer">
-                            <button type="button" class="button-Err theclose" data-dismiss="modal">
-                                <b>Ok</b>
-                            </button>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!--Modal For Data-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -652,12 +629,12 @@
 
 
                                 <img src="~/img/device biometric image/down-arrow.png" class="Arrow_img" />
-                                <input type="submit" class="button-21 Trannsfer_val " value="Procced To Transfer" data-dismiss="modal" onclick="GetMultiAccountDetail()" />
+                                <input type="submit" class="button-21 Trannsfer_val data_modal " value="Procced To Transfer" data-dismiss="modal" onclick="GetMultiAccountDetail('Verified')" />
 
                             </div>
 
-                            <div class="modal-footer" style="margin-left:-174PX">
-                                <button type="button" class="button-21 Trannsfer_val " data-dismiss="modal">
+                            <div class="modal-footer" style="margin-left:-175PX;margin-top:-37px;">
+                                <button type="button" class="button-21 Trannsfer_val do_data">
                                     <b>Do It Later</b>
                                 </button>
                             </div>
@@ -682,7 +659,7 @@
                     <h3 class="modal-title" style="font-weight: 900; text-align: center;">Choose Bank -- </h3>
                     <div class="col-sm-5 col-xs-12 pull-right">
                         <div class="read-more">
-                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close ok" id="btnCloseTwo" data-dismiss="modal">&times;</button>
                         </div>
                     </div>
                 </div>
@@ -744,7 +721,7 @@
                         <div class="col-sm-6 col-md-6 col-lg-6">
 
                             <div class="modal_footers">
-                                <button type="button" class="button-21" data-dismiss="modal">
+                                <button type="button" class="button-21"  onclick="GetMultiAccountDetail('Not Verified')">
                                     <b>Pending Approval </b>
                                 </button>
                             </div>
@@ -874,7 +851,7 @@
 
                         <div class="modal-footer">
 
-                            <button type="button" class="button-21 Btn_Confirm" data-dismiss="modal">
+                            <button type="button" class="button-21 Btn_Confirm">
                                 <b>Confirm </b>
                             </button>
                         </div>
@@ -895,7 +872,7 @@
 
                 <div class="modal-content modal_top">
                     <div class="modal-header">
-                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                        <button type="button" class="close theclose" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
                         <h4 id="DetailTitle" class="modal-title" style="text-align:center;font-weight:700">Confirm</h4>
                     </div>
                     <div class="modal-body">
@@ -971,7 +948,7 @@
                                             <h4> : </h4>
                                         </div>
                                         <div class="col col-md-5 col-sm-5 col-lg-5 Account_data">
-                                            <h4 id="Chrge"></h4>
+                                            <h4 id="Success_Chrge"></h4>
                                         </div>
                                     </div>
                                     <div class="col col-md-12">
@@ -1013,7 +990,7 @@
 
                         <div class="modal-footer">
 
-                            <button type="button" class="button-21" data-dismiss="modal">
+                            <button type="button" class="button-21 theclose" data-dismiss="modal">
                                 <b>OK </b>
                             </button>
                         </div>
@@ -1087,7 +1064,7 @@
                 <div class="modal-content modal_top">
                     <div class="modal-header">
                         <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
-                        <h4 id="DetailTitle" class="modal-title text-center">Confirm</h4>
+                        <h4 id="DetailTitle" class="modal-title text-center theclose">Confirm</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -1212,14 +1189,14 @@
                         </div>
                         <div class="modal-footer">
                             <div class="row">
-                                <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 ">
+                                <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 foraddAccount">
                                     <div class="col-sm-10 col-md-10 col-xl-10 col-lg-10">
                                         <input type="button" class="button-21 ConfirmAddAccount nonverified_buton" value="Add Account" id="hidefornonverify" style="display:none">
                                         <input type="button" class="button-21 veryfiaccount nonverified_buton" value="Add Account" id="verify" />
                                         <input type="button" class="button-21 btPics nonverified_buton" value="Add Account" style="display:none" />
                                     </div>
                                     <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2">
-                                        <input type="button" class="button-21 Pending_Approval" value="Pending Approval" style="margin-left: -191px;" />
+                                        <input type="button" class="button-21 Pending_Approval" value="Pending Approval" onclick="GetMultiAccountDetail('Not Verified')" style="margin-left:-191px;" />
                                     </div>
                                 </div>
                                 
@@ -1347,7 +1324,7 @@
                         <div class="modal-body forhide">
                             <img src="~/img/device biometric image/oops2_new.png" class="oops2_new img-responsive" />
 
-                            <h4 id="lblmsgErrorSc" class=""></h4>
+                            <h4 id="lblmsgErrorSc" class="text-center"></h4>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="button-21" data-dismiss="modal">
@@ -1409,6 +1386,174 @@
         </div>
     </div>
 </div>
+<!--Error Modal-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
+        <input type="button" id="ModalForErrorsss" style="display:none" data-target="#ModalForErrorrr" data-toggle="modal" />
+        <div id="ModalForErrorrr" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog ">
+                <div class="modal-content modal_top">
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    <div class="modal-body forhide">
+                        <img src="~/img/device biometric image/oops2_new.png" class="img-responsive img-Err" />
+                        <h4 id="lblMsgERRData" class="modal-title w-100"></h4>
+                        <div class="modal-footer">
+                            <button type="button" class="button-Err theclose" data-dismiss="modal">
+                                <b>Ok</b>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Error Modal2-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="overflow:auto">
+        <input type="button" id="ModalForErrorrr3" style="display:none" data-target="#ModalForErrorrr2" data-toggle="modal" />
+        <div id="ModalForErrorrr2" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog ">
+                <div class="modal-content modal_top">
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    <div class="modal-body forhide">
+                        <img src="~/img/device biometric image/oops2_new.png" class="img-responsive img-Err" />
+                        <h4 id="lblMsgERRData2" class="text-center"></h4>
+                        <div class="modal-footer">
+                            <button type="button" class="button-21 theclose" data-dismiss="modal">
+                                <b>Ok</b>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Error Modal3-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal3" style="display:none" data-target="#Error_modals3" data-toggle="modal">
+        <div id="Error_modals3" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false" >
+            <div class="modal-dialog modal-confirm" >
+                <div class="modal-content modal_error_content">
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button> 
+                    <button type="button" class="close theopen" data-dismiss="modal" aria-label="Close" style="display:none">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                    
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(136, 8, 8);">
+                            <label id="img"><i class="fa fa-times" aria-hidden="true"></i></label>
+                            
+                        </div>
+                        <h4 id="heding" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg22"></label></h3>
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclose"  data-dismiss="modal" style="background-color: rgb(136, 8, 8);"><b>Ok</b></button>
+                            <button type="button" class="btn-final-Error theopen"  data-dismiss="modal" style="background-color: rgb(136, 8, 8);display:none"><b>Ok</b></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal for success-->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal4" style="display:none" data-target="#Error_modals4" data-toggle="modal">
+        <div id="Error_modals4" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false" >
+            <div class="modal-dialog modal-confirm" >
+                <div class="modal-content modal_error_content">
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+                   
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(124,252,0);">
+                          
+                            <label id="img"><i class="fa-solid fa-check" aria-hidden="true"></i></label>
+                        </div>
+                        <h4 id="heding" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg22"></label></h3>
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclose"  data-dismiss="modal" style="background-color: rgb(124,252,0);"><b>Ok</b></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal For Pending Bank Detail-->
+<div class="row">
+    <input type="button" id="ModalFobandetailPendings" style="display:none" data-target="#ModalForbandetailPending" data-toggle="modal" />
+    <div id="ModalForbandetailPending" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false" style="overflow:auto">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal_top">
+
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <h3 class="modal-title" style="font-weight: 900; text-align: center;">Pending Bank Detail -- </h3>
+                    <div class="col-sm-5 col-xs-12 pull-right">
+                        <div class="read-more">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="1selectDevice">
+                   
+                    <p class="p_Verify_Face">PENDING ACCOUNTS</p>
+                    <hr />
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
+
+                        <table id="bankdetail" class="display nowrap table table-hover table-responsive table-striped table-bordered table-condensed" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Account No</th>
+                                    <th>Ifsc</th>
+                                    <th>Beni Name</th>
+                                    <th>Bank Name</th>
+                                    <th style="display:none">BankId</th>
+                                   @* <th>Action</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="tblPendingoutputs">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="modal_footers-pending">
+                                <button type="button" class="button-21" data-dismiss="modal">
+                                    <b>Ok </b>
+                                </button>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var ActualAmount;
@@ -1453,9 +1598,7 @@
                         $('#TextImps').val("");
                         if (data.statuscode == "ERR") {
                             $("#ModalForErrorsss").trigger("click");
-
                             $("#lblMsgERRData").text(data.message)
-
                         }
                         else {
                             $("#ModalForPrceed").trigger("click");
@@ -1610,19 +1753,26 @@
         document.getElementById("lblCashWalletDebit").innerHTML = Amount;
         $("#ModalForbankdetailConfirm").trigger("click");
     });
-
-    function GetMultiAccountDetail() {
-
+    var Type;
+    function GetMultiAccountDetail(e) {
+        debugger;
+        Type=e;
         $.ajax({
             url: "/Passbook/MultiAcountDetail",
-            //data: { 'Amount': Amount },
+            data: { 'Type': Type },
             type: 'POST',
             dataType: 'json',
             success: function (data) {
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
-
+                 else if(Type=="Not Verified" && data.statuscode=="ERR" && data.message=="Data Not Found")
+                {
+                     $(".theclose").hide();
+                    $(".theopen").show();
+                 $("#Error_modal3").trigger("click");
+                 $("#lblMsg22").text(data.message);
+                }
                 else if (data.statuscode == "ERR") {
 
                     $("#ModalFobandetail").trigger("click");
@@ -1635,8 +1785,16 @@
                 else if (data.result == "RedirectToException") {
                     window.location.href = data.url;
                 }
+               
+                else if(Type=="Not Verified")
+                {
+                    let output = data.map(i => "<tr ><td>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td></td></tr>");
+                    $("#tblPendingoutputs").html(output);
+                    $("#ModalFobandetailPendings").trigger("click");
+                
+                }
                 else {
-                    debugger
+                  
                     let output = data.map(i => "<tr ><td>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' button class='button-MediaACC btn_bank' data-dismiss='modal'>" + 'Transfer Now' + "</button></td></tr>");
                     $("#tbloutputs").html(output);
                     $("#ModalFobandetail").trigger("click");
@@ -1668,7 +1826,8 @@
             data: { 'Amount': Amount, 'ServiceId': ServiceId, 'OpId': OpId, 'ModeId': ModeId, 'BankId': BankId, 'BeniName': BeniName, 'Account': Account, 'IFSC': IFSC },
             type: 'POST',
             dataType: 'json',
-            success: function (data) {
+            success: function (data)
+            {
                 debugger
                 setTimeout(() => {
                     $(this).html('Confirm');
@@ -1682,7 +1841,8 @@
                 else if (data.result == "RedirectToException") {
                     window.location.href = data.url;
                 }
-                else if (data.statuscode == "TXN" && data.message == "Non Verified") {
+                else if (data.statuscode == "TXN" && data.message == "Non Verified") 
+                {
                     setTimeout(() => {
                         $(this).html('Confirm');
                     }, 2000);
@@ -1692,13 +1852,15 @@
                     //$("#btnVerify").trigger("click");
 
                 }
-                else if (data.statuscode = "SKP") {
+                else if (data.statuscode == "SKP")
+                {
                     setTimeout(() => {
                         $(this).html('Confirm');
                     }, 2000);
                     $("#staticBackdrops").trigger("click");
                 }
-                else if (data.statuscode = "TXN" && data.message == "Transaction Success") {
+                else if (data.statuscode == "TXN" && data.message == "Transaction Success")
+                {
                     setTimeout(() => {
                         $(this).html('Confirm');
                     }, 2000);
@@ -1708,23 +1870,26 @@
                     $("#Acn").text(data.data[0].account);
                     $("#Ic").text(data.data[0].ifsc);
                     $("#Cwde").text(Amount);
-                    if (data.data[0].modeId == "1") {
+                    $("#Success_Chrge").text(data.data[0].surcharge);
+                    $("#Bac").text(ActualAmount);
+                    $("#DT").text(data.data[0].editDate);
+                    if (data.data[0].modeId == "1")
+                    {
                         $("#Modes").text("IMPS");
                     }
-                    else if (data.data[0].modeId == "2") {
+                    else if (data.data[0].modeId == "2") 
+                    {
                         $("#Modes").text("NEFT");
 
                     }
-                    else if (data.data[0].modeId == "3") {
+                    else if (data.data[0].modeId == "3") 
+                    {
                         $("#Modes").text("RTGS");
 
                     }
-                    $("#Charge").text(data.data[0].surcharge);
-                    $("#Bac").text(ActualAmount);
-                    $("#DT").text(data.data[0].editDate);
-
                 }
-                else if (data.statscode == "ERR" || data.message == "Transaction Failure") {
+                else if (data.statscode == "ERR" && data.message == "Transaction Failure") 
+                {
                     setTimeout(() => {
                         $(this).html('Confirm');
                     }, 2000);
@@ -1733,10 +1898,15 @@
                     $("#Acn").text(data.data[0].account);
                     $("#Ic").text(data.data[0].ifsc);
                     $("#Cwde").text(Amount);
-                    if (data.data[0].modeId == "1") {
+                    $("#Success_Chrge").text(data.data[0].surcharge);
+                    $("#Bac").text(ActualAmount);
+                    $("#DT").text(data.data[0].editDate);
+                    if (data.data[0].modeId == "1") 
+                    {
                         $("#Modes").text("IMPS");
                     }
-                    else if (data.data[0].modeId == "2") {
+                    else if (data.data[0].modeId == "2") 
+                    {
                         $("#Modes").text("NEFT");
 
                     }
@@ -1744,12 +1914,29 @@
                         $("#Modes").text("RTGS");
 
                     }
-                    $("#Chrge").text(data.data[0].surcharge);
-                    $("#Bac").text(ActualAmount);
-                    $("#DT").text(data.data[0].editDate);
+                    else 
+                    {
+                    }
 
-
+                    
                 }
+                else if (data.statscode == "ERR" || data.data == "Insufficient Balance") 
+                {
+                    setTimeout(function () {
+            $('#Error_modal3').modal('hide');
+                 }, 2000);
+                    //$(".theclose").hide();
+                    //$(".theopen").show();
+                     $("#ModalForbankdetailConfirms").hide();
+                    $("#Error_modal3").trigger("click");
+                    $("#lblMsg22").text(data.message);
+
+                
+                }
+                else 
+                {
+                }
+            
             }
         });
 
@@ -1824,6 +2011,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+                debugger;
                 setTimeout(() => {
                     $(this).html('Verify');
                 }, 4000);
@@ -1843,10 +2031,16 @@
                     //$("#ModalForErrorsss").trigger("click");
                     //$("#lblMsgERRData").text(data.message)
                     $("#staticimage").hide();
-                    $.notify(
-                        data.message,
-                        { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
-                    );
+                    $(".theclose").hide();
+                    $(".theopen").show();
+                    //$.notify(
+                    //    data.message,
+                    //    { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+                    //);
+                     $("#Error_modal3").trigger("click");
+                       
+                        $("#lblMsg22").text(data.message);
+
                 }
                 else if (data.statuscode == "TXN") {
                     $("#ModalForSuccessBanks").trigger("click");
@@ -1877,6 +2071,9 @@
     $('.theclose').on('click', function () {
         location.reload();
     })
+    $('.ok').on('click', function () {
+        location.reload();
+    })
 
     $('.addacount').on('click', function () {
 
@@ -1887,7 +2084,7 @@
     var message;
     var BeneficaryName
     $('.foraddingAcount').on('click', function () {
-
+        debugger;
         //function AddinBank(){
         //function foraddingAcount() {
 
@@ -1896,7 +2093,7 @@
         var IFSc = $('#text_Ifsc').val();
         BeneficaryName = $('#text_BeneficaryName').val();
         var BankList = $('#Id').val();
-        if (Account.trim() == "") {
+        if(Account.trim() == "") {
             $('#Account').text('Please Enter Acount Number');
             $('#Account').css('color', 'red');
             $('#Account').css('margin-left', '59px');
@@ -1922,16 +2119,16 @@
             $('#BNames').focus();
             return false;
         }
-        else if (IFSc.trim() == "") {
-
+        else if (IFSc.trim() == "") 
+        {
             $('#text_Ifscs').text('Please Enter IFSC Number');
             $('#text_Ifscs').css('color', 'red');
             $('#text_Ifscs').css('margin-left', '59px');
             $('#text_Ifscs').focus();
             return false;
         }
-        else if (BankList.trim() == "") {
-
+        else if (BankList.trim() == "") 
+        {
             $('#List').text('Please Select Any Bank');
             $('#List').css('color', 'red');
             $('#List').css('margin-left', '59px');
@@ -1944,6 +2141,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+              debugger;
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1956,7 +2154,16 @@
                 else {
 
                     message = data.message;
-                    if (data.statuscode == "ERR") {
+                   if(data.statuscode=="ERR" && data.message=="Insufficient Balance .")
+                   {
+                        AddAccount();
+                        $(".theclose").hide();
+                    $(".theopen").show();
+                     $("#Error_modal3").trigger("click");
+                    $("#lblMsg22").text(data.message);
+                   }
+                   else if (data.statuscode == "ERR") {
+                        AddAccount();
                         //$('.close').click();
                         $("#ModalForSurcharge").trigger("click");
                         $("#lblMsgSurcharge").text(data.data[0].surcharge);
@@ -1965,10 +2172,13 @@
                         $("#Otp").hide();
 
                     }
+                   
                     else if (data.statuscode == null) {
-
-                        $("#ErrorMessageModals").trigger("click");
-                        $("#lblmsgErrorSc").text(data.message);
+                       AddAccount();
+                        //$("#ErrorMessageModals").trigger("click");
+                        //$("#lblmsgErrorSc").text(data.message);
+                        $("#Error_modal3").trigger("click");
+                        $("#lblMsg22").text(data.message);
 
                     }
 
@@ -1984,7 +2194,8 @@
 
                     }
 
-                    else {
+                    else 
+                    {
 
                         $("#ModalForSurcharge").trigger("click");
                         $("#lblMsgSurcharge").text(data.data[0].surcharge);
@@ -2079,8 +2290,10 @@
                     else {
 
                         if (data.statuscode == "ERR") {
-                            $("#ErrorMessageModals").trigger("click");
-                            $("#lblmsgErrorSc").text(data.message);
+                            AddAccount();
+                            $("#Error_modal3").trigger("click");
+                            $("#lblMsg22").text(data.message);
+
                         }
                         else if (data.statuscode == "TXN") {
                             $.notify(
@@ -2088,7 +2301,7 @@
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
                             );
 
-
+                            AddAccount();
                             $("#AddAcount").hide();
                             $("#ModalFobandetail").trigger("click");
 
@@ -2138,7 +2351,7 @@
 
                     }
                     else if (data.statuscode == "OSS") {
-
+                        AddAccount();
                         var timeLeft = 30;
                         var elem = document.getElementById('some_divss');
 
@@ -2163,7 +2376,8 @@
                         $("#Accountveriotpmodals").trigger("click");
 
                     }
-                    else if (data.statuscode == "ERR") {
+                    else if (data.statuscode == "ERR") 
+                    {
 
                     }
 
@@ -2198,9 +2412,9 @@
                     else {
 
                         if (data.statuscode == "TXN") {
+                           
                             $(".verify").hide();
                             $("#btnupload").hide();
-
                             $("#showerror").text("verified");
                             $("#showerror").css("color", "#0b8000");
                             $("#showerror").css("margin-left", "83%");
@@ -2212,6 +2426,7 @@
                             );
                         }
                         else if (data.statuscode == "ERR") {
+                           
                             $.notify(
                                 data.message,
                                 { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
@@ -2253,8 +2468,10 @@
         return false;
     });
     function verified() {
-        $("#ErrorMessageModals").trigger("click");
-        $("#lblmsgErrorSc").text(message)
+        //$("#ErrorMessageModals").trigger("click");
+        //$("#lblmsgErrorSc").text(message)
+        $("#Error_modal3").trigger("click");
+        $("#lblMsg22").text(data.message);
     }
     function nonverified() {
         $("#Modalforverifieddetails").trigger("click");
@@ -2273,12 +2490,15 @@
     }
 
     $('.veryfiaccount').on('click', function () {
-        $.notify(
-            "Please Verify Account",
-            { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
+                   $(".theclose").hide();
+                   $("#heding").hide();
+                     $(".theopen").show();
+                     $("#Error_modal3").trigger("click");
+                     $("#lblMsg22").text("Please Verify Account");
+                     $("#lblMsg22").css("margin-top","72px");
 
 
-        );
+
 
     })
     function closeconfirm() {
@@ -2287,8 +2507,24 @@
         $("#ModalFobandetail").trigger("click");
 
     }
+    
+   
+
 
 </script>
+<script>
+    //For Data Account Refresh Page
+    function AddAccount()
+    {
+        $('#text_BeneficaryName').val("");
+     $('#text_Account').val("");
+    $('#text_ConfirmAccount').val("");
+    $('#text_Ifsc').val("");
+    $('#Id').val("");
+    $('#rl').val("");
+    $('#file').val("");
+    }
+    </script>
 <script type="text/javascript">
     function ValidateFileUpload() {
 
@@ -2436,8 +2672,10 @@
                         }
                         else if (result.statuscode == "ERR") {
                             Cleardata();
-                            $("#ErrorMessageModals").trigger("click");
-                            $("#lblmsgErrorSc").text(result.message);
+                            //$("#ErrorMessageModals").trigger("click");
+                            //$("#lblmsgErrorSc").text(result.message);
+                            $("#Error_modal3").trigger("click");
+                            $("#lblMsg22").text(data.message);
                             $('#showerror').html("");
                             $('#ur').hide();
                             $('#file').hide();
@@ -2486,7 +2724,6 @@
 
 
 </script>
-
 <script type="text/javascript">
     function ValidateAlphanumeric(e) {
         var keyCode = e.keyCode || e.which;
@@ -2623,8 +2860,6 @@
 
 
 </script>
-
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
 <srcipt src="jquery.redirect.js"></srcipt>
