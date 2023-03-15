@@ -2,7 +2,9 @@
 {
     public class SelfHelpRequestModel
     {
+        
         public string ServiceId { get; set; }
+        public string Userid { get; set; }
         public string Checksum { get; set; }
     }
 }

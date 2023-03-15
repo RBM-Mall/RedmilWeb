@@ -1766,7 +1766,13 @@
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
-
+                 else if(Type=="Not Verified" && data.statuscode=="ERR" && data.message=="Data Not Found")
+                {
+                     $(".theclose").hide();
+                    $(".theopen").show();
+                 $("#Error_modal3").trigger("click");
+                 $("#lblMsg22").text(data.message);
+                }
                 else if (data.statuscode == "ERR") {
 
                     $("#ModalFobandetail").trigger("click");
@@ -1779,6 +1785,7 @@
                 else if (data.result == "RedirectToException") {
                     window.location.href = data.url;
                 }
+               
                 else if(Type=="Not Verified")
                 {
                     let output = data.map(i => "<tr ><td>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td></td></tr>");
@@ -1787,7 +1794,7 @@
                 
                 }
                 else {
-                    debugger
+                  
                     let output = data.map(i => "<tr ><td>" + i.accountNo + "</td><td>" + i.ifsc + "</td><td>" + i.beniName + "</td><td>" + i.bankName + "</td><td style='display:none'>" + i.bankId + "</td><td  id='id1' button class='button-MediaACC btn_bank' data-dismiss='modal'>" + 'Transfer Now' + "</button></td></tr>");
                     $("#tbloutputs").html(output);
                     $("#ModalFobandetail").trigger("click");

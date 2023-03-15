@@ -163,6 +163,7 @@
 
   <ItemGroup>
     <Folder Include="Models\RequestModel\AccountRequestModel\" />
+    <Folder Include="Models\RequestModel\SelfHelpRequestModel\" />
     <Folder Include="wwwroot\css\LiveImage\" />
     <Folder Include="wwwroot\DatePicker\NewFolder\" />
   </ItemGroup>
