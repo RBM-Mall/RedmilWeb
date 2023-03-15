@@ -1,4 +1,6 @@
-﻿namespace Project_Redmil_MVC.Models.ResponseModel
+﻿using Project_Redmil_MVC.Models.ResponseModel.AepsResponseModel;
+
+namespace Project_Redmil_MVC.Models.ResponseModel
 {
     public class AepsKycDetailsNewResponseModel : Bank
     {
@@ -6,6 +8,7 @@
         public string BankName { get; set; }
         public string BankLogo { get; set; }
         public AaadharPicVerificationResponseModal aaadharPics { get; set; }
+        public AepsGetAllBankListResponseModel bankList { get; set; }
     }
     public class AepsRoutingDetailsResponseModel
     {
@@ -29,6 +32,6 @@
         public string BankLogo { get; set; }
 
     }
-    }
+}
 
 

@@ -12,7 +12,8 @@
 @*<link href="~/ResponsiveCSS/Aeps.css" rel="stylesheet" />*@
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-<link rel="stylesheet" href="~/css/businessReport.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/businessReport.css" />
+<link href="~/css/transfertobankcss/transfertobankcss.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/css/navbarheader.css">
 
@@ -45,58 +46,35 @@
                     <img src="~/css/Img_DMT2/Img_Cash.jpeg" class="img-width" style="height:100px;width:120px;">
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                    @*<p class="aval_bal" style="font-size:20px; margin-top:28px;"><b>Cash Wallet</b></p>*@
                     <p class="aval_bal aval_bal_font"><b>Cash Wallet</b></p>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                    @*<p class="aval_bal" style="font-size:20px; margin-top:28px; "><b>Available Balance: <label id="lblBalance">₹ @ViewBag.Balance</label></b></p>*@
                     <p class="aval_bal aval_bal_font"><b>Available Balance: <label id="lblBalance">₹ @ViewBag.Balance</label></b></p>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3 col-sm-3">
-                    @*<p class="aval_bal" style="font-size:20px;"><button class="button-21"> Add Money</button></p>*@
                     <p class="aval_bal aval_bal_font"><button class="button-27"> ADD MONEY</button></p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="passbooktabs">
-                <div class="col-md-4">
-                    @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>*@
-                    <button class="tablinks" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>
-                </div>
-                <div class="col-md-4">
-                    @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'Commission')">COMMISSION</button>*@
-                    <button class="tablinks" onclick="openPassbook(event,'Commission')">COMMISSION</button>
-                </div>
-                <div class="col-md-4">
-                    @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>*@
-                    <button class="tablinks" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>
-                </div>
-            </div>
+
+        @*<div class="row">
+        <div class="passbooktabs">
+        <div class="col-md-4">
+        @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>
+        <button class="tablinks" onclick="openPassbook(event,'AadharATM')" id="defaultOpen">AADHAR ATM</button>
         </div>
+        <div class="col-md-4">
+        @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'Commission')">COMMISSION</button>
+        <button class="tablinks" onclick="openPassbook(event,'Commission')">COMMISSION</button>
+        </div>
+        <div class="col-md-4">
+        @*<button class="tablinks" style="margin-left: 150px;" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>
+        <button class="tablinks" onclick="openPassbook(event,'HowToWork')">HOW TO WORK</button>
+        </div>
+        </div>
+        </div>*@
     </div>
     <!--Heading-->
-    @*<div class="section make_tomorrow_digital background-image" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%); background-size: cover;">
-    <div class="container">
-    <div class="row">
-    <div class="col-sm-12">
-    <div class="call-to-action">
-    <div class="row">
-    <div class="col-sm-7 col-xs-12">
-    <h3 class="padding-left-right-50" style="margin-top: 20px; margin-left: -250px; font-weight: 700; cursor: pointer;"><u>HOW TO WORK</u></h3>
-    </div>
-    <div class="col-sm-5 col-xs-12 text-right">
-    <div class="read-more padding-top-bottom-40">
-    <a href="#" target="_blank" class="button-23" style="cursor: auto; text-decoration: unset;">₹ 54321.00 </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>*@
-
     <br />
     <br />
     <br />
@@ -118,9 +96,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center padding-bottom-30">
-                @*<div class="section-title" style="border-radius: 10px; box-shadow: 0 0 20px rgb(0 0 0 / 20%);max-width: 35%;padding-top: 2px;padding-bottom: 2px;>*@
                 <div class="section-title section_title">
-                    @*<h1 class="heading_services" style="padding: 10px; font-weight: 700; color: #2d385e;"><span>Banking Services</span></h1>*@
                     <h1 class="heading_services"><span>AEPS</span></h1>
                 </div>
             </div>
@@ -136,28 +112,16 @@
 
     <div class="section services-area padding-top-bottom-60">
         <div class="container">
-            @*<h1 class="transaction center" style="font-weight: 800; color: #2d385e; text-align: center; margin-bottom: 50px;">Choose Transaction</h1>*@
             <h1 class="transaction center heading_chooseTransaction">CHOOSE TRANSACTION</h1>
-            @*<div class="row" id="aepsChooseTrasaction" style="margin-left:96px">*@
             <div class="row rowaepsChooseTrasaction" id="aepsChooseTrasaction">
-
-                @*<div class="col-md-2 col-sm-2 col-6 col-xs-6" style="width:350px; cursor: pointer; padding-right: 20px;">*@
-
                 <div class="col-md-4 col-sm-4 col-4 col-xs-4 divrowaepsChooseTrasaction">
                     <div class="col-spaced">
-                        @*<div class="wallet-box bg-wt-round radio1" type="radio" id="cashWithdrawal" style="border: 5px solid #2d385e;">*@
                         <div class="wallet-box bg-wt-round radio1 div_radio" type="radio" id="cashWithdrawal">
                             <div class="inner">
                                 <div class="advantage-images">
                                     <img src="/img/img_devices/CASH.png" class="img-responsive" alt="Cash Withdrawal" title="Cash Withdrawal">
                                 </div>
-                                @*<input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal"><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b><!--0 For True and 1 for False-->*@
                                 <input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal"><b class="inner_radio">CASH WITHDRAWAL</b><!--0 For True and 1 for False-->
-                                @*<p class="text-center"><b>₹ 45922.178</b></p>*@
-                                @* <input type="radio" class="radio1" asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e;">Cash Withdrawal</b>*@
-                                @*<input asp-for="Cash Withdrawal" value="Cash Withdrawal" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Cash Withdrawal</b>*@
-                                @*<input type="button" id="btntesttst" onclick="CaptureFinger(60, 10)" value="Button Test" />*@
-
                             </div>
                         </div>
                     </div>
@@ -172,8 +136,6 @@
                                     <img src="/img/img_devices/BALANCE.png" class="img-responsive" alt="Balance Enquiry" title="Balance Enquiry">
                                 </div>
                                 <input type="radio" class="radio1" name="test" id="rdbbalanceEnquiry" value="Balance Enquiry"><b class="inner_radio">BALANCE ENQUIRY</b><!--0 For True and 1 for False-->
-                                @*<p class="text-center"><b>₹ 3486.67</b></p>*@
-                                @*<input class="radio1" asp-for="Balance Enquiry" value="Balance Enquiry" type="radio" id="balanceEnquiry" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Balance Enquiry</b>*@
                             </div>
                         </div>
                     </div>
@@ -187,9 +149,7 @@
                                     <div class="advantage-images">
                                         <img src="/img/img_devices/MINI-STATEMENT.png" class="img-responsive" alt="Mini Statement" title="Mini Statement">
                                     </div>
-                                    @*<p class="text-center"><b>₹ 1467.122</b></p>*@
                                     <input type="radio" class="radio1" name="test" id="rdbminiStatement" value="Mini Statement"><b class="inner_radio">MINI STATEMENT</b><!--0 For True and 1 for False-->
-                                    @*<input class="radio1" type="radio" id="miniStatement" asp-for="Mini Statement" value="Mini Statement" style="text-align: center;" /><b style="font-weight: 900; font-size: 20px; color: #2d385e; margin-left: 65px;">Mini Statement</b>*@
                                 </div>
                             </div>
                         </div>
@@ -202,18 +162,65 @@
                 </div>
             </div>
             <div style="text-align:center">
-                <button class="button-21" style="font-weight: 900;" id="btnTransaction">Proceed</button>
+                <button class="button-21" style="font-weight: 900;" onclick="CheckKYCStatus(0)" id="btnTransaction">Proceed</button>
             </div>
-            @*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>VerifyFaceBiometricModal*@
-
         </div>
     </div>
 
-    <!--Choose Bank Popup-->
-    @*--------------------------------------------------------- Choose Bank modal pop-up -------------------------------------------------------------------*@
 
-    <input type="button" id="btnChooseBankModal" data-target="#chooseBankModal" data-toggle="modal" style="display:none;" />
-    <div class="modal fade modal_choose_bank" id="chooseBankModal" role="dialog">
+    @*-----------------------------------------------KYC Status Pending For User Modal Popup---------------------------------------------------------*@
+
+    <input type="button" id="btnKycPending" data-target="#kycPendingModal" data-toggle="modal" style="display:none" />
+    <div class="modal fade" id="kycPendingModal" role="dialog" style="margin-top: 100px;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" id="headingKYCStatus" style="font-weight: 900; text-align: center;"></h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10" style="text-align:center;">
+                                    <img id="img_kycPendingBank" />
+                                </div>
+                            </div>
+                        </div>
+                        <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center;" id="lblBankName"></p>
+                        <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center; margin-top: 20px;">
+                            Your E-KYC for
+                            <label id="lblBankName1">
+                            </label>
+                            is Pending!!!
+                        </p>
+
+                    </div>
+                </div>
+                <br />
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+
+                                @*This will hit for Proceeding KYC...*@
+                                <button type="button" id="btnProceedToKyc" onclick="" class="button-27">Proceed To Kyc</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnDoItLater" onclick="CheckKYCStatus(1)" class="button-27">Do It Later</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*-----------------------------------------------Choose Bank Modal Popup for KYC Status Bridge---------------------------------------------------------*@
+    <input type="button" id="btnChooseBankKycBridgeModal" data-target="#chooseBankKycBridgeModal" data-toggle="modal" style="display:none;" />
+    <div class="modal fade modal_choose_bank" id="chooseBankKycBridgeModal" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #2d385e;">
@@ -221,23 +228,18 @@
                     <h4 class="modal-title" style="font-weight: 900; text-align: center;">Choose Bank</h4>
                 </div>
                 <div class="modal-body">
-                    @*<p style="font-weight: 900; text-align: center; color:#2d385e;">CHOOSE BANK</p>*@
+                    <input type="hidden" id="hdnTransactionMode" />
                     <hr />
                     <div class="chooseBank">
                         <div class="selectBank" style="border-radius: 1px">
-                            @*@Model.FirstOrDefault().BankLogo*@ @*@Model.FirstOrDefault().BankName*@
                             <div class="col-md-3 box_choose_bank">
                                 <img src="https://api.redmilbusinessmall.com/Docs/yesbank_aeps.png" class="box_choose_bank_image" />
-                                @*<img src="@Model.FirstOrDefault().BankLogo1" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);"/>*@
                                 <label class="ybl box_choose_bank_label" id="lblybl"> </label>
                                 <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES" style="text-align: center;" />
                                 <b class="box_choose_bank_input_para"></b>
                             </div>
-                            @*<div class="col-md-4" style="border: 1px #2d385e solid; cursor: pointer; padding: 10px 10px 10px 10px; border-radius: 10px; margin-right: 21px;margin-bottom:10px;">*@
                             <div class="col-md-4 box_choose_bank">
-                                @*<img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" style="border: 1px solid #ddd; border-radius: 49px; width: 51px; background: linear-gradient(#f69d3c, #3f87a6);" />*@
                                 <img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" class="box_choose_bank_image" />
-                                @*<label class="ppb" id="lblppb" style="font-size: 20px; font-weight: 800; cursor: pointer; color: #2d385e;">  </label>*@
                                 <label class="ppb box_choose_bank_label" id="lblppb">  </label>
                                 <input type="radio" class="rdbBank" name="rdbBankName" id="rdbPAYTMBank" value="Paytm" style="text-align: center;" />
                                 <b class="box_choose_bank_input_para"></b>
@@ -274,9 +276,6 @@
                             </div>
                         </div>
                     </div>
-                    @*<button class="button-21 pull-center" id="btnbankModal" onclick="chooseBank()" style="margin-left:376px; font-weight: 900; margin-top: 50px;">Continue</button>*@
-                    @*<button class="button-21 text-center" id="btnTransaction" data-toggle="modal" data-target="#chooseBankModal" style="margin-left:512px; font-weight: 900; margin-top: 50px;">Proceed</button>*@
-                    @*<p id="slectDeviceError" style="color: red">Please Select Device !!</p>*@
                 </div>
                 <div class="modal-footer">
                     <div class="row">
@@ -290,24 +289,10 @@
                         </div>
                     </div>
                 </div>
-
-                @*
-                <div class="modal-footer">
-                <div class="row">
-                <div class="col-md-6" style="text-align:center">
-                <button class="button-21" id="btnbankModal" style="font-weight: 900;" onclick="chooseBank()">Continue</button>
-
-                </div>
-                <div class="col-md-6" style="text-align:center">
-                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">
-                Close
-                </a>
-                </div>
-                </div>
-                </div>*@
             </div>
         </div>
     </div>
+
 
 
     <!--Choose Device Model Popup-->
@@ -341,6 +326,8 @@
                     </div>
                     <p class="p_Verify_Face">CHOOSE DEVICE</p>
                     <hr />
+                    <input type="hidden" id="hdnTransactionModeDevice" />
+                    <input type="hidden" id="hdnTransactionBankDevice" />
                     <div class="col-md-12">
                         <div class="col-md-3 morpho radio2 choose_device_div">
                             <input type="radio" class="morpho" name="radioDevice" asp-for="Morpho" value="MORPHO">
@@ -423,65 +410,10 @@
         </div>
     </div>
 
-        @*-----------------------------------------------KYC Status Pending For User Modal Popup---------------------------------------------------------*@
-
-    <input type="button" id="btnKycPending" data-target="#kycPendingModal" data-toggle="modal" style="display:none" />
-    <div class="modal fade" id="kycPendingModal" role="dialog" style="margin-top: 100px;">
-        @*chooseToVerifyFaceBiometric*@
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #2d385e;">
-                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
-                    <h4 class="modal-title" id="headingKYCStatus" style="font-weight: 900; text-align: center;">KYC Status:</h4>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12" style="text-align:center;">
-                                    <img id="img_kycPendingBank" />
-                                </div>
-                            </div>
-                        </div>
-                        <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center;" id="lblBankName"></p>
-                        <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center; margin-top: 20px;">
-                            Your E-KYC for
-                            <label id="lblBankName">
-                            </label>
-                            is Pending!!!
-                        </p>
-                        
-                    </div>
-                </div>
-                <br />
-
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-md-12" style="display: inline-flex;">
-                            <div class="col-sm-6 col-md-6">
-                                <button type="button" id="btnPayNow" onclick="" class="button-27">Proceed To Kyc</button>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <button type="button" id="btnCloseFirst" onclick="" class="button-27">Do It Later</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
 
-
-               @* <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12" style="text-align:center;">
-                            <a href="/Aeps/AEPS" button type="button" id="btn btn-danger" class="button-27">Close</a>
-                        </div>
-                    </div>
-                </div>*@
-            </div>
-        </div>
-    </div>
 
 
     <!--Choose Verify Face Or Biometric Popup-->
@@ -497,6 +429,9 @@
                     <h4 class="modal-title" style="font-weight: 900; text-align: center;">VERIFICATION</h4>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="hdnMode" />
+                    <input type="hidden" id="hdnBank" />
+                    <input type="hidden" id="hdnDevice" />
                     @*<p class="p_Security">Verify your face OR fingerprint biometric</p>*@
                     <p class="p_Security">Verify your face</p>
                     <hr />
@@ -540,7 +475,7 @@
                     <div class="col-md-12">
 
                         <div class="col-md-12 col-sm-12">
-                            <button class="button-27" id="btnVerifyByFace">
+                            <button class="button-27 vfc_modal" id="facedeviceModal" data-dismiss="modal" data-target="#FacedeviceModal" style="" onclick="FaceLiveliness()">
                                 Verify Face
                             </button>
                         </div>
@@ -559,6 +494,89 @@
 
 
 
+    <!-- Button trigger modal for Open Camera -->
+    @*----------------------------------------------- Modal for Clicked Image -----------------------------------------------*@
+
+    <input type="button" id="staticBackdrops" data-target="#staticBackdrop" onclick="openCamera()" data-toggle="modal" style="display:none" />
+    <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto;">
+            <div class="modal-dialog">
+                <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+                    <div class="modal-content modal_top">
+                        <div class="modal-header">
+                            <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
+                            <h4 id="DetailTitle" class="modal-title text-center theclose">Confirm</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-xl-6 col-lg-6">
+
+                                    <video id="videoElement" class="Video_Camera" autoplay></video>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xl-6 col-lg-6">
+                                    <div class="">
+                                        <!--FOR THE SNAPSHOT-->
+                                        <button id="snapBtn" class="button-21_VideoCamera  Take_Snap">Snap Photo</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*----------------------------------------------- Modal for Show Clicked Image-----------------------------------------------*@
+
+    <!--For Image-->
+    <input type="button" id="staticimages" data-target="#staticimage" data-toggle="modal" style="display:none" />
+    <div class="modal fade" id="staticimage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto;">
+        <div class="modal-dialog">
+            <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+                <div class="modal-content modal_top img_forImage">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+
+                        <h4 id="DetailTitle" class="modal-title text-center">Verify</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <!--FOR THE SNAPSHOT-->
+                            <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <canvas id="canvasElement" class="Video_Camera"></canvas>
+                            </div>
+                            <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="img_ver">
+                                        <button type="button" class="button-21_VideoCameras" data-bs-dismiss="modal" onclick="Veryfyimage()">Verify </button>
+                                    </div>
+                                </div>
+                                <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <div class="img_veri">
+                                        <button type="button" class="button-21_VideoCameras" data-dismiss="modal">Discard</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     @*-------------------------------------------- AadharCustomerDetails Pop Up----------------------------------------*@
 
     <input type="button" id="btnAadharCustomerDetails" data-target="#aadharCustomerDetailsPopUp" data-toggle="modal" style="display:none" />
@@ -568,60 +586,276 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header modal-header-recharge">
-                    <a href="/DMT2Dashboard/DMTDashboard" style="padding-top:12px;" class="close close_cross">&times;</a>
-                    <h4 class="modal-title" style="text-align:center;"><b>Aadhaar Customer Details Popup</b></h4>
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="text-align:center;"><b>AADHAAR ATM</b></h4>
                 </div>
+
                 <div class="modal-body" style="background-color:white;">
+                    <div class="row div-recharge-img">
+                        <div class="col-sm-4 custom_img_size pay-img">
+                            <img src="/css/Img_Aeps/Logo-for-web.png" class="img-width" style="height:100px;width:120px;">
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4 custom_img_size pay-img2">
+                            <img src="~/css/Img_Aeps/NPCI-for-web.png" class="img-width" style="height:100px;width:100px;">
+                        </div>
+                    </div>
+
                     <div class="row">
-                        <b>Aadhaar Customer Details Popup</b>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 custom_img_size" style="text-align: center;">
+                            <img id="img_SelectedBank" />
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                        <input type="hidden" name="long1" id="hdnLong1" />
+                        <input type="hidden" name="lat1" id="hdnLat1" />
+                    </div>
+
+                    <div class=row>
+                        <div class="passbooktabs" style="background-image: linear-gradient(225deg, #003366 0%, #345beb 49%, #5634eb 100%);">
+                            <button class="tablinks" style="letter-spacing: 2px;margin-right: 25px;margin-left: 0px;" onclick="openCity(event,'CashWithdrawal')" id="defaultOpen">CASH WITHDRAWAL</button>
+                            <button class="tablinks" style="letter-spacing: 2px;margin-right: 25px;margin-left: 0px;" onclick="openCity(event,'BalanceEnquiry')">BALANCE ENQUIRY</button>
+                            <button class="tablinks" style="letter-spacing: 2px;margin-right: 25px;margin-left: 0px;" onclick="openCity(event,'MiniStatement')">MINI STATEMENT</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="CashWithdrawal" class="tabcontent">
+                            <div class="title">
+                                @*-------------------------------------------<!--Cash Withdrawal-->------------------------------------------------------*@
+                                <div class="row justify-content-center" style="display: flex;justify-content: center;">
+                                    <div class="col-md-5">
+                                        <div class="card">
+                                            <h4 class="card-title text-center" style="font-weight: bold;">Customer Details</h4>
+                                            <div class="card-body py-md-4">
+                                                <form _lpchecked="1">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" maxlength="30" id="txtCustomerNameCashWithdrawal" placeholder="Customer Name">
+                                                        <br />
+                                                        <h5><span id="errtxtCustomerNameCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" maxlength="10" id="txtMobileNumCashWithdrawal" placeholder="Mobile Number">
+                                                        <br />
+                                                        <h5><span id="errtxtMobileNumCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control" id="BId" name="BId"
+                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                            <option value="0">-Select Bank-</option>
+                                                        </select>
+                                                        <br />
+                                                        <h5><span id="errSIdCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" maxlength="12" id="txtAadharNumberCashWithdrawal" placeholder="Aadhar Number">
+                                                        <br />
+                                                        <h5><span id="errtxtAadharNumberCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" maxlength="7" style="display:none;" id="txtAmountCashWithdrawal" placeholder="Enter Amount">
+                                                        <br />
+                                                        <h5><span id="errtxtAmountCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="tacbox">
+                                                            <input id="checkboxCashWithdrawal" type="checkbox" />
+                                                            <label for="checkbox">
+                                                                <label class="_3De77">
+                                                                    Terms & Conditions<br />
+                                                                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                                                                </label>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                                        <button class="button-27" onclick="submitCustomerDetails()" style="width: 200px;">Next</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div id="BalanceEnquiry" class="tabcontent">
+                            <div class="title">
+                                @*-------------------------------------------<!--Balance Enquiry-->------------------------------------------------------
+                                <div class="row justify-content-center" style="display: flex;justify-content: center;">
+                                    <div class="col-md-5">
+                                        <div class="card">
+                                            <h4 class="card-title text-center" style="font-weight: bold;">Customer Details</h4>
+                                            <div class="card-body py-md-4">
+                                                <form _lpchecked="1">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="txtCustomerNameBalanceEnquiry" placeholder="Customer Name">
+                                                        <br />
+                                                        <h5><span id="errtxtCustomerNameBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="txtMobileNumBalanceEnquiry" placeholder="Mobile Number">
+                                                        <br />
+                                                        <h5><span id="errtxtMobileNumBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control" id="BId" name="BId"
+                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                            <option value="0">-Select Bank-</option>
+                                                        </select>
+                                                        <br />
+                                                        <br />
+                                                        <h5><span id="errSIdBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="txtAadharNumberBalanceEnquiry" placeholder="Aadhar Number">
+                                                        <br />
+                                                        <h5><span id="errtxtAadharNumberBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="tacbox">
+                                                            <input id="checkboxBalanceEnquiry" type="checkbox" />
+                                                            <label for="checkbox">
+                                                                <label class="_3De77">
+                                                                    Terms & Conditions<br />
+                                                                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                                                                </label>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                                        <button class="button-27" style="width: 200px;">Next</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div id="MiniStatement" class="tabcontent">
+                            <div class="title">
+                                @*-------------------------------------------<!--Mini Statement-->------------------------------------------------------
+                                <div class="row justify-content-center" style="display: flex;justify-content: center;">
+                                    <div class="col-md-5">
+                                        <div class="card">
+                                            <h4 class="card-title text-center" style="font-weight: bold;">Customer Details</h4>
+                                            <div class="card-body py-md-4">
+                                                <form _lpchecked="1">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="txtCustomerNameMiniStatement" placeholder="Customer Name">
+                                                        <br />
+                                                        <h5><span id="errtxtCustomerNameMiniStatement" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="txtMobileNum" placeholder="Mobile Number">
+                                                        <br />
+                                                        <h5><span id="errtxtMobileNum" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="form-control" id="BId" name="BId"
+                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                            <option value="0">-Select Bank-</option>
+                                                        </select>
+                                                        <br />
+                                                        <h5><span id="errSIdMiniStatement" style="color:red" class="errorMsg"></span></h5>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="txtAadharNumberMiniStatement" placeholder="Aadhar Number">
+                                                        <br />
+                                                        <h5><span id="errtxtAadharNumberMiniStatement" style="color:red" class="errorMsg"></span></h5>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="tacbox">
+                                                            <input id="checkboxMiniStatement" type="checkbox" />
+                                                            <label for="checkbox">
+                                                                <label class="_3De77">
+                                                                    Terms & Conditions<br />
+                                                                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                                                                </label>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                                        <button class="button-27" style="width: 200px;">Next</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     @*<div class="row">
-                        <div class="col-sm-12" style="text-align:center">
-                            <div class="form-group-recharge" style="margin-left: -65px">
-                                <input id="txtAccountHoldName" autocomplete="off" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Holder Name" />
-                                <br />
-                                <h5><span id="errtxtAccountHoldName" style="color:red" class="errorMsg"></span></h5>
-                            </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
-                                <input id="txtAccountNum" autocomplete="off" maxlength="20" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter Account Number" />
-                                <br />
-                                <h5><span id="errtxtAccountNum" style="color:red" class="errorMsg"></span></h5>
-                            </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
-                                <select id="ddlBank"><option value="0">--Select Bank--</option></select>
-                                <br />
-                                <h5><span id="errBankName" style="color:red" class="errorMsg"></span></h5>
-                            </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
-                                <input id="txtIFSCCode" autocomplete="off" maxlength="15" type="tel" required="required" class="txt-input txt-input-text" placeholder="Enter IFSC Code" />
-                                <br />
-                                <h5><span id="errtxtIFSCCode" style="color:red" class="errorMsg"></span></h5>
-
-                            </div>
-                            <div class="form-group-recharge" style="margin-left: -65px">
-                                <input id="txtBankName" autocomplete="off" maxlength="20" type="text" required="required" class="txt-input txt-input-text" placeholder="Enter Bank Name" />
-                                <br />
-                                <h5><span id="errtxtBankName" style="color:red" class="errorMsg"></span></h5>
-
-                            </div>
-                        </div>
+                    <div class="col-sm-12" style="text-align:center">
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="txtCustomerNameCashWithdrawal" placeholder="Customer Name">
+                    <br />
+                    <h5><span id="errtxtCustomerNameCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="txtMobileNumCashWithdrawal" placeholder="Mobile Number">
+                    <br />
+                    <h5><span id="errtxtMobileNumCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                    <div class="form-group-recharge">
+                    <select class="dropdownDTH dropdownDTH1" id="BId" name="BId"
+                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                    <option value="0">-Select Bank-</option>
+                    </select>
+                    <br />
+                    <h5><span id="errBankName" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="txtAadharNumberCashWithdrawal" placeholder="Aadhar Number">
+                    <br />
+                    <h5><span id="errtxtAadharNumberCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="txtAmountCashWithdrawal" placeholder="Enter Amount">
+                    <br />
+                    <h5><span id="errtxtAmountCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                    </div>
+                    <div class="form-group">
+                    <div class="tacbox">
+                    <input id="checkboxCashWithdrawal" type="checkbox" />
+                    <label for="checkbox">
+                    Terms & Conditions<br />
+                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
+                    </label>
+                    </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                    <button class="button-21" style="width: 200px;">Next</button>
+                    </div>
+                    </div>
                     </div>*@
                 </div>
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-md-12" style="display: inline-flex;">
-                            <div class="col-sm-6 col-md-6">
-                                <button type="button" id="btnCloseFirst" class="button-27" data-dismiss="modal">Ok</button>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
+                @* <div class="modal-footer">
+                <div class="row">
+                <div class="col-md-12" style="display: inline-flex;">
+                <div class="col-sm-6 col-md-6">
+                <button type="button" id="btnaadharCustomerDetailsFinal" class="button-27" data-dismiss="modal">Okay</button>
                 </div>
+                <div class="col-sm-6 col-md-6">
+                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+                </div>
+                </div>
+                </div>*@
             </div>
         </div>
     </div>
+    </div>
+
+
+
+
+
+
     <!--Device not connected error Modal Popup-->
     @*-----------------------------------------------Device not connected error Modal Popup---------------------------------------------------------*@
 
@@ -658,10 +892,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
     @*--------------------------------------------Powered By--------------------------------------------------*@
@@ -756,30 +986,12 @@
         </div>
     </div>
 </div>
-
-
-@*@section Script{
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    }*@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-@*<script type="text/javascript">
-    function geolocate() {
-    debugger;
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-    var geolocation = new google.maps.LatLng(
-    position.coords.latitude, position.coords.longitude);
-    var location = "<b>Latitude</b>: " + position.coords.latitude + "<br/>";
-    location += "<b>Longitude</b>: " + position.coords.longitude;
-    document.getElementById('lblResult').innerHTML = location
-    });
-    }
-    }
-    </script>*@
 
 <!--Longitiude and Latitude in JS-->
 <script type="text/javascript">
-    let deviceValue, bankName, selectedBiometricDeviceName;
+    let transactionMode, bankName, selectedBiometricDeviceName, radioVal, bankUrl, bankLogo;
+    let aepsAgentId, lati, long;
 
 
     function geolocate() {
@@ -797,6 +1009,7 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
+                        debugger;
 
                     },
                     failure: function (response) {
@@ -810,25 +1023,18 @@
         }
     }
 
-    var select = document.getElementById('aepsChooseTrasaction');
+    let select = document.getElementById('aepsChooseTrasaction');
+    //document.getElementById("btnTransaction").onclick =
 
-    document.getElementById("btnTransaction").onclick = function () {
+    function CheckKYCStatus(variable) {
         debugger;
         var value = select.id
-        var radioVal = $('.radio1:checked').val();
-
-
+        radioVal = $('.radio1:checked').val();
         var ele = document.getElementsByClassName("radio1");
-
         for (i = 0; i < ele.length; i++) {
             if (ele[i].checked)
-
                 data = ele[i].value;
         }
-
-
-
-
         debugger;
         if (radioVal == undefined || radioVal == '' || radioVal == null) {
             document.getElementById('walletMode').innerHTML = "Please select device to proceed!";
@@ -836,113 +1042,55 @@
         }
         else {
             document.getElementById('walletMode').innerHTML = "";
+            jQuery('.remove').parent().remove();
             $.ajax({
                 url: "/Aeps/GetAepsKycDetailsNew",
-                data: { 'radioVal': radioVal, 'value': value },
+                data: { 'radioVal': radioVal, 'value': value, 'later': variable },
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    transactionMode = response.data2;
                     debugger;
-                    if(response[0].status=="Pending"){
-                        document.getElementById("headingKYCStatus").innerHTML=response[0].status;
-                        var img=document.getElementById("img_kycPendingBank");
-                         img.src =response[0].bankLogo;
-                         document.getElementById("lblBankName").innerHTML=response[0].bankName;
-                         $("#btnKycPending").trigger("click");
-                    }
 
-                    
-                    //for (Data1.result == 'Redirect') {
-                    //let output = response.map(i => "<div id='choosBank'>" + i.choosBank + "</div>");
-                    else if (response.result == "EmptyResult") {
-                        window.location.href = response.url;
-                    }
-                    else if (response.result == "UnExpectedStatusCode") {
-                        window.location.href = response.url;
-                    }
-                    else if (response.result == "RedirectToException") {
-                        window.location.href = response.url;
-                    }
-                    else {
+                    //This will hit if Status is Pending And then Again Api Hit for Binding Bank Name
+                    if (response.status == "radio") {
+                        $("#hdnTransactionMode").val(transactionMode);
+
                         document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
                         document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
                         document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
-                        $("#btnChooseBankModal").trigger("click");
-                    }
-                }
-            });
-
-            //if (value == "cashWithdrawal") {
-            //    //window.location.href = "https://www.google.com/";
-
-            //    $.ajax({
-            //        type: "Post",
-            //        url: "/AepsController/GetAepsKycDetailsNew?proBtn=" + value,
-            //        contentType: "html",
-            //        success: function(aepsResponses) {
-
-            //        }
-            //    });
-            //}
-            //else if (value == "balanceEnquiry") {
-            //    window.location.href = "https://www.yahoo.com/";
-            //}
-            //else if (value == "minStatement") {
-            //    window.location.href = "https://www.msn.com/"; selectDevice
-            //}
-        }
-
-    };
-
-    //var select = document.getElementById('aepsChooseTrasaction');
-    function VerifyFaceBiometricModal() {
-        debugger;
-        var radioValDevice = $('.morpho:checked').val();
-        if (radioValDevice == undefined || radioValDevice == '' || radioValDevice == null) {
-            document.getElementById("errDevice").innerHTML = "Please select any one device";
-            return false;
-        }
-        else {
-            document.getElementById("errDevice").innerHTML = "";
-            $.ajax({
-                url: "/Aeps/AaadharPicVerification",
-                data: { 'radioValDevice': radioValDevice },
-                type: 'POST',
-                dataType: 'json',
-                success: function (response) {
-                    debugger;
-                    if (response.statuscode == 'TXN') {
-                        //$.ajax({
-                        //    url: "/Aeps/GetBankList",
-                        //    data: {},
-                        //    type: 'POST',
-                        //    dataType: 'json',
-                        //    success: function (response) {
-                        //        debugger;
-                        //        if (response) {
-                        //            $("#ddlBank").append($("<option></option>").val(response.CountryId).html(response.CountryName));
-                        //            $("#btnVerifyPopup").trigger("click");
-                        //            //$("#btnCustomerDetails").trigger("click");
-                        //            $("#deviceModal").hide();
-                        //        }
-                        //    }
-                        //});
-                        $("#btnVerifyPopup").trigger("click");
-                        //$("#btnCustomerDetails").trigger("click");
-                        $("#deviceModal").hide();
-                    }
-                    else if (response.statuscode == 'ERR')  {
-                        
-                        $("#btnAadharCustomerDetails").trigger("click");
-                        $("#deviceModal").hide();
+                        $("#btnChooseBankKycBridgeModal").trigger("click");
+                        //$("#btnAadharCustomerDetails").trigger("click");
+                        $("#kycPendingModal").hide();
 
                     }
-                    else if (response.statuscode == 'SKP') {
 
-                        $("#btnAadharCustomerDetails").trigger("click");
-                        $("#deviceModal").hide();
+                    //When Response is Pending First Time
+                    else if (response.status == "Pending") {
+                        document.getElementById("headingKYCStatus").innerHTML = "KYC Status: " + response.data[0].status;
+                        var img = document.getElementById("img_kycPendingBank");
+                        img.src = response.data[0].bankLogo;
+                        $("#btnKycPending").trigger("click");
 
                     }
+
+                    //When Response is Ratio First Time
+                    else if (response.status == "Ratio") {
+
+                        transactionMode = response.data2;
+                        bankName = response.data[0].bankName1;
+                        $("#btndeviceModal").trigger("click");
+                    }
+
+
+                    //When Response is Exception First Time
+                    else if (response.status == "Exception") {
+
+                        transactionMode = response.data2;
+                        bankName = response.data[0].bankName1;
+                        $("#btndeviceModal").trigger("click");
+                    }
+
                     else if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -952,18 +1100,17 @@
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
                     }
-                    //document.getElementById("lblybl").innerHTML = response.data[0].bankName1;
-                    //document.getElementById("lblppb").innerHTML = response.data[0].bankName2;
-                    //document.getElementById("lblicici").innerHTML = response.data[0].bankName3;
                 }
             });
         }
-
     };
 
 
     function chooseBank() {
         debugger;
+        var transactionvalue = $("#hdnTransactionMode").val()
+        $("#hdnTransactionModeDevice").val(transactionvalue);
+
         var data;
         var value = document.getElementById("lblybl").innerHTML;
         var value1 = document.getElementById("lblppb").innerHTML;
@@ -980,6 +1127,7 @@
             return false;
         }
         else {
+
             document.getElementById("errbank").innerHTML = "";
             if (data == 'YES') {
                 data = value;
@@ -990,7 +1138,13 @@
             else if (data == 'ICICI') {
                 data = value2;
             }
-            var radioVal = $('.radio1:checked').val();
+
+            var bankDeviceVal = data;
+            bankName = data;
+            $("#hdnTransactionBankDevice").val(bankDeviceVal);
+
+            radioVal = $('.radio1:checked').val();
+            debugger;
             $.ajax({
                 url: "/Aeps/GetAepsKycDetailsNew",
                 data: { 'radioVal': radioVal, 'bankName': data },
@@ -998,15 +1152,384 @@
                 dataType: 'json',
                 success: function (response) {
                     debugger;
-                    $("#chooseBankModal").hide();
+                    $("#chooseBankKycBridgeModal").hide();
                     $("#btndeviceModal").trigger("click");
-
-
                 }
             });
         }
 
     };
+
+
+
+    //This will hit after Device Selection For Aadhar Pic Verification API Hit when Device will be Selected
+    function VerifyFaceBiometricModal() {
+        var transMode = transactionMode;
+
+        var bank = bankName;
+        debugger;
+        radioVal = $('.morpho:checked').val();
+        var device = radioVal;
+        if (radioVal == undefined || radioVal == '' || radioVal == null) {
+            document.getElementById("errDevice").innerHTML = "Please select any one device";
+            return false;
+        }
+        else {
+            document.getElementById("errDevice").innerHTML = "";
+            $.ajax({
+                url: "/Aeps/AaadharPicVerification",
+                data: { 'radioValDevice': radioVal, 'transMode': transMode, 'device': device, 'bank': bank },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    debugger;
+                    if (response.statuscode == 'TXN') {
+                        $("#btnVerifyPopup").trigger("click");
+                        $("#deviceModal").hide();
+                    }
+                    else if (response.result == 'RedirectToCustomer') {
+                        
+
+                        if (bank == "ICICI Bank" || bank == "Fingpay") {
+                            var img = document.getElementById("img_SelectedBank");
+                            img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
+
+                            var mobileNumber = '@ViewBag.MobileNo';
+                            aepsAgentId = "RED" + mobileNumber;
+
+                            GetLocation();
+                            lati = $("#hdnLong").val();
+                            long = $("#hdnLat").val();
+
+                                if (transactionMode == "be" || transactionMode == "ms") {
+                                    document.getElementById("txtAmountCashWithdrawal").style.display="none";
+                                }
+                                else {
+                                    document.getElementById("txtAmountCashWithdrawal").style.display="block";
+                                }
+
+
+                            $("#btnAadharCustomerDetails").trigger("click");
+                            $("#deviceModal").hide();
+                            //$.ajax({
+                            //    url: "/Aeps/getAddress",
+                            //    data: { 'lat': $("#hdnLong").val(), 'lon': $("#hdnLat").val() },
+                            //    type: 'POST',
+                            //    dataType: 'json',
+                            //    success: function (responsedata) {
+                            //        debugger;
+                            //    }
+                            //})
+                            $("#hdnLong1").val();
+                            $("#hdnLat1").val();
+                        }
+                        else if (bank == "") {
+                            var img = document.getElementById("img_SelectedBank");
+                            img.src = response.data[0].bankLogo;
+                            $("#btnAadharCustomerDetails").trigger("click");
+                            $("#deviceModal").hide();
+                        }
+                    }
+
+                    else if (response.statuscode == 'SKP') {
+                        $("#btnAadharCustomerDetails").trigger("click");
+                        $("#deviceModal").hide();
+                    }
+                    else if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                }
+            });
+        }
+
+    };
+
+    function GetLocation() {
+        if (navigator.geolocation) {
+            debugger;
+            navigator.geolocation.getCurrentPosition(ShowPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function ShowPosition(position) {
+        debugger;
+        $("#hdnLong1").val(position.coords.longitude);
+        $("#hdnLat1").val(position.coords.latitude);
+        $.ajax({
+            url: "/Aeps/getAddress",
+            data: { 'lat': $("#hdnLong1").val(), 'lon': $("#hdnLat1").val()},
+            type: 'POST',
+            dataType: 'json',
+            success: function (responsedata) {
+                debugger;
+            }
+        })
+    }
+
+
+    function submitCustomerDetails(){
+        debugger;
+        var customerName = $("#txtCustomerNameCashWithdrawal").val();
+        displayLocation(28.5967439, 77.3285038);
+        var customerMobile = $("#txtMobileNumCashWithdrawal").val();
+        var bankName = document.getElementById("BId").value;
+        debugger;
+        var customerAadharNumber = $("#txtAadharNumberCashWithdrawal").val();
+        if (customerName.length === 0) {
+            document.getElementById("errtxtCustomerNameCashWithdrawal ").innerHTML = "Please Enter Customer Name";
+        }
+        else if (customerMobile.length === 0) {
+            document.getElementById("errtxtMobileNumCashWithdrawal").innerHTML = "Please Enter Mobile Number";
+        }
+        else if (bankName.length === 0) {
+            document.getElementById("errSIdCashWithdrawal").innerHTML = "Please Select Any Bank";
+        }
+        else if (customerAadharNumber.length === 0) {
+            document.getElementById("errtxtAadharNumberCashWithdrawal").innerHTML = "Please Enter Aadhaar Number";
+        }
+        else{
+            document.getElementById("errtxtCustomerNameCashWithdrawal ").innerHTML="";
+            document.getElementById("errtxtMobileNumCashWithdrawal").innerHTML ="";
+            document.getElementById("errSIdCashWithdrawal").innerHTML = "";
+            document.getElementById("errtxtAadharNumberCashWithdrawal").innerHTML = "";
+
+        }
+    }
+
+
+
+    function displayLocation(lat, long) {
+        var geocoder;
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(lat, long);
+        debugger;
+        geocoder.geocode(
+            { 'latLng': latlng },
+            function (results, status) {
+                debugger;
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        var add = results[0].formatted_address;
+                        var value = add.split(",");
+
+                        count = value.length;
+                        country = value[count - 1];
+                        state = value[count - 2];
+                        city = value[count - 3];
+                        x.innerHTML = "city name is: " + city;
+                    }
+                    else {
+                        x.innerHTML = "address not found";
+                    }
+                }
+                else {
+                    x.innerHTML = "Geocoder failed due to: " + status;
+                }
+            }
+        );
+    }
+
+
+    //function getLocationFromLatLong(latitude, longitude) {
+    //    debugger;
+    //    var geocoder = new google.maps.Geocoder();
+    //    var latlng = new google.maps.LatLng(latitude, longitude);
+    //    geocoder.geocode({ 'latLng': latlng },
+    //    function (results, status) {
+    //        debugger;
+    //        if (status == google.maps.GeocoderStatus.OK) {
+    //            if (results[0]) {
+    //                console.log(results[0].formatted_address); // Returns the address of the location
+    //            } else {
+    //                console.log('No results found');
+    //            }
+    //        } else {
+    //            console.log('Geocoder failed due to: ' + status);
+    //        }
+    //    });
+    //}
+
+
+
+
+
+
+    //function getLocationWithAddress(){
+    //    debugger;
+    //    var NodeGeocoder = require('node-geocoder');
+
+    //    var options = {
+    //        provider: 'google',
+    //        httpAdapter: 'https', // Default
+    //        apiKey: ' ', // for Mapquest, OpenCage, Google Premier
+    //        formatter: 'json' // 'gpx', 'string', ...
+    //    };
+
+    //    var geocoder = NodeGeocoder(options);
+
+    //    geocoder.reverse({ lat: 28.5967439, lon: 77.3285038 }, function (err, res) {
+    //        console.log(res);
+    //    });
+    //}
+
+
+
+
+
+
+
+    function FaceLiveliness() {
+        debugger;
+        $("#staticBackdrops").trigger("click");
+
+    }
+
+
+    function openCamera() {
+
+        debugger;
+        // get the video element from the HTML document
+        var video = document.getElementById("videoElement");
+
+        // check if the browser supports webRTC
+        if (navigator.mediaDevices.getUserMedia) {
+            // request access to the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    // set the video element's source to the camera stream
+                    video.srcObject = stream;
+                })
+                .catch(function (err) {
+                    console.log("Error: " + err);
+                });
+        }
+
+        // get the snap button and canvas element from the HTML document
+        var snapBtn = document.getElementById("snapBtn");
+        var canvas = document.getElementById("canvasElement");
+        var context = canvas.getContext("2d");
+
+        // add an event listener to the snap button
+        snapBtn.addEventListener("click", function () {
+            debugger;
+            // set the canvas element's dimensions to match the video element's
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // draw the current video frame onto the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // get the image data as a base64-encoded string
+            var imageData = canvas.toDataURL("image/png");
+
+            // log the image data to the console
+            document.getElementById('canvasElement').innerHTML =
+                '<img src="' + imageData + '" width="737px" height="466px" id="getimage"/>';
+            $('#staticBackdrops').hide();
+            $("#staticimages").trigger("click");
+        });
+
+
+    }
+
+    function Veryfyimage() {
+        debugger;
+        var data_uri = document.getElementById('canvasElement').innerHTML;
+        var result = data_uri.indexOf(",");
+        var legth = data_uri.length;
+        var showimage = data_uri.slice(result + 1, legth);
+        var transMode = transactionMode;
+        var device = radioVal;
+        var bank = bankName;
+        $.ajax({
+            url: "/Aeps/FaceLiveLiness",
+            data: { 'showimage': showimage, 'transMode': transMode, 'device': device, 'bank': bank },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                if (data.result == "RedirectToCustomer") {
+                    window.location.href = data.url;
+                }
+
+                else if (data.result == "EmptyResult") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "UnExpectedStatusCode") {
+                    window.location.href = data.url;
+                }
+                else if (data.result == "RedirectToException") {
+                    window.location.href = data.url;
+                }
+                else if (data.statuscode == "ERR") {
+
+                }
+
+            }
+        });
+
+    }
+
+
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Aeps/AllBankList",
+            contentType: "html",
+            success: function (response) {
+                debugger;
+
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else {
+                    $('#BId').html('');
+
+                    var options = '<option value="' + 0 + '">' + "--Choose Bank--" + '</option>';
+
+                    for (var i = 0; i < response.length; i++) {
+
+                        options += '<option value="' + response[i].id + '">' + response[i].bankName + '</option>';
+
+                    }
+                    $('#BId').append(options);
+                }
+            }
+
+        });
+    });
+
+
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
 
 </script>
 
@@ -1387,8 +1910,6 @@
     }
 
     function showPosition(position) {
-        //x.innerHTML = "Latitude: " + position.coords.latitude +
-        //    "<br>Longitude: " + position.coords.longitude;
         $("#hdnLong").val(position.coords.longitude);
         $("#hdnLat").val(position.coords.latitude);
         fingurprintBiometric();
@@ -1413,18 +1934,18 @@
             }
         });
     }
-    //function getLocation() {
-    //    debugger;
-    //    if (navigator.geolocation) {
-    //        navigator.geolocation.getCurrentPosition(showPosition);
-    //    } else {
-    //        alert("Geolocation is not supported by this browser.");
-    //    }
-    //}
+                                                //function getLocation() {
+                                                //    debugger;
+                                                //    if (navigator.geolocation) {
+                                                //        navigator.geolocation.getCurrentPosition(showPosition);
+                                                //    } else {
+                                                //        alert("Geolocation is not supported by this browser.");
+                                                //    }
+                                                //}
 
-    //function showPosition(position) {
-    //    debugger;
-    //    $("#hdnLat").val(position.coords.latitude);
-    //    $("#hdnLong").val(position.coords.longitude);
-    //}
+                                                //function showPosition(position) {
+                                                //    debugger;
+                                                //    $("#hdnLat").val(position.coords.latitude);
+                                                //    $("#hdnLong").val(position.coords.longitude);
+                                                //}
 </script>
