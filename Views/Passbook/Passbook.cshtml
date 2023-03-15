@@ -255,7 +255,7 @@
                 </div>
             </div>
             @{
-                        if (Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().Client=="" && Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().CreditDebit == "")
+                        if (Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().Client=="" || Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().Client==null && Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().CreditDebit == "" || Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().CreditDebit == null)
                         {
 
                         }
@@ -331,6 +331,15 @@
                     </div>
                 </div>
             </div>
+                }
+            }
+            @{
+                        if (Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().Client=="" && Model.FirstOrDefault().BRewardDetailResponseModel.FirstOrDefault().CreditDebit == "")
+                        {
+
+                        }
+                        else
+                        {
             <div class="row" id="peris">
                 <div id="Paris" class="tabcontents">
                     <div style="overflow-x:auto; margin-top:40px;padding:20px;">
@@ -396,8 +405,9 @@
                     </div>
                 </div>
             </div>
-            }
-            }
+           }
+           }
+  
         </div>
 
     </div>

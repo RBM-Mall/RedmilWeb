@@ -424,17 +424,18 @@
 
     <div id="exTab2" class="container">
 
-        <div class="row">
+        <div class="row" class="">
             <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 Ex_tab">
                 <div class="third-header">
                     <div class="Container_wdth">
                         <div class="card">
-                            <img src="~/img/device biometric image/imps.jpg" class="btn-imps" />
-                            <p>
+                            <img src="~/css/img/ipms.png" />
+                            @*<img src="~/img/device biometric image/imps.jpg" class="btn-imps" />*@
+                           @* <p>
                                 <button class="btn btn-info btn_im ">
                                     IMPS
                                 </button>
-                            </p>
+                            </p>*@
 
                         </div>
                     </div>
@@ -444,12 +445,13 @@
                 <div class="third-header">
                     <div class="Container_wdth">
                         <div class="card ">
-                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
-                            <p>
+                            <img src="~/css/img/neft.png" />
+                            @*<img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />*@
+                           @* <p>
                                 <button class="btn btn-info btn_im">
                                     NEFT
                                 </button>
-                            </p>
+                            </p>*@
 
                         </div>
                     </div>`
@@ -459,12 +461,13 @@
                 <div class="third-header">
                     <div class="Container_wdth">
                         <div class="card">
-                            <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
-                            <p>
+                            <img src="~/css/img/rtgs.png" />
+                            @*<img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />*@
+                           @* <p>
                                 <button class="btn btn-info btn_im">
-                                    RGS
+                                    RTGS
                                 </button>
-                            </p>
+                            </p>*@
 
                         </div>
                     </div>
@@ -475,14 +478,14 @@
 
     <hr>
     <br />
-    <div class="row">
+    <div class="row btn_irn">
         <div class="col-sm-4 col-sm-4 col-lg-4 col-xl-4 col-md-4">
             <div class="third-header">
                 @*<div class="container card" style="background:white; border: 2px solid white ;padding: 54px;border-radius: 25px;width:73%;height:518px">*@
                 <div class="container card" style="">
                     <div class="card-body card-input-im">
-                        <div class="">
-                            <img src="~/img/device biometric image/imps-logo.png" class="imps_logo" />
+                        <div class=""><img src="" />
+                            <img src="~/css/img/ipms (1).png" class="imps_logo" />
                         </div>
                         @foreach (var item in Model.imps.Slab)
                         {
@@ -504,7 +507,7 @@
                         </div>
                         <div class="form-group">
                             <div class="Tinput">
-                                <label class="lbl_Amount">Amount </label>
+                              
                                 <input type="text" class="form-control " id="TextImps" onkeypress="return ValidateAlphanumerics(event);" placeholder="₹ Amount" maxlength="6" /><br />
                                 <span id="Text_Imps"></span>
                                 @* <span id="Text_Impss"></span>*@
@@ -520,7 +523,7 @@
                 <div class="container card">
                     <div class="card-body card-input-im">
                         <div>
-                            <img src="~/img/device biometric image/NEFT-ICON.png" class="NEFT_IMG" />
+                            <img src="~/css/img/neft (1).png" class="NEFT_IMG" />
                         </div>
                         @foreach (var item in Model.neft.Slab)
                         {
@@ -542,11 +545,10 @@
                         </div>
                         <div class="form-group">
                             <div class="Tinput">
-                                <label class="lbl_Amount">Amount </label> <input type="text" maxlength="6" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
+                              <input type="text" maxlength="6" class="form-control" id="Textneft" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsn(event);" />
                                 <span id="Text_neft"></span>
                                 <button type="button" class="button-Media" onclick="nefttransfer()">Transfer</button>
 
-                                @* <span id="Text_nefts"></span>*@
                             </div>
                         </div>
                     </div>
@@ -559,7 +561,8 @@
                 <div class="container card">
                     <div class="card-body card-input-im">
                         <div class="">
-                            <img src="~/img/device biometric image/RTGS-ICON.png" class="rtgs_img" />
+                      
+                            <img src="~/css/img/rtgs (1).png" class="rtgs_img" />
                         </div>
                         @foreach (var item in Model.rtgs.Slab)
                         {
@@ -581,7 +584,7 @@
                         </div>
                         <div class="form-group">
                             <div class="Tinput">
-                                <label class="lbl_Amount">Amount </label> <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" maxlength="9" />
+                                <input type="text" class="form-control " id="Textrtgs" placeholder="₹ Amount" onkeypress="return ValidateAlphanumericsr(event);" maxlength="9" />
                                 <span id="Text_rtgs"></span>
                                 <button type="button" class="button-Media" onclick="rtgstransfer()">Transfer</button>
                             </div>
@@ -710,8 +713,8 @@
                             </table>
                         </div>
                     </div>
-
-                    <p class="p_Verify_Face">ADDITATIONAL ACCOUNT</p>
+                    <p class="p_Verify_Face">ADDITIONAL ACCOUNT</p>
+                    <span class="Add_note">Note : Maximum 10 Accounts can be Added</span>
                     <hr />
                     <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
 
@@ -1110,7 +1113,7 @@
 <div class="modal fade" id="staticimage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto;">
     <div class="modal-dialog">
         <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
-            <div class="modal-content modal_top ">
+            <div class="modal-content modal_top img_forImage">
                 <div class="modal-header">
 
                     <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
@@ -1129,12 +1132,12 @@
                             </div>
                             <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                 <div class="img_ver">
-                                    <button type="button" class="button-21_VideoCameras" data-bs-dismiss="modal" onclick="Veryfyimage()">Verify </button>
+                                    <button type="button" class="button-21_VideoCameras Verify_Confirm_Image" data-bs-dismiss="modal">Verify</button>
                                 </div>
                             </div>
                             <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                 <div class="img_veri">
-                                    <button type="button" class="button-21_VideoCameras" data-dismiss="modal">Descard</button>
+                                    <button type="button" class="button-21_VideoCameras" data-dismiss="modal">Discard</button>
                                 </div>
                             </div>
                         </div>
@@ -1158,23 +1161,22 @@
                 <div class="row">
                     <form action="/Passbook/uploadimages" method="post" enctype="multipart/form-data" id="formupload">
                         <div class="form-group">
-                            <input type="text" id="text_Account" onkeypress="return ValidateAlphanumeric(event);" name="AccountNo" class="form-control" placeholder="Account Numer" />
+                            <input type="text" autocomplete="off" id="text_Account" onkeypress="return ValidateAlphanumeric(event);" name="AccountNo" class="form-control" placeholder="Account Numer" />
                             <span id="Account"></span>
                             <span id="Account_New" class="text-danger font-weight-bold"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="text_ConfirmAccount" onchange="Accountens();" class="form-control" placeholder=" Confirm Account Number" />
+                            <input type="text" autocomplete="off" id="text_ConfirmAccount" onchange="Accountens();" class="form-control" placeholder=" Confirm Account Number" />
                             <span id="CAccount"></span>
                             <span id="CAccount_New" class="text-danger font-weight-bold" onChange="AddinBank();"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="text_BeneficaryName" name="BeniName" onkeypress="return TextValidate(event);" class="form-control" placeholder="Beneficiary Name" />
+                            <input type="text" autocomplete="off" id="text_BeneficaryName" name="BeniName" onkeypress="return TextValidate(event);" class="form-control" placeholder="Beneficiary Name" />
                             <span id="BNames"></span>
                             <span id="BNames_new" class="text-danger font-weight-bold"></span>
                         </div>
                         <div class="form-group">
-                            @*<input type="text" id="text_Ifsc" name="IFSC" onkeypress="return ValidateAlphanumeric(event);" class="form-control" placeholder="IFSC" />*@
-                            <input type="text" id="text_Ifsc" name="IFSC" onkeypress="return ValidateAlphanumeric(event);" class="form-control" placeholder="IFSC" />
+                            <input type="text" autocomplete="off" id="text_Ifsc" name="IFSC" onkeypress="return ValidateAlphanumeric(event);" class="form-control" placeholder="IFSC" />
                             <span id="text_Ifscs_new" class="text-danger font-weight-bold"></span>
                             <span id="text_Ifscs"></span>
                         </div>
@@ -1204,11 +1206,9 @@
                         <div class="form-group" style="display:none" id="upan">
                             <label class="control-label"></label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input form-control" name="file" id="file" onchange="return ValidateFileUpload()" style="width:82%">
+                                <input type="file" autocomplete="off" class="custom-file-input form-control" name="file" id="file" onchange="return ValidateFileUpload()" style="width:82%">
                                 <span id="text_File"></span>
-
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <div class="row">
@@ -1219,10 +1219,10 @@
                                         <input type="button" class="button-21 btPics nonverified_buton" value="Add Account" style="display:none" />
                                     </div>
                                     <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2">
-                                        <input type="button" class="button-21 Pending_Approval" value="Pending Approval" />
+                                        <input type="button" class="button-21 Pending_Approval" value="Pending Approval" style="margin-left: -191px;" />
                                     </div>
                                 </div>
-                                <!--FOR THE SNAPSHOT-->
+                                
 
                             </div>
                         </div>
@@ -1248,9 +1248,8 @@
                     <div class="modal-body forhide">
                         <div>
                             <img src="~/img/device biometric image/oops2_new.png" style="width:370px;height:245px;" />
-                            @*  <img src="~/img/oops2.png" style="width:370px;height:245px;" />*@
                         </div>
-                        <h4 id="lblMsgERRDataforcharges" class="modal-title w-100"></h4>
+                        <h4 id="lblMsgERRDataforcharges"></h4>
                         <div class="modal-footer">
                             <button type="button" class="button-21 Error_Verify" data-dismiss="modal">
                                 <b>Ok</b>
@@ -1348,7 +1347,7 @@
                         <div class="modal-body forhide">
                             <img src="~/img/device biometric image/oops2_new.png" class="oops2_new img-responsive" />
 
-                            <h4 id="lblmsgErrorSc" class="modal-title w-100"></h4>
+                            <h4 id="lblmsgErrorSc" class=""></h4>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="button-21" data-dismiss="modal">
@@ -1368,7 +1367,6 @@
 <div class="modal fade" id="Accountveriotpmodal" role="dialog" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header modal-header-recharge">
@@ -1651,8 +1649,11 @@
     //For Confirm
     //function confirm() {
     $('.Btn_Confirm').on('click', function () {
-        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
         debugger;
+        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Confirm');
+        }, 2000);
         var ModeId = $('#Mode').text();
         var BankId = $('#BankId').text();
         //var BankName = $('#CWD').text();
@@ -1668,6 +1669,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+                debugger
                 setTimeout(() => {
                     $(this).html('Confirm');
                 }, 2000);
@@ -1681,17 +1683,27 @@
                     window.location.href = data.url;
                 }
                 else if (data.statuscode == "TXN" && data.message == "Non Verified") {
+                    setTimeout(() => {
+                        $(this).html('Confirm');
+                    }, 2000);
+                    $('#ModalForbankdetailConfirms').hide();
                     $("#nonverifi").text(data.message);
                     $("#staticBackdrops").trigger("click");
                     //$("#btnVerify").trigger("click");
 
                 }
                 else if (data.statuscode = "SKP") {
+                    setTimeout(() => {
+                        $(this).html('Confirm');
+                    }, 2000);
                     $("#staticBackdrops").trigger("click");
                 }
                 else if (data.statuscode = "TXN" && data.message == "Transaction Success") {
+                    setTimeout(() => {
+                        $(this).html('Confirm');
+                    }, 2000);
+                    $('#ModalForbankdetailConfirms').hide();
                     $("#ModalForSuccessBanks").trigger("click");
-
                     $("#B").text(data.data[0].beniName);
                     $("#Acn").text(data.data[0].account);
                     $("#Ic").text(data.data[0].ifsc);
@@ -1713,6 +1725,9 @@
 
                 }
                 else if (data.statscode == "ERR" || data.message == "Transaction Failure") {
+                    setTimeout(() => {
+                        $(this).html('Confirm');
+                    }, 2000);
                     $("#ModalForSuccessBanks").trigger("click");
                     $("#B").text(data.data[0].beniName);
                     $("#Acn").text(data.data[0].account);
@@ -1736,9 +1751,9 @@
 
                 }
             }
-        })
+        });
 
-    })
+    });
     function FaceLiveliness() {
         $("#staticBackdrops").trigger("click");
 
@@ -1746,7 +1761,6 @@
 
 
     function openCamera() {
-        debugger;
         // get the video element from the HTML document
         var video = document.getElementById("videoElement");
 
@@ -1784,7 +1798,7 @@
             // log the image data to the console
             document.getElementById('canvasElement').innerHTML =
                 '<img src="' + imageData + '" width="737px" height="466px" id="getimage"/>';
-
+                $('#staticBackdrops').hide();
             $("#staticimages").trigger("click");
         });
 
@@ -1793,7 +1807,12 @@
 
 
 
-    function Veryfyimage() {
+    //function Veryfyimage() {
+    $('.Verify_Confirm_Image').on('click', function () {
+        $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        setTimeout(() => {
+            $(this).html('Verify');
+        }, 4000);
         debugger;
         var data_uri = document.getElementById('canvasElement').innerHTML;
         var result = data_uri.indexOf(",");
@@ -1805,6 +1824,9 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+                setTimeout(() => {
+                    $(this).html('Verify');
+                }, 4000);
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1851,7 +1873,7 @@
             }
         });
 
-    }
+    })
     $('.theclose').on('click', function () {
         location.reload();
     })
@@ -2244,7 +2266,7 @@
         $("#btnupload").show();
         $("#showerror").text("Non verified with our record");
         $("#showerror").css("color", "red");
-        $("#showerror").css("margin-left", "456px");
+        $("#showerror").css("margin-left", "375px");
 
 
 

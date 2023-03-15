@@ -3,7 +3,17 @@ td th {
     vertical-align: top;
     padding: 10px 20px;
 }
-
+.btn_irn {
+    margin-top: 116px;
+}
+.Add_note {
+    color: mediumturquoise;
+    text-align: center;
+    margin-left: 283px;
+}
+.img_forImage {
+    margin-top: 62px;
+}
 .dmts {
     margin-top: 13px;
     text-align: center;
@@ -159,8 +169,8 @@ td th {
 }
 
 .Container_wdth {
-    background: white;
-    border: 2px solid white;
+   /* background: white;
+    border: 2px solid white;*/
     padding: 11px;
     border-radius: 18px;
     width: 75%;
@@ -180,25 +190,39 @@ td th {
 }
 
 .btn-imps {
+    width: 68%;
+    
+}
+/*.btn-imps {
     width: 71%;
     margin-left: 10%;
-}
+}*/
+
 
 .NEFT_IMG {
+    width:68%;
+}
+/*.NEFT_IMG {
     height: 88px;
     margin-left: 38px;
-}
- .rtgs_img
+}*/
+ /*.rtgs_img
 
 {
     height: 92px;
     margin-left: 31px;
 
+}*/
+.rtgs_img {
+    width: 68%;
 }
 
-.imps_logo {
+/*.imps_logo {
     width: 41%;
     margin-top: 47px;
+}*/
+.imps_logo {
+    width: 68%;
 }
 
 .card-input-im {
@@ -391,7 +415,7 @@ td th {
     vertical-align: top;
     white-space: nowrap;
     margin-right: -42px;
-    margin-top: 154%;
+    margin-top: 161%;
     margin-left: -20%;
     z-index: 1;
 }
@@ -425,7 +449,7 @@ td th {
     vertical-align: top;
     white-space: nowrap;
     margin-right: -42px;
-    margin-top: 15%;
+    margin-top: 22%;
     margin-left: -20%;
     z-index: 1;
 }
@@ -576,8 +600,8 @@ margin-top: 1%;
 }
 
     .Container_wdth {
-        background: white;
-        border: 2px solid white;
+      /*  background: white;
+        border: 2px solid white;*/
         padding: 11px;
         border-radius: 18px;
         width: 73%;
@@ -772,8 +796,8 @@ margin-top: 1%;
     }
 
     .Container_wdth {
-        background: white;
-        border: 2px solid white;
+        /*background: white;
+        border: 2px solid white;*/
         padding: 25px;
         border-radius: 18px;
         width: 56%;
@@ -941,8 +965,8 @@ margin-top: 1%;
     }
 
     .Container_wdth {
-        background: white;
-        border: 2px solid white;
+       /* background: white;
+        border: 2px solid white;*/
         padding: 52px;
         border-radius: 18px;
         width: 49%;
@@ -1116,8 +1140,8 @@ margin-top: 1%;
     }
 
     .Container_wdth {
-        background: white;
-        border: 2px solid white;
+       /* background: white;
+        border: 2px solid white;*/
         padding: 45px;
         border-radius: 18px;
         width: 49%;
@@ -1294,8 +1318,8 @@ margin-top: 1%;
     }
 
     .Container_wdth {
-        background: white;
-        border: 2px solid white;
+        /*background: white;
+        border: 2px solid white;*/
         padding: 46px;
         border-radius: 18px;
         width: 43%;
@@ -1473,8 +1497,8 @@ margin-top: 1%;
     }
 
     .Container_wdth {
-        background: white;
-        border: 2px solid white;
+       /* background: white;
+        border: 2px solid white;*/
         padding: 51px;
         border-radius: 18px;
         width: 39%;
