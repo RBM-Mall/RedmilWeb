@@ -5,8 +5,9 @@
     ViewData["Title"] = "RatesandRow";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
 }
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="~/servicesCSS/prepaidrecharge.css" />
 <link rel="stylesheet" href="~/css/businessReport.css" />
@@ -14,54 +15,116 @@
 <link href="~/ResponsiveCSS/RatesAndRow.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/servicesCSS/postpaidrecharge.css" />
+<link href="~/css/selfhelp.css" rel="stylesheet" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/rechargejs/recharge.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
-
-<div class="container-fluid">
-    <div class="section background-image heading_page">
-        <div class="container ">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <ul>
-                        <li><strong class="heading_page_2">Rates and ROI</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />
-     <div class="row">
-        <div class="col-sm-12 text-center padding-bottom-30">
-            <div class="section-title div_wallet">
-                <h1 class="heading_wallet"><span style="color: #2d385e;">Having satisfied Customers is the "Best Business Strategy" of all Time Give your Clients best deal.</span></h1>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="accordion">
-            @foreach (var i in Model)
-            {
-                <div class="item">
-                    <p class="number"></p>
-                    <h2 class="font_heading" id="pdfopen" onclick="download()">@i.Title</h2>
-                    <div class="fa fa-eye" onclick="download()">
-                        @*<ion-icon class="fa fa-eye" name="add-outline"></ion-icon>*@
+    </head>
+<body>
+    <input type="text" style="display:none" value="108" id="SlefHelpElement">
+    <div class="container-fluid">
+        <div class="section background-image heading_page">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <ul>
+                            <li><strong class="heading_page_2">Rates and ROI</strong></li>
+                        </ul>
                     </div>
-                    @*<div class="fa fa-share">
-
-                </div>*@
-
                 </div>
-            }
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12 text-center padding-bottom-30">
+                <div class="section-title div_wallet">
+                    <h1 class="heading_wallet"><span style="color: #2d385e;">Having satisfied Customers is the "Best Business Strategy" of all Time Give your Clients best deal.</span></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="accordion">
+                @foreach (var i in Model)
+                {
+                    <div class="item">
+                        <p class="number"></p>
+                        <h2 class="font_heading" id="pdfopen" onclick="download()">@i.Title</h2>
+                        <div class="fa fa-eye" onclick="download()">
+                        </div>
+
+
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <section class="body_self">
+                <div class="faq">
+                    <div class="faq-left-desktop">
+                        <div class="faq-left-image-desktop">
+                            <img src="~/css/images/self1.svg" />
+                           
+                        </div>
+                      <div>
+                            <img src="~/css/images/self2.svg" />
+                      </div>
+                       
+                    </div>
+                    <div class="faq-left-mobile">
+                        <div class="faq-left-image-mobile">
+                            <img src="~/css/images/self1.svg" />
+                        </div>
+                    </div>
+                    <div class="faq-right">
+                        <div class="faq-title">Self Help</div>
+                        <div class="faq-body">
+                            <div class="Self_help">
+                                <div class="controls"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
-</div>
+
+    </body>
+</html>
+
+
 
 <script>
+
+    $(document).ready(function() {
+        debugger;
+  var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
+        ratesAndROw(myValue); // Pass the value to a function called 'myFunction'
+});
+
+function ratesAndROw(e) {
+        // code
+        debugger;
+        var ServiceId = e;
+        $.ajax({
+            url: "/RatesandRow/SelfHelp",
+            data: { 'ServiceId': ServiceId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                for (var i = 0; i < data.length; i++) {
+                    $(".Self_help").append('<div class="controls">\
+                        <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+
+                }
+            }
+
+        });
+    }
     function download() {
         var a = document.getElementById("pdfopen").innerText;
         debugger;
@@ -89,4 +152,5 @@
         });
     }
 </script>
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

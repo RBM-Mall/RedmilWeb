@@ -38,7 +38,7 @@
     }
 </style>
 <!--Body Start Here-->
-
+<input type="text" style="display:none" value="21" id="SlefHelpElement">
 <div class="container-fluid" style="background:#ebebeb">
 
     <div class="main-head-recharge">
@@ -516,8 +516,7 @@
                 </div>
             </div>
         </div>
-
-
+        @await Html.PartialAsync("_selfHelp")
         <!--Popup for No Records Found-->
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
