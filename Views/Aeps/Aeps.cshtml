@@ -1037,7 +1037,7 @@
         }
         debugger;
         if (radioVal == undefined || radioVal == '' || radioVal == null) {
-            document.getElementById('walletMode').innerHTML = "Please select device to proceed!";
+            document.getElementById('walletMode').innerHTML = "Please select transaction to proceed!";
             return false;
         }
         else {
@@ -1207,7 +1207,7 @@
                                 else {
                                     document.getElementById("txtAmountCashWithdrawal").style.display="block";
                                 }
-
+                                
 
                             $("#btnAadharCustomerDetails").trigger("click");
                             $("#deviceModal").hide();
@@ -1263,15 +1263,18 @@
         debugger;
         $("#hdnLong1").val(position.coords.longitude);
         $("#hdnLat1").val(position.coords.latitude);
-        $.ajax({
-            url: "/Aeps/getAddress",
-            data: { 'lat': $("#hdnLong1").val(), 'lon': $("#hdnLat1").val()},
-            type: 'POST',
-            dataType: 'json',
-            success: function (responsedata) {
-                debugger;
-            }
-        })
+        var baseUrl = "https://www.google.com/maps/search/";
+        var mapUrl = baseUrl + "/" + $("#hdnLat1").val() + "," + $("#hdnLong1").val();
+        window.open(mapUrl);
+        //$.ajax({
+        //    url: "/Aeps/getAddress",
+        //    data: { 'longg': $("#hdnLong1").val(), 'lat': $("#hdnLat1").val()},
+        //    type: 'POST',
+        //    dataType: 'json',
+        //    success: function (responsedata) {
+        //        debugger;
+        //    }
+        //})
     }
 
 
@@ -1457,7 +1460,46 @@
             success: function (data) {
                 debugger;
                 if (data.result == "RedirectToCustomer") {
-                    window.location.href = data.url;
+
+                    if (bank == "ICICI Bank" || bank == "Fingpay") {
+                        var img = document.getElementById("img_SelectedBank");
+                        img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
+
+                        var mobileNumber = '@ViewBag.MobileNo';
+                        aepsAgentId = "RED" + mobileNumber;
+
+                        GetLocation();
+                        lati = $("#hdnLong").val();
+                        long = $("#hdnLat").val();
+
+                        if (transactionMode == "be" || transactionMode == "ms") {
+                            document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                        }
+                        else {
+                            document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                        }
+
+
+                        $("#btnAadharCustomerDetails").trigger("click");
+                        $("#deviceModal").hide();
+                        //$.ajax({
+                        //    url: "/Aeps/getAddress",
+                        //    data: { 'lat': $("#hdnLong").val(), 'lon': $("#hdnLat").val() },
+                        //    type: 'POST',
+                        //    dataType: 'json',
+                        //    success: function (responsedata) {
+                        //        debugger;
+                        //    }
+                        //})
+                        $("#hdnLong1").val();
+                        $("#hdnLat1").val();
+                    }
+                    else if (bank == "") {
+                        var img = document.getElementById("img_SelectedBank");
+                        img.src = response.data[0].bankLogo;
+                        $("#btnAadharCustomerDetails").trigger("click");
+                        $("#deviceModal").hide();
+                    }
                 }
 
                 else if (data.result == "EmptyResult") {
