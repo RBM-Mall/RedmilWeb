@@ -105,7 +105,9 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string BeneficiaryAccountVerification = "beneficiaryaccountverification";
         public static string ProcessNEFTRequest = "processneftrequest";
         public static string ProcessIMPSRequest = "processimpsrequest";
-
+        //Self Help
+        public static string ViewFQL = "ViewFQL";
+       
     }
 
 }

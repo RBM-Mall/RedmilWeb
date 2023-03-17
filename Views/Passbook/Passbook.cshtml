@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.CashWalletRecentResponseDetailsPassbookModel>
 
-
 @using Project_Redmil_MVC
 @{
     ViewData["Title"] = "Passbook";
@@ -16,6 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link href="~/css/Passbook2.css" rel="stylesheet" />
+<link href="~/css/selfhelp.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -224,7 +224,36 @@
             }
 
         }
+       <div class="row">
+            <section class="body_self">
+                <div class="faq">
+                    <div class="faq-left-desktop">
+                        <div class="faq-left-image-desktop">
+                            <img src="~/css/images/self1.svg" />
+                           
+                        </div>
+                      <div>
+                            <img src="~/css/images/self2.svg" />
+                      </div>
+                       
+                    </div>
+                    <div class="faq-left-mobile">
+                        <div class="faq-left-image-mobile">
+                            <img src="~/css/images/self1.svg" />
+                        </div>
+                    </div>
+                    <div class="faq-right">
+                        <div class="faq-title">Self Help</div>
+                        <div class="faq-body">
+                            <div class="Self_help">
+                                <div class="controls"></div>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
 <div id="RewardWallet" class="tabcontent">
@@ -407,11 +436,40 @@
             </div>
            }
            }
-  
-        </div>
+            
 
     </div>
+     <div class="row">
+            <section class="body_self">
+                <div class="faq">
+                    <div class="faq-left-desktop">
+                        <div class="faq-left-image-desktop">
+                            <img src="~/css/images/self1.svg" />
+                           
+                        </div>
+                      <div>
+                            <img src="~/css/images/self2.svg" />
+                      </div>
+                       
+                    </div>
+                    <div class="faq-left-mobile">
+                        <div class="faq-left-image-mobile">
+                            <img src="~/css/images/self1.svg" />
+                        </div>
+                    </div>
+                    <div class="faq-right">
+                        <div class="faq-title">Self Help</div>
+                        <div class="faq-body">
+                            <div class="Self_help">
+                                <div class="controls"></div>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        </div>
 </div>
 <!--Modal For Detail Passbook-->
 <input type="button" id="Detail" style="display:none" data-target="#Details" data-toggle="modal" />
@@ -2223,9 +2281,16 @@
         for (i = 0; i < tablinkss.length; i++) {
             tablinkss[i].className = tablinkss[i].className.replace(" active", "");
         }
+         if(cityName=="RewardWallet"){
+               AdvanceSelfHelp("126");
+            }
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
     }
+
+
+
+
     function openPassbook(evt, cityName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -2235,10 +2300,18 @@
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
+            
         }
+        if(cityName=="AdvancePayout"){
+               AdvanceSelfHelp("126");
+            }
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
     }
+
+
+
+
     document.getElementById("defaultOpen").click();
     document.getElementById("defaultOpen").click();
 
@@ -2256,15 +2329,29 @@
         $("#datepickerDob").datepicker();
     });
 
-</script>
-@*<script>
-    $(document).ready(function () {
-     var table4 = $('#RERewards').DataTable({
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
-    });
+   
+   function AdvanceSelfHelp(e)
+   {
+       var ServiceId=e;
+        $.ajax({
+                url: "/Passbook/SelfHelp",
+                data: { 'ServiceId': ServiceId},
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) 
+                {
+                   debugger;
+                     for (var i = 0; i < data.length; i++) 
+                     {
+                    $(".Self_help").append('<div class="controls">\
+                    <details>\<summary>'+ data[i].question +'</summary><p>'+ data[i].answer +'<p></details></div>');                                          
+                     
+                     }
+                }
 
-</script>*@
+        });
+   }
+</script>
+<script>
+   
+</script>

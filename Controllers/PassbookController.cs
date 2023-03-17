@@ -64,6 +64,7 @@ using Project_Redmil_MVC.Models.ResponseModel.PansurchargeResponseModel;
 using System.Drawing.Drawing2D;
 using static Project_Redmil_MVC.Models.ResponseModel.DMT2ResponseModel.GetSenderDetailsResponseModel;
 using Project_Redmil_MVC.Models.RequestModel.SelfHelp;
+using Project_Redmil_MVC.Models.ResponseModel.SelfHelpResponseModel;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -1153,7 +1154,7 @@ namespace Project_Redmil_MVC.Controllers
         }
         #endregion
 
-
+            
         #region BRReward
         public JsonResult BRReward(string BalanceId)
         {
@@ -1217,7 +1218,6 @@ namespace Project_Redmil_MVC.Controllers
             {
                 return RedirectToAction("ErrorForLogin", "Error");
             }
-
             ViewBag.BankAccount = new SelectList(BankDetail(), "Id", "BankName");
             var baseUrl = "https://api.redmilbusinessmall.com";
             //var baseUrl = "api.redmilbusinessmall.com/";
@@ -2738,11 +2738,11 @@ namespace Project_Redmil_MVC.Controllers
                 SelfHelpRequestModel SelfRequest = new SelfHelpRequestModel();
                 SelfRequest.Userid = "NA";
                 SelfRequest.ServiceId = ServiceId;
-                string input = Checksum.MakeChecksumString("transactionsreport", Checksum.checksumKey,
+                string input = Checksum.MakeChecksumString("ViewFQL", Checksum.checksumKey,
                     SelfRequest.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 SelfRequest.Checksum = CheckSum;
-                var client = new RestClient($"{Baseurl}{ApiName.transactionsreport}");
+                var client = new RestClient($"{Baseurl}{ApiName.ViewFQL}");
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
                 var json = JsonConvert.SerializeObject(SelfRequest);
@@ -2757,7 +2757,7 @@ namespace Project_Redmil_MVC.Controllers
                 {
                     var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
                     var datadeserialize = deserialize.Data;
-                    var data = JsonConvert.DeserializeObject<List<GetcashdepositeResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    var data = JsonConvert.DeserializeObject<List<SelfHelpResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
                     //var datadeserialize = deserialize.Data;
                     //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
                     return Json(data);
@@ -2779,6 +2779,6 @@ namespace Project_Redmil_MVC.Controllers
                 return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
         }
-       #endregion
+        #endregion
     }
 }

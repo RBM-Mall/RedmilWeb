@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.GetBalanceResponseModel>
+﻿@using Project_Redmil_MVC.Models.RequestModel.SelfHelp;
+@using Project_Redmil_MVC.Models.ResponseModel.SelfHelpResponseModel;
+@model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.GetBalanceResponseModel>
 @{
     ViewData["Title"] = "DMT 2.0 - Direct Money Transfer";
     Layout = "~/Pages/Shared/_LayoutMaster.cshtml";
@@ -27,6 +29,7 @@
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
 <link href="~/ResponsiveCSS/ServicesNavigation.css" rel="stylesheet" />
 <br />
+<input type="text" style="display:none" value="1029" id="SlefHelpElement">
 <div class="container-fluid" style="background:#ebebeb">
     <div class="first-header">
         <div class="section background-image heading_page">
@@ -334,6 +337,7 @@
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("_selfHelp"SelfHelpResponseModel)
 </div>
 <script>
     $("#btnProceed").click(function () {
@@ -682,5 +686,32 @@
         });
 
     });
+    //$(document).ready(function () {
+    //    debugger;
+    //    var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
+    //    Wallet(myValue); // Pass the value to a function called 'myFunction'
+    //});
+
+    //function Wallet(e) {
+    //    // code
+    //    debugger;
+    //    var ServiceId = e;
+    //    $.ajax({
+    //        url: "/DMT2/SelfHelp",
+    //        data: { 'ServiceId': ServiceId },
+    //        type: 'POST',
+    //        dataType: 'json',
+    //        success: function (data) {
+    //            debugger;
+    //            for (var i = 0; i < data.length; i++) {
+    //                $(".Self_help").append('<div class="controls">\
+    //                            <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+
+    //            }
+    //        }
+
+    //    });
+    //}
+
 
 </script>

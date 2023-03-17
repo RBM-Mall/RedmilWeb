@@ -24,6 +24,7 @@
     }
 </style>
 <br />
+<input type="text" style="display:none" value="26" id="SlefHelpElement">
 <div class="row">
     <div class="container-fluid" style="background:#ebebeb">
         <div class="first-header">
@@ -983,6 +984,36 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <section class="body_self">
+                <div class="faq">
+                    <div class="faq-left-desktop">
+                        <div class="faq-left-image-desktop">
+                            <img src="~/css/images/self1.svg" />
+
+                        </div>
+                        <div>
+                            <img src="~/css/images/self2.svg" />
+                        </div>
+
+                    </div>
+                    <div class="faq-left-mobile">
+                        <div class="faq-left-image-mobile">
+                            <img src="~/css/images/self1.svg" />
+                        </div>
+                    </div>
+                    <div class="faq-right">
+                        <div class="faq-title">Self Help</div>
+                        <div class="faq-body">
+                            <div class="Self_help">
+                                <div class="controls"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
@@ -1990,4 +2021,34 @@
                                                 //    $("#hdnLat").val(position.coords.latitude);
                                                 //    $("#hdnLong").val(position.coords.longitude);
                                                 //}
+</script>
+<script>
+    $(document).ready(function () {
+        debugger;
+        var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
+        Aeps(myValue); // Pass the value to a function called 'myFunction'
+    });
+
+    function Aeps(e) {
+        // code
+        debugger;
+        var ServiceId = e;
+        $.ajax({
+            url: "/DMT2/SelfHelp",
+            data: { 'ServiceId': ServiceId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                for (var i = 0; i < data.length; i++) {
+                    $(".Self_help").append('<div class="controls">\
+                                <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+
+                }
+            }
+
+        });
+    }
+
+
 </script>
