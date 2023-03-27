@@ -1,4 +1,5 @@
 ﻿using Project_Redmil_MVC.Helper;
+using System.Xml.Linq;
 
 namespace Project_Redmil_MVC.Models
 {
@@ -102,8 +103,26 @@ namespace Project_Redmil_MVC.Models
         public string? AgentID { get; set; }
         public string? RetailerTxnId { get; set; }
         public string? CustomerAadhaarNo { get; set; }
+        public string? PinCode { get; set; }
     }
 
-
-
+    public class MakeAepsTransactionRequestModel
+    {
+        public string EncData { get; set; }
+        public string PinCode { get; set; }
+        public string Userid { get; set; }
+        public string CustomerAadhaarNo { get; set; }
+        public string CustomerMobileno { get; set; }
+        public string CustomerName { get; set; }
+        public string checksum { get; set; }
+        public string Amount { get; set; }
+        public string TxnType { get; set; }
+        public string Mode { get; set; }
+        public string BCName { get; set; }
+        public string AgentID { get; set; }
+        public string BCLocation { get; set; }
+        public string Device { get; set; }
+        public string Token { get; set; }
+        public string RetailerTxnId { get; set; }
+    }
 }

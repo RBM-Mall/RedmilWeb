@@ -15,6 +15,7 @@ using Project_Redmil_MVC.Models.ResponseModel.PssbookSuccesResponseModal;
 using Project_Redmil_MVC.Models.ResponseModel.RatesandRoi;
 using Project_Redmil_MVC.Models.ResponseModel.SelfHelpResponseModel;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Json;
@@ -35,6 +36,10 @@ namespace Project_Redmil_MVC.Controllers
         public readonly string Baseurl;
         public readonly IConfiguration _config;
         public string finalResponse2 = string.Empty;
+        public string Latitude = "28.6262498";
+        public string Longitude = "77.3734622";
+        public string Address = "Redmil Business Mall Headquarters,4th floor,Tower A,The Corenthum towers, Sector 62,Noida, Uttar Pradesh-201301";
+        public string pinCode = "201301";
         public AepsController(IConfiguration config)
         {
             _config = config;
@@ -50,69 +55,10 @@ namespace Project_Redmil_MVC.Controllers
                 return RedirectToAction("ErrorForLogin", "Error");
 
             }
-            //ViewBag.BankList = new SelectList(AllBankList(), "Id", "BankName");
             dynamic obj = GetBalance();
             ViewBag.MobileNo = HttpContext.Session.GetString("Mobile").ToString();
             ViewBag.Balance = obj.Value[0].MainBal;
-            SelfHelpRequestModel selfHelp = new SelfHelpRequestModel();
-            try
-            {
-                //selfHelp.ServiceId = ReplaceServiceID(serviceID); // 2114
-                selfHelp.ServiceId = "26"; // 2114
-                #region Checksum (GetAepsKycDetailsNew|Unique Key|ServiceId|)
-                //string input = Checksum.MakeChecksumString("ViewPayOutCategory", obj.UserId, obj.Token);
-                string input = Checksum.MakeChecksumString("GetAepsKycDetailsNew", Checksum.checksumKey, selfHelp.ServiceId);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                #endregion
-                selfHelp.Checksum = CheckSum;
-                var client = new RestClient("https://api.redmilbusinessmall.com/api/viewfql");
-                //var client = new RestClient($"{Baseurl}{ApiName.GetAgentKycId}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(selfHelp);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                if (string.IsNullOrEmpty(result))
-                {
-                    return RedirectToAction("ErrorForExceptionLog", "Error");
-                }
-                else
-                {
-                    var aepsKycData = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                    var aepsKyc = aepsKycData.Data;
-                    List<SelfHelpResponseModel> lstdataaa = new List<SelfHelpResponseModel>();
-                    lstdataaa = JsonConvert.DeserializeObject<List<SelfHelpResponseModel>>(aepsKyc.ToString());
-                    var aepsStatusCode = aepsKycData.Statuscode;
-                    //string aepsKycStatus = string.Empty;i
-                    if (aepsStatusCode == "TXN")
-                    {
-                        return View();
-                    }
-                    else if (aepsStatusCode == "ERR")
-                    {
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("ErrorForExceptionLog", "Error");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = selfHelp;
-                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(jsonEx);
-                IRestResponse responseEx = clientEx.Execute(requestEx);
-                var resultEx = responseEx.Content;
-                return RedirectToAction("ErrorForExceptionLog", "Error");
-            }
+            return View(); 
         }
 
         #region GetBalance
@@ -128,8 +74,6 @@ namespace Project_Redmil_MVC.Controllers
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 #endregion
                 getBalanceRequestModel.checksum = CheckSum;
-                //API URL Has been changed by Siddhartha Sir
-                //var client = new RestClient("https://api.redmilbusinessmall.com/api/Getbalance");
                 var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
@@ -202,9 +146,10 @@ namespace Project_Redmil_MVC.Controllers
 
             try
             {
-                obj.UserId = "599851"; //prahsant Yadav
-                //obj.UserId = "2180"; //Rahul Sir
+                //obj.UserId = "599851"; //prahsant Yadav
+                obj.UserId = "2180"; //Rahul Sir
                 //obj.UserId = "2084";
+                //obj.UserId = "721842"; //Rishi Redmil
 
 
 
@@ -251,8 +196,8 @@ namespace Project_Redmil_MVC.Controllers
                                     //var aepsKycStatusData = aepsKycStatus.Where(x => x.Status == "Completed");
                                     if (aepsKycStatus.FirstOrDefault().Status == "Completed" || later=="1")
                                     {
-                                        aepsRoutingDetailsReq.UserId = "599851";
-                                        //aepsRoutingDetailsReq.UserId = "2180";
+                                        //aepsRoutingDetailsReq.UserId = "599851";
+                                        aepsRoutingDetailsReq.UserId = "2180";
                                         //aepsRoutingDetailsReq.UserId = "2084";
                                         aepsRoutingDetailsReq.Token = "";
                                         if (radioVal == "Cash Withdrawal")
@@ -271,7 +216,6 @@ namespace Project_Redmil_MVC.Controllers
                                         {
                                             aepsRoutingDetailsReq.TransactionType = "Invalid TXN Type";
                                         }
-
 
                                         var client1 = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetAepsRoutingDetails");
 
@@ -569,7 +513,6 @@ namespace Project_Redmil_MVC.Controllers
                             return RedirectToAction("ErrorForExceptionLog", "Error");
                         }
                     }
-                    
                     return View(); //aepsResponses
                 }
             }
@@ -592,6 +535,7 @@ namespace Project_Redmil_MVC.Controllers
         #endregion
 
 
+
         #region AaadharPicVerification
         // After Device Selection hitting below api
         public JsonResult AaadharPicVerification(string radioValDevice, string transMode, string device, string bank)
@@ -609,7 +553,7 @@ namespace Project_Redmil_MVC.Controllers
             List<AaadharPicVerificationResponseModal> adharPicFaceBioResponse = new List<AaadharPicVerificationResponseModal>();
             try
             {
-                adharPicFaceBioRequest.Userid = "599851"; // 2114, 2180
+                adharPicFaceBioRequest.Userid = "2180"; // 2114, 721842
 
                 #region Checksum (AaadharPicVerification|Unique Key|UserId|)
                 //string input = Checksum.MakeChecksumString("ViewPayOutCategory", obj.UserId, obj.Token);
@@ -686,6 +630,10 @@ namespace Project_Redmil_MVC.Controllers
         }
         #endregion
 
+
+
+
+
         #region FaceLiveLiness
         public JsonResult FaceLiveLiness(string showimage,string transMode, string device,string bank,string bankLogo)
         {
@@ -694,7 +642,9 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 //requestobj.Userid = HttpContext.Session.GetString("Id").ToString();
-                requestobj.Userid = "599851";
+                //requestobj.Userid = "599851";
+                requestobj.Userid = "2180";
+                //requestobj.Userid = "721842";
                 requestobj.FileName = showimage;
                 var client = new RestClient($"{Baseurl}{ApiName.FaceLiveliNess}");
                 var request = new RestRequest(Method.POST);
@@ -753,60 +703,128 @@ namespace Project_Redmil_MVC.Controllers
 
         #region fingurprintBiometric
         //public JsonResult fingurprintBiometric(fingurprintDataRequestModel Result, string radioValDevice, string latitude, string longitude)
-        public JsonResult fingurprintBiometric(string radioValDevice, string lat, string longt)
+        public JsonResult fingurprintBiometric(string customerName,string transactionMode, string insertedAmount, string customerMobile,string deBankName, string userselectedBankName, string customerAadharNumber,string customeramount,string iin,string deviceName, string aepsAgentId)
         {
-            //var baseUrl = "https://api.redmilbusinessmall.com";
-
-            //AaadharPicVerificationRequestModal aaadharPicVerificationRequest = new AaadharPicVerificationRequestModal();
-
-            //string biometricData = JsonConvert.SerializeObject(Result);
-            //string Dataaaaa = "" + biometricData;
+            
+            Dictionary<string, string> userVerificationWithPaytmData;
             var biometricData = TriggerMachine();
+            string transactionValue = string.Empty;
             if (biometricData != null && biometricData != "")
             {
-                fingurprintDataRequestModel fingurprintDataRequest = new fingurprintDataRequestModel();
+                if (transactionMode.Equals("be"))
+                {
+                    transactionValue = "31";
+                }
+                else if (transactionMode.Equals("ms"))
+                {
+                    transactionValue = "07";
+                }
+                else if (transactionMode.Equals("cw"))
+                {
+                    transactionValue = "01";
+                }
 
+                fingurprintDataRequestModel fingurprintDataRequest = new fingurprintDataRequestModel();
+                //deBankName = "ICICI Bank";
                 UserVerificationWithPaytmRequestModel userVerificationWithPaytmRequest = new UserVerificationWithPaytmRequestModel();
                 //userVerificationWithPaytmRequest.userId = int.Parse(HttpContext.Session.GetString("Id"));
                 //userVerificationWithPaytmRequest.userId = "599851"; //Prashant Yadav
+                //userVerificationWithPaytmRequest.userId = "721842";//Rishi SIngh
                 userVerificationWithPaytmRequest.userId = "2180";//Rahul Sir
                 var unixTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
                 //string retailerTxnId = userVerificationWithPaytmRequest.userId + " " + DateTime.Now.ToString();
-                string retailerTxnId = unixTimestamp + "" + userVerificationWithPaytmRequest.userId;
+                string retailerTxnId = DateTime.Now.Ticks + "" + userVerificationWithPaytmRequest.userId;
                 char ss = Convert.ToChar(34);
-                Dictionary<string, string> userVerificationWithPaytmData = new Dictionary<string, string>()
+                if(deBankName=="ICICI Bank")
                 {
-                    ["RetailerTxnId"] = retailerTxnId,
-                    //["RetailerTxnId"] = "7986158232599851",
-                    //["AadharNumber"] = "275687902863",//Prashant Yadav
-                    ["AadharNumber"] = "289234714252",//Rahul Sir 
-                    ["IIN"] = string.Empty,
-                    ["Amount"] = "0",
-                    ["BiometricData"] = ss.ToString() + ss.ToString() + biometricData,
-                    ["RetailerId"] = string.Empty,
-                    //["Latitude"] = "28.5966336",
-                    ["Latitude"] = lat,
-                    //["Longitude"] = "77.3914624",
-                    ["Longitude"] = longt,
-                    ["Param1"] = "10.0.0.1",
-                    //["Param2"] = "8527698920",//Prahsant Mobile
-                    ["Param2"] = "7355558471",//Rahul Sir Mobile
-                    ["AcquirerInstitutationId"] = "1",
-                    ["TxnTypeCode"] = "31",
-                    ["AppId"] = "1",
-                    ["AppVersion"] = "2.0.0",
-                    ["CustomerConsent"] = "1",
-                    ["IsVID"] = "False",
-                    ["Param3"] = string.Empty,
-                    ["Param4"] = string.Empty,
-                    ["Param5"] = string.Empty,
-                    ["Param6"] = string.Empty,
-                    ["Param7"] = string.Empty,
-                    ["Param8"] = string.Empty,
-                    ["Param9"] = string.Empty,
-                    ["Param10"] = string.Empty
-                };
+                    userVerificationWithPaytmData = new Dictionary<string, string>()
+                    {
+                        ["RetailerTxnId"] = retailerTxnId,
+                        //["RetailerTxnId"] = "7986158232599851",
+                        //["AadharNumber"] = "275687902863",//Prashant Yadav
+                        ["AadharNumber"] = customerAadharNumber,
+                        //["AadharNumber"] = "289234714252",//Rahul Sir 
+                        ["IIN"] = iin,
+                        ["Amount"] = insertedAmount,
+                        //["BiometricData"] = ss.ToString() + ss.ToString() + biometricData,
+                        ["BiometricData"] = biometricData,
+                        ["RetailerId"] = "RED7355558471",
+                        //["Latitude"] = "28.5966336",
+                        ["Latitude"] = "28.626264",
+                        //["Longitude"] = "77.3914624",
+                        ["Longitude"] = "77.3734324",
+                        ["AcquirerInstitutationId"] = "1",
+                        //["TxnTypeCode"] = "07",//Mini Statement
+                        //["TxnTypeCode"] = "01",//Cash Withdrwal
+                        //["TxnTypeCode"] = "31",//Balance Enquiry
+                        ["TxnTypeCode"]= transactionValue,
+                        ["AppId"] = "1",
+                        ["AppVersion"] = "2.0.0",
+                        ["CustomerConsent"] = "1",
+                        ["IsVID"] = "False",
+                        ["AuthType"] = "FMR-FIR",
+                        ["Param1"] = "10.0.0.1",
+                        //["Param2"] = "8527698920",//Prahsant Mobile
+                        ["Param2"] = customerMobile,
+                        //["Param2"] = "7355558471",//Rahul Sir Mobile
+                        ["Param3"] = string.Empty,
+                        ["Param4"] = string.Empty,
+                        ["Param5"] = string.Empty,
+                        ["Param6"] = string.Empty,
+                        ["Param7"] = string.Empty,
+                        ["Param8"] = string.Empty,
+                        ["Param9"] = string.Empty,
+                        ["Param10"] = string.Empty
+                    };
 
+                   // userVerificationWithPaytmData.Add("userid", "2180");
+                }
+                else
+                {
+                    userVerificationWithPaytmData = new Dictionary<string, string>()
+                    {
+                        ["RetailerTxnId"] = retailerTxnId,
+                        //["RetailerTxnId"] = "7986158232599851",
+                        //["AadharNumber"] = "275687902863",//Prashant Yadav
+                        ["AadharNumber"] = customerAadharNumber,
+                        //["AadharNumber"] = "289234714252",//Rahul Sir 
+                        ["IIN"] = iin,
+                        ["Amount"] = insertedAmount,
+                        //["BiometricData"] = ss.ToString() + ss.ToString() + biometricData,
+                        ["BiometricData"] = biometricData,
+                        //["RetailerId"] = "RED7355558471",
+                        ["RetailerId"] = "RED7355558471",
+                        //["Latitude"] = "28.5966336",
+                        ["Latitude"] = "28.626264",
+                        //["Longitude"] = "77.3914624",
+                        ["Longitude"] = "77.3734324",
+                        ["AcquirerInstitutationId"] = "1",
+                        ["TxnTypeCode"] = transactionValue,
+                        //["TxnTypeCode"] = "31",//Balance Enquiry
+                        //["TxnTypeCode"] = "07",//Mini Statement
+                        //["TxnTypeCode"] = "01",//Cash Withdrwal
+                        ["AppId"] = "1",
+                        ["AppVersion"] = "2.0.0",
+                        ["CustomerConsent"] = "1",
+                        ["IsVID"] = "False",
+                        ["AuthType"] = "FMR-FIR",
+                        ["Is1FADone"] = "0",
+                        ["Param1"] = "10.0.0.1",
+                        //["Param2"] = "8527698920",//Prahsant Mobile
+                        ["Param2"] = customerMobile,
+                        //["Param2"] = "7355558471",//Rahul Sir Mobile
+                        ["Param3"] = string.Empty,
+                        ["Param4"] = string.Empty,
+                        ["Param5"] = string.Empty,
+                        ["Param6"] = string.Empty,
+                        ["Param7"] = string.Empty,
+                        ["Param8"] = string.Empty,
+                        ["Param9"] = string.Empty,
+                        ["Param10"] = string.Empty
+                    };
+                }
+                //Dictionary<string, string> userVerificationWithPaytmData = new Dictionary<string, string>()
+                
 
                 string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
 
@@ -853,56 +871,68 @@ namespace Project_Redmil_MVC.Controllers
 
                 //adharPicFaceBioRequest.checksum = CheckSum;
 
-                if (radioValDevice != null)
+                if (deviceName != null)
                 {
                     var dictionaryData1 = JsonConvert.DeserializeObject(dictionaryData);
                     AepsCypherTextEncryptionDecryption crypto = AepsCypherTextEncryptionDecryption.Instance;
-                    string encryptedText = crypto.YBLEncrypt(dictionaryData1.ToString(), "Ef6d2GRq98");
-                    //string decryptText = crypto.YBLDecrypt(dictionaryData1.ToString(), "Ef6d2GRq98");
+                    string encryptedText = crypto.YBLEncrypt(dictionaryData1.ToString(), "Ef6d2GRq98");  //For Encrypting Code
+                    //string decryptText = crypto.YBLDecrypt(dictionaryData1.ToString(), "Ef6d2GRq98"); //For Decrypting Code
 
                     UserVerificationWithPaytmRequestModel1 requestModel = new UserVerificationWithPaytmRequestModel1();
+                    MakeAepsTransactionRequestModel requestModelNew = new MakeAepsTransactionRequestModel();
                     try
                     {
-                        requestModel.Userid = "2180";//Rahul SIr
-                                                     //requestModel.Userid = "599851";//Prashant
-                        requestModel.Amount = "0";
-                        requestModel.TxnType = "31";
-                        //requestModel.CustomerMobileno = "8527698920";//Prashant
-                        requestModel.CustomerMobileno = "7355558471";//Rahul Sir
-                        requestModel.Mode = "App";
-                        //requestModel.CustomerName = "PRASHANT YADAV";//Prashant
-                        requestModel.CustomerName = "RAHUL KUSHWAHA";//Rahul Sir
-                                                                     //requestModel.CustomerAadhaarNo = "275687902863";////Prashant
-                        requestModel.CustomerAadhaarNo = "289234714251";//Rahul Sir
-                                                                        //requestModel.BCName = "PRASHANT YADAV";////Prashant
-                        requestModel.BCName = "RAHUL KUSHWAHA";//Rahul Sir
-                        RootObject rootObject = getAddress(lat, longt);
-                        requestModel.BCLocation = rootObject.display_name;
-                        requestModel.Device = "Mantra";
-                        //requestModel.RetailerTxnId = "7986158232599851";
-                        requestModel.RetailerTxnId = retailerTxnId;
-                        requestModel.EncData = encryptedText;
-                        requestModel.fingureData = finalResponse2;
-                        //requestModel.fingureData = XMLRemoveData();
-                        requestModel.PidData = biometricData;
-                        requestModel.AgentID = "";
-                        requestModel.EncAadhaar = crypto.EncryptionAadharNumber(requestModel.CustomerAadhaarNo);
-                        requestModel.Token = "";
+                        
+                        //requestModelNew.Userid = "599851";//PRASHANT YADAV
+                        requestModelNew.Userid = "2180";
+                        requestModelNew.EncData = encryptedText;
+                        requestModelNew.PinCode = "201301";
+                        requestModelNew.CustomerAadhaarNo = customerAadharNumber;
+                        requestModelNew.CustomerMobileno = customerMobile;
+                        requestModelNew.CustomerName = customerName;
+                        requestModelNew.Mode = "App";
+                        requestModelNew.BCName = "RAHUL KUSHWAHA";
+                        //requestModelNew.BCName = "PRASHANT YADAV";
+                        //requestModelNew.TxnType = "31";//Balance Enquriy
+                        //requestModelNew.TxnType = "01";//Cash Withdrawal
+                        //requestModelNew.TxnType = "07";//Mini Statement
+                        //requestModelNew.AgentID = "RED7355558471";
+                        requestModelNew.TxnType = transactionValue;
+                        requestModelNew.AgentID = "RED7355558471";
+                        //requestModelNew.AgentID = "RED8527698920";
+                        requestModelNew.BCLocation = Address;
+                        //requestModelNew.Device = "Mantra";
+                        requestModelNew.Device = deviceName;
+                        requestModelNew.Amount = insertedAmount;
+                        requestModelNew.Token = "";
+                        requestModelNew.RetailerTxnId = retailerTxnId;
 
-                        #region Checksum (Recharge|Unique Key|UserId)
-                        string input = Checksum.MakeChecksumString("UserVerificationWithPaytm", Checksum.checksumKey, requestModel.Userid.Trim(),
-                            requestModel.CustomerAadhaarNo.Trim(), requestModel.BCName.Trim());
-                        string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                        //Commented For ICICI Bank Transactions
+                        #region Checksum (MakeFingPayAepsTransactions|Unique Key|Input Fields)
+                        string Input = Checksum.MakeChecksumString("MakeFingPayAepsTransactions", Checksum.checksumKey, requestModelNew.Userid.Trim(),
+                         requestModelNew.Amount.Trim(), requestModelNew.TxnType.Trim(), requestModelNew.CustomerMobileno.Trim(), requestModelNew.Mode, requestModelNew.CustomerName
+                         , requestModelNew.CustomerAadhaarNo.Trim(), requestModelNew.BCName.Trim(), requestModelNew.AgentID, requestModelNew.BCLocation, requestModelNew.Device);
+
+                        string CheckSum = Checksum.ConvertStringToSCH512Hash(Input);
                         #endregion
-                        requestModel.checksum = CheckSum;
-                        var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/UserVerificationWithPaytm");
-                        //var client = new RestClient($"{Baseurl}{ApiName.GetAgentKycId}");
+                        requestModelNew.checksum = CheckSum;
+                        //var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/MakeFingPayAepsTransactions");
+                        var client = new RestClient("https://proapitest1.redmilbusinessmall.com/api/MakeFingPayAepsTransactions");
+
+                        ////Commented For Yes Bank Transactions
+                        //#region Checksum (MakeFingPayAepsTransactions|Unique Key|Input Fields)
+                        //string Input = Checksum.MakeChecksumString("MakeAepsTransactions", Checksum.checksumKey, requestModelNew.Userid.Trim(),
+                        // requestModelNew.Amount.Trim(), requestModelNew.TxnType.Trim(), requestModelNew.CustomerMobileno.Trim(), requestModelNew.Mode, requestModelNew.CustomerName
+                        // , requestModelNew.CustomerAadhaarNo.Trim(), requestModelNew.BCName.Trim(), requestModelNew.AgentID, requestModelNew.BCLocation, requestModelNew.Device);
+
+                        //string CheckSum = Checksum.ConvertStringToSCH512Hash(Input);
+                        //#endregion
+                        //requestModelNew.checksum = CheckSum;
+                        //var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/MakeAepsTransactions");
+                        //var client = new RestClient("https://proapitest1.redmilbusinessmall.com/api/MakeAepsTransactions");
                         var request = new RestRequest(Method.POST);
                         request.AddHeader("Content-Type", "application/json");
-
-                        //string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
-                        //var json = JsonConvert.SerializeObject(encryptedText);
-                        var json = JsonConvert.SerializeObject(requestModel);
+                        var json = JsonConvert.SerializeObject(requestModelNew);
                         request.AddJsonBody(json);
                         IRestResponse response = client.Execute(request);
                         var result = response.Content;
@@ -912,38 +942,51 @@ namespace Project_Redmil_MVC.Controllers
                         }
                         else
                         {
-                            var adharPicFaceBioData = JsonConvert.DeserializeObject<AaadharPicVerificationResponseModal>(response.Content);
-                            var adharPicFaceBioStatusCode = adharPicFaceBioData.Statuscode;
-                            //var aepsStatusCode = aepsKycData.Statuscode;
-                            //var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(result));
-                            //adharPicFaceBioResponse = adharPicFaceBioData.ToList();
-
-
-                            if (adharPicFaceBioStatusCode == "TXN")
+                            if (transactionValue == "07")
                             {
-                                if (!string.IsNullOrEmpty(radioValDevice))
+                                var deserializFinalResponse = JsonConvert.DeserializeObject<BaseResonseModelAepsFinalT<List<MakeAepsTransactionResponseModel>>>(response.Content);
+                                
+                                if (deserializFinalResponse.Statuscode == "TXN")
                                 {
-                                    return Json(new { Result = "Connected" });
+                                    var miniStatementData = deserializFinalResponse.Data.FirstOrDefault().MiniSTMTdata;
+                                    var newminiStatementData = JsonConvert.DeserializeObject<List<MiniSTMTdata>>(miniStatementData);
 
+                                    return Json(new BaseMakeAepsTransactionResponseModel() { MiniStatementData=newminiStatementData, Statuscode = deserializFinalResponse.Statuscode, Message = deserializFinalResponse.Message, Data = deserializFinalResponse.Data.FirstOrDefault() });
                                 }
-                                // return View("aepsKycStatus");
-                            }
-                            else if (adharPicFaceBioStatusCode == "ERR")
-                            {
-                                var error = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
-                                return Json(error);
+                                else if (deserializFinalResponse.Statuscode == "ERR")
+                                {
+                                    return Json(new BaseMakeAepsTransactionResponseModel() { Statuscode = deserializFinalResponse.Statuscode, Message = deserializFinalResponse.Message, Data = deserializFinalResponse.Data.FirstOrDefault() });
+                                }
+                                else
+                                {
+                                    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                }
                             }
                             else
                             {
-                                return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                var deserializFinalResponse = JsonConvert.DeserializeObject<BaseResonseModelAepsFinalT<List<MakeAepsTransactionResponseModel>>>(response.Content);
+                                if (deserializFinalResponse.Statuscode == "TXN")
+                                {
+                                    return Json(new BaseMakeAepsTransactionResponseModel() { Statuscode = deserializFinalResponse.Statuscode, Message = deserializFinalResponse.Message, Data = deserializFinalResponse.Data.FirstOrDefault() });
+                                }
+
+                                else if (deserializFinalResponse.Statuscode == "ERR")
+                                {
+                                    return Json(new BaseMakeAepsTransactionResponseModel() { Statuscode = deserializFinalResponse.Statuscode, Message = deserializFinalResponse.Message, Data = deserializFinalResponse.Data.FirstOrDefault() });
+                                }
+                                else
+                                {
+                                    return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                                }
                             }
+                            
                         }
                     }
                     catch (Exception ex)
                     {
                         ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
                         requestModelEx.ExceptionMessage = ex;
-                        requestModelEx.Data = requestModel;
+                        requestModelEx.Data = requestModelNew;
                         var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
                         var requestEx = new RestRequest(Method.POST);
                         requestEx.AddHeader("Content-Type", "application/json");
@@ -953,20 +996,389 @@ namespace Project_Redmil_MVC.Controllers
                         var resultEx = responseEx.Content;
                         return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
                     }
-
-                    //return View("");
                 }
             }
             else
             {
                 return Json(new { Result = "NotConnected", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            
-            //return View();
             return Json("");
+        }
+        #endregion
+
+        
+
+        //public IActionResult CheckFingerprintAvailability()
+        //{
+        //    string returnMessage = "";
+
+        //    try
+        //    {
+        //        // Check the availability of fingerprint authentication.
+        //        var ucvAvailability = Windows.Security.Credentials.UI.UserConsentVerifier.CheckAvailabilityAsync();
+
+        //        switch (ucvAvailability)
+        //        {
+        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.Available:
+        //                returnMessage = "Fingerprint verification is available.";
+        //                break;
+        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.DeviceBusy:
+        //                returnMessage = "Biometric device is busy.";
+        //                break;
+        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.DeviceNotPresent:
+        //                returnMessage = "No biometric device found.";
+        //                break;
+        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.DisabledByPolicy:
+        //                returnMessage = "Biometric verification is disabled by policy.";
+        //                break;
+        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.NotConfiguredForUser:
+        //                returnMessage = "The user has no fingerprints registered. Please add a fingerprint to the " +
+        //                                "fingerprint database and try again.";
+        //                break;
+        //            default:
+        //                returnMessage = "Fingerprints verification is currently unavailable.";
+        //                break;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        returnMessage = "Fingerprint authentication availability check failed: " + ex.ToString();
+        //    }
+
+        //    return returnMessage;
+        //}
+
+        #region CustomerDetails
+        public IActionResult CustomerDetails()
+        {
+            var deviceName = DeviceName();
+            var transactionMode = TransactionMode();
+            var bankName = BankName();
+            //ViewBag.BankList = new SelectList(AllBankList(), "Id", "BankName");
+            return View();
+
+        }
+        #endregion
+
+
+
+
+
+        #region Bank Details
+        public JsonResult AllBankList(string BankNameSelected)
+        {
+            AepsGetAllBankListRequestModel requestModel = new AepsGetAllBankListRequestModel();
+            List<AepsGetAllBankListResponseModel> Data1 = new List<AepsGetAllBankListResponseModel>();
+            string CheckSum = string.Empty;
+            try
+            {
+                //requestModel.UserId = "599851";
+                requestModel.UserId = "2180";
+                requestModel.Token = "";
+
+                if(BankNameSelected.Equals("Yes Bank"))
+                {
+                    #region Checksum (UserId|Token|checksum)
+
+                    string input = Checksum.MakeChecksumString("GetAllAepsBankDetails", Checksum.checksumKey, requestModel.UserId);
+                    CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                    #endregion
+                    requestModel.checksum = CheckSum;
+                    var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetAllAepsBankDetails");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Content-Type", "application/json");
+                    var json = JsonConvert.SerializeObject(requestModel);
+                    request.AddJsonBody(json);
+                    IRestResponse response = client.Execute(request);
+                    var result = response.Content;
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        //return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                    else
+                    {
+                        var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                        if (deserialize.Statuscode == "TXN" && deserialize != null)
+                        {
+                            var datadeserialize = deserialize.Data;
+                            var data = JsonConvert.DeserializeObject<List<AepsGetAllBankListResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                            if (data != null)
+                            {
+                                foreach (var item in data)
+                                {
+                                    Data1.Add(new AepsGetAllBankListResponseModel
+                                    {
+                                        Id = item.Id,
+                                        BankName = item.BankName,
+                                        IIN = item.IIN,
+                                        BankCode = item.BankCode,
+                                    });
+                                }
+
+                            }
+                            return Json(Data1);
+                        }
+                        else if (deserialize.Statuscode == "ERR")
+                        {
+                            return Json(deserialize);
+                        }
+                    }
+                    return Json(Data1);
+
+                }
+                else if(BankNameSelected.Equals("ICICI Bank") || BankNameSelected.Equals("Fingpay"))
+                {
+                    #region Checksum (UserId|Token|checksum)
+
+                    string input = Checksum.MakeChecksumString("GetFingpayAllAepsBankDetails", Checksum.checksumKey, requestModel.UserId);
+                    CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+
+                    #endregion
+
+                    requestModel.checksum = CheckSum;
+                    var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetFingpayAllAepsBankDetails");
+                    var request = new RestRequest(Method.POST);
+                    request.AddHeader("Content-Type", "application/json");
+                    var json = JsonConvert.SerializeObject(requestModel);
+                    request.AddJsonBody(json);
+                    IRestResponse response = client.Execute(request);
+                    var result = response.Content;
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        //return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                    else
+                    {
+                        var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                        if (deserialize.Statuscode == "TXN" && deserialize != null)
+                        {
+                            var datadeserialize = deserialize.Data;
+                            var data = JsonConvert.DeserializeObject<List<AepsGetAllBankListResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                            if (data != null)
+                            {
+                                foreach (var item in data)
+                                {
+                                    Data1.Add(new AepsGetAllBankListResponseModel
+                                    {
+                                        Id = item.Id,
+                                        BankName = item.BankName,
+                                        IIN = item.IIN,
+                                        BankCode = item.BankCode,
+                                    });
+                                }
+
+                            }
+                            return Json(Data1);
+                        }
+                        else if (deserialize.Statuscode == "ERR")
+                        {
+                            return Json(deserialize);
+                        }
+                    }
+                    return Json(Data1);
+
+                }
+                return Json("");
+
+               
+
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = requestModel;
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+        }
+        #endregion
+
+        #region TriggerMachine
+        public string TriggerMachine()
+        {
+            try
+            {
+                string completeUrl2 = "http://localhost:11100/rd/capture";
+                HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(completeUrl2);
+                request2.Method = "CAPTURE";
+                request2.Credentials = CredentialCache.DefaultCredentials;
+                StreamWriter writer = new StreamWriter(request2.GetRequestStream());
+                string pidOptString = "<PidOptions><Opts fCount=\"1\" dType=\"P\" fType=\"2\" iCount=\"0\" pCount=\"0\" format=\"0\" pidVer=\"2.0\" timeout=\"20000\" otp=\"\" posh=\"LEFT_INDEX\" env=\"P\" wadh=\"\" /> <Demo></Demo> <CustOpts> <Param name=\"Param1\" value=\"\" /> </CustOpts> </PidOptions>";
+                //string pidOptString = "<PidOptions ver = \"1.0\"><Opts env = \"P\" fCount = \"1\" fType = \"2\" format = \"1\" iCount = \"0\" iType = \"0\" pCount = \"0\" pType = \"0\" pidVer = \"2.0\" posh = \"UNKNOWN\" timeout = \"10000\" /></PidOptions>";
+                writer.WriteLine(pidOptString);
+                writer.Close();
+                WebResponse response2 = default(WebResponse);
+                response2 = request2.GetResponse();
+                Stream str2 = response2.GetResponseStream();
+                StreamReader sr2 = new StreamReader(str2);
+                finalResponse2 = sr2.ReadToEnd();
+                return finalResponse2;
+                //XmlDocument xml = new XmlDocument();
+                //finalResponse2 = finalResponse2.Replace("< ", "<").Replace(" >", ">").Replace("</ ", "</").Replace("? xml", "?xml");
+
+                //xml.LoadXml(finalResponse2);
+                
+                //XmlNodeList xnList = xml.SelectNodes("/PidData/Data");
+                //string X = string.Empty;
+
+                //if (xnList != null)
+                //{
+                //    //if (xnList[0] != null)
+                //    //{
+                //    //if (xnList[0].Attributes["X"] != null)
+                //    //{
+                //    //X = db.NullToString(xnList[0].Attributes["dc"]?.InnerText);
+                //    X = xnList[0].LastChild.InnerText;
+                //    //}
+                //    //}
+                //}
+                //return X;
+
+            }
+            catch (Exception ex)
+            {
+                //Console.ReadLine(ex);
+            }
+            return "";
+        }
+        #endregion
+
+        #region getAddress
+        public RootObject getAddress(string lat, string longg)
+        {
+            WebClient webClient = new WebClient();
+            double latt = double.Parse(lat);
+            //double latt = 28.6262498;
+            double longgt = double.Parse(longg);
+            //double longgt = 77.3734622;
+            webClient.Headers.Add("user-agent", "Chrome/21 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+            webClient.Headers.Add("Referer", "http://www.microsoft.com");
+            var jsonData = webClient.DownloadData("http://nominatim.openstreetmap.org/reverse?format=json&lat=" + latt + "&lon=" + longgt);
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(RootObject));
+            RootObject rootObject = (RootObject)ser.ReadObject(new MemoryStream(jsonData));
+            return rootObject;
+        }
+        #endregion
+
+
+        //public string XMLRemoveData()
+        //{
+        //    XmlDocument doc = new XmlDocument();
+        //    doc.Load(finalResponse2);
+        //    string xx = string.Empty;
+        //    foreach (XmlNode node in doc)
+        //    {
+        //        if (node.NodeType == XmlNodeType.XmlDeclaration)
+        //        {
+        //            xx= doc.RemoveChild(node).ToString();
+        //        }
+        //    }
+        //    return xx;
+        //}
+
+
+        #region GetTrnsactionMode
+        public string TransactionMode()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("TransactionMode")))
+            {
+                string ID = HttpContext.Session.GetString("TransactionMode");
+                return ID;
+            }
+            
+            return "";
+
         }
 
         #endregion
+
+        #region GetDeviceName
+        public string DeviceName()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("DeviceName")))
+            {
+                string mobile = HttpContext.Session.GetString("DeviceName");
+                return mobile;
+            }
+            return "";
+
+        }
+
+        #endregion
+
+        #region GetBankName
+        public string BankName()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("BankName")))
+            {
+                string name = HttpContext.Session.GetString("BankName");
+                return name;
+            }
+            return "";
+        }
+        #endregion
+
+        #region SelfHelp
+        public JsonResult SelfHelp(string ServiceId)
+        {
+
+            try
+            {
+                SelfHelpRequestModel SelfRequest = new SelfHelpRequestModel();
+                SelfRequest.Userid = "NA";
+                SelfRequest.ServiceId = ServiceId;
+                string input = Checksum.MakeChecksumString("ViewFQL", Checksum.checksumKey,
+                    SelfRequest.Userid);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                SelfRequest.Checksum = CheckSum;
+                var client = new RestClient($"{Baseurl}{ApiName.ViewFQL}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(SelfRequest);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
+                    var datadeserialize = deserialize.Data;
+                    var data = JsonConvert.DeserializeObject<List<SelfHelpResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                    //var datadeserialize = deserialize.Data;
+                    //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+                    return Json(data);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = "";
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+        }
+        #endregion
+
 
         #region Replace Service ID's
         private string ReplaceServiceID(string serviceId)
@@ -1141,306 +1553,6 @@ namespace Project_Redmil_MVC.Controllers
         }
         #endregion
 
-        //public IActionResult CheckFingerprintAvailability()
-        //{
-        //    string returnMessage = "";
 
-        //    try
-        //    {
-        //        // Check the availability of fingerprint authentication.
-        //        var ucvAvailability = Windows.Security.Credentials.UI.UserConsentVerifier.CheckAvailabilityAsync();
-
-        //        switch (ucvAvailability)
-        //        {
-        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.Available:
-        //                returnMessage = "Fingerprint verification is available.";
-        //                break;
-        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.DeviceBusy:
-        //                returnMessage = "Biometric device is busy.";
-        //                break;
-        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.DeviceNotPresent:
-        //                returnMessage = "No biometric device found.";
-        //                break;
-        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.DisabledByPolicy:
-        //                returnMessage = "Biometric verification is disabled by policy.";
-        //                break;
-        //            case Windows.Security.Credentials.UI.UserConsentVerifierAvailability.NotConfiguredForUser:
-        //                returnMessage = "The user has no fingerprints registered. Please add a fingerprint to the " +
-        //                                "fingerprint database and try again.";
-        //                break;
-        //            default:
-        //                returnMessage = "Fingerprints verification is currently unavailable.";
-        //                break;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        returnMessage = "Fingerprint authentication availability check failed: " + ex.ToString();
-        //    }
-
-        //    return returnMessage;
-        //}
-
-        #region CustomerDetails
-        public IActionResult CustomerDetails()
-        {
-            var deviceName = DeviceName();
-            var transactionMode = TransactionMode();
-            var bankName = BankName();
-            //ViewBag.BankList = new SelectList(AllBankList(), "Id", "BankName");
-            return View();
-
-        }
-        #endregion
-
-
-
-
-
-        #region Bank Details
-        public JsonResult AllBankList()
-        {
-            AepsGetAllBankListRequestModel requestModel = new AepsGetAllBankListRequestModel();
-            List<AepsGetAllBankListResponseModel> Data1 = new List<AepsGetAllBankListResponseModel>();
-            try
-            {
-                requestModel.UserId = "599851";
-                requestModel.Token = "";
-                #region Checksum (UserId|Token|checksum)
-
-                string input = Checksum.MakeChecksumString("GetAllAepsBankDetails", Checksum.checksumKey, requestModel.UserId);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-
-                #endregion
-                requestModel.checksum = CheckSum;
-                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetAllAepsBankDetails");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(requestModel);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                if (string.IsNullOrEmpty(result))
-                {
-                    //return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
-                }
-                else
-                {
-                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                    if (deserialize.Statuscode == "TXN" && deserialize != null)
-                    {
-                        var datadeserialize = deserialize.Data;
-                        var data = JsonConvert.DeserializeObject<List<AepsGetAllBankListResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
-                        if (data != null)
-                        {
-                            foreach (var item in data)
-                            {
-                                Data1.Add(new AepsGetAllBankListResponseModel
-                                {
-                                    Id = item.Id,
-                                    BankName = item.BankName,
-                                });
-                            }
-
-                        }
-                        return Json(Data1);
-                    }
-                }
-                return Json(Data1);
-
-
-
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = requestModel;
-                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(jsonEx);
-                IRestResponse responseEx = clientEx.Execute(requestEx);
-                var resultEx = responseEx.Content;
-                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
-            }
-        }
-        #endregion
-
-        #region TriggerMachine
-        public string TriggerMachine()
-        {
-            try
-            {
-                string completeUrl2 = "http://localhost:11100/rd/capture";
-                HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(completeUrl2);
-                request2.Method = "CAPTURE";
-                request2.Credentials = CredentialCache.DefaultCredentials;
-                StreamWriter writer = new StreamWriter(request2.GetRequestStream());
-                string pidOptString = "<PidOptions><Opts fCount=\"1\" dType=\"P\" fType=\"0\" iCount=\"0\" pCount=\"0\" format=\"0\" pidVer=\"2.0\" timeout=\"20000\" otp=\"\" posh=\"LEFT_INDEX\" env=\"P\" wadh=\"\" /> <Demo></Demo> <CustOpts> <Param name=\"Param1\" value=\"\" /> </CustOpts> </PidOptions>";
-                writer.WriteLine(pidOptString);
-                writer.Close();
-                WebResponse response2 = default(WebResponse);
-                response2 = request2.GetResponse();
-                Stream str2 = response2.GetResponseStream();
-                StreamReader sr2 = new StreamReader(str2);
-                finalResponse2 = sr2.ReadToEnd();
-                XmlDocument xml = new XmlDocument();
-                finalResponse2 = finalResponse2.Replace("< ", "<").Replace(" >", ">").Replace("</ ", "</").Replace("? xml", "?xml");
-
-                xml.LoadXml(finalResponse2);
-                XmlNodeList xnList = xml.SelectNodes("/PidData/Data");
-                string X = string.Empty;
-
-                if (xnList != null)
-                {
-                    //if (xnList[0] != null)
-                    //{
-                    //if (xnList[0].Attributes["X"] != null)
-                    //{
-                    //X = db.NullToString(xnList[0].Attributes["dc"]?.InnerText);
-                    X = xnList[0].LastChild.InnerText;
-                    //}
-                    //}
-                }
-                return X;
-
-            }
-            catch (Exception ex)
-            {
-                //Console.ReadLine(ex);
-            }
-            return "";
-        }
-        #endregion
-
-        #region getAddress
-        public RootObject getAddress(string lat, string longg)
-        {
-            WebClient webClient = new WebClient();
-            double latt = double.Parse(lat);
-            //double latt = 28.6262498;
-            double longgt = double.Parse(longg);
-            //double longgt = 77.3734622;
-            webClient.Headers.Add("user-agent", "Chrome/21 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-            webClient.Headers.Add("Referer", "http://www.microsoft.com");
-            var jsonData = webClient.DownloadData("http://nominatim.openstreetmap.org/reverse?format=json&lat=" + latt + "&lon=" + longgt);
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(RootObject));
-            RootObject rootObject = (RootObject)ser.ReadObject(new MemoryStream(jsonData));
-            return rootObject;
-        }
-        #endregion
-
-
-        //public string XMLRemoveData()
-        //{
-        //    XmlDocument doc = new XmlDocument();
-        //    doc.Load(finalResponse2);
-        //    string xx = string.Empty;
-        //    foreach (XmlNode node in doc)
-        //    {
-        //        if (node.NodeType == XmlNodeType.XmlDeclaration)
-        //        {
-        //            xx= doc.RemoveChild(node).ToString();
-        //        }
-        //    }
-        //    return xx;
-        //}
-
-
-        #region GetTrnsactionMode
-        public string TransactionMode()
-        {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("TransactionMode")))
-            {
-                string ID = HttpContext.Session.GetString("TransactionMode");
-                return ID;
-            }
-            
-            return "";
-
-        }
-
-        #endregion
-
-        #region GetDeviceName
-        public string DeviceName()
-        {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("DeviceName")))
-            {
-                string mobile = HttpContext.Session.GetString("DeviceName");
-                return mobile;
-            }
-            return "";
-
-        }
-
-        #endregion
-
-        #region GetBankName
-        public string BankName()
-        {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("BankName")))
-            {
-                string name = HttpContext.Session.GetString("BankName");
-                return name;
-            }
-            return "";
-        }
-        #endregion
-
-        #region SelfHelp
-        public JsonResult SelfHelp(string ServiceId)
-        {
-
-            try
-            {
-                SelfHelpRequestModel SelfRequest = new SelfHelpRequestModel();
-                SelfRequest.Userid = "NA";
-                SelfRequest.ServiceId = ServiceId;
-                string input = Checksum.MakeChecksumString("ViewFQL", Checksum.checksumKey,
-                    SelfRequest.Userid);
-                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
-                SelfRequest.Checksum = CheckSum;
-                var client = new RestClient($"{Baseurl}{ApiName.ViewFQL}");
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonConvert.SerializeObject(SelfRequest);
-                request.AddJsonBody(json);
-                IRestResponse response = client.Execute(request);
-                var result = response.Content;
-                if (string.IsNullOrEmpty(result))
-                {
-                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
-                }
-                else
-                {
-                    var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                    var datadeserialize = deserialize.Data;
-                    var data = JsonConvert.DeserializeObject<List<SelfHelpResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //var datadeserialize = deserialize.Data;
-                    //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                    return Json(data);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
-                requestModelEx.ExceptionMessage = ex;
-                requestModelEx.Data = "";
-                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
-                var requestEx = new RestRequest(Method.POST);
-                requestEx.AddHeader("Content-Type", "application/json");
-                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
-                requestEx.AddJsonBody(jsonEx);
-                IRestResponse responseEx = clientEx.Execute(requestEx);
-                var resultEx = responseEx.Content;
-                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
-            }
-        }
-        #endregion
     }
 }

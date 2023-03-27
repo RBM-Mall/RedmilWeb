@@ -159,7 +159,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12" style="text-align:center;">
-                    <h3><span id="walletMode" class="text-danger font-weight-bold"></span></h3>
+                    <h3><span id="walletMode" style="font-weight:bold;" class="text-danger font-weight-bold"></span></h3>
                 </div>
             </div>
             <div style="text-align:center">
@@ -255,7 +255,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center;">
-                            <h3><span id="errbank" class="text-danger font-weight-bold"></span></h3>
+                            <h3><span id="errbank" style="font-weight:bold;" class="text-danger font-weight-bold"></span></h3>
                         </div>
                     </div>
                     <div class="col col-md-12 col-sm-12 col-lg-12">
@@ -331,48 +331,48 @@
                     <input type="hidden" id="hdnTransactionBankDevice" />
                     <div class="col-md-12">
                         <div class="col-md-3 morpho radio2 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" asp-for="Morpho" value="MORPHO">
+                            <input type="radio" class="morpho" name="radioDevice" value="Morpho">
                             <img src="~/img/img_devices/Morpho.png" class="choose_device_image" />
                             <label class="choose_device_label"> MORPHO </label>
                         </div>
                         <div class="col-md-3 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" value="STARTEK">
+                            <input type="radio" class="morpho" name="radioDevice" value="Startek">
                             <img src="~/img/img_devices/Startek.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="startek"> STARTEK </label>
                         </div>
                         <div class="col-md-3 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" value="MANTRA">
+                            <input type="radio" class="morpho" name="radioDevice" value="Mantra">
                             <img src="~/img/img_devices/Mantra.png" class="choose_device_image" />
                             <label class="ybl choose_device_label"> MANTRA </label>
                         </div>
                     </div>
                     <div class="col-md-12" style="display: block; margin-top: 20px;">
                         <div class="col-md-3 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" value="NEXT">
+                            <input type="radio" class="morpho" name="radioDevice" value="Next">
                             <img src="~/img/img_devices/Next.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="nextNb"> NEXT NB-3023 </label>
                         </div>
                         <div class="col-md-3 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" value="SECUGEN">
+                            <input type="radio" class="morpho" name="radioDevice" value="Secugen">
                             <img src="~/img/img_devices/Secugen.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="secugen"> SECUGEN PRO 20 </label>
                         </div>
                         <div class="col-md-3 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" value="TATVIK">
+                            <input type="radio" class="morpho" name="radioDevice" value="Tatvik">
                             <img src="~/img/img_devices/Tatvik-TMF20.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="tatvik"> TATVIK TMF20 </label>
                         </div>
                     </div>
                     <div class="col-md-12" style="display: block; margin-top: 20px;">
                         <div class="col-md-3 choose_device_div">
-                            <input type="radio" class="morpho" name="radioDevice" value="PRECISION">
+                            <input type="radio" class="morpho" name="radioDevice" value="Precision">
                             <img src="~/img/img_devices/Precision.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="precision"> PRECISION PB510 </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center;">
-                            <h3><span id="errDevice" class="text-danger font-weight-bold"></span></h3>
+                            <h3 style="font-weight:bold"><span id="errDevice" style="font-weight:bold;" class="text-danger font-weight-bold"></span></h3>
                         </div>
                     </div>
                 </div>
@@ -506,7 +506,8 @@
                     <div class="modal-content modal_top">
                         <div class="modal-header">
                             <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal" onclick="closeconfirm()">&times;</button>
-                            <h4 id="DetailTitle" class="modal-title text-center theclose">Confirm</h4>
+                            @*<h4 id="DetailTitle" class="modal-title text-center theclose">Confirm</h4>*@
+                            <h4 id="modal-title" class="modal-title text-center theclose">Confirm</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -630,159 +631,50 @@
                                         <div class="card">
                                             <h4 class="card-title text-center" style="font-weight: bold;">Customer Details</h4>
                                             <div class="card-body py-md-4">
-                                                <form _lpchecked="1">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" maxlength="30" id="txtCustomerNameCashWithdrawal" placeholder="Customer Name">
-                                                        <br />
-                                                        <h5><span id="errtxtCustomerNameCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" maxlength="10" id="txtMobileNumCashWithdrawal" placeholder="Mobile Number">
-                                                        <br />
-                                                        <h5><span id="errtxtMobileNumCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control" id="BId" name="BId"
-                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                                                            <option value="0">-Select Bank-</option>
-                                                        </select>
-                                                        <br />
-                                                        <h5><span id="errSIdCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" maxlength="12" id="txtAadharNumberCashWithdrawal" placeholder="Aadhar Number">
-                                                        <br />
-                                                        <h5><span id="errtxtAadharNumberCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" maxlength="7" style="display:none;" id="txtAmountCashWithdrawal" placeholder="Enter Amount">
-                                                        <br />
-                                                        <h5><span id="errtxtAmountCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="tacbox">
-                                                            <input id="checkboxCashWithdrawal" type="checkbox" />
-                                                            <label for="checkbox">
-                                                                <label class="_3De77">
-                                                                    Terms & Conditions<br />
-                                                                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
-                                                                </label>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" maxlength="30" id="txtCustomerNameCashWithdrawal" placeholder="Customer Name">
+                                                    <br />
+                                                    <h5><span id="errtxtCustomerNameCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" maxlength="10" id="txtMobileNumCashWithdrawal" placeholder="Mobile Number">
+                                                    <br />
+                                                    <h5><span id="errtxtMobileNumCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                </div>
+                                                <div class="form-group">
+                                                    <select class="form-control" id="BId" name="BId"
+                                                            asp-items="@(new SelectList(string.Empty,"Id","Title"))">
+                                                        <option value="0">-Select Bank-</option>
+                                                    </select>
+                                                    <br />
+                                                    <h5><span id="errSIdCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" maxlength="12" id="txtAadharNumberCashWithdrawal" placeholder="Aadhar Number">
+                                                    <br />
+                                                    <h5><span id="errtxtAadharNumberCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" maxlength="7" style="display:none;" id="txtAmountCashWithdrawal" placeholder="Enter Amount">
+                                                    <br />
+                                                    <h5><span id="errtxtAmountCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="tacbox">
+                                                        <input id="checkboxCashWithdrawal" type="checkbox" />
+                                                        <label for="checkbox">
+                                                            <label class="_3De77">
+                                                                Terms & Conditions<br />
+                                                                Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
                                                             </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
-                                                        <button class="button-27" onclick="submitCustomerDetails()" style="width: 200px;">Next</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div id="BalanceEnquiry" class="tabcontent">
-                            <div class="title">
-                                @*-------------------------------------------<!--Balance Enquiry-->------------------------------------------------------
-                                <div class="row justify-content-center" style="display: flex;justify-content: center;">
-                                    <div class="col-md-5">
-                                        <div class="card">
-                                            <h4 class="card-title text-center" style="font-weight: bold;">Customer Details</h4>
-                                            <div class="card-body py-md-4">
-                                                <form _lpchecked="1">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="txtCustomerNameBalanceEnquiry" placeholder="Customer Name">
+                                                        </label>
                                                         <br />
-                                                        <h5><span id="errtxtCustomerNameBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
+                                                        <h5><span id="errCheckBox" style="color:red" class="errorMsg"></span></h5>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="txtMobileNumBalanceEnquiry" placeholder="Mobile Number">
-                                                        <br />
-                                                        <h5><span id="errtxtMobileNumBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control" id="BId" name="BId"
-                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                                                            <option value="0">-Select Bank-</option>
-                                                        </select>
-                                                        <br />
-                                                        <br />
-                                                        <h5><span id="errSIdBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
-
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="txtAadharNumberBalanceEnquiry" placeholder="Aadhar Number">
-                                                        <br />
-                                                        <h5><span id="errtxtAadharNumberBalanceEnquiry" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="tacbox">
-                                                            <input id="checkboxBalanceEnquiry" type="checkbox" />
-                                                            <label for="checkbox">
-                                                                <label class="_3De77">
-                                                                    Terms & Conditions<br />
-                                                                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
-                                                                </label>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
-                                                        <button class="button-27" style="width: 200px;">Next</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div id="MiniStatement" class="tabcontent">
-                            <div class="title">
-                                @*-------------------------------------------<!--Mini Statement-->------------------------------------------------------
-                                <div class="row justify-content-center" style="display: flex;justify-content: center;">
-                                    <div class="col-md-5">
-                                        <div class="card">
-                                            <h4 class="card-title text-center" style="font-weight: bold;">Customer Details</h4>
-                                            <div class="card-body py-md-4">
-                                                <form _lpchecked="1">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="txtCustomerNameMiniStatement" placeholder="Customer Name">
-                                                        <br />
-                                                        <h5><span id="errtxtCustomerNameMiniStatement" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="txtMobileNum" placeholder="Mobile Number">
-                                                        <br />
-                                                        <h5><span id="errtxtMobileNum" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control" id="BId" name="BId"
-                                                                asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                                                            <option value="0">-Select Bank-</option>
-                                                        </select>
-                                                        <br />
-                                                        <h5><span id="errSIdMiniStatement" style="color:red" class="errorMsg"></span></h5>
-
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="txtAadharNumberMiniStatement" placeholder="Aadhar Number">
-                                                        <br />
-                                                        <h5><span id="errtxtAadharNumberMiniStatement" style="color:red" class="errorMsg"></span></h5>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="tacbox">
-                                                            <input id="checkboxMiniStatement" type="checkbox" />
-                                                            <label for="checkbox">
-                                                                <label class="_3De77">
-                                                                    Terms & Conditions<br />
-                                                                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
-                                                                </label>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
-                                                        <button class="button-27" style="width: 200px;">Next</button>
-                                                    </div>
-                                                </form>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
+                                                    <button class="button-27" onclick="submitCustomerDetails()" style="width: 200px;">Next</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -790,66 +682,9 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="row">
-                    <div class="col-sm-12" style="text-align:center">
-                    <div class="form-group">
-                    <input type="text" class="form-control" id="txtCustomerNameCashWithdrawal" placeholder="Customer Name">
-                    <br />
-                    <h5><span id="errtxtCustomerNameCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                    </div>
-                    <div class="form-group">
-                    <input type="text" class="form-control" id="txtMobileNumCashWithdrawal" placeholder="Mobile Number">
-                    <br />
-                    <h5><span id="errtxtMobileNumCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                    </div>
-                    <div class="form-group-recharge">
-                    <select class="dropdownDTH dropdownDTH1" id="BId" name="BId"
-                    asp-items="@(new SelectList(string.Empty,"Id","Title"))">
-                    <option value="0">-Select Bank-</option>
-                    </select>
-                    <br />
-                    <h5><span id="errBankName" style="color:red" class="errorMsg"></span></h5>
-                    </div>
-                    <div class="form-group">
-                    <input type="text" class="form-control" id="txtAadharNumberCashWithdrawal" placeholder="Aadhar Number">
-                    <br />
-                    <h5><span id="errtxtAadharNumberCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                    </div>
-                    <div class="form-group">
-                    <input type="text" class="form-control" id="txtAmountCashWithdrawal" placeholder="Enter Amount">
-                    <br />
-                    <h5><span id="errtxtAmountCashWithdrawal" style="color:red" class="errorMsg"></span></h5>
-                    </div>
-                    <div class="form-group">
-                    <div class="tacbox">
-                    <input id="checkboxCashWithdrawal" type="checkbox" />
-                    <label for="checkbox">
-                    Terms & Conditions<br />
-                    Before you press next please read the <a style="color:blue" href="#"> Terms and Conditions</a>.
-                    </label>
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row align-items-center justify-content-between" style="margin-left: 60px;padding-bottom: 40px;">
-                    <button class="button-21" style="width: 200px;">Next</button>
-                    </div>
-                    </div>
-                    </div>*@
                 </div>
-                @* <div class="modal-footer">
-                <div class="row">
-                <div class="col-md-12" style="display: inline-flex;">
-                <div class="col-sm-6 col-md-6">
-                <button type="button" id="btnaadharCustomerDetailsFinal" class="button-27" data-dismiss="modal">Okay</button>
-                </div>
-                <div class="col-sm-6 col-md-6">
-                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
-                </div>
-                </div>
-                </div>*@
             </div>
         </div>
-    </div>
     </div>
 
 
@@ -893,6 +728,29 @@
             </div>
         </div>
     </div>
+
+
+
+    <!--Error Popup For FaceLiveLiness-->
+    <input type="button" id="btnFaceLiveLinessError" data-target="#faceLiveLinessError" data-toggle="modal" style="display:none" />
+    <div class="modal fade" id="faceLiveLinessError" role="dialog" style="margin-top: 100px;">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-body" style="background:lightgoldenrodyellow;">
+                    <div class="col-sm-4 custom_img_size img_1">
+                        <img src="~/css/Icon_Logo_BBPS/Warning_2.png" class="img-width img_warning">
+                    </div>
+                    <br />
+                    <p class="headingfaceLiveLinessError"></p>
+                    <br />
+                    <center> <button class="btn btn-danger" id="myBtn">Close</button></center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
     @*--------------------------------------------Powered By--------------------------------------------------*@
@@ -1017,11 +875,170 @@
         </div>
     </div>
 </div>
+
+
+@*-------------------------------------------<!--Final Modal Of Transaction Success and Failure-->------------------------------------------------------*@
+<!--Modal Success Message-->
+<!-- Modal -->
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="btnmodalfinalResponse" style="display:none;" data-target="#modalfinalResponse" data-toggle="modal" />
+        @*<div id="modalfinalResponse" role="dialog" class="modal fade" style="margin-top:47px;" aria-modal="true" data-backdrop="static" data-keyboard="false">*@
+        <div id="modalfinalResponse" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm" style="width: 1016px;max-height:100%;overflow-y:scroll !important;">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="row div-recharge-img">
+                            <div class="col-sm-4 custom_img_size pay-img">
+                                <img src="~/css/PaymentImages/Encrypted.png" class="img-width" style="height:100px;width:120px;">
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                            <div class="col-sm-4 custom_img_size pay-img2">
+                                <img src="~/css/Img_Aeps/NPCI-for-web.png" class="img-width" style="height: 115px;width: 113px;margin-left: 200px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 custom_img_size pay-img" style="text-align:center;">
+                            <img src="~/css/PaymentImages/RedmilLOGO.jpg" class="img-width" style="height:100px;width:120px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="">
+                            <h4 id="lblSelectedTransactionMode" class="modal-title w-100" style="padding-top:59px"></h4>
+                            <div class="icon-box" style="top:315px;" id="icon">
+                                <label id="img" />
+                            </div>
+                            <h4 id="heading" class="modal-title w-100" style="padding-top:59px"></h4>
+                            <h4><label id="lblFailureResponseMessage" style="display:none;text-align:center;"></label></h4>
+                        </div>
+                    </div>
+                    <div class="modal-body" style="padding-top:32px">
+                        <div class="main-table-recharge">
+                            <br />
+                            <hr />
+                            <table class="table table-bordered" id="tblData">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Date:</th>
+                                        <td><label id="lblDate"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Time:</th>
+                                        <td><label id="lblTime"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">BC Name:</th>
+                                        <td><label id="lblBCName"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Agent ID:</th>
+                                        <td><label id="lblAgentID"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">BC Location:</th>
+                                        <td><label id="lblBCLocation"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Terminal ID:</th>
+                                        <td><label id="lblTerminalID"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer Aadhaar Number:</th>
+                                        <td><label id="lblCustomerAadhaarNumber"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer Name:</th>
+                                        <td><label id="lblCustomerName"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">STAN:</th>
+                                        <td><label id="lblStan"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">RRN:</th>
+                                        <td><label id="lblRRN"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">UIDAI Auth Code:</th>
+                                        <td><label id="lblUIDAICode"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Transaction Status:</th>
+                                        <td><label id="lblTransactionStatus"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">A/C Balance:</th>
+                                        <td><label id="lblAccountBalance"></label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row" id="divMiniStatement" style="display:none">
+                                <div class="main-table-recharge">
+                                    <h4>Mini Statement</h4>
+                                    <table id="myTable" class="table table-hover table-responsive ">
+                                        <thead>
+                                            <tr style="white-space: nowrap;">
+                                                <th>
+                                                    <div class="div-second-plan-head1"><h4 style="font-weight:700;">Date</h4></div>
+                                                </th>
+                                                <th>
+                                                    <div class="div-second-plan-head1"><h4 style="font-weight:700;">Narration</h4></div>
+                                                </th>
+                                                <th>
+                                                    <div class="div-second-plan-head1"><h4 style="font-weight:700;">CR/DR</h4></div>
+                                                </th>
+                                                <th>
+                                                    <div class="div-second-plan-head1"><h4 style="font-weight:700;">Amount</h4></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbloutput">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12" style="display: inline-flex;">
+                                <div class="col-sm-4 col-md-4">
+                                    <button type="button" id="btnShareReciept" onclick="confirmPopup()" class="button-27">Share Receipt to Customer</button>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <a href="~/Aeps/AEPS" type="button" id="btnHomePage" class="button-27">Home</a>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <button type="button" id="btnPrintReciept" onclick="downloadReceipt()" class="button-27">Download and Print Receipt</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 
 <!--Longitiude and Latitude in JS-->
 <script type="text/javascript">
-    let transactionMode, bankName, selectedBiometricDeviceName, radioVal, bankUrl, bankLogo;
+    let transactionMode, bankName, selectedBiometricDeviceName, radioVal, bankUrl, bankLogo, insertedAmount = "0";
     let aepsAgentId, lati, long;
 
 
@@ -1068,7 +1085,7 @@
         }
         debugger;
         if (radioVal == undefined || radioVal == '' || radioVal == null) {
-            document.getElementById('walletMode').innerHTML = "Please select transaction to proceed!";
+            document.getElementById('walletMode').innerHTML = "Please select transaction mode to proceed!";
             return false;
         }
         else {
@@ -1219,7 +1236,7 @@
                         $("#deviceModal").hide();
                     }
                     else if (response.result == 'RedirectToCustomer') {
-                        
+
 
                         if (bank == "ICICI Bank" || bank == "Fingpay") {
                             var img = document.getElementById("img_SelectedBank");
@@ -1227,44 +1244,91 @@
 
                             var mobileNumber = '@ViewBag.MobileNo';
                             aepsAgentId = "RED" + mobileNumber;
-
-                            GetLocation();
-                            lati = $("#hdnLong").val();
-                            long = $("#hdnLat").val();
-
-                                if (transactionMode == "be" || transactionMode == "ms") {
-                                    document.getElementById("txtAmountCashWithdrawal").style.display="none";
-                                }
-                                else {
-                                    document.getElementById("txtAmountCashWithdrawal").style.display="block";
-                                }
-                                
-
+                            bankList();
+                            if (transactionMode == "cw") {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                            }
                             $("#btnAadharCustomerDetails").trigger("click");
                             $("#deviceModal").hide();
-                            //$.ajax({
-                            //    url: "/Aeps/getAddress",
-                            //    data: { 'lat': $("#hdnLong").val(), 'lon': $("#hdnLat").val() },
-                            //    type: 'POST',
-                            //    dataType: 'json',
-                            //    success: function (responsedata) {
-                            //        debugger;
+                            //$("#hdnLong1").val();
+                            //$("#hdnLat1").val();
+                            //GetLocation();
+                            //lati = $("#hdnLong").val();
+                            //long = $("#hdnLat").val();
+
+                            //    if (transactionMode == "be" || transactionMode == "ms") {
+                            //        document.getElementById("txtAmountCashWithdrawal").style.display="none";
                             //    }
-                            //})
-                            $("#hdnLong1").val();
-                            $("#hdnLat1").val();
+                            //    else {
+                            //        document.getElementById("txtAmountCashWithdrawal").style.display="block";
+                            //    }
                         }
-                        else if (bank == "") {
+                        else if (bank == "Yes Bank") {
                             var img = document.getElementById("img_SelectedBank");
-                            img.src = response.data[0].bankLogo;
+                            img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
+
+                            var mobileNumber = '@ViewBag.MobileNo';
+                            aepsAgentId = "RED" + mobileNumber;
+                            bankList();
+                            if (transactionMode == "cw") {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                            }
                             $("#btnAadharCustomerDetails").trigger("click");
                             $("#deviceModal").hide();
                         }
                     }
 
                     else if (response.statuscode == 'SKP') {
-                        $("#btnAadharCustomerDetails").trigger("click");
-                        $("#deviceModal").hide();
+                        if (bank == "ICICI Bank" || bank == "Fingpay") {
+                            var img = document.getElementById("img_SelectedBank");
+                            img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
+
+                            var mobileNumber = '@ViewBag.MobileNo';
+                            aepsAgentId = "RED" + mobileNumber;
+                            bankList();
+                            if (transactionMode == "cw") {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                            }
+                            $("#btnAadharCustomerDetails").trigger("click");
+                            $("#deviceModal").hide();
+                            //$("#hdnLong1").val();
+                            //$("#hdnLat1").val();
+                            //GetLocation();
+                            //lati = $("#hdnLong").val();
+                            //long = $("#hdnLat").val();
+
+                            //    if (transactionMode == "be" || transactionMode == "ms") {
+                            //        document.getElementById("txtAmountCashWithdrawal").style.display="none";
+                            //    }
+                            //    else {
+                            //        document.getElementById("txtAmountCashWithdrawal").style.display="block";
+                            //    }
+                        }
+                        else if (bank == "Yes Bank") {
+                            var img = document.getElementById("img_SelectedBank");
+                            img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
+
+                            var mobileNumber = '@ViewBag.MobileNo';
+                            aepsAgentId = "RED" + mobileNumber;
+                            bankList();
+                            if (transactionMode == "cw") {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                            }
+                            $("#btnAadharCustomerDetails").trigger("click");
+                            $("#deviceModal").hide();
+                        }
                     }
                     else if (response.result == "EmptyResult") {
                         window.location.href = response.url;
@@ -1284,7 +1348,7 @@
     function GetLocation() {
         if (navigator.geolocation) {
             debugger;
-            navigator.geolocation.getCurrentPosition(ShowPosition);
+            navigator.geolocation.getCurrentPosition(ShowPosition, showError);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
@@ -1296,7 +1360,7 @@
         $("#hdnLat1").val(position.coords.latitude);
         var baseUrl = "https://www.google.com/maps/search/";
         var mapUrl = baseUrl + "/" + $("#hdnLat1").val() + "," + $("#hdnLong1").val();
-        window.open(mapUrl);
+        //window.open(mapUrl);
         //$.ajax({
         //    url: "/Aeps/getAddress",
         //    data: { 'longg': $("#hdnLong1").val(), 'lat': $("#hdnLat1").val()},
@@ -1307,36 +1371,300 @@
         //    }
         //})
     }
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                //x.innerHTML = "User denied the request for Geolocation."
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                //x.innerHTML = "Location information is unavailable."
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                //x.innerHTML = "The request to get user location timed out."
+                alert("The request to get user location timed out.")
+                break;
+            case error.UNKNOWN_ERROR:
+                //x.innerHTML = "An unknown error occurred."
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
 
-
-    function submitCustomerDetails(){
+    function submitCustomerDetails() {
         debugger;
         var customerName = $("#txtCustomerNameCashWithdrawal").val();
-        displayLocation(28.5967439, 77.3285038);
         var customerMobile = $("#txtMobileNumCashWithdrawal").val();
-        var bankName = document.getElementById("BId").value;
-        debugger;
+        var userselectedBankName = $("#BId").find("option:selected").text();
         var customerAadharNumber = $("#txtAadharNumberCashWithdrawal").val();
+
+        let checkboxAgreement = document.getElementById("checkboxCashWithdrawal");
         if (customerName.length === 0) {
-            document.getElementById("errtxtCustomerNameCashWithdrawal ").innerHTML = "Please Enter Customer Name";
+            document.getElementById("errtxtCustomerNameCashWithdrawal").innerHTML = "Please Enter Customer Name";
         }
         else if (customerMobile.length === 0) {
             document.getElementById("errtxtMobileNumCashWithdrawal").innerHTML = "Please Enter Mobile Number";
         }
-        else if (bankName.length === 0) {
+        else if (userselectedBankName.length === 0) {
             document.getElementById("errSIdCashWithdrawal").innerHTML = "Please Select Any Bank";
         }
         else if (customerAadharNumber.length === 0) {
-            document.getElementById("errtxtAadharNumberCashWithdrawal").innerHTML = "Please Enter Aadhaar Number";
+            document.getElementById("errcustomerAadharNumber").innerHTML = "Please Enter Aadhaar Number";
         }
-        else{
-            document.getElementById("errtxtCustomerNameCashWithdrawal ").innerHTML="";
-            document.getElementById("errtxtMobileNumCashWithdrawal").innerHTML ="";
-            document.getElementById("errSIdCashWithdrawal").innerHTML = "";
-            document.getElementById("errtxtAadharNumberCashWithdrawal").innerHTML = "";
+        else if (!checkboxAgreement.checked) {
+            document.getElementById("errCheckBox").innerHTML = "Please accept the agreement to proceed";
+        }
+        else {
 
+            var customeramount = $("#txtAmountCashWithdrawal").val();
+            if (transactionMode == "be" || transactionMode == "ms") {
+                document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                document.getElementById("errtxtAmountCashWithdrawal").innerHTML = "";
+                document.getElementById("errtxtCustomerNameCashWithdrawal").innerHTML = "";
+                document.getElementById("errtxtMobileNumCashWithdrawal").innerHTML = "";
+                document.getElementById("errSIdCashWithdrawal").innerHTML = "";
+                document.getElementById("errtxtAadharNumberCashWithdrawal").innerHTML = "";
+                var selectedText = $("#BId").find("option:selected").text();
+                var selectedValue = $('#BId').find('option:selected').val();
+                debugger;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Aeps/fingurprintBiometric",
+                    data: { 'customerName': customerName, 'transactionMode': transactionMode, 'insertedAmount': insertedAmount, 'deBankName': bankName, 'customerMobile': customerMobile, 'userselectedBankName': userselectedBankName, 'customerAadharNumber': customerAadharNumber, 'iin': selectedValue, 'deviceName': radioVal, 'aepsAgentId': aepsAgentId },
+                    dataType: 'json',
+                    success: function (response) {
+                        debugger;
+                        debugger;
+                        if (response.result == "EmptyResult") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "UnExpectedStatusCode") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.result == "RedirectToException") {
+                            window.location.href = response.url;
+                        }
+                        else if (response.statuscode == "TXN") {
+                            if (transactionMode == "be") {
+                                document.getElementById("lblSelectedTransactionMode").innerHTML = "BALANCE ENQUIRY";
+                            }
+                            else if (transactionMode == "ms") {
+                                document.getElementById("lblSelectedTransactionMode").innerHTML = "MINI STATEMENT";
+                            }
+                            document.getElementById("heading").innerHTML = "Transaction Success";
+                            document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
+                            document.getElementById("icon").style.backgroundColor = '#82ce34';
+                            var datetime = response.data.reqdate;
+                            date = datetime.split('T')[0];
+                            time = datetime.split('T')[1];
+                            const timeString = time;
+
+                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                                .toLocaleTimeString('en-US',
+                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                                );
+                            document.getElementById("lblDate").innerHTML = date;
+                            document.getElementById("lblTime").innerHTML = timeString12hr;
+
+
+                            document.getElementById("lblBCName").innerHTML = response.data.bcName;
+                            document.getElementById("lblAgentID").innerHTML = response.data.agentID;
+                            document.getElementById("lblBCLocation").innerHTML = response.data.bcLocation;
+                            document.getElementById("lblTerminalID").innerHTML = response.data.terminalID;
+                            document.getElementById("lblCustomerAadhaarNumber").innerHTML = response.data.customerAadhaarNo;
+                            document.getElementById("lblCustomerName").innerHTML = response.data.customerName;
+                            document.getElementById("lblStan").innerHTML = response.data.stan;
+                            document.getElementById("lblRRN").innerHTML = response.data.rrn;
+                            document.getElementById("lblUIDAICode").innerHTML = response.data.uidaiAuthCode;
+                            document.getElementById("lblTransactionStatus").innerHTML = response.data.status;
+                            document.getElementById("lblAccountBalance").innerHTML = "₹" + response.data.acBalance;
+                            if (transactionMode == "ms") {
+                                let output = response.miniStatementData.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.date + "</td><td>" + i.narration + "</td><td>" + i.txnType + "</td><td>" + i.amount + "</td></tr>");
+                                $("#tbloutput").html(output);
+                                document.getElementById("divMiniStatement").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("divMiniStatement").style.display = "none";
+                            }
+
+                            $("#btnmodalfinalResponse").trigger("click");
+                            $("#aadharCustomerDetailsPopUp").hide();
+
+                        }
+                        else if (response.statuscode == "ERR") {
+                            if (transactionMode == "be") {
+                                document.getElementById("lblSelectedTransactionMode").innerHTML = "BALANCE ENQUIRY";
+                            }
+                            else if (transactionMode == "ms") {
+                                document.getElementById("lblSelectedTransactionMode").innerHTML = "MINI STATEMENT";
+                            }
+                            document.getElementById("heading").innerHTML = "Transaction Failed";
+                            document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
+                            document.getElementById("icon").style.backgroundColor = '#880808';
+                            document.getElementById("lblFailureResponseMessage").style.display = "block";
+                            document.getElementById("lblFailureResponseMessage").innerHTML = "Reason:" + response.data.response;
+                            var datetime = response.data.reqdate;
+                            date = datetime.split('T')[0];
+                            time = datetime.split('T')[1];
+                            const timeString = time;
+
+                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                                .toLocaleTimeString('en-US',
+                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                                );
+                            document.getElementById("lblDate").innerHTML = date;
+                            document.getElementById("lblTime").innerHTML = timeString12hr;
+
+
+                            document.getElementById("lblBCName").innerHTML = response.data.bcName;
+                            document.getElementById("lblAgentID").innerHTML = response.data.agentID;
+                            document.getElementById("lblBCLocation").innerHTML = response.data.bcLocation;
+                            document.getElementById("lblTerminalID").innerHTML = response.data.terminalID;
+                            document.getElementById("lblCustomerAadhaarNumber").innerHTML = response.data.customerAadhaarNo;
+                            document.getElementById("lblCustomerName").innerHTML = response.data.customerName;
+                            document.getElementById("lblStan").innerHTML = response.data.stan;
+                            document.getElementById("lblRRN").innerHTML = response.data.rrn;
+                            document.getElementById("lblUIDAICode").innerHTML = response.data.uidaiAuthCode;
+                            document.getElementById("lblTransactionStatus").innerHTML = response.data.status;
+                            document.getElementById("lblAccountBalance").innerHTML = "₹" + response.data.acBalance;
+                            if (transactionMode == "ms") {
+                                let output = response.miniStatementData.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.date + "</td><td>" + i.narration + "</td><td>" + i.txnType + "</td><td>" + i.amount + "</td></tr>");
+                                $("#tbloutput").html(output);
+                                document.getElementById("divMiniStatement").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("divMiniStatement").style.display = "none";
+                            }
+                            $("#btnmodalfinalResponse").trigger("click");
+                            $("#aadharCustomerDetailsPopUp").hide();
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+            else if (transactionMode == "cw") {
+                document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                insertedAmount = $("#txtAmountCashWithdrawal").val();
+                if (insertedAmount < 100 && insertedAmount > 10000) {
+                    document.getElementById("errtxtAmountCashWithdrawal").innerHTML = "Please Enter Amount Between 100 to 10000";
+                }
+                else {
+                    document.getElementById("errtxtAmountCashWithdrawal").innerHTML = "";
+                    document.getElementById("errtxtCustomerNameCashWithdrawal").innerHTML = "";
+                    document.getElementById("errtxtMobileNumCashWithdrawal").innerHTML = "";
+                    document.getElementById("errSIdCashWithdrawal").innerHTML = "";
+                    document.getElementById("errtxtAadharNumberCashWithdrawal").innerHTML = "";
+                    var selectedText = $("#BId").find("option:selected").text();
+                    var selectedValue = $('#BId').find('option:selected').val();
+                    document.getElementById("lblSelectedTransactionMode").innerHTML = "CASH WITHDRAWAL";
+                    debugger;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Aeps/fingurprintBiometric",
+                        data: { 'customerName': customerName, 'transactionMode': transactionMode, 'insertedAmount': insertedAmount, 'deBankName': bankName, 'customerMobile': customerMobile, 'userselectedBankName': userselectedBankName, 'customerAadharNumber': customerAadharNumber, 'iin': selectedValue, 'deviceName': radioVal, 'aepsAgentId': aepsAgentId },
+                        dataType: 'json',
+                        success: function (response) {
+
+                            debugger;
+                            if (response.result == "EmptyResult") {
+                                window.location.href = response.url;
+                            }
+                            else if (response.result == "UnExpectedStatusCode") {
+                                window.location.href = response.url;
+                            }
+                            else if (response.result == "RedirectToException") {
+                                window.location.href = response.url;
+                            }
+                            else if (response.statuscode == "TXN") {
+
+
+                                document.getElementById("heading").innerHTML = "Transaction Success";
+                                document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
+                                document.getElementById("icon").style.backgroundColor = '#82ce34';
+                                var datetime = response.data.reqdate;
+                                date = datetime.split('T')[0];
+                                time = datetime.split('T')[1];
+                                const timeString = time;
+
+                                const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                                    .toLocaleTimeString('en-US',
+                                        { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                                    );
+                                document.getElementById("lblDate").innerHTML = date;
+                                document.getElementById("lblTime").innerHTML = timeString12hr;
+
+
+
+                                document.getElementById("lblBCName").innerHTML = response.data.bcName;
+                                document.getElementById("lblAgentID").innerHTML = response.data.agentID;
+                                document.getElementById("lblBCLocation").innerHTML = response.data.bcLocation;
+                                document.getElementById("lblTerminalID").innerHTML = response.data.terminalID;
+                                document.getElementById("lblCustomerAadhaarNumber").innerHTML = response.data.customerAadhaarNo;
+                                document.getElementById("lblCustomerName").innerHTML = response.data.customerName;
+                                document.getElementById("lblStan").innerHTML = response.data.stan;
+                                document.getElementById("lblRRN").innerHTML = response.data.rrn;
+                                document.getElementById("lblUIDAICode").innerHTML = response.data.uidaiAuthCode;
+                                document.getElementById("lblTransactionStatus").innerHTML = response.data.status;
+                                document.getElementById("lblAccountBalance").innerHTML = "₹" + response.data.acBalance;
+                                $("#btnmodalfinalResponse").trigger("click");
+                                $("#aadharCustomerDetailsPopUp").hide();
+
+                            }
+                            else if (response.statuscode == "ERR") {
+                                document.getElementById("heading").innerHTML = "Transaction Failed";
+                                document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
+                                document.getElementById("icon").style.backgroundColor = '#880808';
+                                document.getElementById("lblFailureResponseMessage").style.display = "block";
+                                document.getElementById("lblFailureResponseMessage").innerHTML = "Reason:" + response.data.response;
+
+                                var datetime = response.data.reqdate;
+                                date = datetime.split('T')[0];
+                                time = datetime.split('T')[1];
+                                const timeString = time;
+
+                                const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                                    .toLocaleTimeString('en-US',
+                                        { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                                    );
+                                document.getElementById("lblDate").innerHTML = date;
+                                document.getElementById("lblTime").innerHTML = timeString12hr;
+
+
+                                document.getElementById("lblBCName").innerHTML = response.data.bcName;
+                                document.getElementById("lblAgentID").innerHTML = response.data.agentID;
+                                document.getElementById("lblBCLocation").innerHTML = response.data.bcLocation;
+                                document.getElementById("lblTerminalID").innerHTML = response.data.terminalID;
+                                document.getElementById("lblCustomerAadhaarNumber").innerHTML = response.data.customerAadhaarNo;
+                                document.getElementById("lblCustomerName").innerHTML = response.data.customerName;
+                                document.getElementById("lblStan").innerHTML = response.data.stan;
+                                document.getElementById("lblRRN").innerHTML = response.data.rrn;
+                                document.getElementById("lblUIDAICode").innerHTML = response.data.uidaiAuthCode;
+                                document.getElementById("lblTransactionStatus").innerHTML = response.data.status;
+                                document.getElementById("lblAccountBalance").innerHTML = "₹" + response.data.acBalance;
+                                $("#btnmodalfinalResponse").trigger("click");
+                                $("#aadharCustomerDetailsPopUp").hide();
+                            }
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                }
+            }
         }
     }
+
 
 
 
@@ -1499,9 +1827,9 @@
                         var mobileNumber = '@ViewBag.MobileNo';
                         aepsAgentId = "RED" + mobileNumber;
 
-                        GetLocation();
-                        lati = $("#hdnLong").val();
-                        long = $("#hdnLat").val();
+                        //GetLocation();
+                        //lati = $("#hdnLong").val();
+                        //long = $("#hdnLat").val();
 
                         if (transactionMode == "be" || transactionMode == "ms") {
                             document.getElementById("txtAmountCashWithdrawal").style.display = "none";
@@ -1509,19 +1837,10 @@
                         else {
                             document.getElementById("txtAmountCashWithdrawal").style.display = "block";
                         }
-
+                        bankList();
 
                         $("#btnAadharCustomerDetails").trigger("click");
                         $("#deviceModal").hide();
-                        //$.ajax({
-                        //    url: "/Aeps/getAddress",
-                        //    data: { 'lat': $("#hdnLong").val(), 'lon': $("#hdnLat").val() },
-                        //    type: 'POST',
-                        //    dataType: 'json',
-                        //    success: function (responsedata) {
-                        //        debugger;
-                        //    }
-                        //})
                         $("#hdnLong1").val();
                         $("#hdnLat1").val();
                     }
@@ -1543,7 +1862,9 @@
                     window.location.href = data.url;
                 }
                 else if (data.statuscode == "ERR") {
-
+                    //document.getElementById("headingfaceLiveLinessError").innerHTML=data.message;
+                    $("#headingfaceLiveLinessError").html(data.message);
+                    $("#btnFaceLiveLinessError").trigger("click");
                 }
 
             }
@@ -1553,11 +1874,12 @@
 
 
 
-    $(document).ready(function () {
+    function bankList() {
         $.ajax({
-            type: "POST",
             url: "/Aeps/AllBankList",
-            contentType: "html",
+            data: { 'BankNameSelected': bankName },
+            type: 'POST',
+            dataType: 'json',
             success: function (response) {
                 debugger;
 
@@ -1577,7 +1899,7 @@
 
                     for (var i = 0; i < response.length; i++) {
 
-                        options += '<option value="' + response[i].id + '">' + response[i].bankName + '</option>';
+                        options += '<option value="' + response[i].iin + '">' + response[i].bankName + '</option>';
 
                     }
                     $('#BId').append(options);
@@ -1585,7 +1907,9 @@
             }
 
         });
-    });
+    }
+
+
 
 
     function openCity(evt, cityName) {
@@ -2007,31 +2331,29 @@
             }
         });
     }
-                                                //function getLocation() {
-                                                //    debugger;
-                                                //    if (navigator.geolocation) {
-                                                //        navigator.geolocation.getCurrentPosition(showPosition);
-                                                //    } else {
-                                                //        alert("Geolocation is not supported by this browser.");
-                                                //    }
-                                                //}
+    //function getLocation() {
+    //    debugger;
+    //    if (navigator.geolocation) {
+    //        navigator.geolocation.getCurrentPosition(showPosition);
+    //    } else {
+    //        alert("Geolocation is not supported by this browser.");
+    //    }
+    //}
 
-                                                //function showPosition(position) {
-                                                //    debugger;
-                                                //    $("#hdnLat").val(position.coords.latitude);
-                                                //    $("#hdnLong").val(position.coords.longitude);
-                                                //}
+    //function showPosition(position) {
+    //    debugger;
+    //    $("#hdnLat").val(position.coords.latitude);
+    //    $("#hdnLong").val(position.coords.longitude);
+    //}
 </script>
 <script>
     $(document).ready(function () {
-        debugger;
         var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
         Aeps(myValue); // Pass the value to a function called 'myFunction'
     });
 
     function Aeps(e) {
         // code
-        debugger;
         var ServiceId = e;
         $.ajax({
             url: "/DMT2/SelfHelp",
@@ -2042,13 +2364,40 @@
                 debugger;
                 for (var i = 0; i < data.length; i++) {
                     $(".Self_help").append('<div class="controls">\
-                                <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+                                                    <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
 
                 }
             }
 
         });
     }
+    $(function () {
+        $("#txtAmountCashWithdrawal").keyup(function (e) {
+            var customerAmount = $("#txtAmountCashWithdrawal").val();
+            if (customerAmount < 100 || customerAmount > 10000) {
+                $("#errtxtAmountCashWithdrawal").html("Please insert amount between 100 to 10000 Rupees.");
+            }
+        });
+    });
 
+                        //function ValidateAlphanumericsrAccount(e) {
+                        //    var keyCode = e.keyCode || e.which;
+                        //    var errtxtAmountCashWithdrawal=document.getElementById("errtxtAmountCashWithdrawal");
+                        //    var Amount = document.getElementById("txtAmountCashWithdrawal");
+                        //    errtxtAmountCashWithdrawal.innerHTML = "";
+                        //    var regex = /^[0-9]+$/;
+                        //    var isValid = regex.test(String.fromCharCode(keyCode));
+                        //    if (!isValid) {
+
+                        //        errtxtAmountCashWithdrawal.innerHTML = "Only Numbers allowed.";
+                        //        $('#errtxtAmountCashWithdrawal').css('margin-left', '-109px');
+                        //        $('#errtxtAmountCashWithdrawal').css('color', 'red');
+
+                        //    }
+                        //    else {
+                        //        errtxtAmountCashWithdrawal.innerHTML = "";
+                        //    }
+                        //    return isValid;
+                        //}
 
 </script>
