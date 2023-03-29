@@ -74,9 +74,9 @@
 
     public class Kyc
     {
-        public string KycStatus { get; set; }
+        public bool KycStatus { get; set; }
         public string ExceptionKYCBankName { get; set; }
-        public string ExceptionKYCRoutingStatus { get; set; }
+        public bool ExceptionKYCRoutingStatus { get; set; }
     }
 
     public class BaseAepsRoutingDetailsResponseModel

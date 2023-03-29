@@ -247,7 +247,7 @@ namespace Project_Redmil_MVC.Controllers.UserDashoard
             {
                 obj.PlanId = PlanId;
                 obj.CouponCode = CouponCode;
-                obj.Userid = "2084";
+                obj.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (addsender|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString(ApiName.ValidateSubscriptionCouponCode, Checksum.checksumKey, obj.Userid, obj.PlanId, obj.CouponCode);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);

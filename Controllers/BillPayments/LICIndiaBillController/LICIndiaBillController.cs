@@ -44,7 +44,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
             {
                 requestModel.canumber = caNumber;
                 requestModel.ad1 = email;
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (fetchlicbill|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("LIC", Checksum.checksumKey, requestModel.UserId, requestModel.canumber, requestModel.ad1);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -78,7 +78,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
                                 try
                                 {
                                     requestmodel.canumber = caNumber;
-                                    requestmodel.Userid = "2084";
+                                    requestmodel.Userid = HttpContext.Session.GetString("Id").ToString();
                                     requestmodel.amount = getLICIndiaBillResponseModel.amount;
                                     requestmodel.Wallet = Payment;
                                     requestmodel.ad1 = email;
@@ -191,7 +191,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);

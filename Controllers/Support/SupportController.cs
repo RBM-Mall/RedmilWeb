@@ -416,7 +416,7 @@ namespace Project_Redmil_MVC.Controllers.Support
             RmDetailRequestModel obj = new RmDetailRequestModel();
             try
             {
-                obj.UserId = "2084";
+                obj.UserId = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId));
                 string input = Checksum.MakeChecksumString("GetRMDetailsUserwise", Checksum.checksumKey, obj.UserId);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);

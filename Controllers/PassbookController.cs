@@ -1758,7 +1758,7 @@ namespace Project_Redmil_MVC.Controllers
                             {
                                 objfinal.ModeId = "3";
                             }
-                            objfinal.UserId = "2180";
+                            objfinal.UserId = HttpContext.Session.GetString("Id").ToString();
                             objfinal.ServiceId = ServiceId;
                             objfinal.OpId = OpId;
                             objfinal.BankId = BankId;

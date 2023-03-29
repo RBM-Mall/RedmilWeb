@@ -197,7 +197,7 @@ namespace Project_Redmil_MVC.Controllers
             BusinessTranscationRequestReport requestModel = new BusinessTranscationRequestReport();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
 
 
                 requestModel.ServiceType = ReplaceServices(subCat);
@@ -313,7 +313,7 @@ namespace Project_Redmil_MVC.Controllers
                 requestModel.Status = "";
                 requestModel.PageNumber = "1";
 
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
 
                 requestModel.SortBy = "desc";
                 requestModel.ServiceType = ReplaceServices(subCat);
@@ -2383,7 +2383,8 @@ namespace Project_Redmil_MVC.Controllers
                 requestModel.Status = "";
                 requestModel.PageNumber = "1";
 
-                requestModel.UserId = "2084";
+                //requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
 
                 requestModel.SortBy = "desc";
                 requestModel.ServiceType = "FinoDMT";
@@ -2503,7 +2504,8 @@ namespace Project_Redmil_MVC.Controllers
             try
             {
                 //getBalanceRequestModel.Userid = "636854";//Faisal Siddiqui ID
-                getBalanceRequestModel.Userid = "2084";//Sagar Sir ID
+                //getBalanceRequestModel.Userid = "2084";//Sagar Sir ID
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
@@ -2535,7 +2537,7 @@ namespace Project_Redmil_MVC.Controllers
                         PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
                         try
                         {
-                            requestModel.UserId = "2084";
+                            requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                             #region Checksum (CheckUTIAgentStatus|Unique Key|UserId|ServiceId)
 
                             string inputN = Checksum.MakeChecksumString("CheckUTIAgentStatus", Checksum.checksumKey, requestModel.UserId);
@@ -2619,7 +2621,7 @@ namespace Project_Redmil_MVC.Controllers
             PanCardRegistrationRequestModel requestModel = new PanCardRegistrationRequestModel();
             try
             {
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (CheckUTIAgentStatus|Unique Key|UserId|ServiceId)
                 string inputN = Checksum.MakeChecksumString("CheckUTIAgentStatus", Checksum.checksumKey, requestModel.UserId);
                 string CheckSumN = Checksum.ConvertStringToSCH512Hash(inputN);
@@ -2682,7 +2684,7 @@ namespace Project_Redmil_MVC.Controllers
             {
                 requestModel.Status = "";
                 requestModel.PageNumber = "1";
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.SortBy = "desc";
                 requestModel.ServiceType = "BusBooking";
                 requestModel.Report = "false";
@@ -2771,7 +2773,7 @@ namespace Project_Redmil_MVC.Controllers
             CancelBusTicketsRequestModel request = new CancelBusTicketsRequestModel();
             try
             {
-                request.Userid = "2084";
+                request.Userid = HttpContext.Session.GetString("Id").ToString();
                 request.tin = tin;
                 request.seatsToCancel = seat;
                 #region Checksum (SeatSellerCancelBooking|Unique Key|UserId)

@@ -88,7 +88,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.HousingSocietyBillControll
                             GetBBPSBillsTmpRequestModel requestmodel = new GetBBPSBillsTmpRequestModel();
                             try
                             {
-                                requestmodel.Userid = "2084";
+                                requestmodel.Userid = HttpContext.Session.GetString("Id").ToString();
                                 requestmodel.Mobileno = Number;
                                 requestmodel.BillerId = dataBillerInfo.FirstOrDefault().Bbps;
                                 string inputParamKey = "";
@@ -225,8 +225,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.HousingSocietyBillControll
                                                 }
                                                 requestPayModel.Amount = FinalAmount;
                                                 requestPayModel.Mode = "App";
-                                                requestPayModel.Userid = "2084";
-                                                string UseridCheck = "2084";
+                                                requestPayModel.Userid = HttpContext.Session.GetString("Id").ToString();
+                                                string UseridCheck = HttpContext.Session.GetString("Id").ToString();
                                                 //requestPayModel.Token = "";
 
                                                 #region Checksum (PayBBPSBillsTmp|Unique Key|UseridCheck|Mobileno|Mode|Amount|RequestID|BillerId|InputParam1|InputParam2)
@@ -514,7 +514,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.HousingSocietyBillControll
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
             try
             {
-                getBalanceRequestModel.Userid = "2084";
+                getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (GetBalance|Unique Key|UserId)
                 string input = Checksum.MakeChecksumString("Getbalance", Checksum.checksumKey, getBalanceRequestModel.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
