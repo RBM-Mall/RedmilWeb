@@ -58,9 +58,10 @@ namespace Project_Redmil_MVC.Controllers
             {
                 dynamic obj = GetBalance();
                 ViewBag.MobileNo = HttpContext.Session.GetString("Mobile").ToString();
+                ViewBag.AepsAgentId = HttpContext.Session.GetString("AepsAgentId").ToString();
                 ViewBag.Balance = obj.Value[0].MainBal;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
                 requestModel1.ExceptionMessage = ex;
@@ -74,8 +75,8 @@ namespace Project_Redmil_MVC.Controllers
                 var result = response.Content;
                 return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-            
-            return View(); 
+
+            return View();
         }
 
         #region GetBalance
@@ -145,53 +146,30 @@ namespace Project_Redmil_MVC.Controllers
 
         #region GetAepsKycDetailsNew
         //First API for Get KYC details
-        public IActionResult GetAepsKycDetailsNew(string radioVal, string bankName,string later)
+        public IActionResult GetAepsKycDetailsNew(string radioVal, string bankName, string later)
         {
-            //return Json(new
-            //{
-            //    data = "ms",
-            //    //bankName = aepsRoutingDetailsStatus1.FirstOrDefault().ExceptionKYCBankName,
-            //    bankName = "Yes Bank",
-            //    Status = "RatioKYCFalse",
-            //});
-
             var baseUrl = "https://api.redmilbusinessmall.com";
             AepsKycDetailsNewRequestModel obj = new AepsKycDetailsNewRequestModel();
-
             AepsRoutingDetailsRequestModel aepsRoutingDetailsReq = new AepsRoutingDetailsRequestModel();
             AepsRoutingDetailsResponseModel aepsRoutingDetailsResp = new AepsRoutingDetailsResponseModel();
-
-            Kyc kyc = new Kyc();
-            Bank bank = new Bank();
             List<Bank> Data1 = new List<Bank>();
-
             List<AepsKycDetailsNewResponseModel> aepsResponses = new List<AepsKycDetailsNewResponseModel>();
             List<AepsKycDetailsStatusPendingResponseModel> aepsKycDetailsStatusPendingResponses = new List<AepsKycDetailsStatusPendingResponseModel>();
 
             try
             {
-                //obj.UserId = "599851"; //prahsant Yadav
-                //obj.UserId = "2180"; //Rahul Sir
                 obj.UserId = HttpContext.Session.GetString("Id").ToString();
-                //obj.UserId = "2084";
-                //obj.UserId = "721842"; //Rishi Redmil
-
-
-
                 #region Checksum (GetAepsKycDetailsNew|Unique Key|UserId|)
                 string input = Checksum.MakeChecksumString("GetAepsKycDetailsNew", Checksum.checksumKey, obj.UserId);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 #endregion
 
                 obj.checksum = CheckSum;
-
-
                 var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetAepsKycDetailsNew");
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
                 var json = JsonConvert.SerializeObject(obj);
                 request.AddJsonBody(json);
-
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
                 if (string.IsNullOrEmpty(result))
@@ -206,7 +184,6 @@ namespace Project_Redmil_MVC.Controllers
                     if (aepsStatusCode == "TXN")
                     {
                         var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(aepsKyc));
-
                         aepsResponses = aepsKycStatus.ToList();
 
                         try
@@ -215,13 +192,9 @@ namespace Project_Redmil_MVC.Controllers
                             {
                                 if (aepsKycStatus != null)
                                 {
-                                    //var aepsKycStatusData = aepsKycStatus.Where(x => x.Status == "Completed");
-                                    if (aepsKycStatus.FirstOrDefault().Status == "Completed" || later=="1")
+                                    if (aepsKycStatus.FirstOrDefault().Status == "Completed" || later == "1")
                                     {
-                                        //aepsRoutingDetailsReq.UserId = "599851";
-                                        //aepsRoutingDetailsReq.UserId = "2180";
                                         aepsRoutingDetailsReq.UserId = HttpContext.Session.GetString("Id").ToString();
-                                        //aepsRoutingDetailsReq.UserId = "2084";
                                         aepsRoutingDetailsReq.Token = "";
                                         if (radioVal == "Cash Withdrawal")
                                         {
@@ -239,14 +212,11 @@ namespace Project_Redmil_MVC.Controllers
                                         {
                                             aepsRoutingDetailsReq.TransactionType = "Invalid TXN Type";
                                         }
-
                                         var client1 = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetAepsRoutingDetails");
-
                                         var request1 = new RestRequest(Method.POST);
                                         request1.AddHeader("Content-Type", "application/json");
                                         var json1 = JsonConvert.SerializeObject(aepsRoutingDetailsReq);
                                         request1.AddJsonBody(json1);
-
                                         IRestResponse response1 = client1.Execute(request1);
                                         var result1 = response1.Content;
                                         if (string.IsNullOrEmpty(result1))
@@ -279,7 +249,6 @@ namespace Project_Redmil_MVC.Controllers
                                                                 BankLogo2 = baseUrl + item.BankLogo2,
                                                                 BankName3 = item.BankName3,
                                                                 BankLogo3 = baseUrl + item.BankLogo3
-
                                                             });
                                                         }
 
@@ -309,7 +278,7 @@ namespace Project_Redmil_MVC.Controllers
 
                                                 else if (aepsKycData1.Status == "Ratio" || aepsKycData1.Status == "Exception")
                                                 {
-                                                    if (aepsRoutingDetailsStatus1.FirstOrDefault().KycStatus==false && aepsRoutingDetailsStatus1.FirstOrDefault().ExceptionKYCRoutingStatus == true)
+                                                    if (aepsRoutingDetailsStatus1.FirstOrDefault().KycStatus == false && aepsRoutingDetailsStatus1.FirstOrDefault().ExceptionKYCRoutingStatus == true)
                                                     {
                                                         if (radioVal == "Cash Withdrawal")
                                                         {
@@ -332,186 +301,31 @@ namespace Project_Redmil_MVC.Controllers
                                                     }
 
 
-
-
-
-
-
-                                                    //Status Ratio aayega to direct Select Device
-                                                    if (aepsRoutingDetailsStatus2 != null)
+                                                    else
                                                     {
-                                                        foreach (var item in aepsRoutingDetailsStatus2)
-                                                        {
-                                                            Data1.Add(new Bank
-                                                            {
-                                                                BankName1 = item.BankName1,
-                                                                BankLogo1 = baseUrl + item.BankLogo1,
-                                                            });
-                                                        }
+                                                        var BankName1 = aepsRoutingDetailsStatus2.FirstOrDefault().BankName1;
                                                         if (radioVal == "Cash Withdrawal")
                                                         {
                                                             radioVal = "cw";
-                                                            //return Json(radioVal);
                                                         }
                                                         else if (radioVal == "Balance Enquiry")
                                                         {
                                                             radioVal = "be";
-                                                            //return Json(radioVal);
                                                         }
                                                         else if (radioVal == "Mini Statement")
                                                         {
                                                             radioVal = "ms";
-                                                            //return Json(radioVal);
                                                         }
                                                         return Json(new
                                                         {
-                                                            data = Data1,
-                                                            data2 = radioVal,
-                                                            Status = status,
-                                                        });
-                                                    }
-                                                }
-
-                                                else if (aepsKycData1.Status == "Exception")
-                                                {
-                                                    //Status Exception aayega to direct Select Device
-                                                    if (aepsRoutingDetailsStatus2 != null)
-                                                    {
-                                                        foreach (var item in aepsRoutingDetailsStatus2)
-                                                        {
-                                                            Data1.Add(new Bank
-                                                            {
-                                                                BankName1 = item.BankName1,
-                                                                BankLogo1 = baseUrl + item.BankLogo1,
-                                                            });
-                                                        }
-
-                                                        if (radioVal == "Cash Withdrawal")
-                                                        {
-                                                            radioVal = "cw";
-                                                            //return Json(radioVal);
-                                                        }
-                                                        else if (radioVal == "Balance Enquiry")
-                                                        {
-                                                            radioVal = "be";
-                                                            //return Json(radioVal);
-                                                        }
-                                                        else if (radioVal == "Mini Statement")
-                                                        {
-                                                            radioVal = "ms";
-                                                            //return Json(radioVal);
-                                                        }
-                                                        return Json(new
-                                                        {
-                                                            data = Data1,
-                                                            data2 = radioVal,
-                                                            Status = status,
+                                                            data = radioVal,
+                                                            bankName = BankName1,
+                                                            Status = "RatioKYCTrue",
                                                         });
                                                     }
                                                 }
                                             }
-
-                                            //kyc = aepsRoutingDetailsStatus1.ToList();
-
-                                            var bankName1 = aepsRoutingDetailsStatus2.FirstOrDefault().BankName1;
-                                            var bankLogo1 = aepsRoutingDetailsStatus2.FirstOrDefault().BankLogo1;
-                                            var bankName2 = aepsRoutingDetailsStatus2.FirstOrDefault().BankName2;
-                                            var bankLogo2 = aepsRoutingDetailsStatus2.FirstOrDefault().BankLogo2;
-                                            var bankName3 = aepsRoutingDetailsStatus2.FirstOrDefault().BankName3;
-                                            var bankLogo3 = aepsRoutingDetailsStatus2.FirstOrDefault().BankLogo3;
-                                            var kycStatus = aepsRoutingDetailsStatus1.FirstOrDefault().KycStatus;
-                                            var exceptionKYCBankName = aepsKycData1.Kyc.FirstOrDefault().ExceptionKYCBankName;
-                                            var exceptionKycRoutingStatus = aepsRoutingDetailsStatus1.FirstOrDefault().ExceptionKYCRoutingStatus;
-                                            if (kycStatus.Equals("False") && exceptionKycRoutingStatus.Equals("True"))
-                                            {
-                                                if (radioVal == "Cash Withdrawal")
-                                                {
-                                                    var eBankName = exceptionKYCBankName;
-                                                    radioVal = "cw";
-                                                    return Json(new { data = eBankName, data2 = radioVal }); // To redirect to the page select device
-                                                }
-                                                else if (radioVal == "Balance Enquiry")
-                                                {
-                                                    var eBankName = exceptionKYCBankName;
-                                                    radioVal = "be";
-                                                    return Json(new { data = eBankName, data2 = radioVal }); // To redirect to the page select device
-                                                }
-                                                else if (radioVal == "Mini Statement")
-                                                {
-                                                    var eBankName = exceptionKYCBankName;
-                                                    radioVal = "ms";
-                                                    return Json(new { data = eBankName, data2 = radioVal }); // To redirect to the page select device
-                                                }
-
-                                                //return Json(new { data = eBankName, data2 = radioVal }); // To redirect to the page select device
-                                                //else
-                                                //{
-                                                //    errMsg = "Invalid TXN Type";
-                                                //}
-
-
-                                                // for select device modal pop up
-
-                                                else
-                                                {
-                                                    string? bankName11 = bankName1.ToString();
-                                                    string? bankLogo11 = bankLogo1.ToString(); // select device me bank name1 and TT jayega kewal
-
-                                                    //string? bankName12 = bankName2.ToString();
-                                                    //string? bankLogo12 = bankLogo2.ToString();
-                                                    //string? bankName13 = bankName2.ToString();
-                                                    //string? bankLogo13 = bankLogo2.ToString();
-
-                                                    if (aepsRoutingDetailsStatus2 != null)
-                                                    {
-                                                        foreach (var item in aepsRoutingDetailsStatus2)
-                                                        {
-                                                            Data1.Add(new Bank
-                                                            {
-                                                                BankName1 = item.BankName1,
-                                                                BankLogo1 = item.BankLogo1
-                                                                //BankName2 = item.BankName2,
-                                                                //BankLogo2 = item.BankLogo2,
-                                                                //BankName3 = item.BankName3,
-                                                                //BankLogo3 = item.BankLogo3
-                                                            });
-                                                        }
-
-                                                        if (radioVal == "Cash Withdrawal")
-                                                        {
-                                                            radioVal = "cw";
-                                                            //return Json(radioVal);
-                                                        }
-                                                        else if (radioVal == "Balance Enquiry")
-                                                        {
-                                                            radioVal = "be";
-                                                            //return Json(radioVal);
-                                                        }
-                                                        else if (radioVal == "Mini Statement")
-                                                        {
-                                                            radioVal = "ms";
-                                                            //return Json(radioVal);
-                                                        }
-
-                                                        return Json(new { data = Data1, data2 = radioVal });
-                                                    }
-
-                                                    //else
-                                                    //{
-                                                    //    errMsg = "Invalid TXN Type";
-                                                    //}
-
-                                                }
-                                            }
-
-                                            
-
-                                            //if(kycStatus.Equals("True") && exceptionKycRoutingDetails.Equals("True"))
-                                            //{
-                                            // Will do later.
-                                            //}
                                         }
-
                                     }
                                     else if (aepsKycStatus.FirstOrDefault().Status == "Pending")
                                     {
@@ -522,26 +336,20 @@ namespace Project_Redmil_MVC.Controllers
                                                 Status = item.Status,
                                                 BankLogo = baseUrl + item.BankLogo,
                                                 BankName = item.BankName,
-                                                //getBankResponseModels = GetBankRe,
-                                                //getBalanceResponseModels=  lstdata,
                                             });
                                         }
-                                        //return Json(aepsKycDetailsStatusPendingResponses);
                                         return Json(new
                                         {
                                             data = aepsKycDetailsStatusPendingResponses,
                                             data2 = radioVal,
                                             Status = "Pending",
                                         });
-                                        //return Json(aepsKycStatus);
                                     }
                                 }
                             }
-
-
                             else if (aepsStatusCode == "ERR")
                             {
-                               
+
                             }
                             else
                             {
@@ -564,7 +372,7 @@ namespace Project_Redmil_MVC.Controllers
                             return RedirectToAction("ErrorForExceptionLog", "Error");
                         }
                     }
-                    return View(); //aepsResponses
+                    return View();
                 }
             }
 
@@ -591,24 +399,13 @@ namespace Project_Redmil_MVC.Controllers
         // After Device Selection hitting below api
         public JsonResult AaadharPicVerification(string radioValDevice, string transMode, string device, string bank)
         {
-            //var baseUrl = "https://api.redmilbusinessmall.com";
             AaadharPicVerificationRequestModal adharPicFaceBioRequest = new AaadharPicVerificationRequestModal();
-
-            //AepsRoutingDetailsRequestModel aepsRoutingDetailsReq = new AepsRoutingDetailsRequestModel();
-            //AepsRoutingDetailsResponseModel aepsRoutingDetailsResp = new AepsRoutingDetailsResponseModel();
-
-            //Kyc kyc = new Kyc();
-            //Bank bank = new Bank();
-            //var Data1 = new List<Bank>();
 
             List<AaadharPicVerificationResponseModal> adharPicFaceBioResponse = new List<AaadharPicVerificationResponseModal>();
             try
             {
-                //adharPicFaceBioRequest.Userid = "2180"; // 2114, 721842
                 adharPicFaceBioRequest.Userid = HttpContext.Session.GetString("Id").ToString();
-
                 #region Checksum (AaadharPicVerification|Unique Key|UserId|)
-                //string input = Checksum.MakeChecksumString("ViewPayOutCategory", obj.UserId, obj.Token);
                 string input = Checksum.MakeChecksumString("AaadharPicVerification", Checksum.checksumKey, adharPicFaceBioRequest.Userid);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 #endregion
@@ -618,7 +415,6 @@ namespace Project_Redmil_MVC.Controllers
                 if (radioValDevice != null)
                 {
                     var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AaadharPicVerification");
-                    //var client = new RestClient($"{Baseurl}{ApiName.GetAgentKycId}");
                     var request = new RestRequest(Method.POST);
                     request.AddHeader("Content-Type", "application/json");
                     var json = JsonConvert.SerializeObject(adharPicFaceBioRequest);
@@ -634,10 +430,6 @@ namespace Project_Redmil_MVC.Controllers
                     {
                         var adharPicFaceBioData = JsonConvert.DeserializeObject<AaadharPicVerificationResponseModal>(response.Content);
                         var adharPicFaceBioStatusCode = adharPicFaceBioData.Statuscode;
-                        //var aepsStatusCode = aepsKycData.Statuscode;
-                        //var aepsKycStatus = JsonConvert.DeserializeObject<List<AepsKycDetailsNewResponseModel>>(JsonConvert.SerializeObject(result));
-                        //adharPicFaceBioResponse = adharPicFaceBioData.ToList();
-
                         if (adharPicFaceBioStatusCode == "TXN")
                         {
                             return Json(adharPicFaceBioData);
@@ -677,8 +469,6 @@ namespace Project_Redmil_MVC.Controllers
                 var result = response.Content;
                 return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
-
-
         }
         #endregion
 
@@ -687,17 +477,12 @@ namespace Project_Redmil_MVC.Controllers
 
 
         #region FaceLiveLiness
-        public JsonResult FaceLiveLiness(string showimage,string transMode, string device,string bank,string bankLogo)
+        public JsonResult FaceLiveLiness(string showimage, string transMode, string device, string bank, string bankLogo)
         {
-
             AepsFaceVerificationRequestModel requestobj = new AepsFaceVerificationRequestModel();
             try
             {
-                //requestobj.Userid = HttpContext.Session.GetString("Id").ToString();
-                //requestobj.Userid = "599851";
-                //requestobj.Userid = "2180";//Rahul Sir
                 requestobj.Userid = HttpContext.Session.GetString("Id").ToString();
-                //requestobj.Userid = "721842";
                 requestobj.FileName = showimage;
                 var client = new RestClient($"{Baseurl}{ApiName.FaceLiveliNess}");
                 var request = new RestRequest(Method.POST);
@@ -718,7 +503,7 @@ namespace Project_Redmil_MVC.Controllers
                         HttpContext.Session.SetString("TransactionMode", transMode);
                         HttpContext.Session.SetString("DeviceName", device);
                         HttpContext.Session.SetString("BankName", bank);
-                        return Json(new { Result = "RedirectToCustomer", url = Url.Action("CustomerDetails", "Aeps")});
+                        return Json(new { Result = "RedirectToCustomer", url = Url.Action("CustomerDetails", "Aeps") });
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {
@@ -795,7 +580,7 @@ namespace Project_Redmil_MVC.Controllers
                 //string retailerTxnId = userVerificationWithPaytmRequest.userId + " " + DateTime.Now.ToString();
                 string retailerTxnId = DateTime.Now.Ticks + "" + userVerificationWithPaytmRequest.userId;
                 //char ss = Convert.ToChar(34);
-                if(deBankName=="ICICI Bank")
+                if (deBankName == "ICICI Bank")
                 {
                     userVerificationWithPaytmData = new Dictionary<string, string>()
                     {
@@ -818,7 +603,7 @@ namespace Project_Redmil_MVC.Controllers
                         //["TxnTypeCode"] = "07",//Mini Statement
                         //["TxnTypeCode"] = "01",//Cash Withdrwal
                         //["TxnTypeCode"] = "31",//Balance Enquiry
-                        ["TxnTypeCode"]= transactionValue,
+                        ["TxnTypeCode"] = transactionValue,
                         ["AppId"] = "1",
                         ["AppVersion"] = "2.0.0",
                         ["CustomerConsent"] = "1",
@@ -838,7 +623,7 @@ namespace Project_Redmil_MVC.Controllers
                         ["Param10"] = string.Empty
                     };
 
-                   // userVerificationWithPaytmData.Add("userid", "2180");
+                    // userVerificationWithPaytmData.Add("userid", "2180");
                 }
                 else
                 {
@@ -885,7 +670,7 @@ namespace Project_Redmil_MVC.Controllers
                     };
                 }
                 //Dictionary<string, string> userVerificationWithPaytmData = new Dictionary<string, string>()
-                
+
 
                 string dictionaryData = JsonConvert.SerializeObject(userVerificationWithPaytmData);
 
@@ -943,7 +728,7 @@ namespace Project_Redmil_MVC.Controllers
                     MakeAepsTransactionRequestModel requestModelNew = new MakeAepsTransactionRequestModel();
                     try
                     {
-                        
+
                         //requestModelNew.Userid = "599851";//PRASHANT YADAV
                         //requestModelNew.Userid = "2180";/RahulSir
                         requestModelNew.Userid = HttpContext.Session.GetString("Id").ToString();
@@ -961,18 +746,7 @@ namespace Project_Redmil_MVC.Controllers
                         //requestModelNew.TxnType = "07";//Mini Statement
                         //requestModelNew.AgentID = "RED7355558471";
                         requestModelNew.TxnType = transactionValue;
-                        if (deBankName == "ICICI Bank")
-                        {
-                            //requestModelNew.AgentID = "RED7355558471";
-                            requestModelNew.AgentID = aepsAgentId;
-                        }
-                        else
-                        {
-                            //requestModelNew.AgentID = "Red735558471";
-                            requestModelNew.AgentID = aepsAgentId;
-                        }
-                            
-                        //requestModelNew.AgentID = "RED8527698920";
+                        requestModelNew.AgentID = aepsAgentId;
                         requestModelNew.BCLocation = Address;
                         //requestModelNew.Device = "Mantra";
                         requestModelNew.Device = deviceName;
@@ -1110,7 +884,7 @@ namespace Project_Redmil_MVC.Controllers
                             }
                         }
 
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -1136,7 +910,7 @@ namespace Project_Redmil_MVC.Controllers
         }
         #endregion
 
-        
+
 
         //public IActionResult CheckFingerprintAvailability()
         //{
@@ -1206,7 +980,7 @@ namespace Project_Redmil_MVC.Controllers
                 requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.Token = "";
 
-                if(BankNameSelected.Equals("Yes Bank"))
+                if (BankNameSelected.Equals("Yes Bank"))
                 {
                     #region Checksum (UserId|Token|checksum)
 
@@ -1257,7 +1031,7 @@ namespace Project_Redmil_MVC.Controllers
                     return Json(Data1);
 
                 }
-                else if(BankNameSelected.Equals("ICICI Bank") || BankNameSelected.Equals("Fingpay"))
+                else if (BankNameSelected.Equals("ICICI Bank") || BankNameSelected.Equals("Fingpay"))
                 {
                     #region Checksum (UserId|Token|checksum)
 
@@ -1311,9 +1085,9 @@ namespace Project_Redmil_MVC.Controllers
                 }
                 return Json("");
 
-               
 
-                
+
+
             }
             catch (Exception ex)
             {
@@ -1356,7 +1130,7 @@ namespace Project_Redmil_MVC.Controllers
                 //finalResponse2 = finalResponse2.Replace("< ", "<").Replace(" >", ">").Replace("</ ", "</").Replace("? xml", "?xml");
 
                 //xml.LoadXml(finalResponse2);
-                
+
                 //XmlNodeList xnList = xml.SelectNodes("/PidData/Data");
                 //string X = string.Empty;
 
@@ -1424,7 +1198,7 @@ namespace Project_Redmil_MVC.Controllers
                 string ID = HttpContext.Session.GetString("TransactionMode");
                 return ID;
             }
-            
+
             return "";
 
         }

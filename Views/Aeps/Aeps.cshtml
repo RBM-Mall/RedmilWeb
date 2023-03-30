@@ -248,7 +248,7 @@
                                 <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES" style="text-align: center;" />
                                 <b class="box_choose_bank_input_para"></b>
                             </div>
-                            <div class="col-md-4 box_choose_bank">
+                            <div class="col-md-4 box_choose_bank" style="display:none;">
                                 <img src="https://api.redmilbusinessmall.com/OPImg/PaytmNew.png" class="box_choose_bank_image" />
                                 <label class="ppb box_choose_bank_label" id="lblppb">  </label>
                                 <input type="radio" class="rdbBank" name="rdbBankName" id="rdbPAYTMBank" value="Paytm" style="text-align: center;" />
@@ -1122,10 +1122,14 @@
                         $("#btndeviceModal").trigger("click");
                     }
 
+                    else if(response.status=="RatioKYCTrue"){
+                        transactionMode = response.data;
+                        bankName = response.bankName;
+                        $("#btndeviceModal").trigger("click");
+                    }
 
                     //When Response is Exception First Time
                     else if (response.status == "Exception") {
-
                         transactionMode = response.data;
                         bankName = response.bankName;
                         $("#btndeviceModal").trigger("click");
@@ -1148,7 +1152,7 @@
 
     function chooseBank() {
         debugger;
-        var transactionvalue = $("#hdnTransactionMode").val()
+        var transactionvalue = $("#hdnTransactionMode").val();
         $("#hdnTransactionModeDevice").val(transactionvalue);
 
         var data;
@@ -1162,7 +1166,7 @@
 
                 data = ele[i].value;
         }
-        if (data == undefined || data == '' || data == null) {
+        if (data == undefined || data == '' || data == null||data=="") {
             document.getElementById("errbank").innerHTML = "Please Select Bank";
             return false;
         }
@@ -1224,6 +1228,8 @@
                         $("#deviceModal").hide();
                     }
                     else if (response.result == 'RedirectToCustomer') {
+                        debugger;
+
                         if (bank == "ICICI Bank" || bank == "Fingpay") {
                             var img = document.getElementById("img_SelectedBank");
                             img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
@@ -1254,9 +1260,8 @@
                         else if (bank == "Yes Bank") {
                             var img = document.getElementById("img_SelectedBank");
                             img.src = "/css/Img_Aeps/Yes_Bank_logo.jpeg";
-
-                            var mobileNumber = '@ViewBag.MobileNo';
-                            aepsAgentId = "Red" + mobileNumber;
+                            debugger;
+                            aepsAgentId = '@ViewBag.AepsAgentId';
                             bankList();
                             if (transactionMode == "cw") {
                                 document.getElementById("txtAmountCashWithdrawal").style.display = "block";
@@ -1301,9 +1306,7 @@
                         else if (bank == "Yes Bank") {
                             var img = document.getElementById("img_SelectedBank");
                             img.src = "/css/Img_Aeps/Yes_Bank_logo.jpeg";
-
-                            var mobileNumber = '@ViewBag.MobileNo';
-                            aepsAgentId = "Red" + mobileNumber;
+                            aepsAgentId = '@ViewBag.AepsAgentId';
                             bankList();
                             if (transactionMode == "cw") {
                                 document.getElementById("txtAmountCashWithdrawal").style.display = "block";
@@ -1327,7 +1330,6 @@
                 }
             });
         }
-
     };
 
     function GetLocation() {
