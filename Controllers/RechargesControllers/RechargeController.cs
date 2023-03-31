@@ -25,6 +25,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             {
                 return RedirectToAction("ErrorForLogin", "Error");
             }
+            ViewBag.MallName = HttpContext.Session.GetString("Mallname").ToString();
             return View();
         }
 
