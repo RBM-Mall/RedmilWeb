@@ -575,6 +575,12 @@
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
                     }
+                    else if(response.status=="Insufficient Balance"){
+                        $("#modalChoosePayment").hide();
+                        $("#btninsufficientBalance").trigger("click");
+                        
+                    }
+                    
 
                     else if (response.statuscode == "TXN") {
 

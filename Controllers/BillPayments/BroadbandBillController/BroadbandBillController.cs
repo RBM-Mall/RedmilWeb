@@ -212,6 +212,8 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.BroadbandBillController
                                                 requestPayModel.type = "Pay";
                                                 requestPayModel.billValidationStatus = lstOpResponse.billerInfo.Where(x => x.Id == Operator).FirstOrDefault().BillValidation;
                                                 requestPayModel.Wallet = Payment;
+
+
                                                 string amount = Amount;
                                                 string FinalAmount = string.Empty;
                                                 if (amount.Contains('₹'))
@@ -223,7 +225,21 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.BroadbandBillController
                                                 {
                                                     FinalAmount = amount;
                                                 }
-                                                requestPayModel.Amount = FinalAmount;
+
+                                                var amountData = CheckingBalanceClass.GetBalance(requestmodel.Userid);
+                                                double newAmount = (amountData.FirstOrDefault().MainBal);
+                                                if (newAmount > double.Parse(FinalAmount))
+                                                {
+                                                    requestPayModel.Amount = FinalAmount;
+                                                }
+                                                else
+                                                {
+                                                    return Json(new
+                                                    {
+                                                        status = "Insufficient Balance",
+                                                    });
+                                                }
+
                                                 requestPayModel.Mode = "App";
                                                 requestPayModel.Userid = HttpContext.Session.GetString("Id").ToString();
                                                 string UseridCheck = HttpContext.Session.GetString("Id").ToString();

@@ -6,6 +6,7 @@ using Project_Redmil_MVC.CommonHelper;
 using Project_Redmil_MVC.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
+using Microsoft.Exchange.WebServices.Data;
 
 namespace Project_Redmil_MVC.Controllers.RechargesControllers
 {
@@ -46,7 +47,23 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                     prepaidRechargeRequestModel.ServiceId = responseOperators.Where(x => x.Operatorname == op).FirstOrDefault().ServiceId.ToString();
                     prepaidRechargeRequestModel.Mobileno = Number;
                     prepaidRechargeRequestModel.Mode = "App";
-                    prepaidRechargeRequestModel.Amount = ToDigitsOnly(Amount);
+                     
+                    var ActualAmount = ToDigitsOnly(Amount);
+                    var amountData= CheckingBalanceClass.GetBalance(prepaidRechargeRequestModel.Userid);
+                    double newAmount = (amountData.FirstOrDefault().MainBal);
+                    if (newAmount > double.Parse(ActualAmount))
+                    {
+                        prepaidRechargeRequestModel.Amount = ActualAmount;
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            status = "Insufficient Balance",
+                        });
+                    }
+
+                   
                     prepaidRechargeRequestModel.Wallet = Payment;
                     #region Checksum (Recharge|Unique Key|UserId)
                     string input = Checksum.MakeChecksumString("Recharge", Checksum.checksumKey, prepaidRechargeRequestModel.Userid,

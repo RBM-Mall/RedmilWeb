@@ -79,7 +79,20 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.LICIndiaBillController
                                 {
                                     requestmodel.canumber = caNumber;
                                     requestmodel.Userid = HttpContext.Session.GetString("Id").ToString();
-                                    requestmodel.amount = getLICIndiaBillResponseModel.amount;
+                                    //requestmodel.amount = getLICIndiaBillResponseModel.amount;
+                                    var amountData = CheckingBalanceClass.GetBalance(requestmodel.Userid);
+                                    double newAmount = (amountData.FirstOrDefault().MainBal);
+                                    if (newAmount > double.Parse(getLICIndiaBillResponseModel.amount))
+                                    {
+                                        requestmodel.amount = getLICIndiaBillResponseModel.amount;
+                                    }
+                                    else
+                                    {
+                                        return Json(new
+                                        {
+                                            status = "Insufficient Balance",
+                                        });
+                                    }
                                     requestmodel.Wallet = Payment;
                                     requestmodel.ad1 = email;
                                     requestmodel.ad2 = "";

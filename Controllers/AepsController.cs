@@ -34,6 +34,7 @@ namespace Project_Redmil_MVC.Controllers
     public class AepsController : Controller
     {
         public readonly string Baseurl;
+        public readonly string onBoarding;
         public readonly IConfiguration _config;
         public string finalResponse2 = string.Empty;
         public string Latitude = "28.6262498";
@@ -349,7 +350,7 @@ namespace Project_Redmil_MVC.Controllers
                             }
                             else if (aepsStatusCode == "ERR")
                             {
-
+                                return Json(aepsKycStatus);
                             }
                             else
                             {
@@ -392,6 +393,35 @@ namespace Project_Redmil_MVC.Controllers
             }
         }
         #endregion
+
+
+        #region AepsOnboarding
+
+        public IActionResult ProceedToKyc(string BankNAME)
+        {
+            if(BankNAME.Equals("ICICI Bank")|| BankNAME.Equals("Fingpay"))
+            {
+                var userid= HttpContext.Session.GetString("Id").ToString();
+                var data = CommonKYCClass.GetOnboardingResponse(userid);
+                if (data.FirstOrDefault().IsOnboard.Equals("No") || data.FirstOrDefault().IsKyc.Equals("No"))
+                {
+                    return Json(new
+                    {
+                        status = "AgentOnBoarding",
+                    });
+                }
+                return Json("");
+
+            }
+            else
+            {
+
+            }
+            return View();
+        }
+
+        #endregion
+
 
 
 

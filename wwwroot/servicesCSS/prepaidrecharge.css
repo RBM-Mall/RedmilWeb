@@ -1010,6 +1010,15 @@ input:checked + .slider:before {
                 height: 100%;
             }
 }
+.heading_Aeps_final_response {
+    color: blue;
+    text-align: center;
+}
+.heading_Aeps_final_response_Transaction_status {
+    padding-top: 80px;
+    color: #000099;
+}
+
 /*Media Query Starts for Small Smartphone*/
 @media screen and (min-width:279px) and (max-width:339px) {
     .main-head-recharge {

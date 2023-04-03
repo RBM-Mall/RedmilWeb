@@ -204,7 +204,6 @@
                             </label>
                             is Pending!!!
                         </p>
-
                     </div>
                 </div>
                 <br />
@@ -215,7 +214,7 @@
                             <div class="col-sm-6 col-md-6">
 
                                 @*This will hit for Proceeding KYC...*@
-                                <button type="button" id="btnProceedToKyc" onclick="" class="button-27">Proceed To Kyc</button>
+                                <button type="button" id="btnProceedToKyc" onclick="proceedToKyc()" class="button-27">Proceed To Kyc</button>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <button type="button" id="btnDoItLater" onclick="CheckKYCStatus(1)" class="button-27">Do It Later</button>
@@ -226,6 +225,58 @@
             </div>
         </div>
     </div>
+
+
+    @*-----------------------------------------------Aeps AgentICICI Bank Onboarding Modal Popup for KYC Status---------------------------------------------------------*@
+    <input type="button" id="btnagentOnboarding" data-target="#agentOnboarding" data-toggle="modal" style="display:none;" />
+    <div class="modal fade modal_choose_bank" id="agentOnboarding" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="font-weight: 900; text-align: center;">KYC Required !!!</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10" style="text-align:center;">
+                                <img src="~/css/ImgAepsOnbaording/onboardingUserLogo.jpeg"/>
+                                </div>
+                                <br />
+                                <div class="col-md-10" style="text-align:center">
+                                    <img src="~/css/ImgAepsOnbaording/onboardingBanklogo.jpeg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center;">
+                            Your ICICI E-KYC is pending!
+                        </p>
+                        <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center; margin-top: 20px;">
+                            To use Aeps, Micro ATM and Cash Collection service, your E-KYC is mandatory. <br />
+                            It just take one minute of yours and a finger print scanner.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnProceedForEKYC" onclick="chooseBank()" class="button-27">Proceed for E-KYC</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">LATER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 
     @*-----------------------------------------------Choose Bank Modal Popup for KYC Status Bridge---------------------------------------------------------*@
@@ -294,7 +345,7 @@
                                 <button type="button" id="btnbankModal" onclick="chooseBank()" class="button-27">Continue</button>
                             </div>
                             <div class="col-sm-6 col-md-6">
-                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Close</a>
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">Close</a>
                             </div>
                         </div>
                     </div>
@@ -392,7 +443,7 @@
                                 <button type="button" id="selectDeviceProceed" onclick="VerifyFaceBiometricModal()" class="button-27">Proceed</button>
                             </div>
                             <div class="col-sm-6 col-md-6">
-                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </div>
@@ -570,6 +621,7 @@
                                 <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                     <div class="img_veri">
                                         <button type="button" class="button-21_VideoCameras" data-dismiss="modal">Discard</button>
+                                        <a href="/Aeps/AEPS" type="button" class="button-21_VideoCameras">Discard</a>
                                     </div>
                                 </div>
                             </div>
@@ -924,8 +976,9 @@
                                 <div class="icon-box" style="top:423px;" id="icon">
                                     <label id="img" />
                                 </div>
-                                <h4 id="heading" class="modal-title w-100" style="padding-top:59px;color: #000099;"></h4>
-                                <h4 id="heading_2" style="color:blue;text-align:center;">Don't pay any charges for this transaction</h4>
+                                @*<h4 id="heading" class="modal-title w-100 heading_Aeps_final_response_Transaction_status" style="padding-top:59px;color: #000099;"></h4>*@
+                                <h4 id="heading" class="modal-title w-100 heading_Aeps_final_response_Transaction_status"></h4>
+                                <h4 id="heading_2 heading_Aeps_final_response_Transaction_status">Don't pay any charges for this transaction</h4>
                                 <h4><label id="lblFailureResponseMessage" style="display:none;text-align:center;"></label></h4>
                             </div>
                         </div>
@@ -1009,7 +1062,7 @@
                     <br />
                     <div class="modal-footer">
                         <div class="row">
-                            <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-md-12">
                                 <div class="col-sm-4 col-md-4">
                                     <button type="button" id="btnShareReciept" onclick="confirmPopup()" class="button-27">Share Receipt to Customer</button>
                                 </div>
@@ -1037,7 +1090,7 @@
 <script type="text/javascript">
     let transactionMode, bankName, selectedBiometricDeviceName, radioVal, bankUrl, bankLogo, insertedAmount = "0";
     let aepsAgentId, lati, long;
-
+    let kycCheckBankName;
 
     function geolocate() {
         debugger;
@@ -1109,9 +1162,11 @@
 
                     //When Response is Pending First Time
                     else if (response.status == "Pending") {
+                        debugger;
                         document.getElementById("headingKYCStatus").innerHTML = "KYC Status: " + response.data[0].status;
                         var img = document.getElementById("img_kycPendingBank");
                         img.src = response.data[0].bankLogo;
+                        kycCheckBankName=response.data[0].bankName;
                         $("#btnKycPending").trigger("click");
                     }
 
@@ -1122,7 +1177,7 @@
                         $("#btndeviceModal").trigger("click");
                     }
 
-                    else if(response.status=="RatioKYCTrue"){
+                    else if (response.status == "RatioKYCTrue") {
                         transactionMode = response.data;
                         bankName = response.bankName;
                         $("#btndeviceModal").trigger("click");
@@ -1150,6 +1205,23 @@
     };
 
 
+    function proceedToKyc(){
+         $.ajax({
+                url: "/Aeps/ProceedToKyc",
+                data: { 'BankNAME':kycCheckBankName},
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    debugger;
+                if (response.status == "AgentOnBoarding") {
+                    $("#kycPendingModal").hide();
+                    $("#btnagentOnboarding").trigger("click");
+                        
+                    }
+                }
+         });
+    }
+
     function chooseBank() {
         debugger;
         var transactionvalue = $("#hdnTransactionMode").val();
@@ -1166,7 +1238,7 @@
 
                 data = ele[i].value;
         }
-        if (data == undefined || data == '' || data == null||data=="") {
+        if (data == undefined || data == '' || data == null || data == "") {
             document.getElementById("errbank").innerHTML = "Please Select Bank";
             return false;
         }
@@ -1331,6 +1403,10 @@
             });
         }
     };
+
+
+
+
 
     function GetLocation() {
         if (navigator.geolocation) {
@@ -1545,33 +1621,37 @@
                             if (transactionMode == "ms") {
                                 $("#temptableid").find("table").remove();
                                 var tr = '<table id="tempTbl1" mode="static" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer responsive_table_businessRepo" border="1" cellspacing="0" cellpadding="3" style="width:100%"><thead><tr>';
-                                var columnName = Object.keys(response.miniStatementData);
-                                for (var i = 0; i <= columnName.length; i++) {
-                                    tr += '<th class="business_Repo_Table_Header">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
-                                }
-                                tr += '</tr></thead>';
-                                tr += '<tbody id="output">';
+                                if (response.miniStatementData != null && response.miniStatementData != '' && response.miniStatementData != "") {
 
-                                for (var i = 0; i < response.miniStatementData.length; i++) {
-                                    tr += '<tr>'
-                                    var columnValue = Object.values(response.miniStatementData[i]);
-                                    for (var j = 0; j <= columnValue.length; j++) {
-                                        tr += '<td class="business_Repo_Table_td">' + columnValue[j] + '</td>'
+                                    var columnName = Object.keys(response.miniStatementData);
+                                    for (var i = 0; i <= columnName.length; i++) {
+                                        tr += '<th class="business_Repo_Table_Header">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
                                     }
-                                    tr += '</tr>';
+                                    tr += '</tr></thead>';
+                                    tr += '<tbody id="output">';
+
+                                    for (var i = 0; i < response.miniStatementData.length; i++) {
+                                        tr += '<tr>'
+                                        var columnValue = Object.values(response.miniStatementData[i]);
+                                        for (var j = 0; j <= columnValue.length; j++) {
+                                            tr += '<td class="business_Repo_Table_td">' + columnValue[j] + '</td>'
+                                        }
+                                        tr += '</tr>';
+                                    }
+                                    debugger;
+                                    tr += '</tbody></table>';
+                                    $("#temptableid").append(tr);
+                                    var table = $('#tempTbl1').DataTable({
+                                        rowReorder: {
+                                            selector: 'td:nth-child(2)'
+                                        },
+                                        responsive: true
+                                    });
+                                    document.getElementById("divMiniStatement").style.display = "block";
                                 }
-                                debugger;
-                                tr += '</tbody></table>';
-                                $("#temptableid").append(tr);
-                                var table = $('#tempTbl1').DataTable({
-                                    rowReorder: {
-                                        selector: 'td:nth-child(2)'
-                                    },
-                                    responsive: true
-                                });
-                                //let output = response.miniStatementData.map(i => "<tr class='tr-recharge'><td class='td-recharge'>" + i.date + "</td><td>" + i.narration + "</td><td>" + i.txnType + "</td><td>" + i.amount + "</td></tr>");
-                                //$("#tbloutput").html(output);
-                                document.getElementById("divMiniStatement").style.display = "block";
+                                else {
+                                    document.getElementById("divMiniStatement").style.display = "block";
+                                }
                             }
                             else {
                                 document.getElementById("divMiniStatement").style.display = "none";
@@ -1903,7 +1983,9 @@
                 else if (data.statuscode == "ERR") {
                     //document.getElementById("headingfaceLiveLinessError").innerHTML=data.message;
                     $("#headingfaceLiveLinessError").html(data.message);
+                    $("#staticimage").hide();
                     $("#btnFaceLiveLinessError").trigger("click");
+
                 }
 
             }
@@ -2403,7 +2485,7 @@
                 debugger;
                 for (var i = 0; i < data.length; i++) {
                     $(".Self_help").append('<div class="controls">\
-                                                                <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+                                                                    <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
 
                 }
             }
@@ -2419,24 +2501,24 @@
         });
     });
 
-                                    //function ValidateAlphanumericsrAccount(e) {
-                                    //    var keyCode = e.keyCode || e.which;
-                                    //    var errtxtAmountCashWithdrawal=document.getElementById("errtxtAmountCashWithdrawal");
-                                    //    var Amount = document.getElementById("txtAmountCashWithdrawal");
-                                    //    errtxtAmountCashWithdrawal.innerHTML = "";
-                                    //    var regex = /^[0-9]+$/;
-                                    //    var isValid = regex.test(String.fromCharCode(keyCode));
-                                    //    if (!isValid) {
+                                        //function ValidateAlphanumericsrAccount(e) {
+                                        //    var keyCode = e.keyCode || e.which;
+                                        //    var errtxtAmountCashWithdrawal=document.getElementById("errtxtAmountCashWithdrawal");
+                                        //    var Amount = document.getElementById("txtAmountCashWithdrawal");
+                                        //    errtxtAmountCashWithdrawal.innerHTML = "";
+                                        //    var regex = /^[0-9]+$/;
+                                        //    var isValid = regex.test(String.fromCharCode(keyCode));
+                                        //    if (!isValid) {
 
-                                    //        errtxtAmountCashWithdrawal.innerHTML = "Only Numbers allowed.";
-                                    //        $('#errtxtAmountCashWithdrawal').css('margin-left', '-109px');
-                                    //        $('#errtxtAmountCashWithdrawal').css('color', 'red');
+                                        //        errtxtAmountCashWithdrawal.innerHTML = "Only Numbers allowed.";
+                                        //        $('#errtxtAmountCashWithdrawal').css('margin-left', '-109px');
+                                        //        $('#errtxtAmountCashWithdrawal').css('color', 'red');
 
-                                    //    }
-                                    //    else {
-                                    //        errtxtAmountCashWithdrawal.innerHTML = "";
-                                    //    }
-                                    //    return isValid;
-                                    //}
+                                        //    }
+                                        //    else {
+                                        //        errtxtAmountCashWithdrawal.innerHTML = "";
+                                        //    }
+                                        //    return isValid;
+                                        //}
 
 </script>
