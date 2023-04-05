@@ -186,11 +186,12 @@
                         </div>
                     </div>
 
+
                     <div class="accordion_support">
 
                         <div class="item">
                             <p class="number"></p>
-                            <h4 class="btnRAC btnLF"><img src="~/css/img/complain.png" style="height:37px" />RAISE A COMPLAINT </h4>
+                            <h4 class="btnRAC"><img src="~/css/img/complain.png" style="height:37px" />RAISE A COMPLAINT </h4>
 
                         </div>
                     </div>
@@ -288,7 +289,7 @@
                         <div class="accordion_support">
                             <div class="item" style="display:none;">
                                 <p class="number"></p>
-                                <h4 class="btnRM btnLF"><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
+                                <h4 class="btnRM "><img src="~/css/img/relation.png" style="height:20px" />CALL YOUR RELATIONSHIP MANAGER </h4>
 
                             </div>
                         </div>
@@ -327,7 +328,7 @@
                                 <h4 id="heading" class="modal-title w-100" style="padding-top:36px"></h4>
                             </div>
                             <div class="modal-body">
-                                <h3 class="p-new text-center"><label id="lblMsg"></label></h3>
+                                <h3 class="p-new text-center" style="margin-left: 11px;"><label id="lblMsg"></label></h3>
                                 <p class="p-new"><label id="lblPrice"></label></p>
                                 <p class="p-new"><label id="lblTxnId"></label></p>
                                 <p class="p-new"><label id="lblMobile"></label></p>
@@ -562,7 +563,7 @@
                                 <h4 id="headingLF" class="modal-title w-100" style=""></h4>
                             </div>
                             <div class="modal-body modal_supoort_2content">
-                                <h3 class="p-new "><label id="lblMsgLF"></label></h3>
+                                <h3 class=" "><label id="lblMsgLF"></label></h3>
                                 <p class="p-new"><label id="lblNameLF"></label></p>
                                 <p class="p-new"><label id="lblMobileLF"></label></p>
                                 <div class="modal-footer modal_support_div_footer">
@@ -654,35 +655,8 @@
         </div>
 
     </div>
-    <div class="row">
-        <section class="body_self">
-            <div class="faq">
-                <div class="faq-left-desktop">
-                    <div class="faq-left-image-desktop">
-                        <img src="~/css/images/self1.svg" />
-
-                    </div>
-                    <div>
-                        <img src="~/css/images/self2.svg" />
-                    </div>
-
-                </div>
-                <div class="faq-left-mobile">
-                    <div class="faq-left-image-mobile">
-                        <img src="~/css/images/self1.svg" />
-                    </div>
-                </div>
-                <div class="faq-right">
-                    <div class="faq-title">Self Help</div>
-                    <div class="faq-body">
-                        <div class="Self_help">
-                            <div class="controls"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="btn_Partial">
+        @Html.Partial("_SelfHelp")
     </div>
 </div>
 <script>
@@ -727,6 +701,7 @@
     });
     var mobileno;
     $('.IVRDurationCheck').on('click', function () {
+
 
         var MaindepartmentName = $("#Department_Position option:selected").text();
         var lang = $("#Department_Position").val();

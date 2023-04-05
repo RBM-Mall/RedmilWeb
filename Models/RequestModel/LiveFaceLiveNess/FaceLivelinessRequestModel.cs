@@ -8,6 +8,7 @@ namespace Project_Redmil_MVC.Models.RequestModel.LiveFaceLiveNess
         public string FileName { get; set; }
         public string checksum { get; set; }
         public string Mobile { get; set; }
+        public string Token { get; set; }   
         
     }
 }

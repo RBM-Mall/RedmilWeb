@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 
-
+<input type="text" style="display:none" value="61" id="SlefHelpElement">
 <div class="container-fluid" style="background:#ebebeb">
 
     <div class="main-head-recharge">
@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 <div class="block-recharge" style="width:30%;">
-                    <a>
+                    <a href="~/HousingSocietyBill/HousingSocietyBill">
                         <img src="https://assetscdn1.paytm.com/images/catalog/view_item/855770/1626325829130.png" style="width:28px;padding-top:20px;" alt="image" />
                         <p class="p-recharge"><strong>Rent Payment</strong></p>
                     </a>
@@ -50,9 +50,9 @@
                     </a>
                 </div>
                 <div class="block-recharge" style="width:33%;">
-                    <a>
-                        <img src="data:image/png;base64,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" style="width:28px;padding-top:20px;" alt="image" />
-                        <p class="p-recharge"><strong>Metro</strong></p>
+                    <a href="~/WaterBill/WaterBill">
+                        <img src="~/css/Icon_Logo_BBPS/iconWater.jpeg" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Water</strong></p>
                     </a>
                 </div>
                 <div class="block-recharge" style="width:30%;">
@@ -71,9 +71,9 @@
                     </a>
                 </div>
                 <div class="block-recharge" style="width:33%;">
-                    <a>
-                        <img src="data:image/png;base64,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" style="width:28px;padding-top:20px;" alt="image" />
-                        <p class="p-recharge"><strong>Education</strong></p>
+                    <a href="~/CreditCardBill/CreditCardBill">
+                        <img src="~/css/Icon_Logo_BBPS/iconCreditCard.jpeg" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>Credit Card</strong></p>
                     </a>
                 </div>
 
@@ -88,9 +88,9 @@
             <div class="col-md-3 col-sm-3 col-lg-3">
 
                 <div class="block-recharge" style="width:33%;">
-                    <a>
-                        <img src="https://assetscdn1.paytm.com/images/catalog/view_item/732358/1626446516255.png" style="width:28px;padding-top:20px;" alt="image" />
-                        <p class="p-recharge"><strong>Invest in Stocks</strong></p>
+                    <a href="~/LICIndiaBill/LICIndiaBill">
+                        <img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" style="width:28px;padding-top:20px;" alt="image" />
+                        <p class="p-recharge"><strong>LIC India</strong></p>
                     </a>
                 </div>
                 <div class="block-recharge" style="width:33%;">
@@ -99,103 +99,88 @@
                         <p class="p-recharge"><strong>Book a Cylinder</strong></p>
                     </a>
                 </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-
-                    <div class="block-recharge" style="width:33%;">
-                        <a href="~/LICIndiaBill/LICIndiaBill">
-                            <img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" style="width:28px;padding-top:20px;" alt="image" />
-                            <p class="p-recharge"><strong>LIC India</strong></p>
-                        </a>
-                    </div>
-                    <div class="block-recharge" style="width:33%;">
-                        <a href="~/LPGGasBill/LPGGasBill">
-                            <img src="https://assetscdn1.paytm.com/images/catalog/view_item/732357/1626446407655.png" style="width:28px;padding-top:20px;" alt="image" />
-                            <p class="p-recharge"><strong>Book a Cylinder</strong></p>
-                        </a>
-                    </div>
-                    <div class="block-recharge" style="width:30%;">
-                        <div class="dropdown">
-                            <p class="p-recharge dropdown-toggle"
-                               type="button"
-                               id="dropdownMenuButton"
-                               data-mdb-toggle="dropdown"
-                               aria-expanded="false">
-                                <strong>More...</strong>
-                            </p>
-                            <br />
-                            <ul class="dropdown-menu" style="margin-left:-100px;" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a class="dropdown-item" href="~/CableTVBill/CableTVBill">
-                                        <img src="/css/Img_IconForNavigation/Cable-TV.png"
-                                             width="20" height="15">
-                                        CableTV Recharge
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/ClubAndAssociationBill/ClubAndAssociationBill">
-                                        <img src="/css/Img_IconForNavigation/Clubs-&-Assoiciations.png"
-                                             width="20" height="15">
-                                        Club And Association
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/GasBill/GasBill">
-                                        <img src="/css/Img_IconForNavigation/Gas-Bill.png"
-                                             width="20" height="15">
-                                        Gas Bill
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/HealthBill/HealthBill">
-                                        <img src="/css/Img_IconForNavigation/Health-Insurance.png"
-                                             width="20" height="15">
-                                        Health Bill
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/InsuranceBill/InsuranceBill">
-                                        <img src="/css/Img_IconForNavigation/Insurance-2.png"
-                                             width="20" height="15">
-                                        Insurance Bill
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/LifeInsuranceBill/LifeInsuranceBill">
-                                        <img src="/css/Img_IconForNavigation/Life-Insurance.png"
-                                             width="20" height="15">
-                                        LifeInsurance Bill
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/HospitalBill/HospitalBill">
-                                        <img src="/css/Img_IconForNavigation/Hospital.png"
-                                             width="20" height="15">
-                                        Hospital Bill
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/MunicipialServicesBill/MunicipialServicesBill">
-                                        <img src="/css/Img_IconForNavigation/Municipal-Services.png"
-                                             width="20" height="15">
-                                        Municipal Service
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/MunicipialTaxesBill/MunicipialTaxesBill">
-                                        <img src="/css/Img_IconForNavigation/Municipal-Taxes.png"
-                                             width="20" height="15">
-                                        Municipal Taxes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="~/SubscriptionsBill/SubscriptionsBill">
-                                        <img src="/css/Img_IconForNavigation/Subscriptions.png"
-                                             width="20" height="15">
-                                        Subscriptions
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="block-recharge" style="width:30%;">
+                    <div class="dropdown">
+                        <p class="p-recharge dropdown-toggle"
+                           type="button"
+                           id="dropdownMenuButton"
+                           data-mdb-toggle="dropdown"
+                           aria-expanded="false">
+                            <strong>More...</strong>
+                        </p>
+                        <br />
+                        <ul class="dropdown-menu" style="margin-left:-100px;" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" href="~/CableTVBill/CableTVBill">
+                                    <img src="/css/Img_IconForNavigation/Cable-TV.png"
+                                         width="20" height="15">
+                                    CableTV Recharge
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/ClubAndAssociationBill/ClubAndAssociationBill">
+                                    <img src="/css/Img_IconForNavigation/Clubs-&-Assoiciations.png"
+                                         width="20" height="15">
+                                    Club And Association
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/GasBill/GasBill">
+                                    <img src="/css/Img_IconForNavigation/Gas-Bill.png"
+                                         width="20" height="15">
+                                    Gas Bill
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/HealthBill/HealthBill">
+                                    <img src="/css/Img_IconForNavigation/Health-Insurance.png"
+                                         width="20" height="15">
+                                    Health Bill
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/InsuranceBill/InsuranceBill">
+                                    <img src="/css/Img_IconForNavigation/Insurance-2.png"
+                                         width="20" height="15">
+                                    Insurance Bill
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/LifeInsuranceBill/LifeInsuranceBill">
+                                    <img src="/css/Img_IconForNavigation/Life-Insurance.png"
+                                         width="20" height="15">
+                                    LifeInsurance Bill
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/HospitalBill/HospitalBill">
+                                    <img src="/css/Img_IconForNavigation/Hospital.png"
+                                         width="20" height="15">
+                                    Hospital Bill
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/MunicipialServicesBill/MunicipialServicesBill">
+                                    <img src="/css/Img_IconForNavigation/Municipal-Services.png"
+                                         width="20" height="15">
+                                    Municipal Service
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/MunicipialTaxesBill/MunicipialTaxesBill">
+                                    <img src="/css/Img_IconForNavigation/Municipal-Taxes.png"
+                                         width="20" height="15">
+                                    Municipal Taxes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="~/SubscriptionsBill/SubscriptionsBill">
+                                    <img src="/css/Img_IconForNavigation/Subscriptions.png"
+                                         width="20" height="15">
+                                    Subscriptions
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -527,6 +512,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="btn_Partial">
+        @Html.Partial("_SelfHelp")
     </div>
 </div>
 <script>

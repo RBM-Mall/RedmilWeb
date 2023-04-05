@@ -225,34 +225,9 @@
 
         }
        <div class="row">
-            <section class="body_self">
-                <div class="faq">
-                    <div class="faq-left-desktop">
-                        <div class="faq-left-image-desktop">
-                            <img src="~/css/images/self1.svg" />
-                           
-                        </div>
-                      <div>
-                            <img src="~/css/images/self2.svg" />
-                      </div>
-                       
-                    </div>
-                    <div class="faq-left-mobile">
-                        <div class="faq-left-image-mobile">
-                            <img src="~/css/images/self1.svg" />
-                        </div>
-                    </div>
-                    <div class="faq-right">
-                        <div class="faq-title">Self Help</div>
-                        <div class="faq-body">
-                            <div class="Self_help">
-                                <div class="controls"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div class="btn_Partial">
+                @Html.Partial("_SelfHelp")
+            </div>
         </div>
     </div>
 </div>
@@ -440,34 +415,9 @@
 
     </div>
      <div class="row">
-            <section class="body_self">
-                <div class="faq">
-                    <div class="faq-left-desktop">
-                        <div class="faq-left-image-desktop">
-                            <img src="~/css/images/self1.svg" />
-                           
-                        </div>
-                      <div>
-                            <img src="~/css/images/self2.svg" />
-                      </div>
-                       
-                    </div>
-                    <div class="faq-left-mobile">
-                        <div class="faq-left-image-mobile">
-                            <img src="~/css/images/self1.svg" />
-                        </div>
-                    </div>
-                    <div class="faq-right">
-                        <div class="faq-title">Self Help</div>
-                        <div class="faq-body">
-                            <div class="Self_help">
-                                <div class="controls"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
+          <div class="btn_Partial">
+            @Html.Partial("_SelfHelp")
+        </div>
         </div>
         </div>
 </div>
@@ -543,8 +493,8 @@
 <input type="button" id="Detail_ButtonDetail" style="display:none" data-target="#Details_ButtonDetail" data-toggle="modal" />
 <div id="Details_ButtonDetail" role="dialog" class="modal fade" aria-modal="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-confirm modal_signup process_signup">
-        <div class="modal-content">
-            <div class="cross clse" aria-label="Close" data-dismiss="modal">
+        <div class="modal-content" style="width:108%">
+            <div class="cross clse" aria-label="Close" data-dismiss="modal" style="position: absolute;right:-27px;">
                 <button type="button" class="close design clse" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -1385,6 +1335,7 @@
     });
     //For Cash Detail
     function ButtonDetail(e) {
+        debugger;
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
         $.ajax({
@@ -1393,6 +1344,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
+                debugger;
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1404,8 +1356,8 @@
                 }
                 else if (data.statuscode == "ERR") {
 
-                    $('#lblMsgNoData').text(data.message);
-                    $("#BtnNoDatafound").trigger("click");
+                    $('#lblMsg_detail').text("Data Not Found");
+                    $("#Error_modal_Detail").trigger("click");
                 }
                 else {
                     var response = JSON.parse(data);
@@ -1834,7 +1786,8 @@
     //    }
     //});
     function LaunchYourMall() {
-        $('#LaunchYourModals').trigger('click');
+        $('#Error_modal_Detail').trigger('click');
+        $('#lblMsg_detail').text("Your Kyc is not completed kindly visit to Redmil Businesss Mall App");
         //$("#ModalInstanPay").trigger("click");
     }
     function AdharVeri() {
@@ -1952,7 +1905,6 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                ;
                 $('#Txt_Aadhar').val("");
                 if (response.statuscode == "TXN") {
                     $('#ModalForAdharSurcharges').hide();

@@ -18,7 +18,6 @@
     <script src="https://kit.fontawesome.com/77d5cde460.js"></script>
     <link rel="shortcut icon" href="~/css/Img/redmil-new-logo.png" type="image/x-icon">
     <link href="~/css/slider.css" rel="stylesheet" />
-    <link href="~/css/selfhelp.css" rel="stylesheet" />
     <script src="~/js/bootstrap.js" asp-append-version="true"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="~/Slick/slick.css" asp-append-version="true">
@@ -368,7 +367,6 @@
                                                                 <span aria-hidden="true" style="padding-right: 14px;">&times;</span>
                                                             </button>
                                                             <div class="authfy-login">
-
                                                                 <!-- panel-login start -->
                                                                 <div class="authfy-panel panel-login text-center active">
                                                                     <div class="authfy-heading">
@@ -954,10 +952,15 @@
     
 
     <br />
+
     @RenderBody()
     <br />
+
     <div>
-    @* @Html.Partial("_selfHelp")*@
+       
+
+
+      
     </div>
    
     <footer>
@@ -1120,7 +1123,7 @@
                             var a = response.data;
                             var Mobile = $("#txtNumber").val();
 
-                            LoginClear();
+                          
                             $("#Notregister").trigger("click");
                         }
                         else if (response.statuscode == "TXN") {
@@ -1257,7 +1260,7 @@
                                         var a = response.data;
                                         var Mobile = $("#txtNumber").val();
 
-                                        LoginClear();
+                                       
                                         $("#Notregister").trigger("click");
                                     }
                                     else if (response.statuscode == "TXN") {
@@ -1617,7 +1620,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    LoginClear();
+                    //LoginClear();
                     $.notify(response.message, "success");
                     window.location.href = '@Url.Content("~/Home/Index")';
                 }

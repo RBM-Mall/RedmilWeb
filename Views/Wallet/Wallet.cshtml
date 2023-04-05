@@ -6,12 +6,36 @@
 }
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
 <link href="~/ResponsiveCSS/Wallet.css" rel="stylesheet" />
+<link href="~/css/transfertobankcss/transfertobankcss.css" rel="stylesheet" />
 @*<link href="../wwwroot/css/bootstrap.min.css" rel="stylesheet">*@
 @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">*@
 @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>*@
+<style>
+    #showerror_Verified {
+        margin-left: 505px;
+        color: green;
+    }
 
-
-
+    .form-control {
+        display: block;
+        width: 82%;
+        height: 49px;
+        padding: 10px 21px;
+        font-size: 15px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 54px;
+        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+</style>
 <br/>
 <br/>
 <br/>
@@ -27,7 +51,7 @@
                 <div class="call-to-action">
                     <div class="row">
                         <div class="col-sm-7 col-xs-12">
-                            <h3 class="padding-left-right-50 heading_how_to_work"><u>HOW TO WORK</u></h3>
+                            <h3 class="padding-left-right-50 heading_how_to_work How_To_Work" ><u>HOW TO WORK</u></h3>
                         </div>  
                         <div class="col-sm-5 col-xs-12 text-right">
                             <div class="read-more padding-top-bottom-40">
@@ -127,7 +151,7 @@
                             <div style="margin: 0 auto">
                                 @* <h3>#1</h3>*@
                                 <p>
-                                    <img src="/css/WalletImg/Bangkok.png" alt="Chania" /> @*style="width: 848px;height: 150px" width="460" height="345"*@
+                                    <img src="/css/WalletImg/Bangkok.png" alt="Chania" onclick="Bangkok('9')"/> @*style="width: 848px;height: 150px" width="460" height="345"*@
                                 </p>
                             </div>
                         </div>
@@ -137,7 +161,7 @@
                             <div style="margin: 0 auto">
                                 @*<h3>#2</h3>*@
                                 <p>
-                                    <img src="/css/WalletImg/Points.png" alt="Chania" /> @*style="width: 848px;height: 150px" width="460" height="345"*@
+                                    <img src="/css/WalletImg/Points.png" alt="Chania" onclic="Bangkok('10')" /> @*style="width: 848px;height: 150px" width="460" height="345"*@
                                 </p>
                             </div>
                         </div>
@@ -147,7 +171,7 @@
                             <div style="margin: 0 auto">
                                 @* <h3>#2</h3>*@
                                 <p>
-                                    <img src="/css/WalletImg/Mobile-Offer.png" alt="Flower" /> @*style="width: 848px;height: 150px" width="460" height="345"*@
+                                    <img src="/css/WalletImg/Mobile-Offer.png" alt="Flower" onclick="Bangkok('11')" /> @*style="width: 848px;height: 150px" width="460" height="345"*@
                                 </p>
                             </div>
                         </div>
@@ -176,41 +200,111 @@
     <div class="row">
         <div class="col-md-12">
             <div class="wallet wallet_breadcumb-area">
-                <img src="../css/WalletImg/Earn-upto.png"/>                
+                <img src="../css/WalletImg/Earn-upto.png" onclick="window.location.href='/ApplyForFrenchise/ApplyForFrenchise';" />
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <section class="body_self">
-        <div class="faq">
-            <div class="faq-left-desktop">
-                <div class="faq-left-image-desktop">
-                    <img src="~/css/images/self1.svg" />
+    <div class="btn_Partial">
+        @Html.Partial("_SelfHelp")
+    </div>
+</div>
 
-                </div>
-                <div>
-                    <img src="~/css/images/self2.svg" />
-                </div>
+<input type="button" id="HowToWorks" data-target="#HowToWork" data-toggle="modal" style="display:none" />
+<div class="modal fade" id="HowToWork" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:auto">
+    <div class="modal-dialog">
+        <div class="modal-content modal_top">
+            <div class="modal-header">
+                <button type="button" class="close" id="btnCloseTwo" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" id="staticBackdropLabel">How To Work with Wallet</h4>
+            </div>
+            <div class="modal-body modal_body_account">
+                <div class="row">
+                    <div>
+                        <img src="~/img/howtowork.jpg" style="width:370px;margin-left: 96px;height:245px;" />
+                        
+                    </div>
+                    <div class="">
+                        <h3 class="text-center">An investment in knowledge pays the best interest</h3>
+                    </div>
+                    <div class="body">
+                        <div class="HowToWorkBind">
+                            <div class="controls"></div>
+                        </div>
 
-            </div>
-            <div class="faq-left-mobile">
-                <div class="faq-left-image-mobile">
-                    <img src="~/css/images/self1.svg" />
+                    </div>
                 </div>
             </div>
-            <div class="faq-right">
-                <div class="faq-title">Self Help</div>
-                <div class="faq-body">
-                    <div class="Self_help">
-                        <div class="controls"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <input type="button" id="Error_modal_Detail" style="display:none" data-target="#Error_modal_Details" data-toggle="modal">
+        <div id="Error_modal_Details" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content modal_error_content">
+                    <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                    </button>
+
+
+                    <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: -31px;background-color: rgb(136, 8, 8);font-size:40px;width: 22%;height: 84px;padding: 5px 49px 47px;margin-left: 37%;border-radius: 112px;">
+                            <label id="img"><i class="fa fa-times" aria-hidden="true"></i></label>
+
+                        </div>
+                        <h4 id="heding_detail" class="modal-title w-100" style="padding-top:54px;color: black;font-size: 24px;margin-left: 247px;">failed</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="p-new text-center"><label id="lblMsg_detail"></label></h3>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn-final-Error theclose" data-dismiss="modal" style="background-color: rgb(136, 8, 8);margin-left: 184px;"><b>Ok</b></button>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
+<div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="SUCCESS_modalTravel" style="display:none" data-target="#Error_modals4" data-toggle="modal">
+            <div id="Error_modals4" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content modal_error_content">
+                        <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        <div class="">
+                        <div class="icon-box" id="icons" style="margin-top: -55px;border-radius: 129px;padding: 30px 42px;width: 20%;font-size: 30px;margin-left: 226px;background-color: rgb(124,252,0);">
+
+                                <label id="img"><i class="fa-solid fa-check" aria-hidden="true"></i></label>
+                            </div>
+                        <h4 id="hEADING_SUCCESSTravel" class="modal-title w-100" style="margin-top: 40px;color: black;font-weight: 700;margin-left: 234px;">SUCCESS</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="p-new text-center"><label id="SUCCESS_HedingTravel"></label></h3>
+
+                            <div class="modal-footer">
+                            <button type="button" class="btn-final-Error" data-dismiss="modal" style="background-color: rgb(124,252,0);margin-left: 177px;">
+                                <b>Ok</b>
+                            </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @*<div class="container">
     <div class="row">
@@ -241,6 +335,76 @@
 @*----------------------------acco2-----------------------*@
 
 <script>
+    $('.How_To_Work').on('click', function () {
+        debugger;
+        
+        var CategoryId="56";
+        var baseurl = "https://api.redmilbusinessmall.com";
+
+        //<iframe style="width:99%;height:400px" src = "https://www.youtube.com/embed/1hNIGE3Pq3M" title = "YouTube video player" frameborder = "0" allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen > </iframe>
+        $.ajax({
+                url: "/Wallet/HowToWork",
+            data: { 'CategoryId': CategoryId},
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) 
+                {
+                    debugger;
+                    if(data.statuscode=="TXN")
+                    {
+                    $("#HowToWorks").trigger("click");
+                    for(var i=0;i<data.data.length;i++)
+                    {
+                        var baseurlYouTue = "https://www.youtube.com/watch?v=" + data.data[i].imgLink;
+                        $(".HowToWorkBind").append('<div class="controls">\<div class="row" >\<div class="text-center" > <h2>' + data.data[i].title + ' </h2><br></div><a href="' + baseurlYouTue + '" target="_blank"><img style="cursor:pointer;width:95%;margin-left: 16px;" alt="" src="' + baseurl + data.data[i].thumbnail + '" onclick="youtube(' + baseurlYouTue + ')"  /></a></div></div >');
+                    }
+
+                    
+                    }
+                    else 
+                    {
+                    
+                    }
+                }
+
+            })
+        
+
+
+    })
+    function youtube(e)
+    {
+        debugger;
+    var data=e;
+        window.open(data);
+    }
+    function Bangkok(e) {
+        debugger
+        var ContestId = e;
+        $.ajax({
+            url: "/Wallet/TourPackage",
+            data: { 'ContestId': ContestId },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) 
+            {
+                debugger;
+                if (data.statuscode == "ERR") 
+                {
+                    $("#Error_modal_Detail").trigger("click");
+                    $("#lblMsg_detail").text(data.message);
+                }
+                else if (data.statuscode == "TXN") 
+                {
+                    $("#SUCCESS_modalTravel").trigger("click");
+                    $("#SUCCESS_HedingTravel").text("Your contest has been successfully availed.Team Will contact you soon");
+
+
+                }
+            }
+
+        });
+    }
     var acc = document.getElementsByClassName("accordion");
     var i;
 
@@ -283,4 +447,7 @@
 
         });
     }
+
+
+   
 </script>

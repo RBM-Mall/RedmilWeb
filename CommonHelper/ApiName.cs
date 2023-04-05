@@ -62,6 +62,9 @@ namespace Project_Redmil_MVC.CommonHelper
         public static string GetIVRResponse2 = "GetIVRResponse2";
         public static string AddFeedback = "AddIvrfeedback";
         public static string GetRMDetailsUserwise = "GetRMDetailsUserwise";
+        public static string AvailRewardContest = " AvailRewardContest";
+        public static string ViewHowToUseCategoryWise = "ViewHowToUseCategoryWise";
+        
         //Passbook
         public static string GetUserBalanceSummaryWithPaging = "GetUserBalanceSummaryWithPaging";
         public static string GetTransactionDetailsUseingBalanceId = "GetTransactionDetailsUseingBalanceId";

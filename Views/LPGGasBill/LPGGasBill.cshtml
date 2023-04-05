@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/navbarheader.css">
 <link href="~/ResponsiveCSS/Index.css" rel="stylesheet" />
-
+<input type="text" style="display:none" value="44" id="SlefHelpElement">
 <div class="container-fluid" style="background:#ebebeb">
     <div class="main-head-recharge">
         <div class="row-recharge ">
@@ -83,20 +83,6 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-lg-3">
-
-                <div class="block-recharge" style="width:33%;">
-                    <a href="~/LICIndiaBill/LICIndiaBill">
-                        <img src="~/css/Icon_Logo_BBPS/iconLIC.jpeg" style="width:28px;padding-top:20px;" alt="image" />
-                        <p class="p-recharge"><strong>LIC India</strong></p>
-                    </a>
-                </div>
-                <div class="block-recharge" style="width:33%;">
-                    <a href="~/LPGGasBill/LPGGasBill">
-                        <img src="https://assetscdn1.paytm.com/images/catalog/view_item/732357/1626446407655.png" style="width:28px;padding-top:20px;" alt="image" />
-                        <p class="p-recharge"><strong>Book a Cylinder</strong></p>
-                    </a>
-                </div>
                 <div class="col-md-3 col-sm-3 col-lg-3">
 
                     <div class="block-recharge" style="width:33%;">
@@ -196,7 +182,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <!--Header Div Ends Here-->
@@ -518,6 +503,9 @@
             </div>
         </div>
     </div>
+    <div class="btn_Partial">
+        @Html.Partial("_SelfHelp")
+</div>
 </div>
 
 <script>

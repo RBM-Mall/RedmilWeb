@@ -1,6 +1,4 @@
-﻿
-@model Project_Redmil_MVC.Pages.Shared._selfHelpModel
-@{
+﻿@{
     <link href="~/css/selfhelp.css" rel="stylesheet" />
     <div class="row">
         <section class="body_self">
@@ -11,13 +9,16 @@
 
                     </div>
                     <div>
-                        <img src="~/css/images/self2.svg" />
+                        <img src="~/css/images/self2.svg" style="margin-top:0px;position:fixed;margin-top:-149px;"/>
                     </div>
 
                 </div>
                 <div class="faq-left-mobile">
                     <div class="faq-left-image-mobile">
                         <img src="~/css/images/self1.svg" />
+                    </div>
+                    <div>
+                        <img src="~/css/images/self2.svg" style="margin-top:0px;position:fixed;margin-top:-149px;" />
                     </div>
                 </div>
                 <div class="faq-right">
@@ -32,30 +33,39 @@
             </div>
         </section>
     </div>
-    
+
 }
 <script>
     $(document).ready(function () {
-        debugger;
+    
         var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
         Wallet(myValue); // Pass the value to a function called 'myFunction'
     });
 
     function Wallet(e) {
         // code
-        debugger;
+    
         var ServiceId = e;
         $.ajax({
             url: "/Self_Help/SelfHelp",
             data: { 'ServiceId': ServiceId },
             type: 'POST',
             dataType: 'json',
-            success: function (data) {
-                debugger;
-                for (var i = 0; i < data.length; i++) {
+            success: function (data)
+            {
+              
+                if (data.statuscode == "ERR")
+                {
+                    $('.btn_Partial').hide();
+                }
+                else
+                {
+                for (var i = 0; i < data.length; i++) 
+                {
                     $(".Self_help").append('<div class="controls">\
-                                        <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+                                            <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
 
+                }
                 }
             }
 

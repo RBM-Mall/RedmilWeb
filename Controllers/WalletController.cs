@@ -5,6 +5,8 @@ using Project_Redmil_MVC.Models.RequestModel;
 using Project_Redmil_MVC.Models.RequestModel.SelfHelp;
 //using Project_Redmil_MVC.Controllers.BankingServicesController.DMT2;
 using Project_Redmil_MVC.Models.ResponseModel;
+using Project_Redmil_MVC.Models.ResponseModel.HowToWork;
+using Project_Redmil_MVC.Models.ResponseModel.ResponseForSurcharge;
 using Project_Redmil_MVC.Models.ResponseModel.SelfHelpResponseModel;
 
 namespace Project_Redmil_MVC.Controllers
@@ -348,5 +350,130 @@ namespace Project_Redmil_MVC.Controllers
             }
         }
         #endregion
+
+
+        #region FOr Tour Guide
+        public IActionResult TourPackage(string ContestId)
+        {
+
+            GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
+       
+            try
+            {
+                getBalanceRequestModel.ContestId = ContestId;
+                getBalanceRequestModel.Userid= HttpContext.Session.GetString("Id").ToString();
+                #region Checksum (GetBalance|Unique Key|UserId)
+                string input = Checksum.MakeChecksumString("AvailRewardContest", Checksum.checksumKey, getBalanceRequestModel.Userid,getBalanceRequestModel.ContestId);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+
+                getBalanceRequestModel.checksum = CheckSum;
+                //API URL Has been changed by Siddhartha Sir
+                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AvailRewardContest");
+                //var client = new RestClient($"{Baseurl}{ApiName.Getbalance}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var lstdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                }
+
+                else if (lstdata.Statuscode == "ERR")
+                {
+                    return Json(lstdata);
+                }
+                else if (lstdata.Statuscode == "TXN")
+                {
+                    return Json(lstdata);
+
+                }
+                else
+                {
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
+            }
+            return Json("");
+        }
+
+        #endregion
+        #region FOr Tour Guide
+        public IActionResult HowToWork(string CategoryId)
+        {
+
+            GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
+
+            try
+            {
+                getBalanceRequestModel.CategoryId = CategoryId;
+            
+                var client = new RestClient($"{Baseurl}{ApiName.ViewHowToUseCategoryWise}");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(getBalanceRequestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                var lstdata = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                 var New_Data=lstdata.Data;
+                var data = JsonConvert.DeserializeObject<List<HowToWork>>(JsonConvert.SerializeObject(New_Data));
+                //var deserialize_sur = JsonConvert.DeserializeObject<BaseResponseModelT<List<HowToWork>>>(result);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                }
+                else if (lstdata.Statuscode == "ERR")
+                {
+                    return Json(lstdata);
+                }
+                else if (lstdata.Statuscode == "TXN")
+                {
+                    return Json(new { Statuscode = "TXN", data });
+
+                }
+                else
+                {
+                    return RedirectToAction("ErrorForExceptionLog", "Error");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModel1 = new ExceptionLogRequestModel();
+                requestModel1.ExceptionMessage = ex;
+                requestModel1.Data = getBalanceRequestModel;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel1);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                return RedirectToAction("ErrorForExceptionLog", "Error");
+            }
+            return Json("");
+        }
+
+        #endregion
+
     }
 }

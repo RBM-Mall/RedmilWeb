@@ -4,7 +4,7 @@ using Project_Redmil_MVC.Models.RequestModel.SelfHelp;
 using Project_Redmil_MVC.Models.RequestModel;
 using Project_Redmil_MVC.Models.ResponseModel.SelfHelpResponseModel;
 
-namespace Project_Redmil_MVC.Controllers
+namespace Project_Redmil_MVc 
 {
     public class self_HelpController : Controller
     {
@@ -48,11 +48,19 @@ namespace Project_Redmil_MVC.Controllers
                 else
                 {
                     var deserialize = JsonConvert.DeserializeObject<ResponseModel1>(response.Content);
-                    var datadeserialize = deserialize.Data;
-                    var data = JsonConvert.DeserializeObject<List<SelfHelpResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
-                    //var datadeserialize = deserialize.Data;
-                    //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
-                    return Json(data);
+                    if (deserialize.Statuscode == "ERR")
+                    {
+                        return Json(deserialize);
+                    }
+                    else
+                    {
+                        var datadeserialize = deserialize.Data;
+                        var data = JsonConvert.DeserializeObject<List<SelfHelpResponseModel>>(JsonConvert.SerializeObject(datadeserialize));
+                        //var datadeserialize = deserialize.Data;
+                        //var TranferData = JsonConvert.DeserializeObject<GetcashdepositeResponseModel>(JsonConvert.SerializeObject(datadeserialize));
+                        return Json(data);
+                    }
+                    
                 }
 
             }

@@ -25,6 +25,11 @@
 
 
 <style>
+    #showerror_Verified
+    {
+    margin-left: 505px;
+    color: green;
+    }
     .form-control {
         display: block;
         width: 82%;
@@ -989,7 +994,6 @@
                         </div>
 
                         <div class="modal-footer">
-
                             <button type="button" class="button-21 theclose" data-dismiss="modal">
                                 <b>OK </b>
                             </button>
@@ -1166,8 +1170,9 @@
                             }
                         </div>
                         <div class="">
-                            <p type="button" class="verify foraddingAcount">Verify</p>
-                            <span class="" id="showerror"></span>
+                            <p type="button" id="Veriy_Account"  class="verify foraddingAcount">Verify</p>
+                            <span class="" id="showerror_Verified" style="display:none">Verified</span>
+                            <span class="non_verified" id="" style="display:none"></span>
                         </div>
                         <div class="form-group" style="display:none" id="ur">
                             <select class="form-control" id="rl" name="RelationName">
@@ -1199,8 +1204,6 @@
                                         <input type="button" class="button-21 Pending_Approval" value="Pending Approval" onclick="GetMultiAccountDetail('Not Verified')" style="margin-left:-191px;" />
                                     </div>
                                 </div>
-                                
-
                             </div>
                         </div>
                     </form>
@@ -1259,25 +1262,19 @@
                             <button type="button" class="button-Media" data-dismiss="modal" onclick="verified()" id="okay">
                                 <b>Yes</b>
                             </button>
-
                             <button type="button" class="button-Media" data-dismiss="modal" onclick="nonverified()" id="nonokay" style="display:none">
                                 <b>Yes</b>
                             </button>
-
                             <button type="button" class="button-Media" data-dismiss="modal" onclick="SendOtp()" id="Otp" style="display:none">
                                 <b>Yes</b>
                             </button>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 modal_surcharge_no">
-
-
-                            <button type="button" class="button-Media theclose" data-dismiss="modal">
+                            <button type="button" class="button-Media" data-dismiss="modal">
                                 <b>No</b>
                             </button>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1374,10 +1371,10 @@
             <div class="modal-footer">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="row">
-                        <div class="col-sm-4 final-pay-buttons">
-                            <button type="button" onclick="ConfirmOtp()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Verifiy OTP</button>
+                        <div class="col-sm-6 final-pay-buttons">
+                            <button type="button" id="Ve_Otp"  onclick="ConfirmOtp()" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" data-dismiss="modal">Verifiy OTP</button>
                         </div>
-                        <div class="col-sm-4 final-cancel-button">
+                        <div class="col-sm-6 final-cancel-button">
                             <button type="button" id="btnResendOTPforAc" class="btn-process-recharge1 btn-process-recharge2 btn-process-recharge3" style="display:none">Resend OTP</button>
                         </div>
                     </div>
@@ -1474,26 +1471,25 @@
 <!--Modal for success-->
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <input type="button" id="Error_modal4" style="display:none" data-target="#Error_modals4" data-toggle="modal">
+        <input type="button" id="SUCCESS_modal" style="display:none" data-target="#Error_modals4" data-toggle="modal">
         <div id="Error_modals4" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false" >
             <div class="modal-dialog modal-confirm" >
                 <div class="modal-content modal_error_content">
                     <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
                     </button>
-                   
                     <div class="">
                         <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(124,252,0);">
                           
                             <label id="img"><i class="fa-solid fa-check" aria-hidden="true"></i></label>
                         </div>
-                        <h4 id="heding" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                        <h4 id="hEADING_SUCCESS" class="modal-title w-100" style="padding-top:54px">SUCCESS</h4>
                     </div>
                     <div class="modal-body">
-                        <h3 class="p-new text-center"><label id="lblMsg22"></label></h3>
+                        <h3 class="p-new text-center"><label id="SUCCESS_Heding"></label></h3>
                        
                         <div class="modal-footer">
-                            <button type="button" class="btn-final-Error theclose"  data-dismiss="modal" style="background-color: rgb(124,252,0);"><b>Ok</b></button>
+                            <button type="button" class="btn-final-Error"  data-dismiss="modal" style="background-color: rgb(124,252,0);"><b>Ok</b></button>
                         </div>
                     </div>
 
@@ -1556,14 +1552,15 @@
 </div>
 
 <script>
+
+
     var ActualAmount;
     var Charge;
     var Mode;
     var ServiceId;
     var OpId;
-    var Amount
+    var Amount;
     function impstransfer() {
-
 
         Amount = $('#TextImps').val();
         ServiceId = $('#SID').text();
@@ -1916,6 +1913,7 @@
                     }
                     else 
                     {
+
                     }
 
                     
@@ -1924,7 +1922,7 @@
                 {
                     setTimeout(function () {
             $('#Error_modal3').modal('hide');
-                 }, 2000);
+                 }, 10000);
                     //$(".theclose").hide();
                     //$(".theopen").show();
                      $("#ModalForbankdetailConfirms").hide();
@@ -1935,6 +1933,10 @@
                 }
                 else 
                 {
+                    $("#ModalForbankdetailConfirms").hide();
+                    $("#Error_modal3").trigger("click");
+                    $("#lblMsg22").text(data.message);
+
                 }
             
             }
@@ -2074,7 +2076,6 @@
     $('.ok').on('click', function () {
         location.reload();
     })
-
     $('.addacount').on('click', function () {
 
 
@@ -2082,12 +2083,10 @@
 
     })
     var message;
-    var BeneficaryName
+    var BeneficaryName;
+    var BeniName;
     $('.foraddingAcount').on('click', function () {
         debugger;
-        //function AddinBank(){
-        //function foraddingAcount() {
-
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -2154,7 +2153,7 @@
                 else {
 
                     message = data.message;
-                   if(data.statuscode=="ERR" && data.message=="Insufficient Balance .")
+                   if(data.statuscode=="ERR" && data.message=="Insufficient Balance.")
                    {
                         AddAccount();
                         $(".theclose").hide();
@@ -2164,19 +2163,43 @@
                    }
                    else if (data.statuscode == "ERR") {
                         AddAccount();
-                        //$('.close').click();
-                        $("#ModalForSurcharge").trigger("click");
-                        $("#lblMsgSurcharge").text(data.data[0].surcharge);
-                        $("#okay").show();
-                        $("#nonokay").hide();
-                        $("#Otp").hide();
+                       $(".theclose").hide();
+                       $(".theopen").show();
+                       $("#Error_modal3").trigger("click");
+                       $("#lblMsg22").text(data.message);
+                        //$("#ModalForSurcharge").trigger("click");
+                        //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        //$("#okay").show();
+                        //$("#nonokay").hide();
+                        //$("#Otp").hide();
 
                     }
+                     else if (data.statuscode == "MLR")
+                     {
+                         //$("#SUCCESS_modal").trigger("click");
+                         $("#ModalForSurcharge").trigger("click");
+                         $("#okay").hide();
+                         $("#nonokay").show();
+                        $("#lblMsgSurcharge").text(data.data[0].sur);
+                     }
+                     //else if (data.statuscode == "TXN")
+                     //{
+                           
+                     //   //     $("#SUCCESS_modal").trigger("click");
+                     //   //     $('#SUCCESS_Heding').text(data.message);
+                     //   //     $('#verify').hide();
+                     //   //     $('#hidefornonverify').show();
+                     //   //     $('#Veriy_Account').hide();
+                     //   //     $('#showerror_Verified').show();
+                     //   //var $modal = $('#Error_modals4');
+                     //   //$modal.trigger('closeModal');
+                     //   //setTimeout(function () {
+                     //   //    $modal.remove();
+                     //   //}, 4000);
+                     //}
                    
                     else if (data.statuscode == null) {
                        AddAccount();
-                        //$("#ErrorMessageModals").trigger("click");
-                        //$("#lblmsgErrorSc").text(data.message);
                         $("#Error_modal3").trigger("click");
                         $("#lblMsg22").text(data.message);
 
@@ -2184,29 +2207,66 @@
 
 
                     else if (data.statuscode == "TXN" && BeneficaryName.replace(/\s/g, '').toUpperCase() == "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase()) {
-                        $("#ModalForSurcharge").trigger("click");
-                        $("#lblMsgSurcharge").text(data.data[0].surcharge);
-                        $("#hidefornonverify").show();
-                        $("#verify").hide();
-                        $("#okay").hide();
-                        $("#nonokay").hide();
-                        $("#Otp").show();
-
+                        //$("#ModalForSurcharge").trigger("click");
+                        //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        //$("#hidefornonverify").show();
+                        //$("#verify").hide();
+                        //$("#okay").hide();
+                        //$("#nonokay").hide();
+                        //$("#Otp").show();
+                        $("#SUCCESS_modal").trigger("click");
+                        $('#SUCCESS_Heding').text(data.message);
+                        $('#verify').hide();
+                        $('#hidefornonverify').show();
+                        $('#Veriy_Account').hide();
+                        $('#showerror_Verified').show();
+                        var $modal = $('#Error_modals4');
+                        $modal.trigger('closeModal');
+                        setTimeout(function () {
+                            $modal.remove();
+                        }, 10000);
                     }
-
+                    else if(data.statuscode == "TXN" && BeneficaryName.replace(/\s/g, '').toUpperCase() != "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase() )
+                    {
+                       //$("#ModalForSurcharge").trigger("click");
+                       //$("#Modalforverifieddetails").trigger("click");
+                       //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        //$("#okay").hide();
+                        //$("#Otp").hide();
+                        //$("#nonokay").show();
+                        //$("#verify").hide();
+                        //$(".btPics").show();
+                        //$("#file").show(); 
+                         $("#Modalforverifieddetails").trigger("click");
+                         $('#Veriy_Account').hide();
+                         $('.veryfiaccount').hide();
+                         $('.non_verified').show();
+                         $(".non_verified").text("Non verified with our record");
+                         $(".non_verified").css("color", "red");
+                         $(".non_verified").css("margin-left", "375px");
+                         $("#okay").hide();
+                         $("#Otp").hide();
+                         $("#ur").show();
+                         $("#upan").show();
+                         $(".btPics").show();
+                          var $modal = $('#Modalforverifieddetail');
+                        $modal.trigger('closeModal');
+                        setTimeout(function () {
+                            $modal.remove();
+                        }, 10000);
+                       
+                    }
                     else 
                     {
 
-                        $("#ModalForSurcharge").trigger("click");
-                        $("#lblMsgSurcharge").text(data.data[0].surcharge);
-                        $("#okay").hide();
-                        $("#Otp").hide();
-                        $("#nonokay").show();
-                        $("#verify").hide();
-                        $(".btPics").show();
-                        $("#file").show();
-
-
+                        //$("#ModalForSurcharge").trigger("click");
+                        //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        //$("#okay").hide();
+                        //$("#Otp").hide();
+                        //$("#nonokay").show();
+                        //$("#verify").hide();
+                        //$(".btPics").show();
+                        //$("#file").show();
                         //$("#lblmsgfordata").text(data.)
                     }
                 }
@@ -2218,124 +2278,150 @@
     });
 
     $('.ConfirmAddAccount').on('click', function () {
+        SendOtp();
+        //debugger;
+        //var Account = $('#text_Account').val();
+        //var ConfirmAccount = $('#text_ConfirmAccount').val();
+        //var IFSc = $('#text_Ifsc').val();
+        //var BeneficaryName = $('#text_BeneficaryName').val();
+        //var BankList = $('#Id').val();
+        //if (Account.trim() == "") {
+        //    $('#Account').text('Please Enter Acount Number');
+        //    $('#Account').css('color', 'red');
+        //    $('#Account').css('margin-left', '59px');
+        //    $('#Account').focus();
+        //    return false;
+        //}
+        //else if (ConfirmAccount.trim() == "") {
+        //    if (Account != ConfirmAccount)
+        //        $("#CAccount_New").html("Passwords do not match!");
+        //    else
+        //        $("#CAccount_New").html("Passwords match.");
+        //    $('#CAccount').text('Please Enter Confirm Account Number');
+        //    $('#CAccount').css('color', 'red');
+        //    $('#CAccount').css('margin-left', '59px');
+        //    $('#CAccount').focus();
+        //    return false;
+        //}
+        //else if (BeneficaryName.trim() == "") {
+
+        //    $('#BNames').text('Please Enter Name');
+        //    $('#BNames').css('color', 'red');
+        //    $('#BNames').css('margin-left', '59px');
+        //    $('#BNames').focus();
+        //    return false;
+        //}
+        //else if (IFSc.trim() == "") {
+
+        //    $('#text_Ifscs').text('Please Enter IFSC Number');
+        //    $('#text_Ifscs').css('color', 'red');
+        //    $('#text_Ifscs').css('margin-left', '59px');
+        //    $('#text_Ifscs').focus();
+        //    return false;
+        //}
+        //else if (BankList.trim() == "") {
+
+        //    $('#List').text('Please Select Any Bank');
+        //    $('#List').css('color', 'red');
+        //    $('#List').css('margin-left', '59px');
+        //    $('#List').focus();
+        //    return false;
+        //}
+        //else {
+
+        //    $.ajax({
+        //        url: "/Passbook/VerifyAccountDetail",
+        //        data: { 'Account': Account, 'BeneficaryName': BeneficaryName, 'IFSc': IFSc, 'BankList': BankList },
+        //        //data: {},
+        //        type: 'POST',
+        //        dataType: 'json',
+        //        success: function (data) {
+        //            debugger;
+        //            if (data.result == "EmptyResult") {
+        //                window.location.href = data.url;
+        //            }
+        //            else if (data.result == "UnExpectedStatusCode") {
+        //                window.location.href = data.url;
+        //            }
+        //            else if (data.result == "RedirectToException") {
+        //                window.location.href = data.url;
+        //            }
+        //            else {
+
+        //                if (data.statuscode == "ERR") {
+        //                    AddAccount();
+        //                    $("#Error_modal3").trigger("click");
+        //                    $("#lblMsg22").text(data.message);
+
+        //                }
+        //                 else if (data.statuscode == "TXN" && BeneficaryName.replace(/\s/g, '').toUpperCase() == "@Accessor.HttpContext.Session.GetString//("Name")".replace(/\s/g, '').toUpperCase()) 
+        //                 {
+        //                //$("#ModalForSurcharge").trigger("click");
+        //                //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+        //                //$("#hidefornonverify").show();
+        //                //$("#verify").hide();
+        //                //$("#okay").hide();
+        //                //$("#nonokay").hide();
+        //                //$("#Otp").show();
+        //                $("#SUCCESS_modal").trigger("click");
+        //                $('#SUCCESS_Heding').text(data.message);
+        //                SendOtp();
+        //                $('#verify').hide();
+        //                $('#hidefornonverify').show();
+        //                $('#Veriy_Account').hide();
+        //                $('#showerror_Verified').show();
+        //                var $modal = $('#Error_modals4');
+        //                $modal.trigger('closeModal');
+        //                setTimeout(function () {
+        //                    $modal.remove();
+        //                }, 10000);
+        //            }
+        //    //            else if (data.statuscode == "TXN") {
+        //    //                //$.notify(
+        //    //                //    data.message,
+        //    //                //    { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+        //    //                //);
+        //    //                AddAccount();
+        //    //                $("#SUCCESS_modal").trigger("click");
+        //    //                $("#SUCCESS_Heding").text(data.message);
+        //    //                $("#AddAcount").hide();
+        //    //                $("#ModalFobandetail").trigger("click");
+        //    //                var $modal = $('#Error_modals4');
+        //    //                  $modal.trigger('closeModal');
+        //    //            setTimeout(function() {
+        //    //      $modal.remove();
+        //    //}, 4000);
 
 
-        var Account = $('#text_Account').val();
-        var ConfirmAccount = $('#text_ConfirmAccount').val();
-        var IFSc = $('#text_Ifsc').val();
-        var BeneficaryName = $('#text_BeneficaryName').val();
-        var BankList = $('#Id').val();
-        //var Relation = $('#rl').val();
-        //var File = $('#text_File').val()
-        if (Account.trim() == "") {
-            $('#Account').text('Please Enter Acount Number');
-            $('#Account').css('color', 'red');
-            $('#Account').css('margin-left', '59px');
-            $('#Account').focus();
-            return false;
-        }
-        else if (ConfirmAccount.trim() == "") {
-            if (Account != ConfirmAccount)
-                $("#CAccount_New").html("Passwords do not match!");
-            else
-                $("#CAccount_New").html("Passwords match.");
-            $('#CAccount').text('Please Enter Confirm Account Number');
-            $('#CAccount').css('color', 'red');
-            $('#CAccount').css('margin-left', '59px');
-            $('#CAccount').focus();
-            return false;
-        }
-        else if (BeneficaryName.trim() == "") {
+        //    //            }
+        //                else {
+        //                    //$("#ModalForSurcharge").trigger("click");
+        //                    //$("#lblMsgSurcharge").text(data.surcharge);
+        //                    //$(".verify").hide();
+        //                    //$("#upan").show();
+        //                    //$("#ur").show();
+        //                    //$("#showerror").text("Non verified with our record");
+        //                    //$("#showerror").css("color", "red");
+        //                    //$("#showerror").css("margin-left", "456px");
+        //                    //$("#lblmsgfordata").text(data.)
+        //                }
+        //            }
 
-            $('#BNames').text('Please Enter Name');
-            $('#BNames').css('color', 'red');
-            $('#BNames').css('margin-left', '59px');
-            $('#BNames').focus();
-            return false;
-        }
-        else if (IFSc.trim() == "") {
-
-            $('#text_Ifscs').text('Please Enter IFSC Number');
-            $('#text_Ifscs').css('color', 'red');
-            $('#text_Ifscs').css('margin-left', '59px');
-            $('#text_Ifscs').focus();
-            return false;
-        }
-        else if (BankList.trim() == "") {
-
-            $('#List').text('Please Select Any Bank');
-            $('#List').css('color', 'red');
-            $('#List').css('margin-left', '59px');
-            $('#List').focus();
-            return false;
-        }
-        else {
-
-            $.ajax({
-                url: "/Passbook/AddAccount",
-                data: { 'Account': Account, 'BeneficaryName': BeneficaryName, 'IFSc': IFSc, 'BankList': BankList },
-                //data: {},
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    if (data.result == "EmptyResult") {
-                        window.location.href = data.url;
-                    }
-                    else if (data.result == "UnExpectedStatusCode") {
-                        window.location.href = data.url;
-                    }
-                    else if (data.result == "RedirectToException") {
-                        window.location.href = data.url;
-                    }
-                    else {
-
-                        if (data.statuscode == "ERR") {
-                            AddAccount();
-                            $("#Error_modal3").trigger("click");
-                            $("#lblMsg22").text(data.message);
-
-                        }
-                        else if (data.statuscode == "TXN") {
-                            $.notify(
-                                data.message,
-                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
-                            );
-
-                            AddAccount();
-                            $("#AddAcount").hide();
-                            $("#ModalFobandetail").trigger("click");
-
-
-                        }
-                        else {
-                            //$("#ModalForSurcharge").trigger("click");
-                            //$("#lblMsgSurcharge").text(data.surcharge);
-                            //$(".verify").hide();
-                            //$("#upan").show();
-                            //$("#ur").show();
-                            //$("#showerror").text("Non verified with our record");
-                            //$("#showerror").css("color", "red");
-                            //$("#showerror").css("margin-left", "456px");
-                            //$("#lblmsgfordata").text(data.)
-                        }
-                    }
-
-                }
-            });
-
-        }
+        //        }
+        //    });
+        //}
     });
 
     //Send Otp
     function SendOtp() {
-
+        debugger
         $.ajax({
             url: "/Passbook/SendOtp",
             data: {},
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-
+                debugger;
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -2351,7 +2437,7 @@
 
                     }
                     else if (data.statuscode == "OSS") {
-                        AddAccount();
+                       
                         var timeLeft = 30;
                         var elem = document.getElementById('some_divss');
 
@@ -2365,6 +2451,7 @@
                                 document.getElementById("some_divss").innerHTML = "OTP Expired. Please click on Resend Button";
                                 document.getElementById("some_divss").style.color = "red";
                                 document.getElementById("btnResendOTPforAc").style.display = "block";
+                                document.getElementById("Ve_Otp").style.display = "none";
 
                             }
                             else {
@@ -2374,10 +2461,15 @@
                         }
 
                         $("#Accountveriotpmodals").trigger("click");
+                       
 
                     }
                     else if (data.statuscode == "ERR") 
                     {
+                         $("#Error_modal3").trigger("click");
+                         $("#lblMsg22").text(data.message);
+                         $(".theclose").hide();
+                         $(".theopen").show();
 
                     }
 
@@ -2385,10 +2477,10 @@
 
             }
         });
-    }
+    } 
     //For Validate Otp Confirm
     function ConfirmOtp() {
-
+        debugger;
         var Otp = $('#OtpforAf').val();
         if (Otp.trim() == "") {
             ('#SpanO').text('Please Enter Otp');
@@ -2400,6 +2492,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
+                      debugger;
                     if (data.result == "EmptyResult") {
                         window.location.href = data.url;
                     }
@@ -2413,26 +2506,34 @@
 
                         if (data.statuscode == "TXN") {
                            
-                            $(".verify").hide();
-                            $("#btnupload").hide();
-                            $("#showerror").text("verified");
-                            $("#showerror").css("color", "#0b8000");
-                            $("#showerror").css("margin-left", "83%");
-                            $.notify(
-                                data.message,
-                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
+                             $("#SUCCESS_modal").trigger("click");
+                              $('#SUCCESS_Heding').text(data.message);
+                              $('#AddAcount').hide();
+                               GetMultiAccountDetail('Verified');
+                              var $modal = $('#Error_modals4');
+                        $modal.trigger('closeModal');
+                        setTimeout(function () {
+                            $modal.remove();
+                        }, 10000);
+
+                            //$(".verify").hide();
+                            //$("#btnupload").hide();
+                            //$("#showerror").text("verified");
+                            //$("#showerror").css("color", "#0b8000");
+                            //$("#showerror").css("margin-left", "83%");
+                            //$.notify(
+                            //    data.message,
+                            //    { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
 
 
-                            );
+                            //);
                         }
                         else if (data.statuscode == "ERR") {
-                           
-                            $.notify(
-                                data.message,
-                                { globalPosition: "bottom center", className: "error", showAnimation: 'slideDown', showDuration: 1000 }
-
-
-                            );
+                          
+                            $("#Error_modal3").trigger("click");
+                         $("#lblMsg22").text(data.message);
+                         $(".theclose").hide();
+                         $(".theopen").show();
                         }
                     }
 
@@ -2474,18 +2575,84 @@
         $("#lblMsg22").text(data.message);
     }
     function nonverified() {
-        $("#Modalforverifieddetails").trigger("click");
-        $(".verify").hide();
-        $("#nonokay").show();
-        $("#hidefornonverify").hide();
-        $("#upan").show();
-        $("#ur").show();
-        $("#btnupload").show();
-        $("#showerror").text("Non verified with our record");
-        $("#showerror").css("color", "red");
-        $("#showerror").css("margin-left", "375px");
+        debugger;
+        //$("#Modalforverifieddetails").trigger("click");
+        //$(".verify").hide();
+        //$("#nonokay").show();
+        //$("#hidefornonverify").hide();
+        //$("#upan").show();
+        //$("#ur").show();
+        //$("#btnupload").show();
+        //$("#showerror").text("Non verified with our record");
+        //$("#showerror").css("color", "red");
+        //$("#showerror").css("margin-left", "375px");
+        $.ajax({
+            url: "/Passbook/VerifyAcountDetailForsurcharge",
+            data: {},
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                debugger;
+                
+                if (data.statuscode == "TXN" && data.data[0].beniName.replace(/\s/g, '').toUpperCase() == "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase()) {
+                        //$("#ModalForSurcharge").trigger("click");
+                        //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        //$("#hidefornonverify").show();
+                        //$("#verify").hide();
+                        //$("#okay").hide();
+                        //$("#nonokay").hide();
+                        //$("#Otp").show();
+                        $("#SUCCESS_modal").trigger("click");
+                        $('#SUCCESS_Heding').text(data.message);
+                        $('#verify').hide();
+                        $('#hidefornonverify').show();
+                        $('#Veriy_Account').hide();
+                        $('#showerror_Verified').show();
+                        var $modal = $('#Error_modals4');
+                        $modal.trigger('closeModal');
+                        setTimeout(function () {
+                            $modal.remove();
+                        }, 4000);
 
-
+                    }
+                    else if(data.statuscode == "TXN" && data.data[0].beniName.replace(/\s/g, '').toUpperCase() != "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase() )
+                    {
+                       //$("#ModalForSurcharge").trigger("click");
+                       //$("#Modalforverifieddetails").trigger("click");
+                       //$("#lblMsgSurcharge").text(data.data[0].surcharge);
+                        //$("#okay").hide();
+                        //$("#Otp").hide();
+                        //$("#nonokay").show();
+                        //$("#verify").hide();
+                        //$(".btPics").show();
+                        //$("#file").show(); 
+                       
+                         $("#Modalforverifieddetails").trigger("click");
+                         $('#Veriy_Account').hide();
+                         $('.veryfiaccount').hide();
+                         $('.non_verified').show();
+                         $(".non_verified").text("Non verified with our record");
+                         $(".non_verified").css("color", "red");
+                         $(".non_verified").css("margin-left", "375px");
+                         $("#okay").hide();
+                         $("#Otp").hide();
+                         $("#ur").show();
+                         $("#upan").show();
+                         $(".btPics").show();
+                          var $modal = $('#Modalforverifieddetail');
+                        $modal.trigger('closeModal');
+                        setTimeout(function () {
+                            $modal.remove();
+                        }, 4000);
+                       
+                    }
+                else if(data.statuscode=="ERR")
+                {
+                  $("#Error_modal3").trigger("click");
+                  $("#lblMsg22").text(data.message);
+                }
+               }
+        });
 
     }
 
@@ -2574,7 +2741,7 @@
     $(function () {
 
         $(".btPics").on('click', function () {
-
+            debugger;
             var files = $("#file").get(0).files;
             if (files.length == "0") {
                 $('#text_File').text('Please Select Any Picture');
@@ -2660,7 +2827,7 @@
                     processData: false, // Not to process data
                     data: fileData,
                     success: function (result, status, xhr) {
-
+                        debugger;
                         if (result.result == "EmptyResult") {
                             window.location.href = result.url;
                         }
@@ -2675,27 +2842,28 @@
                             //$("#ErrorMessageModals").trigger("click");
                             //$("#lblmsgErrorSc").text(result.message);
                             $("#Error_modal3").trigger("click");
-                            $("#lblMsg22").text(data.message);
+                            $("#lblMsg22").text(result.message);
                             $('#showerror').html("");
                             $('#ur').hide();
                             $('#file').hide();
                             $('.btPics').hide();
                             $('.verify').show();
                             $('#verify').show();
-
+                            $('.non_verified').hide();
 
                         }
-                        else if (result.statuscode == "TXN") {
-                            $.notify(
-                                result.message,
-                                { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
-
-                            );
-                            Cleardata();
+                        else if (result.statuscode == "TXN")
+                        {
+                                                Cleardata();
+                            $("#SUCCESS_modal").trigger("click");
+                            $("#SUCCESS_Heding").text(result.message);
                             $("#AddAcount").hide();
                             $("#ModalFobandetail").trigger("click");
-
-
+                            var $modal = $('#Error_modals4');
+                              $modal.trigger('closeModal');
+                        setTimeout(function() {
+                  $modal.remove();
+            }, 10000);
 
                         }
                     },
@@ -2856,7 +3024,10 @@
         return isValid;
     }
 
-
+    function For_succes()
+    {
+    
+    }
 
 </script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

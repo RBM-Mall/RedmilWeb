@@ -9,5 +9,6 @@
         public string Ifsc { get; set; }
         public string Mode { get; set; }
         public string BeniName { get; set; }
+        public string BankList{ get; set; }
     }
 }

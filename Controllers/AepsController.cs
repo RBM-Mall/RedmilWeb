@@ -1317,25 +1317,19 @@ namespace Project_Redmil_MVC.Controllers
         #endregion
 
         #region getAddress
-        public RootObject getAddress(string lat, string lon)
+        public RootObject getAddress(string lat, string longg)
         {
             WebClient webClient = new WebClient();
             double latt = double.Parse(lat);
-            double longg = double.Parse(lon);
-            webClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+            //double latt = 28.6262498;
+            double longgt = double.Parse(longg);
+            //double longgt = 77.3734622;
+            webClient.Headers.Add("user-agent", "Chrome/21 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
             webClient.Headers.Add("Referer", "http://www.microsoft.com");
-            var jsonData = webClient.DownloadData("http://nominatim.openstreetmap.org/reverse?format=json&lat=" + latt + "&lon=" + longg);
+            var jsonData = webClient.DownloadData("http://nominatim.openstreetmap.org/reverse?format=json&lat=" + latt + "&lon=" + longgt);
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(RootObject));
             RootObject rootObject = (RootObject)ser.ReadObject(new MemoryStream(jsonData));
-            //RootObject rootObject = getAddress(lat, longt);
             return rootObject;
-            //WebClient webClient = new WebClient();
-            //webClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-            //webClient.Headers.Add("Referer", "http://www.microsoft.com");
-            //var jsonData = webClient.DownloadData("http://nominatim.openstreetmap.org/reverse?format=json&lat=" + lat + "&lon=" + lon);
-            //DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(RootObject));
-            //RootObject rootObject = (RootObject)ser.ReadObject(new MemoryStream(jsonData));
-            //return rootObject;
         }
         #endregion
 

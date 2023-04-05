@@ -1,15 +1,13 @@
 ﻿
 
 .forsize {
-    margin-left: 71px;
+    margin-left: -2px;
     font-size: 14px;
 }
 
 .fondash {
     margin-top: 1px;
-    margin-left: -92px;
-
-
+    margin-left: -27px;
 }
 .modal_error_content {
     width: 60%;
@@ -19,20 +17,19 @@
 
 }
 .forrates {
-    margin-left: 259px;
+    margin-left: 223px;
     margin-top: -28px;
     font-size: 13px;
 }
 .forsize_2 {
-    margin-left: 127px;
+    margin-left: 97px;
 }
 .fondash_2 {
-    margin-left: -81px;
+    margin-left: -68px;
 }
 .forrates_2 {
-    margin-left: 367px;
+    margin-left: 312px;
     margin-top: -27px;
-
 }
 
 .ts {
@@ -684,7 +681,7 @@ element.style {
 }
 
 .img_center_moda {
-    margin-left: 291px;
+    margin-left: 252px;
     margin-bottom: 24px;
 }
 

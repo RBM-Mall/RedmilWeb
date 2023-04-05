@@ -1,0 +1,69 @@
+﻿
+@model Project_Redmil_MVC.Pages.Shared.ErrorAndSuccessPopModel
+@{
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="Error_modal_Detail" style="display:none" data-target="#Error_modal_Details" data-toggle="modal">
+            <div id="Error_modal_Details" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content modal_error_content">
+                        <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+
+
+                        <div class="">
+                            <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(136, 8, 8);font-size:40px;">
+                                <label id="img"><i class="fa fa-times" aria-hidden="true"></i></label>
+
+                            </div>
+                            <h4 id="heding_detail" class="modal-title w-100" style="padding-top:54px">failed</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="p-new text-center"><label id="lblMsg_detail"></label></h3>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn-final-Error theclose" data-dismiss="modal" style="background-color: rgb(136, 8, 8);"><b>Ok</b></button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <input type="button" id="SUCCESS_modal" style="display:none" data-target="#Error_modals4" data-toggle="modal">
+            <div id="Error_modals4" role="dialog" class="modal fade in" aria-modal="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content modal_error_content">
+                        <button type="button" class="close theclose" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="padding-right: 14px; padding-right: 14px; font-size: 25px; font-weight: bolder;">×</span>
+                        </button>
+                        <div class="">
+                            <div class="icon-box" id="icons" style="margin-top: 40px; background-color: rgb(124,252,0);">
+
+                                <label id="img"><i class="fa-solid fa-check" aria-hidden="true"></i></label>
+                            </div>
+                            <h4 id="hEADING_SUCCESS" class="modal-title w-100" style="padding-top:54px">SUCCESS</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="p-new text-center"><label id="SUCCESS_Heding"></label></h3>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn-final-Error" data-dismiss="modal" style="background-color: rgb(124,252,0);"><b>Ok</b></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

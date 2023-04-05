@@ -1,5 +1,5 @@
-﻿@using Project_Redmil_MVC.Models.RequestModel.SelfHelp;
-@using Project_Redmil_MVC.Models.ResponseModel.SelfHelpResponseModel;
+﻿
+
 @model IEnumerable<Project_Redmil_MVC.Models.ResponseModel.GetBalanceResponseModel>
 @{
     ViewData["Title"] = "DMT 2.0 - Direct Money Transfer";
@@ -21,8 +21,8 @@
 <script src="/lib/jquery/dist/jquery.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link href="~/ResponsiveCSS/jQueryTable.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/rowreorder/1.3.2/css/rowReorder.dataTables.min.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet"/>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/rowreorder/1.3.2/js/dataTables.rowReorder.min.js"></script>
@@ -316,28 +316,29 @@
                 <div class="div-recharge-opimage">
                     <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
                     <div class="row" style="text-align:center;">
-                        <div class="col-md-4 col-sm-12 col-xs-12 "></div>
-                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                        <div class="col-md-1 col-sm-12 col-xs-12 "></div>
+                        <div class="col-md-5 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
                             <img src="~/css/Img_DMT2/Img_Fino.jpeg" alt="Exide_life_insurance" class="img-width" style="height:200px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="Exide_life_insurance"></a></div>
                             <div class="leadership_name">
                                 <br />
                             </div>
                         </div>
-                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                        <div class="col-md-5 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
                             <img src="~/css/Img_DMT2/rbi_logo.jpeg" alt="HDFC-Life-Insurance" class="img-width" style="height:165px;">
                             <div class="overlay"> <a href="#" target="_blank" class="icon" title="rbi"></a></div>
                             <div class="leadership_name">
                                 <br />
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12 "></div>
+                        <div class="col-md-1 col-sm-12 col-xs-12 "></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @await Html.PartialAsync("_selfHelp"SelfHelpResponseModel)
+
+  @Html.Partial("_SelfHelp")
 </div>
 <script>
     $("#btnProceed").click(function () {
