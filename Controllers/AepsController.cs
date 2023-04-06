@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Exchange.WebServices.Data;
+using Newtonsoft.Json.Linq;
 using Project_Redmil_MVC.CommonHelper;
 using Project_Redmil_MVC.Controllers.UserDashoard;
 using Project_Redmil_MVC.Models;
@@ -27,6 +28,7 @@ using System.Xml.Serialization;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Project_Redmil_MVC.Models.AddressResponseModel;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 namespace Project_Redmil_MVC.Controllers
 {
@@ -41,7 +43,7 @@ namespace Project_Redmil_MVC.Controllers
         public string Longitude = "77.3734622";
         public string Address = "Redmil Business Mall Headquarters,4th floor,Tower A,The Corenthum towers, Sector 62,Noida, Uttar Pradesh-201301";
         public string pinCode = "201301";
-        public AepsController(IConfiguration config)
+        public AepsController(IConfiguration config) 
         {
             _config = config;
             Baseurl = HelperMethod.GetBaseURl(_config);
@@ -60,6 +62,8 @@ namespace Project_Redmil_MVC.Controllers
                 dynamic obj = GetBalance();
                 ViewBag.MobileNo = HttpContext.Session.GetString("Mobile").ToString();
                 ViewBag.AepsAgentId = HttpContext.Session.GetString("AepsAgentId").ToString();
+                ViewBag.AadharNum = HttpContext.Session.GetString("AadharNo").ToString();
+                ViewBag.PanNum = HttpContext.Session.GetString("PanNo").ToString();
                 ViewBag.Balance = obj.Value[0].MainBal;
             }
             catch (Exception ex)
@@ -395,13 +399,13 @@ namespace Project_Redmil_MVC.Controllers
         #endregion
 
 
-        #region AepsOnboarding
+        #region AepsOnboarding ProceedToKycFirstPage
 
-        public IActionResult ProceedToKyc(string BankNAME)
+        public IActionResult ProceedToKycFirstPage(string BankNAME)
         {
-            if(BankNAME.Equals("ICICI Bank")|| BankNAME.Equals("Fingpay"))
+            if (BankNAME.Equals("ICICI Bank") || BankNAME.Equals("Fingpay"))
             {
-                var userid= HttpContext.Session.GetString("Id").ToString();
+                var userid = HttpContext.Session.GetString("Id").ToString();
                 var data = CommonKYCClass.GetOnboardingResponse(userid);
                 if (data.FirstOrDefault().IsOnboard.Equals("No") || data.FirstOrDefault().IsKyc.Equals("No"))
                 {
@@ -422,8 +426,195 @@ namespace Project_Redmil_MVC.Controllers
 
         #endregion
 
+        #region AepsOnboarding ProceedToKycSecondPageButton
+
+        public IActionResult ProceedToKycSecondPageButton(string longg, string lat)
+        {
+            SendOTPForFingpayKYCRequestModel requestModel = new SendOTPForFingpayKYCRequestModel();
+            
+            try
+            {
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
+                requestModel.MobileNo = HttpContext.Session.GetString("MobileNo").ToString();
+                requestModel.Latitude = "28.626264";
+                requestModel.Longitude = "77.3734324";
+
+                #region Checksum (SendOTPForFingpayKYC|Unique Key|UserId|)
+                string input = Checksum.MakeChecksumString("SendOTPForFingpayKYC", Checksum.checksumKey, requestModel.UserId, requestModel.MobileNo, requestModel.Latitude, requestModel.Longitude);
+                string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
+                #endregion
+
+                requestModel.checksum = CheckSum;
+                var client = new RestClient("https://api.redmilbusinessmall.com/api/SendOTPForFingpayKYC");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(requestModel);
+                request.AddJsonBody(json);
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var baseData = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (baseData.Statuscode == "TXN")
+                    {
+
+                        var dataa = JsonConvert.DeserializeObject<SendOTPForFingpayKYCResponseModel>(baseData.Data.ToString());
+                        
+                        Dictionary<string, string> Data = new Dictionary<string, string>();
+                        Data.Add("RequestId", dataa.RequestId.ToString());
+                        Data.Add("merchantLoginId", dataa.merchantLoginId);
+                        Data.Add("primaryKeyId", dataa.primaryKeyId);
+                        Data.Add("encodeFPTxnId", dataa.encodeFPTxnId);
+                        Data.Add("MobileNo", HttpContext.Session.GetString("MobileNo").ToString());
+                        Data.Add("UserId", HttpContext.Session.GetString("Id").ToString());
+                        return Json(new { result = "TXN", jsondata = Data, Data = dataa });
+
+                    }
+                    else if (baseData.Statuscode == "ERR")
+                    {
+                        return Json(baseData);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = requestModel;
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+
+        }
+
+        #endregion
+
+        #region ProceedToKycThirdPageButton
+        public JsonResult ProceedToKycThirdPageButton(string data,string otp)
+        {
+            var baseData = JsonConvert.DeserializeObject<SendOTPForFingPayWithOTPRequestModel>(data);
+            Dictionary<string, string> Data = new Dictionary<string, string>();
+            Data.Add("UserId", HttpContext.Session.GetString("Id").ToString());
+            Data.Add("encodeFPTxnId", baseData.encodeFPTxnId);
+            Data.Add("primaryKeyId", baseData.primaryKeyId);
+            Data.Add("Otp", otp);
+            Data.Add("merchantLoginId", baseData.merchantLoginId);
+            Data.Add("RequestId", baseData.RequestId.ToString());
+            try
+            {
+                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/ValidateOtpForFingpayKyc");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonConvert.SerializeObject(Data);
+                request.AddJsonBody(json);
+
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+                    var deseserialize = JsonConvert.DeserializeObject<BaseResponseModel>(response.Content);
+                    if (deseserialize.Statuscode == "TXN")
+                    {
+                        var deseserializeData = JsonConvert.DeserializeObject<SendOTPForFingPayWithOTPResponseModel>(deseserialize.Data.ToString());
+                        return Json(new { result = "TXN", jsondata = deseserialize, Data = deseserializeData });
+
+                    }
+                    else if (deseserialize.Statuscode == "ERR")
+                    {
+                        return Json(deseserialize);
+                    }
+                    else
+                    {
+                        return Json(new { Result = "UnExpectedStatusCode", url = Url.Action("ErrorForExceptionLog", "Error") });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = Data;
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+        }
+        #endregion
 
 
+
+        #region ProceedToKycFourthPageButton
+
+        public JsonResult ProceedToKycFourthPageButton(string data, string wadhKey,string deviceVal)
+        {
+            try
+            {
+                var biometricAgentJsonData = TriggerMachineForAgentKYC(wadhKey, data);
+                //var requestJson = new JObject();
+                //requestJson.Merge(data);
+                //requestJson.Merge(biometricAgentJsonData);
+                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/BiometricKycRequestForFingpay");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                //var json = JsonConvert.SerializeObject(requestJson);
+                request.AddJsonBody(biometricAgentJsonData);
+
+                IRestResponse response = client.Execute(request);
+                var result = response.Content;
+                if (string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Result = "EmptyResult", url = Url.Action("ErrorForExceptionLog", "Error") });
+                }
+                else
+                {
+
+                }
+
+
+
+                return Json("");
+            }
+            catch(Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = "";
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
+            }
+
+        }
+        #endregion
 
         #region AaadharPicVerification
         // After Device Selection hitting below api
@@ -1181,6 +1372,156 @@ namespace Project_Redmil_MVC.Controllers
             catch (Exception ex)
             {
                 //Console.ReadLine(ex);
+            }
+            return "";
+        }
+        #endregion
+
+
+        #region TriggerMachineForAgentKYC
+        public string TriggerMachineForAgentKYC(string wadhValue,string DataaaS)
+        {
+            Root aepsFingerPrintAgentData = new Root();
+            try
+            {
+
+                string completeUrl2 = "http://localhost:11100/rd/capture";
+                HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create(completeUrl2);
+                request2.Method = "CAPTURE";
+                request2.Credentials = CredentialCache.DefaultCredentials;
+                StreamWriter writer = new StreamWriter(request2.GetRequestStream());
+                //string pidOptString = "<PidOptions><Opts fCount=\"1\" dType=\"P\" fType=\"2\" iCount = \"0\" iType = \"0\" pCount = \"0\" pType = \"0\" format=\"0\" pidVer=\"2.0\" timeout=\"20000\" otp=\"\" posh=\"LEFT_INDEX\" env=\"P\" wadh=\"" + wadhValue + "\" /> <Demo></Demo> <CustOpts> <Param name=\"Param1\" value=\"\" /> </CustOpts> </PidOptions>";
+                string pidOptString = "<PidOptions ver = \"1.0\"><Opts env = \"P\" fCount = \"1\" fType = \"2\" format = \"1\" iCount = \"0\" iType = \"0\" pCount = \"0\" pType = \"0\" pidVer = \"2.0\" posh = \"LEFT_INDEX\" timeout = \"10000\" wadh=\"" + wadhValue + "\" /></PidOptions>";
+                writer.WriteLine(pidOptString);
+                writer.Close();
+                WebResponse response2 = default(WebResponse);
+                response2 = request2.GetResponse();
+                Stream str2 = response2.GetResponseStream();
+                StreamReader sr2 = new StreamReader(str2);
+                finalResponse2 = sr2.ReadToEnd();
+                XmlDocument xml = new XmlDocument();
+                finalResponse2 = finalResponse2.Replace("< ", "<").Replace(" >", ">").Replace("</ ", "</").Replace("? xml", "?xml");
+
+                xml.LoadXml(finalResponse2);
+
+
+                var jsonc = JsonConvert.SerializeXmlNode(xml);
+
+                //object obj = JsonConvert.DeserializeObject(jsonc);
+
+                var myDeserializedClass = JsonConvert.DeserializeObject<Root>(jsonc);
+
+                //Upcoming Data from Last API
+                var lastJsonData = DataaaS;
+                //Serailize Data
+                var lastJsonDataSerialize = JsonConvert.DeserializeObject<SendOTPForFingPayWithOTPResponseModel>(lastJsonData);
+
+
+                string srno = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[0].name;
+                string srnoValue = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[0].value.ToString();
+                string sysid = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[1].name;
+                string sysidValue = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[1].value.ToString();
+                string ts = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[2].name;
+                string tsValue = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[2].value.ToString(); ;
+
+                string requestRemarks = "redmil";
+                string nationalBankIdentificationNumber = "";
+                string indicatorforUID = "0";
+                string adhaarNumber = HttpContext.Session.GetString("AadharNo").ToString();
+                string errCode = myDeserializedClass.PidData.Resp.errCode;
+                string errInfo = myDeserializedClass.PidData.Resp.errInfo;
+                string fCount = myDeserializedClass.PidData.Resp.fCount;
+                string fType = myDeserializedClass.PidData.Resp.fType;
+                string iCount = "0";
+                string iType = "0";
+                string pCount = "0";
+                string pType = "0";
+                string nmPoints = myDeserializedClass.PidData.Resp.nmPoints;
+                string qScore = myDeserializedClass.PidData.Resp.qScore;
+                string dpId = myDeserializedClass.PidData.DeviceInfo.dpId;
+                string rdsId = myDeserializedClass.PidData.DeviceInfo.rdsId;
+                string rdsVer = myDeserializedClass.PidData.DeviceInfo.rdsVer;
+                string dc = myDeserializedClass.PidData.DeviceInfo.dc;
+                string mi = myDeserializedClass.PidData.DeviceInfo.mi;
+                string mc = myDeserializedClass.PidData.DeviceInfo.mc;
+                string ci = myDeserializedClass.PidData.Skey.ci;
+                string sessionKey = myDeserializedClass.PidData.Skey.text;
+                string hmac = myDeserializedClass.PidData.Hmac;
+                string PidDataType = "X";
+                string Piddata = myDeserializedClass.PidData.Data.text;
+                string UserId = HttpContext.Session.GetString("Id").ToString();
+                string AuthType = "FMR-FIR";
+
+                Dictionary<string, string> Data = new Dictionary<string, string>();
+                Data.Add("RequestId", lastJsonDataSerialize.RequestId);
+                Data.Add("merchantLoginId", lastJsonDataSerialize.merchantLoginId);
+                Data.Add("primaryKeyId", lastJsonDataSerialize.primaryKeyId);
+                Data.Add("encodeFPTxnId", lastJsonDataSerialize.encodeFPTxnId);
+                Data.Add("requestRemarks", requestRemarks);
+                Data.Add("nationalBankIdentificationNumber", nationalBankIdentificationNumber);
+                Data.Add("indicatorforUID", indicatorforUID);
+                Data.Add("adhaarNumber", adhaarNumber);
+                Data.Add("errCode", errCode);
+                Data.Add("errInfo", errInfo);
+                Data.Add("fCount", fCount);
+                Data.Add("fType", fType);
+                Data.Add("iCount", iCount);
+                Data.Add("iType", iType);
+                Data.Add("pCount", pCount);
+                Data.Add("pType", pType);
+                Data.Add("nmPoints", nmPoints);
+                Data.Add("qScore", qScore);
+                Data.Add("dpId", dpId);
+                Data.Add("rdsId", rdsId);
+                Data.Add("rdsVer", rdsVer);
+                Data.Add("dc", dc);
+                Data.Add("mi", mi);
+                Data.Add("mc", mc);
+                Data.Add("ci", ci);
+                Data.Add("sessionKey", sessionKey);
+                Data.Add("hmac", hmac);
+                Data.Add("PidDataType", PidDataType);
+                Data.Add("Piddata", Piddata);
+                Data.Add("UserId", UserId);
+                Data.Add("AuthType", AuthType);
+                var json = JsonConvert.SerializeObject(Data);
+                return json;
+
+                //string PidData = myDeserializedClass.PidData.Data.text;
+                //string PidDataType = myDeserializedClass.PidData.Data.type;
+                //string srno = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[0].value.ToString();
+                //string sysid = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[1].value.ToString(); ;
+                //string ts = myDeserializedClass.PidData.DeviceInfo.additional_info.Param[2].value.ToString(); ;
+                //string dc = myDeserializedClass.PidData.DeviceInfo.dc;
+                //string dpId = myDeserializedClass.PidData.DeviceInfo.dpId;
+                //string mc = myDeserializedClass.PidData.DeviceInfo.mc;
+                //string mi = myDeserializedClass.PidData.DeviceInfo.mi;
+                //string rdsId = myDeserializedClass.PidData.DeviceInfo.rdsId;
+                //string rdsVer = myDeserializedClass.PidData.DeviceInfo.rdsVer;
+                //string Hmac = myDeserializedClass.PidData.Hmac;
+                //string errCode = myDeserializedClass.PidData.Resp.errCode;
+                //string errInfo = myDeserializedClass.PidData.Resp.errInfo;
+                //string fCount = myDeserializedClass.PidData.Resp.fCount;
+                //string fType = myDeserializedClass.PidData.Resp.fType;
+                //string nmPoints = myDeserializedClass.PidData.Resp.nmPoints;
+                //string qScore = myDeserializedClass.PidData.Resp.qScore;
+                //string ci = myDeserializedClass.PidData.Skey.ci;
+                //string text = myDeserializedClass.PidData.Skey.text;
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogRequestModel requestModelEx = new ExceptionLogRequestModel();
+                requestModelEx.ExceptionMessage = ex;
+                requestModelEx.Data = "";
+                var clientEx = new RestClient("https://api.redmilbusinessmall.com/api/WebPortalExceptionLog");
+                var requestEx = new RestRequest(Method.POST);
+                requestEx.AddHeader("Content-Type", "application/json");
+                var jsonEx = JsonConvert.SerializeObject(requestModelEx);
+                requestEx.AddJsonBody(jsonEx);
+                IRestResponse responseEx = clientEx.Execute(requestEx);
+                var resultEx = responseEx.Content;
+                //return Json(new { Result = "RedirectToException", url = Url.Action("ErrorForExceptionLog", "Error") });
             }
             return "";
         }

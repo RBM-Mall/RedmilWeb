@@ -451,6 +451,7 @@ namespace Project_Redmil_MVC.Controllers
             HttpContext.Session.SetString("ParentId", mpinResponseModel.ParentId.ToString() ?? "");
             HttpContext.Session.SetString("Name", mpinResponseModel.Name.ToString() ?? "");
             HttpContext.Session.SetString("MobileNo", mpinResponseModel.Mobileno ?? "");
+            HttpContext.Session.SetString("AadharNo", mpinResponseModel.AadharNo ?? "");
             HttpContext.Session.SetString("Emailid", mpinResponseModel.Emailid ?? "");
             HttpContext.Session.SetString("Gender", mpinResponseModel.Gender ?? "");
             HttpContext.Session.SetString("DOB", mpinResponseModel.DOB ?? "");
