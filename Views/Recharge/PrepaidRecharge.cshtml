@@ -337,7 +337,7 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm-12">
-                                                                            <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
+                                                                            <h3 style="text-align:center;"><b>@ViewBag.MallName</b>&nbsp;&nbsp;<b>BUSINESS MALL</b></h3>
                                                                         </div>
                                                                         <div class="col-sm-12" style="text-align:center">
                                                                             <label style="text-align:center;">
@@ -670,7 +670,7 @@
     });
 
     function getParticularPlan(id) {
-        var planName = document.getElementById(id).innerText
+        var planName = document.getElementById(id).innerText;
         var table = $('#tempTbl1').DataTable();
         table.destroy();
         $("#temptableid").find("table").remove();
@@ -717,18 +717,19 @@
 
     function payNow() {
         var Number = $("#txtMobile").val();
-        var Operator = $("#txtOperator").val();
-        var Circle = $("#txtCircle").val();
+        var operator = document.getElementById("OpId").value;
+        var circle = document.getElementById("CirId").value;
         var Amount = $("#txtAmount").val();
         var Payment = $('.radio1:checked').val();
         if (Payment != undefined && Payment != '') {
             $.ajax({
                 type: "POST",
                 url: "/Recharge/PrepaidRecharge",
-                data: { 'Number': Number, 'Operator': Operator, 'Circle': Circle, 'Amount': Amount, 'Payment': Payment },
+                data: { 'Number': Number, 'Operator': operator, 'Circle': circle, 'Amount': Amount, 'Payment': Payment },
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
+                    debugger;
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -737,6 +738,11 @@
                     }
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
+                    }
+                    else if(response.status=="Insufficient Balance"){
+                        $("#modalChoosePayment").hide();
+                        $("#btninsufficientBalance").trigger("click");
+                        
                     }
                     else if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;

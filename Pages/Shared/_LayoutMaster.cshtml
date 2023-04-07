@@ -55,7 +55,6 @@
             margin: auto;
         }
 
-        
     </style>
     <style>
 
@@ -146,7 +145,7 @@
             margin-right: 7px;
         }
 
-        
+
 
 
         .cross {
@@ -188,7 +187,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand brand-res-img" href="~/Home/Index">
-                           <img src="~/css/img/logo-redmil.jpeg" width="100" alt="Logo"/>
+                            <img src="~/css/img/logo-redmil.jpeg" width="100" alt="Logo" />
                         </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -220,7 +219,7 @@
                                     </li>
                                     <li class="hover-me">
                                         <a href="#"><b>Bill Payment </b><i class="fa fa-angle-right"></i> </a>
-                                        <div class="Sub-menu-1 btn_scorll_nav" >
+                                        <div class="Sub-menu-1 btn_scorll_nav">
                                             <ul class="services-angle">
                                                 <li><a href="~/ElectricityBill/ElectricityBill"><b>Electricity Bill</b></a></li>
                                                 <li><a href="~/GasBill/GasBill"><b>Gas Bill</b></a></li>
@@ -261,10 +260,10 @@
                             @*<li><a href="#"><b>Media Center</b></a></li>*@
                             <li><a href="~/ContactUs/ContactUs"><b>Contact Us</b></a></li>
                             @*<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Miscellaneous</b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><b>Audited financials</b> </a></li>
-                                </ul>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Miscellaneous</b></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="#"><b>Audited financials</b> </a></li>
+                            </ul>
                             </li>*@
                             @{
                                 if (@Accessor.HttpContext.Session.GetString("Id") == null)
@@ -406,14 +405,14 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <!--/remember-row -->
-                                                                               @* <div class="form-group">
-                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px" onclick="verifiedLogin()" id="btnlogin"><i class="fa fa-spinner fa-spin spin-Load"></i> <b>Login</b></button>
+                                                                                @* <div class="form-group">
+                                                                                <button class="button-21" type="button" style="width:100%; border-radius:0px" onclick="verifiedLogin()" id="btnlogin"><i class="fa fa-spinner fa-spin spin-Load"></i> <b>Login</b></button>
 
-                                                                                </div> *@ 
+                                                                                </div> *@
                                                                                 <div class="form-group">
-                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px"  id="Logni_button"><i class="fa fa-spinner fa-spin spin-Load"></i> <b>Login</b></button>
+                                                                                    <button class="button-21" type="button" style="width:100%; border-radius:0px" id="Logni_button"><i class="fa fa-spinner fa-spin spin-Load"></i> <b>Login</b></button>
 
-                                                                                </div>  
+                                                                                </div>
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -948,8 +947,53 @@
                 </div>
             </div>
         </div>
+
+        <div>
+            @*-----------------------------------------------Error Modal for All services checking for Insufficient Balance---------------------------------------------------------*@
+            <input type="button" id="btninsufficientBalance" data-target="#insufficientBalance" data-toggle="modal" style="display:none;" />
+            <div class="modal fade modal_choose_bank" id="insufficientBalance" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #2d385e;">
+                            <a href="/Home/Index" style="padding-top:12px;" class="close close_cross">&times;</a>
+                            <h4 class="modal-title" style="font-weight: 900; text-align: center;">Insufficient Balance !!!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-10" style="text-align:center;">
+                                            <img src="~/css/ImgInsufficientBalance/transactionFailedLogo.jpeg" />
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                                <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center;">
+                                    Your Cash Wallet have not enough money..
+                                </p>
+                                <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center; margin-top: 20px;">
+                                    Please top-up & try again.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-12" style="display: inline-flex;">
+                                    <div class="col-sm-6 col-md-6">
+                                        <button type="button" id="btnRechargeWallet" onclick="chooseBank()" class="button-27">Add Money</button>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                        <a href="/Home/Index" type="button" id="btnClose" class="btn btn-danger">LATER</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-    
+
 
     <br />
 
@@ -957,12 +1001,16 @@
     <br />
 
     <div>
+<<<<<<< HEAD
        
 
 
       
+=======
+        @* @Html.Partial("_selfHelp")*@
+>>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
     </div>
-   
+
     <footer>
         <div class="section footer-top-area-2 padding-top-50 ">
             <div class="container">
@@ -973,17 +1021,17 @@
 
                             <a href="https://play.google.com/store/apps" target="_blank"><img src="#" class="download-the-app" alt=""></a>
 
-                           @* <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>*@
+                            @* <a href="https://play.google.com/store/apps" target="_blank"><img src="//redmil.in/wp-content/uploads/2019/02/google-169-189833-e1551969485388.png" class="download-the-app" alt=""></a>*@
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="widget contact-us">
 
                             <ul>
-                            
+
                                 @*<li><p style="margin-left: -100px;cursor: pointer;" onclick="comingsoon()">Schedule of Charges</p></li>*@
                                 <li><a href="" style="cursor: pointer;">Privacy Policy</a></li>
-                               
+
                                 @*<li><p style="margin-left: -183px;cursor: pointer;" onclick="comingsoon()">Careers</p></li>*@
                                 <li style="cursor: pointer;"><a href="">Terms and Condition</a></li>
 
@@ -993,13 +1041,13 @@
                     <div class="col-sm-4">
                         @*<div class="widget contact-us">
 
-                            <ul>
-                                <li><a href="#">Customer Grievance</a></li>
-                                <li><a href="#">FAQs</a> </li>
-                                <li><a href="#">Forfeiture Policy</a></li>
-                                <li><a href="#" target="_blank">Ombudsman Scheme</a></li>
-                                <li><a href="#">E-Waste Management</a></li>
-                            </ul>
+                        <ul>
+                        <li><a href="#">Customer Grievance</a></li>
+                        <li><a href="#">FAQs</a> </li>
+                        <li><a href="#">Forfeiture Policy</a></li>
+                        <li><a href="#" target="_blank">Ombudsman Scheme</a></li>
+                        <li><a href="#">E-Waste Management</a></li>
+                        </ul>
                         </div>*@
                     </div>
                     <div class="col-sm-4">
@@ -1021,7 +1069,7 @@
                                     <li><a href="https://www.instagram.com/redmilbusinessmall/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                     <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7036333899861405696/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                     <li><a href="https://www.youtube.com/@@RedmilBusinessMallOfficial/" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -1047,7 +1095,6 @@
 
     </footer>
     <script>
-
         function comingsoon() {
             $("#ComingSoons").trigger("click");
         }
@@ -1083,19 +1130,19 @@
         var pinNum;
 
 
-        $('#Logni_button').click(function() {
+        $('#Logni_button').click(function () {
             debugger;
-             $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+            $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
             }, 2000);
-             MobileNum = $('[Id*=txtNumber]').val();
+            MobileNum = $('[Id*=txtNumber]').val();
             $('#lblMobile').text(MobileNum);
             document.getElementById('lblMobile').innerHTML = MobileNum;
-             pinNum = $('[Id*=txtMpin]').val();
+            pinNum = $('[Id*=txtMpin]').val();
             getcookiedata()
             if (MobileNum.trim() == "") {
-                    
+
                 document.getElementById("mobile").innerHTML = "Please Enter Mobile Number";
                 $('[Id*=txtNumber]').focus();
             }
@@ -1104,21 +1151,22 @@
                 $.notify("Please Enter Mpin ? ", "warn");
                 $('[Id*=txtMpin]').focus();
             }
-           
+
             else {
                 $.ajax({
-                    
+
                     url: "/Login/Index",
                     data: { Mobile: MobileNum, Mpin: pinNum },
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
                         debugger;
-                         setTimeout(() => {
-                             $(this).html('Login');}, 2000);
-                        if(response.result=="EmptyResult" || response.result=="RedirectToException"){
-                                        window.location.href = response.url;
-                                    }
+                        setTimeout(() => {
+                            $(this).html('Login');
+                        }, 2000);
+                        if (response.result == "EmptyResult" || response.result == "RedirectToException") {
+                            window.location.href = response.url;
+                        }
                         else if (response.statuscode == "OSS") {
                             var a = response.data;
                             var Mobile = $("#txtNumber").val();
@@ -1158,7 +1206,7 @@
                                     document.getElementById("some_divs").innerHTML = "OTP Expired. Please click on Resend Button";
                                     document.getElementById("some_divs").style.color = "red";
 
-                                } 
+                                }
                                 else {
                                     elem.innerHTML = timeLeft + ' seconds remaining';
                                     timeLeft--;
@@ -1166,7 +1214,7 @@
                             }
 
                             $("#Sendotp").trigger("click");
-                               $('#ReopenLogin').hide();
+                            $('#ReopenLogin').hide();
                             $.notify(
                                 response.message,
                                 { globalPosition: "bottom center", className: "success", showAnimation: 'slideDown', showDuration: 1000 }
@@ -1220,7 +1268,7 @@
         function verifyOTP() {
             debugger;
             var MobileNumber = MobileNum;
-   
+
             document.getElementById("lblMobile").innerHTML = MobileNum;
             var Otp = $("#ot1").val();
             var Otp1 = $("#ot2").val();
@@ -1571,8 +1619,7 @@
     </script>
 
     <script>
-        function LoginClear() 
-        {
+        function LoginClear() {
             $('[Id*=txtNumber]').val("");
             $('[Id*=txtMpin]').val("");
             $('[Id*=txtNewMpin]').val("");
@@ -1612,8 +1659,7 @@
     </script>
 
     <script>
-        function clearSession() 
-        {
+        function clearSession() {
             $.ajax({
                 url: "/Login/ClearSession",
                 data: {},
@@ -1651,7 +1697,7 @@
     </script>
 
     <script>
-       
+
         function CookiesHandle() {
             debugger;
             var MobileNum = $('[Id*=txtNumber]').val();
@@ -1676,7 +1722,7 @@
                 );
                 chkRemember.checked = false;
             }
-            
+
             else {
                 document.cookie = "mymobile=" + MobileNum + ";path=https://uatweb1.redmilbusinessmall.com/";
                 document.cookie = "myMpin=" + pinNum + ";path=https://uatweb1.redmilbusinessmall.com/";
@@ -1684,7 +1730,7 @@
             }
         }
         function getcookiedata() {
-        
+
             console.log(document.cookie);
             var cookisMobile = getCookie('mymobile');
             var cookisMpin = getCookie('myMpin');
@@ -1693,7 +1739,7 @@
 
         }
         function getCookie(cname) {
-            
+
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');

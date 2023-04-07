@@ -40,7 +40,20 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
             {
                 dTHRechargeRequestModel.Userid = HttpContext.Session.GetString("Id").ToString(); ;
                 dTHRechargeRequestModel.Mobileno = cutomerid;
-                dTHRechargeRequestModel.Amount = ToDigitsOnly(amount);
+                var ActualAmount = ToDigitsOnly(amount);
+                var amountData = CheckingBalanceClass.GetBalance(dTHRechargeRequestModel.Userid);
+                double newAmount = (amountData.FirstOrDefault().MainBal);
+                if (newAmount > double.Parse(ActualAmount))
+                {
+                    dTHRechargeRequestModel.Amount = ActualAmount;
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        status = "Insufficient Balance",
+                    });
+                }
                 dTHRechargeRequestModel.Wallet = payment;
                 var responseOperators = DTHOperatorList();
                 dTHRechargeRequestModel.OpId = responseOperators.Where(x => x.Operatorname == opName).FirstOrDefault().Id.ToString();
@@ -161,7 +174,7 @@ namespace Project_Redmil_MVC.Controllers.RechargesControllers
                 }
                 else
                 {
-
+                    return null;
                 }
 
             }

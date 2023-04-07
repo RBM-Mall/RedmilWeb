@@ -243,7 +243,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             try
             {
                 //requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
-                requestModel.UserId = "2084";
+                requestModel.UserId = HttpContext.Session.GetString("Id").ToString();
                 requestModel.PageNumber = "1";
                 #region Checksum (senderdetailsbyuserid|Unique Key|UserId)
 
@@ -415,7 +415,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                     if (deserializ.Statuscode == "TXN")
                     {
                         GetAddSenderRequestModel requestmodel = new GetAddSenderRequestModel();
-                        requestmodel.UserId = "2084";
+                        requestmodel.UserId = HttpContext.Session.GetString("Id").ToString();
                         requestmodel.SenderName = name;
                         requestmodel.SenderMobile = deserializ.Data.FirstOrDefault().SenderMobile;
                         #region Checksum (addsender|Unique Key|UserId)

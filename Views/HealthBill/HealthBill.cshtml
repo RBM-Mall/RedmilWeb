@@ -227,7 +227,7 @@
                                                     <div class="form-group-recharge">
                                                         <p class="plan-description-amount">*Enter the mobile number on which recharge/bill status information needs to be sent</p>
                                                     </div>
-                                                    
+
                                                     <div class="form-group-recharge form-group-recharge-button operatorspan">
                                                         <button type="button" class="operator-change" id="btnDownloadSample" onclick="downloadSample()">Download Sample Bill</button>
                                                     </div>
@@ -260,7 +260,7 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm-12">
-                                                                            <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
+                                                                            <h3 style="text-align:center;"><b>@ViewBag.MallName</b>&nbsp;&nbsp;<b>BUSINESS MALL</b></h3>
                                                                         </div>
                                                                         <div class="col-sm-12" style="text-align:center">
                                                                             <label style="text-align:center;">
@@ -295,15 +295,15 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-<div class="modal-footer">
+                                                                <div class="modal-footer">
                                                                     <div class="row">
                                                                         <div class="col-md-12" style="display: inline-flex;">
-                                                                        <div class="col-sm-6 col-md-6">
-                                                                            <button type="button" id="btnPayNow" onclick="payNow()" class="button-27">Pay</button>
-                                                                        </div>
                                                                             <div class="col-sm-6 col-md-6">
-                                                                            <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                                        </div>
+                                                                                <button type="button" id="btnPayNow" onclick="payNow()" class="button-27">Pay</button>
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <button type="button" id="btnCloseFirst" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -460,7 +460,7 @@
     <div class="col col-md-12 col-sm-12 col-lg-12">
         <div class="div-main-oplist">
             <div class="div-recharge-opimage">
-                  <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our Health Insurance Partner</b></h4></div>
+                <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our Health Insurance Partner</b></h4></div>
                 <div class="row" style="text-align:center;">
                     <div class="col-md-4 col-sm-12 col-xs-12 "></div>
                     <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
@@ -552,7 +552,7 @@
     }
 
     function fetchBill1() {
-        if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill"){
+        if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill") {
             var operator = $("#Id").val();
             var mobile = $("#txtMobile").val();
             if (operator.length === 0) {
@@ -561,9 +561,9 @@
             else if (mobile.length === 0) {
                 document.getElementById("errMobile").innerHTML = "Please Enter Mobile Number";
             }
-            else{
-                document.getElementById("errOperator").innerHTML="";
-                document.getElementById("errMobile").innerHTML="";
+            else {
+                document.getElementById("errOperator").innerHTML = "";
+                document.getElementById("errMobile").innerHTML = "";
                 var MobileNum = $("#txtMobile").val();
                 var Input1 = $("#txtInput0").val();
                 var Input2 = $("#txtInput1").val();
@@ -821,6 +821,11 @@
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
                     }
+                    else if (response.status == "Insufficient Balance") {
+                        $("#modalChoosePayment").hide();
+                        $("#btninsufficientBalance").trigger("click");
+
+                    }
                     else if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";
@@ -939,8 +944,8 @@
                         for (var i = 0; i < responsedata[0].inputParam.length; i++) {
                             var id = "txtInput" + i;
                             $(".inc").append('<div class="controls">\
-                                            <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                        </div>');
+                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                            </div>');
                         }
                     }
                 }

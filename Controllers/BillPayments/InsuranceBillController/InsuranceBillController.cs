@@ -86,7 +86,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.InsuranceBillController
                             GetBBPSBillsTmpRequestModel requestmodel = new GetBBPSBillsTmpRequestModel();
                             try
                             {
-                                requestmodel.Userid = "2084";
+                                requestmodel.Userid = HttpContext.Session.GetString("Id").ToString();
                                 requestmodel.Mobileno = Number;
                                 requestmodel.BillerId = dataBillerInfo.FirstOrDefault().Bbps;
                                 string inputParamKey = "";
@@ -221,10 +221,23 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.InsuranceBillController
                                                 {
                                                     FinalAmount = amount;
                                                 }
-                                                requestPayModel.Amount = FinalAmount;
+
+                                                var amountData = CheckingBalanceClass.GetBalance(requestmodel.Userid);
+                                                double newAmount = (amountData.FirstOrDefault().MainBal);
+                                                if (newAmount > double.Parse(FinalAmount))
+                                                {
+                                                    requestPayModel.Amount = FinalAmount;
+                                                }
+                                                else
+                                                {
+                                                    return Json(new
+                                                    {
+                                                        status = "Insufficient Balance",
+                                                    });
+                                                }
                                                 requestPayModel.Mode = "App";
-                                                requestPayModel.Userid = "2084";
-                                                string UseridCheck = "2084";
+                                                requestPayModel.Userid = HttpContext.Session.GetString("Id").ToString();
+                                                string UseridCheck = HttpContext.Session.GetString("Id").ToString();
                                                 //requestPayModel.Token = "";
 
                                                 #region Checksum (PayBBPSBillsTmp|Unique Key|UseridCheck|Mobileno|Mode|Amount|RequestID|BillerId|InputParam1|InputParam2)
@@ -512,7 +525,7 @@ namespace Project_Redmil_MVC.Controllers.BillPayments.InsuranceBillController
         public JsonResult GetBalance()
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
-            getBalanceRequestModel.Userid = "2084";
+            getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
             try
             {
                 #region Checksum (GetBalance|Unique Key|UserId)

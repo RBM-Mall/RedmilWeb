@@ -32,4 +32,15 @@
 
     }
 
+    public class BaseResonseModelAepsFinalT<T>
+    {
+
+        public bool VoiceStatus { get; set; }
+        public int LanguageId { get; set; }
+        public object VoiceMessage { get; set; }
+        public string Statuscode { get; set; }
+        public string Message { get; set; }
+        public T Data { get; set; }
+    }
+
 }

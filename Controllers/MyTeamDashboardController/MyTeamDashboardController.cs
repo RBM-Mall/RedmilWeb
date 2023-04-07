@@ -36,7 +36,7 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
             {
                 //req.UserId = "2084";
                 #region Checksum (Recharge|Unique Key|UserId)
-                string input = Checksum.MakeChecksumString("GetMyTeamMemberCountNew", Checksum.checksumKey, "2084");
+                string input = Checksum.MakeChecksumString("GetMyTeamMemberCountNew", Checksum.checksumKey, HttpContext.Session.GetString("Id").ToString());
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 #endregion
                 req.checksum = CheckSum;
@@ -99,9 +99,9 @@ namespace Project_Redmil_MVC.Controllers.MyTeamDashboardController
             GetMyTeamMemberCountNewRequestModel req = new GetMyTeamMemberCountNewRequestModel();
             try
             {
-                req.UserId = "2084";
+                req.UserId = HttpContext.Session.GetString("Id").ToString();
                 #region Checksum (Recharge|Unique Key|UserId)
-                string input = Checksum.MakeChecksumString("GetMyTeamMemberCountNew", Checksum.checksumKey, "2084");
+                string input = Checksum.MakeChecksumString("GetMyTeamMemberCountNew", Checksum.checksumKey, req.UserId);
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 #endregion
                 req.checksum = CheckSum;

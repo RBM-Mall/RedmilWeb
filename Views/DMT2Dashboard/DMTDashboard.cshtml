@@ -698,7 +698,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
+                            <h3 style="text-align:center;"><b>@ViewBag.MallName</b>&nbsp;&nbsp;<b>BUSINESS MALL</b></h3>
                         <label id="lblPayId1" style="display:none;"></label>
                     </div>
                     <div class="col-sm-12" style="text-align:center">
@@ -993,7 +993,6 @@
         }, 2000);
         var id = Id;
         $.ajax({
-            type: "POST",
             url: "/DMT2Dashboard/GetDetailsById",
             data: { 'id': id },
             type: 'POST',

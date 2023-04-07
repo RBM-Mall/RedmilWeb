@@ -273,7 +273,7 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm-12">
-                                                                            <h3 style="text-align:center;"><b>FAISAL SIDDIQUI BUSINESS MALL</b></h3>
+                                                                            <h3 style="text-align:center;"><b>@ViewBag.MallName</b>&nbsp;&nbsp;<b>BUSINESS MALL</b></h3>
                                                                         </div>
                                                                         <div class="col-sm-12" style="text-align:center">
                                                                             <label style="text-align:center;">
@@ -727,6 +727,8 @@
                             window.location.href = responsedata.url;
                         }
 
+                        
+
                         else if (responsedata.statuscode == "ERR") {
                             document.getElementById("divBill").style.display = "block";
                             document.getElementById("lblBillData").innerHTML = responsedata.message;
@@ -971,6 +973,11 @@
                     else if (response.result == "RedirectToException") {
                         window.location.href = response.url;
                     }
+                    else if (response.status == "Insufficient Balance") {
+                            $("#modalChoosePayment").hide();
+                            $("#btninsufficientBalance").trigger("click");
+
+                        }
                     else if (response.statuscode == "TXN") {
                         document.getElementById("lblMsg").innerHTML = response.message;
                         document.getElementById("heading").innerHTML = "Success";

@@ -378,6 +378,7 @@
                             </div>
                         </div>
                         <!--Card for recharge ends here-->
+<<<<<<< HEAD
                     </div>
                 </div>
             </div>
@@ -519,15 +520,162 @@
                                 <p class="about-lead"><b>Tata Docomo Landline</b></p>
                             </div>
                         </div>
+=======
+>>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
                     </div>
                 </div>
             </div>
+
+            <div class="col-1 col-md-1" style="width:4%">
+                <!--Blank Space Between Recharge and Plans Pannel-->
+            </div>
+            <!--Card for Plans Pannel Starts Here-->
+            <div class="col-8 col-md-8 div-plans-table" style="display:none;background:white;border-radius:20px;box-shadow: 0px 0px 0px 1px blue inset;" id="divBill">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title div-browse-plans" id="heading" style="text-align:center;margin-left:75px;"><strong>Bill Details</strong><img src="~/css/ImgElectricity/BharatBill.jpeg" style="float:right;height:45px;width:100px" /></h3>
+                        <div class="main-table-recharge">
+                            <br />
+                            <hr />
+                            <h4><label id="lblBillData" style="display:none;text-align:center;"></label></h4>
+                            <table class="table table-bordered" id="tblData">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Bill Number:</th>
+                                        <td><label id="lblBillNum"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer Name:</th>
+                                        <td><label id="lblCustomerName"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Due Date:</th>
+                                        <td><label id="lblDueDate"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bill Period:</th>
+                                        <td><label id="lblBillPeriod"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Bill Amount:</th>
+                                        <td>
+                                            <label id="lblBillAmount"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="fa fa-pencil" id="btnEditAmount" onclick="editAmount()" style="font-size:36px;color:dodgerblue;"></i>
+                                            <div class="bc" style="float: right;margin-top: -70px;margin-right: 96px;">
+                                                <input id="txtBill" style="display:none;margin-left: 70px;margin-top:67px;" autocomplete="off" placeholder="Enter Amount" type="tel" maxlength="10" required="required" class="txt-input js-input-mobile txt-input-text" />
+                                                <button type="button" style="display:none;margin-left: 242px;margin-top: -34px;" id="btnEdit" onclick="bindEditAmount()" class="btn btn-danger butn-cancel">Ok</button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CCF:</th>
+                                        <td><label id="lblCCF"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Commision:</th>
+                                        <td><label id="lblCommision"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total Amount:</th>
+                                        <td><label id="lblTotalAmount"></label></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            CCF:
+                                        </th>
+                                        <td>
+                                            <div class="switchCCF" id="divSwitch" style="display:block;">
+                                                <label class="switch">
+                                                    <input type="checkbox" name="ccfCheckbox" checked id="chkCCF">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div id="divSecHeading" style="display:block;">
+                                                <h3 class="card-title div-browse-plans" id="headingAdditonal" style="text-align:center;"><strong>Additional Info</strong></h3>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Early Payment Date:</th>
+                                        <td>
+                                            <p class="p-new-1"><label id="lblAdditional"></label></p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Card for Plans Pannel Ends Here-->
         </div>
+<<<<<<< HEAD
     </div>
     <div class="btn_Partial">
         @Html.Partial("_SelfHelp")
     </div>
 </div>
+=======
+
+        <div class="col col-md-12 col-sm-12 col-lg-12">
+            <div class="div-main-oplist">
+                <div class="div-recharge-opimage">
+                    <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our Landline Partner</b></h4></div>
+                    <div class="row" style="text-align:center;">
+                        <div class="col-md-1 col-sm-12 col-xs-12 "></div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/css/ImgLandline/airtelLadline.jpeg" alt="airtelLadline" class="img-width" style="height:100px;">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="airtelLadline"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                                <p class="about-lead"><b>Airtel Landline</b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/css/ImgLandline/bsnlLadline.jpeg" alt="bsnlLadline" class="img-width" style="height:100px;">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="bsnlLadline"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                                <p class="about-lead"><b>BSNL Landline</b></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/css/ImgLandline/mtnl-logo-bigLadline.jpeg" alt="mtnl" class="img-width" style="height:100px;">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="mtnl"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                                <p class="about-lead"><b>MTNL Landline</b></p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                            <img src="~/css/ImgLandline/tatadocomoLadline.jpeg" alt="tatadocomoLadline" class="img-width" style="height:100px;">
+                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="tatadocomoLadline"></a></div>
+                            <div class="leadership_name">
+                                <br />
+                                <p class="about-lead"><b>Tata Docomo Landline</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+>>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
     <script>
         let price;
 
@@ -864,6 +1012,14 @@
                         else if (response.result == "RedirectToException") {
                             window.location.href = response.url;
                         }
+<<<<<<< HEAD
+=======
+                        else if (response.status == "Insufficient Balance") {
+                            $("#modalChoosePayment").hide();
+                            $("#btninsufficientBalance").trigger("click");
+
+                        }
+>>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
                         else if (response.statuscode == "TXN") {
                             document.getElementById("lblMsg").innerHTML = response.message;
                             document.getElementById("heading").innerHTML = "Success";

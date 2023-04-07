@@ -31,7 +31,7 @@ namespace Project_Redmil_MVC.Controllers
             }
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             List<GetBalanceResponseModel> gBRM = new List<GetBalanceResponseModel>();
-            getBalanceRequestModel.Userid = "2084";
+            getBalanceRequestModel.Userid = HttpContext.Session.GetString("Id").ToString();
             try
             {
                 #region Checksum (GetBalance|Unique Key|UserId)
