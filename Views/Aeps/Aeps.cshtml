@@ -1372,11 +1372,8 @@
         }
         debugger;
         if (radioVal == undefined || radioVal == '' || radioVal == null) {
-<<<<<<< HEAD
             document.getElementById('walletMode').innerHTML = "Please select transaction to proceed!";
-=======
             document.getElementById('walletMode').innerHTML = "Please select transaction mode to proceed!";
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
             return false;
         }
         else {
@@ -1719,8 +1716,6 @@
                             img.src = "/css/Img_Aeps/icici-bank-vector-logo.png";
                             var mobileNumber = '@ViewBag.MobileNo';
                             aepsAgentId = "RED" + mobileNumber;
-<<<<<<< HEAD
-
                             GetLocation();
                             lati = $("#hdnLong").val();
                             long = $("#hdnLat").val();
@@ -1731,9 +1726,6 @@
                                 else {
                                     document.getElementById("txtAmountCashWithdrawal").style.display="block";
                                 }
-                                
-
-=======
                             bankList();
                             if (transactionMode == "cw") {
                                 document.getElementById("txtAmountCashWithdrawal").style.display = "block";
@@ -1741,7 +1733,6 @@
                             else {
                                 document.getElementById("txtAmountCashWithdrawal").style.display = "none";
                             }
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
                             $("#btnAadharCustomerDetails").trigger("click");
                             $("#deviceModal").hide();
                             //$("#hdnLong1").val();
@@ -1851,11 +1842,8 @@
         $("#hdnLat1").val(position.coords.latitude);
         var baseUrl = "https://www.google.com/maps/search/";
         var mapUrl = baseUrl + "/" + $("#hdnLat1").val() + "," + $("#hdnLong1").val();
-<<<<<<< HEAD
         window.open(mapUrl);
-=======
         //window.open(mapUrl);
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
         //$.ajax({
         //    url: "/Aeps/getAddress",
         //    data: { 'longg': $("#hdnLong1").val(), 'lat': $("#hdnLat1").val()},
@@ -1865,8 +1853,6 @@
         //        debugger;
         //    }
         //})
-<<<<<<< HEAD
-=======
     }
     function showError(error) {
         switch (error.code) {
@@ -2384,26 +2370,18 @@
 
                         var mobileNumber = '@ViewBag.MobileNo';
                         aepsAgentId = "RED" + mobileNumber;
-
-<<<<<<< HEAD
                         GetLocation();
                         lati = $("#hdnLong").val();
                         long = $("#hdnLat").val();
-=======
                         //GetLocation();
                         //lati = $("#hdnLong").val();
                         //long = $("#hdnLat").val();
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
-
                         if (transactionMode == "be" || transactionMode == "ms") {
                             document.getElementById("txtAmountCashWithdrawal").style.display = "none";
                         }
                         else {
                             document.getElementById("txtAmountCashWithdrawal").style.display = "block";
                         }
-<<<<<<< HEAD
-
-
                         $("#btnAadharCustomerDetails").trigger("click");
                         $("#deviceModal").hide();
                         //$.ajax({

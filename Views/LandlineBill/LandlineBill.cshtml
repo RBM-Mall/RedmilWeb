@@ -378,7 +378,6 @@
                             </div>
                         </div>
                         <!--Card for recharge ends here-->
-<<<<<<< HEAD
                     </div>
                 </div>
             </div>
@@ -623,14 +622,11 @@
             </div>
             <!--Card for Plans Pannel Ends Here-->
         </div>
-<<<<<<< HEAD
     </div>
     <div class="btn_Partial">
         @Html.Partial("_SelfHelp")
     </div>
 </div>
-=======
-
         <div class="col col-md-12 col-sm-12 col-lg-12">
             <div class="div-main-oplist">
                 <div class="div-recharge-opimage">
@@ -1012,14 +1008,11 @@
                         else if (response.result == "RedirectToException") {
                             window.location.href = response.url;
                         }
-<<<<<<< HEAD
-=======
                         else if (response.status == "Insufficient Balance") {
                             $("#modalChoosePayment").hide();
                             $("#btninsufficientBalance").trigger("click");
 
                         }
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
                         else if (response.statuscode == "TXN") {
                             document.getElementById("lblMsg").innerHTML = response.message;
                             document.getElementById("heading").innerHTML = "Success";
