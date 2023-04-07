@@ -31,7 +31,7 @@ section {
 }
 
 .faq {
-    width: 50%;
+    width: 80%;
     min-height: 440px;
     height: auto;
     background: white;
@@ -110,7 +110,7 @@ section {
                 position: absolute;
                 top: -6%;
                 left: 44%;
-                width: 100%;
+                width: 55%;
                 transform: translate(-50%, -50%);
             }
 

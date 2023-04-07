@@ -337,9 +337,9 @@
             </div>
         </div>
     </div>
-  @Html.Partial("_SelfHelp")
-    @await Html.PartialAsync("_selfHelp",Model)
+  
 </div>
+@await Html.PartialAsync("_selfHelp",Model)
 <script>
     $("#btnProceed").click(function () {
         $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
