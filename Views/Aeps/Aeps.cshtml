@@ -241,11 +241,11 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-10" style="text-align:center;">
-                                <img src="~/css/ImgAepsOnbaording/onboardingUserLogo.jpeg"/>
+                                    <img src="~/css/ImgAepsOnbaording/onboardingUserLogo.jpeg" />
                                 </div>
                                 <br />
                                 <div class="col-md-10" style="text-align:center">
-                                    <img src="~/css/ImgAepsOnbaording/onboardingBanklogo.jpeg"/>
+                                    <img src="~/css/ImgAepsOnbaording/onboardingBanklogo.jpeg" />
                                 </div>
                             </div>
                         </div>
@@ -262,10 +262,270 @@
                     <div class="row">
                         <div class="col-md-12" style="display: inline-flex;">
                             <div class="col-sm-6 col-md-6">
-                                <button type="button" id="btnProceedForEKYC" onclick="chooseBank()" class="button-27">Proceed for E-KYC</button>
+                                <button type="button" id="btnProceedForEKYC2" onclick="proceedForEKYC2()" class="button-27">Proceed for E-KYC</button>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">LATER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*-----------------------------------------------Aeps AgentICICI Bank Onboarding Modal Popup for Mobile OTP Validation--------------------------------------------------------*@
+    <input type="button" id="btnmobileOtpValidation" data-target="#mobileOtpValidation" data-toggle="modal" style="display:none;" />
+    <div class="modal fade modal_choose_bank" id="mobileOtpValidation" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="font-weight: 900; text-align: center;">OTP Verification</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center;">
+                            One time OTP has been sent
+                        </p>
+                        <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center; margin-top: 20px;">
+                            Mobile No.:@ViewBag.MobileNo
+                        </p>
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col col-lg-12 col-sm-12">
+                                    <div class="col col-lg-3">
+                                    </div>
+                                    <div class="col col-lg-4">
+                                        <input type="text" class="form-control" maxlength="7" id="txtOTPVerifyForKYC" placeholder="Enter OTP" />
+                                        <span id="errtxtOTPVerifyForKYC" class="errorMsg"></span>
+                                    </div>
+                                    <div class="col col-lg-4">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnmobileOtpValidationForKYC" onclick="mobileOtpValidationForKYC()" class="button-27">Verify OTP</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">LATER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Choose Device Model Popup-->
+    @*--------------------------------------------------------Aeps AgentICICI Bank Onboarding Modal Popup for Choose Biometric Device modal pop-up ------------------------------------------------------------------*@
+
+    <input type="button" id="btniciciAgentBiometric" data-target="#iciciAgentBiometric" data-toggle="modal" style="display:none" />
+    <div class="modal fade modal_choose_bank" id="iciciAgentBiometric" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="font-weight: 900; text-align: center;">SELECT DEVICE</h4>
+                    <div class="col-sm-5 col-xs-12 pull-right">
+                        <div class="read-more padding-top-bottom-40">
+                            <h3 class="heading_Balance" style="color: #fff; display: inline-flex;font-size: 16px;">Cash Wallet -- </h3>
+                            <a href="#" target="_blank" class="button-22" style="cursor: auto; text-decoration: unset;">₹ @ViewBag.Balance </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="1selectDevice">
+                    <p class="p_Verify_Face">How to Work</p>
+                    <hr />
+                    <div class="col-md-12">
+                        <div class="section single-services-area">
+                            <div class="row" style="margin-right: 0;">
+                                <div class="col col-md-12 col-sm-12 col-lg-12">
+                                    <img src="~/img/img_devices/How-to-Work.png" style="width:100%;" alt="Norway" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="p_Verify_Face">CHOOSE DEVICE</p>
+                    <hr />
+                    <div class="col-md-12">
+                        <div class="col-md-3 morpho radio2 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Morpho">
+                            <img src="~/img/img_devices/Morpho.png" class="choose_device_image" />
+                            <label class="choose_device_label"> MORPHO </label>
+                        </div>
+                        <div class="col-md-3 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Startek">
+                            <img src="~/img/img_devices/Startek.png" class="choose_device_image" />
+                            <label class="ybl choose_device_label" id="startek"> STARTEK </label>
+                        </div>
+                        <div class="col-md-3 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Mantra">
+                            <img src="~/img/img_devices/Mantra.png" class="choose_device_image" />
+                            <label class="ybl choose_device_label"> MANTRA </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="display: block; margin-top: 20px;">
+                        <div class="col-md-3 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Next">
+                            <img src="~/img/img_devices/Next.png" class="choose_device_image" />
+                            <label class="ybl choose_device_label" id="nextNb"> NEXT NB-3023 </label>
+                        </div>
+                        <div class="col-md-3 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Secugen">
+                            <img src="~/img/img_devices/Secugen.png" class="choose_device_image" />
+                            <label class="ybl choose_device_label" id="secugen"> SECUGEN PRO 20 </label>
+                        </div>
+                        <div class="col-md-3 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Tatvik">
+                            <img src="~/img/img_devices/Tatvik-TMF20.png" class="choose_device_image" />
+                            <label class="ybl choose_device_label" id="tatvik"> TATVIK TMF20 </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="display: block; margin-top: 20px;">
+                        <div class="col-md-3 choose_device_div">
+                            <input type="radio" class="morpho1" name="radioDeviceNew" value="Precision">
+                            <img src="~/img/img_devices/Precision.png" class="choose_device_image" />
+                            <label class="ybl choose_device_label" id="precision"> PRECISION PB510 </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center;">
+                            <h3 style="font-weight:bold"><span id="errDevice" style="font-weight:bold;" class="text-danger font-weight-bold"></span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="selectICICIAgentDeviceProceed" onclick="iciciAgentBiometricDeviceSelection()" class="button-27">Proceed</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-12 col-sm-12 col-lg-12">
+                    <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
+                        <div class="div-recharge-opimage">
+                            <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
+                            <hr />
+                            <div class="row" style="text-align:center;">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
+                                    <img src="~/img/img_devices/NPCI.png" alt="NPCI" class="img-width" style="height:100px;">
+                                    <div class="overlay"> <a href="#" target="_blank" class="icon" title="NPCI"></a></div>
+                                    <div class="leadership_name">
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*-----------------------------------------------Aeps AgentICICI Bank Onboarding Modal Popup for Show Addhar and Pan--------------------------------------------------------*@
+    <input type="button" id="btnagentAadharPanPopu" data-target="#agentAadharPanPopu" data-toggle="modal" style="display:none;" />
+    <div class="modal fade modal_choose_bank" id="agentAadharPanPopu" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                    <h4 class="modal-title" style="font-weight: 900; text-align: center;">Agent E-KYC Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col col-lg-12 col-sm-12">
+                                    <div class="col col-lg-3">
+                                        <label id="lblAadhar">Aadhar Number:</label>
+                                    </div>
+                                    <div class="col col-lg-4">
+                                        <input type="text" class="form-control" value="@ViewBag.AadharNum" readonly id="txtAgentAadharNum" />
+                                    </div>
+                                    <div class="col col-lg-4">
+                                    </div>
+                                </div>
+                                <div class="col col-lg-12 col-sm-12">
+                                    <div class="col col-lg-3">
+                                        <label id="lblAadhar">Pan Number:</label>
+                                    </div>
+                                    <div class="col col-lg-4">
+                                        <input type="text" class="form-control" value="@ViewBag.PanNum" readonly id="txtPanNum" />
+                                    </div>
+                                    <div class="col col-lg-4">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-6 col-md-6">
+                                <button type="button" id="btnProceedtoEKYCForAgentICICI" onclick="iciciAgentBiometricFinal()" class="button-27">Proceed to E-KYC</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="btn btn-danger">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @*-----------------------------------------------Aeps AgentICICI Bank Onboarding Modal Popup for Final Response Success or Error--------------------------------------------------------*@
+    <input type="button" id="btnagentKYCResponsePopup" data-target="#agentKYCResponsePopup" data-toggle="modal" style="display:none;" />
+    <div class="modal fade modal_choose_bank" id="agentKYCResponsePopup" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #2d385e;">
+                    <a href="/Aeps/AEPS" style="padding-top:12px;" class="close close_cross">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10" style="text-align:center;">
+                                    <img id="imgKYCFinalResponseImage" />
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <p style="color: #2d385e; font-weight: 900; font-size: 20px; text-align: center;" id="agentKYCFinalResponseMessage1">
+                        </p>
+                        <p style="color: #2d385e; font-weight: 800; font-size: 15px; text-align: center; margin-top: 20px;" id="agentKYCFinalResponseMessage2">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12" style="display: inline-flex;">
+                            <div class="col-sm-12 col-md-12">
+                                <a href="/Aeps/AEPS" type="button" id="btnClose" class="button-27">Done</a>
                             </div>
                         </div>
                     </div>
@@ -296,7 +556,7 @@
                             <div class="col-md-3 box_choose_bank">
                                 <img src="https://api.redmilbusinessmall.com/Docs/yesbank_aeps.png" class="box_choose_bank_image" />
                                 <label class="ybl box_choose_bank_label" id="lblybl"> </label>
-                                <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES" style="text-align: center;" />
+                                <input type="radio" class="rdbBank" name="rdbBankName" id="rdbYESBank" value="YES Bank" style="text-align: center;" />
                                 <b class="box_choose_bank_input_para"></b>
                             </div>
                             <div class="col-md-4 box_choose_bank" style="display:none;">
@@ -308,7 +568,7 @@
                             <div class="col-md-3 box_choose_bank">
                                 <img src="https://api.redmilbusinessmall.com/OPImg/IciciNew.png" class="box_choose_bank_image" />
                                 <label class="icici box_choose_bank_label" id="lblicici"> </label>
-                                <input type="radio" class="rdbBank" name="rdbBankName" id="rdbICICIBank" value="ICICI" style="text-align: center;" />
+                                <input type="radio" class="rdbBank" name="rdbBankName" id="rdbICICIBank" value="ICICI Bank" style="text-align: center;" />
                                 <b class="box_choose_bank_input_para"></b>
                             </div>
                         </div>
@@ -923,7 +1183,7 @@
             <div class="modal-dialog modal-confirm" style="width:100%;">
                 <div class="modal-content">
                     <div class="modal-header modal-header-recharge" style="margin-top: -20px;">
-                        <a href="/DMT2/StartUp" style="position: absolute;top: 14px;right: 15px;" class="close close_cross">&times;</a>
+                        <a href="~/Aeps/AEPS" style="position: absolute;top: 14px;right: 15px;" class="close close_cross">&times;</a>
                         <h2 class="modal-title" style="text-align:center;font-weight:800;"><b>AEPS Transaction</b></h2>
                     </div>
                     <div class="modal-body">
@@ -1064,6 +1324,10 @@
     let transactionMode, bankName, selectedBiometricDeviceName, radioVal, bankUrl, bankLogo, insertedAmount = "0";
     let aepsAgentId, lati, long;
     let kycCheckBankName;
+    let iciciProceedKYCData;
+    let iciciAgentBiometricJson;
+    let iciciAgentKYCBiometricSelection;
+    let wadhKey = "E0jzJ/P8UopUHAieZn8CKqS4WPMi5ZSYXgfnlfkWjrc=";
 
     function geolocate() {
         debugger;
@@ -1143,7 +1407,7 @@
                         document.getElementById("headingKYCStatus").innerHTML = "KYC Status: " + response.data[0].status;
                         var img = document.getElementById("img_kycPendingBank");
                         img.src = response.data[0].bankLogo;
-                        kycCheckBankName=response.data[0].bankName;
+                        kycCheckBankName = response.data[0].bankName;
                         $("#btnKycPending").trigger("click");
                     }
 
@@ -1182,22 +1446,176 @@
     };
 
 
-    function proceedToKyc(){
-         $.ajax({
-                url: "/Aeps/ProceedToKyc",
-                data: { 'BankNAME':kycCheckBankName},
+    function proceedToKyc() {
+        $.ajax({
+            url: "/Aeps/ProceedToKycFirstPage",
+            data: { 'BankNAME': kycCheckBankName },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+                if (response.status == "AgentOnBoardingPending") {
+                    $("#kycPendingModal").hide();
+                    $("#btnagentOnboarding").trigger("click");
+
+                }
+                else if (response.status == "AgentOnBoardingCompleted") {
+                    $("#kycPendingModal").hide();
+                    $("#btnagentOnboarding").trigger("click");
+
+                }
+            }
+        });
+    }
+
+
+
+    function proceedForEKYC2() {
+        var lat = "";
+        var long = "";
+        $.ajax({
+            url: "/Aeps/ProceedToKycSecondPageButton",
+            data: { 'longg': long, 'lat': lat },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "TXN") {
+                    iciciProceedKYCData = response.jsondata;
+                    //Agent Onboarding popup will be hide
+                    $("#agentOnboarding").hide();
+                    //And OTP Popup will be opened for Otp
+                    $("#btnmobileOtpValidation").trigger("click");
+
+                }
+                else if (response.Statuscode == "ERR") {
+
+                }
+            }
+
+        });
+
+    }
+
+
+    function mobileOtpValidationForKYC() {
+        debugger;
+        var data = iciciProceedKYCData;
+        var json = JSON.stringify(data);
+        var otp = $("#txtOTPVerifyForKYC").val();
+        if (otp.length < 6) {
+            document.getElementById("errtxtOTPVerifyForKYC").innerHTML = "Please Enter Valid OTP";
+        }
+        else {
+            document.getElementById("errtxtOTPVerifyForKYC").innerHTML = "";
+            $.ajax({
+                url: "/Aeps/ProceedToKycThirdPageButton",
+                data: { 'data': json, 'otp': otp },
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
                     debugger;
-                if (response.status == "AgentOnBoarding") {
-                    $("#kycPendingModal").hide();
-                    $("#btnagentOnboarding").trigger("click");
-                        
+
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "TXN") {
+                        iciciAgentBiometricJson = response.data;
+                        //OTP popup will be hide
+                        $("#mobileOtpValidation").hide();
+                        //And Biometric Popup will be opened for Otp
+                        $("#btniciciAgentBiometric").trigger("click");
+                    }
+                    else if (response.Statuscode == "ERR") {
+
                     }
                 }
-         });
+            });
+        }
     }
+
+
+    function iciciAgentBiometricDeviceSelection() {
+        debugger;
+        iciciAgentKYCBiometricSelection = $('.morpho1:checked').val();
+        var radioVal = iciciAgentKYCBiometricSelection;
+        if (radioVal == undefined || radioVal == '' || radioVal == null) {
+            document.getElementById("errDevice").innerHTML = "Please select any one device";
+            return false;
+        }
+        else {
+            document.getElementById("errDevice").innerHTML = "";
+            //BiometricDevice popup will be hide
+            $("#iciciAgentBiometric").hide();
+            //And Biometric Popup will be opened for Otp
+            $("#btnagentAadharPanPopu").trigger("click");
+        }
+    }
+
+
+    function iciciAgentBiometricFinal() {
+        debugger;
+        var data = iciciAgentBiometricJson;
+        var json = JSON.stringify(data);
+
+        $.ajax({
+            url: "/Aeps/ProceedToKycFourthPageButton",
+            data: { 'data': json, 'deviceVal': iciciAgentKYCBiometricSelection, 'wadhKey': wadhKey },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                debugger;
+
+                if (response.result == "EmptyResult") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "UnExpectedStatusCode") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "RedirectToException") {
+                    window.location.href = response.url;
+                }
+                else if (response.result == "TXN") {
+                    var img = document.getElementById("imgKYCFinalResponseImage");
+                    img.src = "/css/Img_Aeps/AepsKYCFinalSuccess.jpeg";
+                    document.getElementById("agentKYCFinalResponseMessage1").innerHTML = response.message;
+                    document.getElementById("agentKYCFinalResponseMessage2").innerHTML = "You can use DMT and AEPS service now and earn!";
+                    //Aadhaar and Pan OTP popup will be hide
+                    $("#btnagentAadharPanPopu").hide();
+                    //And  Final KYC Response Popup will be opened
+                    $("#btnagentKYCResponsePopup").trigger("click");
+                }
+                else if (response.Statuscode == "ERR") {
+                    var img = document.getElementById("imgKYCFinalResponseImage");
+                    img.src = "/css/Img_Aeps/AepsKYCFailedResponse.png";
+                    document.getElementById("agentKYCFinalResponseMessage1").innerHTML = response.message;
+                    document.getElementById("agentKYCFinalResponseMessage2").innerHTML = "";
+                    //Aadhaar and Pan OTP popup will be hide
+                    $("#btnagentAadharPanPopu").hide();
+                    //And  Final KYC Response Popup will be opened
+                    $("#btnagentKYCResponsePopup").trigger("click");
+                }
+            }
+        });
+    }
+
+
 
     function chooseBank() {
         debugger;
@@ -1228,7 +1646,7 @@
             else if (data == 'Paytm') {
                 data = value1;
             }
-            else if (data == 'ICICI') {
+            else if (data == 'ICICI Bank') {
                 data = value2;
             }
             var bankDeviceVal = data;
@@ -1236,7 +1654,22 @@
             $("#hdnTransactionBankDevice").val(bankDeviceVal);
             radioVal = $('.radio1:checked').val();
             debugger;
-            $.ajax({
+            if (data == 'ICICI Bank') {
+                debugger;
+                $.ajax({
+                url: "/Aeps/ProceedToKycFirstPage",
+                    data: { 'BankNAME': bankDeviceVal },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    debugger;
+                    $("#chooseBankKycBridgeModal").hide();
+                    $("#btndeviceModal").trigger("click");
+                }
+            });
+            }
+            else{
+                $.ajax({
                 url: "/Aeps/GetAepsKycDetailsNew",
                 data: { 'radioVal': radioVal, 'bankName': data },
                 type: 'POST',
@@ -1247,6 +1680,8 @@
                     $("#btndeviceModal").trigger("click");
                 }
             });
+            }
+            
         }
     };
 
@@ -1499,7 +1934,11 @@
                     dataType: 'json',
                     success: function (response) {
                         debugger;
-                        if (response.result == "EmptyResult") {
+                        if (response.status = "AgentOnBoardingPending"){
+                            $("#kycPendingModal").hide();
+                            $("#btnagentOnboarding").trigger("click");
+                        }
+                        else if (response.result == "EmptyResult") {
                             window.location.href = response.url;
                         }
                         else if (response.result == "UnExpectedStatusCode") {
@@ -2053,6 +2492,9 @@
     }
 
 
+
+
+
     //Commented Code for Tab Link Button of User Input
 
     function openCity(evt, cityName) {
@@ -2507,7 +2949,7 @@
                 debugger;
                 for (var i = 0; i < data.length; i++) {
                     $(".Self_help").append('<div class="controls">\
-                                                                    <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+                                                                                <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
 
                 }
             }
@@ -2523,24 +2965,24 @@
         });
     });
 
-                                        //function ValidateAlphanumericsrAccount(e) {
-                                        //    var keyCode = e.keyCode || e.which;
-                                        //    var errtxtAmountCashWithdrawal=document.getElementById("errtxtAmountCashWithdrawal");
-                                        //    var Amount = document.getElementById("txtAmountCashWithdrawal");
-                                        //    errtxtAmountCashWithdrawal.innerHTML = "";
-                                        //    var regex = /^[0-9]+$/;
-                                        //    var isValid = regex.test(String.fromCharCode(keyCode));
-                                        //    if (!isValid) {
+                                                    //function ValidateAlphanumericsrAccount(e) {
+                                                    //    var keyCode = e.keyCode || e.which;
+                                                    //    var errtxtAmountCashWithdrawal=document.getElementById("errtxtAmountCashWithdrawal");
+                                                    //    var Amount = document.getElementById("txtAmountCashWithdrawal");
+                                                    //    errtxtAmountCashWithdrawal.innerHTML = "";
+                                                    //    var regex = /^[0-9]+$/;
+                                                    //    var isValid = regex.test(String.fromCharCode(keyCode));
+                                                    //    if (!isValid) {
 
-                                        //        errtxtAmountCashWithdrawal.innerHTML = "Only Numbers allowed.";
-                                        //        $('#errtxtAmountCashWithdrawal').css('margin-left', '-109px');
-                                        //        $('#errtxtAmountCashWithdrawal').css('color', 'red');
+                                                    //        errtxtAmountCashWithdrawal.innerHTML = "Only Numbers allowed.";
+                                                    //        $('#errtxtAmountCashWithdrawal').css('margin-left', '-109px');
+                                                    //        $('#errtxtAmountCashWithdrawal').css('color', 'red');
 
-                                        //    }
-                                        //    else {
-                                        //        errtxtAmountCashWithdrawal.innerHTML = "";
-                                        //    }
-                                        //    return isValid;
-                                        //}
+                                                    //    }
+                                                    //    else {
+                                                    //        errtxtAmountCashWithdrawal.innerHTML = "";
+                                                    //    }
+                                                    //    return isValid;
+                                                    //}
 
 </script>
