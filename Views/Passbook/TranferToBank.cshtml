@@ -1710,7 +1710,7 @@
     //For Prim
     $("#PrimaryAccount").on('click', ".forprime", function () {
 
-        debugger;
+            
         var currentRow = $(this).closest('tr');
         var Account = currentRow.find('td:eq(0)').text();
         var BeniName = currentRow.find('td:eq(2)').text();
@@ -1752,7 +1752,7 @@
     });
     var Type;
     function GetMultiAccountDetail(e) {
-        debugger;
+            
         Type=e;
         $.ajax({
             url: "/Passbook/MultiAcountDetail",
@@ -1804,7 +1804,7 @@
     //For Confirm
     //function confirm() {
     $('.Btn_Confirm').on('click', function () {
-        debugger;
+            
         $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
         setTimeout(() => {
             $(this).html('Confirm');
@@ -1973,7 +1973,7 @@
 
         // add an event listener to the snap button
         snapBtn.addEventListener("click", function () {
-            debugger;
+                
             // set the canvas element's dimensions to match the video element's
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
@@ -2002,7 +2002,7 @@
         setTimeout(() => {
             $(this).html('Verify');
         }, 4000);
-        debugger;
+            
         var data_uri = document.getElementById('canvasElement').innerHTML;
         var result = data_uri.indexOf(",");
         var legth = data_uri.length;
@@ -2013,7 +2013,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                    
                 setTimeout(() => {
                     $(this).html('Verify');
                 }, 4000);
@@ -2086,7 +2086,7 @@
     var BeneficaryName;
     var BeniName;
     $('.foraddingAcount').on('click', function () {
-        debugger;
+            
         var Account = $('#text_Account').val();
         var ConfirmAccount = $('#text_ConfirmAccount').val();
         var IFSc = $('#text_Ifsc').val();
@@ -2140,7 +2140,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-              debugger;
+                  
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -2279,7 +2279,7 @@
 
     $('.ConfirmAddAccount').on('click', function () {
         SendOtp();
-        //debugger;
+        //    
         //var Account = $('#text_Account').val();
         //var ConfirmAccount = $('#text_ConfirmAccount').val();
         //var IFSc = $('#text_Ifsc').val();
@@ -2336,7 +2336,7 @@
         //        type: 'POST',
         //        dataType: 'json',
         //        success: function (data) {
-        //            debugger;
+        //                
         //            if (data.result == "EmptyResult") {
         //                window.location.href = data.url;
         //            }
@@ -2421,7 +2421,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                    
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -2480,7 +2480,7 @@
     } 
     //For Validate Otp Confirm
     function ConfirmOtp() {
-        debugger;
+            
         var Otp = $('#OtpforAf').val();
         if (Otp.trim() == "") {
             ('#SpanO').text('Please Enter Otp');
@@ -2492,7 +2492,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                      debugger;
+                          
                     if (data.result == "EmptyResult") {
                         window.location.href = data.url;
                     }
@@ -2575,7 +2575,7 @@
         $("#lblMsg22").text(data.message);
     }
     function nonverified() {
-        debugger;
+            
         //$("#Modalforverifieddetails").trigger("click");
         //$(".verify").hide();
         //$("#nonokay").show();
@@ -2592,7 +2592,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                    
                 
                 if (data.statuscode == "TXN" && data.data[0].beniName.replace(/\s/g, '').toUpperCase() == "@Accessor.HttpContext.Session.GetString("Name")".replace(/\s/g, '').toUpperCase()) {
                         //$("#ModalForSurcharge").trigger("click");
@@ -2741,7 +2741,7 @@
     $(function () {
 
         $(".btPics").on('click', function () {
-            debugger;
+                
             var files = $("#file").get(0).files;
             if (files.length == "0") {
                 $('#text_File').text('Please Select Any Picture');
@@ -2827,7 +2827,7 @@
                     processData: false, // Not to process data
                     data: fileData,
                     success: function (result, status, xhr) {
-                        debugger;
+                            
                         if (result.result == "EmptyResult") {
                             window.location.href = result.url;
                         }

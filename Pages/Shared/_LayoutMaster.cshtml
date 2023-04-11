@@ -1124,7 +1124,6 @@
 
 
         $('#Logni_button').click(function () {
-            debugger;
             $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Login');
@@ -1153,7 +1152,6 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        debugger;
                         setTimeout(() => {
                             $(this).html('Login');
                         }, 2000);
@@ -1259,7 +1257,6 @@
 
 
         function verifyOTP() {
-            debugger;
             var MobileNumber = MobileNum;
 
             document.getElementById("lblMobile").innerHTML = MobileNum;
@@ -1280,7 +1277,6 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        debugger;
                         if (response.statuscode == "TXN") {
                             $.notify(
                                 response.message,
@@ -1293,7 +1289,6 @@
                                 type: 'POST',
                                 dataType: 'json',
                                 success: function (response) {
-                                    debugger;
                                     if (response.result == "EmptyResult" || response.result == "RedirectToException") {
                                         window.location.href = response.url;
                                     }
@@ -1692,7 +1687,6 @@
     <script>
 
         function CookiesHandle() {
-            debugger;
             var MobileNum = $('[Id*=txtNumber]').val();
             var pinNum = $('[Id*=txtMpin]').val();
             if (MobileNum == "" && pinNum == "") {

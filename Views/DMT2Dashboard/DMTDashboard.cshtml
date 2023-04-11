@@ -1152,7 +1152,7 @@
     }
 
     function confirmPopup() {
-        debugger;
+        
          $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
         setTimeout(() => {
             $(this).html('Proceed to Pay');
@@ -1177,7 +1177,7 @@
                 type: 'POST',
                 datatype: 'json',
                 success: function (response) {
-                    debugger;
+                    
                     setTimeout(() => {
             $(this).html('Proceed to Pay');
         }, 2000);  
@@ -1221,7 +1221,7 @@
                 type: 'POST',
                 datatype: 'json',
                 success: function (response) {
-                    debugger
+                    
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -1281,7 +1281,7 @@
 
 
     function finalGoPay() {
-        debugger;
+        
          $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
         setTimeout(() => {
             $(this).html('Confirm');

@@ -360,7 +360,7 @@
 
         //For Refund Term and Condition
         function OpenPdfinTerm(itemname) {
-            debugger;
+            
             $.ajax({
                 url: "/upgradesubscriptions/getSubscription",
                 data: { 'TermCondition': itemname.trim() },
@@ -439,7 +439,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
+                    
                     if (data.result == "EmptyResult") {
                         window.location.href = data.url;
                     }
@@ -475,7 +475,7 @@
         var Total;
         var d;
         $('.bbtn').on('click', function () {
-            debugger;
+            
             var CouponCode = $('#Coupon').val();
             Total = Total;
             if (CouponCode == "") {
@@ -504,7 +504,7 @@
                             window.location.href = data.url;
                         }
                         else {
-                            debugger;
+                            
                             var counter;
                             if (data.statuscode == "ERR") {
 
@@ -556,7 +556,7 @@
         //For Add And Remove Functionality
         var Itemname = "";
         function foradd(e) {
-            debugger;
+            
             var sumofcatandsubcat = "";
             let spanId = e.id;
             let index = spanId.substring(spanId.lastIndexOf("s") + 1);
@@ -578,7 +578,7 @@
 
         }
         function forminus(e) {
-            debugger;
+            
             var sumofcatandsubcat = "";
             let spanId = e.id;
             let index = spanId.substring(spanId.lastIndexOf("s") + 1);
@@ -651,7 +651,7 @@
         //Pay with Wallet data
         //function PayWithWallet() {
         $('.Btn_Choose_Pay').click(function () {
-            debugger;
+            
             $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
             setTimeout(() => {
                 $(this).html('Pay');

@@ -2439,7 +2439,7 @@ namespace Project_Redmil_MVC.Controllers
                     }
                     else if (deserialize.Statuscode == "ERR")
                     {
-                        return View(deserialize);
+                        return RedirectToAction("ErrorForExceptionLog", "Error");
                     }
                     else
                     {

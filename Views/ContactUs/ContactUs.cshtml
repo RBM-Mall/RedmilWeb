@@ -195,7 +195,7 @@
 
 
     $("#txtnumber").keyup(function (e) {
-        debugger;
+        
         var phoneno = /^(0|91)?[6-9][0-9]{9}$/;
         var MobileNum = $("#txtnumber").val();
         if (!phoneno.test(MobileNum)) {
@@ -209,7 +209,7 @@
 
 
     $("#txtemail").keyup(function (e) {
-        debugger;
+        
 
         var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         var Email = $("#txtemail").val();

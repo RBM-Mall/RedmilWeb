@@ -468,7 +468,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
+                    
                     if (data.result == "EmptyResult") {
                         window.location.href = data.url;
                     }
@@ -722,7 +722,7 @@
             var table = $('#tempTbl1').DataTable();
             var d = $(this).closest("td").find('button').text();
             $("#txtAmount").val(d);
-            debugger;
+            
             var currentRow = $(this).closest("tr");
             var col4 = currentRow.find("td:eq(3)").html();
             document.getElementById("lblamount").innerHTML = d;
@@ -760,7 +760,7 @@
 </script>
 <script>
     function openModalPayment() {
-        debugger;
+        
         var customerId = $("#txtCustomerId").val();
         var operator = $("#Operatorname").val();
         var amount = $("#txtAmount").val();
@@ -794,7 +794,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    debugger;
+                    
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }

@@ -533,7 +533,7 @@
     function getBookingDetails(id, value) {
         var bookingID = id;
         var bookingValue = value;
-        debugger;
+            
         $.ajax({
             type: "POST",
             url: "/MyBusinessReports/TravelServices",
@@ -541,7 +541,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
+                    
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -648,7 +648,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
+                    
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -683,7 +683,7 @@
         var to = $('#toDate').val();
         var d = "x";
         var subCat = "7";
-        debugger;
+            
         if (from == '' && to == '') {
             document.getElementById('errfromDate').innerHTML = "Please Select From Date";
             document.getElementById('errtoDate').innerHTML = "Please Select To Date";

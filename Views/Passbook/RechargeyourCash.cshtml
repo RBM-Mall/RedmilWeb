@@ -1019,7 +1019,7 @@
 
 
     function getLocation() {
-        debugger;
+            
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
@@ -1027,7 +1027,7 @@
         }
     }
     function showPosition(position) {
-        debugger;
+            
         //x.innerHTML = "Latitude: " + position.coords.latitude +
         //    "<br>Longitude: " + position.coords.longitude;
         var long = position.coords.longitude;

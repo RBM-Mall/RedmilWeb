@@ -832,14 +832,14 @@
 
     })
     $('.btnLF').on('click', function () {
-        debugger;
+            
         $.ajax({
             url: "/Support/RmDetailUserWise",
             data: {},
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
+                    
                 //if (response == null || response.data == null || response.data == "") {
                 //    //document.getElementById("walletTblborder11").style.display = "none";
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
@@ -867,7 +867,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                   debugger;
+                       
                 //if (response == null || response.data == null || response.data == "") {
                 //    //document.getElementById("walletTblborder11").style.display = "none";
                 //    document.getElementById("lblDataMessage").innerHTML = "Sorry! No Records Found";
@@ -926,7 +926,7 @@
     }
 
     $(document).ready(function () {
-        debugger;
+            
         var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
         Support_SelfHelp(myValue); // Pass the value to a function called 'myFunction'
     });
@@ -934,7 +934,7 @@
     //FOr Self help
     function Support_SelfHelp(e) {
         // code
-        debugger;
+            
         var ServiceId = e;
         $.ajax({
             url: "/RatesandRow/SelfHelp",
@@ -942,7 +942,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                    
                 for (var i = 0; i < data.length; i++) {
                     $(".Self_help").append('<div class="controls">\
                             <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');

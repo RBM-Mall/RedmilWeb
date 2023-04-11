@@ -288,7 +288,6 @@
         setTimeout(() => {
             $(this).html('Submit');
         }, 2000);
-        debugger;
         var city = $('#TxtCity').val();
         var area = $('#TxtArea').val();
         var frenchise = $('[name="inlineRadioOptions"]:radio:checked').val();
@@ -316,7 +315,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    debugger;
+                    
                     setTimeout(() => {
                         $(this).html('Submit');
                     }, 2000);
