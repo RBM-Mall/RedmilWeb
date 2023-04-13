@@ -1926,6 +1926,7 @@ objfinalsModeId , objfinalUserId, objfinalserviceId, objfinalsdBankId, objfinals
             requestModel.Mobileno = HttpContext.Session.GetString("Mobile").ToString();
             requestModel.BankList = BankList;
             requestModel.Account  =  Account;
+            requestModel.Mode = "Web";
             HttpContext.Session.SetString("BankList", requestModel.BankList);
             HttpContext.Session.SetString("Ver_Account", requestModel.Account);
             requestModel.Ifsc     =     Ifsc;
@@ -1937,7 +1938,7 @@ objfinalsModeId , objfinalUserId, objfinalserviceId, objfinalsdBankId, objfinals
             string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
             requestModel.checksum = CheckSum;
             #endregion
-            var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AccounVerificationForSignUp");
+            var client = new RestClient("https://proapitest1.redmilbusinessmall.com/api/AccounVerificationForSignUp");
             //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json");
@@ -1961,7 +1962,7 @@ objfinalsModeId , objfinalUserId, objfinalserviceId, objfinalsdBankId, objfinals
                 string CheckSumt_GetActualCash = Checksum.ConvertStringToSCH512Hash(input_GetActualCash);
                 obj.checksum = CheckSumt_GetActualCash;
                 #endregion
-                var clientt_GetActualCash = new RestClient("https://proapitest5.redmilbusinessmall.com/api/GetCommissionSurchargeOperatorwise");
+                var clientt_GetActualCash = new RestClient("https://proapitest1.redmilbusinessmall.com/api/GetCommissionSurchargeOperatorwise");
                 //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
                 var requestt_GetActualCash = new RestRequest(Method.POST);
                 requestt_GetActualCash.AddHeader("Content-Type", "application/json");
@@ -2022,7 +2023,7 @@ objfinalsModeId , objfinalUserId, objfinalserviceId, objfinalsdBankId, objfinals
                 string CheckSum = Checksum.ConvertStringToSCH512Hash(input);
                 requestModel.checksum = CheckSum;
                 #endregion
-                var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AccountVerificationForSignupwithCharge");
+                var client = new RestClient("https://proapitest1.redmilbusinessmall.com/api/AccountVerificationForSignupwithCharge");
                 //var client = new RestClient($"{Baseurl}{ApiName.AccountVerificationForSignupwithCharge}");
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
