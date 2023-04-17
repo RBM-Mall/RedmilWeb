@@ -38,7 +38,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
             //}
 
             var balance = GetBalance();
-            ViewBag.balance = balance;
+            ViewBag.balance = balance.FirstOrDefault().MainBal;
             GetSenderDetailsRequestModel requestModel = new GetSenderDetailsRequestModel();
             try
             {
@@ -474,7 +474,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
 
         #region GetBalance
         [HttpPost]
-        public string GetBalance()
+        public List<GetBalanceResponseModel> GetBalance()
         {
             GetBalanceRequestModel getBalanceRequestModel = new GetBalanceRequestModel();
             List<GetBalanceResponseModel> lstdata = new List<GetBalanceResponseModel>();
@@ -500,13 +500,14 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 {
                     var data = deserialize.Data;
                     lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                    return lstdata.FirstOrDefault().MainBal.ToString();
+                    //return lstdata.FirstOrDefault().MainBal.ToString();
+                    return lstdata;
                 }
                 else if (deserialize.Statuscode == "ERR")
                 {
                     var data = deserialize.Data;
                     lstdata = JsonConvert.DeserializeObject<List<GetBalanceResponseModel>>(JsonConvert.SerializeObject(data)).ToList();
-                    return lstdata.FirstOrDefault().MainBal.ToString();
+                    return lstdata;
                 }
                 else
                 {
@@ -527,7 +528,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
                 IRestResponse response = client.Execute(request);
                 var result = response.Content;
             }
-            return lstdata.FirstOrDefault().MainBal.ToString();
+            return null;
         }
 
         #endregion
@@ -655,7 +656,7 @@ namespace Project_Redmil_MVC.Controllers.BankingServicesController.DMT2._0Contro
         #endregion
 
 
-        #region VerifyDetails
+        #region BankChargesDetails
         [HttpPost]
         public JsonResult BankChargesDetails(string amount, string mode)
         {

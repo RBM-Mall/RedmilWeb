@@ -200,7 +200,7 @@
 <script>
     $(document).ready(function () {
         $("#example").on('click', ".btnViewReceipt", function () {
-            debugger;
+            
             var table = $('#example').DataTable();
             var d = table.row(this).data();
             var currentRow = $(this).closest('tr');
@@ -243,7 +243,7 @@
                 data: { result, subCat },
                 dataType: 'json',
                 success: function (msgdeserialize) {
-                    debugger;
+                    
                     var viewReceipt = msgdeserialize;
                     var viewReceiptWindow = window.open();
                     viewReceiptWindow.document.write(viewReceipt);

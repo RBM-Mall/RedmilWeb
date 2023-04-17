@@ -554,7 +554,7 @@
                 setTimeout(() => {
                     $(this).html('Recent Senders');
                 }, 2000);
-                debugger;
+                
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -565,7 +565,7 @@
                     window.location.href = response.url;
                 }
                 else {
-                    debugger;
+                    
                     //var table = $('#tempTbl1').DataTable();
                     //table.destroy();
                     $("#temptableid").find("table").remove();
@@ -580,7 +580,7 @@
                             tr += '<th class="business_Repo_Table_Header">' + columnName[i].replace(/([a-z0-9])([A-Z])/g, '$1 $2').toUpperCase() + '</th>'
                         }
                     }
-                    debugger;
+                    
                     tr += '</tr></thead>';
                     tr += '<tbody id="output">';
 
@@ -601,7 +601,7 @@
                         }
                         tr += '</tr>';
                     }
-                    debugger;
+                    
                     tr += '</tbody></table>';
                     $("#temptableid").append(tr);
                     var table = $('#tempTbl1').DataTable({
@@ -688,14 +688,12 @@
 
     });
     //$(document).ready(function () {
-    //    debugger;
     //    var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
     //    Wallet(myValue); // Pass the value to a function called 'myFunction'
     //});
 
     //function Wallet(e) {
     //    // code
-    //    debugger;
     //    var ServiceId = e;
     //    $.ajax({
     //        url: "/DMT2/SelfHelp",
@@ -703,7 +701,6 @@
     //        type: 'POST',
     //        dataType: 'json',
     //        success: function (data) {
-    //            debugger;
     //            for (var i = 0; i < data.length; i++) {
     //                $(".Self_help").append('<div class="controls">\
     //                            <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');

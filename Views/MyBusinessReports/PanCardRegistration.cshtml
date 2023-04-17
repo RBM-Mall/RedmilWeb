@@ -415,7 +415,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
+                
                 if (response.status == "Registered") {
                     document.getElementById("heading").innerHTML = response.status;
                     document.getElementById("lblDataMessage").innerHTML = "You are successfully register as PSA with UTI.";

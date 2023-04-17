@@ -336,7 +336,7 @@
 
 <script>
     $('.How_To_Work').on('click', function () {
-        debugger;
+            
         
         var CategoryId="56";
         var baseurl = "https://api.redmilbusinessmall.com";
@@ -349,7 +349,7 @@
                 dataType: 'json',
                 success: function (data) 
                 {
-                    debugger;
+                        
                     if(data.statuscode=="TXN")
                     {
                     $("#HowToWorks").trigger("click");
@@ -374,7 +374,7 @@
     })
     function youtube(e)
     {
-        debugger;
+            
     var data=e;
         window.open(data);
     }
@@ -388,7 +388,7 @@
             dataType: 'json',
             success: function (data) 
             {
-                debugger;
+                    
                 if (data.statuscode == "ERR") 
                 {
                     $("#Error_modal_Detail").trigger("click");
@@ -422,14 +422,14 @@
 </script>
 <script>
     $(document).ready(function () {
-        debugger;
+            
         var myValue = $('#SlefHelpElement').val(); // Get the value of an input field with ID 'myElement'
         Wallet(myValue); // Pass the value to a function called 'myFunction'
     });
 
     function Wallet(e) {
         // code
-        debugger;
+            
         var ServiceId = e;
         $.ajax({
             url: "/Wallet/SelfHelp",
@@ -437,7 +437,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                    
                 for (var i = 0; i < data.length; i++) {
                     $(".Self_help").append('<div class="controls">\
                             <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');

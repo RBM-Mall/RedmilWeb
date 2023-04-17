@@ -80,7 +80,7 @@
     <div class="row">
         <div class="col-sm-12 text-center padding-bottom-30">
             <div class="section-title div_wallet">
-                <h1 class="heading_wallet"><span style="color: #2d385e;">WELCOME TO REDMIL FAMILY</span></h1>
+                <h1 class="heading_wallet"><span style="color: #2d385e;">WELCOME TO Redmil FAMILY</span></h1>
             </div>
         </div>
     </div>
@@ -288,7 +288,6 @@
         setTimeout(() => {
             $(this).html('Submit');
         }, 2000);
-        debugger;
         var city = $('#TxtCity').val();
         var area = $('#TxtArea').val();
         var frenchise = $('[name="inlineRadioOptions"]:radio:checked').val();
@@ -316,7 +315,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    debugger;
+                    
                     setTimeout(() => {
                         $(this).html('Submit');
                     }, 2000);

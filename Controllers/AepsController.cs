@@ -648,7 +648,7 @@ namespace Project_Redmil_MVC.Controllers
 
                 if (radioValDevice != null)
                 {
-                    var client = new RestClient("https://proapitest5.redmilbusinessmall.com/api/AaadharPicVerification");
+                    var client = new RestClient("https://api.redmilbusinessmall.com/api/AaadharPicVerification");
                     var request = new RestRequest(Method.POST);
                     request.AddHeader("Content-Type", "application/json");
                     var json = JsonConvert.SerializeObject(adharPicFaceBioRequest);
@@ -783,8 +783,8 @@ namespace Project_Redmil_MVC.Controllers
             //var newminiStatementData = JsonConvert.DeserializeObject<List<MiniSTMTdata>>(daaaaataa);
             //return Json(new BaseMakeAepsTransactionResponseModel() { MiniStatementData = newminiStatementData, Statuscode = "TXN", Data = deserializFinalResponse.Data.FirstOrDefault() });
 
-            if (deBankName.Equals("ICICI Bank") || deBankName.Equals("Fingpay"))
-            {
+            //if (deBankName.Equals("ICICI Bank") || deBankName.Equals("Fingpay"))
+            //{
                 var userid = HttpContext.Session.GetString("Id").ToString();
                 var data = CommonKYCClass.GetOnboardingResponse(userid);
                 if (data.FirstOrDefault().IsOnboard.Equals("No") || data.FirstOrDefault().IsKyc.Equals("No"))
@@ -1152,8 +1152,8 @@ namespace Project_Redmil_MVC.Controllers
                     return Json("");
                 }
                 return Json("");
-            }
-            return Json("");
+            //}
+            //return Json("");
         }
         #endregion
 

@@ -584,7 +584,6 @@
                     type: 'POST',
                     dataType: 'json',
                     success: function (response) {
-                        debugger;
                         if (response.result == "EmptyResult") {
                             window.location.href = response.url;
                         }
@@ -729,7 +728,6 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (response) {
-                    debugger;
                     if (response.result == "EmptyResult") {
                         window.location.href = response.url;
                     }
@@ -929,7 +927,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                debugger;
+                
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
                 }
@@ -1001,7 +999,7 @@
     }
 
     function changeCirclePlan() {
-        debugger;
+        
         let circle = document.getElementById("CirId").value;
         let operator = document.getElementById("OpId").value;
         $.ajax({
@@ -1010,7 +1008,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }

@@ -196,7 +196,7 @@
                     <div class="card-body">
                         <div>
                             <h4 class="card-title heading_tag_bbps">
-                                <strong>Pay Insurance Premium Bill</strong>
+                                <strong>Pay Landline Bill</strong>
                                 <img src="~/css/Icon_Logo_BBPS/iconLandline.jpeg" class="img_tag_bbps" />
                             </h4>
                         </div>
@@ -519,8 +519,6 @@
                                 <p class="about-lead"><b>Tata Docomo Landline</b></p>
                             </div>
                         </div>
-=======
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
                     </div>
                 </div>
             </div>
@@ -627,206 +625,88 @@
         @Html.Partial("_SelfHelp")
     </div>
 </div>
-        <div class="col col-md-12 col-sm-12 col-lg-12">
-            <div class="div-main-oplist">
-                <div class="div-recharge-opimage">
-                    <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Our Landline Partner</b></h4></div>
-                    <div class="row" style="text-align:center;">
-                        <div class="col-md-1 col-sm-12 col-xs-12 "></div>
-                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLandline/airtelLadline.jpeg" alt="airtelLadline" class="img-width" style="height:100px;">
-                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="airtelLadline"></a></div>
-                            <div class="leadership_name">
-                                <br />
-                                <p class="about-lead"><b>Airtel Landline</b></p>
-                            </div>
-                        </div>
+<script>
+    let price;
 
-                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLandline/bsnlLadline.jpeg" alt="bsnlLadline" class="img-width" style="height:100px;">
-                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="bsnlLadline"></a></div>
-                            <div class="leadership_name">
-                                <br />
-                                <p class="about-lead"><b>BSNL Landline</b></p>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLandline/mtnl-logo-bigLadline.jpeg" alt="mtnl" class="img-width" style="height:100px;">
-                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="mtnl"></a></div>
-                            <div class="leadership_name">
-                                <br />
-                                <p class="about-lead"><b>MTNL Landline</b></p>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
-                            <img src="~/css/ImgLandline/tatadocomoLadline.jpeg" alt="tatadocomoLadline" class="img-width" style="height:100px;">
-                            <div class="overlay"> <a href="#" target="_blank" class="icon" title="tatadocomoLadline"></a></div>
-                            <div class="leadership_name">
-                                <br />
-                                <p class="about-lead"><b>Tata Docomo Landline</b></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
->>>>>>> 027cfeb0730b7d150f3edef4c757d5d5dba4f4f5
-    <script>
-        let price;
+    var checkbox = document.querySelector("input[name=ccfCheckbox]");
+    var chkCCF = "1";
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            ccfChange("1");
+            chkCCF = "1";
+        } else {
+            ccfChange("0");
+            chkCCF = "0";
+        }
+    });
 
-        var checkbox = document.querySelector("input[name=ccfCheckbox]");
-        var chkCCF = "1";
-        checkbox.addEventListener('change', function () {
-            if (this.checked) {
-                ccfChange("1");
-                chkCCF = "1";
-            } else {
-                ccfChange("0");
-                chkCCF = "0";
+    $(function () {
+        $("#txtCustomerMobile").keyup(function (e) {
+            var MobileNum;
+            var a = $('#txtCustomerMobile').attr('id');
+            var MobileNum = $("#txtCustomerMobile").val();
+            if (MobileNum.length < 10) {
+                $("#errCustomerMobile").html("Please insert 10 digits mobile number");
             }
-        });
+            else if (MobileNum.length == 10) {
+                $("#errCustomerMobile").html("");
+            }
+        })
+    });
 
-        $(function () {
-            $("#txtCustomerMobile").keyup(function (e) {
-                var MobileNum;
-                var a = $('#txtCustomerMobile').attr('id');
-                var MobileNum = $("#txtCustomerMobile").val();
-                if (MobileNum.length < 10) {
-                    $("#errCustomerMobile").html("Please insert 10 digits mobile number");
+    function downloadSample() {
+        var operator = $("#Id").val();
+        var State = $("#StateName").val();
+        if (State == '' || operator == 0) {
+            alert("Please Select State and Operator")
+        }
+        else {
+            $.ajax({
+                url: "/LandlineBill/GetOperatorList",
+                data: { 'StateId': State, 'OpId': operator },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
                 }
-                else if (MobileNum.length == 10) {
-                    $("#errCustomerMobile").html("");
-                }
-            })
-        });
+            });
+        }
+    }
 
-        function downloadSample() {
+    function fetchBill1() {
+
+        if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill") {
             var operator = $("#Id").val();
-            var State = $("#StateName").val();
-            if (State == '' || operator == 0) {
-                alert("Please Select State and Operator")
+            var mobile = $("#txtCustomerMobile").val();
+            if (operator.length === 0) {
+                document.getElementById("errOperator").innerHTML = "Please Select Operator";
+            }
+            else if (mobile.length === 0) {
+                document.getElementById("errCustomerMobile").innerHTML = "Please Enter Mobile Number";
             }
             else {
+                document.getElementById("errOperator").innerHTML = "";
+                document.getElementById("errCustomerMobile").innerHTML = "";
+
+                var MobileNum = $("#txtCustomerMobile").val();
+                var Operator = $("#Id").val();
+                var input1 = $("#txtInput0").val();
+                var input2 = $("#txtInput1").val();
                 $.ajax({
-                    url: "/LandlineBill/GetOperatorList",
-                    data: { 'StateId': State, 'OpId': operator },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                            window.location.href = response.url;
-                        }
-                        else {
-                            var ar = response;
-                            window.open(ar);
-                        }
-                    }
-                });
-            }
-        }
-
-        function fetchBill1() {
-
-            if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill") {
-                var operator = $("#Id").val();
-                var mobile = $("#txtCustomerMobile").val();
-                if (operator.length === 0) {
-                    document.getElementById("errOperator").innerHTML = "Please Select Operator";
-                }
-                else if (mobile.length === 0) {
-                    document.getElementById("errCustomerMobile").innerHTML = "Please Enter Mobile Number";
-                }
-                else {
-                    document.getElementById("errOperator").innerHTML = "";
-                    document.getElementById("errCustomerMobile").innerHTML = "";
-
-                    var MobileNum = $("#txtCustomerMobile").val();
-                    var Operator = $("#Id").val();
-                    var input1 = $("#txtInput0").val();
-                    var input2 = $("#txtInput1").val();
-                    $.ajax({
-                        url: "/LandlineBill/FetchBill",
-                        data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'Operator': Operator, 'ccf': chkCCF },
-                        type: 'POST',
-                        dataType: 'json',
-                        success: function (responsedata) {
-                            if (responsedata.result == "EmptyResult") {
-                                window.location.href = responsedata.url;
-                            }
-                            else if (responsedata.result == "UnExpectedStatusCode") {
-                                window.location.href = responsedata.url;
-                            }
-                            else if (responsedata.result == "RedirectToException") {
-                                window.location.href = responsedata.url;
-                            }
-                            else if (responsedata.statuscode == "ERR") {
-                                document.getElementById("divBill").style.display = "block";
-                                document.getElementById("lblBillData").innerHTML = responsedata.message;
-                                document.getElementById("lblBillData").style.display = "block";
-                                document.getElementById("tblData").style.display = "none";
-                                document.getElementById("lblCustomerName").style.display = "none";
-                                document.getElementById("lblDueDate").style.display = "none";
-                                document.getElementById("lblBillPeriod").style.display = "none";
-                                document.getElementById("lblBillAmount").style.display = "none";
-                                document.getElementById("txtBill").style.display = "none";
-                                document.getElementById("btnEditAmount").style.display = "none";
-                                document.getElementById("divSwitch").style.display = "none";
-                                document.getElementById("divSecHeading").style.display = "none";
-                                //$('#txtBill').val(responsedata.data.billamount);
-                                document.getElementById("lblCCF").style.display = "none";
-                                document.getElementById("lblCommision").style.display = "none";
-                                document.getElementById("lblTotalAmount").style.display = "none";
-                                document.getElementById("lblAdditional").style.display = "none";
-
-                            }
-                            else {
-                                var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
-                                document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
-                                document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
-                                document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
-                                document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
-                                document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
-                                $('#txtBill').val(responsedata.data.billamount);
-                                document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
-                                document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
-                                document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                                price = document.getElementById("lblTotalAmount").innerHTML;
-                                document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoName + " : " + responsedata.additionalInfo.info[0].infoValue;
-                                document.getElementById("divBill").style.display = "block";
-                                ccfChange("1");
-                                document.getElementById("btnProcessRecharge").innerHTML = "Pay Bill"
-                            }
-                        }
-                    })
-                }
-            }
-            else if (document.getElementById("btnProcessRecharge").innerHTML == "Pay Bill") {
-                bindAmountInput();
-                $("#btnmodalChoosePayment").trigger("click");
-            }
-        }
-
-
-        function editAmount() {
-            document.getElementById("txtBill").style.display = "block";
-            document.getElementById("btnEdit").style.display = "block";
-        }
-
-
-        function bindEditAmount() {
-            var amount = $('#txtBill').val();
-            if (chkCCF.checked == true) {
-                var ccf = 1;
-                $.ajax({
-                    url: "/LandlineBill/GetCCF",
-                    data: { 'ccf': ccf, 'amount': amount },
+                    url: "/LandlineBill/FetchBill",
+                    data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'Operator': Operator, 'ccf': chkCCF },
                     type: 'POST',
                     dataType: 'json',
                     success: function (responsedata) {
@@ -839,63 +719,67 @@
                         else if (responsedata.result == "RedirectToException") {
                             window.location.href = responsedata.url;
                         }
-                        else {
-                            var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                            document.getElementById("lblBillAmount").innerHTML = "";
-                            document.getElementById("lblCCF").innerHTML = "";
-                            document.getElementById("lblCommision").innerHTML = "";
-                            document.getElementById("lblTotalAmount").innerHTML = "";
-                            document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                            document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
-                            document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
-                            document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        else if (responsedata.statuscode == "ERR") {
+                            document.getElementById("divBill").style.display = "block";
+                            document.getElementById("lblBillData").innerHTML = responsedata.message;
+                            document.getElementById("lblBillData").style.display = "block";
+                            document.getElementById("tblData").style.display = "none";
+                            document.getElementById("lblCustomerName").style.display = "none";
+                            document.getElementById("lblDueDate").style.display = "none";
+                            document.getElementById("lblBillPeriod").style.display = "none";
+                            document.getElementById("lblBillAmount").style.display = "none";
                             document.getElementById("txtBill").style.display = "none";
-                            document.getElementById("btnEdit").style.display = "none";
-                        }
-                    }
-                })
-            }
-            else {
-                var ccf = 0;
-                $.ajax({
-                    url: "/LandlineBill/GetCCF",
-                    data: { 'ccf': ccf, 'amount': amount },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (responsedata) {
-                        if (responsedata.result == "EmptyResult") {
-                            window.location.href = responsedata.url;
-                        }
-                        else if (responsedata.result == "UnExpectedStatusCode") {
-                            window.location.href = responsedata.url;
-                        }
-                        else if (responsedata.result == "RedirectToException") {
-                            window.location.href = responsedata.url;
+                            document.getElementById("btnEditAmount").style.display = "none";
+                            document.getElementById("divSwitch").style.display = "none";
+                            document.getElementById("divSecHeading").style.display = "none";
+                            //$('#txtBill').val(responsedata.data.billamount);
+                            document.getElementById("lblCCF").style.display = "none";
+                            document.getElementById("lblCommision").style.display = "none";
+                            document.getElementById("lblTotalAmount").style.display = "none";
+                            document.getElementById("lblAdditional").style.display = "none";
+
                         }
                         else {
-                            var sum = parseInt(responsedata.surcharge) + parseInt(amount);
-                            document.getElementById("lblBillAmount").innerHTML = "";
-                            document.getElementById("lblCCF").innerHTML = "";
-                            document.getElementById("lblCommision").innerHTML = "";
-                            document.getElementById("lblTotalAmount").innerHTML = "";
-                            document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                            document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
-                            document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                            var sum = parseInt(responsedata.data.surcharge) + parseInt(responsedata.data.billamount);
+                            document.getElementById("lblBillNum").innerHTML = responsedata.data.billnumber;
+                            document.getElementById("lblCustomerName").innerHTML = responsedata.data.customer_name;
+                            document.getElementById("lblDueDate").innerHTML = responsedata.data.duedate;
+                            document.getElementById("lblBillPeriod").innerHTML = responsedata.data.billperiod;
+                            document.getElementById("lblBillAmount").innerHTML = '₹' + " " + responsedata.data.billamount;
+                            $('#txtBill').val(responsedata.data.billamount);
+                            document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.data.surcharge;
+                            document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.data.commission;
                             document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
-                            document.getElementById("txtBill").style.display = "none";
-                            document.getElementById("btnEdit").style.display = "none";
+                            price = document.getElementById("lblTotalAmount").innerHTML;
+                            document.getElementById("lblAdditional").innerHTML = responsedata.additionalInfo.info[0].infoName + " : " + responsedata.additionalInfo.info[0].infoValue;
+                            document.getElementById("divBill").style.display = "block";
+                            ccfChange("1");
+                            document.getElementById("btnProcessRecharge").innerHTML = "Pay Bill"
                         }
                     }
                 })
             }
         }
+        else if (document.getElementById("btnProcessRecharge").innerHTML == "Pay Bill") {
+            bindAmountInput();
+            $("#btnmodalChoosePayment").trigger("click");
+        }
+    }
 
 
-        function ccfChange(CCF) {
-            var amount = $('#txtBill').val();
+    function editAmount() {
+        document.getElementById("txtBill").style.display = "block";
+        document.getElementById("btnEdit").style.display = "block";
+    }
+
+
+    function bindEditAmount() {
+        var amount = $('#txtBill').val();
+        if (chkCCF.checked == true) {
+            var ccf = 1;
             $.ajax({
                 url: "/LandlineBill/GetCCF",
-                data: { 'ccf': CCF, 'amount': amount },
+                data: { 'ccf': ccf, 'amount': amount },
                 type: 'POST',
                 dataType: 'json',
                 success: function (responsedata) {
@@ -915,8 +799,8 @@
                         document.getElementById("lblCommision").innerHTML = "";
                         document.getElementById("lblTotalAmount").innerHTML = "";
                         document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
-                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
-                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
                         document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
                         document.getElementById("txtBill").style.display = "none";
                         document.getElementById("btnEdit").style.display = "none";
@@ -924,266 +808,335 @@
                 }
             })
         }
+        else {
+            var ccf = 0;
+            $.ajax({
+                url: "/LandlineBill/GetCCF",
+                data: { 'ccf': ccf, 'amount': amount },
+                type: 'POST',
+                dataType: 'json',
+                success: function (responsedata) {
+                    if (responsedata.result == "EmptyResult") {
+                        window.location.href = responsedata.url;
+                    }
+                    else if (responsedata.result == "UnExpectedStatusCode") {
+                        window.location.href = responsedata.url;
+                    }
+                    else if (responsedata.result == "RedirectToException") {
+                        window.location.href = responsedata.url;
+                    }
+                    else {
+                        var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                        document.getElementById("lblBillAmount").innerHTML = "";
+                        document.getElementById("lblCCF").innerHTML = "";
+                        document.getElementById("lblCommision").innerHTML = "";
+                        document.getElementById("lblTotalAmount").innerHTML = "";
+                        document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                        document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;;
+                        document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;;
+                        document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                        document.getElementById("txtBill").style.display = "none";
+                        document.getElementById("btnEdit").style.display = "none";
+                    }
+                }
+            })
+        }
+    }
 
 
-        function bindAmountInput() {
-            $(document).ready(function () {
-                var amount = document.getElementById("lblTotalAmount").innerHTML;
-                $.ajax({
-                    type: "POST",
-                    url: "/LandlineBill/GetBalance",
-                    data: {},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                            window.location.href = response.url;
+    function ccfChange(CCF) {
+        var amount = $('#txtBill').val();
+        $.ajax({
+            url: "/LandlineBill/GetCCF",
+            data: { 'ccf': CCF, 'amount': amount },
+            type: 'POST',
+            dataType: 'json',
+            success: function (responsedata) {
+                if (responsedata.result == "EmptyResult") {
+                    window.location.href = responsedata.url;
+                }
+                else if (responsedata.result == "UnExpectedStatusCode") {
+                    window.location.href = responsedata.url;
+                }
+                else if (responsedata.result == "RedirectToException") {
+                    window.location.href = responsedata.url;
+                }
+                else {
+                    var sum = parseInt(responsedata.surcharge) + parseInt(amount);
+                    document.getElementById("lblBillAmount").innerHTML = "";
+                    document.getElementById("lblCCF").innerHTML = "";
+                    document.getElementById("lblCommision").innerHTML = "";
+                    document.getElementById("lblTotalAmount").innerHTML = "";
+                    document.getElementById("lblBillAmount").innerHTML = '₹' + " " + amount;
+                    document.getElementById("lblCCF").innerHTML = '₹' + " " + responsedata.surcharge;
+                    document.getElementById("lblCommision").innerHTML = '₹' + " " + responsedata.commission;
+                    document.getElementById("lblTotalAmount").innerHTML = '₹' + " " + sum;
+                    document.getElementById("txtBill").style.display = "none";
+                    document.getElementById("btnEdit").style.display = "none";
+                }
+            }
+        })
+    }
+
+
+    function bindAmountInput() {
+        $(document).ready(function () {
+            var amount = document.getElementById("lblTotalAmount").innerHTML;
+            $.ajax({
+                type: "POST",
+                url: "/LandlineBill/GetBalance",
+                data: {},
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        document.getelementbyid("lblmainbal").innerhtml = response[0].mainbal;
+                        document.getelementbyid("lbladbal").innerhtml = response[0].adbal;
+                        document.getElementById("lblamount").innerHTML = "₹" + amount;
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    }
+
+
+
+    $("#myModalfinal").on('show.bs.modal', function (e) {
+        $("#myModal").modal("hide");
+    });
+
+    $('#btnCloseModal').click(function () {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+    $('#btnCloseTwo').click(function () {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+    $('#btnCloseFirst').click(function () {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+    $('#finaldismissbutton').click(function () {
+        window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+    });
+
+
+
+
+
+    function payNow() {
+        var MobileNum = $("#txtCustomerMobile").val();
+        var input1 = $("#txtInput0").val();
+        var input2 = $("#txtInput1").val();
+        var Operator = $("#Id").val();
+        var Amount = $('#txtBill').val();
+        var Payment = $('.radio1:checked').val();
+        if (Payment != undefined && Payment != '') {
+            $.ajax({
+                type: "POST",
+                url: "/LandlineBill/FetchBill",
+                data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'ccf': chkCCF, 'Operator': Operator, 'Amount': Amount, 'Payment': Payment },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.status == "Insufficient Balance") {
+                        $("#modalChoosePayment").hide();
+                        $("#btninsufficientBalance").trigger("click");
+
+                    }
+                    else if (response.statuscode == "TXN") {
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "Success";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#82ce34';
+                        document.getElementById("lblPrice").innerHTML = 'Amount: ₹' + " " + response.data.amount;
+                        document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
+                        document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
+                        var datetime = response.data.reqdate;
+                        date = datetime.split('T')[0];
+                        time = datetime.split('T')[1];
+                        const timeString = time;
+
+                        const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                            .toLocaleTimeString('en-US',
+                                { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                            );
+                        document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
+                        document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
+                        document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#Id").val();
+                        document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + response.data.tRefId;;
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34'
+                        $("#btnmyModalfinal").trigger("click");
+                        $("#myModal").hide();
+
+                    }
+                    else if (response.statuscode == "ERR") {
+                        document.getElementById("lblMsg").innerHTML = response.message;
+                        document.getElementById("heading").innerHTML = "Failed";
+                        document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
+                        document.getElementById("icon").style.backgroundColor = '#880808';
+                        document.getElementById("lblPrice").style.color = '#880808'
+                        document.getElementById("lblPrice").innerHTML = 'Amount: ' + " " + $("#txtAmount").val();
+
+                        if (response.data.id === undefined || response.data.id === null || response.data.id === 0) {
+                            document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + 'NA';
                         }
                         else {
-                            document.getelementbyid("lblmainbal").innerhtml = response[0].mainbal;
-                            document.getelementbyid("lbladbal").innerhtml = response[0].adbal;
-                            document.getElementById("lblamount").innerHTML = "₹" + amount;
-                        }
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            });
-        }
-
-
-
-        $("#myModalfinal").on('show.bs.modal', function (e) {
-            $("#myModal").modal("hide");
-        });
-
-        $('#btnCloseModal').click(function () {
-            window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
-        });
-        $('#btnCloseTwo').click(function () {
-            window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
-        });
-        $('#btnCloseFirst').click(function () {
-            window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
-        });
-        $('#finaldismissbutton').click(function () {
-            window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
-        });
-
-
-
-
-
-        function payNow() {
-            var MobileNum = $("#txtCustomerMobile").val();
-            var input1 = $("#txtInput0").val();
-            var input2 = $("#txtInput1").val();
-            var Operator = $("#Id").val();
-            var Amount = $('#txtBill').val();
-            var Payment = $('.radio1:checked').val();
-            if (Payment != undefined && Payment != '') {
-                $.ajax({
-                    type: "POST",
-                    url: "/LandlineBill/FetchBill",
-                    data: { 'Number': MobileNum, 'input1': input1, 'input2': input2, 'ccf': chkCCF, 'Operator': Operator, 'Amount': Amount, 'Payment': Payment },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.status == "Insufficient Balance") {
-                            $("#modalChoosePayment").hide();
-                            $("#btninsufficientBalance").trigger("click");
-
-                        }
-                        else if (response.statuscode == "TXN") {
-                            document.getElementById("lblMsg").innerHTML = response.message;
-                            document.getElementById("heading").innerHTML = "Success";
-                            document.getElementById("img").innerHTML = '<i class="fa fa-check"></i>'
-                            document.getElementById("icon").style.backgroundColor = '#82ce34';
-                            document.getElementById("lblPrice").innerHTML = 'Amount: ₹' + " " + response.data.amount;
                             document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
+                        }
+                        if (response.data.mobileno === undefined || response.data.mobileno === null || response.data.mobileno === 0) {
+                            document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + 'NA';
+                        }
+                        else {
                             document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
-                            var datetime = response.data.reqdate;
-                            date = datetime.split('T')[0];
-                            time = datetime.split('T')[1];
-                            const timeString = time;
+                        }
+                        var datetime = response.data.reqdate;
+                        date = datetime.split('T')[0];
+                        time = datetime.split('T')[1];
+                        const timeString = time;
 
-                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
-                                .toLocaleTimeString('en-US',
-                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
-                                );
+                        const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
+                            .toLocaleTimeString('en-US',
+                                { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                            );
+                        if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
+                            document.getElementById("lblDate").innerHTML = 'Date :' + " " + 'NA';
+                        }
+                        else {
                             document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
+                        }
+                        if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
+                            document.getElementById("lblTime").innerHTML = 'Time :' + " " + 'NA';
+                        }
+                        else {
                             document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
-                            document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#Id").val();
-                            document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + response.data.tRefId;;
-                            document.getElementById("finaldismissbutton").style.backgroundColor = '#82ce34'
-                            $("#btnmyModalfinal").trigger("click");
-                            $("#myModal").hide();
-
                         }
-                        else if (response.statuscode == "ERR") {
-                            document.getElementById("lblMsg").innerHTML = response.message;
-                            document.getElementById("heading").innerHTML = "Failed";
-                            document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>'
-                            document.getElementById("icon").style.backgroundColor = '#880808';
-                            document.getElementById("lblPrice").style.color = '#880808'
-                            document.getElementById("lblPrice").innerHTML = 'Amount: ' + " " + $("#txtAmount").val();
+                        document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#Id").val();
+                        document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
+                        document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
+                        $("#btnmyModalfinal").trigger("click");
+                        $("#myModal").hide();
 
-                            if (response.data.id === undefined || response.data.id === null || response.data.id === 0) {
-                                document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + 'NA';
-                            }
-                            else {
-                                document.getElementById("lblTxnId").innerHTML = 'Txn ID: ' + " " + response.data.id;
-                            }
-                            if (response.data.mobileno === undefined || response.data.mobileno === null || response.data.mobileno === 0) {
-                                document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + 'NA';
-                            }
-                            else {
-                                document.getElementById("lblMobile").innerHTML = 'Mobile No.:' + " " + response.data.mobileno;
-                            }
-                            var datetime = response.data.reqdate;
-                            date = datetime.split('T')[0];
-                            time = datetime.split('T')[1];
-                            const timeString = time;
-
-                            const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
-                                .toLocaleTimeString('en-US',
-                                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
-                                );
-                            if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
-                                document.getElementById("lblDate").innerHTML = 'Date :' + " " + 'NA';
-                            }
-                            else {
-                                document.getElementById("lblDate").innerHTML = 'Date :' + " " + date;
-                            }
-                            if (response.data.reqdate === undefined || response.data.reqdate === null || response.data.reqdate === '0001-01-01T00:00:00') {
-                                document.getElementById("lblTime").innerHTML = 'Time :' + " " + 'NA';
-                            }
-                            else {
-                                document.getElementById("lblTime").innerHTML = 'Time :' + " " + timeString12hr;
-                            }
-                            document.getElementById("lblOperatorName").innerHTML = 'Operator Name:' + " " + $("#Id").val();
-                            document.getElementById("lblOperatorRefNum").innerHTML = 'Operator Reference Number:' + " " + "NA";
-                            document.getElementById("finaldismissbutton").style.backgroundColor = '#880808';
-                            $("#btnmyModalfinal").trigger("click");
-                            $("#myModal").hide();
-
-                        }
-
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            }
-            else {
-                document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
-                return false;
-            }
-        }
-
-        function downloadSample() {
-            var operator = $("#Id").val();
-            var State = $("#StateName").val();
-            if (State == '' || operator == 0) {
-                alert("Please Select State and Operator")
-            }
-            else {
-                $.ajax({
-                    url: "/LandlineBill/GetOperatorList",
-                    data: { 'StateId': State, 'OpId': operator },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result == "EmptyResult") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "UnExpectedStatusCode") {
-                            window.location.href = response.url;
-                        }
-                        else if (response.result == "RedirectToException") {
-                            window.location.href = response.url;
-                        }
-                        else {
-                            var ar = response;
-                            window.open(ar);
-                        }
                     }
 
-                });
-            }
-        }
-
-
-        function check(browser) {
-            if (browser == "broadband") {
-                window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
-            }
-            if (browser == "landline") {
-                window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
-            }
-
-        }
-    </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            $("#Id").change(function (e) {
-                $("#txtCustomerMobile").val("");
-                document.getElementById("divBill").style.display = "none";
-                jQuery('.remove').parent().remove();
-                var OpId = $("#Id").val();
-                $.ajax({
-                    url: "/LandlineBill/GetOperatorById",
-                    data: { 'OpId': OpId },
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (responsedata) {
-                        if (responsedata.result == "EmptyResult") {
-                            window.location.href = responsedata.url;
-                        }
-                        else if (responsedata.result == "UnExpectedStatusCode") {
-                            window.location.href = responsedata.url;
-                        }
-                        else if (responsedata.result == "RedirectToException") {
-                            window.location.href = responsedata.url;
-                        }
-                        else {
-                            for (var i = 0; i < responsedata[0].inputParam.length; i++) {
-                                var id = "txtInput" + i;
-                                $(".inc").append('<div class="controls">\
-                                                                                                            <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
-                                                                                                        </div>');
-                            }
-                        }
-                    }
-                });
-                return false;
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
             });
-            jQuery(document).on('click', '.remove_this', function () {
-                jQuery(this).parent().remove();
-                return false;
-            });
+        }
+        else {
+            document.getElementById('wallet').innerHTML = "Please Select Atleast One Payment Method";
+            return false;
+        }
+    }
 
+    function downloadSample() {
+        var operator = $("#Id").val();
+        var State = $("#StateName").val();
+        if (State == '' || operator == 0) {
+            alert("Please Select State and Operator")
+        }
+        else {
+            $.ajax({
+                url: "/LandlineBill/GetOperatorList",
+                data: { 'StateId': State, 'OpId': operator },
+                type: 'POST',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.result == "EmptyResult") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "UnExpectedStatusCode") {
+                        window.location.href = response.url;
+                    }
+                    else if (response.result == "RedirectToException") {
+                        window.location.href = response.url;
+                    }
+                    else {
+                        var ar = response;
+                        window.open(ar);
+                    }
+                }
+
+            });
+        }
+    }
+
+
+    function check(browser) {
+        if (browser == "broadband") {
+            window.location.href = '@Url.Content("~/BroadbandBill/BroadbandBill")';
+        }
+        if (browser == "landline") {
+            window.location.href = '@Url.Content("~/LandlineBill/LandlineBill")';
+        }
+
+    }
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $("#Id").change(function (e) {
+            $("#txtCustomerMobile").val("");
+            document.getElementById("divBill").style.display = "none";
+            jQuery('.remove').parent().remove();
+            var OpId = $("#Id").val();
+            $.ajax({
+                url: "/LandlineBill/GetOperatorById",
+                data: { 'OpId': OpId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (responsedata) {
+                    if (responsedata.result == "EmptyResult") {
+                        window.location.href = responsedata.url;
+                    }
+                    else if (responsedata.result == "UnExpectedStatusCode") {
+                        window.location.href = responsedata.url;
+                    }
+                    else if (responsedata.result == "RedirectToException") {
+                        window.location.href = responsedata.url;
+                    }
+                    else {
+                        for (var i = 0; i < responsedata[0].inputParam.length; i++) {
+                            var id = "txtInput" + i;
+                            $(".inc").append('<div class="controls">\
+                                                                                                                <input id="'+ id + '" class="remove txt-input txt-input-text" required="' + responsedata[0].inputParam[i].optional + '" type="' + responsedata[0].inputParam[i].type + '" maxlength="' + responsedata[0].inputParam[i].maxLength + '" name="textbox" placeholder="' + responsedata[0].inputParam[i].name + '">\
+                                                                                                            </div>');
+                        }
+                    }
+                }
+            });
+            return false;
         });
-    </script>
+        jQuery(document).on('click', '.remove_this', function () {
+            jQuery(this).parent().remove();
+            return false;
+        });
+
+    });
+</script>

@@ -1278,7 +1278,7 @@
 
     //Data Table
     $(document).ready(function () {
-        debugger;
+        
         
         var table = $('#example').DataTable({
             rowReorder: {
@@ -1335,7 +1335,7 @@
     });
     //For Cash Detail
     function ButtonDetail(e) {
-        debugger;
+        
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
         $.ajax({
@@ -1344,7 +1344,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                debugger;
+                
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1434,7 +1434,7 @@
 
     //For  R&E Rewards Points Passbok Detail.
     function RERewards(e) {
-        debugger;
+        
         var BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
         $.ajax({
@@ -1443,7 +1443,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                       debugger;
+                       
                 if (data.result == "EmptyResult") {
                     window.location.href = data.url;
                 }
@@ -1488,7 +1488,7 @@
     jQuery('.remove').parent().remove();
     //For Business RewardPassbook Detail
     function BRewards(e) {
-        debugger;
+        
         BalanceId = e;
         var baseurl = "https://api.redmilbusinessmall.com";
         $.ajax({
@@ -2292,7 +2292,7 @@
                 dataType: 'json',
                 success: function (data) 
                 {
-                   debugger;
+                   
                      for (var i = 0; i < data.length; i++) 
                      {
                     $(".Self_help").append('<div class="controls">\

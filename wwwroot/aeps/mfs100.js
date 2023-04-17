@@ -1,12 +1,12 @@
 ﻿var uri = "https://localhost:8003/mfs100/"; //Secure
 //var uri = "http://localhost:8004/mfs100/"; //Non-Secure
 function GetMFS100Info() {
-    debugger;
+    
     return GetMFS100Client("info");
 }
 
 function GetMFS100KeyInfo(key) {
-    debugger;
+    
     var MFS100Request = {
         "Key": key,
     };
@@ -14,7 +14,7 @@ function GetMFS100KeyInfo(key) {
     return PostMFS100Client("keyinfo", jsondata);
 }
 function CaptureFinger(quality, timeout) {
-    debugger;
+    
     var MFS100Request = {
         "Quality": quality,
         "TimeOut": timeout
@@ -24,7 +24,7 @@ function CaptureFinger(quality, timeout) {
 }
 // Devyang Multi Finger Capture
 function CaptureMultiFinger(quality, timeout, nooffinger) {
-    debugger;
+    
     var MFS100Request = {
         "Quality": quality,
         "TimeOut": timeout,
@@ -37,7 +37,7 @@ function CaptureMultiFinger(quality, timeout, nooffinger) {
 
 
 function VerifyFinger(ProbFMR, GalleryFMR) {
-    debugger;
+    
     var MFS100Request = {
         "ProbTemplate": ProbFMR,
         "GalleryTemplate": GalleryFMR,
@@ -47,7 +47,7 @@ function VerifyFinger(ProbFMR, GalleryFMR) {
     return PostMFS100Client("verify", jsondata);
 }
 function MatchFinger(quality, timeout, GalleryFMR) {
-    debugger;
+    
     var MFS100Request = {
         "Quality": quality,
         "TimeOut": timeout,
@@ -58,21 +58,21 @@ function MatchFinger(quality, timeout, GalleryFMR) {
     return PostMFS100Client("match", jsondata);
 }
 function GetPidData(BiometricArray) {
-    debugger;
+    
     var req = new MFS100Request(BiometricArray);
     var jsondata = JSON.stringify(req);
     return PostMFS100Client("getpiddata", jsondata);
 }
 
 function GetRbdData(BiometricArray) {
-    debugger;
+    
     var req = new MFS100Request(BiometricArray);
     var jsondata = JSON.stringify(req);
     return PostMFS100Client("getrbddata", jsondata);
 }
 
 function PostMFS100Client(method, jsonData) {
-    debugger;
+    
     var res;
     $.support.cors = true;
     var httpStaus = false;
@@ -96,7 +96,6 @@ function PostMFS100Client(method, jsonData) {
     return res;
 }
 function GetMFS100Client(method) {
-    debugger;
     var res;
     $.support.cors = true;
     var httpStaus = false;
@@ -118,7 +117,7 @@ function GetMFS100Client(method) {
     return res;
 }
 function getHttpError(jqXHR) {
-    debugger;
+    
     var err = "Unhandled Exception";
     if (jqXHR.status === 0) {
         err = 'Service Unavailable';
@@ -142,7 +141,7 @@ function getHttpError(jqXHR) {
 /////////// Classes
 
 function Biometric(BioType, BiometricData, Pos, Nfiq, Na) {
-    debugger;
+    
     this.BioType = BioType;
     this.BiometricData = BiometricData;
     this.Pos = Pos;
@@ -151,6 +150,6 @@ function Biometric(BioType, BiometricData, Pos, Nfiq, Na) {
 }
 
 function MFS100Request(BiometricArray) {
-    debugger;
+    
     this.Biometrics = BiometricArray;
 }

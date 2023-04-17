@@ -613,7 +613,7 @@
     });
 
     function fetchBill1() {
-        debugger;
+        
         if (document.getElementById("btnProcessRecharge").innerHTML == "Fetch Bill") {
             var operator = $("#Id").val();
             var mobile = $("#txtMobile").val();
@@ -638,7 +638,7 @@
                         type: 'POST',
                         dataType: 'json',
                         success: function (responsedata) {
-                            debugger;
+                            
                             if (responsedata.result == "EmptyResult") {
                                 window.location.href = responsedata.url;
                             }
@@ -1022,7 +1022,7 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (responsedata) {
-                    debugger;
+                    
                     if (responsedata.result == "EmptyResult") {
                         window.location.href = responsedata.url;
                     }
