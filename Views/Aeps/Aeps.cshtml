@@ -107,7 +107,7 @@
         <div class="row">
             <div class="col-sm-12 text-center padding-bottom-30">
                 <div class="section-title section_title">
-                    <h1 class="heading_services"><span>AEPS</span></h1>
+                    <h1 class="heading_services"><span>AePS</span></h1>
                 </div>
             </div>
         </div>
@@ -123,7 +123,33 @@
     <div class="section services-area padding-top-bottom-60">
         <div class="container">
             <h1 class="transaction center heading_chooseTransaction">CHOOSE TRANSACTION</h1>
-            <div class="row rowaepsChooseTrasaction" id="aepsChooseTrasaction">
+            <br />
+              <div class="row rowaepsChooseTrasaction" id="aepsChooseTrasaction" style="background:white;">
+            <div class="row wallet-select">
+                <div class="col-md-4 col-sm-4 col-4 col-xs-4 custom_img_size divrowaepsChooseTrasaction">
+                    <label style="text-align:center;">
+                        <span class="first-wallet">MINI STATEMENT</span>
+                        <input type="radio" class="radio1" name="test" id="rdbminiStatement" value="Mini Statement">
+                        <img src="/img/img_devices/MINI-STATEMENT.png" class="img-wallet-select" alt="Mini Statement" title="Mini Statement">
+                    </label>
+                </div>
+                <div class="col-md-4 col-sm-4 col-4 col-xs-4 custom_img_size divrowaepsChooseTrasaction">
+                    <label style="text-align:center;">
+                        <span class="first-wallet">BALANCE ENQUIRY</span>
+                        <input type="radio" class="radio1" name="test" id="rdbbalanceEnquiry" value="Balance Enquiry">
+                        <img src="/img/img_devices/BALANCE.png" class="img-wallet-select" alt="Balance Enquiry" title="Balance Enquiry">
+                    </label>
+                </div>
+                <div class="col-md-4 col-sm-4 col-4 col-xs-4 custom_img_size divrowaepsChooseTrasaction">
+                    <label style="text-align:center;">
+                        <span class="first-wallet">CASH WITHDRAWAL</span>
+                        <input type="radio" class="radio1" name="test" id="rdbcashWithdrawal" value="Cash Withdrawal">
+                        <img src="/img/img_devices/CASH.png" class="img-wallet-select" alt="Cash Withdrawal" title="Cash Withdrawal">
+                    </label>
+                </div>
+            </div>
+            </div>
+           @* <div class="row rowaepsChooseTrasaction" id="aepsChooseTrasaction">
                 <div class="col-md-4 col-sm-4 col-4 col-xs-4 divrowaepsChooseTrasaction">
                     <div class="col-spaced">
                         <div class="wallet-box bg-wt-round radio1 div_radio" type="radio" id="cashWithdrawal">
@@ -165,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="row">
                 <div class="col-sm-12" style="text-align:center;">
                     <h3><span id="walletMode" style="font-weight:bold;" class="text-danger font-weight-bold"></span></h3>
@@ -419,7 +445,7 @@
                 <div class="col col-md-12 col-sm-12 col-lg-12">
                     <div class="div-main-oplist" style="padding:0px 0px 0px 0px;margin-top:30px;">
                         <div class="div-recharge-opimage">
-                            <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
+                            <h1 class="transaction center heading_chooseTransaction">Powered By</h1>
                             <hr />
                             <div class="row" style="text-align:center;">
                                 <div class="col-md-4"></div>
@@ -649,7 +675,37 @@
                     <hr />
                     <input type="hidden" id="hdnTransactionModeDevice" />
                     <input type="hidden" id="hdnTransactionBankDevice" />
-                    <div class="col-md-12">
+                    <div class="col-md-12 wallet-select">
+                        <div class="col-md-3 choose_device_div">
+                            <label style="text-align:center;">
+                        
+                            <input type="radio" class="morpho" name="radioDevice" value="Morpho">
+                            <img src="~/img/img_devices/Morpho.png" class="choose_device_image" />
+                            <span class="ybl choose_device_label">MORPHO</span>
+                            </label>
+                        </div>
+                        <div class="col-md-3 choose_device_div">
+                            <label class="ybl choose_device_label" id="startek"> 
+                             
+                            <input type="radio" class="morpho" name="radioDevice" value="Startek">
+                            <img src="~/img/img_devices/Startek.png" class="choose_device_image" />
+                            <span class="ybl choose_device_label">STARTEK </span>
+                            </label>
+                        </div>
+                        <div class="col-md-3 choose_device_div">
+                            <label class="ybl choose_device_label"> 
+                                
+                            <input type="radio" class="morpho" name="radioDevice" value="Mantra">
+                            <img src="~/img/img_devices/Mantra.png" class="choose_device_image" />
+                            <span class="ybl choose_device_label">MANTRA</span>
+                            </label>
+                        </div>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
                         <div class="col-md-3 morpho radio2 choose_device_div">
                             <input type="radio" class="morpho" name="radioDevice" value="Morpho">
                             <img src="~/img/img_devices/Morpho.png" class="choose_device_image" />
@@ -665,8 +721,8 @@
                             <img src="~/img/img_devices/Mantra.png" class="choose_device_image" />
                             <label class="ybl choose_device_label"> MANTRA </label>
                         </div>
-                    </div>
-                    <div class="col-md-12" style="display: block; margin-top: 20px;">
+                        </div>
+                        <div class="col-md-12" style="display: block; margin-top: 20px;">
                         <div class="col-md-3 choose_device_div">
                             <input type="radio" class="morpho" name="radioDevice" value="Next">
                             <img src="~/img/img_devices/Next.png" class="choose_device_image" />
@@ -682,14 +738,14 @@
                             <img src="~/img/img_devices/Tatvik-TMF20.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="tatvik"> TATVIK TMF20 </label>
                         </div>
-                    </div>
-                    <div class="col-md-12" style="display: block; margin-top: 20px;">
+                        </div>
+                        <div class="col-md-12" style="display: block; margin-top: 20px;">
                         <div class="col-md-3 choose_device_div">
                             <input type="radio" class="morpho" name="radioDevice" value="Precision">
                             <img src="~/img/img_devices/Precision.png" class="choose_device_image" />
                             <label class="ybl choose_device_label" id="precision"> PRECISION PB510 </label>
                         </div>
-                    </div>
+                        </div>
                     <div class="row">
                         <div class="col-sm-12" style="text-align:center;">
                             <h3 style="font-weight:bold"><span id="errDevice" style="font-weight:bold;" class="text-danger font-weight-bold"></span></h3>
@@ -800,7 +856,7 @@
                                 Verify Face
                             </button>
                         </div>
-                        @*Code Commented For Fingurprint Not Working So that
+                        @*Code Commented For Fingurprint Not Working Right Now Due to Face Verification So that
                         <div class="col-md-6 col-sm-6">
                         <button class="button-27" id="btnVerifyByBiometric" onclick="getLocation()">
                         Verify Using Biometric
@@ -1080,7 +1136,7 @@
             <div class="col col-md-12 col-sm-12 col-lg-12">
                 <div class="div-main-oplist">
                     <div class="div-recharge-opimage">
-                        <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Powered By</b></h4></div>
+                        <h1 class="transaction center heading_chooseTransaction">Powered By</h1>
                         <hr />
                         <div class="row" style="text-align:center;">
                             <div class="col-md-4"></div>
@@ -1102,7 +1158,7 @@
             <div class="col col-md-12 col-sm-12 col-lg-12">
                 <div class="div-main-oplist">
                     <div class="div-recharge-opimage">
-                        <div class="div-oprator-heading"><h4 class="heading_tag_bbps"><b>Accepted Devices</b></h4></div>
+                        <h1 class="transaction center heading_chooseTransaction">Accepted Devices</h1>
                         <hr />
                         <div class="row" style="text-align:center;">
                             <div class="col-md-1 col-sm-12 col-xs-12 padding-top-10 custom_img_size">
@@ -1395,7 +1451,7 @@
 
                     //When Response is Pending First Time
                     else if (response.status == "Pending") {
-                        
+
                         document.getElementById("headingKYCStatus").innerHTML = "KYC Status: " + response.data[0].status;
                         var img = document.getElementById("img_kycPendingBank");
                         img.src = response.data[0].bankLogo;
@@ -1445,7 +1501,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                
+
                 if (response.status == "AgentOnBoardingPending") {
                     $("#kycPendingModal").hide();
                     $("#btnagentOnboarding").trigger("click");
@@ -1500,7 +1556,7 @@
 
 
     function mobileOtpValidationForKYC() {
-        
+
         var data = iciciProceedKYCData;
         var json = JSON.stringify(data);
         var otp = $("#txtOTPVerifyForKYC").val();
@@ -1560,7 +1616,7 @@
 
 
     function iciciAgentBiometricFinal() {
-        
+
         var data = iciciAgentBiometricJson;
         var json = JSON.stringify(data);
 
@@ -1570,7 +1626,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (response) {
-                
+
 
                 if (response.result == "EmptyResult") {
                     window.location.href = response.url;
@@ -1585,7 +1641,7 @@
                     var img = document.getElementById("imgKYCFinalResponseImage");
                     img.src = "/css/Img_Aeps/AepsKYCFinalSuccess.jpeg";
                     document.getElementById("agentKYCFinalResponseMessage1").innerHTML = response.message;
-                    document.getElementById("agentKYCFinalResponseMessage2").innerHTML = "You can use DMT and AEPS service now and earn!";
+                    document.getElementById("agentKYCFinalResponseMessage2").innerHTML = "You can use DMT and AePS service now and earn!";
                     //Aadhaar and Pan OTP popup will be hide
                     $("#btnagentAadharPanPopu").hide();
                     //And  Final KYC Response Popup will be opened
@@ -1608,7 +1664,7 @@
 
 
     function chooseBank() {
-        
+
         var transactionvalue = $("#hdnTransactionMode").val();
         $("#hdnTransactionModeDevice").val(transactionvalue);
 
@@ -1643,35 +1699,35 @@
             bankName = data;
             $("#hdnTransactionBankDevice").val(bankDeviceVal);
             radioVal = $('.radio1:checked').val();
-            
+
             if (data == 'ICICI Bank') {
-                
+
                 $.ajax({
-                url: "/Aeps/ProceedToKycFirstPage",
+                    url: "/Aeps/ProceedToKycFirstPage",
                     data: { 'BankNAME': bankDeviceVal },
-                type: 'POST',
-                dataType: 'json',
-                success: function (response) {
-                    
-                    $("#chooseBankKycBridgeModal").hide();
-                    $("#btndeviceModal").trigger("click");
-                }
-            });
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+
+                        $("#chooseBankKycBridgeModal").hide();
+                        $("#btndeviceModal").trigger("click");
+                    }
+                });
             }
-            else{
+            else {
                 $.ajax({
-                url: "/Aeps/GetAepsKycDetailsNew",
-                data: { 'radioVal': radioVal, 'bankName': data },
-                type: 'POST',
-                dataType: 'json',
-                success: function (response) {
-                    
-                    $("#chooseBankKycBridgeModal").hide();
-                    $("#btndeviceModal").trigger("click");
-                }
-            });
+                    url: "/Aeps/GetAepsKycDetailsNew",
+                    data: { 'radioVal': radioVal, 'bankName': data },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (response) {
+
+                        $("#chooseBankKycBridgeModal").hide();
+                        $("#btndeviceModal").trigger("click");
+                    }
+                });
             }
-            
+
         }
     };
 
@@ -1681,7 +1737,7 @@
     function VerifyFaceBiometricModal() {
         var transMode = transactionMode;
         var bank = bankName;
-        
+
         radioVal = $('.morpho:checked').val();
         var device = radioVal;
         if (radioVal == undefined || radioVal == '' || radioVal == null) {
@@ -1702,7 +1758,7 @@
                         $("#deviceModal").hide();
                     }
                     else if (response.result == 'RedirectToCustomer') {
-                        
+
 
                         if (bank == "ICICI Bank" || bank == "Fingpay") {
                             var img = document.getElementById("img_SelectedBank");
@@ -1713,12 +1769,12 @@
                             lati = $("#hdnLong").val();
                             long = $("#hdnLat").val();
 
-                                if (transactionMode == "be" || transactionMode == "ms") {
-                                    document.getElementById("txtAmountCashWithdrawal").style.display="none";
-                                }
-                                else {
-                                    document.getElementById("txtAmountCashWithdrawal").style.display="block";
-                                }
+                            if (transactionMode == "be" || transactionMode == "ms") {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "none";
+                            }
+                            else {
+                                document.getElementById("txtAmountCashWithdrawal").style.display = "block";
+                            }
                             bankList();
                             if (transactionMode == "cw") {
                                 document.getElementById("txtAmountCashWithdrawal").style.display = "block";
@@ -1744,7 +1800,7 @@
                         else if (bank == "Yes Bank") {
                             var img = document.getElementById("img_SelectedBank");
                             img.src = "/css/Img_Aeps/Yes_Bank_logo.jpeg";
-                            
+
                             aepsAgentId = '@ViewBag.AepsAgentId';
                             bankList();
                             if (transactionMode == "cw") {
@@ -1822,7 +1878,7 @@
 
     function GetLocation() {
         if (navigator.geolocation) {
-            
+
             navigator.geolocation.getCurrentPosition(ShowPosition, showError);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
@@ -1830,7 +1886,7 @@
     }
 
     function ShowPosition(position) {
-        
+
         $("#hdnLong1").val(position.coords.longitude);
         $("#hdnLat1").val(position.coords.latitude);
         var baseUrl = "https://www.google.com/maps/search/";
@@ -1908,8 +1964,8 @@
                     data: { 'customerName': customerName, 'transactionMode': transactionMode, 'insertedAmount': insertedAmount, 'deBankName': bankName, 'customerMobile': customerMobile, 'userselectedBankName': userselectedBankName, 'customerAadharNumber': customerAadharNumber, 'iin': selectedValue, 'deviceName': radioVal, 'aepsAgentId': aepsAgentId },
                     dataType: 'json',
                     success: function (response) {
-                        
-                        if (response.status = "AgentOnBoardingPending"){
+
+                        if (response.status = "AgentOnBoardingPending") {
                             $("#aadharCustomerDetailsPopUp").hide();
                             $("#btnagentOnboarding").trigger("click");
                         }
@@ -1957,7 +2013,7 @@
                             document.getElementById("lblTransactionStatus").innerHTML = response.data.status;
                             document.getElementById("lblAccountBalance").innerHTML = "₹" + response.data.acBalance;
                             if (transactionMode == "ms") {
-                                
+
                                 $("#temptableid").find("table").remove();
                                 var tr = '<table id="tempTbl1" mode="static" class="table table-striped table-bordered table-responsive wrapper dataTable no-footer responsive_table_businessRepo" border="1" cellspacing="0" cellpadding="3" style="width:100%"><thead><tr>';
                                 var columnName = Object.keys(response.miniStatementData[0]);
@@ -1975,7 +2031,7 @@
                                     }
                                     tr += '</tr>';
                                 }
-                                
+
                                 tr += '</tbody></table>';
                                 $("#temptableid").append(tr);
                                 var table = $('#tempTbl1').DataTable({
@@ -2054,7 +2110,7 @@
                                         }
                                         tr += '</tr>';
                                     }
-                                    
+
                                     tr += '</tbody></table>';
                                     $("#temptableid").append(tr);
                                     var table = $('#tempTbl1').DataTable({
@@ -2106,11 +2162,11 @@
                         data: { 'customerName': customerName, 'transactionMode': transactionMode, 'insertedAmount': insertedAmount, 'deBankName': bankName, 'customerMobile': customerMobile, 'userselectedBankName': userselectedBankName, 'customerAadharNumber': customerAadharNumber, 'iin': selectedValue, 'deviceName': radioVal, 'aepsAgentId': aepsAgentId },
                         dataType: 'json',
                         success: function (response) {
-                            if (response.status = "AgentOnBoardingPending"){
-                            $("#aadharCustomerDetailsPopUp").hide();
-                            $("#btnagentOnboarding").trigger("click");
+                            if (response.status = "AgentOnBoardingPending") {
+                                $("#aadharCustomerDetailsPopUp").hide();
+                                $("#btnagentOnboarding").trigger("click");
                             }
-                            
+
                             else if (response.result == "EmptyResult") {
                                 window.location.href = response.url;
                             }
@@ -2212,7 +2268,7 @@
         geocoder.geocode(
             { 'latLng': latlng },
             function (results, status) {
-                
+
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[0]) {
                         var add = results[0].formatted_address;
@@ -2234,51 +2290,6 @@
             }
         );
     }
-
-
-    //function getLocationFromLatLong(latitude, longitude) {
-    //    var geocoder = new google.maps.Geocoder();
-    //    var latlng = new google.maps.LatLng(latitude, longitude);
-    //    geocoder.geocode({ 'latLng': latlng },
-    //    function (results, status) {
-    //        if (status == google.maps.GeocoderStatus.OK) {
-    //            if (results[0]) {
-    //                console.log(results[0].formatted_address); // Returns the address of the location
-    //            } else {
-    //                console.log('No results found');
-    //            }
-    //        } else {
-    //            console.log('Geocoder failed due to: ' + status);
-    //        }
-    //    });
-    //}
-
-
-
-
-
-
-    //function getLocationWithAddress(){
-    //    var NodeGeocoder = require('node-geocoder');
-
-    //    var options = {
-    //        provider: 'google',
-    //        httpAdapter: 'https', // Default
-    //        apiKey: ' ', // for Mapquest, OpenCage, Google Premier
-    //        formatter: 'json' // 'gpx', 'string', ...
-    //    };
-
-    //    var geocoder = NodeGeocoder(options);
-
-    //    geocoder.reverse({ lat: 28.5967439, lon: 77.3285038 }, function (err, res) {
-    //        console.log(res);
-    //    });
-    //}
-
-
-
-
-
 
 
     function FaceLiveliness() {
@@ -2380,7 +2391,7 @@
 
                         $("#btnAadharCustomerDetails").trigger("click");
                         $("#deviceModal").hide();
-                    
+
                     }
                     else if (bank == "") {
                         var img = document.getElementById("img_SelectedBank");
@@ -2701,7 +2712,7 @@
     }
 
     function PostMFS100Client(method, jsonData) {
-        
+
         var res;
         $.support.cors = true;
         var httpStaus = false;
@@ -2857,7 +2868,7 @@
         });
     }
     //function getLocation() {
-    //        
+    //
     //    if (navigator.geolocation) {
     //        navigator.geolocation.getCurrentPosition(showPosition);
     //    } else {
@@ -2866,7 +2877,7 @@
     //}
 
     //function showPosition(position) {
-    //        
+    //
     //    $("#hdnLat").val(position.coords.latitude);
     //    $("#hdnLong").val(position.coords.longitude);
     //}
@@ -2888,7 +2899,7 @@
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
                     $(".Self_help").append('<div class="controls">\
-                                                                                <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
+                                                                                    <details>\<summary>'+ data[i].question + '</summary><p>' + data[i].answer + '<p></details></div>');
 
                 }
             }
@@ -2903,25 +2914,4 @@
             }
         });
     });
-
-                                                    //function ValidateAlphanumericsrAccount(e) {
-                                                    //    var keyCode = e.keyCode || e.which;
-                                                    //    var errtxtAmountCashWithdrawal=document.getElementById("errtxtAmountCashWithdrawal");
-                                                    //    var Amount = document.getElementById("txtAmountCashWithdrawal");
-                                                    //    errtxtAmountCashWithdrawal.innerHTML = "";
-                                                    //    var regex = /^[0-9]+$/;
-                                                    //    var isValid = regex.test(String.fromCharCode(keyCode));
-                                                    //    if (!isValid) {
-
-                                                    //        errtxtAmountCashWithdrawal.innerHTML = "Only Numbers allowed.";
-                                                    //        $('#errtxtAmountCashWithdrawal').css('margin-left', '-109px');
-                                                    //        $('#errtxtAmountCashWithdrawal').css('color', 'red');
-
-                                                    //    }
-                                                    //    else {
-                                                    //        errtxtAmountCashWithdrawal.innerHTML = "";
-                                                    //    }
-                                                    //    return isValid;
-                                                    //}
-
 </script>
